@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoreAdministrativoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CoreAdministrativoEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_PartidaDiario_CrearDetalle">
+      <Parameter Name="piIDApp" Mode="In" Type="Int16" />
+      <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="piIDEmpresa" Mode="In" Type="Int32" />
+      <Parameter Name="pcPartida" Mode="In" Type="String" />
+      <Parameter Name="pdFechaPartida" Mode="In" Type="DateTime" />
+      <Parameter Name="piIDFila" Mode="In" Type="Int32" />
+      <Parameter Name="pcCuentaContable" Mode="In" Type="String" />
+      <Parameter Name="pcAuxiliar" Mode="In" Type="String" />
+      <Parameter Name="pcAuxiliarCodigo" Mode="In" Type="String" />
+      <Parameter Name="pnDebito" Mode="In" Type="Decimal" />
+      <Parameter Name="pnCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="pcDebitooCredito" Mode="In" Type="String" />
+      <Parameter Name="pnTasadeCambio" Mode="In" Type="Decimal" />
+      <Parameter Name="pcEstado" Mode="In" Type="String" />
+      <Parameter Name="pcTipoPartida" Mode="In" Type="String" />
+      <Parameter Name="pcFondo" Mode="In" Type="String" />
+      <Parameter Name="pcCentrodeCosto" Mode="In" Type="String" />
+      <Parameter Name="pcPrograma" Mode="In" Type="String" />
+      <Parameter Name="pcDocumento" Mode="In" Type="String" />
+      <Parameter Name="pcOrigen" Mode="In" Type="String" />
+      <Parameter Name="pcReferencia" Mode="In" Type="String" />
+      <Parameter Name="pcExentoFactura" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PartidaDiario_CrearMaestro" ReturnType="Collection(String)">
+      <Parameter Name="piIDApp" Mode="In" Type="Int16" />
+      <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="piIDEmpresa" Mode="In" Type="Int32" />
+      <Parameter Name="pdFechaPartida" Mode="In" Type="DateTime" />
+      <Parameter Name="pcLote" Mode="In" Type="String" />
+      <Parameter Name="pcReferencia" Mode="In" Type="String" />
+      <Parameter Name="pcSinopsis" Mode="In" Type="String" />
+      <Parameter Name="pcTipoPartida" Mode="In" Type="String" />
+      <Parameter Name="pcEstadoPartida" Mode="In" Type="String" />
+      <Parameter Name="piMoneda" Mode="In" Type="Int16" />
+      <Parameter Name="pcAutoriza" Mode="In" Type="String" />
+      <Parameter Name="pdFechaAutorizacion" Mode="In" Type="DateTime" />
+      <Parameter Name="pcOrigen" Mode="In" Type="String" />
+      <Parameter Name="pnTotalPartida" Mode="In" Type="Decimal" />
+      <Parameter Name="pcPartidaSeguimiento" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Catalogo_Contable_ObtenerPorCuentaContable" ReturnType="Collection(CoreAdministrativoModel.sp_Catalogo_Contable_ObtenerPorCuentaContable_Result)">
+      <Parameter Name="piIDEmpresa" Mode="In" Type="Int32" />
+      <Parameter Name="pcCuentaContable" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_Catalogo_Contable_ObtenerPorCuentaContable_Result">
+    <Property Type="Int32" Name="fiIDEmpresa" Nullable="false" />
+    <Property Type="String" Name="fcCuentaContable" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="fcDescripcionCuenta" Nullable="true" MaxLength="180" />
+  </ComplexType>
+</Schema>

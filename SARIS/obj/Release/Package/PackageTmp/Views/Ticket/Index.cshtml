@@ -1,0 +1,361 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel">
+    <div class="panel-hdr">
+        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Tickets Pendientes</h2>
+        <div class="panel-toolbar " role="menu">
+            <button onclick="CrearTicket()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Crear Ticket</button>
+        </div>
+    </div>
+    <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicket">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>Titulo</th>
+                        <th style="width:80px">Solicitante</th>
+                        <th style="width:80px">Desarrollador Asignado</th>
+                        <th style="width:80px">Area</th>
+                        <th style="width:150px">Fecha Creacion Solicitud</th>
+                        <th style="width:150px">Fecha Inicio</th>
+                        <th style="width:150px">Fecha Final</th>
+                        <th style="width:80px">Estado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-hdr">
+        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Tickets Cerrados</h2>
+
+    </div>
+    <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCerrados">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>Titulo</th>
+                        <th style="width:80px">Solicitante</th>
+                        <th style="width:80px">Desarrollador Asignado</th>
+                        <th style="width:80px">Area</th>
+                        <th style="width:150px">Fecha Creacion Solicitud</th>
+                        <th style="width:150px">Fecha Inicio</th>
+                        <th style="width:150px">Fecha Final</th>
+                        <th style="width:80px">Estado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+@section Scripts{
+    
+    <script>
+        var tablaPrincipal = $('#TablaPrincipalTicket').DataTable({
+
+            autoWidth: true,
+            responsive: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'Bfrtip',
+            order: [[1, "desc"]],
+              ajax: {
+                url: '@Url.Action("ListarTicket", "Ticket")',
+                  method: "Get",
+                  dataSrc: function (data) {
+                      return data;
+                  }
+            },
+            "columns": [
+
+                {//0
+                    "data": "fiIDRequerimiento", "className": "text-center",
+                    "render": function (data, type, row) {
+
+                        return '<div class="dropdown mo-mb-2">' +
+                            '<button class="btn pt-0 pb-0 mt-0 mb-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Opciones"><i class="fa fa-bars"></i></button >' +
+                            '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                            //'<button type="button" class="dropdown-item" id="btnAbrirCapturaRequerimiento" onclick="RedirigirAccion(' + "'RegistrarRequerimiento.aspx'" + ',' + "'Registrar Requerimiento'" + ')" aria-label="Detalles"><i class="far fa-file-alt"></i>Agregar Requerimiento</button>' +
+                            '<button type="button" class="dropdown-item" id="btnModuloActualizarRequerimiento" onclick="RedirigirAccion(' + "'RequerimientoActualizar.aspx'" + ',' + "'Actualizar Requerimiento'" + ')" aria-label="Detalles"><i class="far fa-file-alt"></i>Actualizar Requerimiento</button>' +
+                            '<button type="button" class="dropdown-item" id="btnModuloActualizarRequerimiento"  onclick="ActualizarTicket(' + row["fiIDRequerimiento"] + ')" aria-label="Detalles"><i class="far fa-file-alt"></i>Actualizar Requerimiento</button>' +
+                            //'<button type="button" class="dropdown-item" id="btnAbrirDetalles" onclick="AbrirReporte(' + row["fiIDRequerimiento"] + ')" aria-label="Detalles"><i class="far fa-file-alt"></i> Ver detalles</button>' +
+                            //(row["UsuarioPermiso"] == true ? `<button type="button" class="dropdown-item" id="btnAbrirDetalleCancelado" onclick="AbrirDetalleCancelado(${row["IdExpediente"]} , ${row["IdSolicitud"]} , '${row["NombreCliente"]}','${row["NombreOficial"]}','${row["Estado"]}', ${row["IdAbogado"]}, ${row["IDEstado"]})" aria-label="Detalles"><i class="far fa-file-alt"></i> detalles cancelados</button>` : '') +
+                            '</div>' +
+                            '</div >';
+                    }
+                },
+                {
+                    "data": "fiIDRequerimiento", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        var des = "";
+                        return row["fiIDRequerimiento"] + '<span class="text-muted">' + ' | <a href="javascript:void(0)" onclick="abrirModalDetalle(' + row["fiIDRequerimiento"] + ')"" >' + row["fcTituloRequerimiento"] + '</a> </span>'
+
+                    }
+                },
+                {
+                    "data": "fcNombreSolicitante", "className": "td-responsive",
+                    "render": function (data, type, row) {
+
+                        return row["fcNombreSolicitante"]
+                    }
+                },
+                {
+                    "data": "fcNombreAsignado", "className": "td-responsive",
+                    "render": function (data, type, row) {
+
+                        return row["fcNombreAsignado"]
+                    }
+                },
+                {
+                    "data": "fcNombreAreaSolicitante", "className": "td-responsive",
+                    "render": function (data, type, row) {
+
+                        return row["fcNombreAreaSolicitante"]
+                    }
+                },
+                {
+                    "data": "fdFechaCreacion", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        return moment(row["fdFechaCreacion"]).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+                {
+                    "data": "fdFechaAsignacion", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        if (row["fdFechaAsignacion"] == " / Date(1581400800000) /") {
+                            return ""
+
+                        } else {
+                            return moment(row["fdFechaAsignacion"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+
+                    }
+                },
+                {
+                    "data": "fdFechadeCierre", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        if (row["fdFechadeCierre"] == " / Date(1581400800000) /") {
+                            return ""
+                        } else {
+
+                            return moment(row["fdFechadeCierre"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+                    }
+                },
+
+
+                {
+                    "data": "fcDescripcionEstado", "className": "text-center",
+                    "render": function (data, type, row) {
+
+                        return '<a href="javascript:void(0)" onclick="ProcesosEstados(' + row["fiIDRequerimiento"] + ')" > <span class="btn-sm btn-block btn-' + row["fcClaseColor"] + ' text-center">' + row["fcDescripcionEstado"] + '</span></a>';
+
+                    }
+                },
+                {
+                    "data": "fcDescripcionRequerimiento", "className": "td-responsive", "visible": false, "title": 'Descripcion',
+                    "render": function (data, type, row) {
+                        var des = "";
+                        return row["fcDescripcionRequerimiento"]
+
+                    }
+                }
+
+            ],
+
+        });
+
+
+
+        var tablaPrincipal = $('#TablaPrincipalTicketCerrados').DataTable({
+
+            autoWidth: true,
+            responsive: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'Bfrtip',
+            order: [[1, "desc"]],
+              ajax: {
+                url: '@Url.Action("ListarTicketCerrados", "Ticket")',
+                  method: "Get",
+                  dataSrc: function (data) {
+                      return data;
+                  }
+            },
+            "columns": [
+
+                {//0
+                    "data": "fiIDRequerimiento", "className": "text-center",
+                    "render": function (data, type, row) {
+
+                        return '<div class="dropdown mo-mb-2">' +
+                            '<button class="btn pt-0 pb-0 mt-0 mb-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Opciones"><i class="fa fa-bars"></i></button >' +
+                            '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                            //'<button type="button" class="dropdown-item" id="btnAbrirCapturaRequerimiento" onclick="RedirigirAccion(' + "'RegistrarRequerimiento.aspx'" + ',' + "'Registrar Requerimiento'" + ')" aria-label="Detalles"><i class="far fa-file-alt"></i>Agregar Requerimiento</button>' +
+                            '<button type="button" class="dropdown-item" id="btnModuloActualizarRequerimiento" onclick="RedirigirAccion(' + "'RequerimientoActualizar.aspx'" + ',' + "'Actualizar Requerimiento'" + ')" aria-label="Detalles"><i class="far fa-file-alt"></i>Actualizar Requerimiento</button>' +
+                            '<button type="button" class="dropdown-item" id="btnModuloActualizarRequerimiento" onclick="ActualizarTicket(' + row["fiIDRequerimiento"] + ')" aria-label="Detalles"><i class="far fa-file-alt"></i>Actualizar Requerimiento</button>' +
+                            //'<button type="button" class="dropdown-item" id="btnAbrirDetalles" onclick="AbrirReporte(' + row["fiIDRequerimiento"] + ')" aria-label="Detalles"><i class="far fa-file-alt"></i> Ver detalles</button>' +
+                            //(row["UsuarioPermiso"] == true ? `<button type="button" class="dropdown-item" id="btnAbrirDetalleCancelado" onclick="AbrirDetalleCancelado(${row["IdExpediente"]} , ${row["IdSolicitud"]} , '${row["NombreCliente"]}','${row["NombreOficial"]}','${row["Estado"]}', ${row["IdAbogado"]}, ${row["IDEstado"]})" aria-label="Detalles"><i class="far fa-file-alt"></i> detalles cancelados</button>` : '') +
+                            '</div>' +
+                            '</div >';
+                    }
+                },
+                {
+                    "data": "fiIDRequerimiento", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        var des = "";
+                        return row["fiIDRequerimiento"] + '<span class="text-muted">' + ' | <a href="javascript:void(0)" onclick="abrirModalDetalle(' + row["fiIDRequerimiento"] + ')"" >' + row["fcTituloRequerimiento"] + '</a> </span>'
+
+                    }
+                },
+                {
+                    "data": "fcNombreSolicitante", "className": "td-responsive",
+                    "render": function (data, type, row) {
+
+                        return row["fcNombreSolicitante"]
+                    }
+                },
+                {
+                    "data": "fcNombreAsignado", "className": "td-responsive",
+                    "render": function (data, type, row) {
+
+                        return row["fcNombreAsignado"]
+                    }
+                },
+                {
+                    "data": "fcNombreAreaSolicitante", "className": "td-responsive",
+                    "render": function (data, type, row) {
+
+                        return row["fcNombreAreaSolicitante"]
+                    }
+                },
+                {
+                    "data": "fdFechaCreacion", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        return moment(row["fdFechaCreacion"]).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+                {
+                    "data": "fdFechaAsignacion", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        if (row["fdFechaAsignacion"] == " / Date(1581400800000) /") {
+                            return ""
+
+                        } else {
+                            return moment(row["fdFechaAsignacion"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+
+                    }
+                },
+                {
+                    "data": "fdFechadeCierre", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        if (row["fdFechadeCierre"] == " / Date(1581400800000) /") {
+                            return ""
+                        } else {
+
+                            return moment(row["fdFechadeCierre"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+                    }
+                },
+
+
+                {
+                    "data": "fcDescripcionEstado", "className": "text-center",
+                    "render": function (data, type, row) {
+
+                        return '<a href="javascript:void(0)" onclick="ProcesosEstados(' + row["fiIDRequerimiento"] + ')" > <span class="btn-sm btn-block btn-' + row["fcClaseColor"] + ' text-center">' + row["fcDescripcionEstado"] + '</span></a>';
+
+                    }
+                },
+                {
+                    "data": "fcDescripcionRequerimiento", "className": "td-responsive", "visible": false, "title": 'Descripcion',
+                    "render": function (data, type, row) {
+                        var des = "";
+                        return row["fcDescripcionRequerimiento"]
+
+                    }
+                }
+
+            ],
+
+        });
+
+
+
+        function ProcesosEstados(Ticket)
+        {
+            debugger;
+            $.ajax({
+                url: "@Url.Action("ModalBitacora", "Ticket")",
+                method: "get",
+                data: { id: Ticket},
+                success: function (resp) {
+                    ShowModalBig(resp);
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });
+        function CrearTicket() {
+
+            VerModalScrollConObjetoDeParametro({}, "@Url.Action("RegistrarTicket", "Ticket")");
+
+        }
+
+        function ActualizarTicket(idtickets) {
+
+            $.ajax({
+                url: "@Url.Action("ActualizarTicket", "Ticket")",
+                type: 'Get',
+                data: { idticket: idtickets},
+                success: function (data) {
+                    ShowModalBigScroll(data)
+                }, error: function (data) {
+
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Actualizar el Ticket", Estado: false }
+                    AlertaAjax(dataerror)
+                }
+            });
+
+            //VerModalScrollConObjetoDeParametro({}, "@Url.Action("ActualizarTicket", "Ticket")")
+        }
+
+    </script>
+    
+    }

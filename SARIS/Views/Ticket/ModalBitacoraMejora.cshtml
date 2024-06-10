@@ -1,0 +1,144 @@
+﻿@model int
+
+<style>
+    .task-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .arrow {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<style>
+    .ticket-created-notification {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e0f7fa;
+        /* Light blue background */
+        color: #00796b;
+        /* Dark green text */
+        border: 2px solid #00796b;
+        /* Border same as text color */
+        border-radius: 25px;
+        /* Oval shape */
+        padding: 20px 40px;
+        /* Padding for space inside the oval */
+        margin: 20px 0;
+        /* Margin for spacing around the oval */
+        font-size: 16px;
+        /* Font size */
+        font-weight: bold;
+        /* Font weight */
+    }
+</style>
+
+<div class="container" id="informacion">
+    
+</div>
+
+<script>
+    LlenarDatos();
+    function LlenarDatos() {
+         $.ajax({
+            url: '@Url.Action("BitacoraEstado", "Ticket")',
+                  data: { Ticket: @Model },
+                  method: "Get",
+             success: function (resp) {
+                 console.log(resp);
+                var opt = ``;
+                for (const item of resp) {
+                    if (item.fcNombreCorto == "Total") {
+
+                    } else {
+                        opt += ``
+                        if (item.fcDescripcionEstado == "Creado") {
+                            opt += `<div class="ticket-created-notification">
+                                        <p>Se ha Creado el Ticket.<br />
+                                            El Usuario: <strong>${item.fcUsuarioPricipal}</strong> ha Creado el Ticket <br />
+                                            La Fecha: <strong>${moment(item.fdFechaInicioEstado).locale('es').format('YYYY/MM/DD hh:mm a')}</strong>
+                                        </p>
+                                    </div>`
+                        }
+                        //else if (item.fcDescripcionEstado == "Reasignado")
+                        //{
+                        //    if (item.fcUsuarioSecundario == null || item.fcUsuarioSecundario == "") {
+                        //        opt += `<div class="ticket-created-notification">
+                        //            <p>Ticket Reasignado.<br />
+                        //                <strong>${item.fcUsuarioPricipal}</strong> A Reasignado a Area: ${item.fcDescripcion} <br />
+                        //                Tiempo Transcurrido: <strong>${item.fiHorasTrabajadas} : ${item.fiMinutios}</strong><br />
+                        //                Razon: <strong>${item.fcComentario}</strong>
+                        //            </p>
+                        //        </div>
+                        //        <div class="arrow">&#8593;</div>`
+                        //    } else {
+                        //        opt += `<div class="ticket-created-notification">
+                        //            <p>Ticket Reasignado.<br />
+                        //                <strong>${item.fcUsuarioPricipal}</strong> A Reasignado a: ${item.fcUsuarioSecundario} <br />
+                        //                Tiempo Transcurrido: <strong>${item.fiHorasTrabajadas} : ${item.fiMinutios}</strong><br />
+                        //                Razon: <strong>${item.fcComentario}</strong>
+                        //            </p>
+                        //        </div>
+                        //        <div class="arrow">&#8593;</div>`
+                        //    }
+                            
+                        //}
+                        else {
+                            opt += `
+                            <table class="table table-sm" style="margin-bottom: 0px;">
+                                <tbody>
+                                    <tr>
+                                        <td><span class="font-weight-bold text-muted">Usuario </span></td>
+                                        <td>${item.fcUsuarioPricipal} - ${item.fcDescripcion}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-weight-bold text-muted">Usuario Asignado</span></td>
+                                        <td>${item.fcUsuarioSecundario}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><span class="font-weight-bold text-muted">Fecha</span></td>
+                                        <td>${moment(item.fdFechaInicioEstado).locale('es').format('YYYY/MM/DD hh:mm a')} - ${moment(item.fdFechaFinEstado).locale('es').format('YYYY/MM/DD hh:mm a')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-weight-bold text-muted">Tiempo Total</span></td>
+                                        <td>${item.fiHorasTrabajadas} : ${item.fiMinutios}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-weight-bold text-muted">Comentario</span></td>
+                                        <td>${item.fcComentario}.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-weight-bold text-muted">Estado</span></td>
+                                        <td><span class="btn-sm btn-block badge badge-${item.fcClaseColor}">${item.fcDescripcionEstado}</span></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+
+                           
+                            <div class="arrow">&#8593;</div>`;
+                        }
+                        
+                    }
+                    
+                    
+                }
+                //opt += `<h1 class="text-center my-4">Inicio</h1>`
+
+                $(`#informacion`).html(opt);
+
+            },
+            error: function (resp) {
+                AlertaError();
+            }
+        });
+    }
+</script>

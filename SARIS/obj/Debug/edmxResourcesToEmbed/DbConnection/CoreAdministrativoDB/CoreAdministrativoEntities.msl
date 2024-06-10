@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoreAdministrativoModelStoreContainer" CdmEntityContainer="CoreAdministrativoEntities">
+    <FunctionImportMapping FunctionImportName="sp_PartidaDiario_CrearDetalle" FunctionName="CoreAdministrativoModel.Store.sp_PartidaDiario_CrearDetalle" />
+    <FunctionImportMapping FunctionImportName="sp_PartidaDiario_CrearMaestro" FunctionName="CoreAdministrativoModel.Store.sp_PartidaDiario_CrearMaestro" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Contable_ObtenerPorCuentaContable" FunctionName="CoreAdministrativoModel.Store.sp_Catalogo_Contable_ObtenerPorCuentaContable">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CoreAdministrativoModel.sp_Catalogo_Contable_ObtenerPorCuentaContable_Result">
+          <ScalarProperty Name="fiIDEmpresa" ColumnName="fiIDEmpresa" />
+          <ScalarProperty Name="fcCuentaContable" ColumnName="fcCuentaContable" />
+          <ScalarProperty Name="fcDescripcionCuenta" ColumnName="fcDescripcionCuenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

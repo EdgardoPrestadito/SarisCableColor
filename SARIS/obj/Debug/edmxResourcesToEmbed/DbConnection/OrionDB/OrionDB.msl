@@ -1,0 +1,2445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ORIONModelStoreContainer" CdmEntityContainer="ORIONDBEntities">
+    <FunctionImportMapping FunctionImportName="sp_Equifax_Cliente_Insertar" FunctionName="ORIONModel.Store.sp_Equifax_Cliente_Insertar" />
+    <FunctionImportMapping FunctionImportName="sp_Cliente_ObtenerNombre" FunctionName="ORIONModel.Store.sp_Cliente_ObtenerNombre" />
+    <FunctionImportMapping FunctionImportName="sp_Cliente_ObtenerIdCliente" FunctionName="ORIONModel.Store.sp_Cliente_ObtenerIdCliente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Cliente_ObtenerIdCliente_Result">
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fcNombreCompletoReferencia" ColumnName="fcNombreCompletoReferencia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Parentescos_List" FunctionName="ORIONModel.Store.sp_Catalogo_Parentescos_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Parentescos_List_Result">
+          <ScalarProperty Name="fiIDParentesco" ColumnName="fiIDParentesco" />
+          <ScalarProperty Name="fcDescripcionParentesco" ColumnName="fcDescripcionParentesco" />
+          <ScalarProperty Name="fiIDTipoDeParentesco" ColumnName="fiIDTipoDeParentesco" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Productos_Propuesta" FunctionName="ORIONModel.Store.sp_Productos_Propuesta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Productos_Propuesta_Result">
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcMoneda" ColumnName="fcMoneda" />
+          <ScalarProperty Name="fnValordeContado" ColumnName="fnValordeContado" />
+          <ScalarProperty Name="fcPropuestaPaquete" ColumnName="fcPropuestaPaquete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_info_ConsultaAnalistas" FunctionName="ORIONModel.Store.sp_info_ConsultaAnalistas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_info_ConsultaAnalistas_Result">
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fiOcupacion" ColumnName="fiOcupacion" />
+          <ScalarProperty Name="fcOcupacion" ColumnName="fcOcupacion" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fnCuotaBanca" ColumnName="fnCuotaBanca" />
+          <ScalarProperty Name="fnCuotaComercio" ColumnName="fnCuotaComercio" />
+          <ScalarProperty Name="fnCuotaTarjeta" ColumnName="fnCuotaTarjeta" />
+          <ScalarProperty Name="fnTotalObligaciones" ColumnName="fnTotalObligaciones" />
+          <ScalarProperty Name="fnIngresos" ColumnName="fnIngresos" />
+          <ScalarProperty Name="fnCapacidadDisponible" ColumnName="fnCapacidadDisponible" />
+          <ScalarProperty Name="fnSaldoBanca" ColumnName="fnSaldoBanca" />
+          <ScalarProperty Name="fnSaldoComercio" ColumnName="fnSaldoComercio" />
+          <ScalarProperty Name="fnSaldoTarjeta" ColumnName="fnSaldoTarjeta" />
+          <ScalarProperty Name="fnTotalSaldos" ColumnName="fnTotalSaldos" />
+          <ScalarProperty Name="fiReglaCalculoCapacidad" ColumnName="fiReglaCalculoCapacidad" />
+          <ScalarProperty Name="fiResultadoPrecalificado" ColumnName="fiResultadoPrecalificado" />
+          <ScalarProperty Name="fcMensajePrecalificado" ColumnName="fcMensajePrecalificado" />
+          <ScalarProperty Name="fiEstadoActualPrecalificado" ColumnName="fiEstadoActualPrecalificado" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="fiIHSS" ColumnName="fiIHSS" />
+          <ScalarProperty Name="fiCNE" ColumnName="fiCNE" />
+          <ScalarProperty Name="fiCallCenter" ColumnName="fiCallCenter" />
+          <ScalarProperty Name="fiScorePromedio" ColumnName="fiScorePromedio" />
+          <ScalarProperty Name="fiScoreActual" ColumnName="fiScoreActual" />
+          <ScalarProperty Name="fiScoreBajo" ColumnName="fiScoreBajo" />
+          <ScalarProperty Name="fiMoraComunicaciones" ColumnName="fiMoraComunicaciones" />
+          <ScalarProperty Name="fiMoraMayor" ColumnName="fiMoraMayor" />
+          <ScalarProperty Name="fiMoraMenor" ColumnName="fiMoraMenor" />
+          <ScalarProperty Name="fiMoraHistorica" ColumnName="fiMoraHistorica" />
+          <ScalarProperty Name="fiSobregiro" ColumnName="fiSobregiro" />
+          <ScalarProperty Name="fiIncobrable" ColumnName="fiIncobrable" />
+          <ScalarProperty Name="fiIrrecuperable" ColumnName="fiIrrecuperable" />
+          <ScalarProperty Name="fiJuridicoLegal" ColumnName="fiJuridicoLegal" />
+          <ScalarProperty Name="fiSaldosCastigados" ColumnName="fiSaldosCastigados" />
+          <ScalarProperty Name="fdFechaHoraOperacion" ColumnName="fdFechaHoraOperacion" />
+          <ScalarProperty Name="fcCentrodeCosto" ColumnName="fcCentrodeCosto" />
+          <ScalarProperty Name="fcNombreAgencia" ColumnName="fcNombreAgencia" />
+          <ScalarProperty Name="fcOficialAgencia" ColumnName="fcOficialAgencia" />
+          <ScalarProperty Name="fdFechaPrimerConsulta" ColumnName="fdFechaPrimerConsulta" />
+          <ScalarProperty Name="fdFechaUltimaActualizacionEquifax" ColumnName="fdFechaUltimaActualizacionEquifax" />
+          <ScalarProperty Name="fiIDUsuarioCreditos" ColumnName="fiIDUsuarioCreditos" />
+          <ScalarProperty Name="fcNombreUsuarioCreditos" ColumnName="fcNombreUsuarioCreditos" />
+          <ScalarProperty Name="fiResolucionCreditos" ColumnName="fiResolucionCreditos" />
+          <ScalarProperty Name="fcResultadoPrecalificado" ColumnName="fcResultadoPrecalificado" />
+          <ScalarProperty Name="fcObservacionesCreditos" ColumnName="fcObservacionesCreditos" />
+          <ScalarProperty Name="fdAntiguedadBuroEquifax" ColumnName="fdAntiguedadBuroEquifax" />
+          <ScalarProperty Name="fiEndeudamiento" ColumnName="fiEndeudamiento" />
+          <ScalarProperty Name="fcDescripcionCapacidadePago" ColumnName="fcDescripcionCapacidadePago" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fiTipodeCliente" ColumnName="fiTipodeCliente" />
+          <ScalarProperty Name="fcOrigenPrimario" ColumnName="fcOrigenPrimario" />
+          <ScalarProperty Name="fcOrigenSecundario" ColumnName="fcOrigenSecundario" />
+          <ScalarProperty Name="fcReferenciaOrigen" ColumnName="fcReferenciaOrigen" />
+          <ScalarProperty Name="fiListaNegra" ColumnName="fiListaNegra" />
+          <ScalarProperty Name="fcRespuestaCredito" ColumnName="fcRespuestaCredito" />
+          <ScalarProperty Name="fcPrimerNombre" ColumnName="fcPrimerNombre" />
+          <ScalarProperty Name="fcSegundoNombre" ColumnName="fcSegundoNombre" />
+          <ScalarProperty Name="fcPrimerApellido" ColumnName="fcPrimerApellido" />
+          <ScalarProperty Name="fcSegundoApellido" ColumnName="fcSegundoApellido" />
+          <ScalarProperty Name="fdFechadeNacimiento" ColumnName="fdFechadeNacimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_cliente_NombreTelefono" FunctionName="ORIONModel.Store.sp_cliente_NombreTelefono">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_cliente_NombreTelefono_Result">
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Equifax_Cliente_Actualizar_Telefono" FunctionName="ORIONModel.Store.sp_Equifax_Cliente_Actualizar_Telefono" />
+    <FunctionImportMapping FunctionImportName="sp_Parametro_ConversiondeMoneda" FunctionName="ORIONModel.Store.sp_Parametro_ConversiondeMoneda" />
+    <FunctionImportMapping FunctionImportName="sp_Cliente_Referencia_ValidacionFormCliente" FunctionName="ORIONModel.Store.sp_Cliente_Referencia_ValidacionFormCliente" />
+    <FunctionImportMapping FunctionImportName="sp_ListadoCiudades" FunctionName="ORIONModel.Store.sp_ListadoCiudades">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ListadoCiudades_Result">
+          <ScalarProperty Name="fiIDCiudad" ColumnName="fiIDCiudad" />
+          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ActualizarEstatusSolicitudProducto" FunctionName="ORIONModel.Store.sp_ActualizarEstatusSolicitudProducto" />
+    <FunctionImportMapping FunctionImportName="sp_Cliente_Referencia_ValidacionFormulario" FunctionName="ORIONModel.Store.sp_Cliente_Referencia_ValidacionFormulario" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Marcas_Crear" FunctionName="ORIONModel.Store.sp_Catalogo_Marcas_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Marcas_Editar" FunctionName="ORIONModel.Store.sp_Catalogo_Marcas_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Marcas_Listar" FunctionName="ORIONModel.Store.sp_Catalogo_Marcas_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Marcas_Listar_Result">
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+          <ScalarProperty Name="fcMarca" ColumnName="fcMarca" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Marcas_GetById" FunctionName="ORIONModel.Store.sp_Catalogo_Marcas_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Marcas_GetById_Result">
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+          <ScalarProperty Name="fcMarca" ColumnName="fcMarca" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoProducto_Crear" FunctionName="ORIONModel.Store.sp_Catalogo_TipoProducto_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoProducto_Editar" FunctionName="ORIONModel.Store.sp_Catalogo_TipoProducto_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoProducto_GetById" FunctionName="ORIONModel.Store.sp_Catalogo_TipoProducto_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_TipoProducto_GetById_Result">
+          <ScalarProperty Name="fiIDTipoProducto" ColumnName="fiIDTipoProducto" />
+          <ScalarProperty Name="fcTipoProducto" ColumnName="fcTipoProducto" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoProducto_Listar" FunctionName="ORIONModel.Store.sp_Catalogo_TipoProducto_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_TipoProducto_Listar_Result">
+          <ScalarProperty Name="fiIDTipoProducto" ColumnName="fiIDTipoProducto" />
+          <ScalarProperty Name="fcTipoProducto" ColumnName="fcTipoProducto" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Ubicaciones_Crear" FunctionName="ORIONModel.Store.sp_Catalogo_Ubicaciones_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Ubicaciones_Editar" FunctionName="ORIONModel.Store.sp_Catalogo_Ubicaciones_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Ubicaciones_GetById" FunctionName="ORIONModel.Store.sp_Catalogo_Ubicaciones_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Ubicaciones_GetById_Result">
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fcUbicacionFisica" ColumnName="fcUbicacionFisica" />
+          <ScalarProperty Name="fiEstadoUbicacion" ColumnName="fiEstadoUbicacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Ubicaciones_Listar" FunctionName="ORIONModel.Store.sp_Catalogo_Ubicaciones_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Ubicaciones_Listar_Result">
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fcUbicacionFisica" ColumnName="fcUbicacionFisica" />
+          <ScalarProperty Name="fiEstadoUbicacion" ColumnName="fiEstadoUbicacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Modelos_Crear" FunctionName="ORIONModel.Store.sp_Catalogo_Modelos_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Modelos_Editar" FunctionName="ORIONModel.Store.sp_Catalogo_Modelos_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Modelos_GetById" FunctionName="ORIONModel.Store.sp_Catalogo_Modelos_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Modelos_GetById_Result">
+          <ScalarProperty Name="fiIDModelo" ColumnName="fiIDModelo" />
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+          <ScalarProperty Name="fcMarca" ColumnName="fcMarca" />
+          <ScalarProperty Name="fcModelo" ColumnName="fcModelo" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Modelos_Listar" FunctionName="ORIONModel.Store.sp_Catalogo_Modelos_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Modelos_Listar_Result">
+          <ScalarProperty Name="fiIDModelo" ColumnName="fiIDModelo" />
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+          <ScalarProperty Name="fcMarca" ColumnName="fcMarca" />
+          <ScalarProperty Name="fcModelo" ColumnName="fcModelo" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Productos_Listar" FunctionName="ORIONModel.Store.sp_Productos_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Productos_Listar_Result">
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fnValorProducto" ColumnName="fnValorProducto" />
+          <ScalarProperty Name="fcTipoProducto" ColumnName="fcTipoProducto" />
+          <ScalarProperty Name="fcImagenProducto" ColumnName="fcImagenProducto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CrearSolicitudFirma" FunctionName="ORIONModel.Store.sp_CrearSolicitudFirma" />
+    <FunctionImportMapping FunctionImportName="sp_CrearTokenFirma" FunctionName="ORIONModel.Store.sp_CrearTokenFirma" />
+    <FunctionImportMapping FunctionImportName="sp_ReporteClientes" FunctionName="ORIONModel.Store.sp_ReporteClientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ReporteClientes_Result">
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fiScoreActual" ColumnName="fiScoreActual" />
+          <ScalarProperty Name="fiScorePromedio" ColumnName="fiScorePromedio" />
+          <ScalarProperty Name="fdFechaPrimerConsulta" ColumnName="fdFechaPrimerConsulta" />
+          <ScalarProperty Name="fiEstadoMensaje" ColumnName="fiEstadoMensaje" />
+          <ScalarProperty Name="fiEstadoProductoServicio" ColumnName="fiEstadoProductoServicio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_VerificarFirma" FunctionName="ORIONModel.Store.sp_VerificarFirma">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_VerificarFirma_Result">
+          <ScalarProperty Name="fiIDFirma" ColumnName="fiIDFirma" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+          <ScalarProperty Name="fcFirma" ColumnName="fcFirma" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_VerificarTokenFirma" FunctionName="ORIONModel.Store.sp_VerificarTokenFirma">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_VerificarTokenFirma_Result">
+          <ScalarProperty Name="fiIDFirma" ColumnName="fiIDFirma" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_geo_ListaDepartamentos" FunctionName="ORIONModel.Store.sp_geo_ListaDepartamentos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_geo_ListaDepartamentos_Result">
+          <ScalarProperty Name="fiCodPais" ColumnName="fiCodPais" />
+          <ScalarProperty Name="fiCodDepartamento" ColumnName="fiCodDepartamento" />
+          <ScalarProperty Name="fcDepartamento" ColumnName="fcDepartamento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Geo_ListaMunicipio_ByIdDepartamento" FunctionName="ORIONModel.Store.sp_Geo_ListaMunicipio_ByIdDepartamento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Geo_ListaMunicipio_ByIdDepartamento_Result">
+          <ScalarProperty Name="fiCodPais" ColumnName="fiCodPais" />
+          <ScalarProperty Name="fiCodDepartamento" ColumnName="fiCodDepartamento" />
+          <ScalarProperty Name="fiCodMunicipio" ColumnName="fiCodMunicipio" />
+          <ScalarProperty Name="fcMunicipio" ColumnName="fcMunicipio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Geo_ListaPoblado_ByIdMunicipio" FunctionName="ORIONModel.Store.sp_Geo_ListaPoblado_ByIdMunicipio">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Geo_ListaPoblado_ByIdMunicipio_Result">
+          <ScalarProperty Name="fiCodPais" ColumnName="fiCodPais" />
+          <ScalarProperty Name="fiCodDepartamento" ColumnName="fiCodDepartamento" />
+          <ScalarProperty Name="fiCodMunicipio" ColumnName="fiCodMunicipio" />
+          <ScalarProperty Name="fiCodPoblado" ColumnName="fiCodPoblado" />
+          <ScalarProperty Name="fcPoblado" ColumnName="fcPoblado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_TipoVivienda_Lista" FunctionName="ORIONModel.Store.sp_TipoVivienda_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_TipoVivienda_Lista_Result">
+          <ScalarProperty Name="fiIDTipoVivienda" ColumnName="fiIDTipoVivienda" />
+          <ScalarProperty Name="fcDescripcionTipoVivienda" ColumnName="fcDescripcionTipoVivienda" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Equifax_Cliente_ActualizarUbicacion" FunctionName="ORIONModel.Store.sp_Equifax_Cliente_ActualizarUbicacion" />
+    <FunctionImportMapping FunctionImportName="sp_Equifax_Garantia_Guardar" FunctionName="ORIONModel.Store.sp_Equifax_Garantia_Guardar" />
+    <FunctionImportMapping FunctionImportName="sp_EquifaxCliente_ValidarUbicacion" FunctionName="ORIONModel.Store.sp_EquifaxCliente_ValidarUbicacion" />
+    <FunctionImportMapping FunctionImportName="sp_ColoniasFalsas_List" FunctionName="ORIONModel.Store.sp_ColoniasFalsas_List" />
+    <FunctionImportMapping FunctionImportName="sp_TrabajosFalsos_List" FunctionName="ORIONModel.Store.sp_TrabajosFalsos_List" />
+    <FunctionImportMapping FunctionImportName="sp_Geo_ListaBarrioColonia" FunctionName="ORIONModel.Store.sp_Geo_ListaBarrioColonia">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Geo_ListaBarrioColonia_Result">
+          <ScalarProperty Name="fiCodPais" ColumnName="fiCodPais" />
+          <ScalarProperty Name="fiCodDepartamento" ColumnName="fiCodDepartamento" />
+          <ScalarProperty Name="fiCodMunicipio" ColumnName="fiCodMunicipio" />
+          <ScalarProperty Name="fiCodBarrio" ColumnName="fiCodBarrio" />
+          <ScalarProperty Name="fcBarrio" ColumnName="fcBarrio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoMovimiento_Crear" FunctionName="ORIONModel.Store.sp_Catalogo_TipoMovimiento_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoMovimiento_Editar" FunctionName="ORIONModel.Store.sp_Catalogo_TipoMovimiento_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoMovimiento_GetById" FunctionName="ORIONModel.Store.sp_Catalogo_TipoMovimiento_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_TipoMovimiento_GetById_Result">
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fcTipoMovimiento" ColumnName="fcTipoMovimiento" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoMovimiento_Listar" FunctionName="ORIONModel.Store.sp_Catalogo_TipoMovimiento_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_TipoMovimiento_Listar_Result">
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fcTipoMovimiento" ColumnName="fcTipoMovimiento" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_cliente_obtenerDatos" FunctionName="ORIONModel.Store.sp_cliente_obtenerDatos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_cliente_obtenerDatos_Result">
+          <ScalarProperty Name="fiIDReferencia" ColumnName="fiIDReferencia" />
+          <ScalarProperty Name="fcLugarVive" ColumnName="fcLugarVive" />
+          <ScalarProperty Name="fcLugarTrabajo" ColumnName="fcLugarTrabajo" />
+          <ScalarProperty Name="fiIDParentescoReferencia" ColumnName="fiIDParentescoReferencia" />
+          <ScalarProperty Name="fiEstadoCivil" ColumnName="fiEstadoCivil" />
+          <ScalarProperty Name="fbTieneHijos" ColumnName="fbTieneHijos" />
+          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ContratistaSolicitudInstalacion_Lista" FunctionName="ORIONModel.Store.sp_ContratistaSolicitudInstalacion_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ContratistaSolicitudInstalacion_Lista_Result">
+          <ScalarProperty Name="fiIDContratistaSolicitud" ColumnName="fiIDContratistaSolicitud" />
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fiIDPaquete" ColumnName="fiIDPaquete" />
+          <ScalarProperty Name="fiIDAgenciaInstalacion" ColumnName="fiIDAgenciaInstalacion" />
+          <ScalarProperty Name="fiIDAgenciaContratista" ColumnName="fiIDAgenciaContratista" />
+          <ScalarProperty Name="fiNoOrden" ColumnName="fiNoOrden" />
+          <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+          <ScalarProperty Name="fdFechaInstalacion" ColumnName="fdFechaInstalacion" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_LlenarListas" FunctionName="ORIONModel.Store.sp_OrionSolicitud_LlenarListas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_OrionSolicitud_LlenarListas_Result">
+          <ScalarProperty Name="fiIDAgencia" ColumnName="fiIDAgencia" />
+          <ScalarProperty Name="fcNombreAgencia" ColumnName="fcNombreAgencia" />
+          <ScalarProperty Name="fcDireccionFisica" ColumnName="fcDireccionFisica" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ReporteClientes_SinContestar" FunctionName="ORIONModel.Store.sp_ReporteClientes_SinContestar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ReporteClientes_SinContestar_Result">
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fiScoreActual" ColumnName="fiScoreActual" />
+          <ScalarProperty Name="fiScorePromedio" ColumnName="fiScorePromedio" />
+          <ScalarProperty Name="fdFechaPrimerConsulta" ColumnName="fdFechaPrimerConsulta" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fiEstadoMensaje" ColumnName="fiEstadoMensaje" />
+          <ScalarProperty Name="fiEstadoProductoServicio" ColumnName="fiEstadoProductoServicio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_ContratistaSolicitudInstalacio__Insertar" FunctionName="ORIONModel.Store.sp_OrionSolicitud_ContratistaSolicitudInstalacio__Insertar" />
+    <FunctionImportMapping FunctionImportName="sp_ListadoContratistas" FunctionName="ORIONModel.Store.sp_ListadoContratistas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ListadoContratistas_Result">
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fcNombreContratista" ColumnName="fcNombreContratista" />
+          <ScalarProperty Name="fiIDAgencia" ColumnName="fiIDAgencia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Actualizar_DocumentosOrion" FunctionName="ORIONModel.Store.sp_Actualizar_DocumentosOrion" />
+    <FunctionImportMapping FunctionImportName="sp_Crear_DocumentosOrion" FunctionName="ORIONModel.Store.sp_Crear_DocumentosOrion" />
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_CabiarEstadoPrimerPago" FunctionName="ORIONModel.Store.sp_OrionSolicitud_CabiarEstadoPrimerPago" />
+    <FunctionImportMapping FunctionImportName="sp_TecnicosPorContratista_Crear" FunctionName="ORIONModel.Store.sp_TecnicosPorContratista_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_TecnicosPorContratista_Editar" FunctionName="ORIONModel.Store.sp_TecnicosPorContratista_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_TecnicosPorContratista_GetById" FunctionName="ORIONModel.Store.sp_TecnicosPorContratista_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_TecnicosPorContratista_GetById_Result">
+          <ScalarProperty Name="fiIDTecnicosPorContratista" ColumnName="fiIDTecnicosPorContratista" />
+          <ScalarProperty Name="fiIDUsuarioContratista" ColumnName="fiIDUsuarioContratista" />
+          <ScalarProperty Name="fcContratista" ColumnName="fcContratista" />
+          <ScalarProperty Name="fiIDUsuarioTecnico" ColumnName="fiIDUsuarioTecnico" />
+          <ScalarProperty Name="fcTecnico" ColumnName="fcTecnico" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiEstadoTecnicoPorContratista" ColumnName="fiEstadoTecnicoPorContratista" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_TecnicosPorContratista_List" FunctionName="ORIONModel.Store.sp_TecnicosPorContratista_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_TecnicosPorContratista_List_Result">
+          <ScalarProperty Name="fiIDTecnicosPorContratista" ColumnName="fiIDTecnicosPorContratista" />
+          <ScalarProperty Name="fiIDUsuarioContratista" ColumnName="fiIDUsuarioContratista" />
+          <ScalarProperty Name="fcContratista" ColumnName="fcContratista" />
+          <ScalarProperty Name="fiIDUsuarioTecnico" ColumnName="fiIDUsuarioTecnico" />
+          <ScalarProperty Name="fcTecnico" ColumnName="fcTecnico" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiEstadoTecnicoPorContratista" ColumnName="fiEstadoTecnicoPorContratista" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_AsignarSolicitud_Contratista" FunctionName="ORIONModel.Store.sp_AsignarSolicitud_Contratista" />
+    <FunctionImportMapping FunctionImportName="sp_InformacionInstalacion_Tecnico" FunctionName="ORIONModel.Store.sp_InformacionInstalacion_Tecnico">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_InformacionInstalacion_Tecnico_Result">
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcLugarTrabajo" ColumnName="fcLugarTrabajo" />
+          <ScalarProperty Name="fcLugarVive" ColumnName="fcLugarVive" />
+          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+          <ScalarProperty Name="fcDireccionDetallada" ColumnName="fcDireccionDetallada" />
+          <ScalarProperty Name="fiIdClientesMaestro" ColumnName="fiIdClientesMaestro" />
+          <ScalarProperty Name="fiEstadoProductoServicio" ColumnName="fiEstadoProductoServicio" />
+          <ScalarProperty Name="fiEstadoCivil" ColumnName="fiEstadoCivil" />
+          <ScalarProperty Name="fcDescripcionEstadoCivil" ColumnName="fcDescripcionEstadoCivil" />
+          <ScalarProperty Name="fcArticulosdelContrato" ColumnName="fcArticulosdelContrato" />
+          <ScalarProperty Name="fcDescripcionTelevisor" ColumnName="fcDescripcionTelevisor" />
+          <ScalarProperty Name="fiIDFondo" ColumnName="fiIDFondo" />
+          <ScalarProperty Name="fcRazonSocial" ColumnName="fcRazonSocial" />
+          <ScalarProperty Name="fcNombreComercial" ColumnName="fcNombreComercial" />
+          <ScalarProperty Name="fcRTNEmpresa" ColumnName="fcRTNEmpresa" />
+          <ScalarProperty Name="fcCiudadDomiciliada" ColumnName="fcCiudadDomiciliada" />
+          <ScalarProperty Name="fcDepartamentoDomiciliada" ColumnName="fcDepartamentoDomiciliada" />
+          <ScalarProperty Name="fcBarrioFondo" ColumnName="fcBarrioFondo" />
+          <ScalarProperty Name="fcTelefonoFondo" ColumnName="fcTelefonoFondo" />
+          <ScalarProperty Name="fcEmail" ColumnName="fcEmail" />
+          <ScalarProperty Name="fcConstitucionFondo" ColumnName="fcConstitucionFondo" />
+          <ScalarProperty Name="fiIDRepresentanteLegal" ColumnName="fiIDRepresentanteLegal" />
+          <ScalarProperty Name="fcUrlLogo" ColumnName="fcUrlLogo" />
+          <ScalarProperty Name="fiIDTipodeFondo" ColumnName="fiIDTipodeFondo" />
+          <ScalarProperty Name="fcNumeroFolio" ColumnName="fcNumeroFolio" />
+          <ScalarProperty Name="fcRegistroMercantil" ColumnName="fcRegistroMercantil" />
+          <ScalarProperty Name="fiPlazoSeleccionado" ColumnName="fiPlazoSeleccionado" />
+          <ScalarProperty Name="fnValorGarantia" ColumnName="fnValorGarantia" />
+          <ScalarProperty Name="fnMontoFinalFinanciar" ColumnName="fnMontoFinalFinanciar" />
+          <ScalarProperty Name="fnTasaMensual" ColumnName="fnTasaMensual" />
+          <ScalarProperty Name="fnCuotaMensual" ColumnName="fnCuotaMensual" />
+          <ScalarProperty Name="fnTasaAnual" ColumnName="fnTasaAnual" />
+          <ScalarProperty Name="fiIDMoneda" ColumnName="fiIDMoneda" />
+          <ScalarProperty Name="fcCorreo" ColumnName="fcCorreo" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fcDepartamento" ColumnName="fcDepartamento" />
+          <ScalarProperty Name="fcMunicipio" ColumnName="fcMunicipio" />
+          <ScalarProperty Name="fcBarrio" ColumnName="fcBarrio" />
+          <ScalarProperty Name="fnTotalValorContrato" ColumnName="fnTotalValorContrato" />
+          <ScalarProperty Name="fcIDPrestamo" ColumnName="fcIDPrestamo" />
+          <ScalarProperty Name="fdFechaIniciodeCredito" ColumnName="fdFechaIniciodeCredito" />
+          <ScalarProperty Name="fcFirmaNovaNet" ColumnName="fcFirmaNovaNet" />
+          <ScalarProperty Name="fiIDTipoContrato" ColumnName="fiIDTipoContrato" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_EstadoInstalacionSolicitud_ById" FunctionName="ORIONModel.Store.sp_EstadoInstalacionSolicitud_ById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_EstadoInstalacionSolicitud_ById_Result">
+          <ScalarProperty Name="fiIDSolicitudInstalacion" ColumnName="fiIDSolicitudInstalacion" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fcNombreCliente" ColumnName="fcNombreCliente" />
+          <ScalarProperty Name="fcPaquete" ColumnName="fcPaquete" />
+          <ScalarProperty Name="fcNombreEmpresa" ColumnName="fcNombreEmpresa" />
+          <ScalarProperty Name="fiNoOrden" ColumnName="fiNoOrden" />
+          <ScalarProperty Name="fdFechaInstalacion" ColumnName="fdFechaInstalacion" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fcubicacion" ColumnName="fcubicacion" />
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InformacionCliente_BySolicitudInstalacion" FunctionName="ORIONModel.Store.sp_InformacionCliente_BySolicitudInstalacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_InformacionCliente_BySolicitudInstalacion_Result">
+          <ScalarProperty Name="fcCorreo" ColumnName="fcCorreo" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListaCatalogoInstalacion" FunctionName="ORIONModel.Store.sp_ListaCatalogoInstalacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ListaCatalogoInstalacion_Result">
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcClase" ColumnName="fcClase" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_catalogo_FotosInstalacion_lista" FunctionName="ORIONModel.Store.sp_catalogo_FotosInstalacion_lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_catalogo_FotosInstalacion_lista_Result">
+          <ScalarProperty Name="fiIDCatalogo_FotosInstalacion" ColumnName="fiIDCatalogo_FotosInstalacion" />
+          <ScalarProperty Name="fcNombreFoto" ColumnName="fcNombreFoto" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtenerEstado_SolicitudInstalacion" FunctionName="ORIONModel.Store.sp_ObtenerEstado_SolicitudInstalacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ObtenerEstado_SolicitudInstalacion_Result">
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcClase" ColumnName="fcClase" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DocumentosInstalacion_SoporteTecnico" FunctionName="ORIONModel.Store.sp_DocumentosInstalacion_SoporteTecnico">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_DocumentosInstalacion_SoporteTecnico_Result">
+          <ScalarProperty Name="fiIDSolicitudInstalacion" ColumnName="fiIDSolicitudInstalacion" />
+          <ScalarProperty Name="fiIDContratistaSolicitud" ColumnName="fiIDContratistaSolicitud" />
+          <ScalarProperty Name="fiIDCatalogoFotoInstalacion" ColumnName="fiIDCatalogoFotoInstalacion" />
+          <ScalarProperty Name="fcUrlDocumento" ColumnName="fcUrlDocumento" />
+          <ScalarProperty Name="fcNombreDocumento" ColumnName="fcNombreDocumento" />
+          <ScalarProperty Name="fcExtension" ColumnName="fcExtension" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtenerMetrosFibra_Solicitud" FunctionName="ORIONModel.Store.sp_ObtenerMetrosFibra_Solicitud" />
+    <FunctionImportMapping FunctionImportName="sp_ValidarQR_SolicitudInstalacion" FunctionName="ORIONModel.Store.sp_ValidarQR_SolicitudInstalacion" />
+    <FunctionImportMapping FunctionImportName="sp_GetIdContratista_ById" FunctionName="ORIONModel.Store.sp_GetIdContratista_ById" />
+    <FunctionImportMapping FunctionImportName="sp_GetIdTecnico_ById" FunctionName="ORIONModel.Store.sp_GetIdTecnico_ById" />
+    <FunctionImportMapping FunctionImportName="sp_Solicitud_Instalacion_Bitacoras_Crear" FunctionName="ORIONModel.Store.sp_Solicitud_Instalacion_Bitacoras_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Solicitud_Instalacion_Bitacoras_GetByfiIDSolicitudInstalacion" FunctionName="ORIONModel.Store.sp_Solicitud_Instalacion_Bitacoras_GetByfiIDSolicitudInstalacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Solicitud_Instalacion_Bitacoras_GetByfiIDSolicitudInstalacion_Result">
+          <ScalarProperty Name="fiIDbitacoraSolicitudInstalacion" ColumnName="fiIDbitacoraSolicitudInstalacion" />
+          <ScalarProperty Name="fiIDSolicitudInstalacion" ColumnName="fiIDSolicitudInstalacion" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fiIdUsuarioCreacion" ColumnName="fiIdUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Solicitud_Instalacion_Bitacoras_Listar" FunctionName="ORIONModel.Store.sp_Solicitud_Instalacion_Bitacoras_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Solicitud_Instalacion_Bitacoras_Listar_Result">
+          <ScalarProperty Name="fiIDbitacoraSolicitudInstalacion" ColumnName="fiIDbitacoraSolicitudInstalacion" />
+          <ScalarProperty Name="fiIDSolicitudInstalacion" ColumnName="fiIDSolicitudInstalacion" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fiIdUsuarioCreacion" ColumnName="fiIdUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtenerNombreUsuario" FunctionName="ORIONModel.Store.sp_ObtenerNombreUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_GetUsuario_Contratista" FunctionName="ORIONModel.Store.sp_GetUsuario_Contratista" />
+    <FunctionImportMapping FunctionImportName="sp_GetUsuario_Tecnico" FunctionName="ORIONModel.Store.sp_GetUsuario_Tecnico" />
+    <FunctionImportMapping FunctionImportName="sp_MaterialesInstalacion_ListarByInstalacion" FunctionName="ORIONModel.Store.sp_MaterialesInstalacion_ListarByInstalacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_MaterialesInstalacion_ListarByInstalacion_Result">
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_AntiguedadLaboral_Select" FunctionName="ORIONModel.Store.sp_Catalogo_AntiguedadLaboral_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_AntiguedadLaboral_Select_Result">
+          <ScalarProperty Name="fiIDAntiguedadLaboral" ColumnName="fiIDAntiguedadLaboral" />
+          <ScalarProperty Name="fcDescripcionAntiguedad" ColumnName="fcDescripcionAntiguedad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_RangoSalarial_Select" FunctionName="ORIONModel.Store.sp_Catalogo_RangoSalarial_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_RangoSalarial_Select_Result">
+          <ScalarProperty Name="fiIDCatalogo_RangosSalariales" ColumnName="fiIDCatalogo_RangosSalariales" />
+          <ScalarProperty Name="fcDescripcion_RangosSalariales" ColumnName="fcDescripcion_RangosSalariales" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Equifax_Garantia_Editar" FunctionName="ORIONModel.Store.sp_Equifax_Garantia_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Equifax_Garantia_Eliminar" FunctionName="ORIONModel.Store.sp_Equifax_Garantia_Eliminar" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Detallle_Eliminar" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Detallle_Eliminar" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Maestro_ExisteFactura" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Maestro_ExisteFactura" />
+    <FunctionImportMapping FunctionImportName="sp_ObtenerDatosCliente_ByIdSolicitud" FunctionName="ORIONModel.Store.sp_ObtenerDatosCliente_ByIdSolicitud" />
+    <FunctionImportMapping FunctionImportName="sp_EstadodeCuentaUsuario" FunctionName="ORIONModel.Store.sp_EstadodeCuentaUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_Cliente_ObtenerIdentidad" FunctionName="ORIONModel.Store.sp_Cliente_ObtenerIdentidad">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Cliente_ObtenerIdentidad_Result">
+          <ScalarProperty Name="fiEstadoForm" ColumnName="fiEstadoForm" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fiIDTipoSolicitud" ColumnName="fiIDTipoSolicitud" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ActualizarInstalacionaProceso" FunctionName="ORIONModel.Store.sp_ActualizarInstalacionaProceso" />
+    <FunctionImportMapping FunctionImportName="sp_PermitirEscanearQR" FunctionName="ORIONModel.Store.sp_PermitirEscanearQR" />
+    <FunctionImportMapping FunctionImportName="sp_ListadoFotosSubidas_BySolicitudInstalacion" FunctionName="ORIONModel.Store.sp_ListadoFotosSubidas_BySolicitudInstalacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ListadoFotosSubidas_BySolicitudInstalacion_Result">
+          <ScalarProperty Name="fiIDSolicitudInstalacion" ColumnName="fiIDSolicitudInstalacion" />
+          <ScalarProperty Name="fiIDContratistaSolicitud" ColumnName="fiIDContratistaSolicitud" />
+          <ScalarProperty Name="fiIDCatalogoFotoInstalacion" ColumnName="fiIDCatalogoFotoInstalacion" />
+          <ScalarProperty Name="fcUrlDocumento" ColumnName="fcUrlDocumento" />
+          <ScalarProperty Name="fcNombreDocumento" ColumnName="fcNombreDocumento" />
+          <ScalarProperty Name="fcExtension" ColumnName="fcExtension" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListadoMaterialesInstalados_BySolicitudInstalacion" FunctionName="ORIONModel.Store.sp_ListadoMaterialesInstalados_BySolicitudInstalacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ListadoMaterialesInstalados_BySolicitudInstalacion_Result">
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtenerSolicitud_ByIdInstalacion" FunctionName="ORIONModel.Store.sp_ObtenerSolicitud_ByIdInstalacion" />
+    <FunctionImportMapping FunctionImportName="sp_InformacionTecnico" FunctionName="ORIONModel.Store.sp_InformacionTecnico">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_InformacionTecnico_Result">
+          <ScalarProperty Name="fcNombreTecnico" ColumnName="fcNombreTecnico" />
+          <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
+          <ScalarProperty Name="fcCorreoTecnico" ColumnName="fcCorreoTecnico" />
+          <ScalarProperty Name="fcIdentidadTecnico" ColumnName="fcIdentidadTecnico" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtenerSolicitud_Idequifax" FunctionName="ORIONModel.Store.sp_ObtenerSolicitud_Idequifax">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ObtenerSolicitud_Idequifax_Result">
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Empresas_Maestro_Listar" FunctionName="ORIONModel.Store.sp_Empresas_Maestro_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Empresas_Maestro_Listar_Result">
+          <ScalarProperty Name="fiIDEmpresa" ColumnName="fiIDEmpresa" />
+          <ScalarProperty Name="fcNombreComercial" ColumnName="fcNombreComercial" />
+          <ScalarProperty Name="fcRazonSocial" ColumnName="fcRazonSocial" />
+          <ScalarProperty Name="fcRTN" ColumnName="fcRTN" />
+          <ScalarProperty Name="fcDireccionExacta" ColumnName="fcDireccionExacta" />
+          <ScalarProperty Name="fcCiudadDomiciliada" ColumnName="fcCiudadDomiciliada" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+          <ScalarProperty Name="fcCAI" ColumnName="fcCAI" />
+          <ScalarProperty Name="fdFechaModificado" ColumnName="fdFechaModificado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtenerEmpresa_ByIdUsuario" FunctionName="ORIONModel.Store.sp_ObtenerEmpresa_ByIdUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_TecnicosPorContratista_GetByIdContratista" FunctionName="ORIONModel.Store.sp_TecnicosPorContratista_GetByIdContratista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_TecnicosPorContratista_GetByIdContratista_Result">
+          <ScalarProperty Name="fiIDTecnicosPorContratista" ColumnName="fiIDTecnicosPorContratista" />
+          <ScalarProperty Name="fiIDUsuarioContratista" ColumnName="fiIDUsuarioContratista" />
+          <ScalarProperty Name="fcContratista" ColumnName="fcContratista" />
+          <ScalarProperty Name="fiIDUsuarioTecnico" ColumnName="fiIDUsuarioTecnico" />
+          <ScalarProperty Name="fcTecnico" ColumnName="fcTecnico" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiEstadoTecnicoPorContratista" ColumnName="fiEstadoTecnicoPorContratista" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Maestro_Crear" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Maestro_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Maestro_Editar" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Maestro_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Maestro_GetById" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Maestro_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Inventario_Movimiento_Maestro_GetById_Result">
+          <ScalarProperty Name="fiIDInventarioMovimientoMaestro" ColumnName="fiIDInventarioMovimientoMaestro" />
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fiIDUsuarioDestino" ColumnName="fiIDUsuarioDestino" />
+          <ScalarProperty Name="fcDestinatario" ColumnName="fcDestinatario" />
+          <ScalarProperty Name="fiIDUsuarioCreado" ColumnName="fiIDUsuarioCreado" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiFirma" ColumnName="fiFirma" />
+          <ScalarProperty Name="fcDocumentoFirma" ColumnName="fcDocumentoFirma" />
+          <ScalarProperty Name="fiEstadoInventairoMovimientoMaestro" ColumnName="fiEstadoInventairoMovimientoMaestro" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Maestro_Listar" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Maestro_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Inventario_Movimiento_Maestro_Listar_Result">
+          <ScalarProperty Name="fiIDInventarioMovimientoMaestro" ColumnName="fiIDInventarioMovimientoMaestro" />
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fiIDUsuarioDestino" ColumnName="fiIDUsuarioDestino" />
+          <ScalarProperty Name="fcDestinatario" ColumnName="fcDestinatario" />
+          <ScalarProperty Name="fiIDUsuarioCreado" ColumnName="fiIDUsuarioCreado" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiFirma" ColumnName="fiFirma" />
+          <ScalarProperty Name="fcDocumentoFirma" ColumnName="fcDocumentoFirma" />
+          <ScalarProperty Name="fiEstadoInventairoMovimientoMaestro" ColumnName="fiEstadoInventairoMovimientoMaestro" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Usuarios_Maestros_ListarUsuarios" FunctionName="ORIONModel.Store.sp_Usuarios_Maestros_ListarUsuarios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Usuarios_Maestros_ListarUsuarios_Result">
+          <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcNombreComercial" ColumnName="fcNombreComercial" />
+          <ScalarProperty Name="Pk_IdRol" ColumnName="Pk_IdRol" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_EquifaxCliente_Crear" FunctionName="ORIONModel.Store.sp_OrionSolicitud_EquifaxCliente_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Maestro_Cotizador" FunctionName="ORIONModel.Store.sp_Producto_Maestro_Cotizador">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Maestro_Cotizador_Result">
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcCodigodeBarras" ColumnName="fcCodigodeBarras" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcImagenProducto" ColumnName="fcImagenProducto" />
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+          <ScalarProperty Name="fcMarca" ColumnName="fcMarca" />
+          <ScalarProperty Name="fiIDModelo" ColumnName="fiIDModelo" />
+          <ScalarProperty Name="fcModelo" ColumnName="fcModelo" />
+          <ScalarProperty Name="fiIDTipoProducto" ColumnName="fiIDTipoProducto" />
+          <ScalarProperty Name="fcTipoProducto" ColumnName="fcTipoProducto" />
+          <ScalarProperty Name="fnValorProductoMN" ColumnName="fnValorProductoMN" />
+          <ScalarProperty Name="fnValorProductoME" ColumnName="fnValorProductoME" />
+          <ScalarProperty Name="fnPorcentajeImpuesto1" ColumnName="fnPorcentajeImpuesto1" />
+          <ScalarProperty Name="fnPorcentajeImpuesto2" ColumnName="fnPorcentajeImpuesto2" />
+          <ScalarProperty Name="fiEstadoProducto" ColumnName="fiEstadoProducto" />
+          <ScalarProperty Name="fiProductoInventariable" ColumnName="fiProductoInventariable" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fnValorCuotaMensual" ColumnName="fnValorCuotaMensual" />
+          <ScalarProperty Name="fnValorCuotaCapital" ColumnName="fnValorCuotaCapital" />
+          <ScalarProperty Name="fnValorCuotaInteres" ColumnName="fnValorCuotaInteres" />
+          <ScalarProperty Name="fnTasaAnualPlana" ColumnName="fnTasaAnualPlana" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Productos_Maestro_GetIdMovimiento" FunctionName="ORIONModel.Store.sp_Productos_Maestro_GetIdMovimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Productos_Maestro_GetIdMovimiento_Result">
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_EditarTelefonoCliente" FunctionName="ORIONModel.Store.sp_EditarTelefonoCliente" />
+    <FunctionImportMapping FunctionImportName="sp_EditarTelefonoClienteReferencia" FunctionName="ORIONModel.Store.sp_EditarTelefonoClienteReferencia" />
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_Maestro_ActualizarDatosServicio" FunctionName="ORIONModel.Store.sp_OrionSolicitud_Maestro_ActualizarDatosServicio" />
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Detalle_Editar" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Detalle_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Detalle_Eliminar" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Detalle_Eliminar" />
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Detalle_GetById" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Detalle_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Inventario_Movimiento_Detalle_GetById_Result">
+          <ScalarProperty Name="fiIDInventarioMovimientoDetalle" ColumnName="fiIDInventarioMovimientoDetalle" />
+          <ScalarProperty Name="fiIDInventarioMovimientoMaestro" ColumnName="fiIDInventarioMovimientoMaestro" />
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fiIDUbicacionInicial" ColumnName="fiIDUbicacionInicial" />
+          <ScalarProperty Name="fcUbicacionInicial" ColumnName="fcUbicacionInicial" />
+          <ScalarProperty Name="fiIDUbicacionDestino" ColumnName="fiIDUbicacionDestino" />
+          <ScalarProperty Name="fcUbicacionDestino" ColumnName="fcUbicacionDestino" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDUsuarioCreado" ColumnName="fiIDUsuarioCreado" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Detalle_Listar" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Detalle_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Inventario_Movimiento_Detalle_Listar_Result">
+          <ScalarProperty Name="fiIDInventarioMovimientoDetalle" ColumnName="fiIDInventarioMovimientoDetalle" />
+          <ScalarProperty Name="fiIDInventarioMovimientoMaestro" ColumnName="fiIDInventarioMovimientoMaestro" />
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fiIDUbicacionInicial" ColumnName="fiIDUbicacionInicial" />
+          <ScalarProperty Name="fcUbicacionInicial" ColumnName="fcUbicacionInicial" />
+          <ScalarProperty Name="fiIDUbicacionDestino" ColumnName="fiIDUbicacionDestino" />
+          <ScalarProperty Name="fcUbicacionDestino" ColumnName="fcUbicacionDestino" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDUsuarioCreado" ColumnName="fiIDUsuarioCreado" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_Detalle_ClienteListar" FunctionName="ORIONModel.Store.sp_OrionSolicitud_Detalle_ClienteListar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_OrionSolicitud_Detalle_ClienteListar_Result">
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDCliente" ColumnName="fiIDCliente" />
+          <ScalarProperty Name="fiPlazoSeleccionado" ColumnName="fiPlazoSeleccionado" />
+          <ScalarProperty Name="fiEstadoSolicitud" ColumnName="fiEstadoSolicitud" />
+          <ScalarProperty Name="fnValorGarantia" ColumnName="fnValorGarantia" />
+          <ScalarProperty Name="fnMontoFinalFinanciar" ColumnName="fnMontoFinalFinanciar" />
+          <ScalarProperty Name="fcComentarioResolucion" ColumnName="fcComentarioResolucion" />
+          <ScalarProperty Name="fdFechaCreacionSolicitud" ColumnName="fdFechaCreacionSolicitud" />
+          <ScalarProperty Name="fdFinFirma" ColumnName="fdFinFirma" />
+          <ScalarProperty Name="fnTasaAnual" ColumnName="fnTasaAnual" />
+          <ScalarProperty Name="fnCuotaMensual" ColumnName="fnCuotaMensual" />
+          <ScalarProperty Name="fnTasaMensual" ColumnName="fnTasaMensual" />
+          <ScalarProperty Name="fiIDMoneda" ColumnName="fiIDMoneda" />
+          <ScalarProperty Name="fiIDFondo" ColumnName="fiIDFondo" />
+          <ScalarProperty Name="fcOrigen" ColumnName="fcOrigen" />
+          <ScalarProperty Name="fcCodigoVendedor" ColumnName="fcCodigoVendedor" />
+          <ScalarProperty Name="fiIDTipoCliente" ColumnName="fiIDTipoCliente" />
+          <ScalarProperty Name="fcNombreEmpresaJuridica" ColumnName="fcNombreEmpresaJuridica" />
+          <ScalarProperty Name="fcRtnEmpresaJuridico" ColumnName="fcRtnEmpresaJuridico" />
+          <ScalarProperty Name="fiIDEstadoPago" ColumnName="fiIDEstadoPago" />
+          <ScalarProperty Name="fnTotalValorContrato" ColumnName="fnTotalValorContrato" />
+          <ScalarProperty Name="fcLugarTrabajo" ColumnName="fcLugarTrabajo" />
+          <ScalarProperty Name="fiEstadoCivil" ColumnName="fiEstadoCivil" />
+          <ScalarProperty Name="fcDescripcionEstadoCivil" ColumnName="fcDescripcionEstadoCivil" />
+          <ScalarProperty Name="fbTieneHijos" ColumnName="fbTieneHijos" />
+          <ScalarProperty Name="fdFechaNacimiento" ColumnName="fdFechaNacimiento" />
+          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+          <ScalarProperty Name="fcDireccionDetallada" ColumnName="fcDireccionDetallada" />
+          <ScalarProperty Name="fcCorreo" ColumnName="fcCorreo" />
+          <ScalarProperty Name="fcGeolocalizacion" ColumnName="fcGeolocalizacion" />
+          <ScalarProperty Name="fcDepartamento" ColumnName="fcDepartamento" />
+          <ScalarProperty Name="fcMunicipio" ColumnName="fcMunicipio" />
+          <ScalarProperty Name="fcBarrio" ColumnName="fcBarrio" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fiTipoVivienda" ColumnName="fiTipoVivienda" />
+          <ScalarProperty Name="fcDescripcionTipoVivienda" ColumnName="fcDescripcionTipoVivienda" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Cliente_Referencia_Insertar" FunctionName="ORIONModel.Store.sp_Cliente_Referencia_Insertar" />
+    <FunctionImportMapping FunctionImportName="sp_ActualizarInstalacion_Tecnico" FunctionName="ORIONModel.Store.sp_ActualizarInstalacion_Tecnico" />
+    <FunctionImportMapping FunctionImportName="sp_SolicitudInstalacion_ObtenerComentarioInstalacion" FunctionName="ORIONModel.Store.sp_SolicitudInstalacion_ObtenerComentarioInstalacion" />
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Maestro_ConfirmarSalidaInventario" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Maestro_ConfirmarSalidaInventario" />
+    <FunctionImportMapping FunctionImportName="sp_Usuarios_Maestros_ObtenerIdUsuario" FunctionName="ORIONModel.Store.sp_Usuarios_Maestros_ObtenerIdUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_ObtenerReferencias_IDEquifax" FunctionName="ORIONModel.Store.sp_ObtenerReferencias_IDEquifax">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ObtenerReferencias_IDEquifax_Result">
+          <ScalarProperty Name="fiIDReferencia" ColumnName="fiIDReferencia" />
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fcNombreCompletoReferencia" ColumnName="fcNombreCompletoReferencia" />
+          <ScalarProperty Name="fcTelefonoReferencia" ColumnName="fcTelefonoReferencia" />
+          <ScalarProperty Name="fiIDParentesco" ColumnName="fiIDParentesco" />
+          <ScalarProperty Name="fcDescripcionParentesco" ColumnName="fcDescripcionParentesco" />
+          <ScalarProperty Name="fbAceptoSerReferencia" ColumnName="fbAceptoSerReferencia" />
+          <ScalarProperty Name="fiRespuestasAcertadas" ColumnName="fiRespuestasAcertadas" />
+          <ScalarProperty Name="fiRespuestasNoAcertadas" ColumnName="fiRespuestasNoAcertadas" />
+          <ScalarProperty Name="fiIDTipoSolicitud" ColumnName="fiIDTipoSolicitud" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_VerificarEstadoAnexo" FunctionName="ORIONModel.Store.sp_VerificarEstadoAnexo" />
+    <FunctionImportMapping FunctionImportName="sp_Cliente_Referencia_EditarNumeroReferencia" FunctionName="ORIONModel.Store.sp_Cliente_Referencia_EditarNumeroReferencia" />
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_Mestro_Insertar" FunctionName="ORIONModel.Store.sp_OrionSolicitud_Mestro_Insertar" />
+    <FunctionImportMapping FunctionImportName="sp_OrionContratista_DetalleBySolicitud" FunctionName="ORIONModel.Store.sp_OrionContratista_DetalleBySolicitud">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_OrionContratista_DetalleBySolicitud_Result">
+          <ScalarProperty Name="fiIDContratistaSolicitud" ColumnName="fiIDContratistaSolicitud" />
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fiIDPaquete" ColumnName="fiIDPaquete" />
+          <ScalarProperty Name="fiIDAgenciaContratista" ColumnName="fiIDAgenciaContratista" />
+          <ScalarProperty Name="fiNoOrden" ColumnName="fiNoOrden" />
+          <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+          <ScalarProperty Name="fdFechaInstalacion" ColumnName="fdFechaInstalacion" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fdFechaInstalacionInicio" ColumnName="fdFechaInstalacionInicio" />
+          <ScalarProperty Name="fdFechaInstalacionFinal" ColumnName="fdFechaInstalacionFinal" />
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+          <ScalarProperty Name="fiIDTecnicoAsignado" ColumnName="fiIDTecnicoAsignado" />
+          <ScalarProperty Name="NombreTecnicoAsignado" ColumnName="NombreTecnicoAsignado" />
+          <ScalarProperty Name="fcNombreEmpresa" ColumnName="fcNombreEmpresa" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+          <ScalarProperty Name="fcRtnEmpresa" ColumnName="fcRtnEmpresa" />
+          <ScalarProperty Name="fcDireccion" ColumnName="fcDireccion" />
+          <ScalarProperty Name="fcCorreo" ColumnName="fcCorreo" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fcTelefonoCliente" ColumnName="fcTelefonoCliente" />
+          <ScalarProperty Name="fcDireccionDetallada" ColumnName="fcDireccionDetallada" />
+          <ScalarProperty Name="fcArticulosdelContrato" ColumnName="fcArticulosdelContrato" />
+          <ScalarProperty Name="fcDescripcionTelevisor" ColumnName="fcDescripcionTelevisor" />
+          <ScalarProperty Name="fcDepartamento" ColumnName="fcDepartamento" />
+          <ScalarProperty Name="fcMunicipio" ColumnName="fcMunicipio" />
+          <ScalarProperty Name="fcBarrio" ColumnName="fcBarrio" />
+          <ScalarProperty Name="fcFirma" ColumnName="fcFirma" />
+          <ScalarProperty Name="fcNumeroOrdenCfeus" ColumnName="fcNumeroOrdenCfeus" />
+          <ScalarProperty Name="fcCodigoCliente" ColumnName="fcCodigoCliente" />
+          <ScalarProperty Name="fcComentarioInstalacion" ColumnName="fcComentarioInstalacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_detallePlantillaCorreo" FunctionName="ORIONModel.Store.sp_OrionSolicitud_detallePlantillaCorreo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_OrionSolicitud_detallePlantillaCorreo_Result">
+          <ScalarProperty Name="fiIDEmailTemplate" ColumnName="fiIDEmailTemplate" />
+          <ScalarProperty Name="fcDescriptionEmailTemplate" ColumnName="fcDescriptionEmailTemplate" />
+          <ScalarProperty Name="fcEmailSubject" ColumnName="fcEmailSubject" />
+          <ScalarProperty Name="fcEmailBody" ColumnName="fcEmailBody" />
+          <ScalarProperty Name="fcEmailTitle" ColumnName="fcEmailTitle" />
+          <ScalarProperty Name="fcEmailFooter" ColumnName="fcEmailFooter" />
+          <ScalarProperty Name="fbEmailTemplateActive" ColumnName="fbEmailTemplateActive" />
+          <ScalarProperty Name="fcEmailAttachmentName" ColumnName="fcEmailAttachmentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitudes_InformacionDocumentacion" FunctionName="ORIONModel.Store.sp_OrionSolicitudes_InformacionDocumentacion" />
+    <FunctionImportMapping FunctionImportName="sp_Roles_PorUsuario" FunctionName="ORIONModel.Store.sp_Roles_PorUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Roles_PorUsuario_Result">
+          <ScalarProperty Name="Fk_IdRol" ColumnName="Fk_IdRol" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_BitacoraSolicitudHistorialMantenimiento" FunctionName="ORIONModel.Store.sp_BitacoraSolicitudHistorialMantenimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_BitacoraSolicitudHistorialMantenimiento_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdCreado" ColumnName="IdCreado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GuardarFotoInstalacion" FunctionName="ORIONModel.Store.sp_GuardarFotoInstalacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_GuardarFotoInstalacion_Result">
+          <ScalarProperty Name="fiIdmensaje" ColumnName="fiIdmensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="fiIdModificado" ColumnName="fiIdModificado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_EstadoCivil" FunctionName="ORIONModel.Store.sp_Catalogo_EstadoCivil">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_EstadoCivil_Result">
+          <ScalarProperty Name="fiIDEstadoCivil" ColumnName="fiIDEstadoCivil" />
+          <ScalarProperty Name="fcDescripcionEstadoCivil" ColumnName="fcDescripcionEstadoCivil" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_BitacoraMantenimientoHistorialSolicitudLista" FunctionName="ORIONModel.Store.sp_BitacoraMantenimientoHistorialSolicitudLista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_BitacoraMantenimientoHistorialSolicitudLista_Result">
+          <ScalarProperty Name="fiIDSolicitudHistorialMantenimiento" ColumnName="fiIDSolicitudHistorialMantenimiento" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fdFechaMantenimiento" ColumnName="fdFechaMantenimiento" />
+          <ScalarProperty Name="fcOpcionSeleccionada" ColumnName="fcOpcionSeleccionada" />
+          <ScalarProperty Name="fcObservaciones" ColumnName="fcObservaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ReinicioGeoLocalizacion" FunctionName="ORIONModel.Store.sp_ReinicioGeoLocalizacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ReinicioGeoLocalizacion_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdActualizado" ColumnName="IdActualizado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_EliminarDocumentos" FunctionName="ORIONModel.Store.sp_EliminarDocumentos" />
+    <FunctionImportMapping FunctionImportName="sp_Reiniciodecontrato" FunctionName="ORIONModel.Store.sp_Reiniciodecontrato">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Reiniciodecontrato_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdModificado" ColumnName="IdModificado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Configuraciones" FunctionName="ORIONModel.Store.sp_Configuraciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Configuraciones_Result">
+          <ScalarProperty Name="NombreLlave" ColumnName="NombreLlave" />
+          <ScalarProperty Name="ValorLLave" ColumnName="ValorLLave" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SRCClienteDetalle_Novanet" FunctionName="ORIONModel.Store.sp_SRCClienteDetalle_Novanet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_SRCClienteDetalle_Novanet_Result">
+          <ScalarProperty Name="fcIDCliente" ColumnName="fcIDCliente" />
+          <ScalarProperty Name="fcCentrodeCosto" ColumnName="fcCentrodeCosto" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcNombreSAF" ColumnName="fcNombreSAF" />
+          <ScalarProperty Name="fcTelefonos" ColumnName="fcTelefonos" />
+          <ScalarProperty Name="fiIDGestorCallCenter" ColumnName="fiIDGestorCallCenter" />
+          <ScalarProperty Name="fdUltimaGestion" ColumnName="fdUltimaGestion" />
+          <ScalarProperty Name="fiIDGestion" ColumnName="fiIDGestion" />
+          <ScalarProperty Name="fiPagaconTDC" ColumnName="fiPagaconTDC" />
+          <ScalarProperty Name="fiIDCarteraInicial" ColumnName="fiIDCarteraInicial" />
+          <ScalarProperty Name="fiInicialDiasAtraso" ColumnName="fiInicialDiasAtraso" />
+          <ScalarProperty Name="fiInicialCuotasAtraso" ColumnName="fiInicialCuotasAtraso" />
+          <ScalarProperty Name="fiInicialCuotasPagadas" ColumnName="fiInicialCuotasPagadas" />
+          <ScalarProperty Name="fnInicialValorCuota" ColumnName="fnInicialValorCuota" />
+          <ScalarProperty Name="fnInicialCapitalOtorgado" ColumnName="fnInicialCapitalOtorgado" />
+          <ScalarProperty Name="fnInicialSaldoActual" ColumnName="fnInicialSaldoActual" />
+          <ScalarProperty Name="fnInicialCapitalVencido" ColumnName="fnInicialCapitalVencido" />
+          <ScalarProperty Name="fnInicialInteresesVencidos" ColumnName="fnInicialInteresesVencidos" />
+          <ScalarProperty Name="fnInicialRecargos" ColumnName="fnInicialRecargos" />
+          <ScalarProperty Name="fnInicialInteresMora" ColumnName="fnInicialInteresMora" />
+          <ScalarProperty Name="fnInicialSaldoPonerAlDia" ColumnName="fnInicialSaldoPonerAlDia" />
+          <ScalarProperty Name="fnInicialTotalCuenta" ColumnName="fnInicialTotalCuenta" />
+          <ScalarProperty Name="fcGestion" ColumnName="fcGestion" />
+          <ScalarProperty Name="fnPagarUSD" ColumnName="fnPagarUSD" />
+          <ScalarProperty Name="fcAlerta1" ColumnName="fcAlerta1" />
+          <ScalarProperty Name="fnMontoPromocional" ColumnName="fnMontoPromocional" />
+          <ScalarProperty Name="fiClienteenRuta" ColumnName="fiClienteenRuta" />
+          <ScalarProperty Name="fcDescripcionPerfil" ColumnName="fcDescripcionPerfil" />
+          <ScalarProperty Name="fcScriptTelefonico" ColumnName="fcScriptTelefonico" />
+          <ScalarProperty Name="fcIconoCliente" ColumnName="fcIconoCliente" />
+          <ScalarProperty Name="fiTieneTrabajo" ColumnName="fiTieneTrabajo" />
+          <ScalarProperty Name="fcRubro" ColumnName="fcRubro" />
+          <ScalarProperty Name="fcTipodeEmpleo" ColumnName="fcTipodeEmpleo" />
+          <ScalarProperty Name="fiTieneSeguro" ColumnName="fiTieneSeguro" />
+          <ScalarProperty Name="fcImagenSeguro" ColumnName="fcImagenSeguro" />
+          <ScalarProperty Name="fiIDSolicitudActiva" ColumnName="fiIDSolicitudActiva" />
+          <ScalarProperty Name="fcMensajeAlerta" ColumnName="fcMensajeAlerta" />
+          <ScalarProperty Name="fcDepartamento" ColumnName="fcDepartamento" />
+          <ScalarProperty Name="fcMunicipio" ColumnName="fcMunicipio" />
+          <ScalarProperty Name="fcBarrio" ColumnName="fcBarrio" />
+          <ScalarProperty Name="fcDireccionDetallada" ColumnName="fcDireccionDetallada" />
+          <ScalarProperty Name="fcLugarTrabajo" ColumnName="fcLugarTrabajo" />
+          <ScalarProperty Name="fcProfesion" ColumnName="fcProfesion" />
+          <ScalarProperty Name="fiAntiguedadLaboral" ColumnName="fiAntiguedadLaboral" />
+          <ScalarProperty Name="fiRangoSalarial" ColumnName="fiRangoSalarial" />
+          <ScalarProperty Name="fcDescripcion_RangosSalariales" ColumnName="fcDescripcion_RangosSalariales" />
+          <ScalarProperty Name="fcDescripcionAntiguedad" ColumnName="fcDescripcionAntiguedad" />
+          <ScalarProperty Name="fcIDPrestamo" ColumnName="fcIDPrestamo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SolicitudesIncidencias_Lista" FunctionName="ORIONModel.Store.sp_SolicitudesIncidencias_Lista" />
+    <FunctionImportMapping FunctionImportName="sp_Equifax_Cliente_Actualizar" FunctionName="ORIONModel.Store.sp_Equifax_Cliente_Actualizar" />
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_DetalleClienteServicioContratado_Guardar" FunctionName="ORIONModel.Store.sp_OrionSolicitud_DetalleClienteServicioContratado_Guardar" />
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_LlenarListaGestion" FunctionName="ORIONModel.Store.sp_OrionSolicitud_LlenarListaGestion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_OrionSolicitud_LlenarListaGestion_Result">
+          <ScalarProperty Name="fiIDGestion" ColumnName="fiIDGestion" />
+          <ScalarProperty Name="fcGestion" ColumnName="fcGestion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Orion_ClienteBitacora_Registrar" FunctionName="ORIONModel.Store.sp_Orion_ClienteBitacora_Registrar" />
+    <FunctionImportMapping FunctionImportName="sp_OrionListaBitacoras_Clientes" FunctionName="ORIONModel.Store.sp_OrionListaBitacoras_Clientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_OrionListaBitacoras_Clientes_Result">
+          <ScalarProperty Name="fcIDCliente" ColumnName="fcIDCliente" />
+          <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+          <ScalarProperty Name="fcBitacora" ColumnName="fcBitacora" />
+          <ScalarProperty Name="fiIDGestion" ColumnName="fiIDGestion" />
+          <ScalarProperty Name="fdGestion" ColumnName="fdGestion" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fdFechaVolveraLlamar" ColumnName="fdFechaVolveraLlamar" />
+          <ScalarProperty Name="fiOrigenGestion" ColumnName="fiOrigenGestion" />
+          <ScalarProperty Name="fiUbicacionGestion" ColumnName="fiUbicacionGestion" />
+          <ScalarProperty Name="fcLatitud" ColumnName="fcLatitud" />
+          <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+          <ScalarProperty Name="fiTelefonoContesta" ColumnName="fiTelefonoContesta" />
+          <ScalarProperty Name="fiSMSEnviado" ColumnName="fiSMSEnviado" />
+          <ScalarProperty Name="fiWhatsAppEnviado" ColumnName="fiWhatsAppEnviado" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fcGestion" ColumnName="fcGestion" />
+          <ScalarProperty Name="fcPrimerNombre" ColumnName="fcPrimerNombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionCatalogo_OLT" FunctionName="ORIONModel.Store.sp_OrionCatalogo_OLT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_OrionCatalogo_OLT_Result">
+          <ScalarProperty Name="fiIDOlt" ColumnName="fiIDOlt" />
+          <ScalarProperty Name="fcDescripcionOLT" ColumnName="fcDescripcionOLT" />
+          <ScalarProperty Name="fcDireccion" ColumnName="fcDireccion" />
+          <ScalarProperty Name="fcLatitude" ColumnName="fcLatitude" />
+          <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+          <ScalarProperty Name="fcIPOLT" ColumnName="fcIPOLT" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaModificacion" ColumnName="fdFechaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioModificacion" ColumnName="fiIDUsuarioModificacion" />
+          <ScalarProperty Name="USuarionCreacion" ColumnName="USuarionCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionCatalogo_OLT_Guardar" FunctionName="ORIONModel.Store.sp_OrionCatalogo_OLT_Guardar" />
+    <FunctionImportMapping FunctionImportName="sp_OrionCatalogo_OLT_Editar" FunctionName="ORIONModel.Store.sp_OrionCatalogo_OLT_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_OrionCatalogo_OLT_ObtenerPorID" FunctionName="ORIONModel.Store.sp_OrionCatalogo_OLT_ObtenerPorID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_OrionCatalogo_OLT_ObtenerPorID_Result">
+          <ScalarProperty Name="fiIDOlt" ColumnName="fiIDOlt" />
+          <ScalarProperty Name="fcDescripcionOLT" ColumnName="fcDescripcionOLT" />
+          <ScalarProperty Name="fcDireccion" ColumnName="fcDireccion" />
+          <ScalarProperty Name="fcLatitude" ColumnName="fcLatitude" />
+          <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+          <ScalarProperty Name="fcIPOLT" ColumnName="fcIPOLT" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaModificacion" ColumnName="fdFechaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioModificacion" ColumnName="fiIDUsuarioModificacion" />
+          <ScalarProperty Name="USuarionCreacion" ColumnName="USuarionCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GeoPais_Lista" FunctionName="ORIONModel.Store.sp_GeoPais_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_GeoPais_Lista_Result">
+          <ScalarProperty Name="fiCodPais" ColumnName="fiCodPais" />
+          <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+          <ScalarProperty Name="fcNombreMoneda" ColumnName="fcNombreMoneda" />
+          <ScalarProperty Name="fcAbreviacionMoneda" ColumnName="fcAbreviacionMoneda" />
+          <ScalarProperty Name="fcSimboloMoneda" ColumnName="fcSimboloMoneda" />
+          <ScalarProperty Name="fcDominoInternet" ColumnName="fcDominoInternet" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CatalogoSistemaDocumentos_Lista" FunctionName="ORIONModel.Store.sp_CatalogoSistemaDocumentos_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_CatalogoSistemaDocumentos_Lista_Result">
+          <ScalarProperty Name="fiIDDocumento" ColumnName="fiIDDocumento" />
+          <ScalarProperty Name="fcDocumento" ColumnName="fcDocumento" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Solicitudes_Bandeja" FunctionName="ORIONModel.Store.sp_Solicitudes_Bandeja">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Solicitudes_Bandeja_Result">
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDCliente" ColumnName="fiIDCliente" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fiPlazoSeleccionado" ColumnName="fiPlazoSeleccionado" />
+          <ScalarProperty Name="fiEstadoSolicitud" ColumnName="fiEstadoSolicitud" />
+          <ScalarProperty Name="fnValorGarantia" ColumnName="fnValorGarantia" />
+          <ScalarProperty Name="fnMontoFinalFinanciar" ColumnName="fnMontoFinalFinanciar" />
+          <ScalarProperty Name="fcComentarioResolucion" ColumnName="fcComentarioResolucion" />
+          <ScalarProperty Name="fdFechaCreacionSolicitud" ColumnName="fdFechaCreacionSolicitud" />
+          <ScalarProperty Name="fiIDPagoInicial" ColumnName="fiIDPagoInicial" />
+          <ScalarProperty Name="fcComentarioPagoInicial" ColumnName="fcComentarioPagoInicial" />
+          <ScalarProperty Name="fdFinFirma" ColumnName="fdFinFirma" />
+          <ScalarProperty Name="fiIDFirma" ColumnName="fiIDFirma" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+          <ScalarProperty Name="fcGeolocalizacion" ColumnName="fcGeolocalizacion" />
+          <ScalarProperty Name="fiUbicacionGuardada" ColumnName="fiUbicacionGuardada" />
+          <ScalarProperty Name="fcCorreo" ColumnName="fcCorreo" />
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcClase" ColumnName="fcClase" />
+          <ScalarProperty Name="fcDireccionDetallada" ColumnName="fcDireccionDetallada" />
+          <ScalarProperty Name="fiIDTipoCliente" ColumnName="fiIDTipoCliente" />
+          <ScalarProperty Name="fiIDIdentidadSubida" ColumnName="fiIDIdentidadSubida" />
+          <ScalarProperty Name="fiIDSelfieSubida" ColumnName="fiIDSelfieSubida" />
+          <ScalarProperty Name="fiIDContratistaSolicitud" ColumnName="fiIDContratistaSolicitud" />
+          <ScalarProperty Name="fdFechaInstalacionFinal" ColumnName="fdFechaInstalacionFinal" />
+          <ScalarProperty Name="NombreOficial" ColumnName="NombreOficial" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DashboardInformativo" FunctionName="ORIONModel.Store.sp_DashboardInformativo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_DashboardInformativo_Result">
+          <ScalarProperty Name="fiClientesNetos" ColumnName="fiClientesNetos" />
+          <ScalarProperty Name="fiClientesActivos" ColumnName="fiClientesActivos" />
+          <ScalarProperty Name="fiClientesCortados" ColumnName="fiClientesCortados" />
+          <ScalarProperty Name="fiClientesReconectados" ColumnName="fiClientesReconectados" />
+          <ScalarProperty Name="fiClientesEnAtraso" ColumnName="fiClientesEnAtraso" />
+          <ScalarProperty Name="fiClientesNuevosMes" ColumnName="fiClientesNuevosMes" />
+          <ScalarProperty Name="fiClientesPrecalificadosDelMes" ColumnName="fiClientesPrecalificadosDelMes" />
+          <ScalarProperty Name="fnIngresosdelMes" ColumnName="fnIngresosdelMes" />
+          <ScalarProperty Name="fnIngresosdelGlobales" ColumnName="fnIngresosdelGlobales" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ReporteClientes_ObtenerPorID" FunctionName="ORIONModel.Store.sp_ReporteClientes_ObtenerPorID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ReporteClientes_ObtenerPorID_Result">
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fiScoreActual" ColumnName="fiScoreActual" />
+          <ScalarProperty Name="fiScorePromedio" ColumnName="fiScorePromedio" />
+          <ScalarProperty Name="fdFechaPrimerConsulta" ColumnName="fdFechaPrimerConsulta" />
+          <ScalarProperty Name="fiEstadoMensaje" ColumnName="fiEstadoMensaje" />
+          <ScalarProperty Name="fiEstadoProductoServicio" ColumnName="fiEstadoProductoServicio" />
+          <ScalarProperty Name="fiIDTipoSolicitud" ColumnName="fiIDTipoSolicitud" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrionSolicitud_Prestamo_Crear" FunctionName="ORIONModel.Store.sp_OrionSolicitud_Prestamo_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Prestamos_ClientesaPagarPorFecha" FunctionName="ORIONModel.Store.sp_Prestamos_ClientesaPagarPorFecha" />
+    <FunctionImportMapping FunctionImportName="sp_Solicitudes_Bandeja_ObtenerPorIDSolicitud" FunctionName="ORIONModel.Store.sp_Solicitudes_Bandeja_ObtenerPorIDSolicitud">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Solicitudes_Bandeja_ObtenerPorIDSolicitud_Result">
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDCliente" ColumnName="fiIDCliente" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fiPlazoSeleccionado" ColumnName="fiPlazoSeleccionado" />
+          <ScalarProperty Name="fiEstadoSolicitud" ColumnName="fiEstadoSolicitud" />
+          <ScalarProperty Name="fnValorGarantia" ColumnName="fnValorGarantia" />
+          <ScalarProperty Name="fnMontoFinalFinanciar" ColumnName="fnMontoFinalFinanciar" />
+          <ScalarProperty Name="fcComentarioResolucion" ColumnName="fcComentarioResolucion" />
+          <ScalarProperty Name="fdFechaCreacionSolicitud" ColumnName="fdFechaCreacionSolicitud" />
+          <ScalarProperty Name="fiIDPagoInicial" ColumnName="fiIDPagoInicial" />
+          <ScalarProperty Name="fcComentarioPagoInicial" ColumnName="fcComentarioPagoInicial" />
+          <ScalarProperty Name="fdFinFirma" ColumnName="fdFinFirma" />
+          <ScalarProperty Name="fiIDFirma" ColumnName="fiIDFirma" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+          <ScalarProperty Name="fcGeolocalizacion" ColumnName="fcGeolocalizacion" />
+          <ScalarProperty Name="fiUbicacionGuardada" ColumnName="fiUbicacionGuardada" />
+          <ScalarProperty Name="fcCorreo" ColumnName="fcCorreo" />
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcClase" ColumnName="fcClase" />
+          <ScalarProperty Name="fcDireccionDetallada" ColumnName="fcDireccionDetallada" />
+          <ScalarProperty Name="fiIDTipoCliente" ColumnName="fiIDTipoCliente" />
+          <ScalarProperty Name="fiIDIdentidadSubida" ColumnName="fiIDIdentidadSubida" />
+          <ScalarProperty Name="fiIDSelfieSubida" ColumnName="fiIDSelfieSubida" />
+          <ScalarProperty Name="fiIDContratistaSolicitud" ColumnName="fiIDContratistaSolicitud" />
+          <ScalarProperty Name="fdFechaInstalacionFinal" ColumnName="fdFechaInstalacionFinal" />
+          <ScalarProperty Name="NombreOficial" ColumnName="NombreOficial" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ASPNETUSER_ObtenerInformacionUsuario" FunctionName="ORIONModel.Store.sp_ASPNETUSER_ObtenerInformacionUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ASPNETUSER_ObtenerInformacionUsuario_Result">
+          <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
+          <ScalarProperty Name="fiIDEmpresa" ColumnName="fiIDEmpresa" />
+          <ScalarProperty Name="fcNombreComercial" ColumnName="fcNombreComercial" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Permisos" ColumnName="Permisos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Cliente_Referencia_Respuestas_Insert" FunctionName="ORIONModel.Store.sp_Cliente_Referencia_Respuestas_Insert" />
+    <FunctionImportMapping FunctionImportName="sp_ContratistaSolicitudInstalacionDetalle_ValidarIDContratista" FunctionName="ORIONModel.Store.sp_ContratistaSolicitudInstalacionDetalle_ValidarIDContratista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ContratistaSolicitudInstalacionDetalle_ValidarIDContratista_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdActualizado" ColumnName="IdActualizado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Proveedores_Crear" FunctionName="ORIONModel.Store.sp_Proveedores_Crear">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Proveedores_Crear_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdIngresado" ColumnName="IdIngresado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Proveedores_Editar" FunctionName="ORIONModel.Store.sp_Proveedores_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Proveedores_Editar_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdIngresado" ColumnName="IdIngresado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Proveedores_Listar" FunctionName="ORIONModel.Store.sp_Proveedores_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Proveedores_Listar_Result">
+          <ScalarProperty Name="fiIDProveedor" ColumnName="fiIDProveedor" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fiTipoPersona" ColumnName="fiTipoPersona" />
+          <ScalarProperty Name="fcRTN" ColumnName="fcRTN" />
+          <ScalarProperty Name="fcContacto" ColumnName="fcContacto" />
+          <ScalarProperty Name="fiCodPais" ColumnName="fiCodPais" />
+          <ScalarProperty Name="fiCodDepartamento" ColumnName="fiCodDepartamento" />
+          <ScalarProperty Name="fiCodCiudad" ColumnName="fiCodCiudad" />
+          <ScalarProperty Name="fiCodAldeaPoblado" ColumnName="fiCodAldeaPoblado" />
+          <ScalarProperty Name="fcDireccion1" ColumnName="fcDireccion1" />
+          <ScalarProperty Name="fcDireccion2" ColumnName="fcDireccion2" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
+          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+          <ScalarProperty Name="fiIDCuentaPorPagar" ColumnName="fiIDCuentaPorPagar" />
+          <ScalarProperty Name="fcCAI" ColumnName="fcCAI" />
+          <ScalarProperty Name="fdFechaLimiteEmisionFactura" ColumnName="fdFechaLimiteEmisionFactura" />
+          <ScalarProperty Name="fcPrefijoFactura" ColumnName="fcPrefijoFactura" />
+          <ScalarProperty Name="fiRangoInicialFactura" ColumnName="fiRangoInicialFactura" />
+          <ScalarProperty Name="fcRangoFinalFactura" ColumnName="fcRangoFinalFactura" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fiDiasLimiteCredito" ColumnName="fiDiasLimiteCredito" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fbEstadoProveedor" ColumnName="fbEstadoProveedor" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Proveedores_ObtenerId" FunctionName="ORIONModel.Store.sp_Proveedores_ObtenerId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Proveedores_ObtenerId_Result">
+          <ScalarProperty Name="fiIDProveedor" ColumnName="fiIDProveedor" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fiTipoPersona" ColumnName="fiTipoPersona" />
+          <ScalarProperty Name="fcRTN" ColumnName="fcRTN" />
+          <ScalarProperty Name="fcContacto" ColumnName="fcContacto" />
+          <ScalarProperty Name="fiCodPais" ColumnName="fiCodPais" />
+          <ScalarProperty Name="fiCodDepartamento" ColumnName="fiCodDepartamento" />
+          <ScalarProperty Name="fiCodCiudad" ColumnName="fiCodCiudad" />
+          <ScalarProperty Name="fiCodAldeaPoblado" ColumnName="fiCodAldeaPoblado" />
+          <ScalarProperty Name="fcDireccion1" ColumnName="fcDireccion1" />
+          <ScalarProperty Name="fcDireccion2" ColumnName="fcDireccion2" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
+          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+          <ScalarProperty Name="fiIDCuentaPorPagar" ColumnName="fiIDCuentaPorPagar" />
+          <ScalarProperty Name="fcCAI" ColumnName="fcCAI" />
+          <ScalarProperty Name="fdFechaLimiteEmisionFactura" ColumnName="fdFechaLimiteEmisionFactura" />
+          <ScalarProperty Name="fcPrefijoFactura" ColumnName="fcPrefijoFactura" />
+          <ScalarProperty Name="fiRangoInicialFactura" ColumnName="fiRangoInicialFactura" />
+          <ScalarProperty Name="fcRangoFinalFactura" ColumnName="fcRangoFinalFactura" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fiDiasLimiteCredito" ColumnName="fiDiasLimiteCredito" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fbEstadoProveedor" ColumnName="fbEstadoProveedor" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Prestamo_InformacionTotal_Novanet" FunctionName="ORIONModel.Store.sp_Prestamo_InformacionTotal_Novanet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Prestamo_InformacionTotal_Novanet_Result">
+          <ScalarProperty Name="fcIDPrestamo" ColumnName="fcIDPrestamo" />
+          <ScalarProperty Name="fcClienteSAF" ColumnName="fcClienteSAF" />
+          <ScalarProperty Name="fiDiasAtraso" ColumnName="fiDiasAtraso" />
+          <ScalarProperty Name="fiCuotasAtrasadas" ColumnName="fiCuotasAtrasadas" />
+          <ScalarProperty Name="fiCuotasPagadas" ColumnName="fiCuotasPagadas" />
+          <ScalarProperty Name="fiTotalCuotas" ColumnName="fiTotalCuotas" />
+          <ScalarProperty Name="fnValorCuota" ColumnName="fnValorCuota" />
+          <ScalarProperty Name="fnCapitalFinanciado" ColumnName="fnCapitalFinanciado" />
+          <ScalarProperty Name="fnSaldoActualCapital" ColumnName="fnSaldoActualCapital" />
+          <ScalarProperty Name="fnCapitalVencido" ColumnName="fnCapitalVencido" />
+          <ScalarProperty Name="fnInteresesVencidos" ColumnName="fnInteresesVencidos" />
+          <ScalarProperty Name="fnRecargos" ColumnName="fnRecargos" />
+          <ScalarProperty Name="fnSaldoPonerAlDia" ColumnName="fnSaldoPonerAlDia" />
+          <ScalarProperty Name="fnTotalCuenta" ColumnName="fnTotalCuenta" />
+          <ScalarProperty Name="fdFechaInicioPrestamo" ColumnName="fdFechaInicioPrestamo" />
+          <ScalarProperty Name="fdFechaPrimerPagoPrestamo" ColumnName="fdFechaPrimerPagoPrestamo" />
+          <ScalarProperty Name="fdFechaVencePrestamo" ColumnName="fdFechaVencePrestamo" />
+          <ScalarProperty Name="fdUltimoAbono" ColumnName="fdUltimoAbono" />
+          <ScalarProperty Name="fnValorUltimoAbono" ColumnName="fnValorUltimoAbono" />
+          <ScalarProperty Name="fcOficial" ColumnName="fcOficial" />
+          <ScalarProperty Name="fcGestorCobros" ColumnName="fcGestorCobros" />
+          <ScalarProperty Name="fnSaldoSeguros" ColumnName="fnSaldoSeguros" />
+          <ScalarProperty Name="fnSaldoSeguro1" ColumnName="fnSaldoSeguro1" />
+          <ScalarProperty Name="fnSaldoSeguro2" ColumnName="fnSaldoSeguro2" />
+          <ScalarProperty Name="fnInteresMora" ColumnName="fnInteresMora" />
+          <ScalarProperty Name="fdDateLoan" ColumnName="fdDateLoan" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcIDProducto" ColumnName="fcIDProducto" />
+          <ScalarProperty Name="fcTipoDePlazo" ColumnName="fcTipoDePlazo" />
+          <ScalarProperty Name="fnValorCuotaPrestamo" ColumnName="fnValorCuotaPrestamo" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="SolicitudMaestroNovanet" ColumnName="SolicitudMaestroNovanet" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Crear_SolicitudDeclinada" FunctionName="ORIONModel.Store.sp_Crear_SolicitudDeclinada" />
+    <FunctionImportMapping FunctionImportName="sp_ListarCatalogo_RazonDeclinar" FunctionName="ORIONModel.Store.sp_ListarCatalogo_RazonDeclinar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ListarCatalogo_RazonDeclinar_Result">
+          <ScalarProperty Name="fiIDRazon" ColumnName="fiIDRazon" />
+          <ScalarProperty Name="fcRazonDelcinar" ColumnName="fcRazonDelcinar" />
+          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_TipoPersona_Listar" FunctionName="ORIONModel.Store.sp_Catalogo_TipoPersona_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_TipoPersona_Listar_Result">
+          <ScalarProperty Name="fiIDTipoPersona" ColumnName="fiIDTipoPersona" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Maestro_Crear" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Maestro_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Maestro_Editar" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Maestro_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Maestro_GetById" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Maestro_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Movimiento_Maestro_GetById_Result">
+          <ScalarProperty Name="fiIDMovimientoMaestro" ColumnName="fiIDMovimientoMaestro" />
+          <ScalarProperty Name="fcNumeroFactura" ColumnName="fcNumeroFactura" />
+          <ScalarProperty Name="fiIDProveedor" ColumnName="fiIDProveedor" />
+          <ScalarProperty Name="fcReferenciaFactura" ColumnName="fcReferenciaFactura" />
+          <ScalarProperty Name="fcDescripcionFactura" ColumnName="fcDescripcionFactura" />
+          <ScalarProperty Name="fcCAI" ColumnName="fcCAI" />
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fcTipoMovimiento" ColumnName="fcTipoMovimiento" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fnImporteGravado" ColumnName="fnImporteGravado" />
+          <ScalarProperty Name="fnImporteExento" ColumnName="fnImporteExento" />
+          <ScalarProperty Name="fnImporteExonerado" ColumnName="fnImporteExonerado" />
+          <ScalarProperty Name="fnSaldo" ColumnName="fnSaldo" />
+          <ScalarProperty Name="fnISV" ColumnName="fnISV" />
+          <ScalarProperty Name="fnTotalFactura" ColumnName="fnTotalFactura" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcDocumentoFactura" ColumnName="fcDocumentoFactura" />
+          <ScalarProperty Name="fcDocumentoExtension" ColumnName="fcDocumentoExtension" />
+          <ScalarProperty Name="fiEstadoMovimientoMaestro" ColumnName="fiEstadoMovimientoMaestro" />
+          <ScalarProperty Name="fnValorCuotaMensual" ColumnName="fnValorCuotaMensual" />
+          <ScalarProperty Name="fnValorCuotaCapital" ColumnName="fnValorCuotaCapital" />
+          <ScalarProperty Name="fnValorCuotaInteres" ColumnName="fnValorCuotaInteres" />
+          <ScalarProperty Name="fnTasaAnualPlana" ColumnName="fnTasaAnualPlana" />
+          <ScalarProperty Name="fdFechaFactura" ColumnName="fdFechaFactura" />
+          <ScalarProperty Name="fiIDMoneda" ColumnName="fiIDMoneda" />
+          <ScalarProperty Name="fcNombreMoneda" ColumnName="fcNombreMoneda" />
+          <ScalarProperty Name="fcSimboloMoneda" ColumnName="fcSimboloMoneda" />
+          <ScalarProperty Name="fcPartida" ColumnName="fcPartida" />
+          <ScalarProperty Name="fbContabilizar" ColumnName="fbContabilizar" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Maestro_Listar" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Maestro_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Movimiento_Maestro_Listar_Result">
+          <ScalarProperty Name="fiIDMovimientoMaestro" ColumnName="fiIDMovimientoMaestro" />
+          <ScalarProperty Name="fcNumeroFactura" ColumnName="fcNumeroFactura" />
+          <ScalarProperty Name="fiIDProveedor" ColumnName="fiIDProveedor" />
+          <ScalarProperty Name="fcReferenciaFactura" ColumnName="fcReferenciaFactura" />
+          <ScalarProperty Name="fcDescripcionFactura" ColumnName="fcDescripcionFactura" />
+          <ScalarProperty Name="fcCAI" ColumnName="fcCAI" />
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fcTipoMovimiento" ColumnName="fcTipoMovimiento" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fnImporteGravado" ColumnName="fnImporteGravado" />
+          <ScalarProperty Name="fnImporteExento" ColumnName="fnImporteExento" />
+          <ScalarProperty Name="fnImporteExonerado" ColumnName="fnImporteExonerado" />
+          <ScalarProperty Name="fnSaldo" ColumnName="fnSaldo" />
+          <ScalarProperty Name="fnISV" ColumnName="fnISV" />
+          <ScalarProperty Name="fnTotalFactura" ColumnName="fnTotalFactura" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcDocumentoFactura" ColumnName="fcDocumentoFactura" />
+          <ScalarProperty Name="fcDocumentoExtension" ColumnName="fcDocumentoExtension" />
+          <ScalarProperty Name="fiEstadoMovimientoMaestro" ColumnName="fiEstadoMovimientoMaestro" />
+          <ScalarProperty Name="fnValorCuotaMensual" ColumnName="fnValorCuotaMensual" />
+          <ScalarProperty Name="fnValorCuotaCapital" ColumnName="fnValorCuotaCapital" />
+          <ScalarProperty Name="fnValorCuotaInteres" ColumnName="fnValorCuotaInteres" />
+          <ScalarProperty Name="fnTasaAnualPlana" ColumnName="fnTasaAnualPlana" />
+          <ScalarProperty Name="fdFechaFactura" ColumnName="fdFechaFactura" />
+          <ScalarProperty Name="fiIDMoneda" ColumnName="fiIDMoneda" />
+          <ScalarProperty Name="fcNombreMoneda" ColumnName="fcNombreMoneda" />
+          <ScalarProperty Name="fcSimboloMoneda" ColumnName="fcSimboloMoneda" />
+          <ScalarProperty Name="fcPartida" ColumnName="fcPartida" />
+          <ScalarProperty Name="fbContabilizar" ColumnName="fbContabilizar" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Detalle_ByCodigoSerie" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Detalle_ByCodigoSerie">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Movimiento_Detalle_ByCodigoSerie_Result">
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDUbicacionInicial" ColumnName="fiIDUbicacionInicial" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fiProductoEnPaquete" ColumnName="fiProductoEnPaquete" />
+          <ScalarProperty Name="fbPorCodigo" ColumnName="fbPorCodigo" />
+          <ScalarProperty Name="fiIdProductoPreciosDetalle" ColumnName="fiIdProductoPreciosDetalle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Detalle_Crear" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Detalle_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Detalle_Editar" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Detalle_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Detalle_GetById" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Detalle_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Movimiento_Detalle_GetById_Result">
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcImagenProducto" ColumnName="fcImagenProducto" />
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiTipoMovimiento" ColumnName="fiTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fcReferenciaMovimiento" ColumnName="fcReferenciaMovimiento" />
+          <ScalarProperty Name="fdFechaMovimiento" ColumnName="fdFechaMovimiento" />
+          <ScalarProperty Name="fiIDUsuarioMovimiento" ColumnName="fiIDUsuarioMovimiento" />
+          <ScalarProperty Name="fcUsuarioMovimiento" ColumnName="fcUsuarioMovimiento" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiIDMovimientoMaestro" ColumnName="fiIDMovimientoMaestro" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fiIdProductoPreciosDetalle" ColumnName="fiIdProductoPreciosDetalle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Detalle_Listar" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Detalle_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Movimiento_Detalle_Listar_Result">
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcImagenProducto" ColumnName="fcImagenProducto" />
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiTipoMovimiento" ColumnName="fiTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fcReferenciaMovimiento" ColumnName="fcReferenciaMovimiento" />
+          <ScalarProperty Name="fdFechaMovimiento" ColumnName="fdFechaMovimiento" />
+          <ScalarProperty Name="fiIDUsuarioMovimiento" ColumnName="fiIDUsuarioMovimiento" />
+          <ScalarProperty Name="fcUsuarioMovimiento" ColumnName="fcUsuarioMovimiento" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiIDMovimientoMaestro" ColumnName="fiIDMovimientoMaestro" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fiIdProductoPreciosDetalle" ColumnName="fiIdProductoPreciosDetalle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SolicitudesDeclinadas_ResolicionDelcinar" FunctionName="ORIONModel.Store.sp_SolicitudesDeclinadas_ResolicionDelcinar" />
+    <FunctionImportMapping FunctionImportName="sp_Listado_SolicitudesDeclinadas" FunctionName="ORIONModel.Store.sp_Listado_SolicitudesDeclinadas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Listado_SolicitudesDeclinadas_Result">
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcNombreOficial" ColumnName="fcNombreOficial" />
+          <ScalarProperty Name="fcRazonDelcinar" ColumnName="fcRazonDelcinar" />
+          <ScalarProperty Name="fdFechaSolicitante" ColumnName="fdFechaSolicitante" />
+          <ScalarProperty Name="fdFechaResolucion" ColumnName="fdFechaResolucion" />
+          <ScalarProperty Name="fiIDEstatusResolucion" ColumnName="fiIDEstatusResolucion" />
+          <ScalarProperty Name="fcComentarioSolicitante" ColumnName="fcComentarioSolicitante" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ContratistaSolicitudInstalacionDetalle_Insertar" FunctionName="ORIONModel.Store.sp_ContratistaSolicitudInstalacionDetalle_Insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ContratistaSolicitudInstalacionDetalle_Insertar_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdActualizado" ColumnName="IdActualizado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtenerDatosServicioRed_PorOrionSolicitud" FunctionName="ORIONModel.Store.sp_ObtenerDatosServicioRed_PorOrionSolicitud">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ObtenerDatosServicioRed_PorOrionSolicitud_Result">
+          <ScalarProperty Name="fiIDOrionSolicitud" ColumnName="fiIDOrionSolicitud" />
+          <ScalarProperty Name="fcMac" ColumnName="fcMac" />
+          <ScalarProperty Name="fcIP" ColumnName="fcIP" />
+          <ScalarProperty Name="fcPom" ColumnName="fcPom" />
+          <ScalarProperty Name="fcNombreWifi" ColumnName="fcNombreWifi" />
+          <ScalarProperty Name="fiUsuarioCreacion" ColumnName="fiUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiUsuarioModificacion" ColumnName="fiUsuarioModificacion" />
+          <ScalarProperty Name="fdFechaModificacion" ColumnName="fdFechaModificacion" />
+          <ScalarProperty Name="fcDescripcionOLT" ColumnName="fcDescripcionOLT" />
+          <ScalarProperty Name="fiIDOLT" ColumnName="fiIDOLT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Detalle_BuscarRepetidos" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Detalle_BuscarRepetidos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Movimiento_Detalle_BuscarRepetidos_Result">
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcImagenProducto" ColumnName="fcImagenProducto" />
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiTipoMovimiento" ColumnName="fiTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fcReferenciaMovimiento" ColumnName="fcReferenciaMovimiento" />
+          <ScalarProperty Name="fdFechaMovimiento" ColumnName="fdFechaMovimiento" />
+          <ScalarProperty Name="fiIDUsuarioMovimiento" ColumnName="fiIDUsuarioMovimiento" />
+          <ScalarProperty Name="fcUsuarioMovimiento" ColumnName="fcUsuarioMovimiento" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiIDMovimientoMaestro" ColumnName="fiIDMovimientoMaestro" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fiIdProductoPreciosDetalle" ColumnName="fiIdProductoPreciosDetalle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Productos_Movimiento_Maestro_Contabilizar" FunctionName="ORIONModel.Store.sp_Productos_Movimiento_Maestro_Contabilizar" />
+    <FunctionImportMapping FunctionImportName="sp_Usuarios_Maestros_ObtenerPorId" FunctionName="ORIONModel.Store.sp_Usuarios_Maestros_ObtenerPorId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Usuarios_Maestros_ObtenerPorId_Result">
+          <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+          <ScalarProperty Name="fcPrimerNombre" ColumnName="fcPrimerNombre" />
+          <ScalarProperty Name="fcSegundoNombre" ColumnName="fcSegundoNombre" />
+          <ScalarProperty Name="fcPrimerApellido" ColumnName="fcPrimerApellido" />
+          <ScalarProperty Name="fcSegundoApellido" ColumnName="fcSegundoApellido" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcCentrodeCosto" ColumnName="fcCentrodeCosto" />
+          <ScalarProperty Name="fiIDPuesto" ColumnName="fiIDPuesto" />
+          <ScalarProperty Name="fiTipoUsuario" ColumnName="fiTipoUsuario" />
+          <ScalarProperty Name="fiIDDepartamento" ColumnName="fiIDDepartamento" />
+          <ScalarProperty Name="fiIDJefeInmediato" ColumnName="fiIDJefeInmediato" />
+          <ScalarProperty Name="fcUsuarioDominio" ColumnName="fcUsuarioDominio" />
+          <ScalarProperty Name="fiIDDominioRed" ColumnName="fiIDDominioRed" />
+          <ScalarProperty Name="fdFechaUltimoCambiodePassword" ColumnName="fdFechaUltimoCambiodePassword" />
+          <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
+          <ScalarProperty Name="fiIDDominioCorreo" ColumnName="fiIDDominioCorreo" />
+          <ScalarProperty Name="fcDireccionFisica" ColumnName="fcDireccionFisica" />
+          <ScalarProperty Name="fcDocumentoIdentificacion" ColumnName="fcDocumentoIdentificacion" />
+          <ScalarProperty Name="fdFechaAlta" ColumnName="fdFechaAlta" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+          <ScalarProperty Name="fdFechaBaja" ColumnName="fdFechaBaja" />
+          <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcIdAspnetUser" ColumnName="fcIdAspnetUser" />
+          <ScalarProperty Name="fcUrlImage" ColumnName="fcUrlImage" />
+          <ScalarProperty Name="fiIDEmpresa" ColumnName="fiIDEmpresa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InventarioPorUbicacionDetallado" FunctionName="ORIONModel.Store.sp_InventarioPorUbicacionDetallado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_InventarioPorUbicacionDetallado_Result">
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InventarioPorUbicacionGeneral" FunctionName="ORIONModel.Store.sp_InventarioPorUbicacionGeneral">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_InventarioPorUbicacionGeneral_Result">
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Contratista_SolicitudInstalacion_Detalle_CodigoBarras_Insert" FunctionName="ORIONModel.Store.sp_Contratista_SolicitudInstalacion_Detalle_CodigoBarras_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Contratista_SolicitudInstalacion_Detalle_CodigoBarras_Insert_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdActualizado" ColumnName="IdActualizado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Contratista_SolicitudInstalacion_ListarProductosInstalados" FunctionName="ORIONModel.Store.sp_Contratista_SolicitudInstalacion_ListarProductosInstalados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Contratista_SolicitudInstalacion_ListarProductosInstalados_Result">
+          <ScalarProperty Name="fiIDContratista_SolicitudInstalacion_Detalle" ColumnName="fiIDContratista_SolicitudInstalacion_Detalle" />
+          <ScalarProperty Name="fiIDContratista_SolicitudInstalacion" ColumnName="fiIDContratista_SolicitudInstalacion" />
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcSerie" ColumnName="fcSerie" />
+          <ScalarProperty Name="fcMac" ColumnName="fcMac" />
+          <ScalarProperty Name="fiIDInventario" ColumnName="fiIDInventario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ContratistaSolicitudInstalacion_ObtenerPorSolicitud" FunctionName="ORIONModel.Store.sp_ContratistaSolicitudInstalacion_ObtenerPorSolicitud">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ContratistaSolicitudInstalacion_ObtenerPorSolicitud_Result">
+          <ScalarProperty Name="fiIDContratistaSolicitud" ColumnName="fiIDContratistaSolicitud" />
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fiIDPaquete" ColumnName="fiIDPaquete" />
+          <ScalarProperty Name="fiIDAgenciaInstalacion" ColumnName="fiIDAgenciaInstalacion" />
+          <ScalarProperty Name="fiIDAgenciaContratista" ColumnName="fiIDAgenciaContratista" />
+          <ScalarProperty Name="fiNoOrden" ColumnName="fiNoOrden" />
+          <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+          <ScalarProperty Name="fdFechaInstalacion" ColumnName="fdFechaInstalacion" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+          <ScalarProperty Name="fiIDTecnicoAsignado" ColumnName="fiIDTecnicoAsignado" />
+          <ScalarProperty Name="fnMetrosFibra" ColumnName="fnMetrosFibra" />
+          <ScalarProperty Name="fiQRAcceso" ColumnName="fiQRAcceso" />
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fdFechaInstalacionInicio" ColumnName="fdFechaInstalacionInicio" />
+          <ScalarProperty Name="fdFechaInstalacionFinal" ColumnName="fdFechaInstalacionFinal" />
+          <ScalarProperty Name="fcCodigoCliente" ColumnName="fcCodigoCliente" />
+          <ScalarProperty Name="fcNumeroOrdenCfeus" ColumnName="fcNumeroOrdenCfeus" />
+          <ScalarProperty Name="fcComentarioInstalacion" ColumnName="fcComentarioInstalacion" />
+          <ScalarProperty Name="fiIDTipoSolicitud" ColumnName="fiIDTipoSolicitud" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Productos_Maestro_ExistenciaInventario" FunctionName="ORIONModel.Store.sp_Productos_Maestro_ExistenciaInventario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Productos_Maestro_ExistenciaInventario_Result">
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fnTotalIngresado" ColumnName="fnTotalIngresado" />
+          <ScalarProperty Name="fnTotalIngresadoValorMN" ColumnName="fnTotalIngresadoValorMN" />
+          <ScalarProperty Name="fnTotalIngresadoValorME" ColumnName="fnTotalIngresadoValorME" />
+          <ScalarProperty Name="fnTotalSalidas" ColumnName="fnTotalSalidas" />
+          <ScalarProperty Name="fnTotalSalidaValorMN" ColumnName="fnTotalSalidaValorMN" />
+          <ScalarProperty Name="fnTotalSalidaValorME" ColumnName="fnTotalSalidaValorME" />
+          <ScalarProperty Name="fnExistencia" ColumnName="fnExistencia" />
+          <ScalarProperty Name="fnTotalInstalado" ColumnName="fnTotalInstalado" />
+          <ScalarProperty Name="fnSalidasTecnico" ColumnName="fnSalidasTecnico" />
+          <ScalarProperty Name="fnSalidasContratista" ColumnName="fnSalidasContratista" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Solicitudes_Bandeja_Instalados" FunctionName="ORIONModel.Store.sp_Solicitudes_Bandeja_Instalados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Solicitudes_Bandeja_Instalados_Result">
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDCliente" ColumnName="fiIDCliente" />
+          <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fiPlazoSeleccionado" ColumnName="fiPlazoSeleccionado" />
+          <ScalarProperty Name="fiEstadoSolicitud" ColumnName="fiEstadoSolicitud" />
+          <ScalarProperty Name="fnValorGarantia" ColumnName="fnValorGarantia" />
+          <ScalarProperty Name="fnMontoFinalFinanciar" ColumnName="fnMontoFinalFinanciar" />
+          <ScalarProperty Name="fcComentarioResolucion" ColumnName="fcComentarioResolucion" />
+          <ScalarProperty Name="fdFechaCreacionSolicitud" ColumnName="fdFechaCreacionSolicitud" />
+          <ScalarProperty Name="fiIDPagoInicial" ColumnName="fiIDPagoInicial" />
+          <ScalarProperty Name="fcComentarioPagoInicial" ColumnName="fcComentarioPagoInicial" />
+          <ScalarProperty Name="fdFinFirma" ColumnName="fdFinFirma" />
+          <ScalarProperty Name="fiIDFirma" ColumnName="fiIDFirma" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+          <ScalarProperty Name="fcGeolocalizacion" ColumnName="fcGeolocalizacion" />
+          <ScalarProperty Name="fiUbicacionGuardada" ColumnName="fiUbicacionGuardada" />
+          <ScalarProperty Name="fcCorreo" ColumnName="fcCorreo" />
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcClase" ColumnName="fcClase" />
+          <ScalarProperty Name="fcDireccionDetallada" ColumnName="fcDireccionDetallada" />
+          <ScalarProperty Name="fiIDTipoCliente" ColumnName="fiIDTipoCliente" />
+          <ScalarProperty Name="fiIDIdentidadSubida" ColumnName="fiIDIdentidadSubida" />
+          <ScalarProperty Name="fiIDSelfieSubida" ColumnName="fiIDSelfieSubida" />
+          <ScalarProperty Name="fiIDContratistaSolicitud" ColumnName="fiIDContratistaSolicitud" />
+          <ScalarProperty Name="fdFechaInstalacionFinal" ColumnName="fdFechaInstalacionFinal" />
+          <ScalarProperty Name="NombreOficial" ColumnName="NombreOficial" />
+          <ScalarProperty Name="fcArticulosdelContrato" ColumnName="fcArticulosdelContrato" />
+          <ScalarProperty Name="fiTipoInstalacion" ColumnName="fiTipoInstalacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SolicitudesInstalacion_Lista" FunctionName="ORIONModel.Store.sp_SolicitudesInstalacion_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_SolicitudesInstalacion_Lista_Result">
+          <ScalarProperty Name="fiIDSolicitudInstalacion" ColumnName="fiIDSolicitudInstalacion" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fcNombreCliente" ColumnName="fcNombreCliente" />
+          <ScalarProperty Name="fcTelefonoCliente" ColumnName="fcTelefonoCliente" />
+          <ScalarProperty Name="fcPaquete" ColumnName="fcPaquete" />
+          <ScalarProperty Name="fcNombreEmpresa" ColumnName="fcNombreEmpresa" />
+          <ScalarProperty Name="fcNombreTecnico" ColumnName="fcNombreTecnico" />
+          <ScalarProperty Name="fiNoOrden" ColumnName="fiNoOrden" />
+          <ScalarProperty Name="fdFechaInstalacion" ColumnName="fdFechaInstalacion" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fiIDContratista" ColumnName="fiIDContratista" />
+          <ScalarProperty Name="fcubicacion" ColumnName="fcubicacion" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcClase" ColumnName="fcClase" />
+          <ScalarProperty Name="fcCodigoCliente" ColumnName="fcCodigoCliente" />
+          <ScalarProperty Name="fcNumeroOrdenCfeus" ColumnName="fcNumeroOrdenCfeus" />
+          <ScalarProperty Name="fiIDTipoSolicitud" ColumnName="fiIDTipoSolicitud" />
+          <ScalarProperty Name="fbArticulosExtra" ColumnName="fbArticulosExtra" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Contratista_SolicitudInstalacion_Detalle_Crear" FunctionName="ORIONModel.Store.sp_Contratista_SolicitudInstalacion_Detalle_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Contratista_SolicitudInstalacion_Detalle_Editar" FunctionName="ORIONModel.Store.sp_Contratista_SolicitudInstalacion_Detalle_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Contratista_SolicitudInstalacion_Detalle_Eliminar" FunctionName="ORIONModel.Store.sp_Contratista_SolicitudInstalacion_Detalle_Eliminar" />
+    <FunctionImportMapping FunctionImportName="sp_ProductosExtras_Por_Solicitud" FunctionName="ORIONModel.Store.sp_ProductosExtras_Por_Solicitud">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_ProductosExtras_Por_Solicitud_Result">
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+          <ScalarProperty Name="fnValorProductoMN" ColumnName="fnValorProductoMN" />
+          <ScalarProperty Name="fnValorProductoME" ColumnName="fnValorProductoME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Prestamos_Lista_Novanet" FunctionName="ORIONModel.Store.sp_Prestamos_Lista_Novanet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Prestamos_Lista_Novanet_Result">
+          <ScalarProperty Name="fcNombreCliente" ColumnName="fcNombreCliente" />
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcIDPrestamo" ColumnName="fcIDPrestamo" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fnCapitalFinanciado" ColumnName="fnCapitalFinanciado" />
+          <ScalarProperty Name="fnSaldoActualCapital" ColumnName="fnSaldoActualCapital" />
+          <ScalarProperty Name="fcNombreEmpresaContratistan" ColumnName="fcNombreEmpresaContratistan" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcEstadoPrestamo" ColumnName="fcEstadoPrestamo" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcClase" ColumnName="fcClase" />
+          <ScalarProperty Name="fcDescripcionOLT" ColumnName="fcDescripcionOLT" />
+          <ScalarProperty Name="fcTelefono" ColumnName="fcTelefono" />
+          <ScalarProperty Name="fcPrestamoSAF" ColumnName="fcPrestamoSAF" />
+          <ScalarProperty Name="fcClienteSAF" ColumnName="fcClienteSAF" />
+          <ScalarProperty Name="fiIDEquifax" ColumnName="fiIDEquifax" />
+          <ScalarProperty Name="fcCorreo" ColumnName="fcCorreo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Productos_Inventario_SeriesPorTecnico" FunctionName="ORIONModel.Store.sp_Productos_Inventario_SeriesPorTecnico">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Productos_Inventario_SeriesPorTecnico_Result">
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="Mac" ColumnName="Mac" />
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fcUbicacionFisica" ColumnName="fcUbicacionFisica" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fiIDEmpresa" ColumnName="fiIDEmpresa" />
+          <ScalarProperty Name="fcNombreComercial" ColumnName="fcNombreComercial" />
+          <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SolicitudesAsignadas_ByTecnico" FunctionName="ORIONModel.Store.sp_SolicitudesAsignadas_ByTecnico">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_SolicitudesAsignadas_ByTecnico_Result">
+          <ScalarProperty Name="fiIDSolicitudInstalacion" ColumnName="fiIDSolicitudInstalacion" />
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fcNombreCliente" ColumnName="fcNombreCliente" />
+          <ScalarProperty Name="fcTelefonoCliente" ColumnName="fcTelefonoCliente" />
+          <ScalarProperty Name="fcPaquete" ColumnName="fcPaquete" />
+          <ScalarProperty Name="fcNombreEmpresa" ColumnName="fcNombreEmpresa" />
+          <ScalarProperty Name="fiNoOrden" ColumnName="fiNoOrden" />
+          <ScalarProperty Name="fdFechaInstalacion" ColumnName="fdFechaInstalacion" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fcubicacion" ColumnName="fcubicacion" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcClase" ColumnName="fcClase" />
+          <ScalarProperty Name="fiQRAcceso" ColumnName="fiQRAcceso" />
+          <ScalarProperty Name="fiIDTecnicoAsignado" ColumnName="fiIDTecnicoAsignado" />
+          <ScalarProperty Name="fiIDEstadoInstalacion" ColumnName="fiIDEstadoInstalacion" />
+          <ScalarProperty Name="fcCodigoCliente" ColumnName="fcCodigoCliente" />
+          <ScalarProperty Name="fiIDTipoSolicitud" ColumnName="fiIDTipoSolicitud" />
+          <ScalarProperty Name="fcNumeroOrdenCfeus" ColumnName="fcNumeroOrdenCfeus" />
+          <ScalarProperty Name="fbArticulosExtra" ColumnName="fbArticulosExtra" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Ubicaciones_ListarTipoUbicacion" FunctionName="ORIONModel.Store.sp_Catalogo_Ubicaciones_ListarTipoUbicacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Ubicaciones_ListarTipoUbicacion_Result">
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fcUbicacionFisica" ColumnName="fcUbicacionFisica" />
+          <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcNombreComercial" ColumnName="fcNombreComercial" />
+          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+          <ScalarProperty Name="TipoUbicacion" ColumnName="TipoUbicacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DevolucionDetalle_Crear" FunctionName="ORIONModel.Store.sp_DevolucionDetalle_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_DevolucionDetalle_Editar" FunctionName="ORIONModel.Store.sp_DevolucionDetalle_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_DevolucionMaestro_Crear" FunctionName="ORIONModel.Store.sp_DevolucionMaestro_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_DevolucionMaestro_Editar" FunctionName="ORIONModel.Store.sp_DevolucionMaestro_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_MantenimientoSolicitud_RecalculoCuota" FunctionName="ORIONModel.Store.sp_MantenimientoSolicitud_RecalculoCuota">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_MantenimientoSolicitud_RecalculoCuota_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdIngresado" ColumnName="IdIngresado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Prestamos_ClientesEnAtraso" FunctionName="ORIONModel.Store.sp_Prestamos_ClientesEnAtraso">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Prestamos_ClientesEnAtraso_Result">
+          <ScalarProperty Name="fcIdentidad" ColumnName="fcIdentidad" />
+          <ScalarProperty Name="fcNombreSAF" ColumnName="fcNombreSAF" />
+          <ScalarProperty Name="fcTelefonos" ColumnName="fcTelefonos" />
+          <ScalarProperty Name="fnValorCuota" ColumnName="fnValorCuota" />
+          <ScalarProperty Name="fdFechadeCuota" ColumnName="fdFechadeCuota" />
+          <ScalarProperty Name="fnSaldoCuota" ColumnName="fnSaldoCuota" />
+          <ScalarProperty Name="fiCuota" ColumnName="fiCuota" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DevolucionDetalle_Listar" FunctionName="ORIONModel.Store.sp_DevolucionDetalle_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_DevolucionDetalle_Listar_Result">
+          <ScalarProperty Name="fiIDDevolucionDetalle" ColumnName="fiIDDevolucionDetalle" />
+          <ScalarProperty Name="fiIDDevolucionMaestro" ColumnName="fiIDDevolucionMaestro" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDUsuarioCreado" ColumnName="fiIDUsuarioCreado" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiIDInventarioMovimientoDetalle" ColumnName="fiIDInventarioMovimientoDetalle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DevolucionMaestro_Listar" FunctionName="ORIONModel.Store.sp_DevolucionMaestro_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_DevolucionMaestro_Listar_Result">
+          <ScalarProperty Name="fiIDDevolucionMaestro" ColumnName="fiIDDevolucionMaestro" />
+          <ScalarProperty Name="fiIDUbicacionInicial" ColumnName="fiIDUbicacionInicial" />
+          <ScalarProperty Name="fiIDUbicacionDestino" ColumnName="fiIDUbicacionDestino" />
+          <ScalarProperty Name="fiIDUsuarioCreado" ColumnName="fiIDUsuarioCreado" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiFirma" ColumnName="fiFirma" />
+          <ScalarProperty Name="fcDocumentoFirma" ColumnName="fcDocumentoFirma" />
+          <ScalarProperty Name="fiEstadoInventairoMovimientoMaestro" ColumnName="fiEstadoInventairoMovimientoMaestro" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcMotivoDevolucion" ColumnName="fcMotivoDevolucion" />
+          <ScalarProperty Name="fiIDInventarioMovimientoMaestro" ColumnName="fiIDInventarioMovimientoMaestro" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DevolucionMaestro_ObtenerPorMovimientoMaestro" FunctionName="ORIONModel.Store.sp_DevolucionMaestro_ObtenerPorMovimientoMaestro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_DevolucionMaestro_ObtenerPorMovimientoMaestro_Result">
+          <ScalarProperty Name="fiIDDevolucionMaestro" ColumnName="fiIDDevolucionMaestro" />
+          <ScalarProperty Name="fiIDUbicacionInicial" ColumnName="fiIDUbicacionInicial" />
+          <ScalarProperty Name="fiIDUbicacionDestino" ColumnName="fiIDUbicacionDestino" />
+          <ScalarProperty Name="fiIDUsuarioCreado" ColumnName="fiIDUsuarioCreado" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiFirma" ColumnName="fiFirma" />
+          <ScalarProperty Name="fcDocumentoFirma" ColumnName="fcDocumentoFirma" />
+          <ScalarProperty Name="fiEstadoInventairoMovimientoMaestro" ColumnName="fiEstadoInventairoMovimientoMaestro" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcMotivoDevolucion" ColumnName="fcMotivoDevolucion" />
+          <ScalarProperty Name="fiIDInventarioMovimientoMaestro" ColumnName="fiIDInventarioMovimientoMaestro" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Detalle_Crear" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Detalle_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Movimiento_Detalle_GetByIDMovimientoMaestro" FunctionName="ORIONModel.Store.sp_Producto_Movimiento_Detalle_GetByIDMovimientoMaestro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Movimiento_Detalle_GetByIDMovimientoMaestro_Result">
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcImagenProducto" ColumnName="fcImagenProducto" />
+          <ScalarProperty Name="fiIDUbicacion" ColumnName="fiIDUbicacion" />
+          <ScalarProperty Name="fcUbicacion" ColumnName="fcUbicacion" />
+          <ScalarProperty Name="fiTipoMovimiento" ColumnName="fiTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fcReferenciaMovimiento" ColumnName="fcReferenciaMovimiento" />
+          <ScalarProperty Name="fdFechaMovimiento" ColumnName="fdFechaMovimiento" />
+          <ScalarProperty Name="fiIDUsuarioMovimiento" ColumnName="fiIDUsuarioMovimiento" />
+          <ScalarProperty Name="fcUsuarioMovimiento" ColumnName="fcUsuarioMovimiento" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiIDMovimientoMaestro" ColumnName="fiIDMovimientoMaestro" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fiIdProductoPreciosDetalle" ColumnName="fiIdProductoPreciosDetalle" />
+          <ScalarProperty Name="fcPrecios" ColumnName="fcPrecios" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Inventario_Movimiento_Detalle_GetIDInventarioMovimientoMaestro" FunctionName="ORIONModel.Store.sp_Inventario_Movimiento_Detalle_GetIDInventarioMovimientoMaestro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Inventario_Movimiento_Detalle_GetIDInventarioMovimientoMaestro_Result">
+          <ScalarProperty Name="fiIDInventarioMovimientoDetalle" ColumnName="fiIDInventarioMovimientoDetalle" />
+          <ScalarProperty Name="fiIDInventarioMovimientoMaestro" ColumnName="fiIDInventarioMovimientoMaestro" />
+          <ScalarProperty Name="fiIDMovimiento" ColumnName="fiIDMovimiento" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fiIDTipoMovimiento" ColumnName="fiIDTipoMovimiento" />
+          <ScalarProperty Name="fiTipoAfectacion" ColumnName="fiTipoAfectacion" />
+          <ScalarProperty Name="fcTipoAfectacion" ColumnName="fcTipoAfectacion" />
+          <ScalarProperty Name="fiIDUbicacionInicial" ColumnName="fiIDUbicacionInicial" />
+          <ScalarProperty Name="fcUbicacionInicial" ColumnName="fcUbicacionInicial" />
+          <ScalarProperty Name="fiIDUbicacionDestino" ColumnName="fiIDUbicacionDestino" />
+          <ScalarProperty Name="fcUbicacionDestino" ColumnName="fcUbicacionDestino" />
+          <ScalarProperty Name="fcCodigoSerie1" ColumnName="fcCodigoSerie1" />
+          <ScalarProperty Name="fcCodigoSerie2" ColumnName="fcCodigoSerie2" />
+          <ScalarProperty Name="fnCantidad" ColumnName="fnCantidad" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDUsuarioCreado" ColumnName="fiIDUsuarioCreado" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcPrecios" ColumnName="fcPrecios" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Maestro_Crear" FunctionName="ORIONModel.Store.sp_Producto_Maestro_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Producto_Maestro_Editar" FunctionName="ORIONModel.Store.sp_Producto_Maestro_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Maestro_Editar_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="Idactualizado" ColumnName="Idactualizado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Maestro_GetById" FunctionName="ORIONModel.Store.sp_Producto_Maestro_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Maestro_GetById_Result">
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcCodigodeBarras" ColumnName="fcCodigodeBarras" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcImagenProducto" ColumnName="fcImagenProducto" />
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+          <ScalarProperty Name="fcMarca" ColumnName="fcMarca" />
+          <ScalarProperty Name="fiIDModelo" ColumnName="fiIDModelo" />
+          <ScalarProperty Name="fcModelo" ColumnName="fcModelo" />
+          <ScalarProperty Name="fiIDTipoProducto" ColumnName="fiIDTipoProducto" />
+          <ScalarProperty Name="fcTipoProducto" ColumnName="fcTipoProducto" />
+          <ScalarProperty Name="fnValorProductoMN" ColumnName="fnValorProductoMN" />
+          <ScalarProperty Name="fnValorProductoME" ColumnName="fnValorProductoME" />
+          <ScalarProperty Name="fnPorcentajeImpuesto1" ColumnName="fnPorcentajeImpuesto1" />
+          <ScalarProperty Name="fnPorcentajeImpuesto2" ColumnName="fnPorcentajeImpuesto2" />
+          <ScalarProperty Name="fiEstadoProducto" ColumnName="fiEstadoProducto" />
+          <ScalarProperty Name="fiProductoInventariable" ColumnName="fiProductoInventariable" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fnValorCuotaMensual" ColumnName="fnValorCuotaMensual" />
+          <ScalarProperty Name="fnValorCuotaCapital" ColumnName="fnValorCuotaCapital" />
+          <ScalarProperty Name="fnValorCuotaInteres" ColumnName="fnValorCuotaInteres" />
+          <ScalarProperty Name="fnTasaAnualPlana" ColumnName="fnTasaAnualPlana" />
+          <ScalarProperty Name="fiProductoEnPaquete" ColumnName="fiProductoEnPaquete" />
+          <ScalarProperty Name="fiIdProductoPreciosDetalleActual" ColumnName="fiIdProductoPreciosDetalleActual" />
+          <ScalarProperty Name="fcPrecios" ColumnName="fcPrecios" />
+          <ScalarProperty Name="fnValorCuotaMensual12Cliente" ColumnName="fnValorCuotaMensual12Cliente" />
+          <ScalarProperty Name="fnValorCuotaMensual24Cliente" ColumnName="fnValorCuotaMensual24Cliente" />
+          <ScalarProperty Name="fnValorCuotaMensual12Nuevo" ColumnName="fnValorCuotaMensual12Nuevo" />
+          <ScalarProperty Name="fnValorCuotaMensual24Nuevo" ColumnName="fnValorCuotaMensual24Nuevo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Maestro_Listar" FunctionName="ORIONModel.Store.sp_Producto_Maestro_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Maestro_Listar_Result">
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fcCodigodeBarras" ColumnName="fcCodigodeBarras" />
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fcImagenProducto" ColumnName="fcImagenProducto" />
+          <ScalarProperty Name="fiIDMarca" ColumnName="fiIDMarca" />
+          <ScalarProperty Name="fcMarca" ColumnName="fcMarca" />
+          <ScalarProperty Name="fiIDModelo" ColumnName="fiIDModelo" />
+          <ScalarProperty Name="fcModelo" ColumnName="fcModelo" />
+          <ScalarProperty Name="fiIDTipoProducto" ColumnName="fiIDTipoProducto" />
+          <ScalarProperty Name="fcTipoProducto" ColumnName="fcTipoProducto" />
+          <ScalarProperty Name="fnValorProductoMN" ColumnName="fnValorProductoMN" />
+          <ScalarProperty Name="fnValorProductoME" ColumnName="fnValorProductoME" />
+          <ScalarProperty Name="fnPorcentajeImpuesto1" ColumnName="fnPorcentajeImpuesto1" />
+          <ScalarProperty Name="fnPorcentajeImpuesto2" ColumnName="fnPorcentajeImpuesto2" />
+          <ScalarProperty Name="fiEstadoProducto" ColumnName="fiEstadoProducto" />
+          <ScalarProperty Name="fiProductoInventariable" ColumnName="fiProductoInventariable" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fnValorCuotaMensual" ColumnName="fnValorCuotaMensual" />
+          <ScalarProperty Name="fnValorCuotaCapital" ColumnName="fnValorCuotaCapital" />
+          <ScalarProperty Name="fnValorCuotaInteres" ColumnName="fnValorCuotaInteres" />
+          <ScalarProperty Name="fnTasaAnualPlana" ColumnName="fnTasaAnualPlana" />
+          <ScalarProperty Name="fiProductoEnPaquete" ColumnName="fiProductoEnPaquete" />
+          <ScalarProperty Name="fdFechaUltimaActualizacion" ColumnName="fdFechaUltimaActualizacion" />
+          <ScalarProperty Name="fiCantidad" ColumnName="fiCantidad" />
+          <ScalarProperty Name="fiEstadoPrecioActual" ColumnName="fiEstadoPrecioActual" />
+          <ScalarProperty Name="fiIdProductoPreciosDetalleActual" ColumnName="fiIdProductoPreciosDetalleActual" />
+          <ScalarProperty Name="fcPrecios" ColumnName="fcPrecios" />
+          <ScalarProperty Name="fnValorCuotaMensual12Cliente" ColumnName="fnValorCuotaMensual12Cliente" />
+          <ScalarProperty Name="fnValorCuotaMensual24Cliente" ColumnName="fnValorCuotaMensual24Cliente" />
+          <ScalarProperty Name="fnValorCuotaMensual12Nuevo" ColumnName="fnValorCuotaMensual12Nuevo" />
+          <ScalarProperty Name="fnValorCuotaMensual24Nuevo" ColumnName="fnValorCuotaMensual24Nuevo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Precios_Detalle_Crear" FunctionName="ORIONModel.Store.sp_Producto_Precios_Detalle_Crear">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Precios_Detalle_Crear_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdIngresado" ColumnName="IdIngresado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Precios_Detalle_Editar" FunctionName="ORIONModel.Store.sp_Producto_Precios_Detalle_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Precios_Detalle_Editar_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="Idactualizado" ColumnName="Idactualizado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Precios_Detalle_Listar" FunctionName="ORIONModel.Store.sp_Producto_Precios_Detalle_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Precios_Detalle_Listar_Result">
+          <ScalarProperty Name="fiIdProductoPreciosDetalle" ColumnName="fiIdProductoPreciosDetalle" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fnValorProductoMN" ColumnName="fnValorProductoMN" />
+          <ScalarProperty Name="fnValorProductoME" ColumnName="fnValorProductoME" />
+          <ScalarProperty Name="fnPorcentajeImpuesto1" ColumnName="fnPorcentajeImpuesto1" />
+          <ScalarProperty Name="fnPorcentajeImpuesto2" ColumnName="fnPorcentajeImpuesto2" />
+          <ScalarProperty Name="fnValorCuotaMensual" ColumnName="fnValorCuotaMensual" />
+          <ScalarProperty Name="fnValorCuotaCapital" ColumnName="fnValorCuotaCapital" />
+          <ScalarProperty Name="fnValorCuotaInteres" ColumnName="fnValorCuotaInteres" />
+          <ScalarProperty Name="fnTasaAnualPlana" ColumnName="fnTasaAnualPlana" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fbEstadoPrecioActual" ColumnName="fbEstadoPrecioActual" />
+          <ScalarProperty Name="fbEstadoPrecio" ColumnName="fbEstadoPrecio" />
+          <ScalarProperty Name="fnValorCuotaMensual12Nuevo" ColumnName="fnValorCuotaMensual12Nuevo" />
+          <ScalarProperty Name="fnValorCuotaMensual24Nuevo" ColumnName="fnValorCuotaMensual24Nuevo" />
+          <ScalarProperty Name="fnValorCuotaMensual12Cliente" ColumnName="fnValorCuotaMensual12Cliente" />
+          <ScalarProperty Name="fnValorCuotaMensual24Cliente" ColumnName="fnValorCuotaMensual24Cliente" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Precios_Detalle_ObtenerPorID" FunctionName="ORIONModel.Store.sp_Producto_Precios_Detalle_ObtenerPorID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Precios_Detalle_ObtenerPorID_Result">
+          <ScalarProperty Name="fiIdProductoPreciosDetalle" ColumnName="fiIdProductoPreciosDetalle" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fnValorProductoMN" ColumnName="fnValorProductoMN" />
+          <ScalarProperty Name="fnValorProductoME" ColumnName="fnValorProductoME" />
+          <ScalarProperty Name="fnPorcentajeImpuesto1" ColumnName="fnPorcentajeImpuesto1" />
+          <ScalarProperty Name="fnPorcentajeImpuesto2" ColumnName="fnPorcentajeImpuesto2" />
+          <ScalarProperty Name="fnValorCuotaMensual" ColumnName="fnValorCuotaMensual" />
+          <ScalarProperty Name="fnValorCuotaCapital" ColumnName="fnValorCuotaCapital" />
+          <ScalarProperty Name="fnValorCuotaInteres" ColumnName="fnValorCuotaInteres" />
+          <ScalarProperty Name="fnTasaAnualPlana" ColumnName="fnTasaAnualPlana" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fbEstadoPrecioActual" ColumnName="fbEstadoPrecioActual" />
+          <ScalarProperty Name="fbEstadoPrecio" ColumnName="fbEstadoPrecio" />
+          <ScalarProperty Name="fnValorCuotaMensual12Nuevo" ColumnName="fnValorCuotaMensual12Nuevo" />
+          <ScalarProperty Name="fnValorCuotaMensual24Nuevo" ColumnName="fnValorCuotaMensual24Nuevo" />
+          <ScalarProperty Name="fnValorCuotaMensual12Cliente" ColumnName="fnValorCuotaMensual12Cliente" />
+          <ScalarProperty Name="fnValorCuotaMensual24Cliente" ColumnName="fnValorCuotaMensual24Cliente" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Producto_Precios_Detalle_ObtenerPorProducto" FunctionName="ORIONModel.Store.sp_Producto_Precios_Detalle_ObtenerPorProducto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Producto_Precios_Detalle_ObtenerPorProducto_Result">
+          <ScalarProperty Name="fiIdProductoPreciosDetalle" ColumnName="fiIdProductoPreciosDetalle" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fnValorProductoMN" ColumnName="fnValorProductoMN" />
+          <ScalarProperty Name="fnValorProductoME" ColumnName="fnValorProductoME" />
+          <ScalarProperty Name="fnPorcentajeImpuesto1" ColumnName="fnPorcentajeImpuesto1" />
+          <ScalarProperty Name="fnPorcentajeImpuesto2" ColumnName="fnPorcentajeImpuesto2" />
+          <ScalarProperty Name="fnValorCuotaMensual" ColumnName="fnValorCuotaMensual" />
+          <ScalarProperty Name="fnValorCuotaCapital" ColumnName="fnValorCuotaCapital" />
+          <ScalarProperty Name="fnValorCuotaInteres" ColumnName="fnValorCuotaInteres" />
+          <ScalarProperty Name="fnTasaAnualPlana" ColumnName="fnTasaAnualPlana" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioCreacion" ColumnName="fiIDUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fbEstadoPrecioActual" ColumnName="fbEstadoPrecioActual" />
+          <ScalarProperty Name="fbEstadoPrecio" ColumnName="fbEstadoPrecio" />
+          <ScalarProperty Name="fnValorCuotaMensual12Nuevo" ColumnName="fnValorCuotaMensual12Nuevo" />
+          <ScalarProperty Name="fnValorCuotaMensual24Nuevo" ColumnName="fnValorCuotaMensual24Nuevo" />
+          <ScalarProperty Name="fnValorCuotaMensual12Cliente" ColumnName="fnValorCuotaMensual12Cliente" />
+          <ScalarProperty Name="fnValorCuotaMensual24Cliente" ColumnName="fnValorCuotaMensual24Cliente" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Configuraciones_Crear" FunctionName="ORIONModel.Store.sp_Catalogo_Configuraciones_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Configuraciones_Editar" FunctionName="ORIONModel.Store.sp_Catalogo_Configuraciones_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Configuraciones_EditarPorNombreLlave" FunctionName="ORIONModel.Store.sp_Catalogo_Configuraciones_EditarPorNombreLlave" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Configuraciones_Listar" FunctionName="ORIONModel.Store.sp_Catalogo_Configuraciones_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Configuraciones_Listar_Result">
+          <ScalarProperty Name="fiIdConfiguraciones" ColumnName="fiIdConfiguraciones" />
+          <ScalarProperty Name="fcNombreLlave" ColumnName="fcNombreLlave" />
+          <ScalarProperty Name="fcValorLlave" ColumnName="fcValorLlave" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Configuraciones_ObtenerPorId" FunctionName="ORIONModel.Store.sp_Catalogo_Configuraciones_ObtenerPorId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Catalogo_Configuraciones_ObtenerPorId_Result">
+          <ScalarProperty Name="fiIdConfiguraciones" ColumnName="fiIdConfiguraciones" />
+          <ScalarProperty Name="fcNombreLlave" ColumnName="fcNombreLlave" />
+          <ScalarProperty Name="fcValorLlave" ColumnName="fcValorLlave" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Cotizador_ProductosyServicios" FunctionName="ORIONModel.Store.sp_Cotizador_ProductosyServicios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Cotizador_ProductosyServicios_Result">
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fiIDProducto" ColumnName="fiIDProducto" />
+          <ScalarProperty Name="fnValorCuotaMensual24Nuevo" ColumnName="fnValorCuotaMensual24Nuevo" />
+          <ScalarProperty Name="fcTipoProducto" ColumnName="fcTipoProducto" />
+          <ScalarProperty Name="fiSeleccionMultiple" ColumnName="fiSeleccionMultiple" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Paquetes_Detalle_Eliminar" FunctionName="ORIONModel.Store.sp_Paquetes_Detalle_Eliminar" />
+    <FunctionImportMapping FunctionImportName="sp_Paquetes_Detalle_Insertar" FunctionName="ORIONModel.Store.sp_Paquetes_Detalle_Insertar" />
+    <FunctionImportMapping FunctionImportName="sp_Paquetes_List" FunctionName="ORIONModel.Store.sp_Paquetes_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Paquetes_List_Result">
+          <ScalarProperty Name="fiIDPaquete" ColumnName="fiIDPaquete" />
+          <ScalarProperty Name="fcPaquete" ColumnName="fcPaquete" />
+          <ScalarProperty Name="fnValorMensual" ColumnName="fnValorMensual" />
+          <ScalarProperty Name="fnTasadeInteresAnual" ColumnName="fnTasadeInteresAnual" />
+          <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+          <ScalarProperty Name="fcUsuarioCreacion" ColumnName="fcUsuarioCreacion" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fcUsuarioModificacion" ColumnName="fcUsuarioModificacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcProductos" ColumnName="fcProductos" />
+          <ScalarProperty Name="fiestadoPaquete" ColumnName="fiestadoPaquete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Paquetes_Listar" FunctionName="ORIONModel.Store.sp_Paquetes_Listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ORIONModel.sp_Paquetes_Listar_Result">
+          <ScalarProperty Name="fiIDPaquete" ColumnName="fiIDPaquete" />
+          <ScalarProperty Name="fcPaquete" ColumnName="fcPaquete" />
+          <ScalarProperty Name="fnValorMensual" ColumnName="fnValorMensual" />
+          <ScalarProperty Name="fnTasadeInteresAnual" ColumnName="fnTasadeInteresAnual" />
+          <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiEstadoPaquete" ColumnName="fiEstadoPaquete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Paquetes_Maestro_Actualizar" FunctionName="ORIONModel.Store.sp_Paquetes_Maestro_Actualizar" />
+    <FunctionImportMapping FunctionImportName="sp_Paquetes_Maestro_Insertar" FunctionName="ORIONModel.Store.sp_Paquetes_Maestro_Insertar" />
+  </EntityContainerMapping>
+</Mapping>

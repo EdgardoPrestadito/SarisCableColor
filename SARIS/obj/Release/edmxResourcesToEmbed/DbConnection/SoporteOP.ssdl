@@ -1,0 +1,1083 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SoporteOPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.AGOSTO_2022_V3' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="AGOSTO_2022_V3">
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="100" />
+          <Property Name="RAZON" Type="nvarchar" MaxLength="100" />
+          <Property Name="TELEFONO" Type="nvarchar" MaxLength="50" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIREMP" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDENTIDAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEL" Type="nvarchar" MaxLength="50" />
+          <Property Name="CEL" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Base20Menos' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Base20Menos">
+          <Property Name="NOMBRE_PROPIETARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="FECHA_CREACION" Type="datetime" />
+          <Property Name="DIRECCION_CLIENTE" Type="nvarchar" MaxLength="255" />
+          <Property Name="CODIGO_CARNET" Type="nvarchar" MaxLength="255" />
+          <Property Name="CORREO_CLIENTE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEFONOS_CLIENTE" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Base20Menos_Depurada' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Base20Menos_Depurada">
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="13" />
+          <Property Name="fcNombreCliente" Type="varchar" MaxLength="100" />
+          <Property Name="fcDireccion" Type="varchar" MaxLength="255" />
+          <Property Name="fcCorreoElectronico" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcTelefonos" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Base3$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Base3$">
+          <Property Name="Identidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimerNombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="SegundoNombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimerApellido" Type="nvarchar" MaxLength="255" />
+          <Property Name="SegundoApellido" Type="nvarchar" MaxLength="255" />
+          <Property Name="Telefono" Type="float" />
+          <Property Name="Monto" Type="float" />
+          <Property Name="Direccion1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Direccion2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Usuario" Type="float" />
+          <Property Name="Estado" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.BaseCallCenter' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BaseCallCenter">
+          <Property Name="Identidad" Type="varchar" MaxLength="13" />
+          <Property Name="PrimerNombre" Type="varchar" MaxLength="30" />
+          <Property Name="SegundoNombre" Type="varchar" MaxLength="30" />
+          <Property Name="PrimerAPP" Type="varchar" MaxLength="30" />
+          <Property Name="SegundoAPP" Type="varchar" MaxLength="30" />
+          <Property Name="Capacidad_de_Pago_Semanal" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="Capacidad_Disponible" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="Monto_Utilizado" Type="decimal" Precision="12" Scale="2" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.BaseClientesEquifax' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BaseClientesEquifax">
+          <Property Name="fcIdentidad" Type="nvarchar" MaxLength="13" />
+          <Property Name="fiScoreActual" Type="int" />
+          <Property Name="fiScore1" Type="int" />
+          <Property Name="fiScore2" Type="int" />
+          <Property Name="fiScore3" Type="int" />
+          <Property Name="fiScore4" Type="int" />
+          <Property Name="fiScore5" Type="int" />
+          <Property Name="fcTelefonos" Type="nvarchar" MaxLength="110" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.CallCenter_Agenda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.CallCenter_Clientes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CallCenter_Clientes">
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="13" />
+          <Property Name="fcPrimerNombre" Type="varchar" MaxLength="15" />
+          <Property Name="fcSegundoNombre" Type="varchar" MaxLength="15" />
+          <Property Name="fcPrimerApellido" Type="varchar" MaxLength="15" />
+          <Property Name="fcSegundoApellido" Type="varchar" MaxLength="15" />
+          <Property Name="fnOferta" Type="float" />
+          <Property Name="fcTelefono" Type="varchar" MaxLength="200" />
+          <Property Name="fcDireccion1" Type="varchar" MaxLength="200" />
+          <Property Name="fcDireccion2" Type="varchar" MaxLength="200" />
+          <Property Name="fcUsuario" Type="varchar" MaxLength="6" />
+          <Property Name="fiEstado" Type="int" />
+          <Property Name="fdFechaUltimaGestion" Type="datetime" />
+          <Property Name="fiBaseAnterior" Type="smallint" />
+          <Property Name="fiBloqueo" Type="smallint" />
+          <Property Name="fiUltimoScore" Type="smallint" />
+          <Property Name="fdFechaScoreEquifax" Type="datetime" />
+          <Property Name="fnObligaciones" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.CallCenter_Clientes_BasesAnteriores' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CallCenter_Clientes_BasesAnteriores">
+          <Property Name="fiBaseOrigen" Type="int" />
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="13" />
+          <Property Name="fcPrimerNombre" Type="varchar" MaxLength="15" />
+          <Property Name="fcSegundoNombre" Type="varchar" MaxLength="15" />
+          <Property Name="fcPrimerApellido" Type="varchar" MaxLength="15" />
+          <Property Name="fcSegundoApellido" Type="varchar" MaxLength="15" />
+          <Property Name="fnOferta" Type="float" />
+          <Property Name="fcTelefono" Type="varchar" MaxLength="50" />
+          <Property Name="fcDireccion1" Type="varchar" MaxLength="110" />
+          <Property Name="fcDireccion2" Type="varchar" MaxLength="110" />
+          <Property Name="fcUsuario" Type="varchar" MaxLength="6" />
+          <Property Name="fiEstado" Type="int" />
+          <Property Name="fdFechaUltimaGestion" Type="datetime" />
+          <Property Name="fiBaseAnterior" Type="smallint" />
+          <Property Name="fiBloqueo" Type="smallint" />
+          <Property Name="fiUltimoScore" Type="smallint" />
+          <Property Name="fdFechaScoreEquifax" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.CallCenter_Estado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CallCenter_Estado">
+          <Property Name="fiEstado" Type="int" />
+          <Property Name="fcDetalleEstado" Type="varchar" MaxLength="50" />
+          <Property Name="fiEnProcesoLDC" Type="int" />
+          <Property Name="fiProcesoAdicional" Type="int" />
+          <Property Name="fiTipoMovimiento" Type="int" />
+          <Property Name="fiContactable" Type="int" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.CallCenter_GestionBitacora' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CallCenter_GestionBitacora">
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="13" />
+          <Property Name="fcUsuario" Type="varchar" MaxLength="6" />
+          <Property Name="fiEstado" Type="int" />
+          <Property Name="fcComentarioAdicional" Type="varchar" MaxLength="100" />
+          <Property Name="fdFechaGestion" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.CallCenter_PropuestaEconomica' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.CallCenter_Telefonos' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CallCenter_Telefonos">
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="13" />
+          <Property Name="fcTelefono" Type="varchar" MaxLength="100" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.CallCenter_Usuarios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Carga3$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Carga3$">
+          <Property Name="Identidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sucural" Type="float" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="ApellidoP" Type="nvarchar" MaxLength="255" />
+          <Property Name="ApellidoM" Type="nvarchar" MaxLength="255" />
+          <Property Name="DirecionDomicilio" Type="nvarchar" MaxLength="255" />
+          <Property Name="Telefono" Type="float" />
+          <Property Name="Propuesto" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.CargaCallCenter' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CargaCallCenter">
+          <Property Name="Identidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimerNombre" Type="nvarchar" MaxLength="15" />
+          <Property Name="SegundoNombre" Type="nvarchar" MaxLength="15" />
+          <Property Name="PrimerAPP" Type="nvarchar" MaxLength="15" />
+          <Property Name="SegundoAPP" Type="nvarchar" MaxLength="15" />
+          <Property Name="PropuestaTope48" Type="float" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Colonia" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcUsuario" Type="varchar" MaxLength="6" />
+          <Property Name="fiEstado" Type="nvarchar" MaxLength="255" />
+          <Property Name="FecUltGest" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.CargaCC5' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CargaCC5">
+          <Property Name="Identidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="Pnombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="Snombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="Pappellido" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sapellido" Type="nvarchar" MaxLength="255" />
+          <Property Name="Oferta" Type="float" />
+          <Property Name="Telefono" Type="float" />
+          <Property Name="Dir1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Dir2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Usuario" Type="float" />
+          <Property Name="UltimaGestion" Type="nvarchar" MaxLength="255" />
+          <Property Name="BaseAnterior" Type="float" />
+          <Property Name="Bloqueo" Type="float" />
+          <Property Name="Score" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Catalogo_EmpresasIHSS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Catalogo_EmpresasIHSS">
+          <Property Name="fcRazonEmpresa" Type="varchar" MaxLength="200" />
+          <Property Name="fcNombreEmpresa" Type="varchar" MaxLength="200" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Catalogo_Manual_Detalle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Catalogo_Manuales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.CNE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Contador' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.DAT0112023$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DAT0112023$">
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="255" />
+          <Property Name="RAZON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CIUDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL" Type="nvarchar" MaxLength="255" />
+          <Property Name="MOVIL" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREC2" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Dat012024$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Dat012024$">
+          <Property Name="INFORMACION LABORAL" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="255" />
+          <Property Name="RAZON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CIUDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL" Type="nvarchar" MaxLength="255" />
+          <Property Name="MOVIL" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREC2" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.DAT082023$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DAT082023$">
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="255" />
+          <Property Name="RAZON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CIUDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL" Type="nvarchar" MaxLength="255" />
+          <Property Name="MOVIL" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREC2" Type="nvarchar" MaxLength="255" />
+          <Property Name="F12" Type="nvarchar" MaxLength="255" />
+          <Property Name="F13" Type="nvarchar" MaxLength="255" />
+          <Property Name="F14" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Demandas$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Demandas$">
+          <Property Name="NoPrestamo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="Vehiculo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Identidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="TOTAL_VENCIDO" Type="money" />
+          <Property Name="TOTAL_ADEUDADO" Type="money" />
+          <Property Name="Trabajo" Type="nvarchar" MaxLength="255" />
+          <Property Name="SolicitudAbogado" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Direcciones' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Direcciones">
+          <Property Name="NOMBRE CLIENTE" Type="nvarchar" MaxLength="255" />
+          <Property Name="NUMERO_IDENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEFONO" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIRECCION" Type="nvarchar" MaxLength="255" />
+          <Property Name="COLONIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="CIUDAD" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.DireccionesCC' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DireccionesCC">
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="13" />
+          <Property Name="fcTelefono" Type="varchar" MaxLength="10" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Hoja_IHSS2023_FEB' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Hoja_IHSS2023_FEB">
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="255" />
+          <Property Name="RAZON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIRECCION" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEFONO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CIUDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL_EMPLE" Type="nvarchar" MaxLength="255" />
+          <Property Name="CELULAR" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREC" Type="nvarchar" MaxLength="255" />
+          <Property Name="BASE" Type="nvarchar(max)" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Hoja1X2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Hoja1X2">
+          <Property Name="fcIdentidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcPrimerNombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcSegundoNombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcPrimerApellido" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcSegundoApellido" Type="nvarchar" MaxLength="255" />
+          <Property Name="fiMonto" Type="float" />
+          <Property Name="fcTelefono" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcDireccion1" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcDireccion2" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcUsuario" Type="float" />
+          <Property Name="fiestado" Type="float" />
+          <Property Name="fechaUltimaGestion" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.HojaX' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HojaX">
+          <Property Name="Ntienda" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="255" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimerAPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="SegundoAPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Colonia" Type="nvarchar" MaxLength="255" />
+          <Property Name="Telefono" Type="float" />
+          <Property Name="IdentidadUnica" Type="nvarchar" MaxLength="255" />
+          <Property Name="ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Longitud" Type="float" />
+          <Property Name="Fecha_Alta" Type="datetime" />
+          <Property Name="Antigedad" Type="float" />
+          <Property Name="Ingreso_mensual_Aprobado" Type="float" />
+          <Property Name="IngresoEstimadoMensual" Type="float" />
+          <Property Name="Tipo de Cliente" Type="nvarchar" MaxLength="255" />
+          <Property Name="CapacidaddePagoMensual" Type="float" />
+          <Property Name="Propuesta48" Type="float" />
+          <Property Name="Propuesta36" Type="float" />
+          <Property Name="Propuesta24" Type="float" />
+          <Property Name="PropuestaTope48" Type="float" />
+          <Property Name="Capacidad_de_Pago_Semanal" Type="float" />
+          <Property Name="Capacidad_Disponible" Type="float" />
+          <Property Name="Monto_Utilizado" Type="float" />
+          <Property Name="Fecha_ultima_Actividad" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.HojaX1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HojaX1">
+          <Property Name="Ntienda" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="255" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimerAPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="SegundoAPP" Type="nvarchar" MaxLength="255" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Colonia" Type="nvarchar" MaxLength="255" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="255" />
+          <Property Name="Identidad" Type="float" />
+          <Property Name="ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Repetido" Type="float" />
+          <Property Name="Longitud" Type="float" />
+          <Property Name="Fecha_Alta" Type="datetime" />
+          <Property Name="Ingreso_mensual_Aprobado" Type="float" />
+          <Property Name="Capacidad_de_Pago_Semanal" Type="float" />
+          <Property Name="Capacidad_Disponible" Type="float" />
+          <Property Name="Monto_Utilizado" Type="float" />
+          <Property Name="Fecha_ultima_Actividad" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.HojaX2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HojaX2">
+          <Property Name="Identidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sucural" Type="float" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="ApellidoP" Type="nvarchar" MaxLength="255" />
+          <Property Name="ApellidoM" Type="nvarchar" MaxLength="255" />
+          <Property Name="DirecionDomicilio" Type="nvarchar" MaxLength="255" />
+          <Property Name="Telefono" Type="float" />
+          <Property Name="NuevaPropuesta" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Hojax3' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Hojax3">
+          <Property Name="fcIdentidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcPrimerNombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcSegundoNombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcPrimerApellido" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcSegundoApellido" Type="nvarchar" MaxLength="255" />
+          <Property Name="fnOferta" Type="float" />
+          <Property Name="fcTelefono" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcDireccion1" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcDireccion2" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcUsuario" Type="float" />
+          <Property Name="fiEstado" Type="float" />
+          <Property Name="fdFechaUltimaGestion" Type="nvarchar" MaxLength="255" />
+          <Property Name="fiBaseAnterior" Type="float" />
+          <Property Name="fiBloqueo" Type="float" />
+          <Property Name="fiUltimoScore" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.IHSS_02_2023' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="IHSS_02_2023">
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="255" />
+          <Property Name="RAZON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIRECCION" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEFONO" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.IHSS2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="IHSS2">
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="20" />
+          <Property Name="fcNombre" Type="varchar" MaxLength="60" />
+          <Property Name="fcEmpresa" Type="varchar" MaxLength="60" />
+          <Property Name="fcRazon" Type="varchar" MaxLength="100" />
+          <Property Name="fcrtn" Type="varchar" MaxLength="20" />
+          <Property Name="fcDireccionEmpresa" Type="varchar" MaxLength="150" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.IHSS2017' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="IHSS2017">
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="20" />
+          <Property Name="fcNombre" Type="varchar" MaxLength="60" />
+          <Property Name="fcEmpresa" Type="varchar" MaxLength="60" />
+          <Property Name="fcrtn" Type="varchar" MaxLength="20" />
+          <Property Name="fcDireccionEmpresa" Type="varchar" MaxLength="150" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.IHSS2019' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="IHSS2019">
+          <Property Name="fcIdentidad" Type="varchar" MaxLength="20" />
+          <Property Name="fcNombre" Type="varchar" MaxLength="60" />
+          <Property Name="fcEmpresa" Type="varchar" MaxLength="60" />
+          <Property Name="fcrtn" Type="varchar" MaxLength="20" />
+          <Property Name="fcDireccionEmpresa" Type="varchar" MaxLength="150" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2019_05' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2019_08' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2019_12' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2020_06' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2020_11' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2021_03' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2021_06' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2021_10' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2022_01' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2022_05' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2022_08' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2022_11' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2023_02' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2023_05' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2023_08' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2023_11' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.IHSS2024_01' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.IHSSBASEMayo_2022' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="IHSSBASEMayo_2022">
+          <Property Name="TRABAJO" Type="varchar" MaxLength="1000" />
+          <Property Name="RTN" Type="varchar" MaxLength="50" />
+          <Property Name="CIUDAD" Type="varchar" MaxLength="100" />
+          <Property Name="IDENTIDAD" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+          <Property Name="DIREC" Type="varchar" MaxLength="1000" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.planilla2010' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.PortalClientes_ClientesMora' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PortalClientes_ClientesMora">
+          <Property Name="fcNoCliente" Type="varchar" MaxLength="13" />
+          <Property Name="fiDiasMora" Type="decimal" Precision="13" Scale="2" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Prestadito$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Prestadito$">
+          <Property Name="LISTA" Type="float" />
+          <Property Name="IDENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="SALDO_AZTECA" Type="float" />
+          <Property Name="SCORE_ACTUAL" Type="float" />
+          <Property Name="SCORE -1" Type="float" />
+          <Property Name="SCORE -2" Type="float" />
+          <Property Name="SCORE -3" Type="float" />
+          <Property Name="SCORE -4" Type="float" />
+          <Property Name="SCORE -5" Type="float" />
+          <Property Name="TELEFONOS" Type="nvarchar" MaxLength="255" />
+          <Property Name="F11" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Prestadito2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Prestadito2">
+          <Property Name="LISTA" Type="float" />
+          <Property Name="IDENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="SCORE_ACTUAL" Type="float" />
+          <Property Name="SCORE -1" Type="float" />
+          <Property Name="SCORE -2" Type="float" />
+          <Property Name="SCORE -3" Type="float" />
+          <Property Name="SCORE -4" Type="float" />
+          <Property Name="SCORE -5" Type="float" />
+          <Property Name="TELEFONOS" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.ProcesoArchivosSAF' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ProcesoArchivosSAF">
+          <Property Name="fcNombreArchivo" Type="varchar" MaxLength="100" />
+          <Property Name="fcUbicacionArchivo" Type="varchar" MaxLength="200" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.PruebasCargas' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PruebasCargas">
+          <Property Name="Identidad" Type="varchar" MaxLength="16" />
+          <Property Name="Sucural" Type="varchar" MaxLength="4" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+          <Property Name="ApellidoP" Type="varchar" MaxLength="30" />
+          <Property Name="ApellidoM" Type="varchar" MaxLength="30" />
+          <Property Name="DirecionDomicilio" Type="varchar" MaxLength="150" />
+          <Property Name="Telefono" Type="varchar" MaxLength="1" />
+          <Property Name="Propuesto" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimiento_Tipo_Adjuntos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Adjuntos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Areas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Bitacora' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Bitacoras' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Bitacoras_Estados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Catalogo_Categorias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Catalogo_Estados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Catalogo_TipodeRequerimiento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Comentarios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Contadores' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Estados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Maestro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.Requerimientos_Usuarios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.RpaTotal$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="RpaTotal$">
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="255" />
+          <Property Name="RAZON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREC" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEFONO" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOMBRECOMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEFONOEM" Type="nvarchar" MaxLength="255" />
+          <Property Name="CELULAREMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIRECCIONE" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Sheet1$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Sheet1$">
+          <Property Name="Razon de la empresa" Type="nvarchar" MaxLength="255" />
+          <Property Name="Nombre de la empresa" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.SIEAvancesCC' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SIEAvancesCC">
+          <Property Name="fcSegmento" Type="varchar" MaxLength="50" />
+          <Property Name="fiMeta" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="fiRecuperado" Type="decimal" Precision="13" Scale="2" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.SIEAvancesCCMes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SIEAvancesCCMes">
+          <Property Name="fcSegmento" Type="varchar" MaxLength="50" />
+          <Property Name="fiMeta" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="fiRecuperado" Type="decimal" Precision="13" Scale="2" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.SRC_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_CNE_M_CENSO_NACIONAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_CNE_R_CODIGOS_HABI_INHA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_CNE_R_ESTATUS_IDENTIDAD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_CNE_R_SEXO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_DPGE_A_ALDEA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_DPGE_A_DEPARTAMENTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_DPGE_A_LUGAR_POBLADO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_DPGE_A_MUNICIPIO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_DPGE_M_CENTRO_VOTACION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_DPGE_M_SECTOR_ELECTORAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoporteOP.dbo.TBL_DPGE_R_AREA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Tdatos$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Tdatos$">
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="255" />
+          <Property Name="RAZON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELEMP" Type="nvarchar" MaxLength="255" />
+          <Property Name="CIUDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL" Type="nvarchar" MaxLength="255" />
+          <Property Name="MOVIL" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIREC2" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.Telefonos' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Telefonos">
+          <Property Name="fcIdentidad" Type="nvarchar" MaxLength="255" />
+          <Property Name="fcTelefonos" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SoporteOP.dbo.xbase2019$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="xbase2019$">
+          <Property Name="EMPRESA" Type="nvarchar" MaxLength="255" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL1" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL2" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL3" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIRECCION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMPLEADO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SALARIO" Type="float" />
+          <Property Name="TEL_PERSON" Type="nvarchar" MaxLength="255" />
+          <Property Name="DEPARTAMEN" Type="nvarchar" MaxLength="255" />
+          <Property Name="MUNICIPIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="ALDEA" Type="nvarchar" MaxLength="255" />
+          <Property Name="CASERIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="COLONIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="AVENIDA" Type="nvarchar" MaxLength="255" />
+          <Property Name="CALLE" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <Function Name="dt_addtosourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchSourceSafeINI" Type="varchar" Mode="In" />
+    <Parameter Name="vchProjectName" Type="varchar" Mode="In" />
+    <Parameter Name="vchComment" Type="varchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_addtosourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchSourceSafeINI" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchProjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="dt_adduserobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_adduserobject_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchProperty" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_checkinobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+    <Parameter Name="vchComment" Type="varchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+    <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+    <Parameter Name="iActionFlag" Type="int" Mode="In" />
+    <Parameter Name="txStream1" Type="text" Mode="In" />
+    <Parameter Name="txStream2" Type="text" Mode="In" />
+    <Parameter Name="txStream3" Type="text" Mode="In" />
+  </Function>
+  <Function Name="dt_checkinobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+    <Parameter Name="iActionFlag" Type="int" Mode="In" />
+    <Parameter Name="txStream1" Type="text" Mode="In" />
+    <Parameter Name="txStream2" Type="text" Mode="In" />
+    <Parameter Name="txStream3" Type="text" Mode="In" />
+  </Function>
+  <Function Name="dt_checkoutobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+    <Parameter Name="vchComment" Type="varchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+    <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+    <Parameter Name="iActionFlag" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_checkoutobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+    <Parameter Name="iActionFlag" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_displayoaerror" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="iObject" Type="int" Mode="In" />
+    <Parameter Name="iresult" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_displayoaerror_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="iObject" Type="int" Mode="In" />
+    <Parameter Name="iresult" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_droppropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_dropuserobjectbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_generateansiname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="dt_getobjwithprop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="value" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_getobjwithprop_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="dt_getpropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_getpropertiesbyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_getpropertiesbyid_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="value" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="dt_getpropertiesbyid_vcs_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="value" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="dt_isundersourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+    <Parameter Name="iWhoToo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_isundersourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="iWhoToo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_removefromsourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_setpropertybyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="value" Type="varchar" Mode="In" />
+    <Parameter Name="lvalue" Type="image" Mode="In" />
+  </Function>
+  <Function Name="dt_setpropertybyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
+    <Parameter Name="lvalue" Type="image" Mode="In" />
+  </Function>
+  <Function Name="dt_validateloginparams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_validateloginparams_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="dt_vcsenabled" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_verstamp006" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_verstamp007" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_whocheckedout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_whocheckedout_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fn_Requerimiento_HorasTrabajadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="pdFechaInicial" Type="datetime" Mode="In" />
+    <Parameter Name="pdFechaFinal" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_Actualizar_InfoPlacaIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcPlaca" Type="varchar" Mode="In" />
+    <Parameter Name="piPeriodo" Type="int" Mode="In" />
+    <Parameter Name="pnMultaVehicularDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnMultaVehicularCredito" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_BandejaRequerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_CallCenter_Oferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pnObligaciones" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_Catalogo_Manuales_Eliminar_Pagina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDManual" Type="int" Mode="In" />
+    <Parameter Name="piIDPagina" Type="int" Mode="In" />
+    <Parameter Name="piIDorden" Type="int" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Catalogo_Manuales_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuarioCreador" Type="int" Mode="In" />
+    <Parameter Name="pcTitulo" Type="varchar" Mode="In" />
+    <Parameter Name="pcDescripcion" Type="text" Mode="In" />
+    <Parameter Name="piIDTipoManual" Type="int" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Catalogo_Manuales_Guardar_Manual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDManual" Type="int" Mode="In" />
+    <Parameter Name="pcTitulo" Type="varchar" Mode="In" />
+    <Parameter Name="pcDescripcion" Type="text" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Catalogo_Manuales_Guardar_Pagina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDManual" Type="int" Mode="In" />
+    <Parameter Name="piIDPagina" Type="int" Mode="In" />
+    <Parameter Name="piIDorden" Type="int" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CatalogoManual_Detalle_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CatalogoManual_Documento_ObtenerPorIDManual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDManual" Type="int" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CatalogoManual_Eliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDManual" Type="int" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CatalogoManual_IDUltimo_Creado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CatalogoManual_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CatalogoManual_Listado_IDManual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDManual" Type="int" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Eliminar_InfoPlacaIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcPlaca" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Estados_Requerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GPSMonitoreo_CargarJSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_IncertarConsultaPlacaIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcPlaca" Type="varchar" Mode="In" />
+    <Parameter Name="pcMarca" Type="varchar" Mode="In" />
+    <Parameter Name="pcColor" Type="varchar" Mode="In" />
+    <Parameter Name="pilDPeriodo" Type="int" Mode="In" />
+    <Parameter Name="pnTasaVehicularDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnTasaVehicularCredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnTasaVehicularSaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pnMultaVehicularDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnMultaVehicularCredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnMultaVehicularSaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresVehicularDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresVehicularCredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresVehicularSaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pnTasaMunicipalDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnTasaMunicipalCredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnTasaMunicipalSaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pnMultaMunicipalDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnMultaMunicipalCredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnMultaMunicipalSaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresMunicipalesDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresMunicipalesCredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresMunicipalesSaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pnContribucionSigloXXIDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnContribucionSigloXXICredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnContribucionSigloXXISaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresSigloXXIDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresSiglosXXICredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnSaldosAnterioresSiglosXXISaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pnValorPlacaDebito" Type="decimal" Mode="In" />
+    <Parameter Name="pnValorPlacaCredito" Type="decimal" Mode="In" />
+    <Parameter Name="pnValorPlacaSaldo" Type="decimal" Mode="In" />
+    <Parameter Name="pilDTotalMatricula" Type="decimal" Mode="In" />
+    <Parameter Name="piCambiodePropietarioCantidad" Type="int" Mode="In" />
+    <Parameter Name="pnCambiodePropietarioMonto" Type="decimal" Mode="In" />
+    <Parameter Name="piCambioPlacaCantidad" Type="int" Mode="In" />
+    <Parameter Name="pnCambioPlacaMonto" Type="decimal" Mode="In" />
+    <Parameter Name="piTotalCantidad" Type="int" Mode="In" />
+    <Parameter Name="pnTotalMonto" Type="decimal" Mode="In" />
+    <Parameter Name="pnTotalaPagar" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_Manuales_Documentos_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSolicitudManual" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioCreador" Type="int" Mode="In" />
+    <Parameter Name="piNumeroPagina" Type="int" Mode="In" />
+    <Parameter Name="pcTipoArchivo" Type="varchar" Mode="In" />
+    <Parameter Name="pcNombreArchivo" Type="varchar" Mode="In" />
+    <Parameter Name="pcRutaArchivo" Type="varchar" Mode="In" />
+    <Parameter Name="pcURL" Type="varchar" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Manuales_Paginas_ObtenerPorIdManual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDManual" Type="int" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_MostrarInfo_PlacaIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcPlaca" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_NumeroConsecutivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDContador" Type="int" Mode="In" />
+    <Parameter Name="poiSiguienteNumero" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_Requerimiento_Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+    <Parameter Name="pcIP" Type="varchar" Mode="In" />
+    <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcDescripcionRequerimiento" Type="text" Mode="In" />
+    <Parameter Name="piTipoRequerimiento" Type="tinyint" Mode="In" />
+    <Parameter Name="piIDAreaSolicitante" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimiento_Alta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+    <Parameter Name="pcDescripcion" Type="varchar" Mode="In" />
+    <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcDetalleRequerimiento" Type="text" Mode="In" />
+    <Parameter Name="piEstadoRequerimiento" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimiento_Areas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimiento_Indicadores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pdFechaOperativa" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimiento_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimiento_Maestro_Actualizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcDescripcionRequerimiento" Type="text" Mode="In" />
+    <Parameter Name="piIDEstadoRequerimiento" Type="tinyint" Mode="In" />
+    <Parameter Name="fdFechaAsignacion" Type="datetime" Mode="In" />
+    <Parameter Name="pifiIDUsuarioAsignado" Type="int" Mode="In" />
+    <Parameter Name="piTiempodeDesarrollo" Type="int" Mode="In" />
+    <Parameter Name="pifiTipoRequerimiento" Type="tinyint" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimiento_Maestro_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimiento_NumeroConsecutivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDContador" Type="int" Mode="In" />
+    <Parameter Name="poiSiguienteNumero" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_Requerimiento_Tipo_Adjuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_RequerimientoBitacoras_Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioSolicitante" Type="int" Mode="In" />
+    <Parameter Name="fcComentario" Type="text" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDEstado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_RequerimientoBitacoras_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimientos_Adjuntos_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="pcNombreArchivo" Type="varchar" Mode="In" />
+    <Parameter Name="pcTipoArchivo" Type="varchar" Mode="In" />
+    <Parameter Name="pcRutaArchivo" Type="varchar" Mode="In" />
+    <Parameter Name="pcURL" Type="varchar" Mode="In" />
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimientos_Bitacoras_Estados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Tutoriales_AccesosAreas_Actualizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fiIDEmpleado" Type="int" Mode="In" />
+    <Parameter Name="fiIDArea" Type="int" Mode="In" />
+    <Parameter Name="fiIDAcceso" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Tutoriales_AccesosAreas_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fiIDEmpleado" Type="int" Mode="In" />
+    <Parameter Name="fiIDArea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Tutoriales_Videos_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fcDescripcionVideo" Type="nvarchar" Mode="In" />
+    <Parameter Name="fiIDArea" Type="int" Mode="In" />
+    <Parameter Name="fcUrl" Type="nvarchar" Mode="In" />
+    <Parameter Name="fcNombreArchivo" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_tutorialesList_byIdArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fiIdArea" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="SoporteOPModelStoreContainer" />
+</Schema>

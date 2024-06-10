@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Cotizador";
+}
+
+<h2>Cuota Mensual: <span id="lblIdSolicitud" style=""></span><span id="lblMensajeEstadoPrestamo"  class="right" >0</span></h2>
+<div class="card h-100">
+    <div class="card-body">
+        <div class="row" id="cotizadortipoproductos">
+            
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+        categoriasProductos();
+        function categoriasProductos() {
+
+                $.ajax({
+                    url: "@Url.Action("CotizadordeProductos", "Home")",
+                    type: "Post",
+                    //data: { Fecha: fecha},
+                    success: function (data) {
+                        console.log(data)
+                        var opciones = ""
+                        for (const item of data) {
+
+                            opciones += `<div class="col-xl-4">
+                                            <div id="panel-1" class="panel">
+                                                <div class="panel-hdr">
+                                                    <h2>
+                                                        ${item[0].fcTipoProducto}
+                                                    </h2>
+                                                </div>
+                                                <div class="panel-container show">
+
+
+                                                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TblProductos">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Producto</th>
+                                                            <th>Cuota <br /> Mensual</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>`
+                            for (const ite of item) {
+                                opciones += `
+                                        <tr>
+                                            <td>${ite.fcProducto}</td>
+                                            <td>${ite.fnValorCuotaMensual24Nuevo}</td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input id="${ite.fiIDProducto}" class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${ite.fnValorCuotaMensual24Nuevo}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>
+                                                    <label class="custom-control-label" for="${ite.fiIDProducto}"></label>
+                                                </div>
+                                            </td>
+                                        `;
+                                if (ite.fiSeleccionMultiple) {
+                                    opciones += `<td><input id="${ite.fiIDProducto}" class="form-control" name = "inputscantidad" type="text" id="" /></td>`
+                                } else {
+                                    opciones += `<td></td>`
+                                }
+                                opciones += `</tr>`;
+                            }
+                            opciones += `</tbody></table></div></div></div>`;
+                        }
+
+                        $(`#cotizadortipoproductos`).append(opciones);
+
+                    }, error: function (resp) {
+                        ToastrError("Error", resp.Mensaje);
+                    }
+                });
+
+
+            
+                
+
+        }
+
+        $(document).on('change', 'input[name="CheckCheckedFalla"]', function () {
+            // Inicializar la suma
+            var suma = 0;
+            // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
+            $('input[name="CheckCheckedFalla"]:checked').each(function () {
+                suma += parseInt($(this).val());
+            });
+            //console.log(suma);
+            // Actualizar el total en algún elemento HTML, por ejemplo:
+
+            $('#lblMensajeEstadoPrestamo').empty();
+            $('#lblMensajeEstadoPrestamo').text(`$ ${suma}`);
+        });
+
+        $(document).keyup('input[name="inputscantidad"]', function () {
+            debugger
+            var loquetrae = $(this).val();
+            console.log(`esto se cambio ${loquetrae}`);
+        });
+        
+    </script>
+}

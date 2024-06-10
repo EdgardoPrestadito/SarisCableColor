@@ -1,0 +1,697 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel">
+    <div class="panel-hdr">
+        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Tickets Pendientes</h2>
+        @if (User.IsInRole("SARIS_CREARTICKET"))
+        {
+            <div class="panel-toolbar " role="menu">
+                <button onclick="CrearTicket()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Crear Ticket</button>
+            </div>
+        }
+
+    </div>
+    <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicket">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>Titulo</th>
+                        <th style="width:80px">Solicitante</th>
+                        <th style="width:80px">Area Solicitante</th>
+                        <th style="width:80px">Usuario Asignado</th>
+                        <th style="width:80px">Area Asignada</th>
+
+                        <th style="width:80px">Categoria</th>
+                        <th style="width:80px">Incidencia</th>
+
+                        <th style="width:150px">Fecha Creacion Solicitud</th>
+                        <th style="width:150px">Tiempo Transcurrido</th>
+                        <th style="width:80px">Estado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-hdr">
+        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Tickets Cerrados</h2>
+
+    </div>
+    <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCerrados">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>Titulo</th>
+                        <th style="width:80px">Solicitante</th>
+                        <th style="width:80px">Area Solicitante</th>
+                        <th style="width:80px">Usuario Asignado</th>
+                        <th style="width:80px">Area Asignada</th>
+
+                        <th style="width:80px">Categoria</th>
+                        <th style="width:80px">Incidencia</th>
+
+                        <th style="width:150px">Fecha Creacion Solicitud</th>
+                        <th style="width:150px">Fecha Cierre</th>
+                        <th style="width:150px">Tiempo Transcurrido</th>
+                        <th style="width:80px">Estado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+@section Scripts{
+    
+    <script>
+        var idusuariologueado = @ViewBag.idUsuario;
+
+        var tablaPrincipalticket = $('#TablaPrincipalTicket').DataTable({
+
+            autoWidth: true,
+            responsive: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'Bfrtip',
+            order: [[1, "desc"]],
+              ajax: {
+                url: '@Url.Action("ListarTicket", "Ticket")',
+                  method: "Get",
+                  dataSrc: function (data) {
+                      return data;
+                  }
+            },
+            "columns": [
+
+                {//0
+                    data: null,
+                    className: "text-center",
+                    render: function (data) {
+                        //console.log(data);
+                        var opt = ``;
+                        //console.log(data)
+
+                        if (idusuariologueado == data.fiIDUsuarioSolicitante && data.fiIDEstadoRequerimiento == 1) {
+                            opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Ticket'><i class=\"fal fa-times\"></i></a>`;
+                        }
+                        opt += `
+                                    <div class='dropdown d-inline-block dropleft'>
+                                        <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='Mas Opciones'><i class=\"fal fa-ellipsis-v\"></i></a>
+                                        <div class='dropdown-menu'>
+                                            <a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Ticket</a>
+                                    `;
+
+                        if (@Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
+
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Ticket</a>`;
+                        }
+
+                        if (data.fiAreaAsignada == 6)//es 6 por que es pendiente, se deberia de cambiar a un viewbac para traerlo directamente desde al base de datos
+                        {
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Asignar Area</a>`;
+                        } else {
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Reasignar Area</a>`;
+                        }
+
+                        if (@Json.Encode(User.IsInRole("SARIS_AsignarTicket_Usuarios"))) {
+                            if ((data.fiAreaAsignada != 6) & 1 == 1 )//es 0 por que es pendiente de asignar, se deberia de hacer mejor desde la base de datos
+                            {
+                                opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarUsuario(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento},${data.fiAreaAsignada})">Asignar Usuario</a>`;
+                            }
+                        }
+
+                        //`"<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'><i class=\"fal fa-times\"></i></a><div class='dropdown d-inline-block dropleft'><a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-ellipsis-v\"></i></a><div class='dropdown-menu'><a class='dropdown-item' href='javascript:void(0);'>Change Status</a><a class='dropdown-item' href='javascript:void(0);'>Generate Report</a></div></div>"`
+
+                        opt += `</div>
+                                </div>`;
+                        return opt;
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
+
+                    }
+                },
+                {
+                    data: "fcNombreSolicitante",
+                    className: "td-responsive",
+
+                },
+                {
+                    data: "fcNombreAreaSolicitante",
+                    className: "td-responsive",
+
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fiIDUsuarioAsignado == 3013) {
+                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        } else {
+                            return data.fcNombreAsignado;
+                        }
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fiAreaAsignada == 6) {
+                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        } else {
+                            return data.fcNombreAreaAsignada;
+                        }
+                    }
+                },
+                {
+                    data: "fcDescripcionCategoria",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcTipoRequerimiento",
+                    className: "td-responsive",
+                },
+
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data, type, row) {
+
+                        var ahora = new Date();
+                        var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
+                        var diferencia = ahora.getTime() - fechaInicio.getTime();
+
+                        // Calcula los segundos, minutos, horas y días transcurridos
+                        var segundos = Math.floor(diferencia / 1000);
+                        var minutos = Math.floor(segundos / 60);
+                        var horas = Math.floor(minutos / 60);
+                        var dias = Math.floor(horas / 24);
+
+                        var tiempototal = '';
+                        if (dias > 0) {
+                            tiempototal += `${dias} <b>Di.</b>, `;
+                        }
+                        //console.log((horas % 24))
+                        if ((horas % 24) > 0) {
+                            tiempototal += `${horas % 24} <b>Ho.</b>, `;
+                        }
+                        if ((minutos % 60) > 0) {
+                            tiempototal += `${minutos % 60} <b>Mi.</b>, `;
+                        }
+                        // Realizar cualquier operación o cálculo necesario para actualizar el valor
+                        var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
+
+                        return nuevoValor;
+                        //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
+                    }
+                },
+
+
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data, type, row) {
+                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
+
+                    }
+                },
+                {
+                    data: "fcDescripcionRequerimiento",
+                    className: "td-responsive",
+                    visible: false, "title": 'Descripcion',
+
+                }
+
+            ],
+
+        });
+
+        chat.client.agregarrow = function (modelo) {
+            //console.log(modelo);
+            var tabla = $.fn.dataTable.Api("#TablaPrincipalTicket");
+            tabla.row.add(modelo).draw(false);
+        }
+
+        chat.client.actualizarBandeja = function (ticket) {
+            //console.log(ticket);
+
+            var tabla = $.fn.dataTable.Api("#TablaPrincipalTicket");
+            var nodes = tabla.rows().nodes().toArray();
+            var node = nodes.find(x => tabla.row(x).data().fiIDRequerimiento == ticket.fiIDRequerimiento);
+            tabla.row(node).data(ticket).draw(false);
+
+        }
+
+        chat.client.eliminarrow = function (idequifax) {
+            var tabla = $.fn.dataTable.Api("#TablaPrincipalTicket");
+            var nodes = tabla.rows().nodes().toArray();
+            var node = nodes.find(x => tabla.row(x).data().fiIDRequerimiento == idequifax);
+
+            tabla.row(node).remove().draw(false);
+        }
+
+        chat.client.agregarrowTicketCerrado = function (modelo) {
+            var tabla = $.fn.dataTable.Api("#TablaPrincipalTicketCerrados");
+            tabla.row.add(modelo).draw(false);
+        }
+
+
+
+        var tablaPrincipalcerrados = $('#TablaPrincipalTicketCerrados').DataTable({
+
+            autoWidth: true,
+            responsive: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'Bfrtip',
+            order: [[1, "desc"]],
+              ajax: {
+                url: '@Url.Action("ListarTicketCerrados", "Ticket")',
+                  method: "Get",
+                  dataSrc: function (data) {
+                      return data;
+                      //console.log(data);
+                  }
+            },
+            columns: [
+
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data) {
+                        var opt = `<div class='dropdown d-inline-block dropleft'>
+                                    <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t
+                                    <div class='dropdown-menu'>`;
+                        if (@Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
+
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Ticket</a>`;
+                        }
+                        opt += `</div>
+                                </div>`
+                        return opt;
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        var des = "";
+                        return `${data.fiIDRequerimiento} <span class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></span>`;
+
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fiIDUsuarioAsignado == 0) {
+                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        } else {
+                            return data.fcNombreAsignado;
+                        }
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fiAreaAsignada == 6) {
+                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        } else {
+                            return data.fcNombreAreaAsignada;
+                        }
+                    }
+
+                },
+                {
+                    data: "fcNombreAsignado",
+                    className: "td-responsive",
+
+                },
+                {
+                    data: "fcNombreAreaAsignada",
+                    className: "td-responsive",
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return data.fcDescripcionCategoria;
+
+                    }
+                },
+
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return data.fcTipoRequerimiento;
+
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fdFechadeCierre == " / Date(1581400800000) /") {
+                            return ""
+                        } else {
+
+                            return moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data, type, row) {
+
+                        var ahora = new Date(moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a'));;
+                        var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
+                        var diferencia = ahora.getTime() - fechaInicio.getTime();
+
+                        // Calcula los segundos, minutos, horas y días transcurridos
+                        var segundos = Math.floor(diferencia / 1000);
+                        var minutos = Math.floor(segundos / 60);
+                        var horas = Math.floor(minutos / 60);
+                        var dias = Math.floor(horas / 24);
+
+                        var tiempototal = '';
+                        if (dias > 0) {
+                            tiempototal += `${dias} <b>Di.</b>, `;
+                        }
+                        //console.log((horas % 24))
+                        if ((horas % 24) > 0) {
+                            tiempototal += `${horas % 24} <b>Ho.</b>, `;
+                        }
+                        if ((minutos % 60) > 0) {
+                            tiempototal += `${minutos % 60} <b>Mi.</b>, `;
+                        }
+                        // Realizar cualquier operación o cálculo necesario para actualizar el valor
+                        var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
+
+
+                        return nuevoValor;//`${dias} <b>Di.</b>, ${horas % 24} <b>Ho.</b>, ${minutos % 60} <b>Mi.</b>, ${segundos % 60} <b>Seg.</b>`;
+                        //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
+                    }
+                },
+
+
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data, type, row) {
+
+                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
+
+                    }
+                },
+                {
+                    data: "fcDescripcionRequerimiento",
+                    className: "td-responsive",
+                    visible: false,
+                    title: 'Descripcion',
+
+                }
+
+            ],
+
+        });
+
+        function EliminarTicket(idticket) {
+
+            bootbox.confirm({
+                title: `<i class="" fa-times-circle text-danger mr-2'></i> Esta Seguro que desea Eliminar Este ticket <span class='fw-500'></span>`,
+                message: "<span><strong>Advertencia!:</strong> Esta Accion no se puede Reversar</span>",
+                centerVertical: true,
+                swapButtonOrder: true,
+                buttons: {
+                    confirm: {
+                        label: 'Si',
+                        className: 'btn-danger shadow-0'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-default'
+                    }
+                },
+                className: "modal-alert",
+                closeButton: false,
+                callback: function (result) {
+                    //console.log(result)
+                    if (result == true) {
+
+                    $.ajax({
+                        url: "@Url.Action("EliminarTicket", "Ticket")",
+                        type: "POST",
+                        data: { idticket: idticket },
+                        success: function (datas) {
+                            //console.log(datas);
+                            var resultado = datas[0];
+
+                            if (datas.Estado) {
+                                tablaPrincipalticket.ajax.reload().draw(false);
+                                return ToastrSuccess("Exito!", "Ticket Eliminado Exitosamente");
+
+                                @*$.ajax({
+                                    url: "@Url.Action("GuardarBitacorahistorial", "Ticket")",
+                                    type: "POST",
+                                    data: { IdSolicitud: idsol, IdCliente: idclien, Observaciones: "Se Elimino el Ticket" },
+                                    success: function (respuesta) {
+                                        var dataerror = { Titulo: "Exito", Mensaje: "Ticket Eliminado con Exito", Estado: true }
+                                        AlertaAjax(dataerror)
+                                        CerrarSuitAlert();
+                                    },
+                                    error: function (respuesta) {
+                                        var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Eliminar el Ticket", Estado: false }
+                                        AlertaAjax(dataerror)
+                                    }
+                                })*@
+                            }
+
+
+                        },
+                        error: function (datae) {
+                            var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Eliminar el Ticket", Estado: false }
+                            AlertaAjax(dataerror)
+                        }
+                    })
+                    }
+                    if (result == false) {
+
+                    }
+                }
+            });
+
+        }
+
+        function ProcesosEstados(Ticket) {
+            debugger;
+            //ShowLeftModal('3○', 'titulo');
+
+            @*$.ajax({
+                url: "@Url.Action("ModalBitacora", "Ticket")",
+                method: "get",
+                data: { id: Ticket },
+                success: function (resp) {
+                    ShowModalBig(resp);
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });*@
+            $.ajax({
+                url: "@Url.Action("ModalBitacoraMejora", "Ticket")",
+                method: "get",
+                data: { id: Ticket },
+                success: function (resp) {
+                    ShowLeftModal(resp,"Recorrido Ticket");
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });
+        }
+
+        function CrearTicket() {
+
+            VerModalScrollConObjetoDeParametro({}, "@Url.Action("RegistrarTicket", "Ticket")");
+
+        }
+
+        function AsignarArea(idticket,idestadoticket) {
+            $.ajax({
+                url: "@Url.Action("VistaActualizarArea", "Ticket")",
+                type: "POST",
+                data: { idticket: idticket, estadoticket: idestadoticket},
+                success: function (datas) {
+
+                    ShowModal(datas);
+                },
+                error: function (datae) {
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Actualizar El Area", Estado: false }
+                    AlertaAjax(dataerror)
+                }
+            });
+        }
+
+        function AsignarUsuario(ticket,idestadoticket, area) {
+            $.ajax({
+                url: "@Url.Action("VistaAsignarUsuario", "Ticket")",
+                type: "POST",
+                data: { idticket: ticket, estadoticket: idestadoticket, idarea: area},
+                success: function (datas) {
+                    ShowModal(datas);
+                },
+                error: function (datae) {
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Asignar un Usuario", Estado: false }
+                    AlertaAjax(dataerror)
+                }
+            });
+        }
+
+        function ActualizarTicket(idtickets,idestadoticket) {
+
+            $.ajax({
+                url: "@Url.Action("ActualizarTicket", "Ticket")",
+                type: 'Get',
+                data: { idticket: idtickets},
+                success: function (data) {
+                    ShowModalBigScroll(data)
+                }, error: function (data) {
+
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Actualizar el Ticket", Estado: false }
+                    AlertaAjax(dataerror)
+                }
+            });
+
+            //VerModalScrollConObjetoDeParametro({}, "@Url.Action("ActualizarTicket", "Ticket")")
+        }
+
+        //tablaPrincipal.columns(7).search(this.value).draw();
+
+        setInterval(function () {
+            // Obtener la instancia de DataTable
+            var tabla = $('#TablaPrincipalTicket').DataTable();
+
+            // Obtener los datos de la columna específica
+            var datosColumna = tabla.column(7).data();
+
+            // Actualizar los datos de la columna
+            datosColumna.each(function (valorActual, indice) {
+
+                //console.log(valorActual);
+                var ahora = new Date();
+                var fechaInicio = new Date(moment(valorActual.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
+                var diferencia = ahora.getTime() - fechaInicio.getTime();
+
+                // Calcula los segundos, minutos, horas y días transcurridos
+                var segundos = Math.floor(diferencia / 1000);
+                var minutos = Math.floor(segundos / 60);
+                var horas = Math.floor(minutos / 60);
+                var dias = Math.floor(horas / 24);
+
+//                return `${dias} <b>Di.</b>, ${horas % 24} <b>Ho.</b>, ${minutos % 60} <b>Mi.</b>, ${segundos % 60} <b>Seg.</b>`;
+                var tiempototal = '';
+                if (dias > 0) {
+                    tiempototal += `${dias} <b>Di.</b>, `;
+                }
+                //console.log((horas % 24))
+                if ((horas % 24) > 0 ) {
+                    tiempototal += `${horas % 24} <b>Ho.</b>, `;
+                }
+                if ((minutos % 60) > 0) {
+                    tiempototal += `${minutos % 60} <b>Mi.</b>, `;
+                }
+                // Realizar cualquier operación o cálculo necesario para actualizar el valor
+                var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
+
+                // Actualizar el valor en la columna
+                tabla.cell({ row: indice, column: 9 }).data(nuevoValor);
+            });
+
+            // Redibujar la tabla para reflejar los cambios
+            tabla.draw(false); // Puedes pasar false para evitar que la tabla se redibuje con animación
+        }, 100000); // Ejecutar cada minuto segundos
+
+        //setInterval(function () {
+        //    location.reload();
+        //}, 300000);
+
+        function VerDetalleTicket(idticket) {
+
+            $.ajax({
+                url: "@Url.Action("DetalleTicket", "Ticket")",
+                type: 'Get',
+                data: { idticket: idticket},
+                success: function (data) {
+                    ShowModalBigScroll(data)
+                }, error: function (data) {
+
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Ver el Detalle del Ticket", Estado: false }
+                    AlertaAjax(dataerror)
+                }
+            });
+        }
+
+
+    </script>
+    
+    }

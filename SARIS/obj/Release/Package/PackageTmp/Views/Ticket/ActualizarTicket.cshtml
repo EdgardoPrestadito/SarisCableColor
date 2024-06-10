@@ -1,0 +1,434 @@
+﻿@model OrionCoreCableColor.Models.Ticket.TicketMiewModel
+<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">
+
+        <text>Editar Ticket</text>
+
+    </h2>
+
+    <button type="button" class="close" data-dismiss="modal">
+        <i class="fal fa-times-circle fa-fw fa-lg"></i>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Titulo</label>
+                        @Html.EditorFor(model => model.fcTituloRequerimiento, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Descripcion</label>
+                        @Html.EditorFor(model => model.fcDescripcionRequerimiento, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Area</label>
+                        @Html.DropDownListFor(model => model.fiIDAreaSolicitante, new SelectList(ViewBag.ListarArea, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Estado</label>
+                        @Html.DropDownListFor(model => model.fiIDEstadoRequerimiento, new SelectList(ViewBag.Estados, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Asignado</label>
+                        @Html.DropDownListFor(model => model.fiIDUsuarioAsignado, new SelectList(ViewBag.Usuario, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">DOCUMENTO (Solo se pueden subir pdf e imagenes) </label>
+
+                        <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
+                            <div class="dz-message needsclick">
+
+                                <div class="dz-icon">
+                                    <i class="fal fa-cloud-upload text-muted mb-3"></i>
+                                </div>
+                                <div>
+                                    <span class="dz-text">Arrastre Imagen</span>
+                                    <p class="text-sm text-muted">O Click para elegirla manualmente</p>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='test col-sm-12'>
+        <br />
+        <div style='float: right;'>
+            <button type="button" id="btnActualizarDatosRequerimiento" class="btn btn-success">
+                Actualizar Datos
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="modalConfirmarDatos" class="modal fade" role="dialog" aria-labelledby="modalConfirmarDatosLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="modalReiniciarInspeccionTallerSolicitudLabel">Confirmar Datos</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <label id="lblEstadoConfirmar" class="col-form-label">Estado </label>
+                <asp:DropDownList runat="server" ID="dllEstadoConfimar" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoConfirmar"></asp:DropDownList>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <label class="col-form-label">Observaciones</label>
+                        <textarea id="txtComentario" runat="server" class="form-control form-control-sm" required="required" data-parsley-maxlength="150" data-parsley-minlength="15" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnActualizarDatos_Confirmar" type="button" class="btn btn-danger">
+                    Confirmar
+                </button>
+                <button type="reset" data-dismiss="modal" class="btn btn-secondary">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<form id="form1" runat="server">
+    <div class="card mb-6">
+        <div class="modal-header" style="background-color: black">
+            <h5 class="modal-title mt-0" style="color: white">
+                Detalle Requerimiento:
+                <asp:Label ID="lblNumRequerimiento" runat="server" CssClass="modal-title mt-0 Titulo"></asp:Label>
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">-->
+@*<div class="form-group row">
+
+        <div class="form-group col-sm-12">
+            <label class="col-form-label">Titulo del Requerimiento</label>
+            <asp:TextBox ID="txtNombreTitulo" CssClass="form-control form-control-sm" type="text" data-parsley-group="informacionPersonal" runat="server"></asp:TextBox>
+
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="form-group col-sm-12">
+            <div id="editor">
+                <p id="txtEditor">Defina su Solictud</p>
+
+            </div>
+        </div>
+
+    </div>*@
+<!--<br />-->
+@*<div class="form-group row">
+        <div class="form-group col-sm-4">
+            <label class="col-form-label">Departamento </label>
+            <asp:DropDownList runat="server" ID="dllDepartamentoArea" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoExpediente"></asp:DropDownList>
+
+        </div>
+        <div class="form-group col-sm-4">
+            <label class="col-form-label">Estado </label>
+            <asp:DropDownList runat="server" ID="dllEstadoRequerimiento" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoExpediente"></asp:DropDownList>
+
+        </div>
+        <div class="form-group col-sm-4">
+            <label class="col-form-label">Asignado </label>
+            <asp:DropDownList runat="server" ID="dllUsuarioAsignado" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoExpediente"></asp:DropDownList>
+        </div>
+
+    </div>*@
+
+@*<div class="form-group row" id="DivTiempoDesarrollo">
+        <div class="form-group col-sm-4" id="divFechaInicio">
+            <label class="col-form-label">Fecha Inicio </label>
+            <asp:TextBox ID="txtFechaInicio" CssClass="form-control form-control-sm" TextMode="DateTimeLocal" runat="server"></asp:TextBox>
+
+        </div>
+        <div class="form-group col-sm-4" id="divFechaFinal">
+            <label class="col-form-label">Fecha Final </label>
+            <asp:TextBox ID="txtFechaFinal" CssClass="form-control form-control-sm" TextMode="DateTimeLocal" runat="server"></asp:TextBox>
+        </div>
+
+        <div class="form-group col-sm-4">
+            <label class="col-form-label">Tiempo Desarrollo </label>
+            <asp:TextBox ID="txtTiempoDesarrollo" CssClass="form-control form-control-sm" type="number" runat="server"></asp:TextBox>
+        </div>
+
+    </div>*@
+
+
+<!--</div>
+
+
+        </div>
+
+        <h6 class="font-weight-bold pl-3">Historial</h6>
+        <div class="col-12 justify-content-center table-responsive">
+            <table class="table table-sm table-bordered table-hover cursor-pointer" id="tblHistorialMantenimiento">
+                <thead class="thead-light">
+                    <tr>
+                        <th></th>
+                        <th>Fecha</th>
+                        <th>Usuario</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <br />
+        -------------------------
+
+    </div>
+</div>
+
+<!-- ============== Modal Guardar Documentos Asignados  De Un Determinado Tipo De Documento ==== -->
+<!--<div id="modalGuardarDocumentosAsignados" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="modalGuardarDocumentosAsignadosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header pb-2">
+                <div class="form-group row mb-0">
+                    <div class="col-12">
+                        <h6 class="m-0" id="modalGuardarDocumentosAsignadosLabel">
+                            Subir Archivos
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="alert alert-info bg-info text-white pt-1 pb-1" role="alert">
+                            <i class="fas fa-exclamation-circle text-white"></i><b> documento (Solo se pueden subir pdf e imagenes):</b>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="col-12">
+                            <div id="divFormularioDocumentosAsignados">Test</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnGuardarDocumentosAsignados_Confirmar" class="btn btn-primary">
+                    Guardar documentos
+                </button>
+                <button type="button" id="btnGuardarDocumentosAsignados_Cancelar" class="btn btn-danger">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Confirmar Bitacora  -->
+<!--<div id="modalConfirmarDatos" class="modal fade" role="dialog" aria-labelledby="modalConfirmarDatosLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="modalReiniciarInspeccionTallerSolicitudLabel">Confirmar Datos</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <label id="lblEstadoConfirmar" class="col-form-label">Estado </label>
+                <asp:DropDownList runat="server" ID="dllEstadoConfimar" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoConfirmar"></asp:DropDownList>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <label class="col-form-label">Observaciones</label>
+                        <textarea id="txtComentario" runat="server" class="form-control form-control-sm" required="required" data-parsley-maxlength="150" data-parsley-minlength="15" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnActualizarDatos_Confirmar" type="button" class="btn btn-danger">
+                    Confirmar
+                </button>
+                <button type="reset" data-dismiss="modal" class="btn btn-secondary">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- modal estado del procesamiento de la solicitud -->
+<!--<div id="modalEstadoSolicitud" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="modalEstadoSolicitudLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width: 990px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="modalEstadoSolicitudLabel">Archivos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">-->
+<!-- tab -->
+<!--<ul id="ultab" class="nav nav-tabs nav-tabs-custom" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#divDocumentoDescargables" role="tab">
+            <span class="d-none d-sm-block">Descargables</span>
+        </a>
+    </li>-->
+@*<%--
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#PestanaTimers" role="tab">
+            <span class="d-none d-sm-block">Procesos</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#PestanaComentarios" role="tab">
+            <span class="d-none d-sm-block">Más detalles</span>
+        </a>
+    </li>--%>*@
+<!--</ul>-->
+<!-- Tab panes -->
+<!--<div id="divContenido" class="tab-content">
+    <div id="divDocumentoDescargables">
+    </div>
+</div>-->
+@*<%--<div id="divDocumentoPDF">
+        <embed src="4-1-2023 -Agregar en la Seccion Mis Solicitudes - La Linea de Procesos de Credito.pdf" type="application/pdf" width="925" height="500" />
+    </div>--%>*@
+<!-- termina tab -->
+<!--</div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>-->
+
+
+<script>
+    var estadoRequerimiento = 0;
+    const ID_REQUERIMIENTO = @ViewBag.idticket;
+    const ID_USUARIO = "1"
+
+    $(document).ready(function () {
+        estadoRequerimiento = $("#dllEstadoRequerimiento option:selected").val();
+    });
+
+    $("#btnActualizarDatosRequerimiento").click(function () {
+        $("#modalConfirmarDatos").modal();
+
+        if (estadoRequerimiento == 1 && ID_USUARIO != "297" && ID_USUARIO != "298" && ID_USUARIO != "299" && ID_USUARIO != "300") {
+            document.getElementById("txtComentario").disabled = true;
+            document.getElementById("dllEstadoConfimar").disabled = true;
+            $("#txtComentario").val("Se cambio el estado del requerimiento a abierto");
+            $("#dllEstadoConfimar").val(2);
+        }
+
+    });
+
+    function ActualizarDatos() {
+        var estado = 0;
+        var estadoDescripcion = "";
+        //var AreaSolicitante = "";
+        //a tener en cuenta cuando ya este mejor creado las cosas
+        //if (ID_USUARIO == "1" || ID_USUARIO == "297" || ID_USUARIO == "298" || ID_USUARIO == "299" || ID_USUARIO == "300") {
+        //    estado = $("#dllEstadoRequerimiento option:selected").val() == null ? 0 : parseInt($("#dllEstadoRequerimiento option:selected").val()),
+        //        estadoDescripcion = $("#dllEstadoRequerimiento :selected").text()
+        //}
+        //else {
+        //    estado = $("#dllEstadoConfimar option:selected").val() == null ? 0 : parseInt($("#dllEstadoConfimar option:selected").val()),
+        //        estadoDescripcion = $("#dllEstadoConfimar :selected").text()
+        //}
+
+        if ($("#txtComentario").val() != "" || $("#txtComentario").val() != null) {
+            var bitacora = {
+                idRequerimiento: ID_REQUERIMIENTO,
+                Observaciones: $("#txtComentario").val(),
+            }
+            var requerimiento = {
+                idRequerimiento: ID_REQUERIMIENTO,
+                fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
+                fcDescipcionRequerimiento: "",//hola,
+                fiIDEstadoRequerimiento: estado,
+                EstadoRequerimiento: estadoDescripcion,
+                //fdFechaAsignacion: $("#txtFechaInicio").val(),
+                //fdFechadeCierre: $("#txtFechaFinal").val(),
+                fiIDUsuarioAsignado: $("#fiIDUsuarioAsignado option:selected").val() == "" ? 1 : parseInt($("#fiIDUsuarioAsignado option:selected").val()),
+                //fiTiempodeDesarrollo: $("#txtTiempoDesarrollo").val().replace(/,/g, '') == '' ? 0 : $("#txtTiempoDesarrollo").val().replace(/,/g, ''),
+                fiTipoRequerimiento: 1,//$("#txtComentario").val(),
+                fiIDAreaSolicitante: $("#fiIDAreaSolicitante option:selected").val() == null ? 0 : parseInt($("#fiIDAreaSolicitante option:selected").val()),//$("#txtComentario").val(),
+                fcArea: $("#fiIDAreaSolicitante :selected").text(),
+                //fcCorreoSolicitante: CorreoSolicitante
+
+            }
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ActualizarDatos", "Ticket")",
+                data: { ticket: requerimiento },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    MensajeError("Error, contacte al administrador.");
+                },
+                success: function (data) {
+                    let resultado = data.d;
+                    if (resultado.ResultadoExitoso == true) {
+                        $("#txtComentario").val(""),
+                            MensajeExitoModal('los datos se Actualizaron correctamente.');
+                        $("#modalConfirmarDatos").modal('hide');
+                        //window.location = "BandejaRequerimientoDesarrollo.aspx?" + window.location.href.split('?')[1];
+                        //CargarDetalleBitacora();
+                        //location.reload();
+                    }
+                    else {
+                        MensajeErrorModal("No se pudo realizar la actualizacion de Datos, contacte al administrador.");
+                    }
+
+
+                }
+            });
+
+        }
+        else {
+            $("#txtComentario").parsley().validate();
+        }
+
+    }
+
+    $("#btnActualizarDatos_Confirmar").click(function () {
+        ActualizarDatos();
+
+    });
+
+
+</script>

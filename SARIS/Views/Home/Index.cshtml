@@ -1,0 +1,683 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .card-container {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-container-header {
+        position: relative;
+    }
+
+    .overlay-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .card-content-header {
+        position: relative;
+        z-index: 2;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="pt-5 pb-5 rounded overflow-hidden position-relative text-white card-container-header"
+                 style="background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url(/Content/img/fondocardhome.jpg); position: relative;">
+                <div class="overlay-header" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
+                <i class="fal fa-clock position-absolute pos-top pos-right opacity-50 mt-5" style="font-size: 8rem; bottom: 0; right: 0;"></i>
+                <div class="row">
+                    <!-- Parte izquierda: Texto Bienvenida y Hora Actual/Fecha -->
+                    <div class="col-12 col-lg-5 mb-3 mb-lg-0 px-4 text-center text-lg-start">
+
+                        <div class="card-content-header" style="position: relative; z-index: 10;">
+                            <h3 class="text-white display-4 d-block l-h-n m-0 fw-500 text-capitalize" id="bienvenida"></h3>
+                        </div>
+
+                        <div class="card-content-header mt-3">
+                            <h3 class="text-white display-5 d-block l-h-n m-0 fw-500" id="fecha"></h3>
+                            <h3 class="text-white display-5 d-block l-h-n m-0 fw-500" id="hora"></h3>
+                        </div>
+
+                    </div>
+
+                    <!-- Parte derecha: Tabs -->
+                    <div class="col-12 col-lg-7 mb-3 mb-lg-0 px-4">
+                        <div class="card-content-header text-center" style="position: relative; z-index: 10;">
+                            <ul class="nav nav-tabs justify-content-center  " id="myTab" role="tablist">
+                            </ul>
+
+                            <div class="tab-content text-white display-4 d-block l-h-n m-0 fw-500 text-center mt-3" id="myTabContent">
+                                0
+                            </div>
+                            <div class="tab-content text-white display-4 d-block l-h-n m-0 fw-500 text-center" style="text-transform:capitalize" id="myTabContenthoras">
+                                Horas
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+            <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white card-container">
+                <div class="card-content">
+                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                        <label id="lblTicketActivos">0</label>
+                        <small class="m-0 l-h-n">Ticket Activos</small>
+                    </h3>
+                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+            <div class="p-3 bg-primary-200 rounded overflow-hidden position-relative text-white card-container">
+                <div class="card-content">
+                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                        <label id="lblTicket1H">0</label>
+                        <small class="m-0 l-h-n">Ticket con menos de 4 Horas</small>
+                    </h3>
+                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+            <div class="p-3 bg-success-700 rounded overflow-hidden position-relative text-white card-container">
+                <div class="card-content">
+                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                        <label id="lblTicket4H">0</label>
+                        <small class="m-0 l-h-n">Ticket con más de 4 Horas</small>
+                    </h3>
+                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
+            <div class="p-3 bg-warning-700 rounded overflow-hidden position-relative text-white card-container">
+                <div class="card-content">
+                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                        <label id="lblTicket8H">0</label>
+                        <small class="m-0 l-h-n">Ticket con más de 8 Horas</small>
+                    </h3>
+                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
+            <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white card-container">
+                <div class="card-content">
+                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                        <label id="lblTicket24H">0</label>
+                        <small class="m-0 l-h-n">Ticket con más de 24 Horas</small>
+                    </h3>
+                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-12 col-xl-6 col-md-6 mb-3">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>Comparativo <span class="fw-300"><i>Tickets por Área</i></span></h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-tag">
+                            Gráfica para saber la cantidad de Ticket por área
+                        </div>
+                        <div class="row">
+                            <div id="chartTicketArea" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-6 col-md-6 mb-3">
+            <div id="panel-2" class="panel">
+                <div class="panel-hdr">
+                    <h2>Comparativo <span class="fw-300"><i>Horas por Área</i></span></h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-tag">
+                            Gráfica para saber las horas por área
+                        </div>
+                        <div class="row">
+                            <div id="chartHoras" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-6 mb-3">
+            <div id="panel-3" class="panel">
+                <div class="panel-hdr">
+                    <h2>Comparativo <span class="fw-300"><i>Conteo por Incidentes</i></span></h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-tag">
+                            Gráfica para saber la cantidad de incidentes
+                        </div>
+                        <div class="row">
+                            <div id="chartConteo" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <a href="#" style="float:right" class="btn btn-outline-primary rounded waves-effect waves-themed"><i class="fal fa-solid fa-arrow-up"></i></a>
+</div>
+
+
+
+<script src="~/Content/js/statistics/ApexchartEchoaMano.js"></script>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            datos();
+            dataheader();
+            setInterval(actualizarHora, 60000);
+            generarTabsUltimosMeses();
+
+             });
+
+        function dataheader() {
+            var nombreUsuario = "@User.Identity.Name";
+            var nuevoNombre = nombreUsuario.replace(/\./g, " ");
+            $("#bienvenida").text("Bienvenido " + nuevoNombre);
+
+            actualizarHora();
+        }
+
+        function actualizarHora() {
+            var ahora = new Date();
+            var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var fechaActual = ahora.toLocaleDateString('es-ES', opcionesFecha);
+
+            var opcionesHora = { hour: '2-digit', minute: '2-digit', hour12: true };
+            var horaActual = ahora.toLocaleTimeString('es-ES', opcionesHora);
+
+            $("#fecha").text(fechaActual);
+            $("#hora").text(horaActual);
+        }
+
+        function generarTabsUltimosMeses() {
+            var hoy = new Date();
+            var tabList = $("#myTab");
+
+            for (var i = 0; i < 6; i++) {
+                var mes = new Date(hoy.getFullYear(), hoy.getMonth() - i, 1);
+                var mesNombre = mes.toLocaleString('es-ES', { month: 'long', year: 'numeric' });
+                var mesId = mes.getMonth() + 1;
+
+                var tabId = `tab${mesId}`;
+
+                tabList.append(`
+            <li class="nav-item" role="presentation">
+                <button id="${tabId}-btn" value="${mesId}" class="nav-link m-1" type="button" style="background-color: transparent; color: white; border-radius: 10px; border: 1px solid #ffffff47;">${mesNombre}</button>
+            </li>
+        `);
+            }
+
+            // Manejar el evento de clic usando delegación de eventos
+            tabList.on('click', '.nav-link', function () {
+                var tabId = $(this).attr('value');
+                cambiotab(tabId);
+            });
+
+            // Llamar a cambiotab para el mes actual después de agregar las pestañas
+            var mesActual = hoy.getMonth() + 1;
+            cambiotab(mesActual);
+        }
+
+
+      function cambiotab(tabId) {
+        $.ajax({
+            url: "@Url.Action("Tabs", "Dashboard")",
+            method: "post",
+            data: { mes: tabId },
+            success: function (response) {
+                console.log(response);
+
+                var tabContent = $("#myTabContent");
+                var tabContenthoras = $("#myTabContenthoras");
+
+                var mesNombre = new Date(new Date().getFullYear(), tabId - 1, 1).toLocaleString('es-ES', { month: 'long'});
+
+                var tiempoAcumulado = response.length > 0 ? response[0].fiTiempoAcumulado : 0;
+                var mes = response.length > 0 ? response[0].fcMes : mesNombre;
+
+                tabContent.empty();
+                tabContenthoras.empty();
+
+                tabContent.append(`
+                        <label class="tab-pane fade show active" id="${tabId} content" role="tabpanel">
+                           ${tiempoAcumulado}
+                        </label>
+                    `);
+
+                tabContenthoras.append(`
+                        <label class="tab-pane fade show active" id="${tabId} contenthora" role="tabpanel">
+                          Horas en ${mes}
+                        </label>
+                    `);
+            },
+            error: function (resp) {
+                console.error("Error:", resp);
+            }
+        });
+    }
+
+
+
+        function datos()
+        {
+            $.ajax({
+                url: "@Url.Action("Indicadores", "Dashboard")",
+                method: "get",
+                data: {},
+                 success: function (resp) {
+                     //debugger;
+                     console.log(resp)
+                     BulletIndicadores(resp.BulletViewModel);
+                     graficaTicketArea(resp.AreasIncidentes);
+                     graficaHoras(resp.AreasTiempo);
+                     graficaConteo(resp.ConteoIncidentes);
+                     //nuevagrafica(resp.AreasIncidentes);
+                },
+                error: function (resp) {
+
+                }
+            });
+        }
+
+        function BulletIndicadores(datos)
+        {
+            $("#lblTicketActivos").text(datos[0].fiIncidentesActivos);
+            $("#lblTicket1H").text(datos[0].fiIncidentes1a4Horas);
+            $("#lblTicket4H").text(datos[0].fiIncidentes4Horas);
+            $("#lblTicket8H").text(datos[0].fiIncidentes8Horas);
+            $("#lblTicket24H").text(datos[0].fiIncidentes24Horas);
+        }
+
+        function graficaTicketArea(datos)
+        {
+            //debugger;
+            //Grafica para Incidentes por area Conteo
+            var labels = [];
+            for (var i = 0; i < datos.length; i++)
+            {
+                labels.push(datos[i].fcAreaAsignada)
+            }
+
+            var valores = [];
+            for (var i = 0; i < datos.length; i++) {
+                valores.push(datos[i].fiIDIncidentes)
+            }
+            console.log(valores);
+            //debugger;
+            var optionsTicketArea = {
+                labels: labels,
+                series: valores,
+
+                chart: {
+                    toolbar: {
+                        show: true,
+                        offsetX: 0,
+                        offsetY: 0,
+                        tools: {
+                            download: true,
+                            selection: true,
+                            zoom: true,
+                            zoomin: true,
+                            zoomout: true,
+                            pan: true,
+                            reset: true | '<img src="/static/icons/reset.png" width="20">',
+                            customIcons: []
+                        },
+                        export: {
+                            csv: {
+                                filename: 'Comparativo Tickets por Área',
+                                columnDelimiter: ',',
+                                headerCategory: 'category',
+                                headerValue: 'value',
+                                dateFormatter(timestamp) {
+                                    return new Date(timestamp).toDateString()
+                                }
+                            },
+                            svg: {
+                                filename: 'Comparativo Tickets por Área',
+                            },
+                            png: {
+                                filename: 'Comparativo Tickets por Área',
+                            }
+                        },
+                        autoSelected: 'zoom'
+                    },
+                    type: 'polarArea',
+                },
+                stroke: {
+                    colors: ['#7c0099', '#66A8DE', '#ffcc00', '#330099', '#cc6600', '#660066', '#009933']
+                },
+                colors: ['#7c0099', '#66A8DE', '#ffcc00', '#330099', '#cc6600', '#660066', '#009933'],
+                legend: {
+                    show: true,
+                    position: 'top',
+                    horizontalAlign: 'center',
+                },
+                fill: {
+                    opacity: 0.8
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 300
+                        },
+                        legend: {
+
+                            position: 'bottom',
+                            onItemClick: {
+                                toggleDataSeries: true
+                            },
+                        }
+                    }
+                }]
+            };
+
+            var chartTicketArea = new ApexCharts(document.querySelector("#chartTicketArea"), optionsTicketArea);
+            chartTicketArea.render();
+            //fin
+        }
+
+        function graficaHoras(datos) {
+            //Grafica Conteo Horas por Area
+
+            //debugger;
+            //Grafica para Incidentes por area Conteo
+            var labels = [];
+            for (var i = 0; i < datos.length; i++) {
+                labels.push(datos[i].fcAreaAsignada)
+            }
+
+            var valores = [];
+            for (var i = 0; i < datos.length; i++) {
+                valores.push(datos[i].fiTiempoAcumulado)
+            }
+
+            var optionsHoras = {
+                labels: labels,
+                series: valores,
+                chart: {
+                    toolbar: {
+                        show: true,
+                        offsetX: 0,
+                        offsetY: 0,
+                        tools: {
+                            download: true,
+                            selection: true,
+                            zoom: true,
+                            zoomin: true,
+                            zoomout: true,
+                            pan: true,
+                            reset: true | '<img src="/static/icons/reset.png" width="20">',
+                            customIcons: []
+                        },
+                        export: {
+                            csv: {
+                                filename: 'Comparativo Horas por Área',
+                                columnDelimiter: ',',
+                                headerCategory: 'category',
+                                headerValue: 'value',
+                                dateFormatter(timestamp) {
+                                    return new Date(timestamp).toDateString()
+                                }
+                            },
+                            svg: {
+                                filename: 'Comparativo Horas por Área',
+                            },
+                            png: {
+                                filename: 'Comparativo Horas por Área',
+                            }
+                        },
+                        autoSelected: 'zoom'
+                    },
+                    type: 'polarArea',
+                },
+                legend: {
+                    show: true,
+                    position: 'top',
+                    horizontalAlign: 'center',
+                },
+                stroke: {
+                    colors: ['#3399cc', '#3366cc', '#6699cc', '#66ccff', '#99ccff', '#336699', '#003366']
+                },
+                colors: ['#3399cc', '#3366cc', '#6699cc', '#66ccff', '#99ccff', '#336699', '#003366'],
+                fill: {
+                    opacity: 0.8
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 300
+                        },
+                        legend: {
+
+                            position: 'bottom',
+                            onItemClick: {
+                                toggleDataSeries: true
+                            },
+                        }
+                    }
+                }]
+            };
+
+            var chartHoras = new ApexCharts(document.querySelector("#chartHoras"), optionsHoras);
+            chartHoras.render();
+            //fin
+        }
+
+        function graficaConteo(datos)
+        {
+            //Grafica para Conteo por incidentes
+            //debugger;
+            //Grafica para Incidentes por area Conteo
+            var labels = [];
+            for (var i = 0; i < datos.length; i++) {
+                labels.push(datos[i].fcIncidente)
+            }
+
+            var valores = [];
+            for (var i = 0; i < datos.length; i++) {
+                valores.push(datos[i].fiIDIncidentes)
+            }
+
+            var optionsConteo = {
+                labels: labels,
+                series: valores,
+                chart: {
+                    toolbar: {
+                        show: true,
+                        offsetX: 0,
+                        offsetY: 0,
+                        tools: {
+                            download: true,
+                            selection: true,
+                            zoom: true,
+                            zoomin: true,
+                            zoomout: true,
+                            pan: true,
+                            reset: true | '<img src="/static/icons/reset.png" width="20">',
+                            customIcons: []
+                        },
+                        export: {
+                            csv: {
+                                filename: 'Comparativo Conteo por Incidentes',
+                                columnDelimiter: ',',
+                                headerCategory: 'category',
+                                headerValue: 'value',
+                                dateFormatter(timestamp) {
+                                    return new Date(timestamp).toDateString()
+                                }
+                            },
+                            svg: {
+                                filename: 'Comparativo Conteo por Incidentes',
+                            },
+                            png: {
+                                filename: 'Comparativo Conteo por Incidentes',
+                            }
+                        },
+                        autoSelected: 'zoom'
+                    },
+                    type: 'polarArea',
+                },
+                stroke: {
+                    colors: ['#ffcc00', '#cc9900', '#ff6600', '#ff3300', '#ff0033', '#cc0066', '#990066']
+                },
+                colors: ['#ffcc00', '#cc9900', '#ff6600', '#ff3300', '#ff0033', '#cc0066', '#990066'],
+                 fill: {
+                    opacity: 0.8
+                },
+                legend: {
+                    show: true,
+                    position: 'top',
+                    horizontalAlign: 'center',
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 300
+                        },
+                        legend: {
+
+                            position: 'bottom',
+                            onItemClick: {
+                                toggleDataSeries: true
+                            },
+                        }
+                    }
+                }]
+            };
+
+            var chartConteo = new ApexCharts(document.querySelector("#chartConteo"), optionsConteo);
+            chartConteo.render();
+            //fin
+        }
+
+        //function nuevagrafica(datos) {
+
+        //    var dataSetPie = []
+
+        //    for (const item of datos) {
+        //        dataSetPie.push({
+        //            label: item.fcAreaAsignada,
+        //            data: item.fiIDIncidentes,
+        //            color: ['#fff']
+        //        })
+        //    }
+
+        //    console.log(dataSetPie);
+        //    var plot = $.plot($("#updating-chart"), [getRandomData()], options);
+
+        //    var getRandomData = function () {
+        //        if (data.length > 0)
+        //            data = data.slice(1);
+
+        //        // do a random walk
+        //        while (data.length < totalPoints) {
+        //            var prev = data.length > 0 ? data[data.length - 1] : 50;
+        //            var y = prev + Math.random() * 10 - 5;
+        //            if (y < 0)
+        //                y = 0;
+        //            if (y > 100)
+        //                y = 100;
+        //            data.push(y);
+        //        }
+
+        //        // zip the generated y values with the x values
+        //        var res = [];
+        //        for (var i = 0; i < data.length; ++i)
+        //            res.push([i, data[i]])
+        //        return res;
+        //    }
+
+        //    $.plot($("#flotPie"), dataSetPie,
+        //    {
+        //        series:
+        //        {
+        //            pie:
+        //            {
+        //                innerRadius: 0.5,
+        //                show: true,
+        //                radius: 1,
+        //                label:
+        //                {
+        //                    show: true,
+        //                    radius: 2 / 3,
+        //                    threshold: 0.1
+        //                }
+        //            }
+        //        },
+        //        legend:
+        //        {
+        //            show: false
+        //        }
+        //    });
+
+        //}
+
+    </script>
+
+}

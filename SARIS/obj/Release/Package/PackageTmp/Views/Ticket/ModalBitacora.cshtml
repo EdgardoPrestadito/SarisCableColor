@@ -1,0 +1,127 @@
+﻿@model int
+
+<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">Referencias</h2>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+    </button>
+</div>
+
+<!--Modal body-->
+<div class="modal-body">
+    <form id="MyFormModal">
+
+        <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablEstados">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Fecha de Inicio (D:H:M:S)</th>
+                            <th>Fecha Fin (D:H:M:S)</th>
+                            <th>Horas Trabajadas</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+
+        <div class="modal-footer">
+            <div class="clearfix" style="width:100%;">
+
+                <button data-dismiss="modal" class="btn btn-secondary waves-effect waves-themed float-right" type="button"><i class="text-lg ion-close-round"></i></button>
+
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+
+    <script>
+        debugger;
+        var tablaPrincipal = $('#TablEstados').DataTable({
+            autoWidth: true,
+            responsive: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'tip',
+            order: [[1, "desc"]],
+              ajax: {
+                  url: '@Url.Action("BitacoraEstado", "Ticket")',
+                  data: { Ticket: @Model },
+                  method: "Get",
+
+                  dataSrc: function (data) {
+                      return data;
+                  }
+            },
+            "columns": [
+
+                {
+
+                    "data": "fiIDRequerimiento", "className": "text-center",
+                    "render": function (data, type, row) {
+
+                        return row["fcNombreCorto"];
+                    }
+                },
+                {
+                    "data": "fdFechaInicioEstado", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        if (row["fcNombreCorto"] != "Total") {
+                            return moment(row["fdFechaInicioEstado"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+                        return " ";
+                    }
+                },
+                {
+                    "data": "fdFechaFinEstado", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        if (row["fcNombreCorto"] != "Total") {
+                            if (row["fdFechaFinEstado"] == "/Date(-2208967200000)/") {
+                                return "Pendiente";
+                            } else {
+                                return moment(row["fdFechaFinEstado"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                            }
+                        }
+                        return " ";
+
+                    }
+                },
+                {
+                    "data": "fiHorasTrabajadas", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        return row["fiHorasTrabajadas"];
+                    }
+                },
+                {
+                    "data": "fcDescripcionEstado", "className": "td-responsive",
+                    "render": function (data, type, row) {
+                        return row["fcDescripcionEstado"];
+                    }
+                },
+
+
+            ],
+
+        });
+    </script>

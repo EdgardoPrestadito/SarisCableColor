@@ -1,0 +1,464 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+</div>
+<div class="row" id="VistaGeneral">
+    @*<div id="DivVistaGeneral">*@
+    <div class="col-xl-12">
+        <div class="col-lg-2">
+            <input type="month" id="txtFecha" class="form-control" />
+        </div>
+        <div class="row">
+
+            <div class="col-xl-6">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            Rendimiento <span class="fw-300"><i>Agente</i></span>
+                        </h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        </div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+
+                            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaAgentes">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario Asignado</th>
+                                        <th>Ticket Asignados</th>
+                                        <th>Tiempo de Proceso</th>
+                                        <th>Horas de Trabajo</th>
+                                        <th>Porcentaje Rendimiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            Rendimiento <span class="fw-300"><i>Area</i></span>
+                        </h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        </div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+
+                            <div id="GraficaApur">
+                                @*<canvas id="myChart" style="width:100%; height:300px;"></canvas>*@
+                                <div id="chartArpu" style="width:100%; height:300px;"></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="VistaGeneral">
+    @*<div id="DivVistaGeneral">*@
+    <div class="col-xl-12">
+        <div class="row">
+
+            <div class="col-xl-12">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            Rendimiento <span class="fw-300"><i>Tiempo</i></span>
+                        </h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        </div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+
+                            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaEstados">
+                                <thead>
+                                    <tr>
+                                        <th>Solicitente</th>
+                                        <th>Desarrollador Asignado</th>
+                                        <th>Titulo del Requerimiento Asignado</th>
+                                        <th style="width: 80px">Tiempo de Desarrollo</th>
+                                        <th style="width: 80px">Horas Trabajadas</th>
+                                        <th>Eficiencia</th>
+                                        <th style="width: 100px">Estado del requerimiento</th>
+                                        <th style="width: 100px">Estado Tiempo</th>
+                                        <th>Fecha Creacion</th>
+                                        <th>Fecha Asignacion</th>
+                                        <th>FechadeCierre</th>
+                                        <th>Nombre Area Solicitante</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script src="~/Content/js/statistics/ApexchartEchoaMano.js"></script>
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+
+            var fecha = new Date();
+            var mes = fecha.getMonth() + 1;
+            var ano = fecha.getFullYear()
+            var fechaCompleta = ano + "-" + mes + "-01"
+            if (mes < 10)
+                mes = '0' + mes
+            document.getElementById("txtFecha").value = ano + "-" + mes;
+            DetallePersonal(fechaCompleta);
+            DetalleEstados(fechaCompleta);
+            DetalleGrafica(fechaCompleta);
+        });
+
+        function DetallePersonal(fecha)
+        {
+            $('#TablaAgentes').DataTable({
+
+                autoWidth: true,
+                responsive: true,
+                destroy: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'ip',
+            order: [[1, "desc"]],
+              ajax: {
+                url: '@Url.Action("ListaPersonal", "Dashboard")',
+                  method: "Get",
+                  data: { Fecha: fecha },
+                  dataSrc: function (data) {
+                      return data;
+                  }
+            },
+                "columns": [
+
+                    {
+                        "data": "fcNombreCorto", "className": "td-responsive",
+                        "render": function (data, type, row) {
+                            return row["fcNombreCorto"];
+                        }
+                    },
+                    {
+                        "data": "fiRequerimientosAsignados", "className": "td-responsive",
+                        "render": function (data, type, row) {
+                            return row["fiRequerimientosAsignados"];
+                        }
+                    },
+                    {
+                        "data": "fiTiempodeDesarrollo", "className": "td-responsive",
+                        "render": function (data, type, row) {
+                            return row["fiTiempodeDesarrollo"];
+                        }
+                    },
+                    {
+                        "data": "fiHorasdeTrabajodesarrollo", "className": "td-responsive",
+                        "render": function (data, type, row) {
+                            return row["fiHorasdeTrabajodesarrollo"];
+                        }
+                    },
+                    {
+                        "data": "fnCumplimientoRequerimientos", "className": "td-responsive",
+                        "render": function (data, type, row) {
+                            return row["fnCumplimientoRequerimientos"] + "%";
+                        }
+                    },
+
+
+                ],
+
+        });
+        }
+
+
+        function DetalleEstados(fecha)
+        {
+            $('#TablaEstados').DataTable({
+
+                autoWidth: true,
+                responsive: true,
+                destroy: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'ip',
+            order: [[1, "desc"]],
+              ajax: {
+                url: '@Url.Action("ProcesosIndicador", "Dashboard")',
+                  method: "Get",
+                  data: { Fecha: fecha },
+                  dataSrc: function (data) {
+                      return data;
+                  }
+            },
+                "columns": [
+                    {
+                        "data": "fcUsuarioSolicitante", "className": "td-responsive",
+                        "render": function (data, type, row) {
+                            return row["fcUsuarioSolicitante"];
+                        }
+                    },
+                    {
+                        "data": "fcNombreCorto", "className": "td-responsive",
+                        "render": function (data, type, row) {
+                            return row["fcNombreCorto"];
+                        }
+                    },
+                    {
+                        "data": "fcTituloRequerimiento", "className": "td-responsive",
+                        "render": function (data, type, row) {//row[" fiIDRequerimiento"]
+                            return '<a href="javascript:void(0)" onclick="abrirModalDetalle(' + row["fiIDRequerimiento"] + ')" > ' + row["fcTituloRequerimiento"] + '</a >';
+                        }
+                    },
+
+                    {
+
+                        "data": "fiTiempodeDesarrollo", "className": "td-responsive",
+                        "render": function (data, type, row) {
+                            return row["fiTiempodeDesarrollo"];
+                        }
+                    },
+                    {
+                        "data": "fiHorasdeTrabajodesarrollo", "className": "td-responsive",
+                        "render": function (data, type, row) {
+
+                            if (row["fiTiempodeDesarrollo"] >= row["fiHorasdeTrabajodesarrollo"]) {
+
+                                return '<span style="color:#419E3E ;  font-weight:bold;">' + row["fiHorasdeTrabajodesarrollo"] + '</span>'
+                            } else {
+                                return '<span style="color:#DD5046 ;  font-weight:bold;">' + row["fiHorasdeTrabajodesarrollo"] + '</span>'
+                            }
+
+                        }
+                    },
+                    {
+                        "data": "fnPorcentajeEficiencia", "className": "td-responsive",
+                        "render": function (data, type, row) {
+
+                            if (row["fnPorcentajeEficiencia"] > 100) {
+                                return '<span style="color:#419E3E ;  font-weight:bold;">' + row["fnPorcentajeEficiencia"] + '%</span>'
+                            } else if (row["fnPorcentajeEficiencia"] < 100) {
+                                return '<span style="color:#DD5046 ;  font-weight:bold;">' + row["fnPorcentajeEficiencia"] + '%</span>'
+                            } else if (row["fnPorcentajeEficiencia"] == 100) {
+                                return '<span style="color:#CFC348;  font-weight:bold;">' + row["fnPorcentajeEficiencia"] + '%</span>'
+                            }
+
+
+                        }
+                    },
+                    {
+                        "data": "fcDescripcionEstado", "className": "text-center",
+                        "render": function (data, type, row) {
+                            return '<a href="javascript:void(0)" onclick="ProcesosEstadosRequerimiento(' + row["fiIDRequerimiento"] + ')" > <span class="btn-sm btn-block btn-' + row["fcClaseColor"] + ' text-center">' + row["fcDescripcionEstado"] + '</span></a>';
+
+                        }
+                    },
+                    {
+                        "data": "fcEstadodelDesarrollo", "className": "text-center",
+                        "render": function (data, type, row) {
+                            return '<span class="btn-sm btn-block btn-' + row["fcCategoria"] + ' text-center">' + row["fcEstadodelDesarrollo"] + '</span>';
+                        }
+                    },
+                    {
+                        "data": "fdFechaCreacion", "className": "text-center",
+                        "render": function (data, type, row) {
+                            return moment(row["fdFechaCreacion"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+                    },
+                    {
+                        "data": "fdFechaAsignacion", "className": "text-center",
+                        "render": function (data, type, row) {
+                            return moment(row["fdFechaAsignacion"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+                    },
+                    {
+                        "data": "fdFechadeCierre", "className": "text-center",
+                        "render": function (data, type, row) {
+                            return moment(row["fdFechadeCierre"]).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+                    },
+                    {
+                        "data": "fcNombreAreaSolicitante", "className": "text-center",
+                        "render": function (data, type, row) {
+                            return row["fcNombreAreaSolicitante"];
+                        }
+                    },
+
+                ],
+
+        });
+        }
+
+        function DetalleGrafica(fecha)
+        {
+                $.ajax({
+                url: "@Url.Action("ProcesosIndicadorGrafica", "Dashboard")",
+                data: { Fecha: fecha },
+                type: "GET",
+                     success: function (respuesta) {
+                         console.log(respuesta)
+                         graf(respuesta);
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+        }
+
+        function Grafica(data) {
+
+            //debugger
+            var options = {
+                labels: ["En Tiempo", "Fuera de Tiempo"],
+                series: [data[0].fiPorcentaje, data[1].articulosBase],
+                colors: ['#535085', '#FAA61C'],
+                plotOptions: {
+                    pie: {
+                        startAngle: 0,
+                        endAngle: 360,
+                        expandOnClick: true,
+                        offsetX: 0,
+                        offsetY: 0,
+                        customScale: 1,
+                        dataLabels: {
+                            offset: 0,
+                            minAngleToShowLabel: 10
+                        },
+                        donut: {
+                            size: '65%',
+                            background: 'transparent',
+                            labels: {
+                                show: true,
+                                total: {
+                                    show: true,
+                                    showAlways: true,
+                                    label: 'Total de Tickets',
+                                    fontSize: '22px',
+                                    fontFamily: 'Helvetica, Arial, sans-serif',
+                                    fontWeight: 600,
+                                    color: '#373d3f',
+                                    formatter: function (w) {
+                                        return w.globals.seriesTotals.reduce((a, b) => {
+                                            return a + b
+                                        }, 0)
+                                    }
+                                }
+                            }
+                        },
+                    }
+                },
+                chart: {
+                    toolbar: {
+                        show: true,
+                        offsetX: 0,
+                        offsetY: 0,
+                        tools: {
+                            download: true,
+                            selection: true,
+                            zoom: true,
+                            zoomin: true,
+                            zoomout: true,
+                            pan: true,
+                            reset: true | '<img src="/static/icons/reset.png" width="20">',
+                            customIcons: []
+                        },
+                        export: {
+                            csv: {
+                                filename: 'Grafica',
+                                columnDelimiter: ',',
+                                headerCategory: 'category',
+                                headerValue: 'value',
+                                dateFormatter(timestamp) {
+                                    return new Date(timestamp).toDateString()
+                                }
+                            },
+                            svg: {
+                                filename: 'Grafica',
+                            },
+                            png: {
+                                filename: 'Grafica',
+                            }
+                        },
+                        autoSelected: 'zoom'
+                    },
+                    type: 'donut',
+                },
+
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 300
+                        },
+                        legend: {
+
+                            position: 'bottom',
+                            onItemClick: {
+                                toggleDataSeries: true
+                            },
+                        }
+                    }
+                }]
+            };
+
+            var chart = new ApexCharts(document.querySelector("#countextrachart"), options);
+            chart.render();
+
+        }
+
+
+
+
+    </script>
+
+}

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ExcelConnectionString-Web.config Connection String" description="ExcelConnectionString Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Repositorios\\Tickets\ \.net\\SARIS\\OrionCoreCableColor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ExcelConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="OrionConnections-Web.config Connection String" description="OrionConnections Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Data Source=172.20.3.150;Initial Catalog=SARIS;User Id=sa; Password=Password2009" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Repositorios\\Tickets\ \.net\\SARIS\\OrionCoreCableColor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='OrionConnections']/@connectionString" />
+  </parameter>
+  <parameter name="OrionSecurityEntities-Web.config Connection String" description="OrionSecurityEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Data Source=172.20.3.150;Initial Catalog=SARIS;User Id=sa; Password=Password2009;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Repositorios\\Tickets\ \.net\\SARIS\\OrionCoreCableColor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='OrionSecurityEntities']/@connectionString" />
+  </parameter>
+  <parameter name="SoporteOPEntities-Web.config Connection String" description="SoporteOPEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/DbConnection.SoporteOP.csdl|res://*/DbConnection.SoporteOP.ssdl|res://*/DbConnection.SoporteOP.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=172.20.3.150;initial catalog=SoporteOP;persist security info=True;user id=sa;password=Password2009;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Repositorios\\Tickets\ \.net\\SARIS\\OrionCoreCableColor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SoporteOPEntities']/@connectionString" />
+  </parameter>
+  <parameter name="SARISEntities1-Web.config Connection String" description="SARISEntities1 Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/DbConnection.SARIS.csdl|res://*/DbConnection.SARIS.ssdl|res://*/DbConnection.SARIS.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=172.20.3.150;initial catalog=SARIS;persist security info=True;user id=sa;password=Password2009;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Repositorios\\Tickets\ \.net\\SARIS\\OrionCoreCableColor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SARISEntities1']/@connectionString" />
+  </parameter>
+</parameters>

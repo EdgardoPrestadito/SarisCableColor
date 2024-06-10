@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|c:\\users\\dtorres\\documents\\saris\\saris\\saris\\controllers\\llenarcamposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:controllers\\llenarcamposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\views\\ticket\\registrarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:views\\ticket\\registrarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\views\\ticket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:views\\ticket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\views\\ticket\\actualizarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:views\\ticket\\actualizarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LlenarCamposController.cs",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Controllers\\LlenarCamposController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LlenarCamposController.cs",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Controllers\\LlenarCamposController.cs",
+              "RelativeToolTip": "Controllers\\LlenarCamposController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABsAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T16:13:52.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ActualizarTicket.cshtml",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Views\\Ticket\\ActualizarTicket.cshtml",
+              "RelativeDocumentMoniker": "Views\\Ticket\\ActualizarTicket.cshtml",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Views\\Ticket\\ActualizarTicket.cshtml",
+              "RelativeToolTip": "Views\\Ticket\\ActualizarTicket.cshtml",
+              "ViewState": "AQIAAMYAAAAAAAAAAAAUwDMBAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-31T16:05:46.9Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Views\\Ticket\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Ticket\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Views\\Ticket\\Index.cshtml",
+              "RelativeToolTip": "Views\\Ticket\\Index.cshtml",
+              "ViewState": "AQIAAJkAAAAAAAAAAAAAAK0AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-20T14:03:22.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegistrarTicket.cshtml",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Views\\Ticket\\RegistrarTicket.cshtml",
+              "RelativeDocumentMoniker": "Views\\Ticket\\RegistrarTicket.cshtml",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Views\\Ticket\\RegistrarTicket.cshtml",
+              "RelativeToolTip": "Views\\Ticket\\RegistrarTicket.cshtml",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAmwKEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-18T22:03:08.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SARIS\\SARIS\\SARIS\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-16T18:17:18.001Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

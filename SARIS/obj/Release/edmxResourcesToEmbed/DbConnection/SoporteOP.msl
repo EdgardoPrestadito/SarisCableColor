@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SoporteOPModelStoreContainer" CdmEntityContainer="SoporteOPEntities">
+    <FunctionImportMapping FunctionImportName="dt_addtosourcecontrol" FunctionName="SoporteOPModel.Store.dt_addtosourcecontrol" />
+    <FunctionImportMapping FunctionImportName="dt_addtosourcecontrol_u" FunctionName="SoporteOPModel.Store.dt_addtosourcecontrol_u" />
+    <FunctionImportMapping FunctionImportName="dt_adduserobject" FunctionName="SoporteOPModel.Store.dt_adduserobject" />
+    <FunctionImportMapping FunctionImportName="dt_adduserobject_vcs" FunctionName="SoporteOPModel.Store.dt_adduserobject_vcs" />
+    <FunctionImportMapping FunctionImportName="dt_checkinobject" FunctionName="SoporteOPModel.Store.dt_checkinobject" />
+    <FunctionImportMapping FunctionImportName="dt_checkinobject_u" FunctionName="SoporteOPModel.Store.dt_checkinobject_u" />
+    <FunctionImportMapping FunctionImportName="dt_checkoutobject" FunctionName="SoporteOPModel.Store.dt_checkoutobject" />
+    <FunctionImportMapping FunctionImportName="dt_checkoutobject_u" FunctionName="SoporteOPModel.Store.dt_checkoutobject_u" />
+    <FunctionImportMapping FunctionImportName="dt_displayoaerror" FunctionName="SoporteOPModel.Store.dt_displayoaerror" />
+    <FunctionImportMapping FunctionImportName="dt_displayoaerror_u" FunctionName="SoporteOPModel.Store.dt_displayoaerror_u" />
+    <FunctionImportMapping FunctionImportName="dt_droppropertiesbyid" FunctionName="SoporteOPModel.Store.dt_droppropertiesbyid" />
+    <FunctionImportMapping FunctionImportName="dt_dropuserobjectbyid" FunctionName="SoporteOPModel.Store.dt_dropuserobjectbyid" />
+    <FunctionImportMapping FunctionImportName="dt_generateansiname" FunctionName="SoporteOPModel.Store.dt_generateansiname" />
+    <FunctionImportMapping FunctionImportName="dt_getobjwithprop" FunctionName="SoporteOPModel.Store.dt_getobjwithprop" />
+    <FunctionImportMapping FunctionImportName="dt_getobjwithprop_u" FunctionName="SoporteOPModel.Store.dt_getobjwithprop_u" />
+    <FunctionImportMapping FunctionImportName="dt_getpropertiesbyid" FunctionName="SoporteOPModel.Store.dt_getpropertiesbyid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.dt_getpropertiesbyid_Result">
+          <ScalarProperty Name="property" ColumnName="property" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="dt_getpropertiesbyid_u" FunctionName="SoporteOPModel.Store.dt_getpropertiesbyid_u">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.dt_getpropertiesbyid_u_Result">
+          <ScalarProperty Name="property" ColumnName="property" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="uvalue" ColumnName="uvalue" />
+          <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="dt_getpropertiesbyid_vcs" FunctionName="SoporteOPModel.Store.dt_getpropertiesbyid_vcs" />
+    <FunctionImportMapping FunctionImportName="dt_getpropertiesbyid_vcs_u" FunctionName="SoporteOPModel.Store.dt_getpropertiesbyid_vcs_u" />
+    <FunctionImportMapping FunctionImportName="dt_isundersourcecontrol" FunctionName="SoporteOPModel.Store.dt_isundersourcecontrol" />
+    <FunctionImportMapping FunctionImportName="dt_isundersourcecontrol_u" FunctionName="SoporteOPModel.Store.dt_isundersourcecontrol_u" />
+    <FunctionImportMapping FunctionImportName="dt_removefromsourcecontrol" FunctionName="SoporteOPModel.Store.dt_removefromsourcecontrol" />
+    <FunctionImportMapping FunctionImportName="dt_setpropertybyid" FunctionName="SoporteOPModel.Store.dt_setpropertybyid" />
+    <FunctionImportMapping FunctionImportName="dt_setpropertybyid_u" FunctionName="SoporteOPModel.Store.dt_setpropertybyid_u" />
+    <FunctionImportMapping FunctionImportName="dt_validateloginparams" FunctionName="SoporteOPModel.Store.dt_validateloginparams" />
+    <FunctionImportMapping FunctionImportName="dt_validateloginparams_u" FunctionName="SoporteOPModel.Store.dt_validateloginparams_u" />
+    <FunctionImportMapping FunctionImportName="dt_vcsenabled" FunctionName="SoporteOPModel.Store.dt_vcsenabled" />
+    <FunctionImportMapping FunctionImportName="dt_verstamp006" FunctionName="SoporteOPModel.Store.dt_verstamp006" />
+    <FunctionImportMapping FunctionImportName="dt_verstamp007" FunctionName="SoporteOPModel.Store.dt_verstamp007" />
+    <FunctionImportMapping FunctionImportName="dt_whocheckedout" FunctionName="SoporteOPModel.Store.dt_whocheckedout" />
+    <FunctionImportMapping FunctionImportName="dt_whocheckedout_u" FunctionName="SoporteOPModel.Store.dt_whocheckedout_u" />
+    <FunctionImportMapping FunctionImportName="sp_Actualizar_InfoPlacaIP" FunctionName="SoporteOPModel.Store.sp_Actualizar_InfoPlacaIP" />
+    <FunctionImportMapping FunctionImportName="sp_BandejaRequerimiento" FunctionName="SoporteOPModel.Store.sp_BandejaRequerimiento" />
+    <FunctionImportMapping FunctionImportName="SP_CallCenter_Oferta" FunctionName="SoporteOPModel.Store.SP_CallCenter_Oferta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.SP_CallCenter_Oferta_Result">
+          <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+          <ScalarProperty Name="fnIngresosRangoInferior" ColumnName="fnIngresosRangoInferior" />
+          <ScalarProperty Name="fnIngresosRangoSuperior" ColumnName="fnIngresosRangoSuperior" />
+          <ScalarProperty Name="fnOferta" ColumnName="fnOferta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Manuales_Eliminar_Pagina" FunctionName="SoporteOPModel.Store.sp_Catalogo_Manuales_Eliminar_Pagina" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Manuales_Guardar" FunctionName="SoporteOPModel.Store.sp_Catalogo_Manuales_Guardar" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Manuales_Guardar_Manual" FunctionName="SoporteOPModel.Store.sp_Catalogo_Manuales_Guardar_Manual" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_Manuales_Guardar_Pagina" FunctionName="SoporteOPModel.Store.sp_Catalogo_Manuales_Guardar_Pagina" />
+    <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Detalle_Listado" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Detalle_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_CatalogoManual_Detalle_Listado_Result">
+          <ScalarProperty Name="fiIDManualDetalle" ColumnName="fiIDManualDetalle" />
+          <ScalarProperty Name="fiIDSolicitudManual" ColumnName="fiIDSolicitudManual" />
+          <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+          <ScalarProperty Name="fiIDTipoManual" ColumnName="fiIDTipoManual" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcTitulo" ColumnName="fcTitulo" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+          <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+          <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+          <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Documento_ObtenerPorIDManual" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Documento_ObtenerPorIDManual">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_CatalogoManual_Documento_ObtenerPorIDManual_Result">
+          <ScalarProperty Name="fiIDManualDetalle" ColumnName="fiIDManualDetalle" />
+          <ScalarProperty Name="fiIDSolicitudManual" ColumnName="fiIDSolicitudManual" />
+          <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+          <ScalarProperty Name="fiNumeroPagina" ColumnName="fiNumeroPagina" />
+          <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+          <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+          <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+          <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Eliminar" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Eliminar" />
+    <FunctionImportMapping FunctionImportName="sp_CatalogoManual_IDUltimo_Creado" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_IDUltimo_Creado" />
+    <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Listado" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_CatalogoManual_Listado_Result">
+          <ScalarProperty Name="fiIDManual" ColumnName="fiIDManual" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioAutor" ColumnName="fiIDUsuarioAutor" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcTitulo" ColumnName="fcTitulo" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fiIDTipoManual" ColumnName="fiIDTipoManual" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Listado_IDManual" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Listado_IDManual">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_CatalogoManual_Listado_IDManual_Result">
+          <ScalarProperty Name="fiIDManual" ColumnName="fiIDManual" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioAutor" ColumnName="fiIDUsuarioAutor" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcTitulo" ColumnName="fcTitulo" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fiIDTipoManual" ColumnName="fiIDTipoManual" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Eliminar_InfoPlacaIP" FunctionName="SoporteOPModel.Store.sp_Eliminar_InfoPlacaIP" />
+    <FunctionImportMapping FunctionImportName="sp_Estados_Requerimiento" FunctionName="SoporteOPModel.Store.sp_Estados_Requerimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_Estados_Requerimiento_Result">
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+          <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+          <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GPSMonitoreo_CargarJSON" FunctionName="SoporteOPModel.Store.sp_GPSMonitoreo_CargarJSON" />
+    <FunctionImportMapping FunctionImportName="sp_IncertarConsultaPlacaIP" FunctionName="SoporteOPModel.Store.sp_IncertarConsultaPlacaIP" />
+    <FunctionImportMapping FunctionImportName="sp_Manuales_Documentos_Guardar" FunctionName="SoporteOPModel.Store.sp_Manuales_Documentos_Guardar" />
+    <FunctionImportMapping FunctionImportName="sp_Manuales_Paginas_ObtenerPorIdManual" FunctionName="SoporteOPModel.Store.sp_Manuales_Paginas_ObtenerPorIdManual">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_Manuales_Paginas_ObtenerPorIdManual_Result">
+          <ScalarProperty Name="fiIDManualDetalle" ColumnName="fiIDManualDetalle" />
+          <ScalarProperty Name="fiIDSolicitudManual" ColumnName="fiIDSolicitudManual" />
+          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+          <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+          <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+          <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+          <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+          <ScalarProperty Name="fiNumeroPagina" ColumnName="fiNumeroPagina" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_MostrarInfo_PlacaIP" FunctionName="SoporteOPModel.Store.sp_MostrarInfo_PlacaIP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_MostrarInfo_PlacaIP_Result">
+          <ScalarProperty Name="Placa" ColumnName="Placa" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_NumeroConsecutivo" FunctionName="SoporteOPModel.Store.sp_NumeroConsecutivo" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Agregar" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Agregar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Alta" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Alta" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Areas" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Areas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Areas_Result">
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+          <ScalarProperty Name="fiIDUsuarioResponsable" ColumnName="fiIDUsuarioResponsable" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fiIDUnicoAdjunto" ColumnName="fiIDUnicoAdjunto" />
+          <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+          <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+          <ScalarProperty Name="fiIDIPUsuarioSolicitante" ColumnName="fiIDIPUsuarioSolicitante" />
+          <ScalarProperty Name="fcDescripcionAdjunto" ColumnName="fcDescripcionAdjunto" />
+          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+          <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+          <ScalarProperty Name="fcArchivoAdjunto" ColumnName="fcArchivoAdjunto" />
+          <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Indicadores" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Indicadores" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Lista" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Lista_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fdAltaRequerimiento" ColumnName="fdAltaRequerimiento" />
+          <ScalarProperty Name="fiIDApp" ColumnName="fiIDApp" />
+          <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fiIDAreaAsignada" ColumnName="fiIDAreaAsignada" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+          <ScalarProperty Name="fcDetalleRequerimiento" ColumnName="fcDetalleRequerimiento" />
+          <ScalarProperty Name="fcResolucion" ColumnName="fcResolucion" />
+          <ScalarProperty Name="fdUltimaActualizacion" ColumnName="fdUltimaActualizacion" />
+          <ScalarProperty Name="fdCierreRequerimiento" ColumnName="fdCierreRequerimiento" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+          <ScalarProperty Name="fiIDUsuarioResponsable" ColumnName="fiIDUsuarioResponsable" />
+          <ScalarProperty Name="fiIDEstado1" ColumnName="fiIDEstado1" />
+          <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+          <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Actualizar" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Maestro_Actualizar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Detalle" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Maestro_Detalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Maestro_Detalle_Result">
+          <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
+          <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
+          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+          <ScalarProperty Name="fdFechaAsignacion" ColumnName="fdFechaAsignacion" />
+          <ScalarProperty Name="fdFechadeCierre" ColumnName="fdFechadeCierre" />
+          <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
+          <ScalarProperty Name="fiTiempodeDesarrollo" ColumnName="fiTiempodeDesarrollo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_NumeroConsecutivo" FunctionName="SoporteOPModel.Store.sp_Requerimiento_NumeroConsecutivo" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Tipo_Adjuntos" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Tipo_Adjuntos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Tipo_Adjuntos_Result">
+          <ScalarProperty Name="fiIDTipoDocumento" ColumnName="fiIDTipoDocumento" />
+          <ScalarProperty Name="fcDescripcionTipoDocumnto" ColumnName="fcDescripcionTipoDocumnto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_RequerimientoBitacoras_Agregar" FunctionName="SoporteOPModel.Store.sp_RequerimientoBitacoras_Agregar" />
+    <FunctionImportMapping FunctionImportName="sp_RequerimientoBitacoras_Detalle" FunctionName="SoporteOPModel.Store.sp_RequerimientoBitacoras_Detalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_RequerimientoBitacoras_Detalle_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+          <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fcNombreUsuario" ColumnName="fcNombreUsuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Adjuntos_Guardar" FunctionName="SoporteOPModel.Store.sp_Requerimientos_Adjuntos_Guardar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bitacoras_Estados" FunctionName="SoporteOPModel.Store.sp_Requerimientos_Bitacoras_Estados" />
+    <FunctionImportMapping FunctionImportName="sp_Tutoriales_AccesosAreas_Actualizar" FunctionName="SoporteOPModel.Store.sp_Tutoriales_AccesosAreas_Actualizar" />
+    <FunctionImportMapping FunctionImportName="sp_Tutoriales_AccesosAreas_Insert" FunctionName="SoporteOPModel.Store.sp_Tutoriales_AccesosAreas_Insert" />
+    <FunctionImportMapping FunctionImportName="sp_Tutoriales_Videos_Insert" FunctionName="SoporteOPModel.Store.sp_Tutoriales_Videos_Insert" />
+    <FunctionImportMapping FunctionImportName="sp_tutorialesList_byIdArea" FunctionName="SoporteOPModel.Store.sp_tutorialesList_byIdArea">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoporteOPModel.sp_tutorialesList_byIdArea_Result">
+          <ScalarProperty Name="fiIDVideo" ColumnName="fiIDVideo" />
+          <ScalarProperty Name="fcDescripcionVideo" ColumnName="fcDescripcionVideo" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcUrl" ColumnName="fcUrl" />
+          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+          <ScalarProperty Name="fdFechaCreado" ColumnName="fdFechaCreado" />
+          <ScalarProperty Name="fcUsuarioCreador" ColumnName="fcUsuarioCreador" />
+          <ScalarProperty Name="fiOrden" ColumnName="fiOrden" />
+          <ScalarProperty Name="fbActivo" ColumnName="fbActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

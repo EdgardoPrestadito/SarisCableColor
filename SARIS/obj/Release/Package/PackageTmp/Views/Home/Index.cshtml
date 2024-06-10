@@ -1,0 +1,171 @@
+﻿@if (User.IsInRole("Orion_Acceso_Dashboard"))
+{
+
+
+}
+<script src="~/Content/js/statistics/ApexchartEchoaMano.js"></script>
+<script src="~/Content/js/miscellaneous/fullcalendar/fullcalendar.bundle.js"></script>
+<script src="~/Content/js/dependency/moment/moment.js"></script>
+
+@section Scripts{
+
+    <script>
+
+
+    </script>
+
+    <script>
+        function newEvent(titulo, fecha, clase, objetocompleto) {
+            var milliseconds = parseInt(fecha.replace(/\/Date\((-?\d+)\)\//, '$1'));
+            var date = new Date(milliseconds);
+            var momentDate = moment(date);
+            var fechaformat = momentDate.format('YYYY-MM-DD');
+            var todayDate = moment().startOf('day');
+
+
+            var YM = todayDate.format('YYYY-MM');
+
+            if (clase.trim() == "info") {
+                var json = {
+                    title: titulo,
+                    description: objetocompleto,
+                    start: fechaformat,
+                    end: YM,
+                    className: `bg-${clase} border-${clase} text-white`
+                };
+            }
+            else {
+                var json = {
+                    title: titulo,
+                    description: objetocompleto,
+                    start: fechaformat,
+                    className: `bg-${clase} border-${clase} text-white`
+                };
+            }
+
+
+            return json;
+        }
+
+
+
+        function modalInfo(info) {
+            var milliseconds = parseInt(info.fdFechaInstalacion.replace(/\/Date\((-?\d+)\)\//, '$1'));
+            var date = new Date(milliseconds);
+            var momentDate = moment(date);
+            var fechaformat = momentDate.format('YYYY-MM-DD');
+
+
+            $('#nombreCliente').text("Cliente: "+info.fcNombreCliente);
+            $('#fechaInstalacion').val(fechaformat);
+            $('#fcTelefonoCliente').val(info.fcTelefonoCliente);
+            $('#fcNombreTecnico').val(info.fcNombreTecnico);
+            $('#fcDescripcion').text(info.fcDescripcion);
+            $('#fcDescripcion').removeClass();
+            $('#fcDescripcion').addClass(`bg-${info.fcClase} text-white fs-2 opacity-50 col-12 pt-3 pb-3 rounded`);
+
+
+            $('#ModalInfoCalender').modal('show');
+        }
+
+
+        function modalClose() {
+            $('#ModalInfoCalender').modal('hide');
+        }
+
+        function inicializarCalendario() {
+            var jsonEvent = [];
+
+            $.ajax({
+                url: "@Url.Action("ListaSolicitudes", "Contratista")",
+                type: "GET",
+                success: function (respuesta) {
+
+                    for (var i in respuesta) {
+
+                        if (["Pendiente", "Asignado", "Proceso", "Validacion", "Validado soporte"].includes(respuesta[i]["fcDescripcion"])) {
+
+                            jsonEvent.push(newEvent(respuesta[i]["fcNombreCliente"], respuesta[i]["fdFechaInstalacion"], respuesta[i]["fcClase"], respuesta[i]));
+                        }
+                    }
+
+
+                    var calendarEl = document.getElementById('calendar');
+
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+
+                        eventClick: function (info) {
+                            modalInfo(info.event.extendedProps.description);
+                        },
+
+                        plugins: ['dayGrid', 'list', 'timeGrid', 'interaction', 'bootstrap'],
+                        themeSystem: 'bootstrap',
+                        timeZone: 'UTC',
+                        buttonText: {
+                            today: 'Hoy',
+                            month: 'Mes',
+                            week: 'Semana',
+                            day: 'Día',
+                            list: 'Listado'
+                        },
+                        eventTimeFormat: {
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            meridiem: 'short'
+                        },
+                        navLinks: true,
+                        header: {
+                            left: 'prev,next today addEventButton',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                        },
+                        footer: {
+                            left: '',
+                            center: '',
+                            right: ''
+                        },
+                        height: 700,
+                        editable: false,
+                        eventLimit: false,
+                        views: {
+                            sevenDays: {
+                                type: 'agenda',
+                                buttonText: '7 Días',
+                                visibleRange: function (currentDate) {
+                                    return {
+                                        start: currentDate.clone().subtract(2, 'days'),
+                                        end: currentDate.clone().add(5, 'days'),
+                                    };
+                                },
+                                duration: {
+                                    days: 7
+                                },
+                                dateIncrement: {
+                                    days: 1
+                                },
+                            },
+                        },
+
+                        events: jsonEvent,
+                        locale: 'es',
+                        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+                        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+                    });
+
+                    calendar.render();
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+        }
+
+
+    inicializarCalendario();
+    </script>
+
+
+
+
+}

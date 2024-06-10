@@ -1,0 +1,120 @@
+﻿<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">
+
+        <text>Asignar Usuario</text>
+
+    </h2>
+
+    <button type="button" class="close" data-dismiss="modal">
+        <i class="fal fa-times-circle fa-fw fa-lg"></i>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Asignar Usuario</label>
+                        <select id="selectusuarios" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Comentario</label>
+                        <input id="txtcomentario" class="form-control" type="text" placeholder="Definicion del titulo" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class='test col-sm-12'>
+        <br />
+        <div style='float: right;'>
+            <button type="button" id="btnGuardarUsuario" class="btn btn-success">
+                Asignar Usuario
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    var idticket = @ViewBag.IdTicket;
+    var idestadoticket = @ViewBag.EstadoTicket;
+    var idarea = @ViewBag.Area;
+
+    select();
+    function select() {
+
+        $.ajax({
+            url: "@Url.Action("SelectUsuarios", "LlenarCampos")",
+            type: "GET",
+            data: { idarea: idarea},
+            success: function (respuesta) {
+
+                var selectIncidencia = $("#selectusuarios");
+
+                selectIncidencia.empty();
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Usuario'
+                }));
+
+                $("#selectusuarios").select2({ dropdownParent: $("#MyModal") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    }
+
+    $("#btnGuardarUsuario").click(function (e) {
+
+
+        var idusuarioactualizado = $(`#selectusuarios`).val();
+        var comentario = $(`#txtcomentario`).val();
+
+        if (comentario == "" || comentario == null) {
+            return ToastrError("Error", "Escriba un comentario");
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ActualizarUsuario", "Ticket")",
+            data: { idticket: idticket, usuario: idusuarioactualizado, estadoTicket: idestadoticket, comenta:comentario },
+            error: function (xhr, ajaxOptions, thrownError) {
+                var dataerror = { Titulo: "Error", Mensaje: "No se Usuario, Contacte con el Administrador", Estado: false }
+                AlertaAjax(dataerror)
+            },
+            success: function (data)
+            {
+
+                console.log(data);
+                CerrarModal();
+                return ToastrSuccess("Exito", "Usuario Asignado Correctamente");
+                //window.location.href ="@Url.Action("Index", "Ticket")"//cambiarlo de estado despues
+                if (data.fiMensaje == "1") {
+                    CerrarModal();
+                    //window.location.href ="@Url.Action("Index", "Ticket")"
+                    //GuardarDocumentos(data.IdIngresado);
+                }
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,472 @@
+﻿@model OrionCoreCableColor.Models.Ticket.TicketMiewModel
+<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">
+
+        <text>Editar Ticket</text>
+
+    </h2>
+
+    <button type="button" class="close" data-dismiss="modal">
+        <i class="fal fa-times-circle fa-fw fa-lg"></i>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Titulo</label>
+                        @Html.EditorFor(model => model.fcTituloRequerimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Descripcion</label>
+                        @Html.EditorFor(model => model.fcDescripcionRequerimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                @if (ViewBag.PuedeEditarCategoria)
+                {
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-form-label">Categoria</label>
+                            @Html.DropDownListFor(model => model.fiCategoriadeDesarrollo, new SelectList(ViewBag.ListaCategorias, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="col-form-label">Tipo Incidencia</label>
+                            <select id="selectincidencia" class="form-select form-control">
+                            </select>
+                        </div>
+
+                    </div>
+                }
+
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Estado</label>
+                        @Html.DropDownListFor(model => model.fiIDEstadoRequerimiento, new SelectList(ViewBag.Estados, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Comentario</label>
+                        <input id="txtComentario" class="form-control" type="text" placeholder="Escriba un comentario para este Ticket" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">DOCUMENTO (Suba imagenes,Word,Excel,Pdf para este ticket) </label>
+
+                        <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
+                            <div class="dz-message needsclick">
+
+                                <div class="dz-icon">
+                                    <i class="fal fa-cloud-upload text-muted mb-3"></i>
+                                </div>
+                                <div>
+                                    <span class="dz-text">Arrastre Imagen</span>
+                                    <p class="text-sm text-muted">O Click para elegirla manualmente</p>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='test col-sm-12'>
+        <br />
+        <div style='float: right;'>
+            <button type="button" id="btnActualizarDatosRequerimiento" class="btn btn-success">
+                Actualizar Datos
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label"> Imagenes Adjuntos</label>
+                        @foreach (var item in @ViewBag.DatosDocumentoListado)
+                        {
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="input-group mar-btm">
+                                        @if (item.fcTipoArchivo == "pdf")
+                                        {
+
+                                            <a href="javascript:ShowBigPdf('@item.fcNombreArchivo','@item.fcURL')" class="text-info"> <i class="fal fa-2x fa-file-pdf"> </i> @item.fcNombreArchivo</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="javascript:void(0)" data-Description="@item.fcNombreArchivo" class="text-info" onclick="ShowBigImage(this)" src="@item.fcURL"> <i class="fal fa-2x fa-file-image"> </i>  @item.fcNombreArchivo</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script>
+    ///$("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
+    ///$("#fiIDAreaSolicitante").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
+    var estadoRequerimiento = 0;
+    var ID_REQUERIMIENTO = @ViewBag.idticket;
+    var ID_USUARIO = @ViewBag.UsuarioLogueado;
+    var idtiporequerimiento = @ViewBag.IdIncidencia;
+    var fotosredimencionadas = [];
+
+    $(`#fiCategoriadeDesarrollo`).on('change', function () {
+        cambiodecategoria(0);
+    })
+    console.log(idtiporequerimiento);
+    cambiodecategoria(idtiporequerimiento);
+
+    function cambiodecategoria(tipore) {
+        var textcategorias = $("#fiCategoriadeDesarrollo option:selected").text();
+
+        $.ajax({
+            url: "@Url.Action("SelectIncidenciasByCategorias", "LlenarCampos")",
+            type: "GET",
+            data: { fccategoria: textcategorias},
+            success: function (respuesta) {
+
+                var selectIncidencia = $("#selectincidencia");
+
+                selectIncidencia.empty();
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Defina un Tipo Incidencia'
+                }));
+                $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.fiIDTipoRequerimiento,
+                        text: item.fcTipoRequerimiento
+                    }));
+                });
+                console.log(`esto trae el tipo incidencia: ${tipore}`);
+                if (tipore != 0) {
+                    selectIncidencia.val(tipore).trigger("change");
+                }
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    }
+    $("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+
+    $(document).ready(function () {
+        estadoRequerimiento = $("#dllEstadoRequerimiento option:selected").val();
+    });
+
+    $("#btnActualizarDatosRequerimiento").click(function () {
+        ActualizarDatos();
+    });
+
+    function ActualizarDatos() {
+        var estado = 0;
+        var estadoDescripcion = "";
+
+        if ($("#txtComentario").val() != "" || $("#txtComentario").val() != null) {
+            var bitacora = {
+                //idRequerimiento: ID_REQUERIMIENTO,
+                Observaciones: $("#txtComentario").val(),
+            }
+            if ($("#fiIDEstadoRequerimiento option:selected").val() == 11 || $("#fiIDEstadoRequerimiento option:selected").val() == "11") {
+                if (fotosredimencionadas.length < 1) {
+                    ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
+                    return 0;
+                }
+            }
+
+            var requerimiento = {
+                fiIDRequerimiento: ID_REQUERIMIENTO,
+                fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
+                fcDescripcionRequerimiento: $("#fcDescripcionRequerimiento").val(),//hola,
+                fiIDEstadoRequerimiento: $("#fiIDEstadoRequerimiento option:selected").val(),
+                fcDescripcionEstado: $("#fiIDEstadoRequerimiento :selected").text(),
+                fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
+                fiTipoRequerimiento: $(`#selectincidencia`).val()
+                //fiIDUsuarioAsignado: $("#fiIDUsuarioAsignado option:selected").val() == "" ? 1 : parseInt($("#fiIDUsuarioAsignado option:selected").val()),
+
+                //$("#txtComentario").val(),
+                //fiIDAreaSolicitante: $("#fiIDAreaSolicitante option:selected").val() == null ? 0 : parseInt($("#fiIDAreaSolicitante option:selected").val()),//$("#txtComentario").val(),
+                //fcNombreAreaSolicitante: $("#fiIDAreaSolicitante :selected").text(),
+                //fiAreaAsignada: $(`#fiAreaAsignada`).val() == null ? 0 : parseInt($("#fiAreaAsignada option:selected").val()),
+            }
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ActualizarDatos", "Ticket")",
+                data: { ticket: requerimiento, comentario: $("#txtComentario").val()},
+                error: function (xhr, ajaxOptions, thrownError) {
+                    //MensajeError("Error, contacte al administrador.");
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al Actualizar el Ticket", Estado: false }
+                    AlertaAjax(dataerror)
+                },
+                success: function (data) {
+                    //console.log(data);
+
+                    let resultado = data.d;
+                    if (data.Estado == true) {
+
+                        $("#txtComentario").val(""),
+
+                        $("#modalConfirmarDatos").modal('hide');
+
+                        GuardarDocumentos(data.IdIngresado);
+                        CerrarModal();
+                        return ToastrSuccess("Exito", "Ticket Actualizado Correctamente");
+
+                    }
+                    else {
+                        var dataerror = { Titulo: "Error", Mensaje: "Error Al Actualizar el Ticket", Estado: false }
+                        AlertaAjax(dataerror)
+                        //MensajeErrorModal("No se pudo realizar la actualizacion de Datos, contacte al administrador.");
+                    }
+
+
+                }
+            });
+
+        }
+        else {
+            $("#txtComentario").parsley().validate();
+        }
+
+    }
+
+    $("#btnActualizarDatos_Confirmar").click(function () {
+        ActualizarDatos();
+
+    });
+
+
+    myDropzone = $('#Imagen-dropzone').dropzone({
+        //url: '/file/post',
+        autoProcessQueue: true,
+        uploadMultiple: true,
+        acceptedFiles: "image/*,.pdf,.doc,.docx,.xls,.xlsx",
+        //maxFiles: 1,
+        addRemoveLinks: true,
+        dictMaxFilesExceeded: "Maximum upload limit reached",
+        dictInvalidFileType: "Upload only JPG/PNG/PDF/DOC/XLS",
+        //resizeWidth: 500,
+        //resizeHeight: 300,
+
+        init: function () {
+            var myDropzone = this;
+
+            myDropzone.on('maxfilesexceeded', function (file) {
+                this.removeAllFiles();
+                this.addFile(file);
+            });
+
+            myDropzone.on('addedfile', function (file) {
+                //console.log("entro aquí el base64");
+                //console.log("file.type:", file.type);
+
+                var tipoarchivo = file.type;
+                if (tipoarchivo === "application/pdf" ||
+                    tipoarchivo === "application/msword" ||
+                    tipoarchivo === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+                    tipoarchivo === "application/vnd.ms-excel" ||
+                    tipoarchivo === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
+
+                        //console.log('Base64 String:', base64String);
+                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: false });
+                        //console.log(fotosredimencionadas);
+
+                        // Aquí puedes manejar el Base64 string, por ejemplo enviarlo a un servidor
+                    };
+                    reader.readAsDataURL(file);
+                } else if (tipoarchivo.startsWith("image/")) {
+                    myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
+                }
+            });
+
+            myDropzone.on('thumbnail', function (file, dataURL) {
+                RedimencionarImagen(`fotopreviacanva`, file, "fotoprevia2", file.name, file.type.split('/')[1])
+            });
+        },
+
+        removedfile: function (file) {
+            archivoExterno = 0;
+            var _ref = file.previewElement;
+            return _ref != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+        }
+    });
+
+    function RedimencionarImagen(idcanva, eimagencaptada, idimg, NombreArchivo, tipoimagen) {
+        debugger;
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d'); // capturamos el id del camva para ponerlo la imagen oculta ahi y asi poder tomar esa imagen y no la que se esta mostrando
+        var img = new Image;
+
+        //console.log(eimagencaptada.type);
+
+        img.src = URL.createObjectURL(eimagencaptada); // insertamos la imagen que el cliente subio para posteriormente hacer la reduccion
+        img.onload = function () {
+            //var canvas = document.getElementById(idcanva);
+            var maxAncho = 900; //aqui le ponemos unas medidas estandar que pueden cambiar en un futuro,
+            var maxAlto = 1500;
+
+            var proporcion = Math.min(maxAncho / img.width, maxAlto / img.height); // aqui hacemos una proporcion de las imagenes con respecto al tamaño de la imagen original y al estandar que tenemos nosotros aqui adentro
+            var propdos = img.width / img.height;
+            var ancho = img.width * proporcion;
+            var alto = img.height * proporcion;
+
+            canvas.width = (img.width / propdos); // ponemos el tamaño en el canva oculto
+            canvas.height = (img.height / propdos);
+
+            ctx.drawImage(img, 0, 0, (img.width / propdos), (img.height / propdos));
+            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // tira el base 64
+
+            var urlbase64 = getBase64Image(img); // tira el base 64
+            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // aqui para saber el base64 de la imagen
+            fotosredimencionadas.push({ base: canvas.toDataURL('image/jpeg', 0.7), nombreArchivo: NombreArchivo, tipoarchivo: tipoimagen, pbEsImagen: true });
+            return ctx;
+            //document.getElementById(idimg).src = canvas.toDataURL('image/jpeg', 0.7); // el 07 es la calidad de la imagen si no estoy mal eso decia en la documentacion
+            //document.getElementById(idcanva).style.display = "block"; //mostrar la imagen que esta oculta
+        }
+    }
+
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var dataURL = canvas.toDataURL();
+        return dataURL;
+    }
+
+    function GuardarDocumentos(IdRequerimiento) {
+        debugger
+        //const form = new FormData();
+
+        //form.append("idDocumento", 1);
+        var mod = [];
+
+        var cont = 0;
+        if (fotosredimencionadas.length < 1) {
+            //var datasus = { Titulo: "Exito", Mensaje: "Imagenes", Estado: true }
+            //AlertaAjax(datasus)
+            return 0;
+        }
+
+        for (const item of fotosredimencionadas) {
+
+            mod.push({ piIDRequerimiento: ID_REQUERIMIENTO, pcTipoArchivo: item.tipoarchivo, pcNombreArchivo: item.nombreArchivo, pcRutaArchivo: item.base, idSesion: 1, idApp: 1, pcURL: "-" });
+
+
+            //form.append(`modelo[${cont}].`, );
+            ////form.append("modelo[].idUsuario", ID_USUARIO);
+            //form.append(`modelo[${cont}].`, 1); // se usaba anteriormente para saber si un archivo era imagen, documento o un dinosaurio, pero con el base 64 eso ya no importa pero para no cambiar todo el flujo se deja en 1
+            //form.append(`modelo[${cont}].`, );
+            //form.append(`modelo[${cont}].`, );
+            //form.append(`modelo[${cont}].`, 1); //de momento no se para que se ocupa estas variables pero el procedimiento las pide asi que poner 1 por cualquier cosa
+            //form.append(`modelo[${cont}].`, 1);//de momento no se para que se ocupa estas variables pero el procedimiento las pide asi que poner 1 por cualquier cosa
+            //cont++
+        }
+
+
+        $.ajax({
+            url: "@Url.Action("Guardardocumentos", "Ticket")",
+            type: "POST",
+            data: { modelo: mod },
+
+                timeout: 800000,
+                success: function (data) {
+
+                    //var datasus = { Titulo: "Exito", Mensaje: "Documentos guardados correctamente", Estado: true }
+                    //AlertaAjax(datasus)
+
+                    //location.reload();
+
+                },
+                error: function (e) {
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Subir Imagenes", Estado: false }
+                    AlertaAjax(dataerror)
+                    console.error(e);
+
+                }
+            });
+
+
+    }
+
+    $(`#fiAreaAsignada`).on(`change`, function () {
+        $(this).val();
+        $.ajax({
+            url: "@Url.Action("SelectUsuarios", "LlenarCampos")",
+            type: "GET",
+            data: { idarea: $(this).val()},
+            success: function (respuesta) {
+
+                var selectIncidencia = $("#selectusuarios");
+
+                selectIncidencia.empty();
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Usuario'
+                }));
+
+                $("#selectusuarios").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+    });
+
+    function select() {
+
+
+    }
+
+
+</script>

@@ -1,0 +1,1317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SoporteOPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="dt_addtosourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchSourceSafeINI" Type="varchar" Mode="In" />
+          <Parameter Name="vchProjectName" Type="varchar" Mode="In" />
+          <Parameter Name="vchComment" Type="varchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_addtosourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchSourceSafeINI" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchProjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="dt_adduserobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_adduserobject_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchProperty" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_checkinobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+          <Parameter Name="vchComment" Type="varchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+          <Parameter Name="iActionFlag" Type="int" Mode="In" />
+          <Parameter Name="txStream1" Type="text" Mode="In" />
+          <Parameter Name="txStream2" Type="text" Mode="In" />
+          <Parameter Name="txStream3" Type="text" Mode="In" />
+        </Function>
+        <Function Name="dt_checkinobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+          <Parameter Name="iActionFlag" Type="int" Mode="In" />
+          <Parameter Name="txStream1" Type="text" Mode="In" />
+          <Parameter Name="txStream2" Type="text" Mode="In" />
+          <Parameter Name="txStream3" Type="text" Mode="In" />
+        </Function>
+        <Function Name="dt_checkoutobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+          <Parameter Name="vchComment" Type="varchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+          <Parameter Name="iActionFlag" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_checkoutobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+          <Parameter Name="iActionFlag" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_displayoaerror" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iObject" Type="int" Mode="In" />
+          <Parameter Name="iresult" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_displayoaerror_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iObject" Type="int" Mode="In" />
+          <Parameter Name="iresult" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_droppropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_dropuserobjectbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_generateansiname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="dt_getobjwithprop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_getobjwithprop_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="dt_getpropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_getpropertiesbyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_getpropertiesbyid_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="dt_getpropertiesbyid_vcs_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="dt_isundersourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+          <Parameter Name="iWhoToo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_isundersourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="iWhoToo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_removefromsourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_setpropertybyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="varchar" Mode="In" />
+          <Parameter Name="lvalue" Type="image" Mode="In" />
+        </Function>
+        <Function Name="dt_setpropertybyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
+          <Parameter Name="lvalue" Type="image" Mode="In" />
+        </Function>
+        <Function Name="dt_validateloginparams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_validateloginparams_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="dt_vcsenabled" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_verstamp006" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_verstamp007" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_whocheckedout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_whocheckedout_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fn_Requerimiento_HorasTrabajadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="pdFechaInicial" Type="datetime" Mode="In" />
+          <Parameter Name="pdFechaFinal" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_Actualizar_InfoPlacaIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pcPlaca" Type="varchar" Mode="In" />
+          <Parameter Name="piPeriodo" Type="int" Mode="In" />
+          <Parameter Name="pnMultaVehicularDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnMultaVehicularCredito" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_BandejaRequerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CallCenter_Oferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pnObligaciones" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_Catalogo_Manuales_Eliminar_Pagina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDManual" Type="int" Mode="In" />
+          <Parameter Name="piIDPagina" Type="int" Mode="In" />
+          <Parameter Name="piIDorden" Type="int" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Catalogo_Manuales_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDUsuarioCreador" Type="int" Mode="In" />
+          <Parameter Name="pcTitulo" Type="varchar" Mode="In" />
+          <Parameter Name="pcDescripcion" Type="text" Mode="In" />
+          <Parameter Name="piIDTipoManual" Type="int" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Catalogo_Manuales_Guardar_Manual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDManual" Type="int" Mode="In" />
+          <Parameter Name="pcTitulo" Type="varchar" Mode="In" />
+          <Parameter Name="pcDescripcion" Type="text" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Catalogo_Manuales_Guardar_Pagina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDManual" Type="int" Mode="In" />
+          <Parameter Name="piIDPagina" Type="int" Mode="In" />
+          <Parameter Name="piIDorden" Type="int" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CatalogoManual_Detalle_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CatalogoManual_Documento_ObtenerPorIDManual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDManual" Type="int" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CatalogoManual_Eliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDManual" Type="int" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CatalogoManual_IDUltimo_Creado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CatalogoManual_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CatalogoManual_Listado_IDManual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDManual" Type="int" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Eliminar_InfoPlacaIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pcPlaca" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Estados_Requerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GPSMonitoreo_CargarJSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_IncertarConsultaPlacaIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pcPlaca" Type="varchar" Mode="In" />
+          <Parameter Name="pcMarca" Type="varchar" Mode="In" />
+          <Parameter Name="pcColor" Type="varchar" Mode="In" />
+          <Parameter Name="pilDPeriodo" Type="int" Mode="In" />
+          <Parameter Name="pnTasaVehicularDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnTasaVehicularCredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnTasaVehicularSaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pnMultaVehicularDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnMultaVehicularCredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnMultaVehicularSaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresVehicularDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresVehicularCredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresVehicularSaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pnTasaMunicipalDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnTasaMunicipalCredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnTasaMunicipalSaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pnMultaMunicipalDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnMultaMunicipalCredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnMultaMunicipalSaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresMunicipalesDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresMunicipalesCredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresMunicipalesSaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pnContribucionSigloXXIDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnContribucionSigloXXICredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnContribucionSigloXXISaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresSigloXXIDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresSiglosXXICredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnSaldosAnterioresSiglosXXISaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pnValorPlacaDebito" Type="decimal" Mode="In" />
+          <Parameter Name="pnValorPlacaCredito" Type="decimal" Mode="In" />
+          <Parameter Name="pnValorPlacaSaldo" Type="decimal" Mode="In" />
+          <Parameter Name="pilDTotalMatricula" Type="decimal" Mode="In" />
+          <Parameter Name="piCambiodePropietarioCantidad" Type="int" Mode="In" />
+          <Parameter Name="pnCambiodePropietarioMonto" Type="decimal" Mode="In" />
+          <Parameter Name="piCambioPlacaCantidad" Type="int" Mode="In" />
+          <Parameter Name="pnCambioPlacaMonto" Type="decimal" Mode="In" />
+          <Parameter Name="piTotalCantidad" Type="int" Mode="In" />
+          <Parameter Name="pnTotalMonto" Type="decimal" Mode="In" />
+          <Parameter Name="pnTotalaPagar" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_Manuales_Documentos_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSolicitudManual" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuarioCreador" Type="int" Mode="In" />
+          <Parameter Name="piNumeroPagina" Type="int" Mode="In" />
+          <Parameter Name="pcTipoArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="pcNombreArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="pcRutaArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="pcURL" Type="varchar" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Manuales_Paginas_ObtenerPorIdManual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDManual" Type="int" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_MostrarInfo_PlacaIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pcPlaca" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_NumeroConsecutivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDContador" Type="int" Mode="In" />
+          <Parameter Name="poiSiguienteNumero" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_Requerimiento_Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="pcIP" Type="varchar" Mode="In" />
+          <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+          <Parameter Name="pcDescripcionRequerimiento" Type="text" Mode="In" />
+          <Parameter Name="piTipoRequerimiento" Type="tinyint" Mode="In" />
+          <Parameter Name="piIDAreaSolicitante" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimiento_Alta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="pcDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+          <Parameter Name="pcDetalleRequerimiento" Type="text" Mode="In" />
+          <Parameter Name="piEstadoRequerimiento" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimiento_Areas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimiento_Indicadores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pdFechaOperativa" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimiento_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimiento_Maestro_Actualizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+          <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+          <Parameter Name="pcDescripcionRequerimiento" Type="text" Mode="In" />
+          <Parameter Name="piIDEstadoRequerimiento" Type="tinyint" Mode="In" />
+          <Parameter Name="fdFechaAsignacion" Type="datetime" Mode="In" />
+          <Parameter Name="pifiIDUsuarioAsignado" Type="int" Mode="In" />
+          <Parameter Name="piTiempodeDesarrollo" Type="int" Mode="In" />
+          <Parameter Name="pifiTipoRequerimiento" Type="tinyint" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimiento_Maestro_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimiento_NumeroConsecutivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDContador" Type="int" Mode="In" />
+          <Parameter Name="poiSiguienteNumero" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_Requerimiento_Tipo_Adjuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="smallint" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_RequerimientoBitacoras_Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuarioSolicitante" Type="int" Mode="In" />
+          <Parameter Name="fcComentario" Type="text" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDEstado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_RequerimientoBitacoras_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimientos_Adjuntos_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+          <Parameter Name="pcNombreArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="pcTipoArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="pcRutaArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="pcURL" Type="varchar" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimientos_Bitacoras_Estados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Tutoriales_AccesosAreas_Actualizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fiIDEmpleado" Type="int" Mode="In" />
+          <Parameter Name="fiIDArea" Type="int" Mode="In" />
+          <Parameter Name="fiIDAcceso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Tutoriales_AccesosAreas_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fiIDEmpleado" Type="int" Mode="In" />
+          <Parameter Name="fiIDArea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Tutoriales_Videos_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fcDescripcionVideo" Type="nvarchar" Mode="In" />
+          <Parameter Name="fiIDArea" Type="int" Mode="In" />
+          <Parameter Name="fcUrl" Type="nvarchar" Mode="In" />
+          <Parameter Name="fcNombreArchivo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tutorialesList_byIdArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fiIdArea" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SoporteOPModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SoporteOPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SoporteOPEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="dt_addtosourcecontrol" ReturnType="Collection(String)">
+            <Parameter Name="vchSourceSafeINI" Mode="In" Type="String" />
+            <Parameter Name="vchProjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_addtosourcecontrol_u" ReturnType="Collection(String)">
+            <Parameter Name="vchSourceSafeINI" Mode="In" Type="String" />
+            <Parameter Name="vchProjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_adduserobject" />
+          <FunctionImport Name="dt_adduserobject_vcs">
+          <Parameter Name="vchProperty" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_checkinobject">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+            <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+            <Parameter Name="txStream1" Mode="In" Type="String" />
+            <Parameter Name="txStream2" Mode="In" Type="String" />
+            <Parameter Name="txStream3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_checkinobject_u">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+            <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+            <Parameter Name="txStream1" Mode="In" Type="String" />
+            <Parameter Name="txStream2" Mode="In" Type="String" />
+            <Parameter Name="txStream3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_checkoutobject">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+            <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_checkoutobject_u">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+            <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_displayoaerror">
+            <Parameter Name="iObject" Mode="In" Type="Int32" />
+            <Parameter Name="iresult" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_displayoaerror_u">
+            <Parameter Name="iObject" Mode="In" Type="Int32" />
+            <Parameter Name="iresult" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_droppropertiesbyid">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_dropuserobjectbyid">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_generateansiname">
+          <Parameter Name="name" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getobjwithprop" ReturnType="Collection(Int32)">
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getobjwithprop_u" ReturnType="Collection(Int32)">
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="uvalue" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getpropertiesbyid" ReturnType="Collection(SoporteOPModel.dt_getpropertiesbyid_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getpropertiesbyid_u" ReturnType="Collection(SoporteOPModel.dt_getpropertiesbyid_u_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getpropertiesbyid_vcs">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getpropertiesbyid_vcs_u">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_isundersourcecontrol">
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iWhoToo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_isundersourcecontrol_u">
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iWhoToo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_removefromsourcecontrol" />
+          <FunctionImport Name="dt_setpropertybyid">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="In" Type="String" />
+            <Parameter Name="lvalue" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="dt_setpropertybyid_u">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="uvalue" Mode="In" Type="String" />
+            <Parameter Name="lvalue" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="dt_validateloginparams">
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_validateloginparams_u">
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_vcsenabled" />
+          <FunctionImport Name="dt_verstamp006" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="dt_verstamp007" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="dt_whocheckedout" ReturnType="Collection(String)">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_whocheckedout_u" ReturnType="Collection(String)">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Actualizar_InfoPlacaIP">
+            <Parameter Name="pcPlaca" Mode="In" Type="String" />
+            <Parameter Name="piPeriodo" Mode="In" Type="Int32" />
+            <Parameter Name="pnMultaVehicularDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnMultaVehicularCredito" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_BandejaRequerimiento">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CallCenter_Oferta" ReturnType="Collection(SoporteOPModel.SP_CallCenter_Oferta_Result)">
+          <Parameter Name="pnObligaciones" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Catalogo_Manuales_Eliminar_Pagina">
+            <Parameter Name="piIDManual" Mode="In" Type="Int32" />
+            <Parameter Name="piIDPagina" Mode="In" Type="Int32" />
+            <Parameter Name="piIDorden" Mode="In" Type="Int32" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Catalogo_Manuales_Guardar" ReturnType="Collection(Decimal)">
+            <Parameter Name="piIDUsuarioCreador" Mode="In" Type="Int32" />
+            <Parameter Name="pcTitulo" Mode="In" Type="String" />
+            <Parameter Name="pcDescripcion" Mode="In" Type="String" />
+            <Parameter Name="piIDTipoManual" Mode="In" Type="Int32" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Catalogo_Manuales_Guardar_Manual">
+            <Parameter Name="piIDManual" Mode="In" Type="Int32" />
+            <Parameter Name="pcTitulo" Mode="In" Type="String" />
+            <Parameter Name="pcDescripcion" Mode="In" Type="String" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Catalogo_Manuales_Guardar_Pagina">
+            <Parameter Name="piIDManual" Mode="In" Type="Int32" />
+            <Parameter Name="piIDPagina" Mode="In" Type="Int32" />
+            <Parameter Name="piIDorden" Mode="In" Type="Int32" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CatalogoManual_Detalle_Listado" ReturnType="Collection(SoporteOPModel.sp_CatalogoManual_Detalle_Listado_Result)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CatalogoManual_Documento_ObtenerPorIDManual" ReturnType="Collection(SoporteOPModel.sp_CatalogoManual_Documento_ObtenerPorIDManual_Result)">
+            <Parameter Name="piIDManual" Mode="In" Type="Int32" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CatalogoManual_Eliminar">
+            <Parameter Name="piIDManual" Mode="In" Type="Int32" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CatalogoManual_IDUltimo_Creado" ReturnType="Collection(Int32)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CatalogoManual_Listado" ReturnType="Collection(SoporteOPModel.sp_CatalogoManual_Listado_Result)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CatalogoManual_Listado_IDManual" ReturnType="Collection(SoporteOPModel.sp_CatalogoManual_Listado_IDManual_Result)">
+            <Parameter Name="piIDManual" Mode="In" Type="Int32" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Eliminar_InfoPlacaIP">
+          <Parameter Name="pcPlaca" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Estados_Requerimiento" ReturnType="Collection(SoporteOPModel.sp_Estados_Requerimiento_Result)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int16" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GPSMonitoreo_CargarJSON" />
+          <FunctionImport Name="sp_IncertarConsultaPlacaIP">
+            <Parameter Name="pcPlaca" Mode="In" Type="String" />
+            <Parameter Name="pcMarca" Mode="In" Type="String" />
+            <Parameter Name="pcColor" Mode="In" Type="String" />
+            <Parameter Name="pilDPeriodo" Mode="In" Type="Int32" />
+            <Parameter Name="pnTasaVehicularDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnTasaVehicularCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnTasaVehicularSaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pnMultaVehicularDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnMultaVehicularCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnMultaVehicularSaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresVehicularDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresVehicularCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresVehicularSaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pnTasaMunicipalDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnTasaMunicipalCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnTasaMunicipalSaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pnMultaMunicipalDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnMultaMunicipalCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnMultaMunicipalSaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresMunicipalesDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresMunicipalesCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresMunicipalesSaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pnContribucionSigloXXIDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnContribucionSigloXXICredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnContribucionSigloXXISaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresSigloXXIDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresSiglosXXICredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnSaldosAnterioresSiglosXXISaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pnValorPlacaDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnValorPlacaCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="pnValorPlacaSaldo" Mode="In" Type="Decimal" />
+            <Parameter Name="pilDTotalMatricula" Mode="In" Type="Decimal" />
+            <Parameter Name="piCambiodePropietarioCantidad" Mode="In" Type="Int32" />
+            <Parameter Name="pnCambiodePropietarioMonto" Mode="In" Type="Decimal" />
+            <Parameter Name="piCambioPlacaCantidad" Mode="In" Type="Int32" />
+            <Parameter Name="pnCambioPlacaMonto" Mode="In" Type="Decimal" />
+            <Parameter Name="piTotalCantidad" Mode="In" Type="Int32" />
+            <Parameter Name="pnTotalMonto" Mode="In" Type="Decimal" />
+            <Parameter Name="pnTotalaPagar" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Manuales_Documentos_Guardar" ReturnType="Collection(String)">
+            <Parameter Name="piIDSolicitudManual" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuarioCreador" Mode="In" Type="Int32" />
+            <Parameter Name="piNumeroPagina" Mode="In" Type="Int32" />
+            <Parameter Name="pcTipoArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcNombreArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcRutaArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcURL" Mode="In" Type="String" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Manuales_Paginas_ObtenerPorIdManual" ReturnType="Collection(SoporteOPModel.sp_Manuales_Paginas_ObtenerPorIdManual_Result)">
+            <Parameter Name="piIDManual" Mode="In" Type="Int32" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MostrarInfo_PlacaIP" ReturnType="Collection(SoporteOPModel.sp_MostrarInfo_PlacaIP_Result)">
+          <Parameter Name="pcPlaca" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_NumeroConsecutivo">
+            <Parameter Name="piIDContador" Mode="In" Type="Int32" />
+            <Parameter Name="poiSiguienteNumero" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Agregar" ReturnType="Collection(Int32)">
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="pcIP" Mode="In" Type="String" />
+            <Parameter Name="pcTituloRequerimiento" Mode="In" Type="String" />
+            <Parameter Name="pcDescripcionRequerimiento" Mode="In" Type="String" />
+            <Parameter Name="piTipoRequerimiento" Mode="In" Type="Byte" />
+            <Parameter Name="piIDAreaSolicitante" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Alta" ReturnType="Collection(String)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int16" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="pcDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pcTituloRequerimiento" Mode="In" Type="String" />
+            <Parameter Name="pcDetalleRequerimiento" Mode="In" Type="String" />
+            <Parameter Name="piEstadoRequerimiento" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Areas" ReturnType="Collection(SoporteOPModel.sp_Requerimiento_Areas_Result)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int16" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento" ReturnType="Collection(SoporteOPModel.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento_Result)">
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Indicadores">
+          <Parameter Name="pdFechaOperativa" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Lista" ReturnType="Collection(SoporteOPModel.sp_Requerimiento_Lista_Result)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int16" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Maestro_Actualizar" ReturnType="Collection(String)">
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="pcTituloRequerimiento" Mode="In" Type="String" />
+            <Parameter Name="pcDescripcionRequerimiento" Mode="In" Type="String" />
+            <Parameter Name="piIDEstadoRequerimiento" Mode="In" Type="Byte" />
+            <Parameter Name="fdFechaAsignacion" Mode="In" Type="DateTime" />
+            <Parameter Name="pifiIDUsuarioAsignado" Mode="In" Type="Int32" />
+            <Parameter Name="piTiempodeDesarrollo" Mode="In" Type="Int32" />
+            <Parameter Name="pifiTipoRequerimiento" Mode="In" Type="Byte" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Maestro_Detalle" ReturnType="Collection(SoporteOPModel.sp_Requerimiento_Maestro_Detalle_Result)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int16" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_NumeroConsecutivo">
+            <Parameter Name="piIDContador" Mode="In" Type="Int32" />
+            <Parameter Name="poiSiguienteNumero" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Tipo_Adjuntos" ReturnType="Collection(SoporteOPModel.sp_Requerimiento_Tipo_Adjuntos_Result)">
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int16" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RequerimientoBitacoras_Agregar" ReturnType="Collection(String)">
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuarioSolicitante" Mode="In" Type="Int32" />
+            <Parameter Name="fcComentario" Mode="In" Type="String" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RequerimientoBitacoras_Detalle" ReturnType="Collection(SoporteOPModel.sp_RequerimientoBitacoras_Detalle_Result)">
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimientos_Adjuntos_Guardar" ReturnType="Collection(String)">
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="pcNombreArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcTipoArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcRutaArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcURL" Mode="In" Type="String" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimientos_Bitacoras_Estados">
+          <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Tutoriales_AccesosAreas_Actualizar">
+            <Parameter Name="fiIDEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="fiIDArea" Mode="In" Type="Int32" />
+            <Parameter Name="fiIDAcceso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Tutoriales_AccesosAreas_Insert">
+            <Parameter Name="fiIDEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="fiIDArea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Tutoriales_Videos_Insert">
+            <Parameter Name="fcDescripcionVideo" Mode="In" Type="String" />
+            <Parameter Name="fiIDArea" Mode="In" Type="Int32" />
+            <Parameter Name="fcUrl" Mode="In" Type="String" />
+            <Parameter Name="fcNombreArchivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tutorialesList_byIdArea" ReturnType="Collection(SoporteOPModel.sp_tutorialesList_byIdArea_Result)">
+          <Parameter Name="fiIdArea" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="dt_getpropertiesbyid_Result">
+          <Property Type="String" Name="property" Nullable="false" MaxLength="64" />
+          <Property Type="Int32" Name="version" Nullable="false" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="255" />
+          <Property Type="Binary" Name="lvalue" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="dt_getpropertiesbyid_u_Result">
+          <Property Type="String" Name="property" Nullable="false" MaxLength="64" />
+          <Property Type="Int32" Name="version" Nullable="false" />
+          <Property Type="String" Name="uvalue" Nullable="true" MaxLength="255" />
+          <Property Type="Binary" Name="lvalue" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="SP_CallCenter_Oferta_Result">
+          <Property Type="String" Name="fcProducto" Nullable="false" MaxLength="17" />
+          <Property Type="Decimal" Name="fnIngresosRangoInferior" Nullable="false" Precision="13" Scale="2" />
+          <Property Type="Decimal" Name="fnIngresosRangoSuperior" Nullable="false" Precision="13" Scale="2" />
+          <Property Type="Decimal" Name="fnOferta" Nullable="false" Precision="13" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="sp_CatalogoManual_Detalle_Listado_Result">
+          <Property Type="Int32" Name="fiIDManualDetalle" Nullable="false" />
+          <Property Type="Int32" Name="fiIDSolicitudManual" Nullable="false" />
+          <Property Type="Int32" Name="fiIDUsuarioCreador" Nullable="false" />
+          <Property Type="Int32" Name="fiIDTipoManual" Nullable="true" />
+          <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="fcTitulo" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="fcDescripcion" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="fdFechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="fcTipoArchivo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="fcNombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="fcRutaArchivo" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="fcURL" Nullable="false" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="sp_CatalogoManual_Documento_ObtenerPorIDManual_Result">
+          <Property Type="Int32" Name="fiIDManualDetalle" Nullable="false" />
+          <Property Type="Int32" Name="fiIDSolicitudManual" Nullable="false" />
+          <Property Type="Int32" Name="fiIDUsuarioCreador" Nullable="false" />
+          <Property Type="Int32" Name="fiNumeroPagina" Nullable="false" />
+          <Property Type="DateTime" Name="fdFechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="fcTipoArchivo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="fcNombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="fcRutaArchivo" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="fcURL" Nullable="false" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="sp_CatalogoManual_Listado_Result">
+          <Property Type="Int32" Name="fiIDManual" Nullable="false" />
+          <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fiIDUsuarioAutor" Nullable="false" />
+          <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="fcTitulo" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="fcDescripcion" Nullable="false" MaxLength="Max" />
+          <Property Type="DateTime" Name="fdFechaUltimaModificacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fiIDUsuarioUltimaModificacion" Nullable="false" />
+          <Property Type="Int32" Name="fiIDTipoManual" Nullable="false" />
+          <Property Type="Byte" Name="fiIDEstado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_CatalogoManual_Listado_IDManual_Result">
+          <Property Type="Int32" Name="fiIDManual" Nullable="false" />
+          <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fiIDUsuarioAutor" Nullable="false" />
+          <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="fcTitulo" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="fcDescripcion" Nullable="false" MaxLength="Max" />
+          <Property Type="DateTime" Name="fdFechaUltimaModificacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fiIDUsuarioUltimaModificacion" Nullable="false" />
+          <Property Type="Int32" Name="fiIDTipoManual" Nullable="false" />
+          <Property Type="Byte" Name="fiIDEstado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Estados_Requerimiento_Result">
+          <Property Type="Byte" Name="fiIDEstado" Nullable="false" />
+          <Property Type="String" Name="fcDescripcionEstado" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="fcClaseColor" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Manuales_Paginas_ObtenerPorIdManual_Result">
+          <Property Type="Int32" Name="fiIDManualDetalle" Nullable="false" />
+          <Property Type="Int32" Name="fiIDSolicitudManual" Nullable="false" />
+          <Property Type="String" Name="fcNombreArchivo" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="fcRutaArchivo" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="fcTipoArchivo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="fcURL" Nullable="false" MaxLength="2000" />
+          <Property Type="DateTime" Name="fdFechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fiNumeroPagina" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_MostrarInfo_PlacaIP_Result">
+          <Property Type="String" Name="Placa" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Marca" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Requerimiento_Areas_Result">
+          <Property Type="Int16" Name="fiIDArea" Nullable="false" />
+          <Property Type="String" Name="fcDescripcion" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="fcCorreoElectronico" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDUsuarioResponsable" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento_Result">
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="Int32" Name="fiIDUnicoAdjunto" Nullable="false" />
+          <Property Type="DateTime" Name="fdFechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fIDIUsuario" Nullable="false" />
+          <Property Type="String" Name="fiIDIPUsuarioSolicitante" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="fcDescripcionAdjunto" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="fcNombreArchivo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fcTipoArchivo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="fcArchivoAdjunto" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="fcRutaArchivo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fcToken" Nullable="false" MaxLength="512" />
+          <Property Type="String" Name="fcURL" Nullable="true" MaxLength="2256" />
+        </ComplexType>
+        <ComplexType Name="sp_Requerimiento_Lista_Result">
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="DateTime" Name="fdAltaRequerimiento" Nullable="false" Precision="23" />
+          <Property Type="Int16" Name="fiIDApp" Nullable="false" />
+          <Property Type="Int32" Name="fiIDUsuario" Nullable="false" />
+          <Property Type="String" Name="fcTituloRequerimiento" Nullable="false" MaxLength="100" />
+          <Property Type="Byte" Name="fiIDAreaAsignada" Nullable="false" />
+          <Property Type="Byte" Name="fiIDEstado" Nullable="false" />
+          <Property Type="String" Name="fcDetalleRequerimiento" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcResolucion" Nullable="false" MaxLength="1000" />
+          <Property Type="DateTime" Name="fdUltimaActualizacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fdCierreRequerimiento" Nullable="true" Precision="23" />
+          <Property Type="Int16" Name="fiIDArea" Nullable="false" />
+          <Property Type="String" Name="fcDescripcion" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="fcCorreoElectronico" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDUsuarioResponsable" Nullable="false" />
+          <Property Type="Byte" Name="fiIDEstado1" Nullable="false" />
+          <Property Type="String" Name="fcDescripcionEstado" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="fcClaseColor" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Requerimiento_Maestro_Detalle_Result">
+          <Property Type="String" Name="fcDescripcionRequerimiento" Nullable="false" MaxLength="Max" />
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="fcTituloRequerimiento" Nullable="false" MaxLength="1000" />
+          <Property Type="Byte" Name="fiIDAreaSolicitante" Nullable="false" />
+          <Property Type="Byte" Name="fiIDEstadoRequerimiento" Nullable="false" />
+          <Property Type="Int32" Name="fiIDUsuarioAsignado" Nullable="false" />
+          <Property Type="DateTime" Name="fdFechaAsignacion" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fdFechadeCierre" Nullable="false" Precision="23" />
+          <Property Type="String" Name="fcBuzondeCorreo" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="fiTiempodeDesarrollo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Requerimiento_Tipo_Adjuntos_Result">
+          <Property Type="Int32" Name="fiIDTipoDocumento" Nullable="false" />
+          <Property Type="String" Name="fcDescripcionTipoDocumnto" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_RequerimientoBitacoras_Detalle_Result">
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="DateTime" Name="fdFechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fIDIUsuario" Nullable="false" />
+          <Property Type="String" Name="fcComentario" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNombreUsuario" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="sp_tutorialesList_byIdArea_Result">
+          <Property Type="Int32" Name="fiIDVideo" Nullable="false" />
+          <Property Type="String" Name="fcDescripcionVideo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDArea" Nullable="true" />
+          <Property Type="String" Name="fcUrl" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fcNombreArchivo" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="fdFechaCreado" Nullable="true" Precision="23" />
+          <Property Type="String" Name="fcUsuarioCreador" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="fiOrden" Nullable="true" />
+          <Property Type="Boolean" Name="fbActivo" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SoporteOPModelStoreContainer" CdmEntityContainer="SoporteOPEntities">
+          <FunctionImportMapping FunctionImportName="dt_addtosourcecontrol" FunctionName="SoporteOPModel.Store.dt_addtosourcecontrol" />
+          <FunctionImportMapping FunctionImportName="dt_addtosourcecontrol_u" FunctionName="SoporteOPModel.Store.dt_addtosourcecontrol_u" />
+          <FunctionImportMapping FunctionImportName="dt_adduserobject" FunctionName="SoporteOPModel.Store.dt_adduserobject" />
+          <FunctionImportMapping FunctionImportName="dt_adduserobject_vcs" FunctionName="SoporteOPModel.Store.dt_adduserobject_vcs" />
+          <FunctionImportMapping FunctionImportName="dt_checkinobject" FunctionName="SoporteOPModel.Store.dt_checkinobject" />
+          <FunctionImportMapping FunctionImportName="dt_checkinobject_u" FunctionName="SoporteOPModel.Store.dt_checkinobject_u" />
+          <FunctionImportMapping FunctionImportName="dt_checkoutobject" FunctionName="SoporteOPModel.Store.dt_checkoutobject" />
+          <FunctionImportMapping FunctionImportName="dt_checkoutobject_u" FunctionName="SoporteOPModel.Store.dt_checkoutobject_u" />
+          <FunctionImportMapping FunctionImportName="dt_displayoaerror" FunctionName="SoporteOPModel.Store.dt_displayoaerror" />
+          <FunctionImportMapping FunctionImportName="dt_displayoaerror_u" FunctionName="SoporteOPModel.Store.dt_displayoaerror_u" />
+          <FunctionImportMapping FunctionImportName="dt_droppropertiesbyid" FunctionName="SoporteOPModel.Store.dt_droppropertiesbyid" />
+          <FunctionImportMapping FunctionImportName="dt_dropuserobjectbyid" FunctionName="SoporteOPModel.Store.dt_dropuserobjectbyid" />
+          <FunctionImportMapping FunctionImportName="dt_generateansiname" FunctionName="SoporteOPModel.Store.dt_generateansiname" />
+          <FunctionImportMapping FunctionImportName="dt_getobjwithprop" FunctionName="SoporteOPModel.Store.dt_getobjwithprop" />
+          <FunctionImportMapping FunctionImportName="dt_getobjwithprop_u" FunctionName="SoporteOPModel.Store.dt_getobjwithprop_u" />
+          <FunctionImportMapping FunctionImportName="dt_getpropertiesbyid" FunctionName="SoporteOPModel.Store.dt_getpropertiesbyid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.dt_getpropertiesbyid_Result">
+                <ScalarProperty Name="property" ColumnName="property" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="dt_getpropertiesbyid_u" FunctionName="SoporteOPModel.Store.dt_getpropertiesbyid_u">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.dt_getpropertiesbyid_u_Result">
+                <ScalarProperty Name="property" ColumnName="property" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="uvalue" ColumnName="uvalue" />
+                <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="dt_getpropertiesbyid_vcs" FunctionName="SoporteOPModel.Store.dt_getpropertiesbyid_vcs" />
+          <FunctionImportMapping FunctionImportName="dt_getpropertiesbyid_vcs_u" FunctionName="SoporteOPModel.Store.dt_getpropertiesbyid_vcs_u" />
+          <FunctionImportMapping FunctionImportName="dt_isundersourcecontrol" FunctionName="SoporteOPModel.Store.dt_isundersourcecontrol" />
+          <FunctionImportMapping FunctionImportName="dt_isundersourcecontrol_u" FunctionName="SoporteOPModel.Store.dt_isundersourcecontrol_u" />
+          <FunctionImportMapping FunctionImportName="dt_removefromsourcecontrol" FunctionName="SoporteOPModel.Store.dt_removefromsourcecontrol" />
+          <FunctionImportMapping FunctionImportName="dt_setpropertybyid" FunctionName="SoporteOPModel.Store.dt_setpropertybyid" />
+          <FunctionImportMapping FunctionImportName="dt_setpropertybyid_u" FunctionName="SoporteOPModel.Store.dt_setpropertybyid_u" />
+          <FunctionImportMapping FunctionImportName="dt_validateloginparams" FunctionName="SoporteOPModel.Store.dt_validateloginparams" />
+          <FunctionImportMapping FunctionImportName="dt_validateloginparams_u" FunctionName="SoporteOPModel.Store.dt_validateloginparams_u" />
+          <FunctionImportMapping FunctionImportName="dt_vcsenabled" FunctionName="SoporteOPModel.Store.dt_vcsenabled" />
+          <FunctionImportMapping FunctionImportName="dt_verstamp006" FunctionName="SoporteOPModel.Store.dt_verstamp006" />
+          <FunctionImportMapping FunctionImportName="dt_verstamp007" FunctionName="SoporteOPModel.Store.dt_verstamp007" />
+          <FunctionImportMapping FunctionImportName="dt_whocheckedout" FunctionName="SoporteOPModel.Store.dt_whocheckedout" />
+          <FunctionImportMapping FunctionImportName="dt_whocheckedout_u" FunctionName="SoporteOPModel.Store.dt_whocheckedout_u" />
+          <FunctionImportMapping FunctionImportName="sp_Actualizar_InfoPlacaIP" FunctionName="SoporteOPModel.Store.sp_Actualizar_InfoPlacaIP" />
+          <FunctionImportMapping FunctionImportName="sp_BandejaRequerimiento" FunctionName="SoporteOPModel.Store.sp_BandejaRequerimiento" />
+          <FunctionImportMapping FunctionImportName="SP_CallCenter_Oferta" FunctionName="SoporteOPModel.Store.SP_CallCenter_Oferta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.SP_CallCenter_Oferta_Result">
+                <ScalarProperty Name="fcProducto" ColumnName="fcProducto" />
+                <ScalarProperty Name="fnIngresosRangoInferior" ColumnName="fnIngresosRangoInferior" />
+                <ScalarProperty Name="fnIngresosRangoSuperior" ColumnName="fnIngresosRangoSuperior" />
+                <ScalarProperty Name="fnOferta" ColumnName="fnOferta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Catalogo_Manuales_Eliminar_Pagina" FunctionName="SoporteOPModel.Store.sp_Catalogo_Manuales_Eliminar_Pagina" />
+          <FunctionImportMapping FunctionImportName="sp_Catalogo_Manuales_Guardar" FunctionName="SoporteOPModel.Store.sp_Catalogo_Manuales_Guardar" />
+          <FunctionImportMapping FunctionImportName="sp_Catalogo_Manuales_Guardar_Manual" FunctionName="SoporteOPModel.Store.sp_Catalogo_Manuales_Guardar_Manual" />
+          <FunctionImportMapping FunctionImportName="sp_Catalogo_Manuales_Guardar_Pagina" FunctionName="SoporteOPModel.Store.sp_Catalogo_Manuales_Guardar_Pagina" />
+          <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Detalle_Listado" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Detalle_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_CatalogoManual_Detalle_Listado_Result">
+                <ScalarProperty Name="fiIDManualDetalle" ColumnName="fiIDManualDetalle" />
+                <ScalarProperty Name="fiIDSolicitudManual" ColumnName="fiIDSolicitudManual" />
+                <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+                <ScalarProperty Name="fiIDTipoManual" ColumnName="fiIDTipoManual" />
+                <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+                <ScalarProperty Name="fcTitulo" ColumnName="fcTitulo" />
+                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+                <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+                <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+                <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+                <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+                <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Documento_ObtenerPorIDManual" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Documento_ObtenerPorIDManual">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_CatalogoManual_Documento_ObtenerPorIDManual_Result">
+                <ScalarProperty Name="fiIDManualDetalle" ColumnName="fiIDManualDetalle" />
+                <ScalarProperty Name="fiIDSolicitudManual" ColumnName="fiIDSolicitudManual" />
+                <ScalarProperty Name="fiIDUsuarioCreador" ColumnName="fiIDUsuarioCreador" />
+                <ScalarProperty Name="fiNumeroPagina" ColumnName="fiNumeroPagina" />
+                <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+                <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+                <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+                <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+                <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Eliminar" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Eliminar" />
+          <FunctionImportMapping FunctionImportName="sp_CatalogoManual_IDUltimo_Creado" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_IDUltimo_Creado" />
+          <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Listado" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_CatalogoManual_Listado_Result">
+                <ScalarProperty Name="fiIDManual" ColumnName="fiIDManual" />
+                <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+                <ScalarProperty Name="fiIDUsuarioAutor" ColumnName="fiIDUsuarioAutor" />
+                <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+                <ScalarProperty Name="fcTitulo" ColumnName="fcTitulo" />
+                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+                <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+                <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+                <ScalarProperty Name="fiIDTipoManual" ColumnName="fiIDTipoManual" />
+                <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CatalogoManual_Listado_IDManual" FunctionName="SoporteOPModel.Store.sp_CatalogoManual_Listado_IDManual">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_CatalogoManual_Listado_IDManual_Result">
+                <ScalarProperty Name="fiIDManual" ColumnName="fiIDManual" />
+                <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+                <ScalarProperty Name="fiIDUsuarioAutor" ColumnName="fiIDUsuarioAutor" />
+                <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+                <ScalarProperty Name="fcTitulo" ColumnName="fcTitulo" />
+                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+                <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+                <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+                <ScalarProperty Name="fiIDTipoManual" ColumnName="fiIDTipoManual" />
+                <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Eliminar_InfoPlacaIP" FunctionName="SoporteOPModel.Store.sp_Eliminar_InfoPlacaIP" />
+          <FunctionImportMapping FunctionImportName="sp_Estados_Requerimiento" FunctionName="SoporteOPModel.Store.sp_Estados_Requerimiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_Estados_Requerimiento_Result">
+                <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+                <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+                <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GPSMonitoreo_CargarJSON" FunctionName="SoporteOPModel.Store.sp_GPSMonitoreo_CargarJSON" />
+          <FunctionImportMapping FunctionImportName="sp_IncertarConsultaPlacaIP" FunctionName="SoporteOPModel.Store.sp_IncertarConsultaPlacaIP" />
+          <FunctionImportMapping FunctionImportName="sp_Manuales_Documentos_Guardar" FunctionName="SoporteOPModel.Store.sp_Manuales_Documentos_Guardar" />
+          <FunctionImportMapping FunctionImportName="sp_Manuales_Paginas_ObtenerPorIdManual" FunctionName="SoporteOPModel.Store.sp_Manuales_Paginas_ObtenerPorIdManual">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_Manuales_Paginas_ObtenerPorIdManual_Result">
+                <ScalarProperty Name="fiIDManualDetalle" ColumnName="fiIDManualDetalle" />
+                <ScalarProperty Name="fiIDSolicitudManual" ColumnName="fiIDSolicitudManual" />
+                <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+                <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+                <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+                <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+                <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+                <ScalarProperty Name="fiNumeroPagina" ColumnName="fiNumeroPagina" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MostrarInfo_PlacaIP" FunctionName="SoporteOPModel.Store.sp_MostrarInfo_PlacaIP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_MostrarInfo_PlacaIP_Result">
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_NumeroConsecutivo" FunctionName="SoporteOPModel.Store.sp_NumeroConsecutivo" />
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Agregar" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Agregar" />
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Alta" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Alta" />
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Areas" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Areas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Areas_Result">
+                <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+                <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+                <ScalarProperty Name="fiIDUsuarioResponsable" ColumnName="fiIDUsuarioResponsable" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento_Result">
+                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+                <ScalarProperty Name="fiIDUnicoAdjunto" ColumnName="fiIDUnicoAdjunto" />
+                <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+                <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+                <ScalarProperty Name="fiIDIPUsuarioSolicitante" ColumnName="fiIDIPUsuarioSolicitante" />
+                <ScalarProperty Name="fcDescripcionAdjunto" ColumnName="fcDescripcionAdjunto" />
+                <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+                <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+                <ScalarProperty Name="fcArchivoAdjunto" ColumnName="fcArchivoAdjunto" />
+                <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+                <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+                <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Indicadores" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Indicadores" />
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Lista" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Lista">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Lista_Result">
+                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+                <ScalarProperty Name="fdAltaRequerimiento" ColumnName="fdAltaRequerimiento" />
+                <ScalarProperty Name="fiIDApp" ColumnName="fiIDApp" />
+                <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+                <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+                <ScalarProperty Name="fiIDAreaAsignada" ColumnName="fiIDAreaAsignada" />
+                <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+                <ScalarProperty Name="fcDetalleRequerimiento" ColumnName="fcDetalleRequerimiento" />
+                <ScalarProperty Name="fcResolucion" ColumnName="fcResolucion" />
+                <ScalarProperty Name="fdUltimaActualizacion" ColumnName="fdUltimaActualizacion" />
+                <ScalarProperty Name="fdCierreRequerimiento" ColumnName="fdCierreRequerimiento" />
+                <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+                <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+                <ScalarProperty Name="fiIDUsuarioResponsable" ColumnName="fiIDUsuarioResponsable" />
+                <ScalarProperty Name="fiIDEstado1" ColumnName="fiIDEstado1" />
+                <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+                <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Actualizar" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Maestro_Actualizar" />
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Detalle" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Maestro_Detalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Maestro_Detalle_Result">
+                <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+                <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+                <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+                <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
+                <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
+                <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+                <ScalarProperty Name="fdFechaAsignacion" ColumnName="fdFechaAsignacion" />
+                <ScalarProperty Name="fdFechadeCierre" ColumnName="fdFechadeCierre" />
+                <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
+                <ScalarProperty Name="fiTiempodeDesarrollo" ColumnName="fiTiempodeDesarrollo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_NumeroConsecutivo" FunctionName="SoporteOPModel.Store.sp_Requerimiento_NumeroConsecutivo" />
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Tipo_Adjuntos" FunctionName="SoporteOPModel.Store.sp_Requerimiento_Tipo_Adjuntos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_Requerimiento_Tipo_Adjuntos_Result">
+                <ScalarProperty Name="fiIDTipoDocumento" ColumnName="fiIDTipoDocumento" />
+                <ScalarProperty Name="fcDescripcionTipoDocumnto" ColumnName="fcDescripcionTipoDocumnto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RequerimientoBitacoras_Agregar" FunctionName="SoporteOPModel.Store.sp_RequerimientoBitacoras_Agregar" />
+          <FunctionImportMapping FunctionImportName="sp_RequerimientoBitacoras_Detalle" FunctionName="SoporteOPModel.Store.sp_RequerimientoBitacoras_Detalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_RequerimientoBitacoras_Detalle_Result">
+                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+                <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+                <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+                <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+                <ScalarProperty Name="fcNombreUsuario" ColumnName="fcNombreUsuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Requerimientos_Adjuntos_Guardar" FunctionName="SoporteOPModel.Store.sp_Requerimientos_Adjuntos_Guardar" />
+          <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bitacoras_Estados" FunctionName="SoporteOPModel.Store.sp_Requerimientos_Bitacoras_Estados" />
+          <FunctionImportMapping FunctionImportName="sp_Tutoriales_AccesosAreas_Actualizar" FunctionName="SoporteOPModel.Store.sp_Tutoriales_AccesosAreas_Actualizar" />
+          <FunctionImportMapping FunctionImportName="sp_Tutoriales_AccesosAreas_Insert" FunctionName="SoporteOPModel.Store.sp_Tutoriales_AccesosAreas_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Tutoriales_Videos_Insert" FunctionName="SoporteOPModel.Store.sp_Tutoriales_Videos_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_tutorialesList_byIdArea" FunctionName="SoporteOPModel.Store.sp_tutorialesList_byIdArea">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoporteOPModel.sp_tutorialesList_byIdArea_Result">
+                <ScalarProperty Name="fiIDVideo" ColumnName="fiIDVideo" />
+                <ScalarProperty Name="fcDescripcionVideo" ColumnName="fcDescripcionVideo" />
+                <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+                <ScalarProperty Name="fcUrl" ColumnName="fcUrl" />
+                <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+                <ScalarProperty Name="fdFechaCreado" ColumnName="fdFechaCreado" />
+                <ScalarProperty Name="fcUsuarioCreador" ColumnName="fcUsuarioCreador" />
+                <ScalarProperty Name="fiOrden" ColumnName="fiOrden" />
+                <ScalarProperty Name="fbActivo" ColumnName="fbActivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,99 @@
+﻿
+@model OrionCoreCableColor.Models.Usuario.CrearUsuarioViewModel
+
+<!--Modal header-->
+<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">Editar Informacion Laboral</h2>
+    <button type="button" class="close" data-dismiss="modal"><i class="fal fa-times-circle fa-fw fa-lg"></i></button>
+
+</div>
+
+<!--Modal body-->
+<div class="modal-body">
+    <form id="MyFormModal">
+        @Html.HiddenFor(model => model.fiIdUsuario)
+        <div class="form-group">
+            @Html.LabelFor(model => model.fiAreaAsignada, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group mar-btm" style="width:100%;">
+
+                @Html.DropDownListFor(model => model.fiAreaAsignada, new SelectList(ViewBag.ListaAreas, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+            </div>
+            @Html.ValidationMessageFor(model => model.fiAreaAsignada, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdRol, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group mar-btm" style="width:100%;">
+
+                @Html.DropDownListFor(model => model.IdRol, new SelectList(ViewBag.ListaRoles, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+            </div>
+            @Html.ValidationMessageFor(model => model.IdRol, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fiIDJefeInmediato, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group mar-btm" style="width:100%;">
+
+                @Html.DropDownListFor(model => model.fiIDJefeInmediato, new SelectList(ViewBag.ListaJefesArea, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+            </div>
+            @Html.ValidationMessageFor(model => model.fiIDJefeInmediato, "", new { @class = "text-danger" })
+        </div>
+
+
+
+
+
+        <div class="modal-footer">
+            <div class="clearfix" style="width:100%;">
+                <button data-dismiss="modal" class="btn btn-link btn-lg waves-effect waves-themed float-left text-danger" type="button"><i class="text-lg ion-close-round"></i></button>
+                <button class="btn btn-link btn-lg text-success waves-effect waves-themed float-right"><i class="text-lg ion-checkmark-round"></i></button>
+            </div>
+
+
+        </div>
+
+    </form>
+</div>
+
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+
+    $("#fiAreaAsignada").select2({ dropdownParent: $("#MyModalSm") });
+    $("#IdRol").select2({ dropdownParent: $("#MyModalSm") });
+    $("#fiIDJefeInmediato").select2({ dropdownParent: $("#MyModalSm") });
+
+
+    $("#MyFormModal").submit(function (event) {
+        event.preventDefault();
+        if (!$("#MyFormModal").valid()) {
+            return false;
+        }
+        var model = @Html.Raw(Json.Encode(Model));
+        debugger;
+        model.fiIDJefeInmediato = $("#fiIDJefeInmediato").val();
+        model.fiAreaAsignada = $("#fiAreaAsignada").val();
+        model.IdRol = $("#IdRol").val();
+        model.fiIdUsuario = $("#fiIdUsuario").val();
+
+            $.ajax({
+                url: '@Url.Action("EditarInfoUsuarioLaboral", "Usuario")',
+                type: 'POST',
+                data: JSON.stringify({ model: model }),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data.Estado) {
+                        CerrarModal();
+                        tablaPrincipal.ajax.reload().draw(false);
+                    }
+                    AlertaAjax(data);
+                },
+                error: function (data) {
+                    AlertaError();
+                },
+            });
+
+
+    });
+</script>
