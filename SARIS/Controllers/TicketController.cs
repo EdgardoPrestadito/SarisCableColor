@@ -218,7 +218,7 @@ namespace OrionCoreCableColor.Controllers
                         //cambiar despues Los datos que se envian en duro para que sea mas dinamico las cosas 
                         var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
 
-                        var save = contexto.sp_Requerimiento_Alta(1, 1, GetIdUser(), ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, ticket.fiTipoRequerimiento, idarea, $"El usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} a Creado El Ticket").FirstOrDefault();
+                        var save = contexto.sp_Requerimiento_Alta(1, 1, GetIdUser(), ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, ticket.fiTipoRequerimiento, idarea, $"El usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} a Creado El Ticket", ticket.fiIDImpacto, ticket.fiIDUrgencia, ticket.fiIDPrioridad).FirstOrDefault();
                         var datosticket = Datosticket((int)save.IdIngresado);
                         //GuardarBitacoraGeneralhistorial(GetIdUser(),datosticket.fiIDRequerimiento,datosticket.fiIDUsuarioSolicitante, comentarioticket,1,datosticket.fiIDEstadoRequerimiento,datosticket.fiIDUsuarioAsignado);
 
@@ -549,6 +549,7 @@ namespace OrionCoreCableColor.Controllers
         {
             using (var contexto = new SARISEntities1())
             {
+                var idusuario = GetIdUser();
                 var cont = contexto.sp_DetalleBitacoraInformacion(GetIdUser(), idticket).FirstOrDefault();
                 var tick = new TicketInformacionViewModel();
                 tick.fcClaseColor = cont.fcClaseColor;
@@ -560,6 +561,12 @@ namespace OrionCoreCableColor.Controllers
                 tick.fdFechaCreacion = cont.fdFechaCreacion;
                 tick.fiIDRequerimiento = cont.fiIDRequerimiento;
                 tick.fcTituloRequerimiento = cont.fcTituloRequerimiento;
+                tick.fiIDImpacto = (int)cont.fiIDImpacto;
+                tick.fcDescripcionImpacto = cont.fcDescripcionImpacto;
+                tick.fiIDPrioridad = (int)cont.fiIDPrioridad;
+                tick.fcDescripcionPrioridad = cont.fcDescripcionPrioridad;
+                tick.fiIDUrgencia = (int)cont.fiIDUrgencia;
+                tick.fcDescripcionUrgencia = cont.fcDescripcionUrgencia;
 
 
                 ViewBag.DatosDocumentoListado = contexto.sp_DetalleBitacoraInformacionArchivos(GetIdUser(),idticket).ToList();

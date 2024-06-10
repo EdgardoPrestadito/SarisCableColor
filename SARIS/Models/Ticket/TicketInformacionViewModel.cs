@@ -16,5 +16,11 @@ namespace OrionCoreCableColor.Models.Ticket
         public string fcDescripcionEstado { get; set; }
         public string fcClaseColor { get; set; }
         public DateTime fdFechaCreacion { get; set; }
+        public Nullable<int> fiIDUrgencia { get; set; }
+        public string fcDescripcionUrgencia { get; set; }
+        public Nullable<int> fiIDImpacto { get; set; }
+        public string fcDescripcionImpacto { get; set; }
+        public Nullable<int> fiIDPrioridad { get; set; }
+        public string fcDescripcionPrioridad { get; set; }
     }
 }

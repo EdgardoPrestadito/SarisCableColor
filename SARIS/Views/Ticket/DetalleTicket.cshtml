@@ -145,6 +145,54 @@
                     </div>
                 </div>
 
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                            <br />
+                            <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                                <div class="form-group">
+                                    <label class="control-label font-12">Urgencia</label>
+                                    <div class="input-group mar-btm">
+                                        @Html.EditorFor(model => model.fcDescripcionUrgencia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                            <br />
+                            <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                                <div class="form-group">
+                                    <label class="control-label font-12">Impacto</label>
+                                    <div class="input-group mar-btm">
+                                        @Html.EditorFor(model => model.fcDescripcionImpacto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                            <br />
+                            <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                                <div class="form-group">
+                                    <label class="control-label font-12">Prioridad</label>
+                                    <div class="input-group mar-btm">
+                                        @Html.EditorFor(model => model.fcDescripcionPrioridad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>

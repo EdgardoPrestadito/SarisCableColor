@@ -331,10 +331,10 @@
                         var opt = `<div class='dropdown d-inline-block dropleft'>
                                     <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t
                                     <div class='dropdown-menu'>`;
-                        if (@Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
+                        //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
 
                             opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Ticket</a>`;
-                        }
+                        //}
                         opt += `</div>
                                 </div>`
                         return opt;

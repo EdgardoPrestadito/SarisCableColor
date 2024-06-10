@@ -32,93 +32,7 @@
 <div class="modal-body">
     <div class="row">
 
-        <div class="col-lg-6">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Titulo</label>
-                        <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Definicion del titulo" />
-                    </div>
-                </div>
-
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Descripcion</label>
-                        <input id="txtdescripcion" class="form-control" type="text" placeholder="Definicion del ticket" />
-                    </div>
-                </div>
-                <!--<div class="col-sm-12">-->
-                <!--esto debe de ser un select -->
-                <!--<div class="form-group">
-    <label class="col-form-label">Area</label>
-    <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Area" />
-        </div>
-    </div>-->
-
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Tipo Categoria</label>
-                        <select id="seleccategoria" class="form-select form-control">
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Tipo Incidencia</label>
-                        <select id="selectincidencia" class="form-select form-control">
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Urgencia</label>
-                        <select id="selectUrgencia" class="form-select form-control">
-                        </select>
-                    </div>
-
-                </div>
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Impacto</label>
-                        <select id="selectImpacto" class="form-select form-control">
-                        </select>
-                    </div>
-
-                </div>
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Prioridad</label>
-                        <select id="PrioridadSelect" class="form-select form-control" readonly>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-12" style="display:none">
-                    <div class="form-group">
-                        <label class="col-form-label">Asignar a</label>
-                        <select id="selectasignar" class="form-select form-control">
-                        </select>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Comentario</label>
-                        <input id="txtcomentario" class="form-control" type="text" placeholder="Escriba un comentario para este Ticket" />
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
@@ -139,15 +53,102 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Titulo</label>
+                        <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Definicion del titulo" />
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Descripcion</label>
+                        <input id="txtdescripcion" class="form-control" type="text" placeholder="Definicion del ticket" />
+                    </div>
+                </div>
+                <!--<div class="col-sm-12">-->
+                <!--esto debe de ser un select -->
+                <!--<div class="form-group">
+            <label class="col-form-label">Area</label>
+            <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Area" />
+                </div>
+            </div>-->
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Tipo Categoria</label>
+                        <select id="seleccategoria" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Tipo Incidencia</label>
+                        <select id="selectincidencia" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Urgencia</label>
+                        <select id="selectUrgencia" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Impacto</label>
+                        <select id="selectImpacto" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Prioridad</label>
+                        <select id="PrioridadSelect" class="form-select form-control" readonly>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6" style="display:none">
+                    <div class="form-group">
+                        <label class="col-form-label">Asignar a</label>
+                        <select id="selectasignar" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Comentario</label>
+                        <input id="txtcomentario" class="form-control" type="text" placeholder="Escriba un comentario para este Ticket" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
 
         <!--Comentario del ticket-->
 
         <div class="col-lg-6">
             <div class="row">
-                
+
             </div>
         </div>
 
@@ -218,6 +219,7 @@
         debugger
         var Urgencia = $("#selectUrgencia option:selected").val();
         var Impacto = $("#selectImpacto option:selected").val();
+
         if (Urgencia != 0 && Impacto != 0)
         {
             $.ajax({
@@ -416,14 +418,19 @@
     function GuardarRequermiento(id) {
         H5_loading.show();
         var EstadoRequerimiento = id;
+        var urg = $(`#selectUrgencia`).val();
+        var imp = $(`#selectImpacto`).val();
+        console.log(`urgencia = ${urg} impato = ${imp}`);
 
         var ticket = {
             fiIDEstadoRequerimiento: EstadoRequerimiento,
             fcTituloRequerimiento: $("#txtNombreTitulo").val(),
             fcDescripcionRequerimiento: $("#txtdescripcion").val(),
             fiIDAreaSolicitante: $(`#selectarea`).val(),
-            fiTipoRequerimiento: $("#selectincidencia").val()
-
+            fiTipoRequerimiento: $("#selectincidencia").val(),
+            fiIDImpacto: $(`#selectImpacto`).val(),
+            fiIDUrgencia: $(`#selectUrgencia`).val(),
+            fiIDPrioridad: $(`#PrioridadSelect`).val()
         }
         var comentario = $("#txtcomentario").val();
         if (comentario == "" || comentario == null) {
