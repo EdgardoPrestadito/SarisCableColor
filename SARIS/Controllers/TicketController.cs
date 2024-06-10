@@ -236,6 +236,43 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionCategoria = correo.fcDescripcionCategoria,
                             fcTipoRequerimiento = correo.fcTipoRequerimiento
                         });
+
+                        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                        {
+                            fiIDRequerimiento = correo.fiIDRequerimiento,
+                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                            fdFechaCreacion = correo.fdFechaCreacion,
+                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fcAreaSolicitante = correo.fcAreaSolicitante,
+                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                            fcNombreCorto = correo.fcNombreCorto,
+                            fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcCorreoElectronico = correo.fcTelefonoSolicitante,
+                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                            fcTipoRequerimiento = correo.fcTipoRequerimiento
+                        });
+
+                        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                        {
+                            fiIDRequerimiento = correo.fiIDRequerimiento,
+                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                            fdFechaCreacion = correo.fdFechaCreacion,
+                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fcAreaSolicitante = correo.fcAreaSolicitante,
+                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                            fcNombreCorto = correo.fcNombreCorto,
+                            fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcCorreoElectronico = correo.fcCorreoJefeArea,
+                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                            fcTipoRequerimiento = correo.fcTipoRequerimiento
+                        });
+                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento);
+                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefe, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento);
+                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento);
                         //MensajeDeTexto.EnviarLinkGeoLocation(model.Nombre, model.IdCliente, model.Telefono, "");
                         return EnviarListaJson(save);
 
@@ -305,8 +342,44 @@ namespace OrionCoreCableColor.Controllers
                         fcDescripcionCategoria = correo.fcDescripcionCategoria,
                         fcTipoRequerimiento = correo.fcTipoRequerimiento
                     });
-
+                    await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                    {
+                        fiIDRequerimiento = correo.fiIDRequerimiento,
+                        fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                        fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                        fdFechaCreacion = correo.fdFechaCreacion,
+                        fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                        fcAreaSolicitante = correo.fcAreaSolicitante,
+                        fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                        fcNombreCorto = correo.fcNombreCorto,
+                        fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                        fcDescripcionEstado = correo.fcDescripcionEstado,
+                        fcCorreoElectronico = correo.fcCorreoUsuarioSolicitante,
+                        fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                        fcTipoRequerimiento = correo.fcTipoRequerimiento
+                    });
+                    if (correo.fiIDEstadoRequerimiento == 5) 
+                    {
+                        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                        {
+                            fiIDRequerimiento = correo.fiIDRequerimiento,
+                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                            fdFechaCreacion = correo.fdFechaCreacion,
+                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fcAreaSolicitante = correo.fcAreaSolicitante,
+                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                            fcNombreCorto = correo.fcNombreCorto,
+                            fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcCorreoElectronico = correo.fcCorreoJefeArea,
+                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                            fcTipoRequerimiento = correo.fcTipoRequerimiento
+                        });
+                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefe, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento);
+                    }
                     MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento);
+                    MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento);
 
                     return EnviarResultado(true, "", "Ticket Actualizado exitosamente");
                 }
@@ -409,12 +482,28 @@ namespace OrionCoreCableColor.Controllers
                         fcNombreCorto = correo.fcNombreCorto,
                         fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
                         fcDescripcionEstado = correo.fcDescripcionEstado,
-                        fcCorreoElectronico = correo.fcCorreoElectronico,
+                        fcCorreoElectronico = correo.fcCorreoArea,
+                        fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                        fcTipoRequerimiento = correo.fcTipoRequerimiento
+                    });
+                    await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                    {
+                        fiIDRequerimiento = correo.fiIDRequerimiento,
+                        fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                        fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                        fdFechaCreacion = correo.fdFechaCreacion,
+                        fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                        fcAreaSolicitante = correo.fcAreaSolicitante,
+                        fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                        fcNombreCorto = correo.fcNombreCorto,
+                        fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                        fcDescripcionEstado = correo.fcDescripcionEstado,
+                        fcCorreoElectronico = correo.fcCorreoJefeArea,
                         fcDescripcionCategoria = correo.fcDescripcionCategoria,
                         fcTipoRequerimiento = correo.fcTipoRequerimiento
                     });
                     //
-                    //MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento);
+                    MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefe, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento);
 
                     return EnviarResultado(true, "", "Ticket Actualizado exitosamente");
                 }
@@ -479,7 +568,24 @@ namespace OrionCoreCableColor.Controllers
                         fcDescripcionCategoria = correo.fcDescripcionCategoria,
                         fcTipoRequerimiento = correo.fcTipoRequerimiento
                     });
+                    await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                    {
+                        fiIDRequerimiento = correo.fiIDRequerimiento,
+                        fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                        fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                        fdFechaCreacion = correo.fdFechaCreacion,
+                        fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                        fcAreaSolicitante = correo.fcAreaSolicitante,
+                        fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                        fcNombreCorto = correo.fcNombreCorto,
+                        fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                        fcDescripcionEstado = correo.fcDescripcionEstado,
+                        fcCorreoElectronico = correo.fcCorreoUsuarioSolicitante,
+                        fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                        fcTipoRequerimiento = correo.fcTipoRequerimiento
+                    });
                     MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento,correo.fcTelefonoMovil,correo.fcTituloRequerimiento,correo.fcDescripcionRequerimiento,correo.fcDescripcionCategoria,correo.fcTipoRequerimiento);
+                    MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento,correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento,correo.fcDescripcionRequerimiento,correo.fcDescripcionCategoria,correo.fcTipoRequerimiento);
                     return EnviarResultado(true, "", "Ticket Usuario Actualizado exitosamente");
                 }
             }
