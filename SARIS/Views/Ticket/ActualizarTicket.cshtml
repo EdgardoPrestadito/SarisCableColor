@@ -57,6 +57,25 @@
                     </div>
                 </div>
 
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Urgencia</label>
+                        @Html.EditorFor(model => model.fcDescripcionUrgencia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Impacto</label>
+                        @Html.EditorFor(model => model.fcDescripcionImpacto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Prioridad</label>
+                        @Html.EditorFor(model => model.fcDescripcionPrioridad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
 
                 <div class="col-sm-12">
                     <div class="form-group">

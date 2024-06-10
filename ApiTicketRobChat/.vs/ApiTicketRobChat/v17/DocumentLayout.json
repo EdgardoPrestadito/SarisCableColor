@@ -1,22 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\",
+  "WorkspaceRootPath": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\dtorres\\videos\\apiticketrobchat\\apiticketrobchat\\controllers\\ticketsrobchatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\apiticketrobchat\\apiticketrobchat\\controllers\\correoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|solutionrelative:apiticketrobchat\\controllers\\correoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\apiticketrobchat\\apiticketrobchat\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|solutionrelative:apiticketrobchat\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\apiticketrobchat\\apiticketrobchat\\controllers\\ticketsrobchatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|solutionrelative:apiticketrobchat\\controllers\\ticketsrobchatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\dtorres\\videos\\apiticketrobchat\\apiticketrobchat\\migrations\\20240522224347_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|solutionrelative:apiticketrobchat\\migrations\\20240522224347_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\dtorres\\videos\\apiticketrobchat\\apiticketrobchat\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\apiticketrobchat\\apiticketrobchat\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|solutionrelative:apiticketrobchat\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\dtorres\\videos\\apiticketrobchat\\apiticketrobchat\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\apiticketrobchat\\apiticketrobchat\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|solutionrelative:apiticketrobchat\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\apiticketrobchat\\apiticketrobchat\\migrations\\20240522224347_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7D5BD-D778-49F3-AA20-8F61CFECD0D8}|ApiTicketRobChat\\ApiTicketRobChat.csproj|solutionrelative:apiticketrobchat\\migrations\\20240522224347_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,57 +34,88 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "20240522224347_Initial.cs",
-              "DocumentMoniker": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\Migrations\\20240522224347_Initial.cs",
-              "RelativeDocumentMoniker": "ApiTicketRobChat\\Migrations\\20240522224347_Initial.cs",
-              "ToolTip": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\Migrations\\20240522224347_Initial.cs",
-              "RelativeToolTip": "ApiTicketRobChat\\Migrations\\20240522224347_Initial.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAMAAAA",
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "ApiTicketRobChat\\Context\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "ApiTicketRobChat\\Context\\AppDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA8AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T14:23:40.679Z",
+              "WhenOpened": "2024-06-10T15:17:16.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Program.cs",
+              "RelativeDocumentMoniker": "ApiTicketRobChat\\Program.cs",
+              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Program.cs",
+              "RelativeToolTip": "ApiTicketRobChat\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T14:53:01.946Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CorreosController.cs",
+              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Controllers\\CorreosController.cs",
+              "RelativeDocumentMoniker": "ApiTicketRobChat\\Controllers\\CorreosController.cs",
+              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Controllers\\CorreosController.cs",
+              "RelativeToolTip": "ApiTicketRobChat\\Controllers\\CorreosController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAA1wCsAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T14:49:46.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "20240522224347_Initial.cs",
+              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Migrations\\20240522224347_Initial.cs",
+              "RelativeDocumentMoniker": "ApiTicketRobChat\\Migrations\\20240522224347_Initial.cs",
+              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Migrations\\20240522224347_Initial.cs",
+              "RelativeToolTip": "ApiTicketRobChat\\Migrations\\20240522224347_Initial.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-23T14:23:40.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "TicketsRobChatsController.cs",
-              "DocumentMoniker": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\Controllers\\TicketsRobChatsController.cs",
+              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Controllers\\TicketsRobChatsController.cs",
               "RelativeDocumentMoniker": "ApiTicketRobChat\\Controllers\\TicketsRobChatsController.cs",
-              "ToolTip": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\Controllers\\TicketsRobChatsController.cs",
+              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\Controllers\\TicketsRobChatsController.cs",
               "RelativeToolTip": "ApiTicketRobChat\\Controllers\\TicketsRobChatsController.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACIAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-23T14:22:24.765Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\appsettings.json",
-              "RelativeDocumentMoniker": "ApiTicketRobChat\\appsettings.json",
-              "ToolTip": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\appsettings.json",
-              "RelativeToolTip": "ApiTicketRobChat\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAACBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-23T14:22:15.889Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\Program.cs",
-              "RelativeDocumentMoniker": "ApiTicketRobChat\\Program.cs",
-              "ToolTip": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\Program.cs",
-              "RelativeToolTip": "ApiTicketRobChat\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T14:22:05.909Z"
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\appsettings.json",
+              "RelativeDocumentMoniker": "ApiTicketRobChat\\appsettings.json",
+              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\appsettings.json",
+              "RelativeToolTip": "ApiTicketRobChat\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-23T14:22:15.889Z",
+              "EditorCaption": ""
             }
           ]
         }

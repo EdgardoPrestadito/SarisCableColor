@@ -8275,19 +8275,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DTORRES\\.nuget\\packages\\": {}
+    "C:\\Users\\JSaucedaR\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\ApiTicketRobChat.csproj",
+      "projectUniqueName": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\ApiTicketRobChat.csproj",
       "projectName": "ApiTicketRobChat",
-      "projectPath": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\ApiTicketRobChat.csproj",
-      "packagesPath": "C:\\Users\\DTORRES\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DTORRES\\Videos\\ApiTicketRobChat\\ApiTicketRobChat\\obj\\",
+      "projectPath": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\ApiTicketRobChat.csproj",
+      "packagesPath": "C:\\Users\\JSaucedaR\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\ApiTicketRobChat\\ApiTicketRobChat\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\DTORRES\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JSaucedaR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8360,7 +8365,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

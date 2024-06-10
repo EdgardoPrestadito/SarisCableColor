@@ -64,7 +64,7 @@ namespace OrionCoreCableColor.Controllers
             using (var context = new SARISEntities1())
             {
               
-                var result = context.sp_Categorias_Indicidencias_Insertar(model.fcDescripcionCategoria.Trim()).FirstOrDefault();
+                var result = context.sp_Categorias_Indicidencias_Insertar(model.fcDescripcionCategoria.Trim(), 1).FirstOrDefault();
 
                 var success = result > 0;
 
@@ -99,7 +99,7 @@ namespace OrionCoreCableColor.Controllers
         {
             using (var context = new SARISEntities1())
             {
-                var result = context.sp_Categorias_Indicidencias_Editar(model.fiIDCategoriaDesarrollo, model.fcDescripcionCategoria.Trim()).FirstOrDefault();
+                var result = context.sp_Categorias_Indicidencias_Editar(model.fiIDCategoriaDesarrollo, model.fcDescripcionCategoria.Trim(), 1).FirstOrDefault();
                 
                 var success = result > 0;
 

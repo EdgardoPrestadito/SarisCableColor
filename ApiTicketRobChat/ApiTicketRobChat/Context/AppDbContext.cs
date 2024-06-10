@@ -11,5 +11,7 @@ namespace ApiTicketRobChat.Context
         }
 
         public DbSet<TicketsRobChat> TicketRobChat { get; set; }
+        public DbSet<Tickets_FuraTiempoViewModel> Tickets_FuraTiempo { get; set; }
+
     }
 }

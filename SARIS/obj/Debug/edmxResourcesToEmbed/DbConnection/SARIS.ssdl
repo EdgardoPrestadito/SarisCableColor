@@ -8,6 +8,30 @@
     <Parameter Name="numero1" Type="int" Mode="In" />
     <Parameter Name="numero2" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_ActualizarImpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piImpacto" Type="int" Mode="In" />
+    <Parameter Name="pcDescripcionImpacto" Type="varchar" Mode="In" />
+    <Parameter Name="piAfectacion" Type="int" Mode="In" />
+    <Parameter Name="piNivel" Type="int" Mode="In" />
+    <Parameter Name="piActivo" Type="int" Mode="In" />
+    <Parameter Name="piUsuarioModificador" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ActualizarPrioridad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDPrioridad" Type="int" Mode="In" />
+    <Parameter Name="pcDescripcionPrioridad" Type="varchar" Mode="In" />
+    <Parameter Name="piNivelPrioridad" Type="int" Mode="In" />
+    <Parameter Name="piTiempo" Type="int" Mode="In" />
+    <Parameter Name="piActivo" Type="int" Mode="In" />
+    <Parameter Name="piUsuarioModificador" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ActualizarUrgencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piUrgencia" Type="int" Mode="In" />
+    <Parameter Name="pcDescripcionUrgencia" Type="varchar" Mode="In" />
+    <Parameter Name="piTiempo" Type="int" Mode="In" />
+    <Parameter Name="piNivel" Type="int" Mode="In" />
+    <Parameter Name="piActivo" Type="int" Mode="In" />
+    <Parameter Name="piUsuarioModificador" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Areas_Desactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fiIDArea" Type="int" Mode="In" />
   </Function>
@@ -34,28 +58,53 @@
   <Function Name="sp_Categorias_Indicidencias_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
     <Parameter Name="pcDescripcionCategoria" Type="varchar" Mode="In" />
+    <Parameter Name="piArea" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Categorias_Indicidencias_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pcDescripcionCategoria" Type="varchar" Mode="In" />
+    <Parameter Name="piArea" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Categorias_Indicidencias_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Categorias_IndicidenciasResolucion_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
+    <Parameter Name="pcDescripcionCategoria" Type="varchar" Mode="In" />
+    <Parameter Name="piArea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Categorias_IndicidenciasResolucion_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcDescripcionCategoria" Type="varchar" Mode="In" />
+    <Parameter Name="piArea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Categorias_IndicidenciasResolucion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Configuraciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fcDescripcionLlave" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="sp_DashboardTabsHora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="pcNombreCorto" Type="varchar" Mode="In" />
-    <Parameter Name="mes" Type="int" Mode="In" />
+  <Function Name="sp_CrearImpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcDescripcionImpacto" Type="varchar" Mode="In" />
+    <Parameter Name="piAfectacion" Type="int" Mode="In" />
+    <Parameter Name="piNivel" Type="int" Mode="In" />
+    <Parameter Name="piActivo" Type="int" Mode="In" />
+    <Parameter Name="piUsuarioCreador" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CrearPrioridad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcDescripcionPrioridad" Type="varchar" Mode="In" />
+    <Parameter Name="piNivelPrioridad" Type="int" Mode="In" />
+    <Parameter Name="piTiempo" Type="int" Mode="In" />
+    <Parameter Name="piActivo" Type="int" Mode="In" />
+    <Parameter Name="piUsuarioCreador" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CrearUrgencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcDescripcionUrgencia" Type="varchar" Mode="In" />
+    <Parameter Name="piTiempo" Type="int" Mode="In" />
+    <Parameter Name="piNivel" Type="int" Mode="In" />
+    <Parameter Name="piActivo" Type="int" Mode="In" />
+    <Parameter Name="piUsuarioCreador" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_DashboardGlobal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_DashboardPorArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_DatosTicket_Correo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piTicket" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_DetalleBitacoraInformacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
-    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_DetalleBitacoraInformacionArchivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
-    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Eliminar_Requerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIdRequerimiento" Type="int" Mode="In" />
@@ -77,6 +126,7 @@
     <Parameter Name="fiIDTipoRequerimiento" Type="int" Mode="In" />
     <Parameter Name="fcTipoRequerimiento" Type="varchar" Mode="In" />
     <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
+    <Parameter Name="piUbicacion" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Indicadores_Find" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fiIDTipoRequerimiento" Type="int" Mode="In" />
@@ -84,14 +134,86 @@
   <Function Name="sp_Indicadores_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fcTipoRequerimiento" Type="varchar" Mode="In" />
     <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
+    <Parameter Name="piUbicacion" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Indicadores_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_IndicadoresResolucion_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fiIDTipoRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="fcTipoRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
+    <Parameter Name="piUbicacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_IndicadoresResolucion_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fcTipoRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
+    <Parameter Name="piUbicacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_IndicadoresResolucion_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_ListadoPaisPrueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_ListarImpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_ListarPrioridad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ListarUrgencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Notificaciones_Maestro_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDNotificacion" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioNotificacion" Type="int" Mode="In" />
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="piIDArea" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioSolicitante" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioAsignado" Type="int" Mode="In" />
+    <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcMensajeRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcUrl" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Notificaciones_Maestro_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuarioNotificacion" Type="int" Mode="In" />
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="piIDArea" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioSolicitante" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioAsignado" Type="int" Mode="In" />
+    <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcMensajeRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcUrl" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Notificaciones_Maestro_InsertarEnArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuarioNotificacion" Type="int" Mode="In" />
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="piIDArea" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioSolicitante" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioAsignado" Type="int" Mode="In" />
+    <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcMensajeRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcUrl" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Notificaciones_Maestro_InsertarEnAreaPorUsuarioAsignado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuarioNotificacion" Type="int" Mode="In" />
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="piIDArea" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioSolicitante" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuarioAsignado" Type="int" Mode="In" />
+    <Parameter Name="pcTituloRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcMensajeRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="pcUrl" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Notificaciones_Maestro_Leido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDNotificacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Notificaciones_Maestro_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Notificaciones_Maestro_ObtenerPorIdArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDArea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Notificaciones_Maestro_ObtenerPorIdAreaUsuarioAsignado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuarioAsignado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Notificaciones_Maestro_ObtenerPorIdNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDNotificacion" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_NumeroConsecutivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDContador" Type="int" Mode="In" />
     <Parameter Name="poiSiguienteNumero" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_Prioridad_urgenciaXimpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piUrgencia" Type="int" Mode="In" />
+    <Parameter Name="piImpacto" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Requerimiento_Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDUsuario" Type="int" Mode="In" />
@@ -206,19 +328,18 @@
   <Function Name="sp_Requerimientos_Bitacoras_Historial_ByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_Requerimientos_Catalogo_Generencias_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="piIDGerencia" Type="int" Mode="In" />
-    <Parameter Name="pcNombreGenerencia" Type="varchar" Mode="In" />
-    <Parameter Name="piIDUsuarioResponsable" Type="int" Mode="In" />
+  <Function Name="sp_Requerimientos_UsuarioLibre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDArea" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_Requerimientos_Catalogo_Generencias_Eliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="piIDGerencia" Type="int" Mode="In" />
+  <Function Name="sp_TicketRobChat_Crear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDTicketRobChat" Type="int" Mode="In" />
+    <Parameter Name="pcTelefono" Type="varchar" Mode="In" />
+    <Parameter Name="pcComentario" Type="text" Mode="In" />
+    <Parameter Name="pcQueja" Type="text" Mode="In" />
+    <Parameter Name="pcNombre" Type="varchar" Mode="In" />
+    <Parameter Name="pcApellido" Type="varchar" Mode="In" />
   </Function>
-  <Function Name="sp_Requerimientos_Catalogo_Generencias_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="pcNombreGenerencia" Type="varchar" Mode="In" />
-    <Parameter Name="piIDUsuarioResponsable" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_Requerimientos_Catalogo_Generencias_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Tickets_FuraTiempo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Usuario_EditarInfoUsuarioLaboral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIdUsuario" Type="int" Mode="In" />
     <Parameter Name="piIDJefeInmediato" Type="int" Mode="In" />

@@ -427,10 +427,19 @@
     <Compile Include="DbConnection\sp_CatalogoManual_Listado_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Categorias_IndicidenciasResolucion_Listado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Categorias_Indicidencias_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Configuraciones_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_DashboardGlobal_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_DashboardPorArea_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_DashboardTabsHora_Result.cs">
@@ -454,6 +463,9 @@
     <Compile Include="DbConnection\sp_Estados_Requerimiento_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_IndicadoresResolucion_Lista_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Indicadores_Find_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -466,11 +478,29 @@
     <Compile Include="DbConnection\sp_ListarPrioridad_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_ListarUrgencia_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Manuales_Paginas_ObtenerPorIdManual_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_MostrarInfo_PlacaIP_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Notificaciones_Maestro_Lista_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Notificaciones_Maestro_ObtenerPorIdAreaUsuarioAsignado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Notificaciones_Maestro_ObtenerPorIdArea_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Notificaciones_Maestro_ObtenerPorIdNotificacion_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Prioridad_urgenciaXimpacto_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_RequerimientoBitacoras_Detalle_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
@@ -482,6 +512,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Requerimientos_Catalogo_Generencias_Listado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Requerimientos_UsuarioLibre_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Requerimiento_Alta_Result.cs">
@@ -506,6 +539,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Requerimiento_Tipo_Adjuntos_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Tickets_FuraTiempo_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_tutorialesList_byIdArea_Result.cs">

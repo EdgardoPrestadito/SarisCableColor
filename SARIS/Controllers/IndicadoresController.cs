@@ -64,7 +64,7 @@ namespace OrionCoreCableColor.Controllers
         {
             using (var context = new SARISEntities1())
             {
-                var newModel = context.sp_Indicadores_Insertar(model.fcTipoRequerimiento.Trim(), model.fiIDCategoriaDesarrollo);
+                var newModel = context.sp_Indicadores_Insertar(model.fcTipoRequerimiento.Trim(), model.fiIDCategoriaDesarrollo,1);
                 var result = newModel.FirstOrDefault() > 0;
 
 
@@ -102,7 +102,7 @@ namespace OrionCoreCableColor.Controllers
                 var indicador = context.sp_Indicadores_Lista().FirstOrDefault(x => x.fcTipoRequerimiento == model.fcTipoRequerimiento && x.fiIDTipoRequerimiento != model.fiIDTipoRequerimiento);
 
 
-                var newModel = context.sp_Indicadores_Editar(model.fiIDTipoRequerimiento, model.fcTipoRequerimiento.Trim(), model.fiIDCategoriaDesarrollo);
+                var newModel = context.sp_Indicadores_Editar(model.fiIDTipoRequerimiento, model.fcTipoRequerimiento.Trim(), model.fiIDCategoriaDesarrollo, 1);
                 var result = newModel.FirstOrDefault() > 0;
 
                 return EnviarResultado(result, "Editar Incidencia", result ? "Se Editó Satisfactoriamente" : "Error al eliminar");
