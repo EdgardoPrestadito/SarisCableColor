@@ -58,9 +58,11 @@
   <Function Name="sp_Categorias_Indicidencias_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
     <Parameter Name="pcDescripcionCategoria" Type="varchar" Mode="In" />
+    <Parameter Name="piArea" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Categorias_Indicidencias_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pcDescripcionCategoria" Type="varchar" Mode="In" />
+    <Parameter Name="piArea" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Categorias_Indicidencias_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Categorias_IndicidenciasResolucion_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -138,7 +140,7 @@
     <Parameter Name="fiIDTipoRequerimiento" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Indicadores_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="fcTipoRequerimiento" Type="varchar" Mode="In" />
+    <Parameter Name="fcTipoRequerimiento" Type="nvarchar" Mode="In" />
     <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
     <Parameter Name="piUbicacion" Type="int" Mode="In" />
   </Function>
@@ -159,6 +161,9 @@
   <Function Name="sp_ListarImpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_ListarPrioridad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_ListarUrgencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ListaTicket_Padre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDTIcket" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Notificaciones_Maestro_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDNotificacion" Type="int" Mode="In" />
     <Parameter Name="piIDUsuarioNotificacion" Type="int" Mode="In" />
@@ -242,6 +247,7 @@
     <Parameter Name="piIdImpacto" Type="int" Mode="In" />
     <Parameter Name="piIdUrgencia" Type="int" Mode="In" />
     <Parameter Name="piIDPrioridad" Type="int" Mode="In" />
+    <Parameter Name="piIdTicketPadre" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Requerimiento_Areas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDSesion" Type="int" Mode="In" />
@@ -294,6 +300,7 @@
     <Parameter Name="pifiTipoRequerimiento" Type="int" Mode="In" />
     <Parameter Name="piIDApp" Type="int" Mode="In" />
     <Parameter Name="piIdAreaAsignada" Type="int" Mode="In" />
+    <Parameter Name="piIdTicketPadre" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Requerimiento_Maestro_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDSesion" Type="int" Mode="In" />
@@ -337,6 +344,19 @@
   <Function Name="sp_Requerimientos_Bitacoras_Historial_ByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_Requerimientos_Catalogo_Generencias_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDGerencia" Type="int" Mode="In" />
+    <Parameter Name="pcNombreGenerencia" Type="varchar" Mode="In" />
+    <Parameter Name="piIDUsuarioResponsable" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimientos_Catalogo_Generencias_Eliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDGerencia" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimientos_Catalogo_Generencias_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcNombreGenerencia" Type="varchar" Mode="In" />
+    <Parameter Name="piIDUsuarioResponsable" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Requerimientos_Catalogo_Generencias_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Requerimientos_UsuarioLibre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDArea" Type="int" Mode="In" />
   </Function>

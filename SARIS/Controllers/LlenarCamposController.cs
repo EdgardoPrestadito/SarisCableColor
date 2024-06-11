@@ -121,5 +121,14 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
+        public JsonResult SelecticketPadrese(int idticket)
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_ListaTicket_Padre(idticket).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
     }
 }

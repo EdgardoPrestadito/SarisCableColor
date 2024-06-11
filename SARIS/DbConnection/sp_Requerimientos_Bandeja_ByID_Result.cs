@@ -39,5 +39,6 @@ namespace OrionCoreCableColor.DbConnection
         public System.DateTime fdFechaUltimaModificacion { get; set; }
         public int fiIDUsuarioUltimaModificacion { get; set; }
         public int fiPuedeModificarlo { get; set; }
+        public Nullable<int> fiIDRequerimientoPadre { get; set; }
     }
 }

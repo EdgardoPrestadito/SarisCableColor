@@ -481,6 +481,9 @@
     <Compile Include="DbConnection\sp_ListarUrgencia_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_ListaTicket_Padre_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Manuales_Paginas_ObtenerPorIdManual_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>

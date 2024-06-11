@@ -14,31 +14,7 @@
 <div class="modal-body">
     <div class="row">
 
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="control-label">DOCUMENTO (Suba imagenes,Word,Excel,Pdf para este ticket) </label>
 
-                        <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
-                            <div class="dz-message needsclick">
-
-                                <div class="dz-icon">
-                                    <i class="fal fa-cloud-upload text-muted mb-3"></i>
-                                </div>
-                                <div>
-                                    <span class="dz-text">Arrastre Imagen</span>
-                                    <p class="text-sm text-muted">O Click para elegirla manualmente</p>
-                                </div>
-                            </div>
-                        </form>
-
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
         <div class="col-lg-12">
             <div class="row">
@@ -83,28 +59,37 @@
                         @Html.DropDownListFor(model => model.fiIDEstadoRequerimiento, new SelectList(ViewBag.Estados, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Ticket Padre? </label>
+                        <select id="ticketPadre" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label class="col-form-label">Urgencia</label>
                         @Html.EditorFor(model => model.fcDescripcionUrgencia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label class="col-form-label">Impacto</label>
                         @Html.EditorFor(model => model.fcDescripcionImpacto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     </div>
                 </div>
-                <div class="col-sm-6">
+
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label class="col-form-label">Prioridad</label>
                         @Html.EditorFor(model => model.fcDescripcionPrioridad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label class="col-form-label">Comentario</label>
                         <input id="txtComentario" class="form-control" type="text" placeholder="Escriba un comentario para este Ticket" />
@@ -114,7 +99,31 @@
             </div>
         </div>
 
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">DOCUMENTO (Suba imagenes,Word,Excel,Pdf para este ticket) </label>
 
+                        <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
+                            <div class="dz-message needsclick">
+
+                                <div class="dz-icon">
+                                    <i class="fal fa-cloud-upload text-muted mb-3"></i>
+                                </div>
+                                <div>
+                                    <span class="dz-text">Arrastre Imagen</span>
+                                    <p class="text-sm text-muted">O Click para elegirla manualmente</p>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
     </div>
@@ -169,14 +178,15 @@
     var ID_REQUERIMIENTO = @ViewBag.idticket;
     var ID_USUARIO = @ViewBag.UsuarioLogueado;
     var idtiporequerimiento = @ViewBag.IdIncidencia;
+    var ticketPadre = @ViewBag.TicketPadre;
     var fotosredimencionadas = [];
 
     $(`#fiCategoriadeDesarrollo`).on('change', function () {
         cambiodecategoria(0);
     })
-    console.log(idtiporequerimiento);
+    //console.log(idtiporequerimiento);
     cambiodecategoria(idtiporequerimiento);
-
+    CambioticketPadre(ticketPadre);
     function cambiodecategoria(tipore) {
         var textcategorias = $("#fiCategoriadeDesarrollo option:selected").text();
 
@@ -200,7 +210,7 @@
                         text: item.fcTipoRequerimiento
                     }));
                 });
-                console.log(`esto trae el tipo incidencia: ${tipore}`);
+                //console.log(`esto trae el tipo incidencia: ${tipore}`);
                 if (tipore != 0) {
                     selectIncidencia.val(tipore).trigger("change");
                 }
@@ -210,6 +220,42 @@
             }
         });
     }
+
+    function CambioticketPadre(idtiposoporte) {
+
+        console.log(`lo que trae por aqui ${idtiposoporte}`);
+        $.ajax({
+            url: "@Url.Action("SelecticketPadrese", "LlenarCampos")",
+            data: { idticket: idtiporequerimiento},
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectpadre = $("#ticketPadre");
+
+                selectpadre.empty();
+                selectpadre.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Ticket Padre en caso que lo tenga'
+                }));
+                $("#ticketPadre").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectpadre.append($('<option>', {
+                        value: item.fiIDRequerimiento,
+                        text: item.fcTituloRequerimiento
+                    }));
+                });
+
+                if (idtiposoporte != 0) {
+                    selectpadre.val(idtiposoporte).trigger("change");
+                }
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    }
+
+
     $("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
 
     $(document).ready(function () {
@@ -243,7 +289,8 @@
                 fiIDEstadoRequerimiento: $("#fiIDEstadoRequerimiento option:selected").val(),
                 fcDescripcionEstado: $("#fiIDEstadoRequerimiento :selected").text(),
                 fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
-                fiTipoRequerimiento: $(`#selectincidencia`).val()
+                fiTipoRequerimiento: $(`#selectincidencia`).val(),
+                fiIdTicketPadre: $(`#ticketPadre`).val()
                 //fiIDUsuarioAsignado: $("#fiIDUsuarioAsignado option:selected").val() == "" ? 1 : parseInt($("#fiIDUsuarioAsignado option:selected").val()),
 
                 //$("#txtComentario").val(),

@@ -41,5 +41,6 @@ namespace OrionCoreCableColor.Models.Ticket
         public int fiHorasTrabajadas { get; set; }
         public int fiAreaAsignada { get; set; }
         public string fcNombreAreaAsignada { get; set; }
+        public int fiIdTicketPadre { get; set; }
     }
 }
