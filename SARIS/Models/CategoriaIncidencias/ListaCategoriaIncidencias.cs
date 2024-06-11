@@ -24,5 +24,13 @@ namespace OrionCoreCableColor.Models.CategoriaIncidencias
         public int fiEstado { get; set; }
 
         public bool EsEditar { get; set; }
+
+        [Display(Name = "Area")]
+        [Required]
+        public Nullable<short> fiIDArea { get; set; }
+    
+
+        public string fcDescripcion { get; set; }
+
     }
 }

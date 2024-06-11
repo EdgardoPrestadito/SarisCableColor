@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Lista de Incidencia";
+    ViewBag.Title = "Lista de Sub Categoria";
 }
 
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Incidencias</h2>
+        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Sub Categorias</h2>
         <div class="panel-toolbar " role="menu">
-            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Nuevo Incidencia</a>
+            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i>Nueva Sub Categoria</a>
         </div>
     </div>
 
@@ -19,6 +19,7 @@
                         <th></th>
                         <th>Descripción</th>
                         <th>Categoría</th>
+                        <th>Ubicación</th>
                         <th>Activo</th>
 
                     </tr>
@@ -130,7 +131,9 @@
                 {
                     data: 'fcDescripcionCategoria'
                 },
-
+                {
+                    data: 'fcDescripcionUbicacion'
+                },
                 {
                     data: null,
                     render: function (data) {

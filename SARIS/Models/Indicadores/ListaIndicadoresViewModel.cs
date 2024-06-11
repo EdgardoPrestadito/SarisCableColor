@@ -15,5 +15,10 @@ namespace OrionCoreCableColor.Models.Indicadores
 
         public string fcToken { get; set; }
 
+        public Nullable<int> fiUbicacion { get; set; }
+
+
+        public string fcDescripcionUbicacion { get; set; }
+
     }
 }

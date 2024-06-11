@@ -17,7 +17,7 @@
 <div class="modal-body">
     <form id="MyFormModal">
         @Html.HiddenFor(model => model.fiIDCategoriaDesarrollo)
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.fcDescripcionCategoria, htmlAttributes: new { @class = "control-label" })
             <div class="input-group mar-btm">
@@ -28,6 +28,15 @@
                 @Html.EditorFor(model => model.fcDescripcionCategoria, new { htmlAttributes = new { @class = "form-control input-lg" } })
             </div>
             @Html.ValidationMessageFor(model => model.fcDescripcionCategoria, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fiIDArea, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group mar-btm" style="width:100%;">
+
+                @Html.DropDownListFor(model => model.fiIDArea, new SelectList(ViewBag.Areas, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+            </div>
+            @Html.ValidationMessageFor(model => model.fiIDArea, "", new { @class = "text-danger" })
         </div>
         <div class="modal-footer">
             <div class="clearfix" style="width:100%;">
@@ -44,7 +53,7 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 <script>
-    $("#fcClaseColor").select2({ dropdownParent: $("#MyModalSm") });
+    $("#fiIDArea").select2({ dropdownParent: $("#MyModalSm") });
     $("#MyFormModal").submit(function (event) {
         event.preventDefault();
         if (!$("#MyFormModal").valid()) {
@@ -55,6 +64,7 @@
         var model = @Html.Raw(Json.Encode(Model));
         model.fiIDCategoriaDesarrollo = $("#fiIDCategoriaDesarrollo").val();
         model.fcDescripcionCategoria = $("#fcDescripcionCategoria").val();
+        model.fiIDArea = $("#fiIDArea").val();
 
         var url = "@Url.Action("Crear", "CategoriaIndicadores")";
         if (str2bool('@Model.EsEditar')) {
