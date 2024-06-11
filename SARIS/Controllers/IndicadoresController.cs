@@ -70,13 +70,13 @@ namespace OrionCoreCableColor.Controllers
                 switch (result.fiRequest)
                 {
                     case 0:
-                        return EnviarResultado(false, "Editar Sub Categoria", "Error al Editar");
+                        return EnviarResultado(false, "Crear Sub Categoria", "Error al Editar");
                     case 1:
-                        return EnviarResultado(true, "Editar Sub Categoria", result.fcRequest);
+                        return EnviarResultado(true, "Crear Sub Categoria", result.fcRequest);
                     case 2:
-                        return EnviarResultado(false, "Editar Sub Categoria", result.fcRequest);
+                        return EnviarResultado(false, "Crear Sub Categoria", result.fcRequest);
                     default:
-                        return EnviarResultado(false, "Editar Sub Categoria", "Error al Editar");
+                        return EnviarResultado(false, "Crear Sub Categoria", "Error al Editar");
                 }
 
             }
