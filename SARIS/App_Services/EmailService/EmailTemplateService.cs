@@ -299,6 +299,14 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                                     <td>{model.fcTipoRequerimiento}</td>
                                                 </tr>
                                                 <tr>
+                                                    <td><strong>Estado:</strong></td>
+                                                    <td>{model.fcDescripcionEstado}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Prioridad:</strong></td>
+                                                    <td>{model.fcDescripcionPrioridad}</td>
+                                                </tr>
+                                                <tr>
                                                     <td><strong>Fecha de Creaciom:</strong></td>
                                                     <td>{model.fdFechaCreacion.ToString("MM/dd/yyyy hh:mm tt")}</td>
                                                 </tr>
