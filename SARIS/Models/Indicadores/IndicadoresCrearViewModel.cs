@@ -11,11 +11,11 @@ namespace OrionCoreCableColor.Models.Indicadores
         [Display(Name = "Id")]
         public int fiIDTipoRequerimiento { get; set; }
 
-        [Display(Name = "Categoria de Incidencia")]
+        [Display(Name = "Categoria")]
         public int fiIDCategoriaDesarrollo { get; set; }
 
 
-        [Display(Name = "Tipo de Requerimiento")]
+        [Display(Name = "Descripcion Sub Categoria")]
         [Required]
 
         public string fcTipoRequerimiento { get; set; }
@@ -25,6 +25,12 @@ namespace OrionCoreCableColor.Models.Indicadores
         public string fcToken { get; set; }
 
         public bool EsEditar { get; set; }
+
+        [Display(Name = "Ubicacion")]
+        public int fiUbicacion { get; set; }
+
+        public string fcDescripcionUbicacion { get; set; }
+
 
 
     }

@@ -32,7 +32,8 @@ namespace OrionCoreCableColor.Controllers
                         fcDescripcionCategoria = x.fcDescripcionCategoria,
                         fiEstado = x.fiEstado,
                         fcToken = x.fcToken,
-
+                        fiIDArea = x.fiIDArea,
+                        fcDescripcion = x.fcDescripcion
 
                     }).ToList(), JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = Int32.MaxValue;
@@ -50,8 +51,10 @@ namespace OrionCoreCableColor.Controllers
         public ActionResult Crear()
         {
 
-            using (var contextSaris = new SARISEntities1())
+            using (var context = new SARISEntities1())
             {
+                ViewBag.Areas = context.sp_Areas_Lista().Where(x => x.fiActivo).ToList().Select(x => new SelectListItem { Value = x.fiIDArea.ToString(), Text = $"{x.fcDescripcion}" }).ToList();
+
                 return PartialView(new ListaCategoriaIncidencias());
             }
         }
@@ -63,12 +66,21 @@ namespace OrionCoreCableColor.Controllers
         {
             using (var context = new SARISEntities1())
             {
-              
-                var result = context.sp_Categorias_Indicidencias_Insertar(model.fcDescripcionCategoria.Trim()).FirstOrDefault();
 
-                var success = result > 0;
+                var result = context.sp_Categorias_Indicidencias_Insertar(model.fcDescripcionCategoria.Trim(), model.fiIDArea).FirstOrDefault();
 
-                return EnviarResultado(success, "Crear Categoria", success ? "Se Creó Satisfactoriamente" : "Error al Crear ");
+
+                switch (result.fiRequest)
+                {
+                    case 0:
+                        return EnviarResultado(false, "Crear Categoria", "Error al Crear");
+                    case 1:
+                        return EnviarResultado(true, "Crear Categoria", result.fcRequest);
+                    case 2:
+                        return EnviarResultado(false, "Crear Categoria", result.fcRequest);
+                    default:
+                        return EnviarResultado(false, "Crear Categoria", "Error al Crear");
+                }
 
             }
 
@@ -84,8 +96,9 @@ namespace OrionCoreCableColor.Controllers
                 var categoria = context.sp_Categorias_Indicidencias_Listado().FirstOrDefault(x => x.fiIDCategoriaDesarrollo == id);
                 if (categoria != null)
                 {
+                    ViewBag.Areas = context.sp_Areas_Lista().Where(x => x.fiActivo).ToList().Select(x => new SelectListItem { Value = x.fiIDArea.ToString(), Text = $"{x.fcDescripcion}" }).ToList();
 
-                    return PartialView("Crear", new ListaCategoriaIncidencias {fiIDCategoriaDesarrollo = categoria.fiIDCategoriaDesarrollo , fcDescripcionCategoria = categoria.fcDescripcionCategoria, EsEditar = true });
+                    return PartialView("Crear", new ListaCategoriaIncidencias { fiIDCategoriaDesarrollo = categoria.fiIDCategoriaDesarrollo, fcDescripcionCategoria = categoria.fcDescripcionCategoria, fiIDArea = categoria.fiIDArea, EsEditar = true });
                 }
                 else
                 {
@@ -99,15 +112,19 @@ namespace OrionCoreCableColor.Controllers
         {
             using (var context = new SARISEntities1())
             {
-                var result = context.sp_Categorias_Indicidencias_Editar(model.fiIDCategoriaDesarrollo, model.fcDescripcionCategoria.Trim()).FirstOrDefault();
-                
-                var success = result > 0;
-
-                return EnviarResultado(success, "Editar Categoria", success ? "Se Editó Satisfactoriamente" : "Error al editar ");
-
-
+                var result = context.sp_Categorias_Indicidencias_Editar(model.fiIDCategoriaDesarrollo, model.fcDescripcionCategoria.Trim(), model.fiIDArea).FirstOrDefault();
+                switch (result.fiRequest)
+                {
+                    case 0:
+                        return EnviarResultado(false, "Editar Categoria", "Error al Editar");
+                    case 1:
+                        return EnviarResultado(true, "Editar Categoria", result.fcRequest);
+                    case 2:
+                        return EnviarResultado(false, "Editar Categoria", result.fcRequest);
+                    default:
+                        return EnviarResultado(false, "Editar Categoria", "Error al Editar");
+                }
             }
-
         }
 
         public ActionResult EliminarCategoria(int id)
@@ -115,13 +132,10 @@ namespace OrionCoreCableColor.Controllers
             using (var context = new SARISEntities1())
             {
                 var result = context.sp_Categorias_Indicidencias_Desactivar(id).FirstOrDefault();
-                var success = result > 0;
+                var success = result.fiRequest == 1;
 
                 return EnviarResultado(success, "Eliminar Categoria", success ? "Se Eliminó Satisfactoriamente" : "Error al eliminar");
             }
         }
-
-
-
     }
 }

@@ -430,6 +430,15 @@
     <Compile Include="DbConnection\sp_Categorias_IndicidenciasResolucion_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Categorias_Indicidencias_Desactivar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Categorias_Indicidencias_Editar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Categorias_Indicidencias_Insertar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Categorias_Indicidencias_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -466,7 +475,16 @@
     <Compile Include="DbConnection\sp_IndicadoresResolucion_Lista_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Indicadores_Desactivar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Indicadores_Editar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Indicadores_Find_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Indicadores_Insertar_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Indicadores_Lista_Result.cs">
@@ -549,6 +567,9 @@
     </Compile>
     <Compile Include="DbConnection\sp_tutorialesList_byIdArea_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Ubicacion_SubCategoria_Listado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Usuarios_Maestro_Lista_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
