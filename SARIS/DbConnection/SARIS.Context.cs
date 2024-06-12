@@ -1154,41 +1154,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Categorias_Indicidencias_Listado_Result>("sp_Categorias_Indicidencias_Listado");
         }
     
-        public virtual ObjectResult<Nullable<int>> sp_Categorias_IndicidenciasResolucion_Editar(Nullable<int> piIDCategoriaDesarrollo, string pcDescripcionCategoria, Nullable<int> piArea)
-        {
-            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
-                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
-                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
-    
-            var pcDescripcionCategoriaParameter = pcDescripcionCategoria != null ?
-                new ObjectParameter("pcDescripcionCategoria", pcDescripcionCategoria) :
-                new ObjectParameter("pcDescripcionCategoria", typeof(string));
-    
-            var piAreaParameter = piArea.HasValue ?
-                new ObjectParameter("piArea", piArea) :
-                new ObjectParameter("piArea", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Categorias_IndicidenciasResolucion_Editar", piIDCategoriaDesarrolloParameter, pcDescripcionCategoriaParameter, piAreaParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> sp_Categorias_IndicidenciasResolucion_Insertar(string pcDescripcionCategoria, Nullable<int> piArea)
-        {
-            var pcDescripcionCategoriaParameter = pcDescripcionCategoria != null ?
-                new ObjectParameter("pcDescripcionCategoria", pcDescripcionCategoria) :
-                new ObjectParameter("pcDescripcionCategoria", typeof(string));
-    
-            var piAreaParameter = piArea.HasValue ?
-                new ObjectParameter("piArea", piArea) :
-                new ObjectParameter("piArea", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Categorias_IndicidenciasResolucion_Insertar", pcDescripcionCategoriaParameter, piAreaParameter);
-        }
-    
-        public virtual ObjectResult<sp_Categorias_IndicidenciasResolucion_Listado_Result> sp_Categorias_IndicidenciasResolucion_Listado()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Categorias_IndicidenciasResolucion_Listado_Result>("sp_Categorias_IndicidenciasResolucion_Listado");
-        }
-    
         public virtual ObjectResult<sp_Indicadores_Desactivar_Result> sp_Indicadores_Desactivar(Nullable<int> fiIDTipoRequerimiento)
         {
             var fiIDTipoRequerimientoParameter = fiIDTipoRequerimiento.HasValue ?
@@ -1243,54 +1208,6 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piUbicacion", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Indicadores_Insertar_Result>("sp_Indicadores_Insertar", fcTipoRequerimientoParameter, piIDCategoriaDesarrolloParameter, piUbicacionParameter);
-        }
-    
-        public virtual ObjectResult<sp_Indicadores_Lista_Result> sp_Indicadores_Lista()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Indicadores_Lista_Result>("sp_Indicadores_Lista");
-        }
-    
-        public virtual ObjectResult<Nullable<int>> sp_IndicadoresResolucion_Editar(Nullable<int> fiIDTipoRequerimiento, string fcTipoRequerimiento, Nullable<int> piIDCategoriaDesarrollo, Nullable<int> piUbicacion)
-        {
-            var fiIDTipoRequerimientoParameter = fiIDTipoRequerimiento.HasValue ?
-                new ObjectParameter("fiIDTipoRequerimiento", fiIDTipoRequerimiento) :
-                new ObjectParameter("fiIDTipoRequerimiento", typeof(int));
-    
-            var fcTipoRequerimientoParameter = fcTipoRequerimiento != null ?
-                new ObjectParameter("fcTipoRequerimiento", fcTipoRequerimiento) :
-                new ObjectParameter("fcTipoRequerimiento", typeof(string));
-    
-            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
-                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
-                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
-    
-            var piUbicacionParameter = piUbicacion.HasValue ?
-                new ObjectParameter("piUbicacion", piUbicacion) :
-                new ObjectParameter("piUbicacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_IndicadoresResolucion_Editar", fiIDTipoRequerimientoParameter, fcTipoRequerimientoParameter, piIDCategoriaDesarrolloParameter, piUbicacionParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> sp_IndicadoresResolucion_Insertar(string fcTipoRequerimiento, Nullable<int> piIDCategoriaDesarrollo, Nullable<int> piUbicacion)
-        {
-            var fcTipoRequerimientoParameter = fcTipoRequerimiento != null ?
-                new ObjectParameter("fcTipoRequerimiento", fcTipoRequerimiento) :
-                new ObjectParameter("fcTipoRequerimiento", typeof(string));
-    
-            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
-                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
-                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
-    
-            var piUbicacionParameter = piUbicacion.HasValue ?
-                new ObjectParameter("piUbicacion", piUbicacion) :
-                new ObjectParameter("piUbicacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_IndicadoresResolucion_Insertar", fcTipoRequerimientoParameter, piIDCategoriaDesarrolloParameter, piUbicacionParameter);
-        }
-    
-        public virtual ObjectResult<sp_IndicadoresResolucion_Lista_Result> sp_IndicadoresResolucion_Lista()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_IndicadoresResolucion_Lista_Result>("sp_IndicadoresResolucion_Lista");
         }
     
         public virtual ObjectResult<Nullable<int>> sp_Requerimientos_Catalogo_Generencias_Editar(Nullable<int> piIDGerencia, string pcNombreGenerencia, Nullable<int> piIDUsuarioResponsable)
@@ -1386,24 +1303,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListarPrioridad_Result>("sp_ListarPrioridad");
         }
     
-        public virtual ObjectResult<sp_Categorias_IndicidenciasResolucion_Desactivar_Result> sp_Categorias_IndicidenciasResolucion_Desactivar(Nullable<int> piIDCategoriaDesarrollo)
-        {
-            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
-                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
-                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Categorias_IndicidenciasResolucion_Desactivar_Result>("sp_Categorias_IndicidenciasResolucion_Desactivar", piIDCategoriaDesarrolloParameter);
-        }
-    
-        public virtual ObjectResult<sp_IndicadoresResolucion_Desactivar_Result> sp_IndicadoresResolucion_Desactivar(Nullable<int> fiIDTipoRequerimiento)
-        {
-            var fiIDTipoRequerimientoParameter = fiIDTipoRequerimiento.HasValue ?
-                new ObjectParameter("fiIDTipoRequerimiento", fiIDTipoRequerimiento) :
-                new ObjectParameter("fiIDTipoRequerimiento", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_IndicadoresResolucion_Desactivar_Result>("sp_IndicadoresResolucion_Desactivar", fiIDTipoRequerimientoParameter);
-        }
-    
         public virtual ObjectResult<sp_Motivos_Estado_Listado_Result> sp_Motivos_Estado_Listado(Nullable<int> piEstado)
         {
             var piEstadoParameter = piEstado.HasValue ?
@@ -1494,6 +1393,107 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piMotivoEstado", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimiento_Alta_Result>("sp_Requerimiento_Alta", piIDSesionParameter, piIDAppParameter, piIDUsuarioParameter, pcTituloRequerimientoParameter, pcDetalleRequerimientoParameter, piEstadoRequerimientoParameter, piTipoRequerimientoParameter, piIdAreaParameter, pcComentarioParameter, piIdImpactoParameter, piIdUrgenciaParameter, piIDPrioridadParameter, piIdTicketPadreParameter, pdFechaAlarmaDeteccionParameter, piPlataformaParameter, piServicioAfectadosParameter, piMotivoEstadoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Categorias_IndicidenciasResolucion_Desactivar_Result> sp_Categorias_IndicidenciasResolucion_Desactivar(Nullable<int> piIDCategoriaDesarrollo)
+        {
+            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
+                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
+                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Categorias_IndicidenciasResolucion_Desactivar_Result>("sp_Categorias_IndicidenciasResolucion_Desactivar", piIDCategoriaDesarrolloParameter);
+        }
+    
+        public virtual ObjectResult<sp_Categorias_IndicidenciasResolucion_Editar_Result> sp_Categorias_IndicidenciasResolucion_Editar(Nullable<int> piIDCategoriaDesarrollo, string pcDescripcionCategoria, Nullable<int> piArea)
+        {
+            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
+                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
+                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
+    
+            var pcDescripcionCategoriaParameter = pcDescripcionCategoria != null ?
+                new ObjectParameter("pcDescripcionCategoria", pcDescripcionCategoria) :
+                new ObjectParameter("pcDescripcionCategoria", typeof(string));
+    
+            var piAreaParameter = piArea.HasValue ?
+                new ObjectParameter("piArea", piArea) :
+                new ObjectParameter("piArea", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Categorias_IndicidenciasResolucion_Editar_Result>("sp_Categorias_IndicidenciasResolucion_Editar", piIDCategoriaDesarrolloParameter, pcDescripcionCategoriaParameter, piAreaParameter);
+        }
+    
+        public virtual ObjectResult<sp_Categorias_IndicidenciasResolucion_Insertar_Result> sp_Categorias_IndicidenciasResolucion_Insertar(string pcDescripcionCategoria, Nullable<int> piArea)
+        {
+            var pcDescripcionCategoriaParameter = pcDescripcionCategoria != null ?
+                new ObjectParameter("pcDescripcionCategoria", pcDescripcionCategoria) :
+                new ObjectParameter("pcDescripcionCategoria", typeof(string));
+    
+            var piAreaParameter = piArea.HasValue ?
+                new ObjectParameter("piArea", piArea) :
+                new ObjectParameter("piArea", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Categorias_IndicidenciasResolucion_Insertar_Result>("sp_Categorias_IndicidenciasResolucion_Insertar", pcDescripcionCategoriaParameter, piAreaParameter);
+        }
+    
+        public virtual ObjectResult<sp_Categorias_IndicidenciasResolucion_Listado_Result> sp_Categorias_IndicidenciasResolucion_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Categorias_IndicidenciasResolucion_Listado_Result>("sp_Categorias_IndicidenciasResolucion_Listado");
+        }
+    
+        public virtual ObjectResult<sp_Indicadores_Lista_Result> sp_Indicadores_Lista()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Indicadores_Lista_Result>("sp_Indicadores_Lista");
+        }
+    
+        public virtual ObjectResult<sp_IndicadoresResolucion_Desactivar_Result> sp_IndicadoresResolucion_Desactivar(Nullable<int> fiIDTipoRequerimiento)
+        {
+            var fiIDTipoRequerimientoParameter = fiIDTipoRequerimiento.HasValue ?
+                new ObjectParameter("fiIDTipoRequerimiento", fiIDTipoRequerimiento) :
+                new ObjectParameter("fiIDTipoRequerimiento", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_IndicadoresResolucion_Desactivar_Result>("sp_IndicadoresResolucion_Desactivar", fiIDTipoRequerimientoParameter);
+        }
+    
+        public virtual ObjectResult<sp_IndicadoresResolucion_Editar_Result> sp_IndicadoresResolucion_Editar(Nullable<int> fiIDTipoRequerimiento, string fcTipoRequerimiento, Nullable<int> piIDCategoriaDesarrollo, Nullable<int> piUbicacion)
+        {
+            var fiIDTipoRequerimientoParameter = fiIDTipoRequerimiento.HasValue ?
+                new ObjectParameter("fiIDTipoRequerimiento", fiIDTipoRequerimiento) :
+                new ObjectParameter("fiIDTipoRequerimiento", typeof(int));
+    
+            var fcTipoRequerimientoParameter = fcTipoRequerimiento != null ?
+                new ObjectParameter("fcTipoRequerimiento", fcTipoRequerimiento) :
+                new ObjectParameter("fcTipoRequerimiento", typeof(string));
+    
+            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
+                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
+                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
+    
+            var piUbicacionParameter = piUbicacion.HasValue ?
+                new ObjectParameter("piUbicacion", piUbicacion) :
+                new ObjectParameter("piUbicacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_IndicadoresResolucion_Editar_Result>("sp_IndicadoresResolucion_Editar", fiIDTipoRequerimientoParameter, fcTipoRequerimientoParameter, piIDCategoriaDesarrolloParameter, piUbicacionParameter);
+        }
+    
+        public virtual ObjectResult<sp_IndicadoresResolucion_Insertar_Result> sp_IndicadoresResolucion_Insertar(string fcTipoRequerimiento, Nullable<int> piIDCategoriaDesarrollo, Nullable<int> piUbicacion)
+        {
+            var fcTipoRequerimientoParameter = fcTipoRequerimiento != null ?
+                new ObjectParameter("fcTipoRequerimiento", fcTipoRequerimiento) :
+                new ObjectParameter("fcTipoRequerimiento", typeof(string));
+    
+            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
+                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
+                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
+    
+            var piUbicacionParameter = piUbicacion.HasValue ?
+                new ObjectParameter("piUbicacion", piUbicacion) :
+                new ObjectParameter("piUbicacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_IndicadoresResolucion_Insertar_Result>("sp_IndicadoresResolucion_Insertar", fcTipoRequerimientoParameter, piIDCategoriaDesarrolloParameter, piUbicacionParameter);
+        }
+    
+        public virtual ObjectResult<sp_IndicadoresResolucion_Lista_Result> sp_IndicadoresResolucion_Lista()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_IndicadoresResolucion_Lista_Result>("sp_IndicadoresResolucion_Lista");
         }
     }
 }
