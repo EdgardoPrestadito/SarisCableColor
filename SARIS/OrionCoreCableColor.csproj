@@ -348,10 +348,12 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
     <Compile Include="Controllers\CategoriaIndicadoresController.cs" />
+    <Compile Include="Controllers\CategoriasIncidenciasResolucionController.cs" />
     <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GerenciasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncidenciasResolucionController.cs" />
     <Compile Include="Controllers\IndicadoresController.cs" />
     <Compile Include="Controllers\LlenarCamposController.cs" />
     <Compile Include="Controllers\PermisoController.cs" />
@@ -431,6 +433,12 @@
     <Compile Include="DbConnection\sp_Categorias_IndicidenciasResolucion_Desactivar_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Categorias_IndicidenciasResolucion_Editar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Categorias_IndicidenciasResolucion_Insertar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Categorias_IndicidenciasResolucion_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -477,6 +485,12 @@
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_IndicadoresResolucion_Desactivar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_IndicadoresResolucion_Editar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_IndicadoresResolucion_Insertar_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_IndicadoresResolucion_Lista_Result.cs">
@@ -622,6 +636,7 @@
     <Compile Include="Models\Base\MensajeRespuestaViewModel.cs" />
     <Compile Include="Models\Base\ObjSignalRModalViewModel.cs" />
     <Compile Include="Models\Base\TicketNotificacionViewModel.cs" />
+    <Compile Include="Models\CategoriaIncidenciasResolucion\CategoriasIncidenciasResolucionViewModel.cs" />
     <Compile Include="Models\CategoriaIncidencias\ListaCategoriaIncidencias.cs" />
     <Compile Include="Models\DashBoard\AreasIncidentesViewModel.cs" />
     <Compile Include="Models\DashBoard\AreaTiempoViewModel.cs" />
@@ -639,6 +654,7 @@
     <Compile Include="Models\Gerencias\GerenciasViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Impacto\ImpactoViewModel.cs" />
+    <Compile Include="Models\IncidenciasResolucion\IncidenciasResolucionViewModel.cs" />
     <Compile Include="Models\Indicadores\IndicadoresCrearViewModel.cs" />
     <Compile Include="Models\Indicadores\ListaIndicadoresViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1983,6 +1999,10 @@
     <Content Include="Views\Catalogos\Crearinpacto.cshtml" />
     <Content Include="Views\Ubicaciones\Index.cshtml" />
     <Content Include="Views\Ubicaciones\Crear.cshtml" />
+    <Content Include="Views\CategoriasIncidenciasResolucion\Index.cshtml" />
+    <Content Include="Views\CategoriasIncidenciasResolucion\Crear.cshtml" />
+    <Content Include="Views\IncidenciasResolucion\Index.cshtml" />
+    <Content Include="Views\IncidenciasResolucion\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

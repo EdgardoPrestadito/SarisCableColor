@@ -1,5 +1,5 @@
 ﻿using OrionCoreCableColor.DbConnection;
-using OrionCoreCableColor.Models.Indicadores;
+using OrionCoreCableColor.Models.IncidenciasResolucion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +8,13 @@ using System.Web.Mvc;
 
 namespace OrionCoreCableColor.Controllers
 {
-    public class IndicadoresController : BaseController
+    public class IncidenciasResolucionController : BaseController
     {
-        // GET: Indicadores
+        // GET: IncidenciasResolucion
         public ActionResult Index()
         {
             return View();
         }
-
-
-
 
         public JsonResult CargarListaIndicadores()
         {
@@ -25,16 +22,16 @@ namespace OrionCoreCableColor.Controllers
             {
                 using (var context = new SARISEntities1())
                 {
-                    var jsonResult = Json(context.sp_Indicadores_Lista().Select(x => new ListaIndicadoresViewModel
+                    var jsonResult = Json(context.sp_IndicadoresResolucion_Lista().Select(x => new IncidenciasResolucionViewModel
                     {
-                        fiIDTipoRequerimiento = x.fiIDTipoRequerimiento,
+                        fiIDTipoRequerimientoResolucion = x.fiIDTipoRequerimientoResolucion,
                         fcTipoRequerimiento = x.fcTipoRequerimiento,
                         fcToken = x.fcToken,
-                        fiIDCategoriaDesarrollo = x.fiIDCategoriaDesarrollo,
+                        fiIDCategoriaResolucion = x.fiIDCategoriaResolucion,
                         fcDescripcionCategoria = x.fcDescripcionCategoria,
                         fiUbicacion = x.fiUbicacion,
-                        fcDescripcionUbicacion = x.fcDescripcionUbicacion
-                        
+                        fcDescripcionUbicacion = x.fcDescripcionUbicacion,
+
 
                     }).ToList(), JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = Int32.MaxValue;
@@ -56,18 +53,18 @@ namespace OrionCoreCableColor.Controllers
                 ViewBag.ListaCategorias = context.sp_Categorias_Indicidencias_Listado().Where(a => a.fiEstado == 1).ToList().Select(x => new SelectListItem { Value = x.fiIDCategoriaDesarrollo.ToString(), Text = x.fcDescripcionCategoria }).ToList();
                 ViewBag.Ubicaciones = context.sp_Ubicacion_SubCategoria_Listado().Where(a => a.fiActivo == 1).ToList().Select(x => new SelectListItem { Value = x.fiUbicacion.ToString(), Text = x.fcDescripcionUbicacion }).ToList();
 
-                return PartialView(new IndicadoresCrearViewModel());
+                return PartialView(new IncidenciasResolucionViewModel());
             }
         }
 
 
 
         [HttpPost]
-        public ActionResult Crear(IndicadoresCrearViewModel model)
+        public ActionResult Crear(IncidenciasResolucionViewModel model)
         {
             using (var context = new SARISEntities1())
             {
-                var result = context.sp_Indicadores_Insertar(model.fcTipoRequerimiento.Trim(), model.fiIDCategoriaDesarrollo, model.fiUbicacion).FirstOrDefault();
+                var result = context.sp_IndicadoresResolucion_Insertar(model.fcTipoRequerimiento.Trim(), model.fiIDCategoriaResolucion, model.fiUbicacion).FirstOrDefault();
                 switch (result.fiRequest)
                 {
                     case 0:
@@ -90,21 +87,21 @@ namespace OrionCoreCableColor.Controllers
         {
             using (var context = new SARISEntities1())
             {
-                var model = context.sp_Indicadores_Lista().FirstOrDefault(x => x.fiIDTipoRequerimiento == id);
-          
-                    ViewBag.ListaCategorias = context.sp_Categorias_Indicidencias_Listado().Where(a => a.fiEstado == 1).ToList().Select(x => new SelectListItem { Value = x.fiIDCategoriaDesarrollo.ToString(), Text = x.fcDescripcionCategoria + " | " + x.fcDescripcion }).ToList();
-                    ViewBag.Ubicaciones = context.sp_Ubicacion_SubCategoria_Listado().Where(a => a.fiActivo == 1).ToList().Select(x => new SelectListItem { Value = x.fiUbicacion.ToString(), Text = x.fcDescripcionUbicacion }).ToList();
+                var model = context.sp_IndicadoresResolucion_Lista().FirstOrDefault(x => x.fiIDTipoRequerimientoResolucion == id);
+           
+                    ViewBag.ListaCategorias = context.sp_Categorias_IndicidenciasResolucion_Listado().Where(a => a.fiEstado == 1).ToList().Select(x => new SelectListItem { Value = x.fiIDCategoriaResolucion.ToString(), Text = x.fcDescripcionCategoria + " | " + x.fcDescripcion }).ToList();
+                    ViewBag.Ubicaciones = context.sp_Ubicacion_SubCategoria_Listado().Where(a => a.fiActivo == 1).ToList().Select(x => new SelectListItem { Value = x.fiUbicacion.ToString(), Text = x.fcDescripcionUbicacion}).ToList();
 
-                    return PartialView("Crear", new IndicadoresCrearViewModel { fiIDTipoRequerimiento = model.fiIDTipoRequerimiento, fcTipoRequerimiento = model.fcTipoRequerimiento.Trim(), fiIDCategoriaDesarrollo = model.fiIDCategoriaDesarrollo ?? 0, EsEditar = true });
+                    return PartialView("Crear", new IncidenciasResolucionViewModel { fiIDTipoRequerimientoResolucion = model.fiIDTipoRequerimientoResolucion, fcTipoRequerimiento = model.fcTipoRequerimiento.Trim(), fiIDCategoriaResolucion = model.fiIDCategoriaResolucion ?? 0 ,EsEditar = true });
             }
         }
 
         [HttpPost]
-        public ActionResult Editar(IndicadoresCrearViewModel model)
+        public ActionResult Editar(IncidenciasResolucionViewModel model)
         {
             using (var context = new SARISEntities1())
             {
-                var result = context.sp_Indicadores_Editar(model.fiIDTipoRequerimiento, model.fcTipoRequerimiento.Trim(), model.fiIDCategoriaDesarrollo, model.fiUbicacion).FirstOrDefault();
+                var result = context.sp_IndicadoresResolucion_Editar(model.fiIDTipoRequerimientoResolucion, model.fcTipoRequerimiento.Trim(), model.fiIDCategoriaResolucion, model.fiUbicacion).FirstOrDefault();
                 switch (result.fiRequest)
                 {
                     case 0:
@@ -126,11 +123,10 @@ namespace OrionCoreCableColor.Controllers
             {
                 var result = context.sp_Indicadores_Desactivar(id).FirstOrDefault();
                 var success = result.fiRequest == 1;
-                
+
                 return EnviarResultado(success, "Eliminar Sub Categoria", success ? "Se Eliminó Satisfactoriamente" : "Error al eliminar");
 
             }
         }
-
     }
 }

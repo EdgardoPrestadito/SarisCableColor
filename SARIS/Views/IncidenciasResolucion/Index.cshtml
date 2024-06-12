@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Lista de Sub Categoria de Apertura";
+    ViewBag.Title = "Lista de Sub Categoria de Resolución";
 }
 
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Sub Categorias de Apertura</h2>
+        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Sub Categorias de Resolución</h2>
         <div class="panel-toolbar " role="menu">
-            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i>Nueva Sub Categoria de Apertura</a>
+            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i>Nueva Sub Categoria de Resolución</a>
         </div>
     </div>
 
@@ -41,7 +41,7 @@
 
         function MostrarCrear() {
             $.ajax({
-                url: "@Url.Action("Crear", "Indicadores")",
+                url: "@Url.Action("Crear", "IncidenciasResolucion")",
                 method: "get",
                 success: function (resp) {
                     ShowModalSmall(resp);
@@ -54,7 +54,7 @@
 
         function Desactivar(id) {
             $.ajax({
-                url: "@Url.Action("EliminarIndicador", "Indicadores")",
+                url: "@Url.Action("EliminarIndicador", "IncidenciasResolucion")",
                 method: "post",
                 data: { id: id },
                 success: function (data) {
@@ -71,7 +71,7 @@
 
         function MostrarEditar(id) {
             $.ajax({
-                url: "@Url.Action("Editar","Indicadores")",
+                url: "@Url.Action("Editar","IncidenciasResolucion")",
                 method: "get",
                 data: { id: id },
                 success: function (data) {
@@ -103,7 +103,7 @@
 
             order: [[1, "desc"]],
             ajax: {
-                url: '@Url.Action("CargarListaIndicadores", "Indicadores")',
+                url: '@Url.Action("CargarListaIndicadores", "IncidenciasResolucion")',
                 method: "Get",
                 dataSrc: function (data) {
                     return data;
@@ -116,8 +116,8 @@
                     render: function (data) {
                         var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' + (data.fcToken == 0 ? 'disabled' : "") + '> Acciones </button>';
                     opciones += '<div class="dropdown-menu">';
-                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDTipoRequerimiento + ')"> Editar</a>';
-                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDTipoRequerimiento +')"> Eliminar </a>';
+                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDTipoRequerimientoResolucion + ')"> Editar</a>';
+                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDTipoRequerimientoResolucion +')"> Eliminar </a>';
 
                     opciones += '</div></div>';
                     return opciones;

@@ -1,28 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace OrionCoreCableColor.Models.Indicadores
+namespace OrionCoreCableColor.Models.IncidenciasResolucion
 {
-    public class ListaIndicadoresViewModel
+    public class IncidenciasResolucionViewModel
     {
-        [Display(Name = "Id")]
-        public int fiIDTipoRequerimiento { get; set; }
-
+        public int fiIDTipoRequerimientoResolucion { get; set; }
         public string fcTipoRequerimiento { get; set; }
-
-        public Nullable<int> fiIDCategoriaDesarrollo { get; set; }
-
+        public Nullable<int> fiIDCategoriaResolucion { get; set; }
         public string fcDescripcionCategoria { get; set; }
-
         public string fcToken { get; set; }
-
         public Nullable<int> fiUbicacion { get; set; }
-
-
         public string fcDescripcionUbicacion { get; set; }
-
+        public bool EsEditar { get; set; }
     }
 }

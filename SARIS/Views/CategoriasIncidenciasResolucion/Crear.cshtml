@@ -1,13 +1,13 @@
 ﻿
-@model OrionCoreCableColor.Models.CategoriaIncidencias.ListaCategoriaIncidencias
+@model OrionCoreCableColor.Models.CategoriaIncidenciasResolucion.CategoriasIncidenciasResolucionViewModel
 
 <!--Modal header-->
 <div class="modal-header bg-primary-600 bg-primary-gradient">
 
     @if (Model.EsEditar)
-    {<h2 class="modal-title text-white">Editar Categoria de Apertura</h2> }
+    {<h2 class="modal-title text-white">Editar Categoria de Resolución</h2> }
     else
-    {<h2 class="modal-title text-white">Crear Categoria de Apertura</h2>}
+    {<h2 class="modal-title text-white">Crear Categoria de Resolución</h2>}
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true"><i class="fal fa-times"></i></span>
     </button>
@@ -16,7 +16,7 @@
 <!--Modal body-->
 <div class="modal-body">
     <form id="MyFormModal">
-        @Html.HiddenFor(model => model.fiIDCategoriaDesarrollo)
+        @Html.HiddenFor(model => model.fiIDCategoriaResolucion)
 
         <div class="form-group">
             @Html.LabelFor(model => model.fcDescripcionCategoria, htmlAttributes: new { @class = "control-label" })
@@ -59,16 +59,16 @@
         if (!$("#MyFormModal").valid()) {
             return false;
         }
-        console.log("Valor de fiIDCategoriaDesarrollo:", $("#fiIDCategoriaDesarrollo").val());
+        console.log("Valor de fiIDCategoriaResolucion:", $("#fiIDCategoriaResolucion").val());
 
         var model = @Html.Raw(Json.Encode(Model));
-        model.fiIDCategoriaDesarrollo = $("#fiIDCategoriaDesarrollo").val();
+        model.fiIDCategoriaResolucion = $("#fiIDCategoriaResolucion").val();
         model.fcDescripcionCategoria = $("#fcDescripcionCategoria").val();
         model.fiIDArea = $("#fiIDArea").val();
 
-        var url = "@Url.Action("Crear", "CategoriaIndicadores")";
+        var url = "@Url.Action("Crear", "CategoriasIncidenciasResolucion")";
         if (str2bool('@Model.EsEditar')) {
-            url = "@Url.Action("Editar", "CategoriaIndicadores")";
+            url = "@Url.Action("Editar", "CategoriasIncidenciasResolucion")";
         }
 
         $.ajax({
