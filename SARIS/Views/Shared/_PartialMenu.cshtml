@@ -1,26 +1,25 @@
 ﻿@using OrionCoreCableColor.App_Helper
 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%; color:white;">
     <nav id="js-primary-nav" class="primary-nav" role="navigation">
-        <div class="info-card" style="width:100%;">
-            <div class="page-logo-link d-flex" style="padding-left: 17%;">
-                <img style="width:100%; height:100%;" class="profile-image rounded-circle img-lg" src="~/Content/img/AvatarUsuario/5.png" alt="Profile Picture">
+        <div class="info-card justify-content-center align-items-center" style="width: 100%;">
+            <div class="page-logo-link d-flex  justify-content-center align-items-center">
+                <img style="width: 60%; height: 60%; " class="profile-image rounded-circle img-fluid" src="~/Content/img/AvatarUsuario/11.png" alt="Profile Picture">
             </div>
             <img src="~/Content/img/fondo_aside.jpg" class="cover img-fluid" alt="cover">
-
         </div>
-        <div class="btn-group text-center align-items-center" style="width:100%;">
+        <div class="page-logo d-flex justify-content-center align-items-center">
+            <img src="~/Content/img/LogoCabeceraOrion.png" alt="ORION" aria-roledescription="logo" class="img-fluid" style="filter: invert(1); width: 50%; height: auto;">
+        </div>
+        <ul class="nav-menu js-nav-builtr text-center">
+            
+        <li class="btn-group text-center align-items-center" style="width:100%;">
             <button class="btn btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false"> </button>
             <div class="dropdown-menu">
                 <a href="@Url.Action("LogOff","Account")" class="dropdown-item"> LogOut </a>
             </div>
-        </div>
-        <ul class="nav-menu js-nav-builtr text-center">
-            <li class="open">
-                <a href="javascript:void(0);" data-filter-tags="tables" class="waves-effect waves-themed align-content-center text-center" aria-expanded="true">
-                    <span class="nav-link-text" style="padding-left: 27%;" data-i18n="nav.tables align-content-center"> @User.Identity.Name</span>
-                </a>
-            </li>
+        </li>
         </ul>
+
         <!-- Añadido el primer bloque de código aquí -->
         <ul id="js-nav-menu" class="nav-menu text-white">
             @if (User.IsInRole("SARIS_DASHBOARD"))
@@ -172,31 +171,31 @@
 
 
             @*@if (User.IsInRole("Orion_Acceso_Configuraciones"))
-                {
-                    <li>
-                        <a href="@Url.Action("IndexConfiguraciones","Mantenimiento")" data-filter-tags="blank page">
-                            <i class="fal fa-cogs"></i>
-                            <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Configuraciones</span>
-                        </a>
-                    </li>
-                }*@
+            {
+                <li>
+                    <a href="@Url.Action("IndexConfiguraciones","Mantenimiento")" data-filter-tags="blank page">
+                        <i class="fal fa-cogs"></i>
+                        <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Configuraciones</span>
+                    </a>
+                </li>
+            }*@
 
 
             @*<li>
-                    <a href="#" title="Application Intel" data-filter-tags="Contrato">
-                        <i class="fal fa-file-contract"></i>
-                        <span class="nav-link-text" data-i18n="nav.Clientes" style="color:white;">Contratos</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="@Url.Action("GuardarContrato","Contrato")" data-filter-tags="blank page">
-                                <i class="fal fa-file-edit"></i>
-                                <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Editor</span>
-                            </a>
-                        </li>
+                <a href="#" title="Application Intel" data-filter-tags="Contrato">
+                    <i class="fal fa-file-contract"></i>
+                    <span class="nav-link-text" data-i18n="nav.Clientes" style="color:white;">Contratos</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="@Url.Action("GuardarContrato","Contrato")" data-filter-tags="blank page">
+                            <i class="fal fa-file-edit"></i>
+                            <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Editor</span>
+                        </a>
+                    </li>
 
-                    </ul>
-                </li>*@
+                </ul>
+            </li>*@
 
 
         </ul>
