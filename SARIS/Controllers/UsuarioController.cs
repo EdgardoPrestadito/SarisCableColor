@@ -290,7 +290,7 @@ namespace OrionCoreCableColor.Controllers
                     fcSegundoNombre = usuario.fcSegundoNombre,
                     fcPrimerApellido = usuario.fcPrimerApellido,
                     fcSegundoApellido = usuario.fcSegundoApellido,
-                    //FechaNacimiento = usuario.FechaNacimiento,
+                    fcBuzondeCorreo = usuario.fcBuzondeCorreo,
                     fcTelefonoMovil = usuario.fcTelefonoMovil,
                 });
             }
@@ -308,6 +308,7 @@ namespace OrionCoreCableColor.Controllers
                 usuario.fcPrimerApellido = model.fcPrimerApellido;
                 usuario.fcSegundoApellido = model.fcSegundoApellido;
                 usuario.fcTelefonoMovil = model.fcTelefonoMovil;
+                usuario.fcBuzondeCorreo = model.fcBuzondeCorreo;
                 context.Entry(usuario).State = EntityState.Modified;
                 var result = context.SaveChanges() > 0;
                 return EnviarResultado(result, "Editar Usuario", result ? "Se edito Satisfactoriamente" : "Error al editar el usuario");

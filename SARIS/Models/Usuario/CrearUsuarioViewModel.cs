@@ -12,14 +12,13 @@ namespace OrionCoreCableColor.Models.Usuario
         [Required]
         [Display(Name = "Nombre")]
         public string fcPrimerNombre { get; set; }
-        [Required]
+
         [Display(Name = "Segundo Nombre")]
         public string fcSegundoNombre { get; set; }
         [Required]
         [Display(Name = "Apelllido")]
         public string fcPrimerApellido { get; set; }
 
-        [Required]
         [Display(Name = "Segundo Apellido")]
         public string fcSegundoApellido { get; set; }
 
