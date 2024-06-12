@@ -291,6 +291,10 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                                     <td>{model.fcDescripcionRequerimiento}</td>
                                                 </tr>
                                                 <tr>
+                                                    <td><strong>Comentario:</strong></td>
+                                                    <td>{model.fcComentario}</td>
+                                                </tr>
+                                                <tr>
                                                     <td><strong>Categoria:</strong></td>
                                                     <td>{model.fcDescripcionCategoria}</td>
                                                 </tr>

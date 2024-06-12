@@ -369,6 +369,19 @@
     <Parameter Name="pcApellido" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_Tickets_FuraTiempo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Ubicacion_SubCategoria_Desactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piUbicacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Ubicacion_SubCategoria_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piUbicacion" Type="int" Mode="In" />
+    <Parameter Name="pcDescripcionUbicacion" Type="varchar" Mode="In" />
+    <Parameter Name="pcDescripciondeUbicacion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Ubicacion_SubCategoria_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pcDescripcionUbicacion" Type="varchar" Mode="In" />
+    <Parameter Name="pcDescripciondeUbicacion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Ubicacion_SubCategoria_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Usuario_EditarInfoUsuarioLaboral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIdUsuario" Type="int" Mode="In" />
     <Parameter Name="piIDJefeInmediato" Type="int" Mode="In" />

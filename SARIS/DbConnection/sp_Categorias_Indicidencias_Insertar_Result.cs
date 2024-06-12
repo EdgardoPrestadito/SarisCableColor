@@ -11,13 +11,9 @@ namespace OrionCoreCableColor.DbConnection
 {
     using System;
     
-    public partial class sp_Categorias_Indicidencias_Listado_Result
+    public partial class sp_Categorias_Indicidencias_Insertar_Result
     {
-        public int fiIDCategoriaDesarrollo { get; set; }
-        public string fcDescripcionCategoria { get; set; }
-        public string fcToken { get; set; }
-        public int fiEstado { get; set; }
-        public Nullable<short> fiIDArea { get; set; }
-        public string fcDescripcion { get; set; }
+        public Nullable<int> fiRequest { get; set; }
+        public string fcRequest { get; set; }
     }
 }

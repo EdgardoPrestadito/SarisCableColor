@@ -27,5 +27,6 @@ namespace OrionCoreCableColor.Models.EmailTemplateService
         public string fcDescripcionImpacto { get; set; }
         public int fiIDPrioridad { get; set; }
         public string fcDescripcionPrioridad { get; set; }
+        public string fcComentario { get; set; }
     }
 }
