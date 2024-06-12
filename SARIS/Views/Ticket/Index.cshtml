@@ -127,10 +127,10 @@
                                             <a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Incidente</a>
                                     `;
 
-                        if (@Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
+                        //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
 
                             opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
-                        }
+                        //}
 
                         if (data.fiAreaAsignada == 6)//es 6 por que es pendiente, se deberia de cambiar a un viewbac para traerlo directamente desde al base de datos
                         {

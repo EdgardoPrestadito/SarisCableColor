@@ -78,6 +78,15 @@
     <Parameter Name="piArea" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Categorias_IndicidenciasResolucion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ConfiguracionCI_Crear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pipais" Type="int" Mode="In" />
+    <Parameter Name="piRegion" Type="int" Mode="In" />
+    <Parameter Name="piCiudad" Type="int" Mode="In" />
+    <Parameter Name="piCI" Type="int" Mode="In" />
+    <Parameter Name="pcConfiguracion" Type="varchar" Mode="In" />
+    <Parameter Name="pcLatitud" Type="varchar" Mode="In" />
+    <Parameter Name="pcLongitud" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_Configuraciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fcDescripcionLlave" Type="nvarchar" Mode="In" />
   </Function>
@@ -315,6 +324,7 @@
     <Parameter Name="piIDApp" Type="int" Mode="In" />
     <Parameter Name="piIdAreaAsignada" Type="int" Mode="In" />
     <Parameter Name="piIdTicketPadre" Type="int" Mode="In" />
+    <Parameter Name="pifiMotivoEstado" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Requerimiento_Maestro_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDSesion" Type="int" Mode="In" />

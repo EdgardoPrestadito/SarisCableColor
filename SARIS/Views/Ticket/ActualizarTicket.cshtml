@@ -63,7 +63,7 @@
                 <div class="col-sm-6" id="iddivmotivo" style="display:none">
                     <div class="form-group">
                         <label class="col-form-label">Motivo</label>
-                        <select id="selectmotivo">
+                        <select class="form-select form-control" id="selectmotivo">
                         </select>
                     </div>
                 </div>
@@ -97,6 +97,27 @@
                     </div>
                 </div>
 
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Plataforma</label>
+                        @Html.EditorFor(model => model.fcPlataforma, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Servicio Afectado</label>
+                        @Html.EditorFor(model => model.fcServicioAfectados, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Deteccion de Alarma </label>
+                        @Html.EditorFor(model => model.fdFechaAlarmaDeteccion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
 
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -107,11 +128,12 @@
 
             </div>
         </div>
-
+        
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
+                        <br />
                         <label class="control-label">DOCUMENTO (Suba imagenes,Word,Excel,Pdf para este ticket) </label>
 
                         <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
@@ -291,7 +313,11 @@
                     return 0;
                 }
             }
-
+            if (fotosredimencionadas.length < 1) {
+                ToastrError("Documento/Imagen", "Suba un documento o imagen");
+                return 0;
+            }
+            console.log(`esto trael el motivo: ${$("#selectmotivo").val()}`);
             var requerimiento = {
                 fiIDRequerimiento: ID_REQUERIMIENTO,
                 fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
@@ -300,7 +326,8 @@
                 fcDescripcionEstado: $("#fiIDEstadoRequerimiento :selected").text(),
                 fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
                 fiTipoRequerimiento: $(`#selectincidencia`).val(),
-                fiIdTicketPadre: $(`#ticketPadre`).val()
+                fiIdTicketPadre: $(`#ticketPadre`).val(),
+                fiMotivoEstado: $("#selectmotivo").val()
                 //fiIDUsuarioAsignado: $("#fiIDUsuarioAsignado option:selected").val() == "" ? 1 : parseInt($("#fiIDUsuarioAsignado option:selected").val()),
 
                 //$("#txtComentario").val(),
@@ -550,10 +577,43 @@
     }
 
     $(`#fiIDEstadoRequerimiento`).on(`change`, function () {
-        console.log(`Cambio ahora`);
+        //console.log(`Cambio ahora`);
+        var divinfo = document.getElementById('iddivmotivo');//funcion que se usa para desocultar y ocultar las opciones de mantenimiento, al darle click al boton buscar
 
         if ($(this).val() == 4 || $(this).val() == 6 || $(this).val() == 11) {
-            document.getElementById('divInformacionSolicitud')
+            console.log(`entro en el if`);
+            divinfo.style.display = 'block'
+
+            $.ajax({
+            url: "@Url.Action("SelectMotivos", "LlenarCampos")",
+            type: "GET",
+            data: { idestado: $(this).val()},
+            success: function (respuesta) {
+
+                var selectMotivo = $("#selectmotivo");
+
+                selectMotivo.empty();
+                selectMotivo.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Motivo'
+                }));
+
+                $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectMotivo.append($('<option>', {
+                        value: item.fiMotivos,
+                        text: item.fcNombreMotivo
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+        } else {
+            console.log(`entro en el else`);
+            divinfo.style.display = 'none'
         }
 
     })

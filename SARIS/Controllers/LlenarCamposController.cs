@@ -151,6 +151,14 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
-
+        public JsonResult SelectMotivos(int idestado)
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Motivos_Estado_Listado(idestado).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
     }
 }

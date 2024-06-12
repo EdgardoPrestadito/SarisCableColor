@@ -47,5 +47,9 @@ namespace OrionCoreCableColor.Models.Ticket
         public int fiPlataforma { get; set; }
         public int fiServicioAfectados { get; set; }
         public int fiMotivoEstado { get; set; }
+
+        public string fcPlataforma { get; set; }
+        public string fcServicioAfectados { get; set; }
+        public string fcMotivoEstado { get; set; }
     }
 }
