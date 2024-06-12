@@ -217,11 +217,11 @@ namespace OrionCoreCableColor.Controllers
 
                     try 
                     {
-                        var idarea = (ticket.fiAreaAsignada == 0) ? 6 : ticket.fiAreaAsignada; // aqui decimo que si el idarea no es asignada que lo ponga en pendiente y en dado casi si es asignada entonces que lo deje tal cual
+                        var idarea = (ticket.fiAreaAsignada == 0) ? 6 : ticket.fiAreaAsignada; // aqui decimo que si el id area no es asignada que lo ponga en pendiente y en dado casi si es asignada entonces que lo deje tal cual
                         //cambiar despues Los datos que se envian en duro para que sea mas dinamico las cosas 
                         var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
 
-                        var save = contexto.sp_Requerimiento_Alta(1, 1, GetIdUser(), ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, ticket.fiTipoRequerimiento, idarea, $"El usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} a Creado El Ticket", ticket.fiIDImpacto, ticket.fiIDUrgencia, ticket.fiIDPrioridad,ticket.fiIdTicketPadre).FirstOrDefault();
+                        var save = contexto.sp_Requerimiento_Alta(1, 1, GetIdUser(), ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, ticket.fiTipoRequerimiento, idarea, $"El usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} a Creado El Incidente", ticket.fiIDImpacto, ticket.fiIDUrgencia, ticket.fiIDPrioridad,ticket.fiIdTicketPadre,ticket.fdFechaAlarmaDeteccion,ticket.fiPlataforma, ticket.fiServicioAfectados,0).FirstOrDefault();
                         var datosticket = Datosticket((int)save.IdIngresado);
                         //GuardarBitacoraGeneralhistorial(GetIdUser(),datosticket.fiIDRequerimiento,datosticket.fiIDUsuarioSolicitante, comentarioticket,1,datosticket.fiIDEstadoRequerimiento,datosticket.fiIDUsuarioAsignado);
 
@@ -310,7 +310,7 @@ namespace OrionCoreCableColor.Controllers
                     }
                     catch (Exception ex)
                     {
-                        return EnviarResultado(false, ex.Message.ToString(), "No se pudo registrar el ticket");
+                        return EnviarResultado(false, ex.Message.ToString(), "No se pudo registrar la incidencia");
                         throw;
                     }   
                 }

@@ -20,7 +20,7 @@
 <div class="modal-header bg-primary-600 bg-primary-gradient" >
     <h2 class="modal-title text-white">
         
-        <text>Crear Ticket</text>    
+        <text>Crear Incidente</text>    
     
     </h2>
     
@@ -52,10 +52,10 @@
                 <!--<div class="col-sm-12">-->
                 <!--esto debe de ser un select -->
                 <!--<div class="form-group">
-            <label class="col-form-label">Area</label>
-            <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Area" />
-                </div>
-            </div>-->
+    <label class="col-form-label">Area</label>
+    <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Area" />
+        </div>
+    </div>-->
 
                 <div class="col-lg-6">
                     <div class="form-group">
@@ -108,10 +108,31 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="form-group">
-                        <label class="col-form-label">Ticket Padre ? </label>
+                        <label class="col-form-label">Incidente Padre</label>
                         <select id="ticketpadre" class="form-select form-control" readonly>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label class="col-form-label">Deteccion Alarma</label>
+                        <input id="deteccionalarma"class="form-control" type="datetime-local" />
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label class="col-form-label">Platatforma</label>
+                        <select id="ticketplataforma" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label class="col-form-label">Servicios Afectados</label>
+                        <select id="ticketservafectados" class="form-select form-control">
                         </select>
                     </div>
                 </div>
@@ -372,6 +393,59 @@
             }
         });
 
+
+        $.ajax({
+            url: "@Url.Action("SelectPlataforma", "LlenarCampos")",
+            data: { idticket: 0},
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectplataforma = $("#ticketplataforma");
+
+                selectplataforma.empty();
+                selectplataforma.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Una Plataforma'
+                }));
+                $("#ticketplataforma").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectplataforma.append($('<option>', {
+                        value: item.fiIDPlataforma,
+                        text: item.fcNombrePlataforma
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+        $.ajax({
+            url: "@Url.Action("SelectServiciosAfectados", "LlenarCampos")",
+            data: { idticket: 0},
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectservicios = $("#ticketservafectados");
+
+                selectservicios.empty();
+                selectservicios.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Un Servicio'
+                }));
+                $("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectservicios.append($('<option>', {
+                        value: item.fiIDServicio,
+                        text: item.fcNombreServicio
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
     }
 
     function GuardarDocumentos(IdRequerimiento) {
@@ -400,20 +474,22 @@
             data: { modelo: mod },
 
                 timeout: 800000,
-                success: function (data) {
-                    var datasus = { Titulo: "Exito", Mensaje: "Documentos guardados correctamente", Estado: true }
-                    AlertaAjax(datasus)
+            success: function (data) {
+                ToastrSuccess("Exito!", "Documentos guardados correctamente");
+                //var datasus = { Titulo: "Exito", Mensaje: "Documentos guardados correctamente", Estado: true }
+                //AlertaAjax(datasus)
 
-                    //location.reload();
+                //location.reload();
 
-                },
-                error: function (e) {
-                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Subir Imagenes", Estado: false }
-                    AlertaAjax(dataerror)
-                    console.error(e);
+            },
+            error: function (e) {
+                ToastrError("Erro!", "Error Al querer Subir Documentos");
+                //var dataerror = { Titulo: "Error", Mensaje: "", Estado: false }
+                //AlertaAjax(dataerror)
+                console.error(e);
 
-                }
-            });
+            }
+        });
 
 
     }
@@ -457,6 +533,11 @@
         var imp = $(`#selectImpacto`).val();
         console.log(`urgencia = ${urg} impato = ${imp}`);
 
+        if (fotosredimencionadas.length < 1) {
+            ToastrError("Error", "Suba aun que sea 1 documento");
+            return 0;
+        }
+
         var ticket = {
             fiIDEstadoRequerimiento: EstadoRequerimiento,
             fcTituloRequerimiento: $("#txtNombreTitulo").val(),
@@ -466,7 +547,10 @@
             fiIDImpacto: $(`#selectImpacto`).val(),
             fiIDUrgencia: $(`#selectUrgencia`).val(),
             fiIDPrioridad: $(`#PrioridadSelect`).val(),
-            fiIdTicketPadre: $(`#ticketpadre`).val()
+            fiIdTicketPadre: $(`#ticketpadre`).val(),
+            fdFechaAlarmaDeteccion: $(`#deteccionalarma`).val(),
+            fiPlataforma: $(`#ticketplataforma`).val(),
+            fiServicioAfectados: $(`#ticketservafectados`).val()
         }
         var comentario = $("#txtcomentario").val();
         if (comentario == "" || comentario == null) {
@@ -478,10 +562,13 @@
             type: "POST",
             url: "@Url.Action("GuardarTicket", "Ticket")",
             data: { ticket: ticket, comentarioticket: comentario },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: function (result) {
+                console.log(`error`);
+                ToastrError("Error", "No se guardo el Incidente, Contacte con el Administrador");
                 H5_loading.hide();
-                var dataerror = { Titulo: "Error", Mensaje: "No se guardo el ticket, Contacte con el Administrador", Estado: false }
-                AlertaAjax(dataerror)
+
+                //var dataerror = { Titulo: "Error", Mensaje: "No se guardo el Incidente, Contacte con el Administrador", Estado: false }
+                //AlertaAjax(dataerror)
             },
             success: function (data) {
                 console.log(data);

@@ -130,5 +130,27 @@ namespace OrionCoreCableColor.Controllers
                 return jsonResult;
             }
         }
+
+        public JsonResult SelectServiciosAfectados() 
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_ServiciosAfectados_Listado().ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
+
+        public JsonResult SelectPlataforma()
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Plataformas_Listado().ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
+
+
     }
 }

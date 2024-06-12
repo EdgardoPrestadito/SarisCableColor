@@ -1001,63 +1001,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListaTicket_Padre_Result>("sp_ListaTicket_Padre", piIDTIcketParameter);
         }
     
-        public virtual ObjectResult<sp_Requerimiento_Alta_Result> sp_Requerimiento_Alta(Nullable<int> piIDSesion, Nullable<short> piIDApp, Nullable<int> piIDUsuario, string pcTituloRequerimiento, string pcDetalleRequerimiento, Nullable<byte> piEstadoRequerimiento, Nullable<int> piTipoRequerimiento, Nullable<int> piIdArea, string pcComentario, Nullable<int> piIdImpacto, Nullable<int> piIdUrgencia, Nullable<int> piIDPrioridad, Nullable<int> piIdTicketPadre)
-        {
-            var piIDSesionParameter = piIDSesion.HasValue ?
-                new ObjectParameter("piIDSesion", piIDSesion) :
-                new ObjectParameter("piIDSesion", typeof(int));
-    
-            var piIDAppParameter = piIDApp.HasValue ?
-                new ObjectParameter("piIDApp", piIDApp) :
-                new ObjectParameter("piIDApp", typeof(short));
-    
-            var piIDUsuarioParameter = piIDUsuario.HasValue ?
-                new ObjectParameter("piIDUsuario", piIDUsuario) :
-                new ObjectParameter("piIDUsuario", typeof(int));
-    
-            var pcTituloRequerimientoParameter = pcTituloRequerimiento != null ?
-                new ObjectParameter("pcTituloRequerimiento", pcTituloRequerimiento) :
-                new ObjectParameter("pcTituloRequerimiento", typeof(string));
-    
-            var pcDetalleRequerimientoParameter = pcDetalleRequerimiento != null ?
-                new ObjectParameter("pcDetalleRequerimiento", pcDetalleRequerimiento) :
-                new ObjectParameter("pcDetalleRequerimiento", typeof(string));
-    
-            var piEstadoRequerimientoParameter = piEstadoRequerimiento.HasValue ?
-                new ObjectParameter("piEstadoRequerimiento", piEstadoRequerimiento) :
-                new ObjectParameter("piEstadoRequerimiento", typeof(byte));
-    
-            var piTipoRequerimientoParameter = piTipoRequerimiento.HasValue ?
-                new ObjectParameter("piTipoRequerimiento", piTipoRequerimiento) :
-                new ObjectParameter("piTipoRequerimiento", typeof(int));
-    
-            var piIdAreaParameter = piIdArea.HasValue ?
-                new ObjectParameter("piIdArea", piIdArea) :
-                new ObjectParameter("piIdArea", typeof(int));
-    
-            var pcComentarioParameter = pcComentario != null ?
-                new ObjectParameter("pcComentario", pcComentario) :
-                new ObjectParameter("pcComentario", typeof(string));
-    
-            var piIdImpactoParameter = piIdImpacto.HasValue ?
-                new ObjectParameter("piIdImpacto", piIdImpacto) :
-                new ObjectParameter("piIdImpacto", typeof(int));
-    
-            var piIdUrgenciaParameter = piIdUrgencia.HasValue ?
-                new ObjectParameter("piIdUrgencia", piIdUrgencia) :
-                new ObjectParameter("piIdUrgencia", typeof(int));
-    
-            var piIDPrioridadParameter = piIDPrioridad.HasValue ?
-                new ObjectParameter("piIDPrioridad", piIDPrioridad) :
-                new ObjectParameter("piIDPrioridad", typeof(int));
-    
-            var piIdTicketPadreParameter = piIdTicketPadre.HasValue ?
-                new ObjectParameter("piIdTicketPadre", piIdTicketPadre) :
-                new ObjectParameter("piIdTicketPadre", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimiento_Alta_Result>("sp_Requerimiento_Alta", piIDSesionParameter, piIDAppParameter, piIDUsuarioParameter, pcTituloRequerimientoParameter, pcDetalleRequerimientoParameter, piEstadoRequerimientoParameter, piTipoRequerimientoParameter, piIdAreaParameter, pcComentarioParameter, piIdImpactoParameter, piIdUrgenciaParameter, piIDPrioridadParameter, piIdTicketPadreParameter);
-        }
-    
         public virtual ObjectResult<sp_Requerimiento_Maestro_Detalle_Result> sp_Requerimiento_Maestro_Detalle(Nullable<int> piIDSesion, Nullable<short> piIDApp, Nullable<int> piIDUsuario, Nullable<int> piIDRequerimiento)
         {
             var piIDSesionParameter = piIDSesion.HasValue ?
@@ -1441,6 +1384,116 @@ namespace OrionCoreCableColor.DbConnection
         public virtual ObjectResult<sp_ListarPrioridad_Result> sp_ListarPrioridad()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListarPrioridad_Result>("sp_ListarPrioridad");
+        }
+    
+        public virtual ObjectResult<sp_Categorias_IndicidenciasResolucion_Desactivar_Result> sp_Categorias_IndicidenciasResolucion_Desactivar(Nullable<int> piIDCategoriaDesarrollo)
+        {
+            var piIDCategoriaDesarrolloParameter = piIDCategoriaDesarrollo.HasValue ?
+                new ObjectParameter("piIDCategoriaDesarrollo", piIDCategoriaDesarrollo) :
+                new ObjectParameter("piIDCategoriaDesarrollo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Categorias_IndicidenciasResolucion_Desactivar_Result>("sp_Categorias_IndicidenciasResolucion_Desactivar", piIDCategoriaDesarrolloParameter);
+        }
+    
+        public virtual ObjectResult<sp_IndicadoresResolucion_Desactivar_Result> sp_IndicadoresResolucion_Desactivar(Nullable<int> fiIDTipoRequerimiento)
+        {
+            var fiIDTipoRequerimientoParameter = fiIDTipoRequerimiento.HasValue ?
+                new ObjectParameter("fiIDTipoRequerimiento", fiIDTipoRequerimiento) :
+                new ObjectParameter("fiIDTipoRequerimiento", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_IndicadoresResolucion_Desactivar_Result>("sp_IndicadoresResolucion_Desactivar", fiIDTipoRequerimientoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Motivos_Estado_Listado_Result> sp_Motivos_Estado_Listado(Nullable<int> piEstado)
+        {
+            var piEstadoParameter = piEstado.HasValue ?
+                new ObjectParameter("piEstado", piEstado) :
+                new ObjectParameter("piEstado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Motivos_Estado_Listado_Result>("sp_Motivos_Estado_Listado", piEstadoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Plataformas_Listado_Result> sp_Plataformas_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Plataformas_Listado_Result>("sp_Plataformas_Listado");
+        }
+    
+        public virtual ObjectResult<sp_ServiciosAfectados_Listado_Result> sp_ServiciosAfectados_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ServiciosAfectados_Listado_Result>("sp_ServiciosAfectados_Listado");
+        }
+    
+        public virtual ObjectResult<sp_Requerimiento_Alta_Result> sp_Requerimiento_Alta(Nullable<int> piIDSesion, Nullable<short> piIDApp, Nullable<int> piIDUsuario, string pcTituloRequerimiento, string pcDetalleRequerimiento, Nullable<byte> piEstadoRequerimiento, Nullable<int> piTipoRequerimiento, Nullable<int> piIdArea, string pcComentario, Nullable<int> piIdImpacto, Nullable<int> piIdUrgencia, Nullable<int> piIDPrioridad, Nullable<int> piIdTicketPadre, Nullable<System.DateTime> pdFechaAlarmaDeteccion, Nullable<int> piPlataforma, Nullable<int> piServicioAfectados, Nullable<int> piMotivoEstado)
+        {
+            var piIDSesionParameter = piIDSesion.HasValue ?
+                new ObjectParameter("piIDSesion", piIDSesion) :
+                new ObjectParameter("piIDSesion", typeof(int));
+    
+            var piIDAppParameter = piIDApp.HasValue ?
+                new ObjectParameter("piIDApp", piIDApp) :
+                new ObjectParameter("piIDApp", typeof(short));
+    
+            var piIDUsuarioParameter = piIDUsuario.HasValue ?
+                new ObjectParameter("piIDUsuario", piIDUsuario) :
+                new ObjectParameter("piIDUsuario", typeof(int));
+    
+            var pcTituloRequerimientoParameter = pcTituloRequerimiento != null ?
+                new ObjectParameter("pcTituloRequerimiento", pcTituloRequerimiento) :
+                new ObjectParameter("pcTituloRequerimiento", typeof(string));
+    
+            var pcDetalleRequerimientoParameter = pcDetalleRequerimiento != null ?
+                new ObjectParameter("pcDetalleRequerimiento", pcDetalleRequerimiento) :
+                new ObjectParameter("pcDetalleRequerimiento", typeof(string));
+    
+            var piEstadoRequerimientoParameter = piEstadoRequerimiento.HasValue ?
+                new ObjectParameter("piEstadoRequerimiento", piEstadoRequerimiento) :
+                new ObjectParameter("piEstadoRequerimiento", typeof(byte));
+    
+            var piTipoRequerimientoParameter = piTipoRequerimiento.HasValue ?
+                new ObjectParameter("piTipoRequerimiento", piTipoRequerimiento) :
+                new ObjectParameter("piTipoRequerimiento", typeof(int));
+    
+            var piIdAreaParameter = piIdArea.HasValue ?
+                new ObjectParameter("piIdArea", piIdArea) :
+                new ObjectParameter("piIdArea", typeof(int));
+    
+            var pcComentarioParameter = pcComentario != null ?
+                new ObjectParameter("pcComentario", pcComentario) :
+                new ObjectParameter("pcComentario", typeof(string));
+    
+            var piIdImpactoParameter = piIdImpacto.HasValue ?
+                new ObjectParameter("piIdImpacto", piIdImpacto) :
+                new ObjectParameter("piIdImpacto", typeof(int));
+    
+            var piIdUrgenciaParameter = piIdUrgencia.HasValue ?
+                new ObjectParameter("piIdUrgencia", piIdUrgencia) :
+                new ObjectParameter("piIdUrgencia", typeof(int));
+    
+            var piIDPrioridadParameter = piIDPrioridad.HasValue ?
+                new ObjectParameter("piIDPrioridad", piIDPrioridad) :
+                new ObjectParameter("piIDPrioridad", typeof(int));
+    
+            var piIdTicketPadreParameter = piIdTicketPadre.HasValue ?
+                new ObjectParameter("piIdTicketPadre", piIdTicketPadre) :
+                new ObjectParameter("piIdTicketPadre", typeof(int));
+    
+            var pdFechaAlarmaDeteccionParameter = pdFechaAlarmaDeteccion.HasValue ?
+                new ObjectParameter("pdFechaAlarmaDeteccion", pdFechaAlarmaDeteccion) :
+                new ObjectParameter("pdFechaAlarmaDeteccion", typeof(System.DateTime));
+    
+            var piPlataformaParameter = piPlataforma.HasValue ?
+                new ObjectParameter("piPlataforma", piPlataforma) :
+                new ObjectParameter("piPlataforma", typeof(int));
+    
+            var piServicioAfectadosParameter = piServicioAfectados.HasValue ?
+                new ObjectParameter("piServicioAfectados", piServicioAfectados) :
+                new ObjectParameter("piServicioAfectados", typeof(int));
+    
+            var piMotivoEstadoParameter = piMotivoEstado.HasValue ?
+                new ObjectParameter("piMotivoEstado", piMotivoEstado) :
+                new ObjectParameter("piMotivoEstado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimiento_Alta_Result>("sp_Requerimiento_Alta", piIDSesionParameter, piIDAppParameter, piIDUsuarioParameter, pcTituloRequerimientoParameter, pcDetalleRequerimientoParameter, piEstadoRequerimientoParameter, piTipoRequerimientoParameter, piIdAreaParameter, pcComentarioParameter, piIdImpactoParameter, piIdUrgenciaParameter, piIDPrioridadParameter, piIdTicketPadreParameter, pdFechaAlarmaDeteccionParameter, piPlataformaParameter, piServicioAfectadosParameter, piMotivoEstadoParameter);
         }
     }
 }
