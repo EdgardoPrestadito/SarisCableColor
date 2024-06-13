@@ -28,5 +28,10 @@ namespace OrionCoreCableColor.DbConnection
         public string fcDescripcionImpacto { get; set; }
         public Nullable<int> fiIDPrioridad { get; set; }
         public string fcDescripcionPrioridad { get; set; }
+        public Nullable<int> fiIDPlataforma { get; set; }
+        public string fcNombrePlataforma { get; set; }
+        public Nullable<int> fiIDServicio { get; set; }
+        public string fcNombreServicio { get; set; }
+        public Nullable<System.DateTime> fdFechaAlarmaDeteccion { get; set; }
     }
 }

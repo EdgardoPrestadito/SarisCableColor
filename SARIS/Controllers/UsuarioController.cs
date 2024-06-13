@@ -311,6 +311,7 @@ namespace OrionCoreCableColor.Controllers
                 usuario.fcBuzondeCorreo = model.fcBuzondeCorreo;
                 context.Entry(usuario).State = EntityState.Modified;
                 var result = context.SaveChanges() > 0;
+
                 return EnviarResultado(result, "Editar Usuario", result ? "Se edito Satisfactoriamente" : "Error al editar el usuario");
             }
         }

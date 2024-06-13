@@ -22,5 +22,14 @@ namespace OrionCoreCableColor.Models.Ticket
         public string fcDescripcionImpacto { get; set; }
         public Nullable<int> fiIDPrioridad { get; set; }
         public string fcDescripcionPrioridad { get; set; }
+
+        public DateTime fdFechaAlarmaDeteccion { get; set; }
+        public int fiPlataforma { get; set; }
+        public int fiServicioAfectados { get; set; }
+        public int fiMotivoEstado { get; set; }
+
+        public string fcPlataforma { get; set; }
+        public string fcServicioAfectados { get; set; }
+        public string fcMotivoEstado { get; set; }
     }
 }

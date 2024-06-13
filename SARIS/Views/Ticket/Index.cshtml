@@ -5,11 +5,11 @@
 
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Tickets Pendientes</h2>
+        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Pendientes</h2>
         @if (User.IsInRole("SARIS_CREARTICKET"))
         {
             <div class="panel-toolbar " role="menu">
-                <button onclick="CrearTicket()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Crear Ticket</button>
+                <button onclick="CrearTicket()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Crear Incidente</button>
             </div>
         }
 
@@ -42,7 +42,7 @@
 
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Tickets Cerrados</h2>
+        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Cerrados</h2>
 
     </div>
     <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
@@ -118,19 +118,19 @@
                         //console.log(data)
 
                         if (idusuariologueado == data.fiIDUsuarioSolicitante && data.fiIDEstadoRequerimiento == 1) {
-                            opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Ticket'><i class=\"fal fa-times\"></i></a>`;
+                            opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Incidente'><i class=\"fal fa-times\"></i></a>`;
                         }
                         opt += `
                                     <div class='dropdown d-inline-block dropleft'>
                                         <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='Mas Opciones'><i class=\"fal fa-ellipsis-v\"></i></a>
                                         <div class='dropdown-menu'>
-                                            <a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Ticket</a>
+                                            <a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Incidente</a>
                                     `;
 
-                        if (@Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
+                        //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
 
-                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Ticket</a>`;
-                        }
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
+                        //}
 
                         if (data.fiAreaAsignada == 6)//es 6 por que es pendiente, se deberia de cambiar a un viewbac para traerlo directamente desde al base de datos
                         {
@@ -333,7 +333,7 @@
                                     <div class='dropdown-menu'>`;
                         //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
 
-                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Ticket</a>`;
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
                         //}
                         opt += `</div>
                                 </div>`
@@ -478,7 +478,7 @@
         function EliminarTicket(idticket) {
 
             bootbox.confirm({
-                title: `<i class="" fa-times-circle text-danger mr-2'></i> Esta Seguro que desea Eliminar Este ticket <span class='fw-500'></span>`,
+                title: `<i class="" fa-times-circle text-danger mr-2'></i> Esta Seguro que desea Eliminar Este Incidente <span class='fw-500'></span>`,
                 message: "<span><strong>Advertencia!:</strong> Esta Accion no se puede Reversar</span>",
                 centerVertical: true,
                 swapButtonOrder: true,
@@ -508,7 +508,7 @@
 
                             if (datas.Estado) {
                                 tablaPrincipalticket.ajax.reload().draw(false);
-                                return ToastrSuccess("Exito!", "Ticket Eliminado Exitosamente");
+                                return ToastrSuccess("Exito!", "Incidente Eliminado Exitosamente");
 
                                 @*$.ajax({
                                     url: "@Url.Action("GuardarBitacorahistorial", "Ticket")",
@@ -529,7 +529,7 @@
 
                         },
                         error: function (datae) {
-                            var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Eliminar el Ticket", Estado: false }
+                            var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Eliminar el Incidente", Estado: false }
                             AlertaAjax(dataerror)
                         }
                     })
@@ -617,7 +617,7 @@
                     ShowModalBigScroll(data)
                 }, error: function (data) {
 
-                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Actualizar el Ticket", Estado: false }
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Actualizar el Incidente", Estado: false }
                     AlertaAjax(dataerror)
                 }
             });
@@ -685,7 +685,7 @@
                     ShowModalBigScroll(data)
                 }, error: function (data) {
 
-                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Ver el Detalle del Ticket", Estado: false }
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Ver el Detalle del Incidente", Estado: false }
                     AlertaAjax(dataerror)
                 }
             });

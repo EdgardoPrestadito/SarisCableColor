@@ -529,6 +529,9 @@
     <Compile Include="DbConnection\sp_MostrarInfo_PlacaIP_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Motivos_Estado_Listado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Notificaciones_Maestro_Lista_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -539,6 +542,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Notificaciones_Maestro_ObtenerPorIdNotificacion_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Plataformas_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Prioridad_urgenciaXimpacto_Result.cs">
@@ -581,6 +587,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Requerimiento_Tipo_Adjuntos_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_ServiciosAfectados_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Tickets_FuraTiempo_Result.cs">
@@ -2006,6 +2015,8 @@
     <Content Include="Views\CategoriasIncidenciasResolucion\Crear.cshtml" />
     <Content Include="Views\IncidenciasResolucion\Index.cshtml" />
     <Content Include="Views\IncidenciasResolucion\Crear.cshtml" />
+    <Content Include="Views\CategoriaIndicadores\SubTablaSubCategoria.cshtml" />
+    <Content Include="Views\Ticket\AgregarServicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
