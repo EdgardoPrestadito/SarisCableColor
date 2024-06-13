@@ -2050,6 +2050,7 @@
     <Content Include="Views\IncidenciasResolucion\Crear.cshtml" />
     <Content Include="Views\CategoriaIndicadores\SubTablaSubCategoria.cshtml" />
     <Content Include="Views\Ticket\AgregarServicios.cshtml" />
+    <Content Include="Views\Ticket\AgregarCI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

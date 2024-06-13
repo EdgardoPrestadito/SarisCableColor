@@ -143,7 +143,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="col-form-label">Ci</label>
-                        <button class="form-control btn btn-success">Agregar Ci</button>
+                        <button onclick="AgregarCI()" class="form-control btn btn-success">Agregar CI</button>
                         
                     </div>
                 </div>
@@ -461,6 +461,43 @@
             }
         });
 
+        $.ajax({
+            url: "@Url.Action("SelectServiciosCI", "LlenarCampos")",
+            data: { idticket: 0},
+            type: "GET",
+            success: function (respuesta) {
+
+                //var selectservicios = $("#ticketservafectados");
+
+                //selectservicios.empty();
+                ////selectservicios.append($('<option>', {
+                ////    value: 0,
+                ////    text: 'Seleccione Un Servicio'
+                ////}));
+                //$("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function (index, item) {
+                    idCis.push({
+                        select: false,
+                        fcPais: item.fcPais,
+                        fcRegion: item.fcRegion,
+                        fcCiudad: item.fcCiudad,
+                        fcCI: item.fcCI,
+                        fiIDConfiguracion: item.fiIDConfiguracion,
+                        fcConfiguracion: item.fcConfiguracion,
+                        fcLatitud: item.fcLatitud,
+                        fcLongitud: item.fcLongitud
+                    })
+                    //selectservicios.append($('<option>', {
+                    //    value: item.fiIDServicio,
+                    //    text: item.fcNombreServicio
+                    //}));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
     }
 
     function GuardarDocumentos(IdRequerimiento) {
@@ -731,6 +768,20 @@
             });
     }
 
+    function AgregarCI() {
+        console.log("entro en ese proceso")
+         $.ajax({
+                url: "@Url.Action("AgregarCI", "Ticket")",
+                method: "get",
+                //data: { id: id },
+             success: function (data) {
+                 ShowModal(data);
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });
+    }
 
     const updateSelectionInPlace = (array, ids) => { // para agregar servicios o los cis para que se modifique e identificar cuales son los que selecciono
         array.forEach(item => {

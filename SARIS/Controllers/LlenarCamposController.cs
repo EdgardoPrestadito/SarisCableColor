@@ -141,6 +141,8 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
+        
+
         public JsonResult SelectPlataforma()
         {
             using (var contexto = new SARISEntities1())
@@ -160,5 +162,70 @@ namespace OrionCoreCableColor.Controllers
                 return jsonResult;
             }
         }
+
+
+        public JsonResult SelectTipoCI()
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_ClacificacionCI().ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
+
+        public JsonResult SelectPais()
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Pais().ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
+        public JsonResult SelectRegion(int Pais)
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Region(Pais).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
+
+        public JsonResult SelectCiudad(int Pais, int Region)
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Ciudad(Pais, Region).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
+
+
+        [HttpGet]
+        public JsonResult listadoCI(int Pais,int Region, int Ciudad, int CI)
+        {
+
+            try
+            {
+                using (var connection = new SARISEntities1())
+                {
+                    var cont = connection.sp_ConfiguracionCI(Pais, Region, Ciudad, CI).ToList();
+                    return EnviarListaJson(cont);
+                }
+                
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+
+        }
+
+
     }
 }
