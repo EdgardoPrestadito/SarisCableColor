@@ -19,6 +19,12 @@ function ShowModalBig(data) {
     $("#MyModalBig").modal("show");
 
 }
+function ShowModalBig2(data) {
+    $("#MyModalContentBig2").html(data);
+   // $("#MyModalBig .modal-body").css("height", '80vh');
+    $("#MyModalBig2").modal("show");
+
+}
 function ShowModalBigScroll(data) {
     $("#MyModalContentBig").html(data);
      $("#MyModalBig .modal-body").css("height", '80vh');

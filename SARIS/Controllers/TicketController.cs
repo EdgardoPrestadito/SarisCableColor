@@ -786,8 +786,11 @@ namespace OrionCoreCableColor.Controllers
         {
             return PartialView();
         }
-        
 
+        public ActionResult AgregarCI()
+        {
+            return PartialView();
+        }
 
     }
 }
