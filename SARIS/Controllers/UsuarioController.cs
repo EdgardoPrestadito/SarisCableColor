@@ -44,7 +44,7 @@ namespace OrionCoreCableColor.Controllers
                         fcPrimerApellido = x.fcPrimerApellido,
                         //FechaNacimiento = x.FechaNacimiento,
                         fiEstado = x.fiEstado,
-                        fcBuzondeCorreo = x.AspNetUsers.Email,
+                        fcBuzondeCorreo = x.fcBuzondeCorreo,
                         fcTelefonoMovil = x.fcTelefonoMovil,
                         UserName = x.AspNetUsers.UserName,
                         NombreRol = x.RolesPorUsuario.Any() ? x.RolesPorUsuario.FirstOrDefault().Roles.Nombre ?? "" : "",

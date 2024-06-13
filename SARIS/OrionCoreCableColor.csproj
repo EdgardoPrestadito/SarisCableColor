@@ -409,7 +409,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SoporteOP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Areas_Desactivar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Areas_Editar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Areas_Find_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Areas_Insertar_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Areas_Lista_Result.cs">
@@ -563,6 +572,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Requerimientos_Catalogo_Generencias_Listado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Requerimientos_Niveles_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Requerimientos_UsuarioLibre_Result.cs">
@@ -734,6 +746,18 @@
     <Content Include="Content\css\vendors.bundle.css" />
     <Content Include="Content\css\wizard\style.css" />
     <Content Include="Content\img\005.PNG" />
+    <Content Include="Content\img\AvatarUsuario\1.png" />
+    <Content Include="Content\img\AvatarUsuario\10.png" />
+    <Content Include="Content\img\AvatarUsuario\11.png" />
+    <Content Include="Content\img\AvatarUsuario\2.png" />
+    <Content Include="Content\img\AvatarUsuario\3.png" />
+    <Content Include="Content\img\AvatarUsuario\4.png" />
+    <Content Include="Content\img\AvatarUsuario\5.png" />
+    <Content Include="Content\img\AvatarUsuario\6.png" />
+    <Content Include="Content\img\AvatarUsuario\7.png" />
+    <Content Include="Content\img\AvatarUsuario\8.png" />
+    <Content Include="Content\img\AvatarUsuario\9.png" />
+    <Content Include="Content\img\AvatarUsuario\avatar11.jpg" />
     <Content Include="Content\img\backgrounds\bg-1.png" />
     <Content Include="Content\img\backgrounds\bg-2.png" />
     <Content Include="Content\img\backgrounds\bg-3.png" />

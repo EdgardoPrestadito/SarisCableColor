@@ -247,3 +247,105 @@ h1 {
         background-position: 100% 100%;
     }
 }
+
+
+.slimScrollDiv {
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    height: 100%;
+    background-color: #2f3e47; /* Fondo oscuro para contraste */
+    color: white;
+}
+
+.info-card {
+    width: 100%;
+    padding: 10px;
+    background: #3a4b55;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.page-logo-link {
+    padding: 10%;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.cover {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.btn-group .btn {
+    background: #495e6b;
+    color: white;
+    border: none;
+}
+
+    .btn-group .btn:hover {
+        background: #3a4b55;
+    }
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .nav-menu li {
+        padding: 10px 0;
+    }
+
+    .nav-menu a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 5px 15px;
+    }
+
+        .nav-menu a:hover {
+            background: #495e6b;
+        }
+
+.nav-link-text {
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+.dropdown-menu {
+    background: #3a4b55;
+    border: none;
+}
+
+    .dropdown-menu a {
+        color: white;
+        padding: 5px 15px;
+        display: block;
+    }
+
+        .dropdown-menu a:hover {
+            background: #495e6b;
+        }
+
+@media (max-width: 768px) {
+    .slimScrollDiv {
+        height: auto;
+        padding: 10px;
+    }
+
+    .profile-image {
+        width: 75px;
+        height: 75px;
+    }
+
+    .nav-link-text {
+        font-size: 0.9rem;
+    }
+}

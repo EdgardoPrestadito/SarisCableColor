@@ -39,6 +39,9 @@ namespace OrionCoreCableColor.Models.Areas
         [Display(Name = "Gerencia")]
         public string fcNombreGenerencia { get; set; }
 
+        [Display(Name = "Gerencia")]
+        public string fcNivel { get; set; }
+
 
         [Display(Name = "Activo")]
         public bool fiActivo { get; set; }
