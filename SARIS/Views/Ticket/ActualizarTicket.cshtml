@@ -594,6 +594,7 @@
 
     });
 
+    select();
     function select() {
         $.ajax({
             url: "@Url.Action("SelectServiciosAfectados", "LlenarCampos")",
@@ -641,37 +642,53 @@
             divinfo.style.display = 'block'
 
             $.ajax({
-            url: "@Url.Action("SelectMotivos", "LlenarCampos")",
-            type: "GET",
-            data: { idestado: $(this).val()},
-            success: function (respuesta) {
+                url: "@Url.Action("SelectMotivos", "LlenarCampos")",
+                type: "GET",
+                data: { idestado: $(this).val() },
+                success: function (respuesta) {
 
-                var selectMotivo = $("#selectmotivo");
+                    var selectMotivo = $("#selectmotivo");
 
-                selectMotivo.empty();
-                //selectMotivo.append($('<option>', {
-                //    value: 0,
-                //    text: 'Seleccione un Motivo'
-                //}));
+                    selectMotivo.empty();
+                    //selectMotivo.append($('<option>', {
+                    //    value: 0,
+                    //    text: 'Seleccione un Motivo'
+                    //}));
 
-                $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
-                $.each(respuesta, function(index, item) {
-                    selectMotivo.append($('<option>', {
-                        value: item.fiMotivos,
-                        text: item.fcNombreMotivo
-                    }));
-                });
-            },
-            error: function (respuesta) {
-                console.log(respuesta);
-            }
-        });
+                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                    $.each(respuesta, function (index, item) {
+                        selectMotivo.append($('<option>', {
+                            value: item.fiMotivos,
+                            text: item.fcNombreMotivo
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
 
         } else {
             console.log(`entro en el else`);
             divinfo.style.display = 'none'
         }
 
-    })
+
+    });
+
+    function AgregarServicios() {
+        console.log(idservicios);
+         @*$.ajax({
+                url: "@Url.Action("AgregarServicios", "Ticket")",
+                method: "get",
+                //data: { id: id },
+                success: function (data) {
+                    ShowModalSmall(data);
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });*@
+    }
 
 </script>

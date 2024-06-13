@@ -445,15 +445,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Usuario_EditarInfoUsuarioLaboral", piIdUsuarioParameter, piIDJefeInmediatoParameter, piAreaAsignadaParameter, piIDPuestoParameter);
         }
     
-        public virtual ObjectResult<sp_Areas_Find_Result> sp_Areas_Find(Nullable<int> fiIDArea)
-        {
-            var fiIDAreaParameter = fiIDArea.HasValue ?
-                new ObjectParameter("fiIDArea", fiIDArea) :
-                new ObjectParameter("fiIDArea", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Areas_Find_Result>("sp_Areas_Find", fiIDAreaParameter);
-        }
-    
         public virtual ObjectResult<sp_Requerimientos_Bitacoras_Historial_ByID_Result> sp_Requerimientos_Bitacoras_Historial_ByID(Nullable<int> piIDRequerimiento)
         {
             var piIDRequerimientoParameter = piIDRequerimiento.HasValue ?
@@ -911,69 +902,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Tickets_FuraTiempo_Result>("sp_Tickets_FuraTiempo");
         }
     
-        public virtual ObjectResult<Nullable<int>> sp_Areas_Desactivar(Nullable<int> fiIDArea)
-        {
-            var fiIDAreaParameter = fiIDArea.HasValue ?
-                new ObjectParameter("fiIDArea", fiIDArea) :
-                new ObjectParameter("fiIDArea", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Areas_Desactivar", fiIDAreaParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> sp_Areas_Insertar(string pcDescripcion, string pcCorreoElectronico, Nullable<int> piIDUsuarioResponsable, Nullable<int> piIDGerencia, Nullable<int> piIDNivel)
-        {
-            var pcDescripcionParameter = pcDescripcion != null ?
-                new ObjectParameter("pcDescripcion", pcDescripcion) :
-                new ObjectParameter("pcDescripcion", typeof(string));
-    
-            var pcCorreoElectronicoParameter = pcCorreoElectronico != null ?
-                new ObjectParameter("pcCorreoElectronico", pcCorreoElectronico) :
-                new ObjectParameter("pcCorreoElectronico", typeof(string));
-    
-            var piIDUsuarioResponsableParameter = piIDUsuarioResponsable.HasValue ?
-                new ObjectParameter("piIDUsuarioResponsable", piIDUsuarioResponsable) :
-                new ObjectParameter("piIDUsuarioResponsable", typeof(int));
-    
-            var piIDGerenciaParameter = piIDGerencia.HasValue ?
-                new ObjectParameter("PiIDGerencia", piIDGerencia) :
-                new ObjectParameter("PiIDGerencia", typeof(int));
-    
-            var piIDNivelParameter = piIDNivel.HasValue ?
-                new ObjectParameter("PiIDNivel", piIDNivel) :
-                new ObjectParameter("PiIDNivel", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Areas_Insertar", pcDescripcionParameter, pcCorreoElectronicoParameter, piIDUsuarioResponsableParameter, piIDGerenciaParameter, piIDNivelParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> sp_Areas_Editar(Nullable<int> piIDArea, string pcDescripcion, string pcCorreoElectronico, Nullable<int> piIDUsuarioResponsable, Nullable<int> piIDGerencia, Nullable<int> piIDNivel)
-        {
-            var piIDAreaParameter = piIDArea.HasValue ?
-                new ObjectParameter("piIDArea", piIDArea) :
-                new ObjectParameter("piIDArea", typeof(int));
-    
-            var pcDescripcionParameter = pcDescripcion != null ?
-                new ObjectParameter("pcDescripcion", pcDescripcion) :
-                new ObjectParameter("pcDescripcion", typeof(string));
-    
-            var pcCorreoElectronicoParameter = pcCorreoElectronico != null ?
-                new ObjectParameter("pcCorreoElectronico", pcCorreoElectronico) :
-                new ObjectParameter("pcCorreoElectronico", typeof(string));
-    
-            var piIDUsuarioResponsableParameter = piIDUsuarioResponsable.HasValue ?
-                new ObjectParameter("piIDUsuarioResponsable", piIDUsuarioResponsable) :
-                new ObjectParameter("piIDUsuarioResponsable", typeof(int));
-    
-            var piIDGerenciaParameter = piIDGerencia.HasValue ?
-                new ObjectParameter("PiIDGerencia", piIDGerencia) :
-                new ObjectParameter("PiIDGerencia", typeof(int));
-    
-            var piIDNivelParameter = piIDNivel.HasValue ?
-                new ObjectParameter("PiIDNivel", piIDNivel) :
-                new ObjectParameter("PiIDNivel", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Areas_Editar", piIDAreaParameter, pcDescripcionParameter, pcCorreoElectronicoParameter, piIDUsuarioResponsableParameter, piIDGerenciaParameter, piIDNivelParameter);
-        }
-    
         public virtual ObjectResult<sp_DetalleBitacoraInformacionArchivos_Result> sp_DetalleBitacoraInformacionArchivos(Nullable<int> piIDUsuario, Nullable<int> piIDRequerimiento)
         {
             var piIDUsuarioParameter = piIDUsuario.HasValue ?
@@ -994,11 +922,6 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piIDTIcket", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListaTicket_Padre_Result>("sp_ListaTicket_Padre", piIDTIcketParameter);
-        }
-    
-        public virtual ObjectResult<sp_Areas_Lista_Result> sp_Areas_Lista()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Areas_Lista_Result>("sp_Areas_Lista");
         }
     
         public virtual ObjectResult<sp_Requerimientos_Bandeja_ByID_Result> sp_Requerimientos_Bandeja_ByID(Nullable<int> piIDSesion, Nullable<int> piIDApp, Nullable<int> piIDUsuario, Nullable<int> piIDRequerimientos)
@@ -1565,6 +1488,187 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piIdRequerimiento", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RequerimientoPorServicioByRequerimiento_Result>("sp_RequerimientoPorServicioByRequerimiento", piIdRequerimientoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Catalogo_ConfiguracionCI_listado_Result> sp_Catalogo_ConfiguracionCI_listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Catalogo_ConfiguracionCI_listado_Result>("sp_Catalogo_ConfiguracionCI_listado");
+        }
+    
+        public virtual ObjectResult<sp_Ciudad_Result> sp_Ciudad(Nullable<int> piPais, Nullable<int> piIDRegion)
+        {
+            var piPaisParameter = piPais.HasValue ?
+                new ObjectParameter("piPais", piPais) :
+                new ObjectParameter("piPais", typeof(int));
+    
+            var piIDRegionParameter = piIDRegion.HasValue ?
+                new ObjectParameter("piIDRegion", piIDRegion) :
+                new ObjectParameter("piIDRegion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ciudad_Result>("sp_Ciudad", piPaisParameter, piIDRegionParameter);
+        }
+    
+        public virtual ObjectResult<sp_ClacificacionCI_Result> sp_ClacificacionCI()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ClacificacionCI_Result>("sp_ClacificacionCI");
+        }
+    
+        public virtual ObjectResult<sp_ConfiguracionCI_Result> sp_ConfiguracionCI(Nullable<int> piPais, Nullable<int> piRegion, Nullable<int> piCiudad, Nullable<int> piCI)
+        {
+            var piPaisParameter = piPais.HasValue ?
+                new ObjectParameter("piPais", piPais) :
+                new ObjectParameter("piPais", typeof(int));
+    
+            var piRegionParameter = piRegion.HasValue ?
+                new ObjectParameter("piRegion", piRegion) :
+                new ObjectParameter("piRegion", typeof(int));
+    
+            var piCiudadParameter = piCiudad.HasValue ?
+                new ObjectParameter("piCiudad", piCiudad) :
+                new ObjectParameter("piCiudad", typeof(int));
+    
+            var piCIParameter = piCI.HasValue ?
+                new ObjectParameter("piCI", piCI) :
+                new ObjectParameter("piCI", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ConfiguracionCI_Result>("sp_ConfiguracionCI", piPaisParameter, piRegionParameter, piCiudadParameter, piCIParameter);
+        }
+    
+        public virtual int sp_Editar_UsuarioGeneral(Nullable<int> fiIdusuario, string fcPrimerNombre, string fcSegundoNombre, string fcPrimerApellido, string fcSegundoApellido, string fcNombreCorto, string fcCorreo, string fcIdentidad, string fctelefono)
+        {
+            var fiIdusuarioParameter = fiIdusuario.HasValue ?
+                new ObjectParameter("fiIdusuario", fiIdusuario) :
+                new ObjectParameter("fiIdusuario", typeof(int));
+    
+            var fcPrimerNombreParameter = fcPrimerNombre != null ?
+                new ObjectParameter("fcPrimerNombre", fcPrimerNombre) :
+                new ObjectParameter("fcPrimerNombre", typeof(string));
+    
+            var fcSegundoNombreParameter = fcSegundoNombre != null ?
+                new ObjectParameter("fcSegundoNombre", fcSegundoNombre) :
+                new ObjectParameter("fcSegundoNombre", typeof(string));
+    
+            var fcPrimerApellidoParameter = fcPrimerApellido != null ?
+                new ObjectParameter("fcPrimerApellido", fcPrimerApellido) :
+                new ObjectParameter("fcPrimerApellido", typeof(string));
+    
+            var fcSegundoApellidoParameter = fcSegundoApellido != null ?
+                new ObjectParameter("fcSegundoApellido", fcSegundoApellido) :
+                new ObjectParameter("fcSegundoApellido", typeof(string));
+    
+            var fcNombreCortoParameter = fcNombreCorto != null ?
+                new ObjectParameter("fcNombreCorto", fcNombreCorto) :
+                new ObjectParameter("fcNombreCorto", typeof(string));
+    
+            var fcCorreoParameter = fcCorreo != null ?
+                new ObjectParameter("fcCorreo", fcCorreo) :
+                new ObjectParameter("fcCorreo", typeof(string));
+    
+            var fcIdentidadParameter = fcIdentidad != null ?
+                new ObjectParameter("fcIdentidad", fcIdentidad) :
+                new ObjectParameter("fcIdentidad", typeof(string));
+    
+            var fctelefonoParameter = fctelefono != null ?
+                new ObjectParameter("fctelefono", fctelefono) :
+                new ObjectParameter("fctelefono", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Editar_UsuarioGeneral", fiIdusuarioParameter, fcPrimerNombreParameter, fcSegundoNombreParameter, fcPrimerApellidoParameter, fcSegundoApellidoParameter, fcNombreCortoParameter, fcCorreoParameter, fcIdentidadParameter, fctelefonoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Pais_Result> sp_Pais()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Pais_Result>("sp_Pais");
+        }
+    
+        public virtual ObjectResult<sp_Region_Result> sp_Region(Nullable<int> piPais)
+        {
+            var piPaisParameter = piPais.HasValue ?
+                new ObjectParameter("piPais", piPais) :
+                new ObjectParameter("piPais", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Region_Result>("sp_Region", piPaisParameter);
+        }
+    
+        public virtual ObjectResult<sp_Requerimientos_Niveles_Listado_Result> sp_Requerimientos_Niveles_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimientos_Niveles_Listado_Result>("sp_Requerimientos_Niveles_Listado");
+        }
+    
+        public virtual ObjectResult<sp_Areas_Desactivar_Result> sp_Areas_Desactivar(Nullable<int> fiIDArea)
+        {
+            var fiIDAreaParameter = fiIDArea.HasValue ?
+                new ObjectParameter("fiIDArea", fiIDArea) :
+                new ObjectParameter("fiIDArea", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Areas_Desactivar_Result>("sp_Areas_Desactivar", fiIDAreaParameter);
+        }
+    
+        public virtual ObjectResult<sp_Areas_Editar_Result> sp_Areas_Editar(Nullable<int> piIDArea, string pcDescripcion, string pcCorreoElectronico, Nullable<int> piIDUsuarioResponsable, Nullable<int> piIDGerencia, Nullable<int> piIDNivel)
+        {
+            var piIDAreaParameter = piIDArea.HasValue ?
+                new ObjectParameter("piIDArea", piIDArea) :
+                new ObjectParameter("piIDArea", typeof(int));
+    
+            var pcDescripcionParameter = pcDescripcion != null ?
+                new ObjectParameter("pcDescripcion", pcDescripcion) :
+                new ObjectParameter("pcDescripcion", typeof(string));
+    
+            var pcCorreoElectronicoParameter = pcCorreoElectronico != null ?
+                new ObjectParameter("pcCorreoElectronico", pcCorreoElectronico) :
+                new ObjectParameter("pcCorreoElectronico", typeof(string));
+    
+            var piIDUsuarioResponsableParameter = piIDUsuarioResponsable.HasValue ?
+                new ObjectParameter("piIDUsuarioResponsable", piIDUsuarioResponsable) :
+                new ObjectParameter("piIDUsuarioResponsable", typeof(int));
+    
+            var piIDGerenciaParameter = piIDGerencia.HasValue ?
+                new ObjectParameter("PiIDGerencia", piIDGerencia) :
+                new ObjectParameter("PiIDGerencia", typeof(int));
+    
+            var piIDNivelParameter = piIDNivel.HasValue ?
+                new ObjectParameter("PiIDNivel", piIDNivel) :
+                new ObjectParameter("PiIDNivel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Areas_Editar_Result>("sp_Areas_Editar", piIDAreaParameter, pcDescripcionParameter, pcCorreoElectronicoParameter, piIDUsuarioResponsableParameter, piIDGerenciaParameter, piIDNivelParameter);
+        }
+    
+        public virtual ObjectResult<sp_Areas_Find_Result> sp_Areas_Find(Nullable<int> fiIDArea)
+        {
+            var fiIDAreaParameter = fiIDArea.HasValue ?
+                new ObjectParameter("fiIDArea", fiIDArea) :
+                new ObjectParameter("fiIDArea", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Areas_Find_Result>("sp_Areas_Find", fiIDAreaParameter);
+        }
+    
+        public virtual ObjectResult<sp_Areas_Insertar_Result> sp_Areas_Insertar(string pcDescripcion, string pcCorreoElectronico, Nullable<int> piIDUsuarioResponsable, Nullable<int> piIDGerencia, Nullable<int> piIDNivel)
+        {
+            var pcDescripcionParameter = pcDescripcion != null ?
+                new ObjectParameter("pcDescripcion", pcDescripcion) :
+                new ObjectParameter("pcDescripcion", typeof(string));
+    
+            var pcCorreoElectronicoParameter = pcCorreoElectronico != null ?
+                new ObjectParameter("pcCorreoElectronico", pcCorreoElectronico) :
+                new ObjectParameter("pcCorreoElectronico", typeof(string));
+    
+            var piIDUsuarioResponsableParameter = piIDUsuarioResponsable.HasValue ?
+                new ObjectParameter("piIDUsuarioResponsable", piIDUsuarioResponsable) :
+                new ObjectParameter("piIDUsuarioResponsable", typeof(int));
+    
+            var piIDGerenciaParameter = piIDGerencia.HasValue ?
+                new ObjectParameter("PiIDGerencia", piIDGerencia) :
+                new ObjectParameter("PiIDGerencia", typeof(int));
+    
+            var piIDNivelParameter = piIDNivel.HasValue ?
+                new ObjectParameter("PiIDNivel", piIDNivel) :
+                new ObjectParameter("PiIDNivel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Areas_Insertar_Result>("sp_Areas_Insertar", pcDescripcionParameter, pcCorreoElectronicoParameter, piIDUsuarioResponsableParameter, piIDGerenciaParameter, piIDNivelParameter);
+        }
+    
+        public virtual ObjectResult<sp_Areas_Lista_Result> sp_Areas_Lista()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Areas_Lista_Result>("sp_Areas_Lista");
         }
     }
 }

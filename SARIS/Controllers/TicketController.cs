@@ -182,7 +182,7 @@ namespace OrionCoreCableColor.Controllers
                     ViewBag.TicketPadre = tick.fiIdTicketPadre;
                     var puede = false;
 
-                    ViewBag.IdServicios = contexto.sp_RequerimientoPorServicioByRequerimiento(idticket);
+                    ViewBag.IdServicios = contexto.sp_RequerimientoPorServicioByRequerimiento(idticket).ToList();
                     
                     var idrolestodopoderosos = contexto.sp_Configuraciones("RolesquePuedenverTodo").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
 

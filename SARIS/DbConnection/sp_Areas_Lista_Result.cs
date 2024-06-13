@@ -21,5 +21,7 @@ namespace OrionCoreCableColor.DbConnection
         public Nullable<int> fiIDGerencia { get; set; }
         public bool fiActivo { get; set; }
         public string fcNombreGenerencia { get; set; }
+        public Nullable<int> fiNivel { get; set; }
+        public string fcNivel { get; set; }
     }
 }
