@@ -137,5 +137,11 @@ namespace OrionCoreCableColor.Controllers
                 return EnviarResultado(success, "Eliminar Categoria", success ? "Se Eliminó Satisfactoriamente" : "Error al eliminar");
             }
         }
+
+        public ActionResult SubTablaSubCategoria()
+        {
+            return PartialView();
+        }
+
     }
 }

@@ -44,7 +44,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="col-form-label">Tipo Incidencia</label>
+                            <label class="col-form-label">Tipo Sub Categoria</label>
                             <select id="selectincidencia" class="form-select form-control">
                             </select>
                         </div>
@@ -231,10 +231,10 @@
                 var selectIncidencia = $("#selectincidencia");
 
                 selectIncidencia.empty();
-                selectIncidencia.append($('<option>', {
-                    value: 0,
-                    text: 'Defina un Tipo Incidencia'
-                }));
+                //selectIncidencia.append($('<option>', {
+                //    value: 0,
+                //    text: 'Defina un Tipo Incidencia'
+                //}));
                 $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectIncidencia.append($('<option>', {
@@ -265,10 +265,10 @@
                 var selectpadre = $("#ticketPadre");
 
                 selectpadre.empty();
-                selectpadre.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione un Ticket Padre en caso que lo tenga'
-                }));
+                //selectpadre.append($('<option>', {
+                //    value: 0,
+                //    text: 'Seleccione un Ticket Padre en caso que lo tenga'
+                //}));
                 $("#ticketPadre").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectpadre.append($('<option>', {
@@ -551,10 +551,10 @@
                 var selectIncidencia = $("#selectusuarios");
 
                 selectIncidencia.empty();
-                selectIncidencia.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione un Usuario'
-                }));
+                //selectIncidencia.append($('<option>', {
+                //    value: 0,
+                //    text: 'Seleccione un Usuario'
+                //}));
 
                 $("#selectusuarios").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
@@ -593,10 +593,10 @@
                 var selectMotivo = $("#selectmotivo");
 
                 selectMotivo.empty();
-                selectMotivo.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione un Motivo'
-                }));
+                //selectMotivo.append($('<option>', {
+                //    value: 0,
+                //    text: 'Seleccione un Motivo'
+                //}));
 
                 $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {

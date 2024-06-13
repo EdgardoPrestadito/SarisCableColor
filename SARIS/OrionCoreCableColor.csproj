@@ -2003,6 +2003,8 @@
     <Content Include="Views\CategoriasIncidenciasResolucion\Crear.cshtml" />
     <Content Include="Views\IncidenciasResolucion\Index.cshtml" />
     <Content Include="Views\IncidenciasResolucion\Crear.cshtml" />
+    <Content Include="Views\CategoriaIndicadores\SubTablaSubCategoria.cshtml" />
+    <Content Include="Views\Ticket\AgregarServicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

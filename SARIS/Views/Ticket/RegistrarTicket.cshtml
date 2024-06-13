@@ -52,10 +52,10 @@
                 <!--<div class="col-sm-12">-->
                 <!--esto debe de ser un select -->
                 <!--<div class="form-group">
-            <label class="col-form-label">Area</label>
-            <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Area" />
-                </div>
-            </div>-->
+    <label class="col-form-label">Area</label>
+    <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Area" />
+        </div>
+    </div>-->
 
                 <div class="col-lg-6">
                     <div class="form-group">
@@ -68,7 +68,7 @@
 
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="col-form-label">Tipo Incidencia</label>
+                        <label class="col-form-label">Tipo Sub Categoria</label>
                         <select id="selectincidencia" class="form-select form-control">
                         </select>
                     </div>
@@ -108,32 +108,41 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="form-group">
                         <label class="col-form-label">Incidente Padre</label>
                         <select id="ticketpadre" class="form-select form-control" readonly>
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="form-group">
                         <label class="col-form-label">Deteccion Alarma</label>
                         <input id="deteccionalarma" class="form-control" type="datetime-local" />
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="form-group">
-                        <label class="col-form-label">Platatforma</label>
+                        <label class="col-form-label">Plataforma</label>
                         <select id="ticketplataforma" class="form-select form-control">
                         </select>
                     </div>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-6">
                     <div class="form-group">
                         <label class="col-form-label">Servicios Afectados</label>
-                        <select id="ticketservafectados" class="form-select form-control">
-                        </select>
+                        <button onclick="AgregarServicios()" class="form-control btn btn-success">Agregar Servicios</button>
+                        @*<select id="ticketservafectados" class="form-select form-control">
+                </select>*@
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Ci</label>
+                        <button class="form-control btn btn-success">Agregar Ci</button>
+                        
                     </div>
                 </div>
 
@@ -217,6 +226,9 @@
     UrgenciaSelect();
     ImpactoSelect();
 
+    var idservicios = [];
+    var idCis = [];
+
     function ImpactoSelect()
     {
         $.ajax({
@@ -227,10 +239,10 @@
                 var selectcategoria = $("#selectImpacto");
 
                 selectcategoria.empty();
-                selectcategoria.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione Impacto'
-                }));
+                //selectcategoria.append($('<option>', {
+                //    value: 0,
+                //    text: 'Seleccione Impacto'
+                //}));
                 $("#selectImpacto").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectcategoria.append($('<option>', {
@@ -322,10 +334,10 @@
                 var selectcategoria = $("#selectUrgencia");
 
                 selectcategoria.empty();
-                selectcategoria.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione Urgencia'
-                }));
+                //selectcategoria.append($('<option>', {
+                //    value: 0,
+                //    text: 'Seleccione Urgencia'
+                //}));
                 $("#selectUrgencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectcategoria.append($('<option>', {
@@ -350,10 +362,10 @@
                 var selectcategoria = $("#seleccategoria");
 
                 selectcategoria.empty();
-                selectcategoria.append($('<option>', {
-                    value: 0,
-                    text: 'Defina un Tipo Incidencia'
-                }));
+                //selectcategoria.append($('<option>', {
+                //    value: 0,
+                //    text: 'Defina un Tipo Categoria'
+                //}));
                 $("#seleccategoria").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectcategoria.append($('<option>', {
@@ -376,10 +388,10 @@
                 var selectpadre = $("#ticketpadre");
 
                 selectpadre.empty();
-                selectpadre.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione un Ticket Padre en caso que lo tenga'
-                }));
+                //selectpadre.append($('<option>', {
+                //    value: 0,
+                //    text: 'Seleccione un Ticket Padre en caso que lo tenga'
+                //}));
                 $("#ticketpadre").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectpadre.append($('<option>', {
@@ -403,10 +415,10 @@
                 var selectplataforma = $("#ticketplataforma");
 
                 selectplataforma.empty();
-                selectplataforma.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione Una Plataforma'
-                }));
+                //selectplataforma.append($('<option>', {
+                //    value: 0,
+                //    text: 'Seleccione Una Plataforma'
+                //}));
                 $("#ticketplataforma").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectplataforma.append($('<option>', {
@@ -429,12 +441,13 @@
                 var selectservicios = $("#ticketservafectados");
 
                 selectservicios.empty();
-                selectservicios.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione Un Servicio'
-                }));
+                //selectservicios.append($('<option>', {
+                //    value: 0,
+                //    text: 'Seleccione Un Servicio'
+                //}));
                 $("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
-                $.each(respuesta, function(index, item) {
+                $.each(respuesta, function (index, item) {
+                    idservicios.push({ select: false, fiIDServicio: item.fiIDServicio, fcNombreServicio: item.fcNombreServicio})
                     selectservicios.append($('<option>', {
                         value: item.fiIDServicio,
                         text: item.fcNombreServicio
@@ -508,10 +521,10 @@
                 var selectIncidencia = $("#selectincidencia");
 
                 selectIncidencia.empty();
-                selectIncidencia.append($('<option>', {
-                    value: 0,
-                    text: 'Defina un Tipo Incidencia'
-                }));
+                //selectIncidencia.append($('<option>', {
+                //    value: 0,
+                //    text: 'Defina un Tipo Sub Categoria'
+                //}));
                 $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectIncidencia.append($('<option>', {
@@ -693,6 +706,21 @@
         ctx.drawImage(img, 0, 0);
         var dataURL = canvas.toDataURL();
         return dataURL;
+    }
+
+    function AgregarServicios() {
+        console.log("entro en ese proceso")
+         $.ajax({
+                url: "@Url.Action("AgregarServicios", "Ticket")",
+                method: "get",
+                //data: { id: id },
+                success: function (data) {
+                    ShowModalSmall(data);
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });
     }
 
 </script>
