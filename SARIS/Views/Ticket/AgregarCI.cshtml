@@ -1,7 +1,7 @@
 ﻿<div class="modal-header bg-primary-600 bg-primary-gradient">
     <h2 class="modal-title text-white">
 
-        <text>Crear Incidente</text>
+        <text>Asignar CI</text>
 
     </h2>
 
@@ -71,7 +71,9 @@
                                     <th>Accion</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -186,7 +188,7 @@
                 console.log(respuesta);
             }
         });
-        
+
 
     })
 
@@ -222,29 +224,25 @@
             }
         });
 
-        
+
     })
 
 
     $(`#selectCiudad`).on('change', function () {
         debugger
-        
-            
-        ConfiguracionListado()
 
+        ConfiguracionListado()
     })
 
     $(`#selectCI`).on('change', function () {
         debugger
 
-
         ConfiguracionListado()
-
     })
 
 
     function ConfiguracionListado()
-        {
+    {
         debugger;
         var IDPais = $("#selectPais option:selected").val();
         var IDRegion = $("#selecRegion option:selected").val();
@@ -255,6 +253,8 @@
         {
             return;
         }
+
+        var opt = ``
         $('#TablaCI').DataTable({
             destroy: true,
             autoWidth: true,
@@ -284,16 +284,13 @@
                   }
             },
                 columns: [
-
                     {
                         data: 'fiIDConfiguracion',
                         visible: false
                     },
-
                     {
                         data: 'fcConfiguracion'
                     },
-
                     {
                         data: 'fcLatitud'
                     },
@@ -305,15 +302,34 @@
                         data: null,
                         render: function (data) {
 
-                            return '<button class="btn  btn-success" tabindex="0" aria-controls="TablaPrincipal2" type="button"  title = "Guardar" name="GuardarEnviar"><i class="fal fa-inbox-out" ></i></button>';
-                            ;
+                            //return '<button class="btn  btn-success" tabindex="0" aria-controls="TablaPrincipal2" type="button"  title = "Guardar" name="GuardarEnviar"><i class="fal fa-inbox-out" ></i></button>';
+                            var opt = `<div class="custom-control custom-checkbox">
+                                            <input id="${data.fiIDConfiguracion}"  class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${data.fiIDConfiguracion}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>
+                                            <label class="custom-control-label" for="${data.fcLatitud}"></label>
+                                        </div>`;
+                            return opt;
 
                         }
-
-
                     },
                 ]
-
             });
-        }
+    }
+
+    //$(document).on('change', 'input[name="CheckCheckedFalla"]', function () {
+    //    //debugger
+
+    //    var suma = 0;
+    //    var idseleccionado = []
+    //    // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
+    //    $('input[name="CheckCheckedFalla"]:checked').each(function () {
+    //        console.log(`entro en el if`);
+    //        //var idfer = parseInt($(`#producto-${this.id}`).val());
+    //        idseleccionado.push(+this.id)
+    //    });
+    //    console.log(idseleccionado);
+    //    //const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
+
+    //});
+
+
 </script>

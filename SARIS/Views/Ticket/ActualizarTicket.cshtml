@@ -231,9 +231,10 @@
     var ticketPadre = @ViewBag.TicketPadre;
     var fotosredimencionadas = [];
 
-    var idserviciosusados = @ViewBag.IdServicios;
     var idservicios = [];
     var idCis = [];
+
+    var idserviciosusados = @Html.Raw(Json.Encode(ViewBag.IdServicios));
 
     $(`#fiCategoriadeDesarrollo`).on('change', function () {
         cambiodecategoria(0);
@@ -598,10 +599,15 @@
     function select() {
         $.ajax({
             url: "@Url.Action("SelectServiciosAfectados", "LlenarCampos")",
-            data: { idticket: 0},
+            data: { idticket: ID_REQUERIMIENTO},
             type: "GET",
             success: function (respuesta) {
 
+                var selectservicios = $("#ticketservafectados");
+
+                selectservicios.empty();
+
+                $("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function (index, item) {
 
                     idservicios.push({ select: false, fiIDServicio: item.fiIDServicio, fcNombreServicio: item.fcNombreServicio})

@@ -203,12 +203,10 @@ namespace OrionCoreCableColor.Controllers
                     ViewBag.UsuarioLogueado = GetIdUser();
                     ViewBag.DatosDocumentoListado = contexto.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento(idticket, 1, 1, GetIdUser()).ToList();
 
-
                     return PartialView(tick);
                 }
                 catch (Exception ex)
                 {
-
                     throw;
                 }
             }
@@ -221,7 +219,6 @@ namespace OrionCoreCableColor.Controllers
             {
                 using (var contexto = new SARISEntities1())
                 {
-
                     try
                     {
                         var idarea = (ticket.fiAreaAsignada == 0) ? 6 : ticket.fiAreaAsignada; // aqui decimo que si el id area no es asignada que lo ponga en pendiente y en dado casi si es asignada entonces que lo deje tal cual
@@ -796,12 +793,6 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
-
-
-        public ActionResult AgregarServicios()
-        {
-            return PartialView();
-        }
 
         public ActionResult AgregarCI()
         {

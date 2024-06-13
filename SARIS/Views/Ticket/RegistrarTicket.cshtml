@@ -461,20 +461,12 @@
             }
         });
 
-        $.ajax({
+        @*$.ajax({
             url: "@Url.Action("SelectServiciosCI", "LlenarCampos")",
             data: { idticket: 0},
             type: "GET",
             success: function (respuesta) {
 
-                //var selectservicios = $("#ticketservafectados");
-
-                //selectservicios.empty();
-                ////selectservicios.append($('<option>', {
-                ////    value: 0,
-                ////    text: 'Seleccione Un Servicio'
-                ////}));
-                //$("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function (index, item) {
                     idCis.push({
                         select: false,
@@ -487,16 +479,13 @@
                         fcLatitud: item.fcLatitud,
                         fcLongitud: item.fcLongitud
                     })
-                    //selectservicios.append($('<option>', {
-                    //    value: item.fiIDServicio,
-                    //    text: item.fcNombreServicio
-                    //}));
+
                 });
             },
             error: function (respuesta) {
                 console.log(respuesta);
             }
-        });
+        });*@
 
     }
 
@@ -775,7 +764,7 @@
                 method: "get",
                 //data: { id: id },
              success: function (data) {
-                 ShowModal(data);
+                 ShowModal3(data);
                 },
                 error: function (resp) {
                     AlertaError();

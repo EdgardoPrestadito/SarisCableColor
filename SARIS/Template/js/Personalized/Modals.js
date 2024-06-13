@@ -56,6 +56,12 @@ function ShowModal(data) {
 
 }
 
+function ShowModal3(data) {
+    $("#MyModalContentBig3").html(data);
+    $("#MyModalBig3").modal("show");
+
+}
+
 function ExpandirModal(boton) {
     $("#MyModalSize").toggleClass("modal-dialog");
 }
