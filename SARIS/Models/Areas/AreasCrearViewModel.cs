@@ -31,6 +31,9 @@ namespace OrionCoreCableColor.Models.Areas
         [Display(Name = "Estado")]
 
         public string fcNombreCorto { get; set; }
+        [Display(Name = "Nivel")]
+        [Required]
+        public int fiNivel { get; set; }
 
         public bool EsEditar { get; set; }
 

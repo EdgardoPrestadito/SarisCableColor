@@ -409,7 +409,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SoporteOP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Areas_Desactivar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Areas_Editar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Areas_Find_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Areas_Insertar_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Areas_Lista_Result.cs">
@@ -560,6 +569,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Requerimientos_Catalogo_Generencias_Listado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Requerimientos_Niveles_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Requerimientos_UsuarioLibre_Result.cs">
