@@ -181,6 +181,8 @@ namespace OrionCoreCableColor.Controllers
                     ViewBag.IdIncidencia = tick.fiTipoRequerimiento;
                     ViewBag.TicketPadre = tick.fiIdTicketPadre;
                     var puede = false;
+
+                    ViewBag.IdServicios = contexto.sp_RequerimientoPorServicioByRequerimiento(idticket);
                     
                     var idrolestodopoderosos = contexto.sp_Configuraciones("RolesquePuedenverTodo").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
 
@@ -213,7 +215,7 @@ namespace OrionCoreCableColor.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> GuardarTicket(TicketMiewModel ticket,string comentarioticket)
+        public async Task<JsonResult> GuardarTicket(TicketMiewModel ticket,string comentarioticket,List<int> serviciosAfectados)
         {
             try
             {
@@ -226,6 +228,11 @@ namespace OrionCoreCableColor.Controllers
                         var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
 
                         var save = contexto.sp_Requerimiento_Alta(1, 1, GetIdUser(), ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, ticket.fiTipoRequerimiento, idarea, $"El usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} a Creado El Incidente", ticket.fiIDImpacto, ticket.fiIDUrgencia, ticket.fiIDPrioridad,ticket.fiIdTicketPadre,ticket.fdFechaAlarmaDeteccion,ticket.fiPlataforma, ticket.fiServicioAfectados,0).FirstOrDefault();
+                        foreach (var item in serviciosAfectados)
+                        {
+                            var guardarServicios = contexto.sp_IncidenciasPorServicioAfectado(save.IdIngresado, item, GetIdUser());
+                        }
+
                         var datosticket = Datosticket((int)save.IdIngresado);
                         //GuardarBitacoraGeneralhistorial(GetIdUser(),datosticket.fiIDRequerimiento,datosticket.fiIDUsuarioSolicitante, comentarioticket,1,datosticket.fiIDEstadoRequerimiento,datosticket.fiIDUsuarioAsignado);
 
@@ -608,7 +615,7 @@ namespace OrionCoreCableColor.Controllers
                     //saber el string del nombre del usuario
                     var UsuarioAsignado = contexto.sp_Usuarios_Maestro_PorIdUsuario(usuario).FirstOrDefault(); // buscar el area a la cual se le asigno
                     var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
-
+                    
                     var datosticket = Datosticket(idticket);//contexto.sp_Requerimientos_Bandeja_ByID(1, 1, GetIdUser(), idticket).FirstOrDefault();
                     //guardar la bitacora 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, datosticket.fiIDUsuarioSolicitante, comenta, 1, 7, usuario);//el estado de ticket esta en 7 para que pueda guardar la bitacora
@@ -763,6 +770,11 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
+        public ActionResult AgregarServicios()
+        {
+            return PartialView();
+        }
+
 
         ///////////////////////////// LLenar campos
         public JsonResult SelectCategorias()
@@ -782,12 +794,8 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
-        public ActionResult AgregarServicios()
-        {
-            return PartialView();
-        }
         
-
+        
 
     }
 }

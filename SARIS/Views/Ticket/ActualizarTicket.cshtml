@@ -118,6 +118,25 @@
                     </div>
                 </div>
 
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Servicios Afectados</label>
+                        <button onclick="AgregarServicios()" class="form-control btn btn-success">Agregar Servicios</button>
+                    </div>
+                    <div id="tbodyservicios">
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Ci</label>
+                        <button class="form-control btn btn-success">Agregar Ci</button>
+
+                    </div>
+                </div>
+
 
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -211,6 +230,10 @@
     var idtiporequerimiento = @ViewBag.IdIncidencia;
     var ticketPadre = @ViewBag.TicketPadre;
     var fotosredimencionadas = [];
+
+    var idserviciosusados = @ViewBag.IdServicios;
+    var idservicios = [];
+    var idCis = [];
 
     $(`#fiCategoriadeDesarrollo`).on('change', function () {
         cambiodecategoria(0);
@@ -572,9 +595,42 @@
     });
 
     function select() {
+        $.ajax({
+            url: "@Url.Action("SelectServiciosAfectados", "LlenarCampos")",
+            data: { idticket: 0},
+            type: "GET",
+            success: function (respuesta) {
 
+                $.each(respuesta, function (index, item) {
+
+                    idservicios.push({ select: false, fiIDServicio: item.fiIDServicio, fcNombreServicio: item.fcNombreServicio})
+                });
+
+                const { idserviciosusados, idservicios } = removeCommonServices(idserviciosusados, idservicios);
+
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
 
     }
+
+    const removeCommonServices = (array1, array2) => {
+        // Obtener los IDs de ambos arrays
+        const ids1 = array1.map(item => item.fiIDServicio);
+        const ids2 = array2.map(item => item.fiIDServicio);
+
+        // Obtener los IDs comunes
+        const commonIds = ids1.filter(id => ids2.includes(id));
+
+        // Filtrar ambos arrays para eliminar los elementos con IDs comunes
+        const filteredArray1 = array1.filter(item => !commonIds.includes(item.fiIDServicio));
+        const filteredArray2 = array2.filter(item => !commonIds.includes(item.fiIDServicio));
+
+        return { filteredArray1, filteredArray2 };
+    };
+
 
     $(`#fiIDEstadoRequerimiento`).on(`change`, function () {
         //console.log(`Cambio ahora`);

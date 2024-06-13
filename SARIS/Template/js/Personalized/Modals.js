@@ -42,7 +42,6 @@ function ShowModalBigScrollSignalR(data) {
 function ShowModalSmall(data) {
     $("#MyModalContentSmall").html(data);
     $("#MyModalSm").modal("show");
-
 }
 
 function ShowModal(data) {

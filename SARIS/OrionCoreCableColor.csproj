@@ -553,6 +553,9 @@
     <Compile Include="DbConnection\sp_RequerimientoBitacoras_Detalle_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_RequerimientoPorServicioByRequerimiento_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Requerimientos_Bandeja_ByID_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>

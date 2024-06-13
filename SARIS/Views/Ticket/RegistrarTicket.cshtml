@@ -133,9 +133,11 @@
                     <div class="form-group">
                         <label class="col-form-label">Servicios Afectados</label>
                         <button onclick="AgregarServicios()" class="form-control btn btn-success">Agregar Servicios</button>
-                        @*<select id="ticketservafectados" class="form-select form-control">
-                </select>*@
                     </div>
+                    <div id="tbodyservicios">
+
+                    </div>
+                    
                 </div>
 
                 <div class="col-lg-6">
@@ -388,10 +390,10 @@
                 var selectpadre = $("#ticketpadre");
 
                 selectpadre.empty();
-                //selectpadre.append($('<option>', {
-                //    value: 0,
-                //    text: 'Seleccione un Ticket Padre en caso que lo tenga'
-                //}));
+                selectpadre.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Ticket Padre en caso que lo tenga'
+                }));
                 $("#ticketpadre").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectpadre.append($('<option>', {
@@ -570,11 +572,17 @@
             H5_loading.hide();
             return ToastrError("Error", "Escriba un comentario");
         }
+        var listaservicios = [];
+        for (const item of idservicios) {
+            if (item.select == true) {
+                listaservicios.push(item.fiIDServicio);
+            }
+        }
 
         $.ajax({
             type: "POST",
             url: "@Url.Action("GuardarTicket", "Ticket")",
-            data: { ticket: ticket, comentarioticket: comentario },
+            data: { ticket: ticket, comentarioticket: comentario, serviciosAfectados:listaservicios },
             error: function (result) {
                 console.log(`error`);
                 ToastrError("Error", "No se guardo el Incidente, Contacte con el Administrador");

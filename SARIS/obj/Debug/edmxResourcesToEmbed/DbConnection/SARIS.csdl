@@ -265,6 +265,7 @@
       <Parameter Name="pcCorreoElectronico" Mode="In" Type="String" />
       <Parameter Name="piIDUsuarioResponsable" Mode="In" Type="Int32" />
       <Parameter Name="PiIDGerencia" Mode="In" Type="Int32" />
+      <Parameter Name="PiIDNivel" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_Areas_Editar" ReturnType="Collection(Int32)">
       <Parameter Name="piIDArea" Mode="In" Type="Int32" />
@@ -272,6 +273,7 @@
       <Parameter Name="pcCorreoElectronico" Mode="In" Type="String" />
       <Parameter Name="piIDUsuarioResponsable" Mode="In" Type="Int32" />
       <Parameter Name="PiIDGerencia" Mode="In" Type="Int32" />
+      <Parameter Name="PiIDNivel" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_DetalleBitacoraInformacionArchivos" ReturnType="Collection(SARISModel.sp_DetalleBitacoraInformacionArchivos_Result)">
       <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
@@ -433,6 +435,14 @@
     <FunctionImport Name="sp_DetalleBitacoraInformacion" ReturnType="Collection(SARISModel.sp_DetalleBitacoraInformacion_Result)">
       <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
       <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_IncidenciasPorServicioAfectado">
+      <Parameter Name="piIdIncidencia" Mode="In" Type="Int32" />
+      <Parameter Name="piIdServicioAfectado" Mode="In" Type="Int32" />
+      <Parameter Name="piUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_RequerimientoPorServicioByRequerimiento" ReturnType="Collection(SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result)">
+      <Parameter Name="piIdRequerimiento" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_Requerimiento_Areas_Result">
@@ -1067,5 +1077,9 @@
     <Property Type="Int32" Name="fiIDServicio" Nullable="true" />
     <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
     <Property Type="DateTime" Name="fdFechaAlarmaDeteccion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_RequerimientoPorServicioByRequerimiento_Result">
+    <Property Type="Int32" Name="fiIdRequerimiento" Nullable="true" />
+    <Property Type="Int32" Name="fiIdServicioAfectado" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -41,6 +41,7 @@
     <Parameter Name="pcCorreoElectronico" Type="varchar" Mode="In" />
     <Parameter Name="piIDUsuarioResponsable" Type="int" Mode="In" />
     <Parameter Name="PiIDGerencia" Type="int" Mode="In" />
+    <Parameter Name="PiIDNivel" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Areas_Find" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fiIDArea" Type="int" Mode="In" />
@@ -50,6 +51,7 @@
     <Parameter Name="pcCorreoElectronico" Type="varchar" Mode="In" />
     <Parameter Name="piIDUsuarioResponsable" Type="int" Mode="In" />
     <Parameter Name="PiIDGerencia" Type="int" Mode="In" />
+    <Parameter Name="PiIDNivel" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Areas_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Categorias_Indicidencias_Desactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -139,6 +141,11 @@
     <Parameter Name="pcClaseColor" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_Estados_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_IncidenciasPorServicioAfectado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIdIncidencia" Type="int" Mode="In" />
+    <Parameter Name="piIdServicioAfectado" Type="int" Mode="In" />
+    <Parameter Name="piUsuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Indicadores_Desactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fiIDTipoRequerimiento" Type="int" Mode="In" />
   </Function>
@@ -340,6 +347,9 @@
     <Parameter Name="piIDSesion" Type="int" Mode="In" />
     <Parameter Name="piIDApp" Type="smallint" Mode="In" />
     <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_RequerimientoPorServicioByRequerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIdRequerimiento" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Requerimientos_Adjuntos_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />

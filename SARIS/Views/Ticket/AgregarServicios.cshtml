@@ -24,7 +24,7 @@
     function llenarcampos() {
         var opciones = ""
         
-        opciones += `<div class="col-xl-4">
+        opciones += `<div class="col-xl-12">
                                             <div id="panel-1" class="panel">
 
                                                 <div class="panel-container show">
@@ -71,16 +71,37 @@
     }
 
     function guardararrai() {
-        console.log(`entro en el guardar`);
-        
+        console.log(idservicios);
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistaservicios">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody >
 
-        
-        
+                        `;
+        for (const item of idservicios) {
+            if (item.select == true) {
+                tbo += `<tr>
+                            <td>${item.fcNombreServicio}</td>
+                        </tr>`;
+            }            
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodyservicios`).empty()
+        $(`#tbodyservicios`).append(tbo);
+
+        $("#MyModalSm").modal("hide");
+        $("#MyModalBodySm").empty();
+
+
     }
 
     $(document).on('change', 'input[name="CheckCheckedFalla"]', function () {
-        console.log(`entro en el guardar`);
-        debugger
+        //debugger
 
         var suma = 0;
         var idseleccionado =[]
@@ -90,11 +111,9 @@
             //var idfer = parseInt($(`#producto-${this.id}`).val());
             idseleccionado.push(+this.id)
         });
-        console.log(idseleccionado)
-        const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
-        //idservicios = updatedServices;
-        console.log(idservicios);
 
+        const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
+        
     });
 
     
