@@ -10,14 +10,14 @@
     </button>
 </div>
 
-<div class="card h-100">
-    <div class="card-body">
-        <div  class="row" id="selectServicios">
+
+<div class="modal-body">
+    <div  class="row" id="selectServicios">
 
 
-        </div>
     </div>
 </div>
+
 
 <script>
     llenarcampos()
@@ -40,8 +40,13 @@
             opciones += `<tbody>
                     <tr>
                         <td>
-                            <div class="custom-control custom-checkbox">
-                                <input id="${item.fiIDServicio}" class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>
+                        <div class="custom-control custom-checkbox">`
+            if (item.select == true) {
+                opciones += `<input id="${item.fiIDServicio}"  checked class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>`
+            } else {
+                opciones += `<input id="${item.fiIDServicio}" class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>`
+            }
+            opciones +=    `
                                 <label class="custom-control-label" for="${item.fiIDServicio}"></label>
                             </div>
                         </td>
@@ -78,28 +83,20 @@
         debugger
 
         var suma = 0;
-
+        var idseleccionado =[]
         // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
         $('input[name="CheckCheckedFalla"]:checked').each(function () {
             console.log(`entro en el if`);
             //var idfer = parseInt($(`#producto-${this.id}`).val());
-            const updatedServices = updateServiceSelection(idservicios, this.id);
-            //idservicios = updatedServices;
-            console.log(updatedServices);
+            idseleccionado.push(+this.id)
         });
-
+        console.log(idseleccionado)
+        const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
+        //idservicios = updatedServices;
+        console.log(idservicios);
 
     });
 
-    function updateServiceSelection(services, serviceId) {
-        debugger
-        return services.map(service => {
-            if (service.fiIDServicio === +serviceId) {
-                return { ...service, select: true };
-            } else {
-                //return { ...service, select: false };
-            }
-        });
-    }
+    
 
 </script>

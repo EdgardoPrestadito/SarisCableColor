@@ -723,4 +723,11 @@
             });
     }
 
+
+    const updateSelectionInPlace = (array, ids) => { // para agregar servicios o los cis para que se modifique e identificar cuales son los que selecciono
+        array.forEach(item => {
+            item.select = ids.includes(item.fiIDServicio);
+        });
+    };
+
 </script>
