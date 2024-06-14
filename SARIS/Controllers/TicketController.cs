@@ -209,6 +209,8 @@ namespace OrionCoreCableColor.Controllers
                     ViewBag.idticket = idticket;
                     ViewBag.UsuarioLogueado = GetIdUser();
                     ViewBag.DatosDocumentoListado = contexto.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento(idticket, 1, 1, GetIdUser()).ToList();
+                    ViewBag.fiIDEstadoRequerimiento = cont.fiIDEstadoRequerimiento;
+                    ViewBag.fiTipoRequerimiento = cont.fiTipoRequerimiento;
 
                     return PartialView(tick);
                 }
