@@ -93,6 +93,40 @@ namespace OrionCoreCableColor.Controllers
         }
 
         [HttpGet]
+        public JsonResult ListarTicketCancelados()
+        {
+            var listaEquifaxGarantia = new List<TicketMiewModel>();
+
+            try
+            {
+                using (var connection = (new SARISEntities1()).Database.Connection)
+                {
+
+                    connection.Open();
+                    var command = connection.CreateCommand();
+                    command.CommandText = $"EXEC sp_Incidentes_Cancelados {GetIdUser()}";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        var db = ((IObjectContextAdapter)new SARISEntities1());
+                        listaEquifaxGarantia = db.ObjectContext.Translate<TicketMiewModel>(reader).ToList();
+
+                    }
+
+                    connection.Close();
+
+                    return EnviarListaJson(listaEquifaxGarantia);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+
+        }
+
+        [HttpGet]
         public ActionResult ModalBitacora(int id)
         {
             return PartialView(id);
