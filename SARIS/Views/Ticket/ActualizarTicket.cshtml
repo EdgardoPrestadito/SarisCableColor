@@ -42,10 +42,32 @@
                         </div>
                     </div>
 
+
+
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="col-form-label">Tipo Sub Categoria</label>
                             <select id="selectincidencia" class="form-select form-control">
+                            </select>
+                        </div>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Categoria</label>
+                            @Html.DropDownListFor(model => model.fiCategoriadeDesarrollo, new SelectList(ViewBag.ListaCategorias, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;", @readonly = "readonly" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Tipo Sub Categoria</label>
+                            <select id="selectincidencia" class="form-select form-control" style="display: block">
                             </select>
                         </div>
 
@@ -453,6 +475,7 @@
 
                         GuardarDocumentos(data.IdIngresado);
                         CerrarModal();
+                        Recargar();
                         return ToastrSuccess("Exito", "Ticket Actualizado Correctamente");
 
                     }

@@ -35,7 +35,7 @@ namespace OrionCoreCableColor.App_Helper
 
         public static void EnviarNumeroTicket(string nombreUsuario, int IDTIcket, string pcTelefono, string titulo, string descripcion, string Categoria, string incidencia,string Estado,string Prioridad,string Comentario)
         {
-            var mensaje = @"SARIS le informa" + "\n Estimado Usuario: " + nombreUsuario + " se le asigno un ticket\n" + "\n*Ticket #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Comentario:* "+ Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad;
+            var mensaje = @"SARIS le informa" + "\n Estimado se le asigno un ticket\n" + "\n*Ticket #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Comentario:* "+ Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad;
             MensajesDigitales(pcTelefono, mensaje, "");
         }
 
