@@ -128,7 +128,58 @@
                         </div>
                     </div>
                 </div>
+                @if (Model.fcDescripcionEstado == "Resuelto" || Model.fcDescripcionEstado == "Pausado" || Model.fcDescripcionEstado == "Cancelado")
+                {
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                                <br />
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                                    <div class="form-group">
+                                        <label class="control-label font-12">Motivo</label>
+                                        <div class="input-group mar-btm">
+                                            @Html.EditorFor(model => model.fcNombreMotivo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.fcDescripcionEstado == "Resuelto")
+                {
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                                <br />
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                                    <div class="form-group">
+                                        <label class="control-label font-12">Categoria Resolucion</label>
+                                        <div class="input-group mar-btm">
+                                            @Html.EditorFor(model => model.fcDescripcionCategoriaResolucion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                                <br />
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                                    <div class="form-group">
+                                        <label class="control-label font-12">SubCategoria Resolucion</label>
+                                        <div class="input-group mar-btm">
+                                            @Html.EditorFor(model => model.fcDescripcionSubCategoriaResolucion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 
 
                 <div class="col-lg-6">
@@ -227,17 +278,80 @@
                     </div>
                 </div>
 
+                @*<div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                                <br />
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                                    <div class="form-group">
+                                        <label class="control-label font-12">Servicio Afectado</label>
+                                        <div class="input-group mar-btm">
+                                            @Html.EditorFor(model => model.fcServicioAfectados, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-lg-12 col-12 col-sm-12 col-md-12">
                             <br />
                             <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
-                                <div class="form-group">
-                                    <label class="control-label font-12">Servicio Afectado</label>
-                                    <div class="input-group mar-btm">
-                                        @Html.EditorFor(model => model.fcServicioAfectados, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    </div>
-                                </div>
+                                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaServicios">
+                                    <thead>
+                                        <tr>
+                                            <th>Servicios Afectados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in @ViewBag.ServiciosAfectados)
+                                        {
+                                            <tr>
+                                                <td>@item.fcNombreServicio</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                            <br />
+                            <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaCI">
+                                    <thead>
+                                        <tr>
+                                            <th>CI</th>
+                                            <th>Latitud</th>
+                                            <th>Longitud</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in @ViewBag.CI)
+                                        {
+                                            <tr>
+                                                <td>@item.fcConfiguracion</td>
+                                                <td>@item.fcLatitud</td>
+                                                <td>@item.fcLongitud</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -279,7 +393,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
     </div>

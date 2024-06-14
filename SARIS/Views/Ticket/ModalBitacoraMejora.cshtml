@@ -45,8 +45,10 @@
 </div>
 
 <script>
+    var Documento = @Html.Raw(Json.Encode(ViewBag.Documentos));
     LlenarDatos();
     function LlenarDatos() {
+        debugger;
          $.ajax({
             url: '@Url.Action("BitacoraEstado", "Ticket")',
                   data: { Ticket: @Model },
@@ -88,7 +90,7 @@
                         //        </div>
                         //        <div class="arrow">&#8593;</div>`
                         //    }
-                            
+
                         //}
                         else {
                             opt += `
@@ -119,17 +121,32 @@
                                         <td><span class="font-weight-bold text-muted">Estado</span></td>
                                         <td><span class="btn-sm btn-block badge badge-${item.fcClaseColor}">${item.fcDescripcionEstado}</span></td>
                                     </tr>
-                                    
-                                </tbody>
+                                    <tr>
+                                    <td><span class="font-weight-bold text-muted">Documentos</span></td>
+                                    <td>
+                                `;
+
+                            for (var items of Documento) {
+                                if (items.fcToken == item.fcToken) {
+                                    if (items.fcTipoArchivo == "pdf") {
+                                        opt += `<a href="javascript:ShowBigPdf('${items.fcNombreArchivo}','${items.fcURL}')" class="text-info"> <i class="fal fa-2x fa-file-pdf"> </i> ${items.fcNombreArchivo}</a>`;
+                                    }
+                                    else {
+                                        opt += `<a href="javascript:void(0)" data-Description="${items.fcNombreArchivo}" class="text-info" onclick="ShowBigImage(this)" src="${items.fcURL}"> <i class="fal fa-2x fa-file-image"> </i>  ${items.fcNombreArchivo}</a>`
+                                    }
+                                }
+                            }
+
+                            opt += `</td></tr></tbody>
                             </table>
 
-                           
+
                             <div class="arrow">&#8593;</div>`;
                         }
-                        
+
                     }
-                    
-                    
+
+
                 }
                 //opt += `<h1 class="text-center my-4">Inicio</h1>`
 

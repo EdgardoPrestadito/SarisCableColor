@@ -226,6 +226,26 @@ namespace OrionCoreCableColor.Controllers
 
         }
 
+        public JsonResult SelectCategoriaResolucion()
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Categorias_IndicidenciasResolucion_Listado().ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
+        
+        public JsonResult SelectSubCategoriaResolucion(int Categoria)
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion(Categoria).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
 
+        
     }
 }

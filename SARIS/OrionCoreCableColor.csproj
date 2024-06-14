@@ -439,6 +439,9 @@
     <Compile Include="DbConnection\sp_CatalogoManual_Listado_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Catalogo_ConfiguracionCI_listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -464,6 +467,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Categorias_Indicidencias_Listado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_CIporIncidencias_listos_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Ciudad_Result.cs">
@@ -695,6 +701,7 @@
     <Compile Include="Models\Prioridades\PrioridadesViewModel.cs" />
     <Compile Include="Models\Roles\CrearRolViewModel.cs" />
     <Compile Include="Models\Roles\ListaPermisosPorRolViewModel.cs" />
+    <Compile Include="Models\Ticket\EstadosBitacorasViewModel.cs" />
     <Compile Include="Models\Ticket\Estado_RequerimientoViewModal.cs" />
     <Compile Include="Models\Ticket\TicketAdjuntarImagenViewModel.cs" />
     <Compile Include="Models\Ticket\TicketInformacionViewModel.cs" />
