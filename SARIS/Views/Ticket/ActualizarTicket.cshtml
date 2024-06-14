@@ -357,6 +357,9 @@
         debugger
         var estado = 0;
         var estadoDescripcion = "";
+        var incidencia = $("#selectincidencia").val();
+        //var usuario = $("#selectusuarios").val();
+        var estadoReque = $(`#fiIDEstadoRequerimiento`).val();
 
         if ($("#txtComentario").val() != "" || $("#txtComentario").val() != null) {
             var bitacora = {
@@ -364,7 +367,7 @@
                 Observaciones: $("#txtComentario").val(),
             }
             var detener = $(`#selectincidencia`).val();
-            if ($("#selectincidencia").val() == 0 || $("#selectincidencia").val() == null || $("#selectincidencia").val() == "" || $("#selectusuarios").val() == 0 || $("#selectusuarios").val() == null || $(`#fiIDEstadoRequerimiento`).val() == 0 || $(`#fiIDEstadoRequerimiento`).val() == null || $(`#fiIDEstadoRequerimiento`).val() == "" ) {
+            if (incidencia == 0 || incidencia == null || incidencia == "" || estadoReque == 0 || estadoReque == null || estadoReque == "" ) {
                 return ToastrError("Error", "Llene todos los campos");
             }
 
@@ -632,36 +635,7 @@
 
     }
 
-    $(`#fiAreaAsignada`).on(`change`, function () {
-        $(this).val();
-        $.ajax({
-            url: "@Url.Action("SelectUsuarios", "LlenarCampos")",
-            type: "GET",
-            data: { idarea: $(this).val()},
-            success: function (respuesta) {
-
-                var selectIncidencia = $("#selectusuarios");
-
-                selectIncidencia.empty();
-                selectIncidencia.append($('<option>', {
-                    value: 0,
-                    text: 'Seleccione un Usuario'
-                }));
-
-                $("#selectusuarios").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
-                $.each(respuesta, function(index, item) {
-                    selectIncidencia.append($('<option>', {
-                        value: item.Value,
-                        text: item.Text
-                    }));
-                });
-            },
-            error: function (respuesta) {
-                console.log(respuesta);
-            }
-        });
-
-    });
+    
 
     select();
     function select() {
