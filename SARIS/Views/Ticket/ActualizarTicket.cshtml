@@ -252,6 +252,7 @@
     ///$("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
     ///$("#fiIDAreaSolicitante").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
     var estadoRequerimiento = 0;
+    
     var ID_REQUERIMIENTO = @ViewBag.idticket;
     var ID_USUARIO = @ViewBag.UsuarioLogueado;
     var idtiporequerimiento = @ViewBag.IdIncidencia;
@@ -342,6 +343,8 @@
 
     $("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).val(3).trigger("change");
 
+    $("#fiCategoriadeDesarrollo").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+
     $(document).ready(function () {
         estadoRequerimiento = $("#dllEstadoRequerimiento option:selected").val();
     });
@@ -351,6 +354,7 @@
     });
 
     function ActualizarDatos() {
+        debugger
         var estado = 0;
         var estadoDescripcion = "";
 
@@ -359,8 +363,8 @@
                 //idRequerimiento: ID_REQUERIMIENTO,
                 Observaciones: $("#txtComentario").val(),
             }
-
-            if ($("#selectincidencia").val() == 0 || $("#selectusuarios").val() == 0 || $(`#fiIDEstadoRequerimiento`).val() == 0 || $(`#fiIDEstadoRequerimiento`).val() == null || $(`#fiIDEstadoRequerimiento`).val() == "" ) {
+            var detener = $(`#selectincidencia`).val();
+            if ($("#selectincidencia").val() == 0 || $("#selectincidencia").val() == null || $("#selectincidencia").val() == "" || $("#selectusuarios").val() == 0 || $("#selectusuarios").val() == null || $(`#fiIDEstadoRequerimiento`).val() == 0 || $(`#fiIDEstadoRequerimiento`).val() == null || $(`#fiIDEstadoRequerimiento`).val() == "" ) {
                 return ToastrError("Error", "Llene todos los campos");
             }
 
@@ -390,6 +394,12 @@
             var listacis = [];
             for (const item of idCis) {
                 listacis.push(item.id);
+            }
+
+            var estado = $("#fiIDEstadoRequerimiento option:selected").val();
+
+            if (estado == 0 || estado == null) {
+                estado = 3
             }
 
             var requerimiento = {
