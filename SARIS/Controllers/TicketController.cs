@@ -183,7 +183,7 @@ namespace OrionCoreCableColor.Controllers
                     var puede = false;
 
                     ViewBag.IdServicios = contexto.sp_RequerimientoPorServicioByRequerimiento(idticket).ToList();
-
+                    ViewBag.IdsCis = contexto.sp_CIporIncidencias_listos(idticket).ToList();
                     var idrolestodopoderosos = contexto.sp_Configuraciones("RolesquePuedenverTodo").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
 
                     var user = GetUser();
@@ -213,7 +213,7 @@ namespace OrionCoreCableColor.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> GuardarTicket(TicketMiewModel ticket, string comentarioticket, List<int> serviciosAfectados)
+        public async Task<JsonResult> GuardarTicket(TicketMiewModel ticket, string comentarioticket, List<int> serviciosAfectados,List<int> Ciaguardar)
         {
             try
             {
@@ -230,7 +230,10 @@ namespace OrionCoreCableColor.Controllers
                         {
                             var guardarServicios = contexto.sp_IncidenciasPorServicioAfectado(save.IdIngresado, item, GetIdUser());
                         }
-
+                        foreach (var item in Ciaguardar)
+                        {
+                            var guardarcis = contexto.sp_IncidenciasPorCI_Insertar(save.IdIngresado,item, GetIdUser());
+                        }
                         var datosticket = Datosticket((int)save.IdIngresado);
                         //GuardarBitacoraGeneralhistorial(GetIdUser(),datosticket.fiIDRequerimiento,datosticket.fiIDUsuarioSolicitante, comentarioticket,1,datosticket.fiIDEstadoRequerimiento,datosticket.fiIDUsuarioAsignado);
 
@@ -341,7 +344,7 @@ namespace OrionCoreCableColor.Controllers
             return PartialView();
         }
 
-        public async Task<JsonResult> ActualizarDatos(TicketMiewModel ticket, string comentario)
+        public async Task<JsonResult> ActualizarDatos(TicketMiewModel ticket, string comentario, List<int> serviciosAfectados, List<int> Ciaguardar)
         {
             //var resultado = new Resultado_ViewModel() { ResultadoExitoso = false };
             //var mensajeError = string.Empty;
@@ -354,7 +357,15 @@ namespace OrionCoreCableColor.Controllers
 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), ticket.fiIDRequerimiento, GetIdUser(), comentario, 1, ticket.fiIDEstadoRequerimiento, datosticket.fiIDUsuarioAsignado);
                     var ticketpadre = ticket.fiIdTicketPadre;
-                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), ticket.fiIDRequerimiento, ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, DateTime.Now, datosticket.fiIDUsuarioAsignado, 0, ticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, ticketpadre, ticket.fiMotivoEstado);
+                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), ticket.fiIDRequerimiento, ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, DateTime.Now, datosticket.fiIDUsuarioAsignado, 0, ticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, ticketpadre, ticket.fiMotivoEstado,0,0); // eliminar despues
+                    foreach (var item in serviciosAfectados)
+                    {
+                        var guardarServicios = contexto.sp_IncidenciasPorServicioAfectado(ticket.fiIDRequerimiento, item, GetIdUser());
+                    }
+                    foreach (var item in Ciaguardar)
+                    {
+                        var guardarcis = contexto.sp_IncidenciasPorCI_Insertar(ticket.fiIDRequerimiento, item, GetIdUser());
+                    }
                     if (ticket.fiIDEstadoRequerimiento == 5)
                     {
                         eliminarTicketAbierto(ticket.fiIDRequerimiento);
@@ -520,7 +531,7 @@ namespace OrionCoreCableColor.Controllers
                     var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
 
                     var datosticket = Datosticket(idticket);//contexto.sp_Requerimientos_Bandeja_ByID(1, 1, GetIdUser(), idticket).FirstOrDefault();
-                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, Convert.ToByte(7), DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0);
+                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, Convert.ToByte(7), DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0,0,0);//eliminar despues
                     ObtenerDataTicket(idticket); // aqui va el signalR
 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"El Usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} reasigna por: " + comenta, 1, 7, 0);//se manda 0 por que se asigno una nueva area y por lo tanto el usuario asignado no puede ser otro
@@ -618,7 +629,7 @@ namespace OrionCoreCableColor.Controllers
                     //guardar la bitacora 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, datosticket.fiIDUsuarioSolicitante, comenta, 1, 7, usuario);//el estado de ticket esta en 7 para que pueda guardar la bitacora
 
-                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, 7, DateTime.Now, usuario, 0, datosticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, datosticket.fiIDRequerimientoPadre, 0);//el estado de ticket esta en 7 para que pueda guardar la bitacora
+                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, 7, DateTime.Now, usuario, 0, datosticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, datosticket.fiIDRequerimientoPadre, 0,0,0);//eliminar despues //el estado de ticket esta en 7 para que pueda guardar la bitacora
                     ObtenerDataTicket(idticket);//aqui esta el signalR
                     if (GetIdUser() != usuario) //aqui el signalR por si al reasignar un usuario se le quite de la bandeja de el 
                     {

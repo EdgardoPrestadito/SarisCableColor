@@ -15,5 +15,6 @@ namespace OrionCoreCableColor.DbConnection
     {
         public Nullable<int> fiIdRequerimiento { get; set; }
         public Nullable<int> fiIdServicioAfectado { get; set; }
+        public string fcNombreServicio { get; set; }
     }
 }

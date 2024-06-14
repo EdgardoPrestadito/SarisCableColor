@@ -439,6 +439,9 @@
     <Compile Include="DbConnection\sp_CatalogoManual_Listado_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Catalogo_ConfiguracionCI_listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -466,6 +469,9 @@
     <Compile Include="DbConnection\sp_Categorias_Indicidencias_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_CIporIncidencias_listos_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Ciudad_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -488,6 +494,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_DatosTicket_Correo_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_DetalleBitacoraInformacionArchivos_COPIA_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_DetalleBitacoraInformacionArchivos_Result.cs">

@@ -93,7 +93,7 @@
     <div class='test col-sm-12'>
         <br />
         <div style='float: right;'>
-            <button type="button" id="btnGuardarRequerimientoEnviar" class="btn btn-success">
+            <button type="button" id="btnGuardarCis" class="btn btn-success">
                 Guardar CI
             </button>
         </div>
@@ -304,7 +304,7 @@
 
                             //return '<button class="btn  btn-success" tabindex="0" aria-controls="TablaPrincipal2" type="button"  title = "Guardar" name="GuardarEnviar"><i class="fal fa-inbox-out" ></i></button>';
                             var opt = `<div class="custom-control custom-checkbox">
-                                            <input id="${data.fiIDConfiguracion}"  class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${data.fiIDConfiguracion}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>
+                                            <input id="${data.fiIDConfiguracion}"  class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${data.fcConfiguracion}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>
                                             <label class="custom-control-label" for="${data.fiIDConfiguracion}"></label>
                                         </div>`;
                             return opt;
@@ -324,11 +324,45 @@
         $('input[name="CheckCheckedFalla"]:checked').each(function () {
             console.log(`entro en el if`);
             //var idfer = parseInt($(`#producto-${this.id}`).val());
-            idseleccionado.push(+this.id)
-            idCis.push(+this.id);
+            idseleccionado.push({ id: +this.id, fcConfiguracion: this.value });
+            //idCis.push({ id: +this.id, fcConfiguracion: this.value });
+
+            const agregaralista = addOrUpdateItem(idCis, idseleccionado); // para agregar los que estan seleccionados
+            //const agregaralistanueva = addOrUpdateItem(idCis, idseleccionado); // para comparar la lista como tal y verificar si hay alguno ya guardado
         });
+
         console.log(idCis);
-        //const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
+
+    });
+
+    $(`#btnGuardarCis`).on(`click`, function () {
+
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistacis">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+
+                        `;
+        for (const item of idCis) {
+                tbo += `<tr>
+                            <td>${item.fcConfiguracion}</td>
+                            <td></td>
+                        </tr>`;
+            
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodycis`).empty()
+        $(`#tbodycis`).append(tbo);
+
+        $("#MyModalBig3").modal("hide");//aqui sirve para agregar los servicios a la tabla que esta debajo del boton que se asignode agregar servicios
+        $("#MyModalContentBig3").empty();
+
 
     });
 

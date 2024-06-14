@@ -692,6 +692,45 @@
         }
 
 
+        const updateSelectionInPlace = (array, ids) => { // para agregar servicios o los cis para que se modifique e identificar cuales son los que selecciono
+            array.forEach(item => {
+                item.select = ids.includes(item.fiIDServicio);
+            });
+        };
+
+
+        function addOrUpdateItems(array, newItem) { // esta funcion busca dentro de la lista si existe el registro como tal, si no lo hace pues lo agrega, en caso de encontrarlo lo deja tal cual esta
+            debugger
+            // Buscar el índice del objeto con el mismo id
+            let index = array.findIndex(item => item.id === newItem.id); // aqui la lista tiene que tener lo que viene siendo el id para poder identificar la lista en concreto
+
+            if (index === -1) {
+                // Si el objeto no existe, agregarlo
+                array.push(newItem);
+                //console.log('Item added:', newItem);
+            } else {
+                // Si el objeto existe, actualizarlo
+                array[index] = newItem;
+                //console.log('Item updated:', newItem);
+            }
+        }
+
+
+        function addOrUpdateItem(array, items) {
+            items.forEach(newItem => {
+                let index = array.findIndex(item => item.id === newItem.id);
+
+                if (index === -1) {
+                    array.push(newItem);
+                    //console.log('Item added:', newItem);
+                } else {
+                    array[index] = newItem;
+                    //console.log('Item updated:', newItem);
+                }
+            });
+        }
+
+
     </script>
     
     }

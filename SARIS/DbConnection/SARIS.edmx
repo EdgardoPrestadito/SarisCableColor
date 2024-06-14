@@ -60,6 +60,9 @@
         </Function>
         <Function Name="sp_Areas_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Catalogo_ConfiguracionCI_listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piCategoriaResolucion" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Categorias_Indicidencias_Desactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDCategoriaDesarrollo" Type="int" Mode="In" />
         </Function>
@@ -86,6 +89,9 @@
           <Parameter Name="piArea" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Categorias_IndicidenciasResolucion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_CIporIncidencias_listos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Ciudad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piPais" Type="int" Mode="In" />
           <Parameter Name="piIDRegion" Type="int" Mode="In" />
@@ -145,6 +151,10 @@
           <Parameter Name="piIDUsuario" Type="int" Mode="In" />
           <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_DetalleBitacoraInformacionArchivos_COPIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Editar_UsuarioGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fiIdusuario" Type="int" Mode="In" />
           <Parameter Name="fcPrimerNombre" Type="nvarchar" Mode="In" />
@@ -169,6 +179,11 @@
           <Parameter Name="pcClaseColor" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_Estados_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_IncidenciasPorCI_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piRequerimiento" Type="int" Mode="In" />
+          <Parameter Name="piCI" Type="int" Mode="In" />
+          <Parameter Name="piUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_IncidenciasPorServicioAfectado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIdIncidencia" Type="int" Mode="In" />
           <Parameter Name="piIdServicioAfectado" Type="int" Mode="In" />
@@ -275,6 +290,9 @@
           <Parameter Name="piIDContador" Type="int" Mode="In" />
           <Parameter Name="poiSiguienteNumero" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="sp_ObtenerTokenBitacora_porIDTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDTicket" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Pais" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Plataformas_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Prioridad_urgenciaXimpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -364,6 +382,8 @@
           <Parameter Name="piIdAreaAsignada" Type="int" Mode="In" />
           <Parameter Name="piIdTicketPadre" Type="int" Mode="In" />
           <Parameter Name="pifiMotivoEstado" Type="int" Mode="In" />
+          <Parameter Name="piIdCategoriaResolucion" Type="int" Mode="In" />
+          <Parameter Name="piIdSubCategoriaResolucion" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Requerimiento_Maestro_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDSesion" Type="int" Mode="In" />
@@ -384,6 +404,16 @@
           <Parameter Name="piIdRequerimiento" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Requerimientos_Adjuntos_Guardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+          <Parameter Name="pcNombreArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="pcTipoArchivo" Type="varchar" Mode="In" />
+          <Parameter Name="pcRutaArchivo" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pcURL" Type="varchar" Mode="In" />
+          <Parameter Name="piIDSesion" Type="int" Mode="In" />
+          <Parameter Name="piIDApp" Type="int" Mode="In" />
+          <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Requerimientos_Adjuntos_Guardar_Copia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
           <Parameter Name="pcNombreArchivo" Type="varchar" Mode="In" />
           <Parameter Name="pcTipoArchivo" Type="varchar" Mode="In" />
@@ -880,6 +910,8 @@
             <Parameter Name="piIdAreaAsignada" Mode="In" Type="Int32" />
             <Parameter Name="piIdTicketPadre" Mode="In" Type="Int32" />
             <Parameter Name="pifiMotivoEstado" Mode="In" Type="Int32" />
+            <Parameter Name="piIdCategoriaResolucion" Mode="In" Type="Int32" />
+            <Parameter Name="piIdSubCategoriaResolucion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Requerimiento_Maestro_Detalle" ReturnType="Collection(SARISModel.sp_Requerimiento_Maestro_Detalle_Result)">
             <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
@@ -895,9 +927,6 @@
             <Parameter Name="piIdIncidencia" Mode="In" Type="Int32" />
             <Parameter Name="piIdServicioAfectado" Mode="In" Type="Int32" />
             <Parameter Name="piUsuario" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_RequerimientoPorServicioByRequerimiento" ReturnType="Collection(SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result)">
-          <Parameter Name="piIdRequerimiento" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Catalogo_ConfiguracionCI_listado" ReturnType="Collection(SARISModel.sp_Catalogo_ConfiguracionCI_listado_Result)" />
           <FunctionImport Name="sp_Ciudad" ReturnType="Collection(SARISModel.sp_Ciudad_Result)">
@@ -928,7 +957,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_Requerimientos_Niveles_Listado" ReturnType="Collection(SARISModel.sp_Requerimientos_Niveles_Listado_Result)" />
           <FunctionImport Name="sp_Areas_Desactivar" ReturnType="Collection(SARISModel.sp_Areas_Desactivar_Result)">
-            <Parameter Name="fiIDArea" Mode="In" Type="Int32" />
+          <Parameter Name="fiIDArea" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Areas_Editar" ReturnType="Collection(SARISModel.sp_Areas_Editar_Result)">
             <Parameter Name="piIDArea" Mode="In" Type="Int32" />
@@ -939,7 +968,7 @@
             <Parameter Name="PiIDNivel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Areas_Find" ReturnType="Collection(SARISModel.sp_Areas_Find_Result)">
-            <Parameter Name="fiIDArea" Mode="In" Type="Int32" />
+          <Parameter Name="fiIDArea" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Areas_Insertar" ReturnType="Collection(SARISModel.sp_Areas_Insertar_Result)">
             <Parameter Name="pcDescripcion" Mode="In" Type="String" />
@@ -949,6 +978,37 @@
             <Parameter Name="PiIDNivel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Areas_Lista" ReturnType="Collection(SARISModel.sp_Areas_Lista_Result)" />
+          <FunctionImport Name="sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion" ReturnType="Collection(SARISModel.sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion_Result)">
+          <Parameter Name="piCategoriaResolucion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DetalleBitacoraInformacionArchivos_COPIA" ReturnType="Collection(SARISModel.sp_DetalleBitacoraInformacionArchivos_COPIA_Result)">
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_IncidenciasPorCI_Insertar">
+            <Parameter Name="piRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="piCI" Mode="In" Type="Int32" />
+            <Parameter Name="piUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimientos_Adjuntos_Guardar_Copia" ReturnType="Collection(String)">
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="pcNombreArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcTipoArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcRutaArchivo" Mode="In" Type="String" />
+            <Parameter Name="pcURL" Mode="In" Type="String" />
+            <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CIporIncidencias_listos" ReturnType="Collection(SARISModel.sp_CIporIncidencias_listos_Result)">
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ObtenerTokenBitacora_porIDTicket" ReturnType="Collection(String)">
+            <Parameter Name="piIDTicket" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RequerimientoPorServicioByRequerimiento" ReturnType="Collection(SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result)">
+            <Parameter Name="piIdRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Requerimiento_Areas_Result">
           <Property Type="Int16" Name="fiIDArea" Nullable="false" />
@@ -1564,10 +1624,6 @@
           <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
           <Property Type="DateTime" Name="fdFechaAlarmaDeteccion" Nullable="true" Precision="23" />
         </ComplexType>
-        <ComplexType Name="sp_RequerimientoPorServicioByRequerimiento_Result">
-          <Property Type="Int32" Name="fiIdRequerimiento" Nullable="true" />
-          <Property Type="Int32" Name="fiIdServicioAfectado" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_Catalogo_ConfiguracionCI_listado_Result">
           <Property Type="String" Name="fcPais" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="fcRegion" Nullable="true" MaxLength="100" />
@@ -1634,6 +1690,30 @@
           <Property Type="String" Name="fcNombreGenerencia" Nullable="false" MaxLength="300" />
           <Property Type="Int32" Name="fiNivel" Nullable="true" />
           <Property Type="String" Name="fcNivel" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion_Result">
+          <Property Type="Int32" Name="fiIDTipoRequerimientoResolucion" Nullable="false" />
+          <Property Type="String" Name="fcTipoRequerimiento" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_DetalleBitacoraInformacionArchivos_COPIA_Result">
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="Int32" Name="fIDIUsuario" Nullable="false" />
+          <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="fcNombreArchivo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fcTipoArchivo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="fcRutaArchivo" Nullable="true" />
+          <Property Type="String" Name="fcURL" Nullable="false" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="sp_CIporIncidencias_listos_Result">
+          <Property Type="Int32" Name="fiIDConfiguracionCI" Nullable="true" />
+          <Property Type="String" Name="fcConfiguracion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fcLatitud" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fcLongitud" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="sp_RequerimientoPorServicioByRequerimiento_Result">
+          <Property Type="Int32" Name="fiIdRequerimiento" Nullable="true" />
+          <Property Type="Int32" Name="fiIdServicioAfectado" Nullable="true" />
+          <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2516,14 +2596,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_IncidenciasPorServicioAfectado" FunctionName="SARISModel.Store.sp_IncidenciasPorServicioAfectado" />
-          <FunctionImportMapping FunctionImportName="sp_RequerimientoPorServicioByRequerimiento" FunctionName="SARISModel.Store.sp_RequerimientoPorServicioByRequerimiento">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result">
-                <ScalarProperty Name="fiIdRequerimiento" ColumnName="fiIdRequerimiento" />
-                <ScalarProperty Name="fiIdServicioAfectado" ColumnName="fiIdServicioAfectado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Catalogo_ConfiguracionCI_listado" FunctionName="SARISModel.Store.sp_Catalogo_ConfiguracionCI_listado">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SARISModel.sp_Catalogo_ConfiguracionCI_listado_Result">
@@ -2637,6 +2709,49 @@
                 <ScalarProperty Name="fcNombreGenerencia" ColumnName="fcNombreGenerencia" />
                 <ScalarProperty Name="fiNivel" ColumnName="fiNivel" />
                 <ScalarProperty Name="fcNivel" ColumnName="fcNivel" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion" FunctionName="SARISModel.Store.sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion_Result">
+                <ScalarProperty Name="fiIDTipoRequerimientoResolucion" ColumnName="fiIDTipoRequerimientoResolucion" />
+                <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_DetalleBitacoraInformacionArchivos_COPIA" FunctionName="SARISModel.Store.sp_DetalleBitacoraInformacionArchivos_COPIA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_DetalleBitacoraInformacionArchivos_COPIA_Result">
+                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+                <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+                <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+                <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+                <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+                <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+                <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_IncidenciasPorCI_Insertar" FunctionName="SARISModel.Store.sp_IncidenciasPorCI_Insertar" />
+          <FunctionImportMapping FunctionImportName="sp_Requerimientos_Adjuntos_Guardar_Copia" FunctionName="SARISModel.Store.sp_Requerimientos_Adjuntos_Guardar_Copia" />
+          <FunctionImportMapping FunctionImportName="sp_CIporIncidencias_listos" FunctionName="SARISModel.Store.sp_CIporIncidencias_listos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_CIporIncidencias_listos_Result">
+                <ScalarProperty Name="fiIDConfiguracionCI" ColumnName="fiIDConfiguracionCI" />
+                <ScalarProperty Name="fcConfiguracion" ColumnName="fcConfiguracion" />
+                <ScalarProperty Name="fcLatitud" ColumnName="fcLatitud" />
+                <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ObtenerTokenBitacora_porIDTicket" FunctionName="SARISModel.Store.sp_ObtenerTokenBitacora_porIDTicket" />
+          <FunctionImportMapping FunctionImportName="sp_RequerimientoPorServicioByRequerimiento" FunctionName="SARISModel.Store.sp_RequerimientoPorServicioByRequerimiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result">
+                <ScalarProperty Name="fiIdRequerimiento" ColumnName="fiIdRequerimiento" />
+                <ScalarProperty Name="fiIdServicioAfectado" ColumnName="fiIdServicioAfectado" />
+                <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -144,7 +144,10 @@
                     <div class="form-group">
                         <label class="col-form-label">Ci</label>
                         <button onclick="AgregarCI()" class="form-control btn btn-success">Agregar CI</button>
-                        
+
+                    </div>
+                    <div id="tbodycis">
+
                     </div>
                 </div>
 
@@ -604,11 +607,14 @@
                 listaservicios.push(item.fiIDServicio);
             }
         }
-
+        var listacis = [];
+        for (const item of idCis) {
+            listacis.push(item.id);
+        }
         $.ajax({
             type: "POST",
             url: "@Url.Action("GuardarTicket", "Ticket")",
-            data: { ticket: ticket, comentarioticket: comentario, serviciosAfectados:listaservicios },
+            data: { ticket: ticket, comentarioticket: comentario, serviciosAfectados: listaservicios, Ciaguardar: listacis },
             error: function (result) {
                 console.log(`error`);
                 ToastrError("Error", "No se guardo el Incidente, Contacte con el Administrador");
@@ -724,7 +730,7 @@
             //console.log(canvas.toDataURL('image/jpeg', 0.7)); // tira el base 64
 
             var urlbase64 = getBase64Image(img); // tira el base 64
-            console.log(canvas.toDataURL('image/jpeg', 0.7)); // aqui para saber el base64 de la imagen
+            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // aqui para saber el base64 de la imagen
             fotosredimencionadas.push({ base: canvas.toDataURL('image/jpeg', 0.7), nombreArchivo: NombreArchivo, tipoarchivo: tipoimagen, pbEsImagen: true});
             return ctx;
             //document.getElementById(idimg).src = canvas.toDataURL('image/jpeg', 0.7); // el 07 es la calidad de la imagen si no estoy mal eso decia en la documentacion
@@ -772,10 +778,5 @@
             });
     }
 
-    const updateSelectionInPlace = (array, ids) => { // para agregar servicios o los cis para que se modifique e identificar cuales son los que selecciono
-        array.forEach(item => {
-            item.select = ids.includes(item.fiIDServicio);
-        });
-    };
-
+    
 </script>

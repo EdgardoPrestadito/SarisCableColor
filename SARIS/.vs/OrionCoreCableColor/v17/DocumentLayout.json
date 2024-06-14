@@ -1,33 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\",
+  "WorkspaceRootPath": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\saris\\controllers\\llenarcamposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:controllers\\llenarcamposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\saris\\dbconnection\\saris.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\dbconnection\\saris.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:dbconnection\\saris.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|c:\\users\\jsaucedar\\desktop\\sariscablecolor\\saris\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|c:\\users\\dtorres\\documents\\sariscablecolor\\saris\\controllers\\llenarcamposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:controllers\\llenarcamposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\views\\ticket\\registrarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\views\\ticket\\registrarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:views\\ticket\\registrarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\views\\ticket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\views\\ticket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:views\\ticket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\views\\ticket\\actualizarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\views\\ticket\\actualizarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:views\\ticket\\actualizarticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8DE43FAF-87B9-45C9-939E-2BBAA4067445}|OrionCoreCableColor.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -38,19 +38,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Web.config",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Web.config",
               "RelativeDocumentMoniker": "Web.config",
-              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Web.config",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Web.config",
               "RelativeToolTip": "Web.config",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAABRAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
@@ -59,11 +55,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SARIS.edmx [Diagram1]",
-              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\DbConnection\\SARIS.edmx",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\DbConnection\\SARIS.edmx",
               "RelativeDocumentMoniker": "DbConnection\\SARIS.edmx",
-              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\DbConnection\\SARIS.edmx [Diagram1]",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\DbConnection\\SARIS.edmx [Diagram1]",
               "RelativeToolTip": "DbConnection\\SARIS.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
               "WhenOpened": "2024-06-10T16:15:33.151Z",
@@ -71,11 +67,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "LlenarCamposController.cs",
-              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Controllers\\LlenarCamposController.cs",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Controllers\\LlenarCamposController.cs",
               "RelativeDocumentMoniker": "Controllers\\LlenarCamposController.cs",
-              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Controllers\\LlenarCamposController.cs",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Controllers\\LlenarCamposController.cs",
               "RelativeToolTip": "Controllers\\LlenarCamposController.cs",
               "ViewState": "AQIAAE0AAAAAAAAAAAAYwF8AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -86,9 +82,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "ActualizarTicket.cshtml",
-              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Views\\Ticket\\ActualizarTicket.cshtml",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Views\\Ticket\\ActualizarTicket.cshtml",
               "RelativeDocumentMoniker": "Views\\Ticket\\ActualizarTicket.cshtml",
-              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Views\\Ticket\\ActualizarTicket.cshtml",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Views\\Ticket\\ActualizarTicket.cshtml",
               "RelativeToolTip": "Views\\Ticket\\ActualizarTicket.cshtml",
               "ViewState": "AQIAAMYAAAAAAAAAAAAUwDMBAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -98,9 +94,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Views\\Ticket\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Views\\Ticket\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Ticket\\Index.cshtml",
-              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Views\\Ticket\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Views\\Ticket\\Index.cshtml",
               "RelativeToolTip": "Views\\Ticket\\Index.cshtml",
               "ViewState": "AQIAAJkAAAAAAAAAAAAAAK0AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -110,9 +106,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "RegistrarTicket.cshtml",
-              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Views\\Ticket\\RegistrarTicket.cshtml",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Views\\Ticket\\RegistrarTicket.cshtml",
               "RelativeDocumentMoniker": "Views\\Ticket\\RegistrarTicket.cshtml",
-              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Views\\Ticket\\RegistrarTicket.cshtml",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Views\\Ticket\\RegistrarTicket.cshtml",
               "RelativeToolTip": "Views\\Ticket\\RegistrarTicket.cshtml",
               "ViewState": "AQIAAJgAAAAAAAAAAAAmwKEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -122,9 +118,9 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\JSaucedaR\\Desktop\\SarisCableColor\\SARIS\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DTORRES\\Documents\\SarisCableColor\\SARIS\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",

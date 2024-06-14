@@ -42,9 +42,9 @@
                         <td>
                         <div class="custom-control custom-checkbox">`
             if (item.select == true) {
-                opciones += `<input id="${item.fiIDServicio}"  checked class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>`
+                opciones += `<input id="${item.fiIDServicio}"  checked class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFallaSErviciosSErvicios" name ="CheckCheckedFallaSErvicios"  > <label></label>`
             } else {
-                opciones += `<input id="${item.fiIDServicio}" class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>`
+                opciones += `<input id="${item.fiIDServicio}" class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFallaSErvicios" name ="CheckCheckedFallaSErvicios"  > <label></label>`
             }
             opciones +=    `
                                 <label class="custom-control-label" for="${item.fiIDServicio}"></label>
@@ -99,13 +99,13 @@
 
     }
 
-    $(document).on('change', 'input[name="CheckCheckedFalla"]', function () {
+    $(document).on('change', 'input[name="CheckCheckedFallaSErvicios"]', function () {
         //debugger
 
         var suma = 0;
         var idseleccionado =[]
         // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
-        $('input[name="CheckCheckedFalla"]:checked').each(function () {
+        $('input[name="CheckCheckedFallaSErvicios"]:checked').each(function () {
             console.log(`entro en el if`);
             //var idfer = parseInt($(`#producto-${this.id}`).val());
             idseleccionado.push(+this.id)

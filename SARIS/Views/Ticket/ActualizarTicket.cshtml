@@ -7,7 +7,7 @@
     </h2>
 
     <button type="button" class="close" data-dismiss="modal">
-        <i class="fal fa-times-circle fa-fw fa-lg"></i>
+        <i class="fal fa-times-circle fa-fw fa-lg"></i> 
     </button>
 </div>
 
@@ -104,12 +104,6 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-form-label">Servicio Afectado</label>
-                        @Html.EditorFor(model => model.fcServicioAfectados, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    </div>
-                </div>
 
                 <div class="col-sm-4">
                     <div class="form-group">
@@ -132,7 +126,10 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="col-form-label">Ci</label>
-                        <button class="form-control btn btn-success">Agregar Ci</button>
+                        <button onclick="AgregarCI()" class="form-control btn btn-success">Agregar Ci</button>
+
+                    </div>
+                    <div id="tbodycis">
 
                     </div>
                 </div>
@@ -231,10 +228,11 @@
     var ticketPadre = @ViewBag.TicketPadre;
     var fotosredimencionadas = [];
 
-    var idservicios = [];
-    var idCis = [];
 
     var idserviciosusados = @Html.Raw(Json.Encode(ViewBag.IdServicios));
+    var idCisusados = @Html.Raw(Json.Encode(ViewBag.IdsCis));
+    var idservicios = [];
+    var idCis = [];
 
     $(`#fiCategoriadeDesarrollo`).on('change', function () {
         cambiodecategoria(0);
@@ -341,7 +339,19 @@
                 ToastrError("Documento/Imagen", "Suba un documento o imagen");
                 return 0;
             }
-            console.log(`esto trael el motivo: ${$("#selectmotivo").val()}`);
+            //console.log(`esto trael el motivo: ${$("#selectmotivo").val()}`);
+
+            var listaservicios = [];
+            for (const item of idservicios) {
+                if (item.select == true) {
+                    listaservicios.push(item.fiIDServicio);
+                }
+            }
+            var listacis = [];
+            for (const item of idCis) {
+                listacis.push(item.id);
+            }
+
             var requerimiento = {
                 fiIDRequerimiento: ID_REQUERIMIENTO,
                 fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
@@ -362,7 +372,7 @@
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("ActualizarDatos", "Ticket")",
-                data: { ticket: requerimiento, comentario: $("#txtComentario").val()},
+                data: { ticket: requerimiento, comentario: $("#txtComentario").val(), serviciosAfectados: listaservicios, Ciaguardar: listacis},
                 error: function (xhr, ajaxOptions, thrownError) {
                     //MensajeError("Error, contacte al administrador.");
                     var dataerror = { Titulo: "Error", Mensaje: "Error Al Actualizar el Ticket", Estado: false }
@@ -388,8 +398,6 @@
                         AlertaAjax(dataerror)
                         //MensajeErrorModal("No se pudo realizar la actualizacion de Datos, contacte al administrador.");
                     }
-
-
                 }
             });
 
@@ -609,34 +617,79 @@
 
                 $("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function (index, item) {
-
                     idservicios.push({ select: false, fiIDServicio: item.fiIDServicio, fcNombreServicio: item.fcNombreServicio})
                 });
-
-                const { idserviciosusados, idservicios } = removeCommonServices(idserviciosusados, idservicios);
-
+                llenartableServicios(idservicios);
+                //
+                console.log(idserviciosusados);
             },
             error: function (respuesta) {
                 console.log(respuesta);
             }
         });
-
+        llenartableCis();
     }
 
-    const removeCommonServices = (array1, array2) => {
-        // Obtener los IDs de ambos arrays
-        const ids1 = array1.map(item => item.fiIDServicio);
-        const ids2 = array2.map(item => item.fiIDServicio);
+    function llenartableServicios(servicios) {
 
-        // Obtener los IDs comunes
-        const commonIds = ids1.filter(id => ids2.includes(id));
 
-        // Filtrar ambos arrays para eliminar los elementos con IDs comunes
-        const filteredArray1 = array1.filter(item => !commonIds.includes(item.fiIDServicio));
-        const filteredArray2 = array2.filter(item => !commonIds.includes(item.fiIDServicio));
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistaservicios">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody >
 
-        return { filteredArray1, filteredArray2 };
-    };
+                        `;
+        for (const item of idserviciosusados) {
+            tbo += `<tr>
+                        <td>${item.fcNombreServicio}</td>
+                    </tr>`;
+
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodyservicios`).empty()
+        $(`#tbodyservicios`).append(tbo);
+    }
+
+    function llenartableCis() {
+        console.log(idCisusados);
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistacis">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+
+                        `;
+        for (const item of idCisusados) {
+            tbo += `<tr>
+                            <td>${item.fcConfiguracion}</td>
+                            <td></td>
+                        </tr>`;
+
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodycis`).empty()
+        $(`#tbodycis`).append(tbo);
+    }
+
+    function removeCommonElements(arr1, arr2) {
+        let set2 = new Set(arr2.map(item => item.fiIDServicio));
+        let filteredArr1 = arr1.filter(item => !set2.has(item.fiIdServicioAfectado));
+
+        let set1 = new Set(arr1.map(item => item.fiIdServicioAfectado));
+        let filteredArr2 = arr2.filter(item => !set1.has(item.fiIDServicio));
+
+        return { filteredArr1, filteredArr2 };
+    }
 
 
     $(`#fiIDEstadoRequerimiento`).on(`change`, function () {
@@ -683,18 +736,38 @@
     });
 
     function AgregarServicios() {
-        console.log(idservicios);
-         @*$.ajax({
-                url: "@Url.Action("AgregarServicios", "Ticket")",
+        //const { idserviciosusados, idserviciosnuevos } = removeCommonServices(idserviciosusados, idserviciosnuevos);
+        //console.log(idserviciosusados);
+        //console.log(idservicios);
+        let { filteredArr1, filteredArr2 } = removeCommonElements(idserviciosusados, idservicios);
+        idservicios = filteredArr2;
+        //console.log(idservicios);
+        $.ajax({
+            url: "@Url.Action("AgregarServicios", "Ticket")",
+            method: "get",
+            //data: { id: id },
+            success: function (data) {
+                ShowModalSmall(data);
+            },
+            error: function (resp) {
+                AlertaError();
+            }
+        });
+    }
+
+    function AgregarCI() {
+        //console.log("entro en ese proceso")
+         $.ajax({
+                url: "@Url.Action("AgregarCI", "Ticket")",
                 method: "get",
                 //data: { id: id },
-                success: function (data) {
-                    ShowModalSmall(data);
+             success: function (data) {
+                 ShowModal3(data);
                 },
                 error: function (resp) {
                     AlertaError();
                 }
-            });*@
+            });
     }
 
 </script>
