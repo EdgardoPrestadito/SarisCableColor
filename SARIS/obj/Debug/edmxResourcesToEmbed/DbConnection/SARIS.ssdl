@@ -407,6 +407,7 @@
     <Parameter Name="piIDSesion" Type="int" Mode="In" />
     <Parameter Name="piIDApp" Type="int" Mode="In" />
     <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+    <Parameter Name="pcTokenBitacora" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_Requerimientos_Adjuntos_Guardar_Copia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />

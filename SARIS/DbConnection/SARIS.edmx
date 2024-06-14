@@ -412,6 +412,7 @@
           <Parameter Name="piIDSesion" Type="int" Mode="In" />
           <Parameter Name="piIDApp" Type="int" Mode="In" />
           <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="pcTokenBitacora" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_Requerimientos_Adjuntos_Guardar_Copia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
@@ -600,6 +601,7 @@
             <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
             <Parameter Name="piIDApp" Mode="In" Type="Int32" />
             <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="pcTokenBitacora" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Configuraciones" ReturnType="Collection(SARISModel.sp_Configuraciones_Result)">
           <Parameter Name="fcDescripcionLlave" Mode="In" Type="String" />
@@ -632,9 +634,6 @@
             <Parameter Name="piIDJefeInmediato" Mode="In" Type="Int32" />
             <Parameter Name="piAreaAsignada" Mode="In" Type="Int32" />
             <Parameter Name="piIDPuesto" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Requerimientos_Bitacoras_Historial_ByID" ReturnType="Collection(SARISModel.sp_Requerimientos_Bitacoras_Historial_ByID_Result)">
-          <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_DashboardTabsHora" ReturnType="Collection(SARISModel.sp_DashboardTabsHora_Result)">
             <Parameter Name="pcNombreCorto" Mode="In" Type="String" />
@@ -919,10 +918,6 @@
             <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
             <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_DetalleBitacoraInformacion" ReturnType="Collection(SARISModel.sp_DetalleBitacoraInformacion_Result)">
-            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_IncidenciasPorServicioAfectado">
             <Parameter Name="piIdIncidencia" Mode="In" Type="Int32" />
             <Parameter Name="piIdServicioAfectado" Mode="In" Type="Int32" />
@@ -1001,13 +996,20 @@
             <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_CIporIncidencias_listos" ReturnType="Collection(SARISModel.sp_CIporIncidencias_listos_Result)">
-            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+          <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ObtenerTokenBitacora_porIDTicket" ReturnType="Collection(String)">
-            <Parameter Name="piIDTicket" Mode="In" Type="Int32" />
+          <Parameter Name="piIDTicket" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RequerimientoPorServicioByRequerimiento" ReturnType="Collection(SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result)">
-            <Parameter Name="piIdRequerimiento" Mode="In" Type="Int32" />
+          <Parameter Name="piIdRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DetalleBitacoraInformacion" ReturnType="Collection(SARISModel.sp_DetalleBitacoraInformacion_Result)">
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimientos_Bitacoras_Historial_ByID" ReturnType="Collection(SARISModel.sp_Requerimientos_Bitacoras_Historial_ByID_Result)">
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Requerimiento_Areas_Result">
@@ -1211,23 +1213,6 @@
           <Property Type="String" Name="fcRutaArchivo" Nullable="true" />
           <Property Type="String" Name="fcToken" Nullable="false" MaxLength="512" />
           <Property Type="String" Name="fcURL" Nullable="true" MaxLength="2256" />
-        </ComplexType>
-        <ComplexType Name="sp_Requerimientos_Bitacoras_Historial_ByID_Result">
-          <Property Type="Int64" Name="fiIDFila" Nullable="true" />
-          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
-          <Property Type="Int32" Name="fIDIUsuario" Nullable="false" />
-          <Property Type="String" Name="fcUsuarioPricipal" Nullable="true" MaxLength="30" />
-          <Property Type="DateTime" Name="fdFechaInicioEstado" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="fdFechaFinEstado" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="fiIDEstado" Nullable="false" />
-          <Property Type="Int32" Name="fiIDApp" Nullable="false" />
-          <Property Type="String" Name="fcDescripcionEstado" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="fcClaseColor" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="fcUsuarioSecundario" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="fcDescripcion" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="fiHorasTrabajadas" Nullable="true" />
-          <Property Type="Int32" Name="fiMinutios" Nullable="true" />
-          <Property Type="String" Name="fcComentario" Nullable="true" MaxLength="Max" />
         </ComplexType>
         <ComplexType Name="sp_DashboardTabsHora_Result">
           <Property Type="String" Name="fcMes" Nullable="true" MaxLength="30" />
@@ -1602,28 +1587,6 @@
           <Property Type="DateTime" Name="fdFechaAlarmaDeteccion" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="fiIDRequerimientoPadre" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_DetalleBitacoraInformacion_Result">
-          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
-          <Property Type="String" Name="fcTituloRequerimiento" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="fcDescripcionRequerimiento" Nullable="false" MaxLength="Max" />
-          <Property Type="String" Name="fcTipoRequerimiento" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="fcDescripcionCategoria" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="fcNombreUsuarioSolicitante" Nullable="true" MaxLength="83" />
-          <Property Type="String" Name="fcDescripcionEstado" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="fcClaseColor" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="fiIDUrgencia" Nullable="true" />
-          <Property Type="String" Name="fcDescripcionUrgencia" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="fiIDImpacto" Nullable="true" />
-          <Property Type="String" Name="fcDescripcionImpacto" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="fiIDPrioridad" Nullable="true" />
-          <Property Type="String" Name="fcDescripcionPrioridad" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="fiIDPlataforma" Nullable="true" />
-          <Property Type="String" Name="fcNombrePlataforma" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="fiIDServicio" Nullable="true" />
-          <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
-          <Property Type="DateTime" Name="fdFechaAlarmaDeteccion" Nullable="true" Precision="23" />
-        </ComplexType>
         <ComplexType Name="sp_Catalogo_ConfiguracionCI_listado_Result">
           <Property Type="String" Name="fcPais" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="fcRegion" Nullable="true" MaxLength="100" />
@@ -1714,6 +1677,49 @@
           <Property Type="Int32" Name="fiIdRequerimiento" Nullable="true" />
           <Property Type="Int32" Name="fiIdServicioAfectado" Nullable="true" />
           <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_DetalleBitacoraInformacion_Result">
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="String" Name="fcTituloRequerimiento" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="fcDescripcionRequerimiento" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcTipoRequerimiento" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fcDescripcionCategoria" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="fcNombreUsuarioSolicitante" Nullable="true" MaxLength="83" />
+          <Property Type="String" Name="fcDescripcionEstado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fcClaseColor" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fiIDUrgencia" Nullable="true" />
+          <Property Type="String" Name="fcDescripcionUrgencia" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="fiIDImpacto" Nullable="true" />
+          <Property Type="String" Name="fcDescripcionImpacto" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="fiIDPrioridad" Nullable="true" />
+          <Property Type="String" Name="fcDescripcionPrioridad" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="fiIDPlataforma" Nullable="true" />
+          <Property Type="String" Name="fcNombrePlataforma" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDServicio" Nullable="true" />
+          <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="fdFechaAlarmaDeteccion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="fcDescripcionCategoriaResolucion" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="fcDescripcionSubCategoriaResolucion" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="fcNombreMotivo" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Requerimientos_Bitacoras_Historial_ByID_Result">
+          <Property Type="Int64" Name="fiIDFila" Nullable="true" />
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="Int32" Name="fIDIUsuario" Nullable="false" />
+          <Property Type="String" Name="fcUsuarioPricipal" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="fdFechaInicioEstado" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fdFechaFinEstado" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="fiIDEstado" Nullable="false" />
+          <Property Type="Int32" Name="fiIDApp" Nullable="false" />
+          <Property Type="String" Name="fcDescripcionEstado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fcClaseColor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fcUsuarioSecundario" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="fcDescripcion" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="fiHorasTrabajadas" Nullable="true" />
+          <Property Type="Int32" Name="fiMinutios" Nullable="true" />
+          <Property Type="String" Name="fcComentario" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="fcToken" Nullable="false" MaxLength="512" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1990,27 +1996,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bandeja" FunctionName="SARISModel.Store.sp_Requerimientos_Bandeja" />
           <FunctionImportMapping FunctionImportName="sp_Usuario_EditarInfoUsuarioLaboral" FunctionName="SARISModel.Store.sp_Usuario_EditarInfoUsuarioLaboral" />
-          <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bitacoras_Historial_ByID" FunctionName="SARISModel.Store.sp_Requerimientos_Bitacoras_Historial_ByID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_Bitacoras_Historial_ByID_Result">
-                <ScalarProperty Name="fiIDFila" ColumnName="fiIDFila" />
-                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
-                <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
-                <ScalarProperty Name="fcUsuarioPricipal" ColumnName="fcUsuarioPricipal" />
-                <ScalarProperty Name="fdFechaInicioEstado" ColumnName="fdFechaInicioEstado" />
-                <ScalarProperty Name="fdFechaFinEstado" ColumnName="fdFechaFinEstado" />
-                <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
-                <ScalarProperty Name="fiIDApp" ColumnName="fiIDApp" />
-                <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
-                <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
-                <ScalarProperty Name="fcUsuarioSecundario" ColumnName="fcUsuarioSecundario" />
-                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
-                <ScalarProperty Name="fiHorasTrabajadas" ColumnName="fiHorasTrabajadas" />
-                <ScalarProperty Name="fiMinutios" ColumnName="fiMinutios" />
-                <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ListarImpacto" FunctionName="SARISModel.Store.sp_ListarImpacto">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SARISModel.sp_ListarImpacto_Result">
@@ -2569,32 +2554,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_DetalleBitacoraInformacion" FunctionName="SARISModel.Store.sp_DetalleBitacoraInformacion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SARISModel.sp_DetalleBitacoraInformacion_Result">
-                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
-                <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
-                <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
-                <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
-                <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
-                <ScalarProperty Name="fcNombreUsuarioSolicitante" ColumnName="fcNombreUsuarioSolicitante" />
-                <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
-                <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
-                <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
-                <ScalarProperty Name="fiIDUrgencia" ColumnName="fiIDUrgencia" />
-                <ScalarProperty Name="fcDescripcionUrgencia" ColumnName="fcDescripcionUrgencia" />
-                <ScalarProperty Name="fiIDImpacto" ColumnName="fiIDImpacto" />
-                <ScalarProperty Name="fcDescripcionImpacto" ColumnName="fcDescripcionImpacto" />
-                <ScalarProperty Name="fiIDPrioridad" ColumnName="fiIDPrioridad" />
-                <ScalarProperty Name="fcDescripcionPrioridad" ColumnName="fcDescripcionPrioridad" />
-                <ScalarProperty Name="fiIDPlataforma" ColumnName="fiIDPlataforma" />
-                <ScalarProperty Name="fcNombrePlataforma" ColumnName="fcNombrePlataforma" />
-                <ScalarProperty Name="fiIDServicio" ColumnName="fiIDServicio" />
-                <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
-                <ScalarProperty Name="fdFechaAlarmaDeteccion" ColumnName="fdFechaAlarmaDeteccion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_IncidenciasPorServicioAfectado" FunctionName="SARISModel.Store.sp_IncidenciasPorServicioAfectado" />
           <FunctionImportMapping FunctionImportName="sp_Catalogo_ConfiguracionCI_listado" FunctionName="SARISModel.Store.sp_Catalogo_ConfiguracionCI_listado">
             <ResultMapping>
@@ -2752,6 +2711,57 @@
                 <ScalarProperty Name="fiIdRequerimiento" ColumnName="fiIdRequerimiento" />
                 <ScalarProperty Name="fiIdServicioAfectado" ColumnName="fiIdServicioAfectado" />
                 <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_DetalleBitacoraInformacion" FunctionName="SARISModel.Store.sp_DetalleBitacoraInformacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_DetalleBitacoraInformacion_Result">
+                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+                <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+                <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+                <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+                <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+                <ScalarProperty Name="fcNombreUsuarioSolicitante" ColumnName="fcNombreUsuarioSolicitante" />
+                <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+                <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+                <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+                <ScalarProperty Name="fiIDUrgencia" ColumnName="fiIDUrgencia" />
+                <ScalarProperty Name="fcDescripcionUrgencia" ColumnName="fcDescripcionUrgencia" />
+                <ScalarProperty Name="fiIDImpacto" ColumnName="fiIDImpacto" />
+                <ScalarProperty Name="fcDescripcionImpacto" ColumnName="fcDescripcionImpacto" />
+                <ScalarProperty Name="fiIDPrioridad" ColumnName="fiIDPrioridad" />
+                <ScalarProperty Name="fcDescripcionPrioridad" ColumnName="fcDescripcionPrioridad" />
+                <ScalarProperty Name="fiIDPlataforma" ColumnName="fiIDPlataforma" />
+                <ScalarProperty Name="fcNombrePlataforma" ColumnName="fcNombrePlataforma" />
+                <ScalarProperty Name="fiIDServicio" ColumnName="fiIDServicio" />
+                <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
+                <ScalarProperty Name="fdFechaAlarmaDeteccion" ColumnName="fdFechaAlarmaDeteccion" />
+                <ScalarProperty Name="fcDescripcionCategoriaResolucion" ColumnName="fcDescripcionCategoriaResolucion" />
+                <ScalarProperty Name="fcDescripcionSubCategoriaResolucion" ColumnName="fcDescripcionSubCategoriaResolucion" />
+                <ScalarProperty Name="fcNombreMotivo" ColumnName="fcNombreMotivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bitacoras_Historial_ByID" FunctionName="SARISModel.Store.sp_Requerimientos_Bitacoras_Historial_ByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_Bitacoras_Historial_ByID_Result">
+                <ScalarProperty Name="fiIDFila" ColumnName="fiIDFila" />
+                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+                <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+                <ScalarProperty Name="fcUsuarioPricipal" ColumnName="fcUsuarioPricipal" />
+                <ScalarProperty Name="fdFechaInicioEstado" ColumnName="fdFechaInicioEstado" />
+                <ScalarProperty Name="fdFechaFinEstado" ColumnName="fdFechaFinEstado" />
+                <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+                <ScalarProperty Name="fiIDApp" ColumnName="fiIDApp" />
+                <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+                <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+                <ScalarProperty Name="fcUsuarioSecundario" ColumnName="fcUsuarioSecundario" />
+                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+                <ScalarProperty Name="fiHorasTrabajadas" ColumnName="fiHorasTrabajadas" />
+                <ScalarProperty Name="fiMinutios" ColumnName="fiMinutios" />
+                <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+                <ScalarProperty Name="fcToken" ColumnName="fcToken" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
