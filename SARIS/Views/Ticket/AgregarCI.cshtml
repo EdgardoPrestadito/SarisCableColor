@@ -315,21 +315,22 @@
             });
     }
 
-    //$(document).on('change', 'input[name="CheckCheckedFalla"]', function () {
-    //    //debugger
+    $(document).on('change', 'input[name="CheckCheckedFalla"]', function () {
+        //debugger
 
-    //    var suma = 0;
-    //    var idseleccionado = []
-    //    // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
-    //    $('input[name="CheckCheckedFalla"]:checked').each(function () {
-    //        console.log(`entro en el if`);
-    //        //var idfer = parseInt($(`#producto-${this.id}`).val());
-    //        idseleccionado.push(+this.id)
-    //    });
-    //    console.log(idseleccionado);
-    //    //const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
+        var suma = 0;
+        var idseleccionado = []
+        // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
+        $('input[name="CheckCheckedFalla"]:checked').each(function () {
+            console.log(`entro en el if`);
+            //var idfer = parseInt($(`#producto-${this.id}`).val());
+            idseleccionado.push(+this.id)
+            idCis.push(+this.id);
+        });
+        console.log(idCis);
+        //const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
 
-    //});
+    });
 
 
 </script>
