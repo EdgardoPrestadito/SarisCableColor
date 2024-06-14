@@ -64,15 +64,20 @@
                         <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaCI">
                             <thead>
                                 <tr>
-                                    <th >ID CI</th>
-                                    <th>Cofiguracion de CI</th>
+                                    <th>ID CI</th>
+                                    <th>Configuración de CI</th>
                                     <th>Longitud</th>
                                     <th>Magnitud</th>
-                                    <th>Accion</th>
+                                    <th>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" style="margin-left:auto; margin-right:auto;" type="checkbox" id="CheckAllFallaLista">
+                                            <label class="custom-control-label" for="CheckAllFallaLista"></label>
+                                        </div>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <!-- Aquí van las filas de la tabla -->
                             </tbody>
                         </table>
                     </div>
@@ -103,6 +108,22 @@
 <script>
     PaisSelect();
     CISelect();
+
+    $('#CheckAllFallaLista').on('change', function () {
+        var isChecked = $(this).is(':checked');
+        $('#TablaCI tbody .custom-control-input').prop('checked', isChecked);
+        var idseleccionado = []
+        $('input[name="CheckCheckedFalla"]:checked').each(function () {
+            console.log(`entro en el if`);
+            //var idfer = parseInt($(`#producto-${this.id}`).val());
+            idseleccionado.push({ id: +this.id, fcConfiguracion: this.value });
+            //idCis.push({ id: +this.id, fcConfiguracion: this.value });
+
+            const agregaralista = addOrUpdateItem(idCis, idseleccionado); // para agregar los que estan seleccionados
+            //const agregaralistanueva = addOrUpdateItem(idCis, idseleccionado); // para comparar la lista como tal y verificar si hay alguno ya guardado
+        });
+    });
+
     function CISelect()
     {
         $.ajax({

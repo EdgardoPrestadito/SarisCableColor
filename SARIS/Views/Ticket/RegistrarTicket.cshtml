@@ -242,12 +242,12 @@
             success: function (respuesta) {
 
                 var selectcategoria = $("#selectImpacto");
-
+                
                 selectcategoria.empty();
-                //selectcategoria.append($('<option>', {
-                //    value: 0,
-                //    text: 'Seleccione Impacto'
-                //}));
+                selectcategoria.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Impacto'
+                }));
                 $("#selectImpacto").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectcategoria.append($('<option>', {
@@ -339,10 +339,10 @@
                 var selectcategoria = $("#selectUrgencia");
 
                 selectcategoria.empty();
-                //selectcategoria.append($('<option>', {
-                //    value: 0,
-                //    text: 'Seleccione Urgencia'
-                //}));
+                selectcategoria.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Urgencia'
+                }));
                 $("#selectUrgencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectcategoria.append($('<option>', {
@@ -367,10 +367,10 @@
                 var selectcategoria = $("#seleccategoria");
 
                 selectcategoria.empty();
-                //selectcategoria.append($('<option>', {
-                //    value: 0,
-                //    text: 'Defina un Tipo Categoria'
-                //}));
+                selectcategoria.append($('<option>', {
+                    value: 0,
+                    text: 'Defina un Tipo Categoria'
+                }));
                 $("#seleccategoria").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectcategoria.append($('<option>', {
@@ -420,10 +420,10 @@
                 var selectplataforma = $("#ticketplataforma");
 
                 selectplataforma.empty();
-                //selectplataforma.append($('<option>', {
-                //    value: 0,
-                //    text: 'Seleccione Una Plataforma'
-                //}));
+                selectplataforma.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Una Plataforma'
+                }));
                 $("#ticketplataforma").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectplataforma.append($('<option>', {
@@ -446,10 +446,10 @@
                 var selectservicios = $("#ticketservafectados");
 
                 selectservicios.empty();
-                //selectservicios.append($('<option>', {
-                //    value: 0,
-                //    text: 'Seleccione Un Servicio'
-                //}));
+                selectservicios.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Un Servicio'
+                }));
                 $("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function (index, item) {
                     idservicios.push({ select: false, fiIDServicio: item.fiIDServicio, fcNombreServicio: item.fcNombreServicio})
@@ -552,10 +552,10 @@
                 var selectIncidencia = $("#selectincidencia");
 
                 selectIncidencia.empty();
-                //selectIncidencia.append($('<option>', {
-                //    value: 0,
-                //    text: 'Defina un Tipo Sub Categoria'
-                //}));
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Defina un Tipo Sub Categoria'
+                }));
                 $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectIncidencia.append($('<option>', {
@@ -580,6 +580,10 @@
         if (fotosredimencionadas.length < 1) {
             ToastrError("Error", "Suba aun que sea 1 documento");
             return 0;
+        }
+
+        if ($("#selectImpacto").val() == 0 || $("#selectUrgencia").val() == 0 || $("#seleccategoria").val() == 0 || $("#ticketplataforma").val() == 0 || $("#ticketservafectados").val() == 0 || $("#selectincidencia").val() == 0) {
+            return ToastrError("Error", "Llene todos los campos");
         }
 
         var ticket = {

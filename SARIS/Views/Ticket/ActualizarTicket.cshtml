@@ -283,10 +283,10 @@
                 var selectIncidencia = $("#selectincidencia");
 
                 selectIncidencia.empty();
-                //selectIncidencia.append($('<option>', {
-                //    value: 0,
-                //    text: 'Defina un Tipo Incidencia'
-                //}));
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Defina un Tipo Incidencia'
+                }));
                 $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectIncidencia.append($('<option>', {
@@ -307,7 +307,7 @@
 
     function CambioticketPadre(idtiposoporte) {
 
-        console.log(`lo que trae por aqui ${idtiposoporte}`);
+        //console.log(`lo que trae por aqui ${idtiposoporte}`);
         $.ajax({
             url: "@Url.Action("SelecticketPadrese", "LlenarCampos")",
             data: { idticket: idtiporequerimiento},
@@ -317,10 +317,10 @@
                 var selectpadre = $("#ticketPadre");
 
                 selectpadre.empty();
-                //selectpadre.append($('<option>', {
-                //    value: 0,
-                //    text: 'Seleccione un Ticket Padre en caso que lo tenga'
-                //}));
+                selectpadre.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Ticket Padre en caso que lo tenga'
+                }));
                 $("#ticketPadre").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
                     selectpadre.append($('<option>', {
@@ -359,12 +359,22 @@
                 //idRequerimiento: ID_REQUERIMIENTO,
                 Observaciones: $("#txtComentario").val(),
             }
+
+            if ($("#selectincidencia").val() == 0 || $("#selectusuarios").val() == 0 || $(`#fiIDEstadoRequerimiento`).val() == 0 || $(`#fiIDEstadoRequerimiento`).val() == null || $(`#fiIDEstadoRequerimiento`).val() == "" ) {
+                return ToastrError("Error", "Llene todos los campos");
+            }
+
             if ($("#fiIDEstadoRequerimiento option:selected").val() == 11 || $("#fiIDEstadoRequerimiento option:selected").val() == "11") {
                 if (fotosredimencionadas.length < 1) {
                     ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
                     return 0;
                 }
             }
+
+            if ($(`#fiIDEstadoRequerimiento`).val() == 0 && $("#selectmotivo").val()==0 && $("#selectCategoriaResolucion").val()==0 && $("#selectSubCategoriaResolucion").val()==0 ) {
+                return ToastrError("Error", "Llene todos los campos");
+            }
+
             if (fotosredimencionadas.length < 1) {
                 ToastrError("Documento/Imagen", "Suba un documento o imagen");
                 return 0;
@@ -615,10 +625,10 @@
                 var selectIncidencia = $("#selectusuarios");
 
                 selectIncidencia.empty();
-                //selectIncidencia.append($('<option>', {
-                //    value: 0,
-                //    text: 'Seleccione un Usuario'
-                //}));
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Usuario'
+                }));
 
                 $("#selectusuarios").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
                 $.each(respuesta, function(index, item) {
@@ -741,12 +751,12 @@
                     var selectMotivo = $("#selectmotivo");
 
                     selectMotivo.empty();
-                    //selectMotivo.append($('<option>', {
-                    //    value: 0,
-                    //    text: 'Seleccione un Motivo'
-                    //}));
+                    selectMotivo.append($('<option>', {
+                        value: 0,
+                        text: 'Seleccione un Motivo'
+                    }));
 
-                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
                     $.each(respuesta, function (index, item) {
                         selectMotivo.append($('<option>', {
                             value: item.fiMotivos,
@@ -778,12 +788,12 @@
                     debugger;
 
                     selectCategoriaResolucion.empty();
-                    //selectMotivo.append($('<option>', {
-                    //    value: 0,
-                    //    text: 'Seleccione un Motivo'
-                    //}));
+                    selectCategoriaResolucion.append($('<option>', {
+                        value: 0,
+                        text: 'Seleccione una Categoria Resolucion'
+                    }));
 
-                    $("#selectCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                    $("#selectCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(1).trigger("change");
                     $.each(respuesta, function (index, item) {
                         selectCategoriaResolucion.append($('<option>', {
                             value: item.fiIDCategoriaResolucion,
@@ -815,8 +825,11 @@
                     debugger;
                     var selectSubCategoriaResolucion = $("#selectSubCategoriaResolucion");
                     selectSubCategoriaResolucion.empty();
-
-                    $("#selectSubCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                    selectCategoriaResolucion.append($('<option>', {
+                        value: 0,
+                        text: 'Seleccione una SubCategoria Resolucion'
+                    }));
+                    $("#selectSubCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
                     $.each(respuesta, function (index, item) {
                         selectSubCategoriaResolucion.append($('<option>', {
                             value: item.fiIDTipoRequerimientoResolucion,
