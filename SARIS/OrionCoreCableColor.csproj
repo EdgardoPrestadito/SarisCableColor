@@ -704,6 +704,7 @@
     <Compile Include="Models\Prioridades\PrioridadesViewModel.cs" />
     <Compile Include="Models\Roles\CrearRolViewModel.cs" />
     <Compile Include="Models\Roles\ListaPermisosPorRolViewModel.cs" />
+    <Compile Include="Models\Ticket\EstadosBitacorasViewModel.cs" />
     <Compile Include="Models\Ticket\Estado_RequerimientoViewModal.cs" />
     <Compile Include="Models\Ticket\TicketAdjuntarImagenViewModel.cs" />
     <Compile Include="Models\Ticket\TicketInformacionViewModel.cs" />

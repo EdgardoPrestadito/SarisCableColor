@@ -6,8 +6,8 @@
 
     </h2>
 
-    <button type="button" class="close" data-dismiss="modal">
-        <i class="fal fa-times-circle fa-fw fa-lg"></i> 
+    <button type="button" class="close" data-dismiss="modal" onclick="Recargar()">
+        <i class="fal fa-times-circle fa-fw fa-lg"></i>
     </button>
 </div>
 
@@ -64,6 +64,20 @@
                     <div class="form-group">
                         <label class="col-form-label">Motivo</label>
                         <select class="form-select form-control" id="selectmotivo">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6" id="iddivCategoriaResolusion" style="display:none">
+                    <div class="form-group">
+                        <label class="col-form-label">Categoria de Resolucion</label>
+                        <select class="form-select form-control" id="selectCategoriaResolucion">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6" id="iddivSubCategoriaResolusion" style="display:none">
+                    <div class="form-group">
+                        <label class="col-form-label">Sub-Categoria de Resolucion</label>
+                        <select class="form-select form-control" id="selectSubCategoriaResolucion">
                         </select>
                     </div>
                 </div>
@@ -243,7 +257,7 @@
 
     function cambiodecategoria(tipore) {
         var textcategorias = $("#fiCategoriadeDesarrollo option:selected").text();
-
+        debugger;
         $.ajax({
             url: "@Url.Action("SelectIncidenciasByCategorias", "LlenarCampos")",
             type: "GET",
@@ -361,7 +375,9 @@
                 fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
                 fiTipoRequerimiento: $(`#selectincidencia`).val(),
                 fiIdTicketPadre: $(`#ticketPadre`).val(),
-                fiMotivoEstado: $("#selectmotivo").val()
+                fiMotivoEstado: $("#selectmotivo").val(),
+                fiCategoriaResolucion: $("#selectCategoriaResolucion").val(),
+                fiSubCategoriaResolucion: $("#selectSubCategoriaResolucion").val()
                 //fiIDUsuarioAsignado: $("#fiIDUsuarioAsignado option:selected").val() == "" ? 1 : parseInt($("#fiIDUsuarioAsignado option:selected").val()),
 
                 //$("#txtComentario").val(),
@@ -726,13 +742,76 @@
                     console.log(respuesta);
                 }
             });
+            if ($(this).val() == 4)
+            {
+                var divCategoriaResolucion = document.getElementById('iddivCategoriaResolusion');
+                var divSubCategoriaResolucion = document.getElementById('iddivSubCategoriaResolusion');
+                var selectCategoriaResolucion = $("#selectCategoriaResolucion");
+                var selectSubCategoriaResolucion = $("#selectSubCategoriaResolucion");
+                selectCategoriaResolucion.empty();
+                selectSubCategoriaResolucion.empty();
+                divCategoriaResolucion.style.display = 'block'
+                divSubCategoriaResolucion.style.display = 'block'
 
+                $.ajax({
+                url: "@Url.Action("SelectCategoriaResolucion", "LlenarCampos")",
+                type: "GET",
+                data: { },
+                success: function (respuesta) {
+
+                    debugger;
+
+                    selectCategoriaResolucion.empty();
+                    //selectMotivo.append($('<option>', {
+                    //    value: 0,
+                    //    text: 'Seleccione un Motivo'
+                    //}));
+
+                    $("#selectCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                    $.each(respuesta, function (index, item) {
+                        selectCategoriaResolucion.append($('<option>', {
+                            value: item.fiIDCategoriaResolucion,
+                            text: item.fcDescripcionCategoria
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+
+            }
         } else {
             console.log(`entro en el else`);
             divinfo.style.display = 'none'
         }
 
 
+    });
+
+    $(`#selectCategoriaResolucion`).on(`change`, function () {
+        $.ajax({
+                url: "@Url.Action("SelectSubCategoriaResolucion", "LlenarCampos")",
+                type: "GET",
+                data: { Categoria: $(this).val() },
+                success: function (respuesta) {
+
+                    debugger;
+                    var selectSubCategoriaResolucion = $("#selectSubCategoriaResolucion");
+                    selectSubCategoriaResolucion.empty();
+
+                    $("#selectSubCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                    $.each(respuesta, function (index, item) {
+                        selectSubCategoriaResolucion.append($('<option>', {
+                            value: item.fiIDTipoRequerimientoResolucion,
+                            text: item.fcTipoRequerimiento
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
     });
 
     function AgregarServicios() {
@@ -768,6 +847,11 @@
                     AlertaError();
                 }
             });
+    }
+
+    function Recargar()
+    {
+        location.reload();
     }
 
 </script>
