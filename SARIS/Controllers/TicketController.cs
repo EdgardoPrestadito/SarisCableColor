@@ -365,14 +365,22 @@ namespace OrionCoreCableColor.Controllers
                     GuardarBitacoraGeneralhistorial(GetIdUser(), ticket.fiIDRequerimiento, GetIdUser(), comentario, 1, ticket.fiIDEstadoRequerimiento, datosticket.fiIDUsuarioAsignado);
                     var ticketpadre = ticket.fiIdTicketPadre;
                     var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), ticket.fiIDRequerimiento, ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, DateTime.Now, datosticket.fiIDUsuarioAsignado, 0, ticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, ticketpadre, ticket.fiMotivoEstado, ticket.fiCategoriaResolucion, ticket.fiSubCategoriaResolucion);
-                    foreach (var item in serviciosAfectados)
+
+                    if (serviciosAfectados != null) 
                     {
-                        var guardarServicios = contexto.sp_IncidenciasPorServicioAfectado(ticket.fiIDRequerimiento, item, GetIdUser());
+                        foreach (var item in serviciosAfectados)
+                        {
+                            var guardarServicios = contexto.sp_IncidenciasPorServicioAfectado(ticket.fiIDRequerimiento, item, GetIdUser());
+                        }
                     }
-                    foreach (var item in Ciaguardar)
+                    if (Ciaguardar != null) 
                     {
-                        var guardarcis = contexto.sp_IncidenciasPorCI_Insertar(ticket.fiIDRequerimiento, item, GetIdUser());
+                        foreach (var item in Ciaguardar)
+                        {
+                            var guardarcis = contexto.sp_IncidenciasPorCI_Insertar(ticket.fiIDRequerimiento, item, GetIdUser());
+                        }
                     }
+                    
                     if (ticket.fiIDEstadoRequerimiento == 5)
                     {
                         eliminarTicketAbierto(ticket.fiIDRequerimiento);
