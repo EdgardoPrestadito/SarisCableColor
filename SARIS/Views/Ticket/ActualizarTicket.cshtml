@@ -251,11 +251,12 @@
 <script>
     ///$("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
     ///$("#fiIDAreaSolicitante").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
-    var estadoRequerimiento = 0;
+    var estadoRequerimiento = @ViewBag.fiIDEstadoRequerimiento;
     var ID_REQUERIMIENTO = @ViewBag.idticket;
     var ID_USUARIO = @ViewBag.UsuarioLogueado;
     var idtiporequerimiento = @ViewBag.IdIncidencia;
     var ticketPadre = @ViewBag.TicketPadre;
+    var SubCategoria = @ViewBag.fiTipoRequerimiento;
     var fotosredimencionadas = [];
 
 
@@ -287,17 +288,19 @@
                     value: 0,
                     text: 'Defina un Tipo Incidencia'
                 }));
-                $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                
                 $.each(respuesta, function(index, item) {
                     selectIncidencia.append($('<option>', {
                         value: item.fiIDTipoRequerimiento,
                         text: item.fcTipoRequerimiento
                     }));
                 });
+               
                 //console.log(`esto trae el tipo incidencia: ${tipore}`);
-                if (tipore != 0) {
-                    selectIncidencia.val(tipore).trigger("change");
+                if (SubCategoria != 0) {
+                    selectIncidencia.val(SubCategoria).trigger("change");
                 }
+                $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(SubCategoria).trigger("change");
             },
             error: function (respuesta) {
                 console.log(respuesta);
@@ -340,7 +343,7 @@
     }
 
 
-    $("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+    $("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).val(estadoRequerimiento).trigger("change");
 
     $(document).ready(function () {
         estadoRequerimiento = $("#dllEstadoRequerimiento option:selected").val();
@@ -360,7 +363,7 @@
                 Observaciones: $("#txtComentario").val(),
             }
 
-            if ($("#selectincidencia").val() == 0 || $("#selectusuarios").val() == 0 || $(`#fiIDEstadoRequerimiento`).val() == 0 || $(`#fiIDEstadoRequerimiento`).val() == null || $(`#fiIDEstadoRequerimiento`).val() == "" ) {
+            if ($("#selectincidencia").val() == 0 || $("#selectusuarios").val() == 0) {
                 return ToastrError("Error", "Llene todos los campos");
             }
 
@@ -391,12 +394,20 @@
             for (const item of idCis) {
                 listacis.push(item.id);
             }
+            debugger;
+
+            var estado = $("#fiIDEstadoRequerimiento option:selected").val();
+
+            if (estado == 0 || estado == null)
+            {
+                estado = 3
+            }
 
             var requerimiento = {
                 fiIDRequerimiento: ID_REQUERIMIENTO,
                 fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
                 fcDescripcionRequerimiento: $("#fcDescripcionRequerimiento").val(),//hola,
-                fiIDEstadoRequerimiento: $("#fiIDEstadoRequerimiento option:selected").val(),
+                fiIDEstadoRequerimiento: estado,
                 fcDescripcionEstado: $("#fiIDEstadoRequerimiento :selected").text(),
                 fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
                 fiTipoRequerimiento: $(`#selectincidencia`).val(),
