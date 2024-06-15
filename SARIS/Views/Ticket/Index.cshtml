@@ -64,7 +64,7 @@
                 <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCerrados">
                     <thead>
                         <tr>
-                            <th></th>
+                            
                             <th>Acciones</th>
                             <th>Titulo</th>
                             <th>Descripcion</th>
@@ -151,7 +151,7 @@
 @section Scripts{
 
     <script>
-           
+
 
         var idusuariologueado = @ViewBag.idUsuario;
 
@@ -301,8 +301,28 @@
                     className: "td-responsive",
                 },
                 {
-                    data: "fiTiempo",
+                    data: null,
                     className: "td-responsive",
+                    render: function (data, type, row) {
+                        //var segundos = Math.floor(data.fiTiempo / 1000);
+                        var minutos = data.fiTiempo//Math.floor(data.fiTiempo / 60);
+                        var horas = Math.floor(minutos / 60);
+                        var dias = Math.floor(horas / 24);
+                        var tiempototal = '';
+                        if (dias > 0) {
+                            tiempototal += `${dias} <b>Dias.</b>, `;
+                        }
+                        //console.log((horas % 24))
+                        if ((horas % 24) > 0) {
+                            tiempototal += `${horas % 24} <b>Horas.</b>, `;
+                        }
+                        if ((minutos % 60) > 0) {
+                            tiempototal += `${minutos % 60} <b>Minutos.</b>, `;
+                        }
+                        var nuevoValor = `${tiempototal}`; // Por ejemplo, aumentar el valor actual en 1
+
+                        return nuevoValor;
+                    }
                 },
                 {
                     data: "fiAfectacion",
@@ -446,12 +466,12 @@
                       //console.log(data);
                   }
             },
-            "columns": [
+            columns: [
                 //{ //esto es el detalle para poder ver los servicios y los cis como tales
                 //    data: null,
-                //    render: function () {
+                //    render: function (data) {
                 //        var opt = "";
-                //        opt = `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`;
+                //        opt = `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)"><i class="fal fa-plus fa-fw text-success"></i></a>`;
                 //        return opt;
                 //    }
                 //},
@@ -459,7 +479,9 @@
                     data: null,
                     className: "text-center",
                     render: function (data) {
+                        //console.log(data);
                         var opt = ``;
+                        //console.log(data)
 
                         opt += `
                                     <div class='dropdown d-inline-block dropleft'>
@@ -467,138 +489,29 @@
                                         <div class='dropdown-menu'>
                                             <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>
                                     `;
+
                         opt += `</div>
                                 </div>`;
                         return opt;
                     }
                 },
 
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            if (data.fiIDUsuarioAsignado == 3013) {
-                return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
-            } else {
-                return data.fcNombreAsignado;
-            }
-        }
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            //if (data.fiAreaAsignada == 6) {
-            //    return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
-            //} else {
-                return data.fcNombreAreaAsignada;
-            //}
-        }
-    },
-    {
-        data: "fcDescripcionCategoria",
-        className: "td-responsive",
-    },
-    {
-        data: "fcTipoRequerimiento",
-        className: "td-responsive",
-    },
-    {
-        data: "fcDescripcionUrgencia",
-        className: "td-responsive",
-    },
-    {
-        data: "fcDescripcionImpacto",
-        className: "td-responsive",
-    },
-    {
-        data: "fcDescripcionPrioridad",
-        className: "td-responsive",
-    },
-    {
-        data: "fiTiempo",
-        className: "td-responsive",
-    },
-    {
-        data: "fiAfectacion",
-        className: "td-responsive",
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
-        }
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
-        }
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
-        }
-    },
-    {
-        data: "fcUsuarioModificador",
-        className: "td-responsive",
-    },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
 
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data, type, row) {
-
-            var ahora = new Date();
-            var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
-            var diferencia = ahora.getTime() - fechaInicio.getTime();
-
-            // Calcula los segundos, minutos, horas y días transcurridos
-            var segundos = Math.floor(diferencia / 1000);
-            var minutos = Math.floor(segundos / 60);
-            var horas = Math.floor(minutos / 60);
-            var dias = Math.floor(horas / 24);
-
-            var tiempototal = '';
-            if (dias > 0) {
-                tiempototal += `${dias} <b>Di.</b>, `;
-            }
-            //console.log((horas % 24))
-            if ((horas % 24) > 0) {
-                tiempototal += `${horas % 24} <b>Ho.</b>, `;
-            }
-            if ((minutos % 60) > 0) {
-                tiempototal += `${minutos % 60} <b>Mi.</b>, `;
-            }
-            // Realizar cualquier operación o cálculo necesario para actualizar el valor
-            var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
-
-            return nuevoValor;
-            //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
-        }
-    },
-
-
-    {
-        data: null,
-        className: "text-center",
-        render: function (data, type, row) {
-            return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
-
-        }
-    },
-    {
-        data: "fcDescripcionRequerimiento",
-        className: "td-responsive",
-        visible: false, "title": 'Descripcion',
+                    }
+                },
+                {
+                    data: "fcDescripcionRequerimiento",
+                    className: "td-responsive",
 
                 },
+                {
+                    data: "fcNombreSolicitante",
+                    className: "td-responsive",
 
                 },
                 {
@@ -649,8 +562,28 @@
                     className: "td-responsive",
                 },
                 {
-                    data: "fiTiempo",
+                    data: null,
                     className: "td-responsive",
+                    render: function (data, type, row) {
+                        //var segundos = Math.floor(data.fiTiempo / 1000);
+                        var minutos = data.fiTiempo//Math.floor(data.fiTiempo / 60);
+                        var horas = Math.floor(minutos / 60);
+                        var dias = Math.floor(horas / 24);
+                        var tiempototal = '';
+                        if (dias > 0) {
+                            tiempototal += `${dias} <b>Dias.</b>, `;
+                        }
+                        //console.log((horas % 24))
+                        if ((horas % 24) > 0) {
+                            tiempototal += `${horas % 24} <b>Horas.</b>, `;
+                        }
+                        if ((minutos % 60) > 0) {
+                            tiempototal += `${minutos % 60} <b>Minutos.</b>, `;
+                        }
+                        var nuevoValor = `${tiempototal}`; // Por ejemplo, aumentar el valor actual en 1
+
+                        return nuevoValor;
+                    }
                 },
                 {
                     data: "fiAfectacion",
@@ -733,7 +666,6 @@
                 }
 
             ],
-
         });
 
         chat.client.agregarrowTicketCancelado = function (modelo) {
@@ -755,8 +687,8 @@
                     next: "Siguiente",
                     last: "Ultimo"
                 },
-                "lengthMenu": " _MENU_ ",
-                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "lengthMenu": " MENU ",
+                "info": "Mostrando registros del START al END de TOTAL registros totales.",
                 "infoEmpty": "No hay registros para mostrar.",
             },
             dom: 'Bfrtip',
@@ -769,26 +701,16 @@
                       //console.log(data);
                   }
             },
-            "columns": [
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
-        }
-    },
-    {//0
-        data: null,
-        className: "text-center",
-        render: function (data) {
-            //console.log(data);
-            var opt = ``;
-            //console.log(data)
+            columns: [
 
-            if (idusuariologueado == data.fiIDUsuarioSolicitante && data.fiIDEstadoRequerimiento == 1) {
-                opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Incidente'><i class=\"fal fa-times\"></i></a>`;
-            }
-            opt += `
+                {//0
+                    data: null,
+                    className: "text-center",
+                    render: function (data) {
+                        var opt = ``;
+
+
+                        opt += `
                         <div class='dropdown d-inline-block dropleft'>
                             <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='Mas Opciones'><i class=\"fal fa-ellipsis-v\"></i></a>
                             <div class='dropdown-menu'>
@@ -796,146 +718,166 @@
                         `;
 
 
-            //`"<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'><i class=\"fal fa-times\"></i></a><div class='dropdown d-inline-block dropleft'><a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-ellipsis-v\"></i></a><div class='dropdown-menu'><a class='dropdown-item' href='javascript:void(0);'>Change Status</a><a class='dropdown-item' href='javascript:void(0);'>Generate Report</a></div></div>"`
+                        //"<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'><i class=\"fal fa-times\"></i></a><div class='dropdown d-inline-block dropleft'><a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-ellipsis-v\"></i></a><div class='dropdown-menu'><a class='dropdown-item' href='javascript:void(0);'>Change Status</a><a class='dropdown-item' href='javascript:void(0);'>Generate Report</a></div></div>"
 
-            opt += `</div>
+                        opt += `</div>
                     </div>`;
-            return opt;
-        }
-    },
+                        return opt;
+                    }
+                },
 
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
 
-        }
-    },
-    {
-        data: "fcDescripcionRequerimiento",
-        className: "td-responsive",
+                    }
+                },
+                {
+                    data: "fcDescripcionRequerimiento",
+                    className: "td-responsive",
 
-    },
-    {
-        data: "fcNombreSolicitante",
-        className: "td-responsive",
+                },
+                {
+                    data: "fcNombreSolicitante",
+                    className: "td-responsive",
 
-    },
-    {
-        data: "fcNombreAreaSolicitante",
-        className: "td-responsive",
+                },
+                {
+                    data: "fcNombreAreaSolicitante",
+                    className: "td-responsive",
 
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            if (data.fiIDUsuarioAsignado == 3013) {
-                return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
-            } else {
-                return data.fcNombreAsignado;
-            }
-        }
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            //if (data.fiAreaAsignada == 6) {
-            //    return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
-            //} else {
-                return data.fcNombreAreaAsignada;
-            //}
-        }
-    },
-    {
-        data: "fcDescripcionCategoria",
-        className: "td-responsive",
-    },
-    {
-        data: "fcTipoRequerimiento",
-        className: "td-responsive",
-    },
-    {
-        data: "fcDescripcionUrgencia",
-        className: "td-responsive",
-    },
-    {
-        data: "fcDescripcionImpacto",
-        className: "td-responsive",
-    },
-    {
-        data: "fcDescripcionPrioridad",
-        className: "td-responsive",
-    },
-    {
-        data: "fiTiempo",
-        className: "td-responsive",
-    },
-    {
-        data: "fiAfectacion",
-        className: "td-responsive",
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
-        }
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
-        }
-    },
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data) {
-            return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
-        }
-    },
-    {
-        data: "fcUsuarioModificador",
-        className: "td-responsive",
-    },
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fiIDUsuarioAsignado == 3013) {
+                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        } else {
+                            return data.fcNombreAsignado;
+                        }
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        //if (data.fiAreaAsignada == 6) {
+                        //    return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        //} else {
+                        return data.fcNombreAreaAsignada;
+                        //}
+                    }
+                },
+                {
+                    data: "fcDescripcionCategoria",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcTipoRequerimiento",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionUrgencia",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionImpacto",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionPrioridad",
+                    className: "td-responsive",
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data, type, row) {
+                        //var segundos = Math.floor(data.fiTiempo / 1000);
+                        var minutos = data.fiTiempo//Math.floor(data.fiTiempo / 60);
+                        var horas = Math.floor(minutos / 60);
+                        var dias = Math.floor(horas / 24);
+                        var tiempototal = '';
+                        if (dias > 0) {
+                            tiempototal += `${dias} <b>Dias.</b>, `;
+                        }
+                        //console.log((horas % 24))
+                        if ((horas % 24) > 0) {
+                            tiempototal += `${horas % 24} <b>Horas.</b>, `;
+                        }
+                        if ((minutos % 60) > 0) {
+                            tiempototal += `${minutos % 60} <b>Minutos.</b>, `;
+                        }
+                        var nuevoValor = `${tiempototal}`; // Por ejemplo, aumentar el valor actual en 1
 
-    {
-        data: null,
-        className: "td-responsive",
-        render: function (data, type, row) {
+                        return nuevoValor;
+                    }
+                },
+                {
+                    data: "fiAfectacion",
+                    className: "td-responsive",
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+                {
+                    data: "fcUsuarioModificador",
+                    className: "td-responsive",
+                },
 
-            var ahora = new Date();
-            var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
-            var diferencia = ahora.getTime() - fechaInicio.getTime();
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data, type, row) {
 
-            // Calcula los segundos, minutos, horas y días transcurridos
-            var segundos = Math.floor(diferencia / 1000);
-            var minutos = Math.floor(segundos / 60);
-            var horas = Math.floor(minutos / 60);
-            var dias = Math.floor(horas / 24);
+                        var ahora = new Date();
+                        var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
+                        var diferencia = ahora.getTime() - fechaInicio.getTime();
 
-            var tiempototal = '';
-            if (dias > 0) {
-                tiempototal += `${dias} <b>Di.</b>, `;
-            }
-            //console.log((horas % 24))
-            if ((horas % 24) > 0) {
-                tiempototal += `${horas % 24} <b>Ho.</b>, `;
-            }
-            if ((minutos % 60) > 0) {
-                tiempototal += `${minutos % 60} <b>Mi.</b>, `;
-            }
-            // Realizar cualquier operación o cálculo necesario para actualizar el valor
-            var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
+                        // Calcula los segundos, minutos, horas y días transcurridos
+                        var segundos = Math.floor(diferencia / 1000);
+                        var minutos = Math.floor(segundos / 60);
+                        var horas = Math.floor(minutos / 60);
+                        var dias = Math.floor(horas / 24);
 
-            return nuevoValor;
-            //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
-        }
-    },
+                        var tiempototal = '';
+                        if (dias > 0) {
+                            tiempototal += `${dias} <b>Di.</b>, `;
+                        }
+                        //console.log((horas % 24))
+                        if ((horas % 24) > 0) {
+                            tiempototal += `${horas % 24} <b>Ho.</b>, `;
+                        }
+                        if ((minutos % 60) > 0) {
+                            tiempototal += `${minutos % 60} <b>Mi.</b>, `;
+                        }
+                        // Realizar cualquier operación o cálculo necesario para actualizar el valor
+                        var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
+
+                        return nuevoValor;
+                        //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
+                    }
+                },
 
                 {
                     data: "fcMotivoEstado",
@@ -943,26 +885,25 @@
 
                 },
 
-    {
-        data: null,
-        className: "text-center",
-        render: function (data, type, row) {
-            return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data, type, row) {
+                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
 
-        }
+                    }
                 },
-    {
-        data: "fcDescripcionRequerimiento",
-        className: "td-responsive",
-        visible: false, "title": 'Descripcion',
+                {
+                    data: "fcDescripcionRequerimiento",
+                    className: "td-responsive",
+                    visible: false, "title": 'Descripcion',
 
                 },
 
 
-],
+            ],
 
         });
-
         function EliminarTicket(idticket) {
 
             bootbox.confirm({
@@ -1120,7 +1061,7 @@
             var tabla = $('#TablaPrincipalTicket').DataTable();
 
             // Obtener los datos de la columna específica
-            var datosColumna = tabla.column(7).data();
+            var datosColumna = tabla.column(18).data();
 
             // Actualizar los datos de la columna
             datosColumna.each(function (valorActual, indice) {
@@ -1152,7 +1093,7 @@
                 var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
 
                 // Actualizar el valor en la columna
-                tabla.cell({ row: indice, column: 9 }).data(nuevoValor);
+                tabla.cell({ row: indice, column: 18 }).data(nuevoValor);
             });
 
             // Redibujar la tabla para reflejar los cambios
