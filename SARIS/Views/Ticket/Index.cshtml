@@ -2,15 +2,6 @@
 @{
     ViewBag.Title = "Index";
 }
-<style>
-    .table-container, .title-container {
-        display: none;
-    }
-
-        .table-container.active, .title-container.active {
-            display: block;
-        }
-</style>
 <div class="panel">
     <div class="panel-hdr">
         <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Pendientes</h2>
@@ -58,26 +49,71 @@
 </div>
 <div class="panel">
     <div class="panel-hdr">
-        <div class="col-lg-12 title-container" id="cerradoshdr">
+        <div class="col-lg-12">
             <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Cerrados</h2>
         </div>
-        <div class="col-lg-12 title-container" id="canceladoshdr">
+    
+    </div>
+
+
+    <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+
+        <div class="container-fluid table-container" id="cerrados">
+
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCerrados">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Acciones</th>
+                            <th>Titulo</th>
+                            <th>Descripcion</th>
+                            <th style="width:80px">Solicitante</th>
+                            <th style="width:80px">Area Solicitante</th>
+                            <th style="width:80px">Usuario Asignado</th>
+                            <th style="width:80px">Area Asignada</th>
+
+                            <th style="width:80px">Categoría apertura</th>
+                            <th style="width:80px">Subcategoria apertura</th>
+                            <th style="width:80px">Urgencia</th>
+                            <th style="width:80px">Impacto</th>
+                            <th style="width:80px">Prioridad</th>
+                            <th style="width:80px">SLA</th>
+                            <th style="width:80px">Usuarios afectados</th>
+
+                            <th style="width:150px">Fecha alarma/detección</th>
+                            <th style="width:150px">Fecha Creacion Solicitud</th>
+                            <th style="width:150px">Fecha última actualización</th>
+                            <th style="width:150px">Usuario última actualización</th>
+                            <th style="width:150px">Tiempo Transcurrido</th>
+                            <th style="width:80px">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="panel">
+    <div class="panel-hdr">
+
+        <div class="col-lg-12 title-container">
             <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Cancelados</h2>
         </div>
     </div>
 
-    <div class="panel-hdr" style="border-bottom:none">
-        <button id="btnCerrados" class="btn btn-outline-primary col-2 m-2" onclick="showTable('cerrados')">
-            <i class="fal fa-check-circle"></i> Incidentes Cerrados
-        </button>
-        <button id="btnCancelados" class="btn btn-outline-primary col-2 m-2" onclick="showTable('cancelados')">
-            <i class="fal fa-times-circle"></i> Incidentes Cancelados
-        </button>
-    </div>
 
     <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
-        <div class="col-lg-12 table-container" id="cerrados">
-            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCerrados">
+
+
+
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCancelados">
                 <thead>
                     <tr>
                         <th>Acciones</th>
@@ -101,30 +137,9 @@
                         <th style="width:150px">Fecha última actualización</th>
                         <th style="width:150px">Usuario última actualización</th>
                         <th style="width:150px">Tiempo Transcurrido</th>
+                        <th style="width:80px">Motivo Cancelación</th>
                         <th style="width:80px">Estado</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
 
-        <div class="col-lg-12 table-container" id="cancelados">
-
-            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCancelados">
-                <thead>
-                    <tr>
-                        <th>Acciones</th>
-                        <th>Titulo</th>
-                        <th style="width:80px">Solicitante</th>
-                        <th style="width:80px">Area Solicitante</th>
-                        <th style="width:80px">Usuario Asignado</th>
-                        <th style="width:80px">Area Asignada</th>
-                        <th style="width:80px">Categoria</th>
-                        <th style="width:80px">Incidencia</th>
-                        <th style="width:150px">Fecha Creacion Solicitud</th>
-                        <th style="width:150px">Fecha Cierre</th>
-                        <th style="width:150px">Tiempo Transcurrido</th>
-                        <th style="width:80px">Estado</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -136,37 +151,7 @@
 @section Scripts{
 
     <script>
-            function showTable(tableId) {
-                // Oculta todas las tablas y encabezados
-                document.querySelectorAll('.table-container').forEach(function (table) {
-                    table.classList.remove('active');
-                });
-
-                document.querySelectorAll('.title-container').forEach(function (title) {
-                    title.classList.remove('active');
-                });
-
-                document.getElementById(tableId).classList.add('active');
-                document.getElementById(tableId + 'hdr').classList.add('active');
-
-                document.getElementById('btnCerrados').classList.remove('btn-primary');
-                document.getElementById('btnCerrados').classList.add('btn-outline-primary');
-                document.getElementById('btnCancelados').classList.remove('btn-primary');
-                document.getElementById('btnCancelados').classList.add('btn-outline-primary');
-
-                if (tableId === 'cerrados') {
-                    document.getElementById('btnCerrados').classList.add('btn-primary');
-                    document.getElementById('btnCerrados').classList.remove('btn-outline-primary');
-                } else {
-                    document.getElementById('btnCancelados').classList.add('btn-primary');
-                    document.getElementById('btnCancelados').classList.remove('btn-outline-primary');
-                }
-            }
-
-            // Muestra la primera tabla por defecto
-            document.addEventListener('DOMContentLoaded', function () {
-                showTable('cerrados');
-            });
+           
 
         var idusuariologueado = @ViewBag.idUsuario;
 
@@ -236,10 +221,10 @@
                         }
 
                         if (@Json.Encode(User.IsInRole("SARIS_AsignarTicket_Usuarios"))) {
-                            if ((data.fiAreaAsignada != 6) & 1 == 1 )//es 0 por que es pendiente de asignar, se deberia de hacer mejor desde la base de datos
-                            {
+                            //if ((data.fiAreaAsignada != 6) & 1 == 1 )//es 0 por que es pendiente de asignar, se deberia de hacer mejor desde la base de datos
+                            //{
                                 opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarUsuario(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento},${data.fiAreaAsignada})">Asignar Usuario</a>`;
-                            }
+                            //}
                         }
 
                         //`"<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'><i class=\"fal fa-times\"></i></a><div class='dropdown d-inline-block dropleft'><a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-ellipsis-v\"></i></a><div class='dropdown-menu'><a class='dropdown-item' href='javascript:void(0);'>Change Status</a><a class='dropdown-item' href='javascript:void(0);'>Generate Report</a></div></div>"`
@@ -488,22 +473,132 @@
                     }
                 },
 
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            if (data.fiIDUsuarioAsignado == 3013) {
+                return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+            } else {
+                return data.fcNombreAsignado;
+            }
+        }
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            //if (data.fiAreaAsignada == 6) {
+            //    return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+            //} else {
+                return data.fcNombreAreaAsignada;
+            //}
+        }
+    },
+    {
+        data: "fcDescripcionCategoria",
+        className: "td-responsive",
+    },
+    {
+        data: "fcTipoRequerimiento",
+        className: "td-responsive",
+    },
+    {
+        data: "fcDescripcionUrgencia",
+        className: "td-responsive",
+    },
+    {
+        data: "fcDescripcionImpacto",
+        className: "td-responsive",
+    },
+    {
+        data: "fcDescripcionPrioridad",
+        className: "td-responsive",
+    },
+    {
+        data: "fiTiempo",
+        className: "td-responsive",
+    },
+    {
+        data: "fiAfectacion",
+        className: "td-responsive",
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
+        }
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
+        }
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
+        }
+    },
+    {
+        data: "fcUsuarioModificador",
+        className: "td-responsive",
+    },
 
-                    }
-                },
-                {
-                    data: "fcDescripcionRequerimiento",
-                    className: "td-responsive",
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data, type, row) {
+
+            var ahora = new Date();
+            var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
+            var diferencia = ahora.getTime() - fechaInicio.getTime();
+
+            // Calcula los segundos, minutos, horas y días transcurridos
+            var segundos = Math.floor(diferencia / 1000);
+            var minutos = Math.floor(segundos / 60);
+            var horas = Math.floor(minutos / 60);
+            var dias = Math.floor(horas / 24);
+
+            var tiempototal = '';
+            if (dias > 0) {
+                tiempototal += `${dias} <b>Di.</b>, `;
+            }
+            //console.log((horas % 24))
+            if ((horas % 24) > 0) {
+                tiempototal += `${horas % 24} <b>Ho.</b>, `;
+            }
+            if ((minutos % 60) > 0) {
+                tiempototal += `${minutos % 60} <b>Mi.</b>, `;
+            }
+            // Realizar cualquier operación o cálculo necesario para actualizar el valor
+            var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
+
+            return nuevoValor;
+            //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
+        }
+    },
+
+
+    {
+        data: null,
+        className: "text-center",
+        render: function (data, type, row) {
+            return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
+
+        }
+    },
+    {
+        data: "fcDescripcionRequerimiento",
+        className: "td-responsive",
+        visible: false, "title": 'Descripcion',
 
                 },
-                {
-                    data: "fcNombreSolicitante",
-                    className: "td-responsive",
 
                 },
                 {
@@ -674,156 +769,197 @@
                       //console.log(data);
                   }
             },
-            columns: [
-                //{ //esto es el detalle para poder ver los servicios y los cis como tales
-                //    data: null,
-                //    className: "td-responsive",
-                //    render: function (data) {
-                //        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
+            "columns": [
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
+        }
+    },
+    {//0
+        data: null,
+        className: "text-center",
+        render: function (data) {
+            //console.log(data);
+            var opt = ``;
+            //console.log(data)
 
-                //    }
-                //},
-                {
-                    data: null,
-                    className: "text-center",
-                    render: function (data) {
-                        var opt = `<div class='dropdown d-inline-block dropleft'>
-                                    <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t
-                                    <div class='dropdown-menu'>`;
-                        //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
-
-                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
-                        //}
-                        opt += `</div>
-                                </div>`
-                        return opt;
-                    }
-                },
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        var des = "";
-                        return `${data.fiIDRequerimiento} <span class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></span>`;
-
-                    }
-                },
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        if (data.fiIDUsuarioAsignado == 0) {
-                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
-                        } else {
-                            return data.fcNombreAsignado;
-                        }
-                    }
-                },
-                {
-                    data: "fcDescripcionCategoria",
-                    className: "td-responsive",
-                },
-                {
-                    data: "fcTipoRequerimiento",
-                    className: "td-responsive",
-                },
-                {
-                    data: "fcDescripcionUrgencia",
-                    className: "td-responsive",
-                },
-                {
-                    data: "fcDescripcionImpacto",
-                    className: "td-responsive",
-                },
-                {
-                    data: "fcDescripcionPrioridad",
-                    className: "td-responsive",
-                },
-                {
-                    data: "fiTiempo",
-                    className: "td-responsive",
-                },
-                {
-                    data: "fiAfectacion",
-                    className: "td-responsive",
-                },
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
-                    }
-                },
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
-                    }
-                },
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
-                    }
-                },
-                {
-                    data: "fcUsuarioModificador",
-                    className: "td-responsive",
-                },
-
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data, type, row) {
-
-                        var ahora = new Date();
-                        var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
-                        var diferencia = ahora.getTime() - fechaInicio.getTime();
-
-                        // Calcula los segundos, minutos, horas y días transcurridos
-                        var segundos = Math.floor(diferencia / 1000);
-                        var minutos = Math.floor(segundos / 60);
-                        var horas = Math.floor(minutos / 60);
-                        var dias = Math.floor(horas / 24);
-
-                        var tiempototal = '';
-                        if (dias > 0) {
-                            tiempototal += `${dias} <b>Di.</b>, `;
-                        }
-                        //console.log((horas % 24))
-                        if ((horas % 24) > 0) {
-                            tiempototal += `${horas % 24} <b>Ho.</b>, `;
-                        }
-                        if ((minutos % 60) > 0) {
-                            tiempototal += `${minutos % 60} <b>Mi.</b>, `;
-                        }
-                        // Realizar cualquier operación o cálculo necesario para actualizar el valor
-                        var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
-
-                        return nuevoValor;
-                        //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
-                    }
-                },
+            if (idusuariologueado == data.fiIDUsuarioSolicitante && data.fiIDEstadoRequerimiento == 1) {
+                opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Incidente'><i class=\"fal fa-times\"></i></a>`;
+            }
+            opt += `
+                        <div class='dropdown d-inline-block dropleft'>
+                            <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='Mas Opciones'><i class=\"fal fa-ellipsis-v\"></i></a>
+                            <div class='dropdown-menu'>
+                                <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>
+                        `;
 
 
-                {
-                    data: null,
-                    className: "text-center",
-                    render: function (data, type, row) {
-                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
+            //`"<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'><i class=\"fal fa-times\"></i></a><div class='dropdown d-inline-block dropleft'><a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-ellipsis-v\"></i></a><div class='dropdown-menu'><a class='dropdown-item' href='javascript:void(0);'>Change Status</a><a class='dropdown-item' href='javascript:void(0);'>Generate Report</a></div></div>"`
 
-                    }
-                },
+            opt += `</div>
+                    </div>`;
+            return opt;
+        }
+    },
+
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
+
+        }
+    },
+    {
+        data: "fcDescripcionRequerimiento",
+        className: "td-responsive",
+
+    },
+    {
+        data: "fcNombreSolicitante",
+        className: "td-responsive",
+
+    },
+    {
+        data: "fcNombreAreaSolicitante",
+        className: "td-responsive",
+
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            if (data.fiIDUsuarioAsignado == 3013) {
+                return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+            } else {
+                return data.fcNombreAsignado;
+            }
+        }
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            //if (data.fiAreaAsignada == 6) {
+            //    return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+            //} else {
+                return data.fcNombreAreaAsignada;
+            //}
+        }
+    },
+    {
+        data: "fcDescripcionCategoria",
+        className: "td-responsive",
+    },
+    {
+        data: "fcTipoRequerimiento",
+        className: "td-responsive",
+    },
+    {
+        data: "fcDescripcionUrgencia",
+        className: "td-responsive",
+    },
+    {
+        data: "fcDescripcionImpacto",
+        className: "td-responsive",
+    },
+    {
+        data: "fcDescripcionPrioridad",
+        className: "td-responsive",
+    },
+    {
+        data: "fiTiempo",
+        className: "td-responsive",
+    },
+    {
+        data: "fiAfectacion",
+        className: "td-responsive",
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
+        }
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
+        }
+    },
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data) {
+            return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
+        }
+    },
+    {
+        data: "fcUsuarioModificador",
+        className: "td-responsive",
+    },
+
+    {
+        data: null,
+        className: "td-responsive",
+        render: function (data, type, row) {
+
+            var ahora = new Date();
+            var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
+            var diferencia = ahora.getTime() - fechaInicio.getTime();
+
+            // Calcula los segundos, minutos, horas y días transcurridos
+            var segundos = Math.floor(diferencia / 1000);
+            var minutos = Math.floor(segundos / 60);
+            var horas = Math.floor(minutos / 60);
+            var dias = Math.floor(horas / 24);
+
+            var tiempototal = '';
+            if (dias > 0) {
+                tiempototal += `${dias} <b>Di.</b>, `;
+            }
+            //console.log((horas % 24))
+            if ((horas % 24) > 0) {
+                tiempototal += `${horas % 24} <b>Ho.</b>, `;
+            }
+            if ((minutos % 60) > 0) {
+                tiempototal += `${minutos % 60} <b>Mi.</b>, `;
+            }
+            // Realizar cualquier operación o cálculo necesario para actualizar el valor
+            var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
+
+            return nuevoValor;
+            //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
+        }
+    },
+
                 {
-                    data: "fcDescripcionRequerimiento",
+                    data: "fcMotivoEstado",
                     className: "td-responsive",
-                    visible: false, "title": 'Descripcion',
 
-                }
+                },
 
-            ],
+    {
+        data: null,
+        className: "text-center",
+        render: function (data, type, row) {
+            return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
+
+        }
+                },
+    {
+        data: "fcDescripcionRequerimiento",
+        className: "td-responsive",
+        visible: false, "title": 'Descripcion',
+
+                },
+
+
+],
 
         });
 
