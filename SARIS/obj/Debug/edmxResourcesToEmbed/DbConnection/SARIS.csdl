@@ -116,11 +116,6 @@
       <Parameter Name="piIDApp" Mode="In" Type="Int32" />
       <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_Requerimientos_Bandeja">
-      <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
-      <Parameter Name="piIDApp" Mode="In" Type="Int32" />
-      <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="sp_Usuario_EditarInfoUsuarioLaboral" ReturnType="Collection(Int32)">
       <Parameter Name="piIdUsuario" Mode="In" Type="Int32" />
       <Parameter Name="piIDJefeInmediato" Mode="In" Type="Int32" />
@@ -493,15 +488,23 @@
     <FunctionImport Name="sp_ObtenerTokenBitacora_porIDTicket" ReturnType="Collection(String)">
       <Parameter Name="piIDTicket" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_RequerimientoPorServicioByRequerimiento" ReturnType="Collection(SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result)">
-      <Parameter Name="piIdRequerimiento" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="sp_DetalleBitacoraInformacion" ReturnType="Collection(SARISModel.sp_DetalleBitacoraInformacion_Result)">
       <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
       <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_Requerimientos_Bitacoras_Historial_ByID" ReturnType="Collection(SARISModel.sp_Requerimientos_Bitacoras_Historial_ByID_Result)">
       <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Incidentes_Cancelados">
+      <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Requerimientos_Bandeja">
+      <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+      <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+      <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_RequerimientoPorServicioByRequerimiento" ReturnType="Collection(SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result)">
+      <Parameter Name="piIdRequerimiento" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_Requerimiento_Areas_Result">
@@ -1165,11 +1168,6 @@
     <Property Type="String" Name="fcLatitud" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="fcLongitud" Nullable="true" MaxLength="500" />
   </ComplexType>
-  <ComplexType Name="sp_RequerimientoPorServicioByRequerimiento_Result">
-    <Property Type="Int32" Name="fiIdRequerimiento" Nullable="true" />
-    <Property Type="Int32" Name="fiIdServicioAfectado" Nullable="true" />
-    <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
-  </ComplexType>
   <ComplexType Name="sp_DetalleBitacoraInformacion_Result">
     <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
     <Property Type="String" Name="fcTituloRequerimiento" Nullable="false" MaxLength="1000" />
@@ -1212,5 +1210,10 @@
     <Property Type="Int32" Name="fiMinutios" Nullable="true" />
     <Property Type="String" Name="fcComentario" Nullable="true" MaxLength="Max" />
     <Property Type="String" Name="fcToken" Nullable="false" MaxLength="512" />
+  </ComplexType>
+  <ComplexType Name="sp_RequerimientoPorServicioByRequerimiento_Result">
+    <Property Type="Int32" Name="fiIdRequerimiento" Nullable="true" />
+    <Property Type="Int32" Name="fiIdServicioAfectado" Nullable="true" />
+    <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
   </ComplexType>
 </Schema>

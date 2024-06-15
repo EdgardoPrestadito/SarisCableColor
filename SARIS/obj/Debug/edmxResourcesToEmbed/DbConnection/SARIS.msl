@@ -268,7 +268,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bandeja" FunctionName="SARISModel.Store.sp_Requerimientos_Bandeja" />
     <FunctionImportMapping FunctionImportName="sp_Usuario_EditarInfoUsuarioLaboral" FunctionName="SARISModel.Store.sp_Usuario_EditarInfoUsuarioLaboral" />
     <FunctionImportMapping FunctionImportName="sp_ListarImpacto" FunctionName="SARISModel.Store.sp_ListarImpacto">
       <ResultMapping>
@@ -979,15 +978,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_ObtenerTokenBitacora_porIDTicket" FunctionName="SARISModel.Store.sp_ObtenerTokenBitacora_porIDTicket" />
-    <FunctionImportMapping FunctionImportName="sp_RequerimientoPorServicioByRequerimiento" FunctionName="SARISModel.Store.sp_RequerimientoPorServicioByRequerimiento">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result">
-          <ScalarProperty Name="fiIdRequerimiento" ColumnName="fiIdRequerimiento" />
-          <ScalarProperty Name="fiIdServicioAfectado" ColumnName="fiIdServicioAfectado" />
-          <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_DetalleBitacoraInformacion" FunctionName="SARISModel.Store.sp_DetalleBitacoraInformacion">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SARISModel.sp_DetalleBitacoraInformacion_Result">
@@ -1036,6 +1026,17 @@
           <ScalarProperty Name="fiMinutios" ColumnName="fiMinutios" />
           <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
           <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Incidentes_Cancelados" FunctionName="SARISModel.Store.sp_Incidentes_Cancelados" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bandeja" FunctionName="SARISModel.Store.sp_Requerimientos_Bandeja" />
+    <FunctionImportMapping FunctionImportName="sp_RequerimientoPorServicioByRequerimiento" FunctionName="SARISModel.Store.sp_RequerimientoPorServicioByRequerimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result">
+          <ScalarProperty Name="fiIdRequerimiento" ColumnName="fiIdRequerimiento" />
+          <ScalarProperty Name="fiIdServicioAfectado" ColumnName="fiIdServicioAfectado" />
+          <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

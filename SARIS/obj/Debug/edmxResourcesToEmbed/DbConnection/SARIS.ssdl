@@ -184,6 +184,9 @@
     <Parameter Name="piIdServicioAfectado" Type="int" Mode="In" />
     <Parameter Name="piUsuario" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_Incidentes_Cancelados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Indicadores_Desactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="fiIDTipoRequerimiento" Type="int" Mode="In" />
   </Function>

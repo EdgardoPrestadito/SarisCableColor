@@ -464,7 +464,14 @@
                   }
             },
             "columns": [
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
 
+                    }
+                },
                 {//0
                     data: null,
                     className: "text-center",
