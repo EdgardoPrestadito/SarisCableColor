@@ -368,6 +368,12 @@
                         <tbody >
 
                         `;
+        for (const item of idCisusados) {
+            tbo += `<tr>
+                            <td>${item.fcConfiguracion}</td>
+                            <td></td>
+                        </tr>`;
+        }
         for (const item of idCis) {
                 tbo += `<tr>
                             <td>${item.fcConfiguracion}</td>

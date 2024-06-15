@@ -543,7 +543,13 @@
                     };
                     reader.readAsDataURL(file);
                 } else if (tipoarchivo.startsWith("image/")) {
-                    myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
+                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: true });
+                    }
+
+                    //myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
                 }
             });
 
@@ -696,7 +702,7 @@
                                 <th>Descripcion</th>
                             </tr>
                         </thead>
-                        <tbody >
+                    <tbody >
 
                         `;
         for (const item of idserviciosusados) {
@@ -713,7 +719,7 @@
     }
 
     function llenartableCis() {
-        console.log(idCisusados);
+        //console.log(idCisusados);
         var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistacis">
                         <thead>
                             <tr>

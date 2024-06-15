@@ -27,6 +27,7 @@
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicket">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Acciones</th>
                         <th>Titulo</th>
                         <th style="width:80px">Solicitante</th>
@@ -71,6 +72,7 @@
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCerrados">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Acciones</th>
                         <th>Titulo</th>
                         <th style="width:80px">Solicitante</th>
@@ -94,6 +96,7 @@
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCancelados">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Acciones</th>
                         <th>Titulo</th>
                         <th style="width:80px">Solicitante</th>
@@ -178,7 +181,13 @@
                   }
             },
             "columns": [
-
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
+                    }
+                },
                 {//0
                     data: null,
                     className: "text-center",
@@ -393,7 +402,14 @@
                   }
             },
             columns: [
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
 
+                    }
+                },
                 {
                     data: null,
                     className: "text-center",
@@ -434,11 +450,11 @@
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        if (data.fiAreaAsignada == 6) {
-                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
-                        } else {
+                        //if (data.fiAreaAsignada == 6) {
+                        //    return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        //} else {
                             return data.fcNombreAreaAsignada;
-                        }
+                        //}
                     }
 
                 },
@@ -579,7 +595,14 @@
                   }
             },
             columns: [
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
 
+                    }
+                },
                 {
                     data: null,
                     className: "text-center",
@@ -620,11 +643,9 @@
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        if (data.fiAreaAsignada == 6) {
-                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
-                        } else {
-                            return data.fcNombreAreaAsignada;
-                        }
+                        
+                        return data.fcNombreAreaAsignada;
+                        
                     }
 
                 },

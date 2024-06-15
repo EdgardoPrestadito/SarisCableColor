@@ -231,8 +231,12 @@
     UrgenciaSelect();
     ImpactoSelect();
 
+    var idserviciosusados = [];
+    var idCisusados = [];
+
     var idservicios = [];
     var idCis = [];
+
 
     function ImpactoSelect()
     {
@@ -242,7 +246,7 @@
             success: function (respuesta) {
 
                 var selectcategoria = $("#selectImpacto");
-                
+
                 selectcategoria.empty();
                 selectcategoria.append($('<option>', {
                     value: 0,
@@ -685,12 +689,18 @@
                     };
                     reader.readAsDataURL(file);
                 } else if (tipoarchivo.startsWith("image/")) {
-                    myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
+                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: true });
+                    }
+                    //myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
                 }
             });
 
             myDropzone.on('thumbnail', function (file, dataURL) {
                 RedimencionarImagen(`fotopreviacanva`, file, "fotoprevia2", file.name, file.type.split('/')[1]);
+
             });
         },
 
@@ -782,5 +792,5 @@
             });
     }
 
-    
+
 </script>
