@@ -76,7 +76,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fal fa-user fa-fw"></i></span>
                         </div>
-                        @Html.EditorFor(model => model.fcTelefonoMovil, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.fcTelefonoMovil, new { htmlAttributes = new { @class = "form-control mascara-telefono" } })
 
                     </div>
                     @Html.ValidationMessageFor(model => model.fcTelefonoMovil, "", new { @class = "text-danger" })
@@ -123,7 +123,7 @@
     //    $(this).style("z-index", "10000");
     //});
 
-
+    $(".mascara-telefono").inputmask("99999999");
     $("#MyFormModal").submit(function (event) {
         event.preventDefault();
         if (!$("#MyFormModal").valid()) {
