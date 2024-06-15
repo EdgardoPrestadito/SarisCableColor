@@ -1711,15 +1711,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_Requerimientos_Adjuntos_Guardar_Copia", piIDRequerimientoParameter, pcNombreArchivoParameter, pcTipoArchivoParameter, pcRutaArchivoParameter, pcURLParameter, piIDSesionParameter, piIDAppParameter, piIDUsuarioParameter);
         }
     
-        public virtual ObjectResult<sp_CIporIncidencias_listos_Result> sp_CIporIncidencias_listos(Nullable<int> piIDRequerimiento)
-        {
-            var piIDRequerimientoParameter = piIDRequerimiento.HasValue ?
-                new ObjectParameter("piIDRequerimiento", piIDRequerimiento) :
-                new ObjectParameter("piIDRequerimiento", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CIporIncidencias_listos_Result>("sp_CIporIncidencias_listos", piIDRequerimientoParameter);
-        }
-    
         public virtual ObjectResult<string> sp_ObtenerTokenBitacora_porIDTicket(Nullable<int> piIDTicket)
         {
             var piIDTicketParameter = piIDTicket.HasValue ?
@@ -1784,6 +1775,15 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piIdRequerimiento", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RequerimientoPorServicioByRequerimiento_Result>("sp_RequerimientoPorServicioByRequerimiento", piIdRequerimientoParameter);
+        }
+    
+        public virtual ObjectResult<sp_CIporIncidencias_listos_Result> sp_CIporIncidencias_listos(Nullable<int> piIDRequerimiento)
+        {
+            var piIDRequerimientoParameter = piIDRequerimiento.HasValue ?
+                new ObjectParameter("piIDRequerimiento", piIDRequerimiento) :
+                new ObjectParameter("piIDRequerimiento", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CIporIncidencias_listos_Result>("sp_CIporIncidencias_listos", piIDRequerimientoParameter);
         }
     }
 }

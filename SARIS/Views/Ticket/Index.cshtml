@@ -27,7 +27,6 @@
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicket">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Acciones</th>
                         <th>Titulo</th>
                         <th>Descripcion</th>
@@ -81,7 +80,6 @@
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCerrados">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Acciones</th>
                         <th>Titulo</th>
                         <th>Descripcion</th>
@@ -115,7 +113,6 @@
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCancelados">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Acciones</th>
                         <th>Titulo</th>
                         <th style="width:80px">Solicitante</th>
@@ -199,14 +196,15 @@
                       return data;
                   }
             },
-            "columns": [
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
-                    }
-                },
+            columns: [
+                //{ //esto es el detalle para poder ver los servicios y los cis como tales
+                //    data: null,
+                //    render: function (data) {
+                //        var opt = "";
+                //        opt = `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)"><i class="fal fa-plus fa-fw text-success"></i></a>`;
+                //        return opt;
+                //    }
+                //},
                 {//0
                     data: null,
                     className: "text-center",
@@ -464,53 +462,26 @@
                   }
             },
             "columns": [
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
-
-                    }
-                },
+                //{ //esto es el detalle para poder ver los servicios y los cis como tales
+                //    data: null,
+                //    render: function () {
+                //        var opt = "";
+                //        opt = `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`;
+                //        return opt;
+                //    }
+                //},
                 {//0
                     data: null,
                     className: "text-center",
                     render: function (data) {
-                        //console.log(data);
                         var opt = ``;
-                        //console.log(data)
 
-                        if (idusuariologueado == data.fiIDUsuarioSolicitante && data.fiIDEstadoRequerimiento == 1) {
-                            opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Incidente'><i class=\"fal fa-times\"></i></a>`;
-                        }
                         opt += `
                                     <div class='dropdown d-inline-block dropleft'>
                                         <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='Mas Opciones'><i class=\"fal fa-ellipsis-v\"></i></a>
                                         <div class='dropdown-menu'>
-                                            <a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Incidente</a>
+                                            <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>
                                     `;
-
-                        //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
-
-                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
-                        //}
-
-                        if (data.fiAreaAsignada == 6)//es 6 por que es pendiente, se deberia de cambiar a un viewbac para traerlo directamente desde al base de datos
-                        {
-                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Asignar Area</a>`;
-                        } else {
-                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Reasignar Area</a>`;
-                        }
-
-                        if (@Json.Encode(User.IsInRole("SARIS_AsignarTicket_Usuarios"))) {
-                            if ((data.fiAreaAsignada != 6) & 1 == 1 )//es 0 por que es pendiente de asignar, se deberia de hacer mejor desde la base de datos
-                            {
-                                opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarUsuario(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento},${data.fiAreaAsignada})">Asignar Usuario</a>`;
-                            }
-                        }
-
-                        //`"<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'><i class=\"fal fa-times\"></i></a><div class='dropdown d-inline-block dropleft'><a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-ellipsis-v\"></i></a><div class='dropdown-menu'><a class='dropdown-item' href='javascript:void(0);'>Change Status</a><a class='dropdown-item' href='javascript:void(0);'>Generate Report</a></div></div>"`
-
                         opt += `</div>
                                 </div>`;
                         return opt;
@@ -561,32 +532,40 @@
                             return data.fcNombreAreaAsignada;
                         //}
                     }
-
                 },
                 {
-                    data: "fcNombreAsignado",
+                    data: "fcDescripcionCategoria",
                     className: "td-responsive",
-
                 },
                 {
-                    data: "fcNombreAreaAsignada",
+                    data: "fcTipoRequerimiento",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionUrgencia",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionImpacto",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionPrioridad",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiTiempo",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiAfectacion",
                     className: "td-responsive",
                 },
                 {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        return data.fcDescripcionCategoria;
-
-                    }
-                },
-
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return data.fcTipoRequerimiento;
-
+                        return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
                     }
                 },
                 {
@@ -596,25 +575,24 @@
                         return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
                     }
                 },
-
                 {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        if (data.fdFechadeCierre == " / Date(1581400800000) /") {
-                            return ""
-                        } else {
-
-                            return moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a');
-                        }
+                        return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
                     }
                 },
+                {
+                    data: "fcUsuarioModificador",
+                    className: "td-responsive",
+                },
+
                 {
                     data: null,
                     className: "td-responsive",
                     render: function (data, type, row) {
 
-                        var ahora = new Date(moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a'));;
+                        var ahora = new Date();
                         var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
                         var diferencia = ahora.getTime() - fechaInicio.getTime();
 
@@ -638,8 +616,7 @@
                         // Realizar cualquier operación o cálculo necesario para actualizar el valor
                         var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
 
-
-                        return nuevoValor;//`${dias} <b>Di.</b>, ${horas % 24} <b>Ho.</b>, ${minutos % 60} <b>Mi.</b>, ${segundos % 60} <b>Seg.</b>`;
+                        return nuevoValor;
                         //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
                     }
                 },
@@ -649,7 +626,6 @@
                     data: null,
                     className: "text-center",
                     render: function (data, type, row) {
-
                         return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
 
                     }
@@ -657,8 +633,7 @@
                 {
                     data: "fcDescripcionRequerimiento",
                     className: "td-responsive",
-                    visible: false,
-                    title: 'Descripcion',
+                    visible: false, "title": 'Descripcion',
 
                 }
 
@@ -666,7 +641,7 @@
 
         });
 
-           chat.client.agregarrowTicketCancelado = function (modelo) {
+        chat.client.agregarrowTicketCancelado = function (modelo) {
             var tabla = $.fn.dataTable.Api("#TablaPrincipalTicketCancelados");
             tabla.row.add(modelo).draw(false);
         }
@@ -700,14 +675,14 @@
                   }
             },
             columns: [
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
+                //{ //esto es el detalle para poder ver los servicios y los cis como tales
+                //    data: null,
+                //    className: "td-responsive",
+                //    render: function (data) {
+                //        return `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`
 
-                    }
-                },
+                //    }
+                //},
                 {
                     data: null,
                     className: "text-center",
@@ -1106,6 +1081,44 @@
                 }
             });
         }
+
+        function ver(iticket) {
+
+        }
+
+        $('#TablaPrincipalTicket tbody').on('click', 'a.details-productos', function() {
+        console.log(`aqui entro con el datatable onclick`);
+
+        var i = $(this).find("i");
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+        var data = table.row(row).data();
+
+        if (row.child.isShown()) {
+            // Esta fila ya está abierta - ciérrala
+            row.child('');
+            row.child.hide();
+            tr.removeClass('info');
+            $(i).removeClass("fa-minus text-danger").addClass("fa-plus text-success");
+        } else {
+            //row.child("Test").show();
+            $(i).removeClass("fa-plus text-success").addClass("fa-minus text-danger");
+
+            $.ajax({
+                url: '@Url.Action("SubTablaIncidentesTicket", "Ticket")',
+                data: { idticket: data.idticket },  // Asegúrate de pasar el ID correcto
+                type: 'GET',
+                success: function(response) {
+                    row.child(response).show();
+                    tr.addClass('info');
+                },
+                error: function(error) {
+                    console.log(error);
+                    AlertaError();
+                }
+            });
+        }
+    });
 
 
     </script>

@@ -2061,6 +2061,7 @@
     <Content Include="Views\CategoriaIndicadores\SubTablaSubCategoria.cshtml" />
     <Content Include="Views\Ticket\AgregarServicios.cshtml" />
     <Content Include="Views\Ticket\AgregarCI.cshtml" />
+    <Content Include="Views\Ticket\SubTablaIncidentesTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

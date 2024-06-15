@@ -1,0 +1,63 @@
+﻿
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                        <br />
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaServicios">
+                                <thead>
+                                    <tr>
+                                        <th>Servicios Afectados</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in @ViewBag.ServiciosAfectados)
+                                    {
+                                        <tr>
+                                            <td>@item.fcNombreServicio</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12 col-12 col-sm-12 col-md-12">
+                        <br />
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
+                            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaCI">
+                                <thead>
+                                    <tr>
+                                        <th>CI</th>
+                                        <th>Latitud</th>
+                                        <th>Longitud</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in @ViewBag.CI)
+                                    {
+                                        <tr>
+                                            <td>@item.fcConfiguracion</td>
+                                            <td>@item.fcLatitud</td>
+                                            <td>@item.fcLongitud</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -111,7 +111,7 @@
             columns: [
                 {
                     data: null,
-                    render: function() {
+                    render: function(data) {
                         var opt = "";
                         opt = `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)" ><i class="fal fa-plus fa-fw text-success"></i></a>`;
                         return opt;
@@ -147,12 +147,7 @@
 
                     }
                 },
-
-
-
-
             ]
-
         });
 
 

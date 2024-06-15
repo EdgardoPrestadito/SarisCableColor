@@ -839,6 +839,17 @@ namespace OrionCoreCableColor.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult SubTablaIncidentesTicket(int idticket) // se hiba a hacer para la subtabla pero por alguna razon no funcionaba el onclick del detalle asi dejarlo para otra ocacion que si agarre el onclick
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                ViewBag.ServiciosAfectados = contexto.sp_RequerimientoPorServicioByRequerimiento(idticket).ToList();
+                ViewBag.CI = contexto.sp_CIporIncidencias_listos(idticket).ToList();
+                return PartialView();
+            }
+
+        }
         ///////////////////////////// LLenar campos
         public JsonResult SelectCategorias()
         {
