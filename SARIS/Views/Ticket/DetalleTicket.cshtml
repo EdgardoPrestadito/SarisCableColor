@@ -136,7 +136,18 @@
                                 <br />
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xl-12">
                                     <div class="form-group">
-                                        <label class="control-label font-12">Motivo</label>
+                                        @if (Model.fcDescripcionEstado == "Resuelto" )
+                                        {
+                                            <label class="control-label font-12">Motivo de Resolucion</label>
+                                        }
+                                        @if (Model.fcDescripcionEstado == "Pausado")
+                                        {
+                                            <label class="control-label font-12">Motivo de Pausado</label>
+                                        }
+                                        @if (Model.fcDescripcionEstado == "Cancelado")
+                                        {
+                                            <label class="control-label font-12">Motivo de Cancelado</label>
+                                        }
                                         <div class="input-group mar-btm">
                                             @Html.EditorFor(model => model.fcNombreMotivo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         </div>

@@ -21,15 +21,24 @@
                     <tr>
                         <th>Acciones</th>
                         <th>Titulo</th>
+                        <th>Descripcion</th>
                         <th style="width:80px">Solicitante</th>
                         <th style="width:80px">Area Solicitante</th>
                         <th style="width:80px">Usuario Asignado</th>
                         <th style="width:80px">Area Asignada</th>
 
-                        <th style="width:80px">Categoria</th>
-                        <th style="width:80px">Incidencia</th>
+                        <th style="width:80px">Categoría apertura</th>
+                        <th style="width:80px">Subcategoria apertura</th>
+                        <th style="width:80px">Urgencia</th>
+                        <th style="width:80px">Impacto</th>
+                        <th style="width:80px">Prioridad</th>
+                        <th style="width:80px">SLA</th>
+                        <th style="width:80px">Usuarios afectados</th>
 
+                        <th style="width:150px">Fecha alarma/detección</th>
                         <th style="width:150px">Fecha Creacion Solicitud</th>
+                        <th style="width:150px">Fecha última actualización</th>
+                        <th style="width:150px">Usuario última actualización</th>
                         <th style="width:150px">Tiempo Transcurrido</th>
                         <th style="width:80px">Estado</th>
                     </tr>
@@ -52,16 +61,24 @@
                     <tr>
                         <th>Acciones</th>
                         <th>Titulo</th>
+                        <th>Descripcion</th>
                         <th style="width:80px">Solicitante</th>
                         <th style="width:80px">Area Solicitante</th>
                         <th style="width:80px">Usuario Asignado</th>
                         <th style="width:80px">Area Asignada</th>
 
-                        <th style="width:80px">Categoria</th>
-                        <th style="width:80px">Incidencia</th>
+                        <th style="width:80px">Categoría apertura</th>
+                        <th style="width:80px">Subcategoria apertura</th>
+                        <th style="width:80px">Urgencia</th>
+                        <th style="width:80px">Impacto</th>
+                        <th style="width:80px">Prioridad</th>
+                        <th style="width:80px">SLA</th>
+                        <th style="width:80px">Usuarios afectados</th>
 
+                        <th style="width:150px">Fecha alarma/detección</th>
                         <th style="width:150px">Fecha Creacion Solicitud</th>
-                        <th style="width:150px">Fecha Cierre</th>
+                        <th style="width:150px">Fecha última actualización</th>
+                        <th style="width:150px">Usuario última actualización</th>
                         <th style="width:150px">Tiempo Transcurrido</th>
                         <th style="width:80px">Estado</th>
                     </tr>
@@ -153,6 +170,7 @@
                         return opt;
                     }
                 },
+
                 {
                     data: null,
                     className: "td-responsive",
@@ -160,6 +178,11 @@
                         return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
 
                     }
+                },
+                {
+                    data: "fcDescripcionRequerimiento",
+                    className: "td-responsive",
+
                 },
                 {
                     data: "fcNombreSolicitante",
@@ -201,13 +224,50 @@
                     data: "fcTipoRequerimiento",
                     className: "td-responsive",
                 },
-
+                {
+                    data: "fcDescripcionUrgencia",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionImpacto",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionPrioridad",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiTiempo",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiAfectacion",
+                    className: "td-responsive",
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
                 {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
                         return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
                     }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+                {
+                    data: "fcUsuarioModificador",
+                    className: "td-responsive",
                 },
 
                 {
@@ -322,38 +382,81 @@
                       //console.log(data);
                   }
             },
-            columns: [
+            "columns": [
 
-                {
+                {//0
                     data: null,
                     className: "text-center",
                     render: function (data) {
-                        var opt = `<div class='dropdown d-inline-block dropleft'>
-                                    <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t
-                                    <div class='dropdown-menu'>`;
+                        //console.log(data);
+                        var opt = ``;
+                        //console.log(data)
+
+                        if (idusuariologueado == data.fiIDUsuarioSolicitante && data.fiIDEstadoRequerimiento == 1) {
+                            opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Incidente'><i class=\"fal fa-times\"></i></a>`;
+                        }
+                        opt += `
+                                    <div class='dropdown d-inline-block dropleft'>
+                                        <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='Mas Opciones'><i class=\"fal fa-ellipsis-v\"></i></a>
+                                        <div class='dropdown-menu'>
+                                            <a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Incidente</a>
+                                    `;
+
                         //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
 
                             opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
                         //}
+
+                        if (data.fiAreaAsignada == 6)//es 6 por que es pendiente, se deberia de cambiar a un viewbac para traerlo directamente desde al base de datos
+                        {
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Asignar Area</a>`;
+                        } else {
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Reasignar Area</a>`;
+                        }
+
+                        if (@Json.Encode(User.IsInRole("SARIS_AsignarTicket_Usuarios"))) {
+                            if ((data.fiAreaAsignada != 6) & 1 == 1 )//es 0 por que es pendiente de asignar, se deberia de hacer mejor desde la base de datos
+                            {
+                                opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarUsuario(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento},${data.fiAreaAsignada})">Asignar Usuario</a>`;
+                            }
+                        }
+
+                        //`"<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'><i class=\"fal fa-times\"></i></a><div class='dropdown d-inline-block dropleft'><a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-ellipsis-v\"></i></a><div class='dropdown-menu'><a class='dropdown-item' href='javascript:void(0);'>Change Status</a><a class='dropdown-item' href='javascript:void(0);'>Generate Report</a></div></div>"`
+
                         opt += `</div>
-                                </div>`
+                                </div>`;
                         return opt;
                     }
                 },
+
                 {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        var des = "";
-                        return `${data.fiIDRequerimiento} <span class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></span>`;
+                        return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
 
                     }
                 },
                 {
+                    data: "fcDescripcionRequerimiento",
+                    className: "td-responsive",
+
+                },
+                {
+                    data: "fcNombreSolicitante",
+                    className: "td-responsive",
+
+                },
+                {
+                    data: "fcNombreAreaSolicitante",
+                    className: "td-responsive",
+
+                },
+                {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        if (data.fiIDUsuarioAsignado == 0) {
+                        if (data.fiIDUsuarioAsignado == 3013) {
                             return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
                         } else {
                             return data.fcNombreAsignado;
@@ -370,32 +473,40 @@
                             return data.fcNombreAreaAsignada;
                         }
                     }
-
                 },
                 {
-                    data: "fcNombreAsignado",
+                    data: "fcDescripcionCategoria",
                     className: "td-responsive",
-
                 },
                 {
-                    data: "fcNombreAreaAsignada",
+                    data: "fcTipoRequerimiento",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionUrgencia",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionImpacto",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcDescripcionPrioridad",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiTiempo",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiAfectacion",
                     className: "td-responsive",
                 },
                 {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        return data.fcDescripcionCategoria;
-
-                    }
-                },
-
-                {
-                    data: null,
-                    className: "td-responsive",
-                    render: function (data) {
-                        return data.fcTipoRequerimiento;
-
+                        return moment(data.fdFechaAlarmaDeteccion).locale('es').format('YYYY/MM/DD hh:mm a')
                     }
                 },
                 {
@@ -405,25 +516,24 @@
                         return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
                     }
                 },
-
                 {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        if (data.fdFechadeCierre == " / Date(1581400800000) /") {
-                            return ""
-                        } else {
-
-                            return moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a');
-                        }
+                        return moment(data.fdFechaUltimaModificacion).locale('es').format('YYYY/MM/DD hh:mm a')
                     }
                 },
+                {
+                    data: "fcUsuarioModificador",
+                    className: "td-responsive",
+                },
+
                 {
                     data: null,
                     className: "td-responsive",
                     render: function (data, type, row) {
 
-                        var ahora = new Date(moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a'));;
+                        var ahora = new Date();
                         var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
                         var diferencia = ahora.getTime() - fechaInicio.getTime();
 
@@ -447,8 +557,7 @@
                         // Realizar cualquier operación o cálculo necesario para actualizar el valor
                         var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
 
-
-                        return nuevoValor;//`${dias} <b>Di.</b>, ${horas % 24} <b>Ho.</b>, ${minutos % 60} <b>Mi.</b>, ${segundos % 60} <b>Seg.</b>`;
+                        return nuevoValor;
                         //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
                     }
                 },
@@ -458,7 +567,6 @@
                     data: null,
                     className: "text-center",
                     render: function (data, type, row) {
-
                         return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
 
                     }
@@ -466,8 +574,7 @@
                 {
                     data: "fcDescripcionRequerimiento",
                     className: "td-responsive",
-                    visible: false,
-                    title: 'Descripcion',
+                    visible: false, "title": 'Descripcion',
 
                 }
 
