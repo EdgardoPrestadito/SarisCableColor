@@ -2,7 +2,15 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .table-container, .title-container {
+        display: none;
+    }
 
+        .table-container.active, .title-container.active {
+            display: block;
+        }
+</style>
 <div class="panel">
     <div class="panel-hdr">
         <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Pendientes</h2>
@@ -39,14 +47,27 @@
         </div>
     </div>
 </div>
-
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Cerrados</h2>
-
+        <div class="col-lg-12 title-container" id="cerradoshdr">
+            <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Cerrados</h2>
+        </div>
+        <div class="col-lg-12 title-container" id="canceladoshdr">
+            <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Cancelados</h2>
+        </div>
     </div>
+
+    <div class="panel-hdr" style="border-bottom:none">
+        <button id="btnCerrados" class="btn btn-outline-primary col-2 m-2" onclick="showTable('cerrados')">
+            <i class="fal fa-check-circle"></i> Incidentes Cerrados
+        </button>
+        <button id="btnCancelados" class="btn btn-outline-primary col-2 m-2" onclick="showTable('cancelados')">
+            <i class="fal fa-times-circle"></i> Incidentes Cancelados
+        </button>
+    </div>
+
     <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
-        <div class="col-lg-12">
+        <div class="col-lg-12 table-container" id="cerrados">
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCerrados">
                 <thead>
                     <tr>
@@ -56,10 +77,8 @@
                         <th style="width:80px">Area Solicitante</th>
                         <th style="width:80px">Usuario Asignado</th>
                         <th style="width:80px">Area Asignada</th>
-
                         <th style="width:80px">Categoria</th>
                         <th style="width:80px">Incidencia</th>
-
                         <th style="width:150px">Fecha Creacion Solicitud</th>
                         <th style="width:150px">Fecha Cierre</th>
                         <th style="width:150px">Tiempo Transcurrido</th>
@@ -70,15 +89,66 @@
             </table>
         </div>
 
+        <div class="col-lg-12 table-container" id="cancelados">
 
-
+            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicketCancelados">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>Titulo</th>
+                        <th style="width:80px">Solicitante</th>
+                        <th style="width:80px">Area Solicitante</th>
+                        <th style="width:80px">Usuario Asignado</th>
+                        <th style="width:80px">Area Asignada</th>
+                        <th style="width:80px">Categoria</th>
+                        <th style="width:80px">Incidencia</th>
+                        <th style="width:150px">Fecha Creacion Solicitud</th>
+                        <th style="width:150px">Fecha Cierre</th>
+                        <th style="width:150px">Tiempo Transcurrido</th>
+                        <th style="width:80px">Estado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
-
 @section Scripts{
-    
+
     <script>
+            function showTable(tableId) {
+                // Oculta todas las tablas y encabezados
+                document.querySelectorAll('.table-container').forEach(function (table) {
+                    table.classList.remove('active');
+                });
+
+                document.querySelectorAll('.title-container').forEach(function (title) {
+                    title.classList.remove('active');
+                });
+
+                document.getElementById(tableId).classList.add('active');
+                document.getElementById(tableId + 'hdr').classList.add('active');
+
+                document.getElementById('btnCerrados').classList.remove('btn-primary');
+                document.getElementById('btnCerrados').classList.add('btn-outline-primary');
+                document.getElementById('btnCancelados').classList.remove('btn-primary');
+                document.getElementById('btnCancelados').classList.add('btn-outline-primary');
+
+                if (tableId === 'cerrados') {
+                    document.getElementById('btnCerrados').classList.add('btn-primary');
+                    document.getElementById('btnCerrados').classList.remove('btn-outline-primary');
+                } else {
+                    document.getElementById('btnCancelados').classList.add('btn-primary');
+                    document.getElementById('btnCancelados').classList.remove('btn-outline-primary');
+                }
+            }
+
+            // Muestra la primera tabla por defecto
+            document.addEventListener('DOMContentLoaded', function () {
+                showTable('cerrados');
+            });
+
         var idusuariologueado = @ViewBag.idUsuario;
 
         var tablaPrincipalticket = $('#TablaPrincipalTicket').DataTable({
@@ -316,6 +386,192 @@
             order: [[1, "desc"]],
               ajax: {
                 url: '@Url.Action("ListarTicketCerrados", "Ticket")',
+                  method: "Get",
+                  dataSrc: function (data) {
+                      return data;
+                      //console.log(data);
+                  }
+            },
+            columns: [
+
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data) {
+                        var opt = `<div class='dropdown d-inline-block dropleft'>
+                                    <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t
+                                    <div class='dropdown-menu'>`;
+                        //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
+
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
+                        //}
+                        opt += `</div>
+                                </div>`
+                        return opt;
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        var des = "";
+                        return `${data.fiIDRequerimiento} <span class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></span>`;
+
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fiIDUsuarioAsignado == 0) {
+                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        } else {
+                            return data.fcNombreAsignado;
+                        }
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fiAreaAsignada == 6) {
+                            return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
+                        } else {
+                            return data.fcNombreAreaAsignada;
+                        }
+                    }
+
+                },
+                {
+                    data: "fcNombreAsignado",
+                    className: "td-responsive",
+
+                },
+                {
+                    data: "fcNombreAreaAsignada",
+                    className: "td-responsive",
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return data.fcDescripcionCategoria;
+
+                    }
+                },
+
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return data.fcTipoRequerimiento;
+
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fdFechadeCierre == " / Date(1581400800000) /") {
+                            return ""
+                        } else {
+
+                            return moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a');
+                        }
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data, type, row) {
+
+                        var ahora = new Date(moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a'));;
+                        var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
+                        var diferencia = ahora.getTime() - fechaInicio.getTime();
+
+                        // Calcula los segundos, minutos, horas y días transcurridos
+                        var segundos = Math.floor(diferencia / 1000);
+                        var minutos = Math.floor(segundos / 60);
+                        var horas = Math.floor(minutos / 60);
+                        var dias = Math.floor(horas / 24);
+
+                        var tiempototal = '';
+                        if (dias > 0) {
+                            tiempototal += `${dias} <b>Di.</b>, `;
+                        }
+                        //console.log((horas % 24))
+                        if ((horas % 24) > 0) {
+                            tiempototal += `${horas % 24} <b>Ho.</b>, `;
+                        }
+                        if ((minutos % 60) > 0) {
+                            tiempototal += `${minutos % 60} <b>Mi.</b>, `;
+                        }
+                        // Realizar cualquier operación o cálculo necesario para actualizar el valor
+                        var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
+
+
+                        return nuevoValor;//`${dias} <b>Di.</b>, ${horas % 24} <b>Ho.</b>, ${minutos % 60} <b>Mi.</b>, ${segundos % 60} <b>Seg.</b>`;
+                        //return "Han transcurrido " + dias + " días, " + horas % 24 + " horas, " + minutos % 60 + " minutos, " + segundos % 60 + " segundos.";
+                    }
+                },
+
+
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data, type, row) {
+
+                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
+
+                    }
+                },
+                {
+                    data: "fcDescripcionRequerimiento",
+                    className: "td-responsive",
+                    visible: false,
+                    title: 'Descripcion',
+
+                }
+
+            ],
+
+        });
+
+           chat.client.agregarrowTicketCancelado = function (modelo) {
+            var tabla = $.fn.dataTable.Api("#TablaPrincipalTicketCancelados");
+            tabla.row.add(modelo).draw(false);
+        }
+
+
+        var tablaPrincipalcancelados = $('#TablaPrincipalTicketCancelados').DataTable({
+
+            autoWidth: true,
+            responsive: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'Bfrtip',
+            order: [[1, "desc"]],
+              ajax: {
+                url: '@Url.Action("ListarTicketCancelados", "Ticket")',
                   method: "Get",
                   dataSrc: function (data) {
                       return data;
@@ -732,5 +988,5 @@
 
 
     </script>
-    
-    }
+
+}
