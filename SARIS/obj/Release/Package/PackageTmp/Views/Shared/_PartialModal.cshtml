@@ -13,8 +13,8 @@
 
 
 
-<div class="modal fade" id="MyModalBig2" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" style="width: 90%;">
+<div class="modal fade" id="MyModalBig2"tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-xl" role="document" id=""style="width: 90%;">
         <div class="modal-content" id="MyModalContentBig2">
 
 
@@ -22,24 +22,19 @@
     </div>
 </div>
 
+<div class="modal fade" id="MyModalImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog  modal-xl" role="document" id="">
+        <div class="modal-content" id="">
+            <div class="modal-body">
+                <center>
+                    <h3 id="TituloImagen">Hola</h3>
+                    <img id="ImageBig" src="" class="img-responsive img-thumbnail" style="width:auto; height:auto;" />
+                </center>
 
-
-@*<div id="MyModalBig" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
-        <div class="bounceInDown animated">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" style="color:white!important;"> <i class="fa fa-times"></i></button>
-                    <h4 class="modal-title" id="MyModalTitleBig"></h4>
-                </div>
-                <div class="modal-body" id="MyModalBodyBig">
-
-                </div>
             </div>
         </div>
-    </div>*@
-
-
-
+    </div>
+</div>
 
 <div class="modal fade" id="MyModalBig" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-xl">
@@ -69,23 +64,6 @@
     </div>
 </div>
 
-
-
-@*<div id="MyModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog bounceInDown animated" id="MyModalSize">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" style="color:white!important;"> <i class="fa fa-times"></i></button>
-                    <button type="button" class="close" onclick="ExpandirModal(this)" style="margin-right:20px; color:white!important;"> <i class="fa fa-expand"></i>    </button>
-                    <h4 class="modal-title" id="MyModalTitle"></h4>
-                </div>
-                <div class="modal-body" id="MyModalBody">
-
-                </div>
-            </div>
-        </div>
-    </div>*@
-
 <div class="modal fade" id="MyModal" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content" id="MyModalContent">
@@ -105,22 +83,10 @@
 </div>
 
 
-<div class="modal fade" id="MyModalImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog  modal-xl" role="document" id="">
-        <div class="modal-content" id="">
-            <div class="modal-body">
-                <center>
-                    <h3 id="TituloImagen">Hola</h3>
-                    <img id="ImageBig" src="" class="img-responsive img-thumbnail" style="width:auto; height:auto;" />
-                </center>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 
-<div class="modal fade" id="MyModalContrato" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+<div class="modal fade" id="MyModalContrato" tabindex="-1" z-index="" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog  modal-xl" role="document" id="">
         <div class="modal-content" id="">
             <div class="modal-body">
@@ -136,6 +102,48 @@
         </div>
     </div>
 </div>
+
+<!--<div class="modal fade default-example-modal-left-sm" id="ModalLeft" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-left modal-dialog-scrollable modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="titulomodalIzquierda">Large right side modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body" id="bodyModalIzquierda">
+                
+            </div>
+            <div class="modal-footer">-->
+                @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>*@
+            <!--</div>
+        </div>
+    </div>
+</div>-->
+
+<div class="modal fade default-example-modal-right" id="ModalLeft" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-right modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4"  id="titulomodalIzquierda" >Large right side modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body" id="bodyModalIzquierda">
+                
+                
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
   
@@ -154,25 +162,37 @@
 
     function ShowBigPdf(descripcion, carpeta) {
         debugger;
-        $.ajax({
+        @*$.ajax({
             url:"@Url.Action("GetContentDocument","Base")",
             type: "Get",
             data: { tipo: "pdf", carpeta: carpeta, nombreArchivo: descripcion },
             success: function (resp) {
-                $(divContrato).empty();
-                var embed = $(`<embed src="" id="DocumentoBig" type="application/pdf"  class="img-responsive img-thumbnail" style="width:100%;height:500px;" />`);
-                $("#TituloContrato").text(descripcion);
-                debugger;
-                //$(embed).attr('src', "data:application/pdf;base64," + resp);
-                $(embed).attr('src',resp);
-                $(embed).css("height", window.innerHeight - (window.innerHeight * 0.25) + "px");
-                $(divContrato).append(embed);
-                $('#MyModalContrato').modal("show");
+                
             }
-        });
+        });*@
+
+        $(divContrato).empty();
+        var embed = $(`<embed src="" id="DocumentoBig" type="application/pdf"  class="img-responsive img-thumbnail" style="width:100%;height:500px;" />`);
+        $("#TituloContrato").text(descripcion);
+        debugger;
+        //$(embed).attr('src', "data:application/pdf;base64," + resp);
+        $(embed).attr('src', carpeta);
+        $(embed).css("height", window.innerHeight - (window.innerHeight * 0.25) + "px");
+        $(divContrato).append(embed);
+        $('#MyModalContrato').modal("show");
         
         
     }
+
+    function ShowLeftModal(descripcion, Titulo) {
+        $(`#bodyModalIzquierda`).empty();
+        //$("#bodyModalIzquierda .modal-body").css("height", '80vh');
+        $("#bodyModalIzquierda").html(descripcion);
+        $("#titulomodalIzquierda").text(Titulo);
+        $("#ModalLeft").modal("show");
+    }
+
+
 </script>
 
 

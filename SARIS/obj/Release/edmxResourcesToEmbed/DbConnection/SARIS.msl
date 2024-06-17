@@ -4,7 +4,6 @@
     <FunctionImportMapping FunctionImportName="Multiplicacion" FunctionName="SARISModel.Store.Multiplicacion" />
     <FunctionImportMapping FunctionImportName="sp_NumeroConsecutivo" FunctionName="SARISModel.Store.sp_NumeroConsecutivo" />
     <FunctionImportMapping FunctionImportName="sp_Requerimiento_Agregar" FunctionName="SARISModel.Store.sp_Requerimiento_Agregar" />
-    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Alta" FunctionName="SARISModel.Store.sp_Requerimiento_Alta" />
     <FunctionImportMapping FunctionImportName="sp_Requerimiento_Areas" FunctionName="SARISModel.Store.sp_Requerimiento_Areas">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Areas_Result">
@@ -15,7 +14,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Bitacoras_Agregar" FunctionName="SARISModel.Store.sp_Requerimiento_Bitacoras_Agregar" />
     <FunctionImportMapping FunctionImportName="sp_Requerimiento_Bitacoras_Detalle" FunctionName="SARISModel.Store.sp_Requerimiento_Bitacoras_Detalle">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Bitacoras_Detalle_Result">
@@ -24,24 +22,6 @@
           <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
           <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
           <ScalarProperty Name="fcNombreUsuario" ColumnName="fcNombreUsuario" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento" FunctionName="SARISModel.Store.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento_Result">
-          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
-          <ScalarProperty Name="fiIDUnicoAdjunto" ColumnName="fiIDUnicoAdjunto" />
-          <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
-          <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
-          <ScalarProperty Name="fiIDIPUsuarioSolicitante" ColumnName="fiIDIPUsuarioSolicitante" />
-          <ScalarProperty Name="fcDescripcionAdjunto" ColumnName="fcDescripcionAdjunto" />
-          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
-          <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
-          <ScalarProperty Name="fcArchivoAdjunto" ColumnName="fcArchivoAdjunto" />
-          <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
-          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
-          <ScalarProperty Name="fcURL" ColumnName="fcURL" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -79,24 +59,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Actualizar" FunctionName="SARISModel.Store.sp_Requerimiento_Maestro_Actualizar" />
-    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Detalle" FunctionName="SARISModel.Store.sp_Requerimiento_Maestro_Detalle">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Maestro_Detalle_Result">
-          <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
-          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
-          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
-          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
-          <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
-          <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
-          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
-          <ScalarProperty Name="fdFechaAsignacion" ColumnName="fdFechaAsignacion" />
-          <ScalarProperty Name="fdFechadeCierre" ColumnName="fdFechadeCierre" />
-          <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
-          <ScalarProperty Name="fiTiempodeDesarrollo" ColumnName="fiTiempodeDesarrollo" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_Requerimiento_NumeroConsecutivo" FunctionName="SARISModel.Store.sp_Requerimiento_NumeroConsecutivo" />
     <FunctionImportMapping FunctionImportName="sp_Requerimiento_Tipo_Adjuntos" FunctionName="SARISModel.Store.sp_Requerimiento_Tipo_Adjuntos">
       <ResultMapping>
@@ -106,23 +68,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Adjuntos_Guardar" FunctionName="SARISModel.Store.sp_Requerimientos_Adjuntos_Guardar" />
-    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bandeja" FunctionName="SARISModel.Store.sp_Requerimientos_Bandeja" />
     <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bitacoras_Estados" FunctionName="SARISModel.Store.sp_Requerimientos_Bitacoras_Estados" />
-    <FunctionImportMapping FunctionImportName="sp_Areas_Desactivar" FunctionName="SARISModel.Store.sp_Areas_Desactivar" />
-    <FunctionImportMapping FunctionImportName="sp_Areas_Editar" FunctionName="SARISModel.Store.sp_Areas_Editar" />
-    <FunctionImportMapping FunctionImportName="sp_Areas_Find" FunctionName="SARISModel.Store.sp_Areas_Find">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_Areas_Find_Result">
-          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
-          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
-          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
-          <ScalarProperty Name="fiIDUsuarioResponsable" ColumnName="fiIDUsuarioResponsable" />
-          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Areas_Insertar" FunctionName="SARISModel.Store.sp_Areas_Insertar" />
     <FunctionImportMapping FunctionImportName="sp_Estados_Editar" FunctionName="SARISModel.Store.sp_Estados_Editar" />
     <FunctionImportMapping FunctionImportName="sp_Estados_Insertar" FunctionName="SARISModel.Store.sp_Estados_Insertar" />
     <FunctionImportMapping FunctionImportName="sp_Estados_Lista" FunctionName="SARISModel.Store.sp_Estados_Lista">
@@ -131,27 +77,6 @@
           <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
           <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
           <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Indicadores_Desactivar" FunctionName="SARISModel.Store.sp_Indicadores_Desactivar" />
-    <FunctionImportMapping FunctionImportName="sp_Indicadores_Editar" FunctionName="SARISModel.Store.sp_Indicadores_Editar" />
-    <FunctionImportMapping FunctionImportName="sp_Indicadores_Find" FunctionName="SARISModel.Store.sp_Indicadores_Find">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_Indicadores_Find_Result">
-          <ScalarProperty Name="fiIDTipoRequerimiento" ColumnName="fiIDTipoRequerimiento" />
-          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
-          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Indicadores_Insertar" FunctionName="SARISModel.Store.sp_Indicadores_Insertar" />
-    <FunctionImportMapping FunctionImportName="sp_Indicadores_Lista" FunctionName="SARISModel.Store.sp_Indicadores_Lista">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_Indicadores_Lista_Result">
-          <ScalarProperty Name="fiIDTipoRequerimiento" ColumnName="fiIDTipoRequerimiento" />
-          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
-          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -306,6 +231,703 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_Usuarios_Maestros_ObtenerIdUsuario" FunctionName="SARISModel.Store.sp_Usuarios_Maestros_ObtenerIdUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Adjuntos_Guardar" FunctionName="SARISModel.Store.sp_Requerimientos_Adjuntos_Guardar" />
+    <FunctionImportMapping FunctionImportName="sp_Configuraciones" FunctionName="SARISModel.Store.sp_Configuraciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Configuraciones_Result">
+          <ScalarProperty Name="fcDescripcionLlave" ColumnName="fcDescripcionLlave" />
+          <ScalarProperty Name="fcValorLlave" ColumnName="fcValorLlave" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Eliminar_Requerimiento" FunctionName="SARISModel.Store.sp_Eliminar_Requerimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Eliminar_Requerimiento_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdIngresado" ColumnName="IdIngresado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Bitacoras_Agregar" FunctionName="SARISModel.Store.sp_Requerimiento_Bitacoras_Agregar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento" FunctionName="SARISModel.Store.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fiIDUnicoAdjunto" ColumnName="fiIDUnicoAdjunto" />
+          <ScalarProperty Name="fdFechaRegistro" ColumnName="fdFechaRegistro" />
+          <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+          <ScalarProperty Name="fiIDIPUsuarioSolicitante" ColumnName="fiIDIPUsuarioSolicitante" />
+          <ScalarProperty Name="fcDescripcionAdjunto" ColumnName="fcDescripcionAdjunto" />
+          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+          <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+          <ScalarProperty Name="fcArchivoAdjunto" ColumnName="fcArchivoAdjunto" />
+          <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Usuario_EditarInfoUsuarioLaboral" FunctionName="SARISModel.Store.sp_Usuario_EditarInfoUsuarioLaboral" />
+    <FunctionImportMapping FunctionImportName="sp_ListarImpacto" FunctionName="SARISModel.Store.sp_ListarImpacto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_ListarImpacto_Result">
+          <ScalarProperty Name="fiIDImpacto" ColumnName="fiIDImpacto" />
+          <ScalarProperty Name="fcDescripcionImpacto" ColumnName="fcDescripcionImpacto" />
+          <ScalarProperty Name="fiAfectacion" ColumnName="fiAfectacion" />
+          <ScalarProperty Name="fiNivel" ColumnName="fiNivel" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ActualizarImpacto" FunctionName="SARISModel.Store.sp_ActualizarImpacto" />
+    <FunctionImportMapping FunctionImportName="sp_ActualizarPrioridad" FunctionName="SARISModel.Store.sp_ActualizarPrioridad" />
+    <FunctionImportMapping FunctionImportName="sp_ActualizarUrgencia" FunctionName="SARISModel.Store.sp_ActualizarUrgencia" />
+    <FunctionImportMapping FunctionImportName="sp_CrearImpacto" FunctionName="SARISModel.Store.sp_CrearImpacto" />
+    <FunctionImportMapping FunctionImportName="sp_CrearPrioridad" FunctionName="SARISModel.Store.sp_CrearPrioridad" />
+    <FunctionImportMapping FunctionImportName="sp_CrearUrgencia" FunctionName="SARISModel.Store.sp_CrearUrgencia" />
+    <FunctionImportMapping FunctionImportName="sp_DashboardGlobal" FunctionName="SARISModel.Store.sp_DashboardGlobal">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_DashboardGlobal_Result">
+          <ScalarProperty Name="fiIncidentesActivos" ColumnName="fiIncidentesActivos" />
+          <ScalarProperty Name="fiIncidentes1a4Horas" ColumnName="fiIncidentes1a4Horas" />
+          <ScalarProperty Name="fiIncidentes4Horas" ColumnName="fiIncidentes4Horas" />
+          <ScalarProperty Name="fiIncidentes8Horas" ColumnName="fiIncidentes8Horas" />
+          <ScalarProperty Name="fiIncidentes24Horas" ColumnName="fiIncidentes24Horas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DashboardPorArea" FunctionName="SARISModel.Store.sp_DashboardPorArea">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_DashboardPorArea_Result">
+          <ScalarProperty Name="fiIncidentesActivos" ColumnName="fiIncidentesActivos" />
+          <ScalarProperty Name="fiIncidentes4Horas" ColumnName="fiIncidentes4Horas" />
+          <ScalarProperty Name="fiIncidentes8Horas" ColumnName="fiIncidentes8Horas" />
+          <ScalarProperty Name="fiIncidentes24Horas" ColumnName="fiIncidentes24Horas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListarUrgencia" FunctionName="SARISModel.Store.sp_ListarUrgencia">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_ListarUrgencia_Result">
+          <ScalarProperty Name="fiIDUrgencia" ColumnName="fiIDUrgencia" />
+          <ScalarProperty Name="fcDescripcionUrgencia" ColumnName="fcDescripcionUrgencia" />
+          <ScalarProperty Name="fiTiempo" ColumnName="fiTiempo" />
+          <ScalarProperty Name="fiNivel" ColumnName="fiNivel" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_Editar" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_Insertar" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_Insertar" />
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_InsertarEnArea" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_InsertarEnArea" />
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_InsertarEnAreaPorUsuarioAsignado" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_InsertarEnAreaPorUsuarioAsignado" />
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_Leido" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_Leido" />
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_Lista" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Notificaciones_Maestro_Lista_Result">
+          <ScalarProperty Name="fiIDNotificacion" ColumnName="fiIDNotificacion" />
+          <ScalarProperty Name="fiIDUsuarioNotificacion" ColumnName="fiIDUsuarioNotificacion" />
+          <ScalarProperty Name="fcUsuarioNotificacion" ColumnName="fcUsuarioNotificacion" />
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fcUsuarioSolicitante" ColumnName="fcUsuarioSolicitante" />
+          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+          <ScalarProperty Name="fcUsuarioAsignado" ColumnName="fcUsuarioAsignado" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fcMensajeRequerimiento" ColumnName="fcMensajeRequerimiento" />
+          <ScalarProperty Name="fcUrl" ColumnName="fcUrl" />
+          <ScalarProperty Name="fbLeido" ColumnName="fbLeido" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_ObtenerPorIdArea" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_ObtenerPorIdArea">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Notificaciones_Maestro_ObtenerPorIdArea_Result">
+          <ScalarProperty Name="fiIDNotificacion" ColumnName="fiIDNotificacion" />
+          <ScalarProperty Name="fiIDUsuarioNotificacion" ColumnName="fiIDUsuarioNotificacion" />
+          <ScalarProperty Name="fcUsuarioNotificacion" ColumnName="fcUsuarioNotificacion" />
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fcUsuarioSolicitante" ColumnName="fcUsuarioSolicitante" />
+          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+          <ScalarProperty Name="fcUsuarioAsignado" ColumnName="fcUsuarioAsignado" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fcMensajeRequerimiento" ColumnName="fcMensajeRequerimiento" />
+          <ScalarProperty Name="fcUrl" ColumnName="fcUrl" />
+          <ScalarProperty Name="fbLeido" ColumnName="fbLeido" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_ObtenerPorIdAreaUsuarioAsignado" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_ObtenerPorIdAreaUsuarioAsignado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Notificaciones_Maestro_ObtenerPorIdAreaUsuarioAsignado_Result">
+          <ScalarProperty Name="fiIDNotificacion" ColumnName="fiIDNotificacion" />
+          <ScalarProperty Name="fiIDUsuarioNotificacion" ColumnName="fiIDUsuarioNotificacion" />
+          <ScalarProperty Name="fcUsuarioNotificacion" ColumnName="fcUsuarioNotificacion" />
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fcUsuarioSolicitante" ColumnName="fcUsuarioSolicitante" />
+          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+          <ScalarProperty Name="fcUsuarioAsignado" ColumnName="fcUsuarioAsignado" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fcMensajeRequerimiento" ColumnName="fcMensajeRequerimiento" />
+          <ScalarProperty Name="fcUrl" ColumnName="fcUrl" />
+          <ScalarProperty Name="fbLeido" ColumnName="fbLeido" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Notificaciones_Maestro_ObtenerPorIdNotificacion" FunctionName="SARISModel.Store.sp_Notificaciones_Maestro_ObtenerPorIdNotificacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Notificaciones_Maestro_ObtenerPorIdNotificacion_Result">
+          <ScalarProperty Name="fiIDNotificacion" ColumnName="fiIDNotificacion" />
+          <ScalarProperty Name="fiIDUsuarioNotificacion" ColumnName="fiIDUsuarioNotificacion" />
+          <ScalarProperty Name="fcUsuarioNotificacion" ColumnName="fcUsuarioNotificacion" />
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fcUsuarioSolicitante" ColumnName="fcUsuarioSolicitante" />
+          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+          <ScalarProperty Name="fcUsuarioAsignado" ColumnName="fcUsuarioAsignado" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fcMensajeRequerimiento" ColumnName="fcMensajeRequerimiento" />
+          <ScalarProperty Name="fcUrl" ColumnName="fcUrl" />
+          <ScalarProperty Name="fbLeido" ColumnName="fbLeido" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Prioridad_urgenciaXimpacto" FunctionName="SARISModel.Store.sp_Prioridad_urgenciaXimpacto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Prioridad_urgenciaXimpacto_Result">
+          <ScalarProperty Name="fiPrioridad" ColumnName="fiPrioridad" />
+          <ScalarProperty Name="fcPrioridad" ColumnName="fcPrioridad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_UsuarioLibre" FunctionName="SARISModel.Store.sp_Requerimientos_UsuarioLibre">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_UsuarioLibre_Result">
+          <ScalarProperty Name="fiIDUsuario" ColumnName="fiIDUsuario" />
+          <ScalarProperty Name="fiIncidentesAsignados" ColumnName="fiIncidentesAsignados" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_TicketRobChat_Crear" FunctionName="SARISModel.Store.sp_TicketRobChat_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Tickets_FuraTiempo" FunctionName="SARISModel.Store.sp_Tickets_FuraTiempo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Tickets_FuraTiempo_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
+          <ScalarProperty Name="fcAreaSolicitante" ColumnName="fcAreaSolicitante" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
+          <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+          <ScalarProperty Name="fcCorreoUsuarioAsignado" ColumnName="fcCorreoUsuarioAsignado" />
+          <ScalarProperty Name="fcCorreoUsuarioSolicitante" ColumnName="fcCorreoUsuarioSolicitante" />
+          <ScalarProperty Name="fcCorreoJefeArea" ColumnName="fcCorreoJefeArea" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+          <ScalarProperty Name="minutos" ColumnName="minutos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DetalleBitacoraInformacionArchivos" FunctionName="SARISModel.Store.sp_DetalleBitacoraInformacionArchivos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_DetalleBitacoraInformacionArchivos_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+          <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+          <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+          <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListaTicket_Padre" FunctionName="SARISModel.Store.sp_ListaTicket_Padre">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_ListaTicket_Padre_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bandeja_ByID" FunctionName="SARISModel.Store.sp_Requerimientos_Bandeja_ByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_Bandeja_ByID_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fcNombreSolicitante" ColumnName="fcNombreSolicitante" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+          <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
+          <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+          <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+          <ScalarProperty Name="fdFechaAsignacion" ColumnName="fdFechaAsignacion" />
+          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+          <ScalarProperty Name="fcNombreAsignado" ColumnName="fcNombreAsignado" />
+          <ScalarProperty Name="fdFechadeCierre" ColumnName="fdFechadeCierre" />
+          <ScalarProperty Name="fiTiempodeDesarrollo" ColumnName="fiTiempodeDesarrollo" />
+          <ScalarProperty Name="fiCategoriadeDesarrollo" ColumnName="fiCategoriadeDesarrollo" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fiTipoRequerimiento" ColumnName="fiTipoRequerimiento" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+          <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
+          <ScalarProperty Name="fcNombreAreaSolicitante" ColumnName="fcNombreAreaSolicitante" />
+          <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
+          <ScalarProperty Name="fcNombreAreaAsignada" ColumnName="fcNombreAreaAsignada" />
+          <ScalarProperty Name="fnValoracionRequerimiento" ColumnName="fnValoracionRequerimiento" />
+          <ScalarProperty Name="fdFechaUltimaModificacion" ColumnName="fdFechaUltimaModificacion" />
+          <ScalarProperty Name="fiIDUsuarioUltimaModificacion" ColumnName="fiIDUsuarioUltimaModificacion" />
+          <ScalarProperty Name="fiPuedeModificarlo" ColumnName="fiPuedeModificarlo" />
+          <ScalarProperty Name="fiIDRequerimientoPadre" ColumnName="fiIDRequerimientoPadre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DatosTicket_Correo" FunctionName="SARISModel.Store.sp_DatosTicket_Correo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_DatosTicket_Correo_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
+          <ScalarProperty Name="fcAreaSolicitante" ColumnName="fcAreaSolicitante" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
+          <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+          <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
+          <ScalarProperty Name="fcCorreoUsuarioSolicitante" ColumnName="fcCorreoUsuarioSolicitante" />
+          <ScalarProperty Name="fcCorreoJefeArea" ColumnName="fcCorreoJefeArea" />
+          <ScalarProperty Name="fcTelefonoSolicitante" ColumnName="fcTelefonoSolicitante" />
+          <ScalarProperty Name="fcTelefonoJefe" ColumnName="fcTelefonoJefe" />
+          <ScalarProperty Name="fcCorreoArea" ColumnName="fcCorreoArea" />
+          <ScalarProperty Name="fiIDUrgencia" ColumnName="fiIDUrgencia" />
+          <ScalarProperty Name="fcDescripcionUrgencia" ColumnName="fcDescripcionUrgencia" />
+          <ScalarProperty Name="fiIDImpacto" ColumnName="fiIDImpacto" />
+          <ScalarProperty Name="fcDescripcionImpacto" ColumnName="fcDescripcionImpacto" />
+          <ScalarProperty Name="fiIDPrioridad" ColumnName="fiIDPrioridad" />
+          <ScalarProperty Name="fcDescripcionPrioridad" ColumnName="fcDescripcionPrioridad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Categorias_Indicidencias_Desactivar" FunctionName="SARISModel.Store.sp_Categorias_Indicidencias_Desactivar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Categorias_Indicidencias_Desactivar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Categorias_Indicidencias_Editar" FunctionName="SARISModel.Store.sp_Categorias_Indicidencias_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Categorias_Indicidencias_Editar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Categorias_Indicidencias_Insertar" FunctionName="SARISModel.Store.sp_Categorias_Indicidencias_Insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Categorias_Indicidencias_Insertar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Categorias_Indicidencias_Listado" FunctionName="SARISModel.Store.sp_Categorias_Indicidencias_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Categorias_Indicidencias_Listado_Result">
+          <ScalarProperty Name="fiIDCategoriaDesarrollo" ColumnName="fiIDCategoriaDesarrollo" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Indicadores_Desactivar" FunctionName="SARISModel.Store.sp_Indicadores_Desactivar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Indicadores_Desactivar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Indicadores_Editar" FunctionName="SARISModel.Store.sp_Indicadores_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Indicadores_Editar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Indicadores_Find" FunctionName="SARISModel.Store.sp_Indicadores_Find">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Indicadores_Find_Result">
+          <ScalarProperty Name="fiIDTipoRequerimiento" ColumnName="fiIDTipoRequerimiento" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Indicadores_Insertar" FunctionName="SARISModel.Store.sp_Indicadores_Insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Indicadores_Insertar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Catalogo_Generencias_Editar" FunctionName="SARISModel.Store.sp_Requerimientos_Catalogo_Generencias_Editar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Catalogo_Generencias_Eliminar" FunctionName="SARISModel.Store.sp_Requerimientos_Catalogo_Generencias_Eliminar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Catalogo_Generencias_Insertar" FunctionName="SARISModel.Store.sp_Requerimientos_Catalogo_Generencias_Insertar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Catalogo_Generencias_Listado" FunctionName="SARISModel.Store.sp_Requerimientos_Catalogo_Generencias_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_Catalogo_Generencias_Listado_Result">
+          <ScalarProperty Name="fiIDGerencia" ColumnName="fiIDGerencia" />
+          <ScalarProperty Name="fcNombreGenerencia" ColumnName="fcNombreGenerencia" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiIDUsuarioResponsable" ColumnName="fiIDUsuarioResponsable" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Ubicacion_SubCategoria_Desactivar" FunctionName="SARISModel.Store.sp_Ubicacion_SubCategoria_Desactivar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Ubicacion_SubCategoria_Desactivar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Ubicacion_SubCategoria_Editar" FunctionName="SARISModel.Store.sp_Ubicacion_SubCategoria_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Ubicacion_SubCategoria_Editar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Ubicacion_SubCategoria_Insertar" FunctionName="SARISModel.Store.sp_Ubicacion_SubCategoria_Insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Ubicacion_SubCategoria_Insertar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Ubicacion_SubCategoria_Listado" FunctionName="SARISModel.Store.sp_Ubicacion_SubCategoria_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Ubicacion_SubCategoria_Listado_Result">
+          <ScalarProperty Name="fiUbicacion" ColumnName="fiUbicacion" />
+          <ScalarProperty Name="fcDescripcionUbicacion" ColumnName="fcDescripcionUbicacion" />
+          <ScalarProperty Name="fcGeolocalización" ColumnName="fcGeolocalización" />
+          <ScalarProperty Name="fcDescripciondeUbicacion" ColumnName="fcDescripciondeUbicacion" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListarPrioridad" FunctionName="SARISModel.Store.sp_ListarPrioridad">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_ListarPrioridad_Result">
+          <ScalarProperty Name="fiIDPrioridad" ColumnName="fiIDPrioridad" />
+          <ScalarProperty Name="fcDescripcionPrioridad" ColumnName="fcDescripcionPrioridad" />
+          <ScalarProperty Name="fiNivelPrioridad" ColumnName="fiNivelPrioridad" />
+          <ScalarProperty Name="fiTiempo" ColumnName="fiTiempo" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Motivos_Estado_Listado" FunctionName="SARISModel.Store.sp_Motivos_Estado_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Motivos_Estado_Listado_Result">
+          <ScalarProperty Name="fiMotivos" ColumnName="fiMotivos" />
+          <ScalarProperty Name="fcNombreMotivo" ColumnName="fcNombreMotivo" />
+          <ScalarProperty Name="fcDescripcionMotivo" ColumnName="fcDescripcionMotivo" />
+          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Plataformas_Listado" FunctionName="SARISModel.Store.sp_Plataformas_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Plataformas_Listado_Result">
+          <ScalarProperty Name="fiIDPlataforma" ColumnName="fiIDPlataforma" />
+          <ScalarProperty Name="fcNombrePlataforma" ColumnName="fcNombrePlataforma" />
+          <ScalarProperty Name="fcDescripcionPlataforma" ColumnName="fcDescripcionPlataforma" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ServiciosAfectados_Listado" FunctionName="SARISModel.Store.sp_ServiciosAfectados_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_ServiciosAfectados_Listado_Result">
+          <ScalarProperty Name="fiIDServicio" ColumnName="fiIDServicio" />
+          <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
+          <ScalarProperty Name="fcDescripcionServicio" ColumnName="fcDescripcionServicio" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Alta" FunctionName="SARISModel.Store.sp_Requerimiento_Alta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Alta_Result">
+          <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+          <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+          <ScalarProperty Name="IdIngresado" ColumnName="IdIngresado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Categorias_IndicidenciasResolucion_Desactivar" FunctionName="SARISModel.Store.sp_Categorias_IndicidenciasResolucion_Desactivar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Categorias_IndicidenciasResolucion_Desactivar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Categorias_IndicidenciasResolucion_Editar" FunctionName="SARISModel.Store.sp_Categorias_IndicidenciasResolucion_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Categorias_IndicidenciasResolucion_Editar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Categorias_IndicidenciasResolucion_Insertar" FunctionName="SARISModel.Store.sp_Categorias_IndicidenciasResolucion_Insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Categorias_IndicidenciasResolucion_Insertar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Categorias_IndicidenciasResolucion_Listado" FunctionName="SARISModel.Store.sp_Categorias_IndicidenciasResolucion_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Categorias_IndicidenciasResolucion_Listado_Result">
+          <ScalarProperty Name="fiIDCategoriaResolucion" ColumnName="fiIDCategoriaResolucion" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Indicadores_Lista" FunctionName="SARISModel.Store.sp_Indicadores_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Indicadores_Lista_Result">
+          <ScalarProperty Name="fiIDTipoRequerimiento" ColumnName="fiIDTipoRequerimiento" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+          <ScalarProperty Name="fiIDCategoriaDesarrollo" ColumnName="fiIDCategoriaDesarrollo" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiUbicacion" ColumnName="fiUbicacion" />
+          <ScalarProperty Name="fcDescripcionUbicacion" ColumnName="fcDescripcionUbicacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_IndicadoresResolucion_Desactivar" FunctionName="SARISModel.Store.sp_IndicadoresResolucion_Desactivar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_IndicadoresResolucion_Desactivar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_IndicadoresResolucion_Editar" FunctionName="SARISModel.Store.sp_IndicadoresResolucion_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_IndicadoresResolucion_Editar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_IndicadoresResolucion_Insertar" FunctionName="SARISModel.Store.sp_IndicadoresResolucion_Insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_IndicadoresResolucion_Insertar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_IndicadoresResolucion_Lista" FunctionName="SARISModel.Store.sp_IndicadoresResolucion_Lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_IndicadoresResolucion_Lista_Result">
+          <ScalarProperty Name="fiIDTipoRequerimientoResolucion" ColumnName="fiIDTipoRequerimientoResolucion" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+          <ScalarProperty Name="fiIDCategoriaResolucion" ColumnName="fiIDCategoriaResolucion" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiUbicacion" ColumnName="fiUbicacion" />
+          <ScalarProperty Name="fcDescripcionUbicacion" ColumnName="fcDescripcionUbicacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ConfiguracionCI_Crear" FunctionName="SARISModel.Store.sp_ConfiguracionCI_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Actualizar" FunctionName="SARISModel.Store.sp_Requerimiento_Maestro_Actualizar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Detalle" FunctionName="SARISModel.Store.sp_Requerimiento_Maestro_Detalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Maestro_Detalle_Result">
+          <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
+          <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
+          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fdFechaAsignacion" ColumnName="fdFechaAsignacion" />
+          <ScalarProperty Name="fdFechadeCierre" ColumnName="fdFechadeCierre" />
+          <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+          <ScalarProperty Name="fiTipoRequerimiento" ColumnName="fiTipoRequerimiento" />
+          <ScalarProperty Name="fiCategoriadeDesarrollo" ColumnName="fiCategoriadeDesarrollo" />
+          <ScalarProperty Name="fiTiempodeDesarrollo" ColumnName="fiTiempodeDesarrollo" />
+          <ScalarProperty Name="fiIDUrgencia" ColumnName="fiIDUrgencia" />
+          <ScalarProperty Name="fcDescripcionUrgencia" ColumnName="fcDescripcionUrgencia" />
+          <ScalarProperty Name="fiIDImpacto" ColumnName="fiIDImpacto" />
+          <ScalarProperty Name="fcDescripcionImpacto" ColumnName="fcDescripcionImpacto" />
+          <ScalarProperty Name="fiIDPrioridad" ColumnName="fiIDPrioridad" />
+          <ScalarProperty Name="fcDescripcionPrioridad" ColumnName="fcDescripcionPrioridad" />
+          <ScalarProperty Name="fiIDPlataforma" ColumnName="fiIDPlataforma" />
+          <ScalarProperty Name="fcNombrePlataforma" ColumnName="fcNombrePlataforma" />
+          <ScalarProperty Name="fiIDServicio" ColumnName="fiIDServicio" />
+          <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
+          <ScalarProperty Name="fdFechaAlarmaDeteccion" ColumnName="fdFechaAlarmaDeteccion" />
+          <ScalarProperty Name="fiIDRequerimientoPadre" ColumnName="fiIDRequerimientoPadre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_IncidenciasPorServicioAfectado" FunctionName="SARISModel.Store.sp_IncidenciasPorServicioAfectado" />
+    <FunctionImportMapping FunctionImportName="sp_Catalogo_ConfiguracionCI_listado" FunctionName="SARISModel.Store.sp_Catalogo_ConfiguracionCI_listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Catalogo_ConfiguracionCI_listado_Result">
+          <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+          <ScalarProperty Name="fcRegion" ColumnName="fcRegion" />
+          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+          <ScalarProperty Name="fcCI" ColumnName="fcCI" />
+          <ScalarProperty Name="fiIDConfiguracion" ColumnName="fiIDConfiguracion" />
+          <ScalarProperty Name="fcConfiguracion" ColumnName="fcConfiguracion" />
+          <ScalarProperty Name="fcLatitud" ColumnName="fcLatitud" />
+          <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Ciudad" FunctionName="SARISModel.Store.sp_Ciudad">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Ciudad_Result">
+          <ScalarProperty Name="fiIDCiudad" ColumnName="fiIDCiudad" />
+          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ClacificacionCI" FunctionName="SARISModel.Store.sp_ClacificacionCI">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_ClacificacionCI_Result">
+          <ScalarProperty Name="fiIDCI" ColumnName="fiIDCI" />
+          <ScalarProperty Name="fcCI" ColumnName="fcCI" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ConfiguracionCI" FunctionName="SARISModel.Store.sp_ConfiguracionCI">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_ConfiguracionCI_Result">
+          <ScalarProperty Name="fiIDConfiguracion" ColumnName="fiIDConfiguracion" />
+          <ScalarProperty Name="fcConfiguracion" ColumnName="fcConfiguracion" />
+          <ScalarProperty Name="fcLatitud" ColumnName="fcLatitud" />
+          <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Editar_UsuarioGeneral" FunctionName="SARISModel.Store.sp_Editar_UsuarioGeneral" />
+    <FunctionImportMapping FunctionImportName="sp_Pais" FunctionName="SARISModel.Store.sp_Pais">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Pais_Result">
+          <ScalarProperty Name="fiIDPais" ColumnName="fiIDPais" />
+          <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Region" FunctionName="SARISModel.Store.sp_Region">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Region_Result">
+          <ScalarProperty Name="fiIDRegion" ColumnName="fiIDRegion" />
+          <ScalarProperty Name="fcRegion" ColumnName="fcRegion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Niveles_Listado" FunctionName="SARISModel.Store.sp_Requerimientos_Niveles_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_Niveles_Listado_Result">
+          <ScalarProperty Name="fiIDNivel" ColumnName="fiIDNivel" />
+          <ScalarProperty Name="fcNivel" ColumnName="fcNivel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Areas_Desactivar" FunctionName="SARISModel.Store.sp_Areas_Desactivar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Areas_Desactivar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Areas_Editar" FunctionName="SARISModel.Store.sp_Areas_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Areas_Editar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Areas_Find" FunctionName="SARISModel.Store.sp_Areas_Find">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Areas_Find_Result">
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
+          <ScalarProperty Name="fiIDUsuarioResponsable" ColumnName="fiIDUsuarioResponsable" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Areas_Insertar" FunctionName="SARISModel.Store.sp_Areas_Insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Areas_Insertar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_Areas_Lista" FunctionName="SARISModel.Store.sp_Areas_Lista">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SARISModel.sp_Areas_Lista_Result">
@@ -314,6 +936,110 @@
           <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
           <ScalarProperty Name="fiIDUsuarioResponsable" ColumnName="fiIDUsuarioResponsable" />
           <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fiIDGerencia" ColumnName="fiIDGerencia" />
+          <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
+          <ScalarProperty Name="fcNombreGenerencia" ColumnName="fcNombreGenerencia" />
+          <ScalarProperty Name="fiNivel" ColumnName="fiNivel" />
+          <ScalarProperty Name="fcNivel" ColumnName="fcNivel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion" FunctionName="SARISModel.Store.sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion_Result">
+          <ScalarProperty Name="fiIDTipoRequerimientoResolucion" ColumnName="fiIDTipoRequerimientoResolucion" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DetalleBitacoraInformacionArchivos_COPIA" FunctionName="SARISModel.Store.sp_DetalleBitacoraInformacionArchivos_COPIA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_DetalleBitacoraInformacionArchivos_COPIA_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcNombreArchivo" ColumnName="fcNombreArchivo" />
+          <ScalarProperty Name="fcTipoArchivo" ColumnName="fcTipoArchivo" />
+          <ScalarProperty Name="fcRutaArchivo" ColumnName="fcRutaArchivo" />
+          <ScalarProperty Name="fcURL" ColumnName="fcURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_IncidenciasPorCI_Insertar" FunctionName="SARISModel.Store.sp_IncidenciasPorCI_Insertar" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Adjuntos_Guardar_Copia" FunctionName="SARISModel.Store.sp_Requerimientos_Adjuntos_Guardar_Copia" />
+    <FunctionImportMapping FunctionImportName="sp_ObtenerTokenBitacora_porIDTicket" FunctionName="SARISModel.Store.sp_ObtenerTokenBitacora_porIDTicket" />
+    <FunctionImportMapping FunctionImportName="sp_DetalleBitacoraInformacion" FunctionName="SARISModel.Store.sp_DetalleBitacoraInformacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_DetalleBitacoraInformacion_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fcTituloRequerimiento" ColumnName="fcTituloRequerimiento" />
+          <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+          <ScalarProperty Name="fcTipoRequerimiento" ColumnName="fcTipoRequerimiento" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcNombreUsuarioSolicitante" ColumnName="fcNombreUsuarioSolicitante" />
+          <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+          <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fiIDUrgencia" ColumnName="fiIDUrgencia" />
+          <ScalarProperty Name="fcDescripcionUrgencia" ColumnName="fcDescripcionUrgencia" />
+          <ScalarProperty Name="fiIDImpacto" ColumnName="fiIDImpacto" />
+          <ScalarProperty Name="fcDescripcionImpacto" ColumnName="fcDescripcionImpacto" />
+          <ScalarProperty Name="fiIDPrioridad" ColumnName="fiIDPrioridad" />
+          <ScalarProperty Name="fcDescripcionPrioridad" ColumnName="fcDescripcionPrioridad" />
+          <ScalarProperty Name="fiIDPlataforma" ColumnName="fiIDPlataforma" />
+          <ScalarProperty Name="fcNombrePlataforma" ColumnName="fcNombrePlataforma" />
+          <ScalarProperty Name="fiIDServicio" ColumnName="fiIDServicio" />
+          <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
+          <ScalarProperty Name="fdFechaAlarmaDeteccion" ColumnName="fdFechaAlarmaDeteccion" />
+          <ScalarProperty Name="fcDescripcionCategoriaResolucion" ColumnName="fcDescripcionCategoriaResolucion" />
+          <ScalarProperty Name="fcDescripcionSubCategoriaResolucion" ColumnName="fcDescripcionSubCategoriaResolucion" />
+          <ScalarProperty Name="fcNombreMotivo" ColumnName="fcNombreMotivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bitacoras_Historial_ByID" FunctionName="SARISModel.Store.sp_Requerimientos_Bitacoras_Historial_ByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_Bitacoras_Historial_ByID_Result">
+          <ScalarProperty Name="fiIDFila" ColumnName="fiIDFila" />
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fIDIUsuario" ColumnName="fIDIUsuario" />
+          <ScalarProperty Name="fcUsuarioPricipal" ColumnName="fcUsuarioPricipal" />
+          <ScalarProperty Name="fdFechaInicioEstado" ColumnName="fdFechaInicioEstado" />
+          <ScalarProperty Name="fdFechaFinEstado" ColumnName="fdFechaFinEstado" />
+          <ScalarProperty Name="fiIDEstado" ColumnName="fiIDEstado" />
+          <ScalarProperty Name="fiIDApp" ColumnName="fiIDApp" />
+          <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+          <ScalarProperty Name="fcClaseColor" ColumnName="fcClaseColor" />
+          <ScalarProperty Name="fcUsuarioSecundario" ColumnName="fcUsuarioSecundario" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiHorasTrabajadas" ColumnName="fiHorasTrabajadas" />
+          <ScalarProperty Name="fiMinutios" ColumnName="fiMinutios" />
+          <ScalarProperty Name="fcComentario" ColumnName="fcComentario" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Incidentes_Cancelados" FunctionName="SARISModel.Store.sp_Incidentes_Cancelados" />
+    <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bandeja" FunctionName="SARISModel.Store.sp_Requerimientos_Bandeja" />
+    <FunctionImportMapping FunctionImportName="sp_RequerimientoPorServicioByRequerimiento" FunctionName="SARISModel.Store.sp_RequerimientoPorServicioByRequerimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result">
+          <ScalarProperty Name="fiIdRequerimiento" ColumnName="fiIdRequerimiento" />
+          <ScalarProperty Name="fiIdServicioAfectado" ColumnName="fiIdServicioAfectado" />
+          <ScalarProperty Name="fcNombreServicio" ColumnName="fcNombreServicio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CIporIncidencias_listos" FunctionName="SARISModel.Store.sp_CIporIncidencias_listos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_CIporIncidencias_listos_Result">
+          <ScalarProperty Name="fiIDConfiguracionCI" ColumnName="fiIDConfiguracionCI" />
+          <ScalarProperty Name="fcConfiguracion" ColumnName="fcConfiguracion" />
+          <ScalarProperty Name="fcLatitud" ColumnName="fcLatitud" />
+          <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+          <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+          <ScalarProperty Name="fcRegion" ColumnName="fcRegion" />
+          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

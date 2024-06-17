@@ -20,7 +20,7 @@
 <div class="modal-header bg-primary-600 bg-primary-gradient" >
     <h2 class="modal-title text-white">
         
-        <text>Crear Ticket</text>    
+        <text>Crear Incidente</text>    
     
     </h2>
     
@@ -32,66 +32,171 @@
 <div class="modal-body">
     <div class="row">
 
-        <div class="col-lg-6">
+
+
+        <div class="col-lg-12">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label class="col-form-label">Titulo</label>
                         <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Definicion del titulo" />
                     </div>
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label class="col-form-label">Descripcion</label>
                         <input id="txtdescripcion" class="form-control" type="text" placeholder="Definicion del ticket" />
                     </div>
                 </div>
                 <!--<div class="col-sm-12">-->
-                    <!--esto debe de ser un select -->
-                    <!--<div class="form-group">
-                    <label class="col-form-label">Area</label>
-                    <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Area" />
-                        </div>
-                    </div>-->
+                <!--esto debe de ser un select -->
+                <!--<div class="form-group">
+    <label class="col-form-label">Area</label>
+    <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Area" />
+        </div>
+    </div>-->
 
-                <div class="col-lg-12">
-                    <!--esto debe de ser un select -->
+                <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="col-form-label">Tipo Incidencia</label>
-                        <input id="txtNombreTitulo" class="form-control" type="text" placeholder="Defina un Tipo Incidencia" />
+                        <label class="col-form-label">Tipo Categoria</label>
+                        <select id="seleccategoria" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Tipo Sub Categoria</label>
+                        <select id="selectincidencia" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Urgencia</label>
+                        <select id="selectUrgencia" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Impacto</label>
+                        <select id="selectImpacto" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Prioridad</label>
+                        <select id="PrioridadSelect" class="form-select form-control" readonly>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6" style="display:none">
+                    <div class="form-group">
+                        <label class="col-form-label">Asignar a</label>
+                        <select id="selectasignar" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Incidente Padre</label>
+                        <select id="ticketpadre" class="form-select form-control" readonly>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Deteccion Alarma</label>
+                        <input id="deteccionalarma" class="form-control" type="datetime-local" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Plataforma</label>
+                        <select id="ticketplataforma" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Servicios Afectados</label>
+                        <button onclick="AgregarServicios()" class="form-control btn btn-success">Agregar Servicios</button>
+                    </div>
+                    <div id="tbodyservicios">
+
+                    </div>
+                    
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Ci</label>
+                        <button onclick="AgregarCI()" class="form-control btn btn-success">Agregar CI</button>
+
+                    </div>
+                    <div id="tbodycis">
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Comentario</label>
+                        <input id="txtcomentario" class="form-control" type="text" placeholder="Escriba un comentario para este Ticket" />
                     </div>
                 </div>
 
             </div>
         </div>
+        <br />
+        <div class="col-lg-12">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label">DOCUMENTO (Suba imagenes,Word,Excel,Pdf para este ticket) </label>
 
+                            <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
+                                <div class="dz-message needsclick">
+
+                                    <div class="dz-icon">
+                                        <i class="fal fa-cloud-upload text-muted mb-3"></i>
+                                    </div>
+                                    <div>
+                                        <span class="dz-text">Arrastre Imagen</span>
+                                        <p class="text-sm text-muted">O Click para elegirla manualmente</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Comentario del ticket-->
 
         <div class="col-lg-6">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="control-label">DOCUMENTO (Solo se pueden subir pdf e imagenes) </label>
 
-                        <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
-                            <div class="dz-message needsclick">
-
-                                <div class="dz-icon">
-                                    <i class="fal fa-cloud-upload text-muted mb-3"></i>
-                                </div>
-                                <div>
-                                    <span class="dz-text">Arrastre Imagen</span>
-                                    <p class="text-sm text-muted">O Click para elegirla manualmente</p>
-                                </div>
-                            </div>
-                        </form>
-
-
-                    </div>
-
-                </div>
             </div>
         </div>
+
+
 
     </div>
 
@@ -117,93 +222,575 @@
         </div>
     </div>
 </div>
-
+<script src="~/Content/js/loading/loading.js"></script>
 <script>
-    function GuardarDocumentos(IdRequerimiento) {
-        for (let selectedFile of selectedFiles) {
-            const form = new FormData();
-            form.append("idRequerimiento", IdRequerimiento);
-            form.append("idDocumento", 1);
-            form.append("imagen", selectedFile);
-            form.append("idUsuario", ID_USUARIO);
-            form.append("idSesion", ID_SESION);
-            form.append("idApp", ID_IDAPP);
+
+    var fotosredimencionadas = [];
+
+    select();
+    UrgenciaSelect();
+    ImpactoSelect();
+
+    var idserviciosusados = [];
+    var idCisusados = [];
+
+    var idservicios = [];
+    var idCis = [];
+
+
+    function ImpactoSelect()
+    {
+        $.ajax({
+            url: "@Url.Action("SelectImpacto", "LlenarCampos")",
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectcategoria = $("#selectImpacto");
+
+                selectcategoria.empty();
+                selectcategoria.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Impacto'
+                }));
+                $("#selectImpacto").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectcategoria.append($('<option>', {
+                        value: item.fiNivel,
+                        text: item.fcDescripcionImpacto
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    }
+
+    $(`#selectUrgencia`).on('change', function () {
+        debugger
+        var Urgencia = $("#selectUrgencia option:selected").val();
+        var Impacto = $("#selectImpacto option:selected").val();
+
+        if (Urgencia != 0 && Impacto != 0)
+        {
             $.ajax({
-                type: "POST",
-                enctype: 'multipart/form-data',
-                url: "/Handlers/UploadRequerimiento/UploadHandler.ashx",
-                data: form,
-                processData: false,
-                contentType: false,
-                cache: false,
-                timeout: 800000,
-                success: function (data) {
-                    $("#modalGuardarDocumentosAsignados").modal('hide');
-                    /*  console.log("ok");*/
-                    $('#fileList').empty();
-                    MensajeExito("Se ha guardado las imagenes Correctamente");
+            url: "@Url.Action("SelectPrioridad", "LlenarCampos")",
+            type: "GET",
+                data: { Urgencia: Urgencia, Impacto: Impacto },
+            success: function (respuesta) {
 
-                    location.reload();
+                var selectIncidencia = $("#PrioridadSelect");
 
-                },
-                error: function (e) {
-                    MensajeError("Error al subir imagen");
-                    console.error(e);
+                selectIncidencia.empty();
 
-                }
-            });
+                $("#PrioridadSelect").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.fiPrioridad,
+                        text: item.fcPrioridad
+                    }));
+                });
+                $("#PrioridadSelect").prop("disabled", true);
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+        }
+
+    })
+
+    $(`#selectImpacto`).on('change', function () {
+        debugger
+        var Urgencia = $("#selectUrgencia option:selected").val();
+        var Impacto = $("#selectImpacto option:selected").val();
+        if (Urgencia != 0 && Impacto != 0)
+        {
+            $.ajax({
+            url: "@Url.Action("SelectPrioridad", "LlenarCampos")",
+            type: "GET",
+                data: { Urgencia: Urgencia, Impacto: Impacto },
+            success: function (respuesta) {
+
+                var selectIncidencia = $("#PrioridadSelect");
+
+                selectIncidencia.empty();
+
+                $("#PrioridadSelect").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.fiPrioridad,
+                        text: item.fcPrioridad
+                    }));
+                });
+                $("#PrioridadSelect").prop("disabled", true);
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+        }
+
+    })
+
+    function UrgenciaSelect()
+    {
+        $.ajax({
+            url: "@Url.Action("SelectUrgencia", "LlenarCampos")",
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectcategoria = $("#selectUrgencia");
+
+                selectcategoria.empty();
+                selectcategoria.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Urgencia'
+                }));
+                $("#selectUrgencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectcategoria.append($('<option>', {
+                        value: item.fiNivel,
+                        text: item.fcDescripcionUrgencia
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    }
+
+    function select() {
+
+        $.ajax({
+            url: "@Url.Action("SelectCategorias", "LlenarCampos")",
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectcategoria = $("#seleccategoria");
+
+                selectcategoria.empty();
+                selectcategoria.append($('<option>', {
+                    value: 0,
+                    text: 'Defina un Tipo Categoria'
+                }));
+                $("#seleccategoria").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectcategoria.append($('<option>', {
+                        value: item.fiIDTipoRequerimiento,
+                        text: item.fcTipoRequerimiento
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+        $.ajax({
+            url: "@Url.Action("SelecticketPadrese", "LlenarCampos")",
+            data: { idticket: 0},
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectpadre = $("#ticketpadre");
+
+                selectpadre.empty();
+                selectpadre.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Ticket Padre en caso que lo tenga'
+                }));
+                $("#ticketpadre").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectpadre.append($('<option>', {
+                        value: item.fiIDRequerimiento,
+                        text: item.fcTituloRequerimiento
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+
+        $.ajax({
+            url: "@Url.Action("SelectPlataforma", "LlenarCampos")",
+            data: { idticket: 0},
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectplataforma = $("#ticketplataforma");
+
+                selectplataforma.empty();
+                selectplataforma.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Una Plataforma'
+                }));
+                $("#ticketplataforma").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectplataforma.append($('<option>', {
+                        value: item.fiIDPlataforma,
+                        text: item.fcNombrePlataforma
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+        $.ajax({
+            url: "@Url.Action("SelectServiciosAfectados", "LlenarCampos")",
+            data: { idticket: 0},
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectservicios = $("#ticketservafectados");
+
+                selectservicios.empty();
+                selectservicios.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Un Servicio'
+                }));
+                $("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function (index, item) {
+                    idservicios.push({ select: false, fiIDServicio: item.fiIDServicio, fcNombreServicio: item.fcNombreServicio})
+                    selectservicios.append($('<option>', {
+                        value: item.fiIDServicio,
+                        text: item.fcNombreServicio
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+        @*$.ajax({
+            url: "@Url.Action("SelectServiciosCI", "LlenarCampos")",
+            data: { idticket: 0},
+            type: "GET",
+            success: function (respuesta) {
+
+                $.each(respuesta, function (index, item) {
+                    idCis.push({
+                        select: false,
+                        fcPais: item.fcPais,
+                        fcRegion: item.fcRegion,
+                        fcCiudad: item.fcCiudad,
+                        fcCI: item.fcCI,
+                        fiIDConfiguracion: item.fiIDConfiguracion,
+                        fcConfiguracion: item.fcConfiguracion,
+                        fcLatitud: item.fcLatitud,
+                        fcLongitud: item.fcLongitud
+                    })
+
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });*@
+
+    }
+
+    function GuardarDocumentos(IdRequerimiento) {
+        debugger
+        //const form = new FormData();
+
+        //form.append("idDocumento", 1);
+        var mod = [];
+
+        var cont = 0;
+        if (fotosredimencionadas.length < 1) {
+            //var datasus = { Titulo: "Exito", Mensaje: "Ticket Guardado correctamente", Estado: true }
+            //AlertaAjax(datasus)
+            return 0;
+        }
+
+        for (const item of fotosredimencionadas) {
+            mod.push({ piIDRequerimiento: IdRequerimiento, pcTipoArchivo: item.tipoarchivo, pcNombreArchivo: item.nombreArchivo, pcRutaArchivo: item.base, piIDSesion: 1, piIDApp: 1, pcURL: "-", pbEsImagen: item.pbEsImagen });
 
         }
+
+
+        $.ajax({
+            url: "@Url.Action("Guardardocumentos", "Ticket")",
+            type: "POST",
+            data: { modelo: mod },
+
+                timeout: 800000,
+            success: function (data) {
+                ToastrSuccess("Exito!", "Documentos guardados correctamente");
+                //var datasus = { Titulo: "Exito", Mensaje: "Documentos guardados correctamente", Estado: true }
+                //AlertaAjax(datasus)
+
+                //location.reload();
+
+            },
+            error: function (e) {
+                ToastrError("Erro!", "Error Al querer Subir Documentos");
+                //var dataerror = { Titulo: "Error", Mensaje: "", Estado: false }
+                //AlertaAjax(dataerror)
+                console.error(e);
+
+            }
+        });
+
+
     }
 
 
+    $(`#seleccategoria`).on('change', function () {
+        debugger
+        var textcategorias = $("#seleccategoria option:selected").text();
+
+        $.ajax({
+            url: "@Url.Action("SelectIncidenciasByCategorias", "LlenarCampos")",
+            type: "GET",
+            data: { fccategoria: textcategorias},
+            success: function (respuesta) {
+
+                var selectIncidencia = $("#selectincidencia");
+
+                selectIncidencia.empty();
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Defina un Tipo Sub Categoria'
+                }));
+                $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.fiIDTipoRequerimiento,
+                        text: item.fcTipoRequerimiento
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    })
 
     function GuardarRequermiento(id) {
-        debugger;
+        H5_loading.show();
         var EstadoRequerimiento = id;
+        var urg = $(`#selectUrgencia`).val();
+        var imp = $(`#selectImpacto`).val();
+        console.log(`urgencia = ${urg} impato = ${imp}`);
+
+        if (fotosredimencionadas.length < 1) {
+            ToastrError("Error", "Suba aun que sea 1 documento");
+            return 0;
+        }
+
+        if ($("#selectImpacto").val() == 0 || $("#selectUrgencia").val() == 0 || $("#seleccategoria").val() == 0 || $("#ticketplataforma").val() == 0 || $("#ticketservafectados").val() == 0 || $("#selectincidencia").val() == 0) {
+            return ToastrError("Error", "Llene todos los campos");
+        }
 
         var ticket = {
             fiIDEstadoRequerimiento: EstadoRequerimiento,
             fcTituloRequerimiento: $("#txtNombreTitulo").val(),
             fcDescripcionRequerimiento: $("#txtdescripcion").val(),
-
-            //fiIDAreaSolicitante: $("#dllDepartamentoArea :selected").val() == '' ? 0 : $("#dllDepartamentoArea :selected").val(),
-            //fcDescripcionAreaSolicitante: $("#dllDepartamentoArea").text(),
+            fiIDAreaSolicitante: $(`#selectarea`).val(),
+            fiTipoRequerimiento: $("#selectincidencia").val(),
+            fiIDImpacto: $(`#selectImpacto`).val(),
+            fiIDUrgencia: $(`#selectUrgencia`).val(),
+            fiIDPrioridad: $(`#PrioridadSelect`).val(),
+            fiIdTicketPadre: $(`#ticketpadre`).val(),
+            fdFechaAlarmaDeteccion: $(`#deteccionalarma`).val(),
+            fiPlataforma: $(`#ticketplataforma`).val(),
+            fiServicioAfectados: $(`#ticketservafectados`).val()
         }
-
+        var comentario = $("#txtcomentario").val();
+        if (comentario == "" || comentario == null) {
+            H5_loading.hide();
+            return ToastrError("Error", "Escriba un comentario");
+        }
+        var listaservicios = [];
+        for (const item of idservicios) {
+            if (item.select == true) {
+                listaservicios.push(item.fiIDServicio);
+            }
+        }
+        var listacis = [];
+        for (const item of idCis) {
+            listacis.push(item.id);
+        }
         $.ajax({
             type: "POST",
             url: "@Url.Action("GuardarTicket", "Ticket")",
-            data: { ticket: ticket },
-            error: function (xhr, ajaxOptions, thrownError) {
-                MensajeError('No se guardó el registro, contacte al administrador');
+            data: { ticket: ticket, comentarioticket: comentario, serviciosAfectados: listaservicios, Ciaguardar: listacis },
+            error: function (result) {
+                console.log(`error`);
+                ToastrError("Error", "No se guardo el Incidente, Contacte con el Administrador");
+                H5_loading.hide();
+
+                //var dataerror = { Titulo: "Error", Mensaje: "No se guardo el Incidente, Contacte con el Administrador", Estado: false }
+                //AlertaAjax(dataerror)
             },
             success: function (data) {
                 console.log(data);
-                if (data.Estado) {
-
+                //window.location.href ="@Url.Action("Index", "Ticket")"
+                if (data.fiMensaje == "1") {
+                    H5_loading.hide();
+                    CerrarModal();
+                    GuardarDocumentos(data.IdIngresado);
+                    return ToastrSuccess("Exito", "Ticket Registrado Correctamente");
                 }
-                CerrarModal();
-
-                //let resultado = data.d;
-                //console.log(resultado);
-                //if (resultado.ResultadoExitoso == true) {
-                //    IdRequerimiento = resultado.DebugString;
-                //    GuardarDocumentos(IdRequerimiento);
-                //    window.location = "BandejaRequerimientoDesarrollo.aspx?" + window.location.href.split('?')[1];
-                //}
-                //else {
-                //    MensajeError(resultado.MensajeResultado);
-                //    console.log(resultado.DebugString);
-                //}
             }
         });
 
+
     }
 
-    $("#btnGuardarRequerimientoEnviar").click(function (e) {
-        GuardarRequermiento(1);
+    myDropzone = $('#Imagen-dropzone').dropzone({
+        //url: '/file/post',
+        autoProcessQueue: true,
+        uploadMultiple: true,
+        acceptedFiles: "image/*,.pdf,.doc,.docx,.xls,.xlsx",
+        //maxFiles: 1,
+        addRemoveLinks: true,
+        dictMaxFilesExceeded: "Maximum upload limit reached",
+        dictInvalidFileType: "Upload only JPG/PNG/PDF/DOC/XLS",
+        //resizeWidth: 500,
+        //resizeHeight: 300,
+
+        init: function () {
+            var myDropzone = this;
+
+            myDropzone.on('maxfilesexceeded', function (file) {
+                this.removeAllFiles();
+                this.addFile(file);
+            });
+
+            myDropzone.on('addedfile', function (file) {
+                console.log("entro aquí el base64");
+                console.log("file.type:", file.type);
+
+                var tipoarchivo = file.type;
+                if (tipoarchivo === "application/pdf" ||
+                    tipoarchivo === "application/msword" ||
+                    tipoarchivo === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+                    tipoarchivo === "application/vnd.ms-excel" ||
+                    tipoarchivo === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
+
+                        //console.log('Base64 String:', base64String);
+                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: false});
+                        console.log(fotosredimencionadas);
+
+                        // Aquí puedes manejar el Base64 string, por ejemplo enviarlo a un servidor
+                    };
+                    reader.readAsDataURL(file);
+                } else if (tipoarchivo.startsWith("image/")) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
+                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: true });
+                    }
+                    //myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
+                }
+            });
+
+            myDropzone.on('thumbnail', function (file, dataURL) {
+                RedimencionarImagen(`fotopreviacanva`, file, "fotoprevia2", file.name, file.type.split('/')[1]);
+
+            });
+        },
+
+        removedfile: function (file) {
+            archivoExterno = 0;
+            var _ref = file.previewElement;
+            return _ref != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+        }
     });
+
+
+    $("#btnGuardarRequerimientoEnviar").click(function (e) {
+
+        GuardarRequermiento(1);
+        //GuardarDocumentos(22)
+    });
+
+    function RedimencionarImagen(idcanva, eimagencaptada, idimg, NombreArchivo, tipoimagen) {
+        debugger;
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d'); // capturamos el id del camva para ponerlo la imagen oculta ahi y asi poder tomar esa imagen y no la que se esta mostrando
+        var img = new Image;
+
+        //console.log(eimagencaptada.type);
+
+        img.src = URL.createObjectURL(eimagencaptada); // insertamos la imagen que el cliente subio para posteriormente hacer la reduccion
+        img.onload = function () {
+            //var canvas = document.getElementById(idcanva);
+            var maxAncho = 900; //aqui le ponemos unas medidas estandar que pueden cambiar en un futuro,
+            var maxAlto = 1500;
+
+            var proporcion = Math.min(maxAncho / img.width, maxAlto / img.height); // aqui hacemos una proporcion de las imagenes con respecto al tamaño de la imagen original y al estandar que tenemos nosotros aqui adentro
+            var propdos = img.width / img.height;
+            var ancho = img.width * proporcion;
+            var alto = img.height * proporcion;
+
+            canvas.width = (img.width / propdos); // ponemos el tamaño en el canva oculto
+            canvas.height = (img.height / propdos);
+
+            ctx.drawImage(img, 0, 0, (img.width / propdos), (img.height / propdos));
+            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // tira el base 64
+
+            var urlbase64 = getBase64Image(img); // tira el base 64
+            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // aqui para saber el base64 de la imagen
+            fotosredimencionadas.push({ base: canvas.toDataURL('image/jpeg', 0.7), nombreArchivo: NombreArchivo, tipoarchivo: tipoimagen, pbEsImagen: true});
+            return ctx;
+            //document.getElementById(idimg).src = canvas.toDataURL('image/jpeg', 0.7); // el 07 es la calidad de la imagen si no estoy mal eso decia en la documentacion
+            //document.getElementById(idcanva).style.display = "block"; //mostrar la imagen que esta oculta
+        }
+    }
+
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var dataURL = canvas.toDataURL();
+        return dataURL;
+    }
+
+    function AgregarServicios() {
+        console.log("entro en ese proceso")
+         $.ajax({
+                url: "@Url.Action("AgregarServicios", "Ticket")",
+                method: "get",
+                //data: { id: id },
+                success: function (data) {
+                    ShowModalSmall(data);
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });
+    }
+
+    function AgregarCI() {
+        console.log("entro en ese proceso")
+         $.ajax({
+                url: "@Url.Action("AgregarCI", "Ticket")",
+                method: "get",
+                //data: { id: id },
+             success: function (data) {
+                 ShowModal3(data);
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });
+    }
 
 
 </script>

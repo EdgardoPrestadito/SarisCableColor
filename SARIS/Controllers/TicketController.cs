@@ -235,7 +235,7 @@ namespace OrionCoreCableColor.Controllers
                     }
                     else
                     {
-                        ViewBag.Estados = contexto.sp_Estados_Lista().Where(a => a.fiIDEstado != 5 && !estadosquenovan.Any(b => b == a.fiIDEstado)).Select(x => new SelectListItem { Value = x.fiIDEstado.ToString(), Text = x.fcDescripcionEstado }).ToList();
+                        ViewBag.Estados = contexto.sp_Estados_Lista().Where(a => a.fiIDEstado != 5 && a.fiIDEstado != 6 && !estadosquenovan.Any(b => b == a.fiIDEstado)).Select(x => new SelectListItem { Value = x.fiIDEstado.ToString(), Text = x.fcDescripcionEstado }).ToList();
                         puede = false;
                     }
                     ViewBag.PuedeEditarCategoria = puede;
@@ -419,12 +419,12 @@ namespace OrionCoreCableColor.Controllers
                     
                     if (ticket.fiIDEstadoRequerimiento == 5)
                     {
-                        eliminarTicketAbierto(ticket.fiIDRequerimiento);
-                        agregarDatosTicketCerrados(ticket.fiIDRequerimiento);
+                        //    eliminarTicketAbierto(ticket.fiIDRequerimiento); //singalr
+                        //    agregarDatosTicketCerrados(ticket.fiIDRequerimiento);//singalr
                     }
                     else
                     {
-                        ObtenerDataTicket(ticket.fiIDRequerimiento); //Esto es el SignalR
+                        //ObtenerDataTicket(ticket.fiIDRequerimiento); //Esto es el SignalR
                     }
                     var correo = contexto.sp_DatosTicket_Correo(ticket.fiIDRequerimiento).FirstOrDefault();
                     var _emailTemplateService = new EmailTemplateService();
@@ -583,7 +583,7 @@ namespace OrionCoreCableColor.Controllers
 
                     var datosticket = Datosticket(idticket);//contexto.sp_Requerimientos_Bandeja_ByID(1, 1, GetIdUser(), idticket).FirstOrDefault();
                     var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, Convert.ToByte(3), DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
-                    ObtenerDataTicket(idticket); // aqui va el signalR
+                    //ObtenerDataTicket(idticket); // aqui va el signalR
 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"El Usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} reasigna por: " + comenta, 1, 7, 0);//se manda 0 por que se asigno una nueva area y por lo tanto el usuario asignado no puede ser otro
 
@@ -681,7 +681,7 @@ namespace OrionCoreCableColor.Controllers
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, datosticket.fiIDUsuarioSolicitante, comenta, 1, 7, usuario);//el estado de ticket esta en 7 para que pueda guardar la bitacora
 
                     var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, 3, DateTime.Now, usuario, 0, datosticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, datosticket.fiIDRequerimientoPadre, 0, 0, 0);//el estado de ticket esta en 7 para que pueda guardar la bitacora
-                    ObtenerDataTicket(idticket);//aqui esta el signalR
+                    //ObtenerDataTicket(idticket);//aqui esta el signalR
                     if (GetIdUser() != usuario) //aqui el signalR por si al reasignar un usuario se le quite de la bandeja de el 
                     {
                         eliminarTicketAbierto(datosticket.fiIDRequerimiento);

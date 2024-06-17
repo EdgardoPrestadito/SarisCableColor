@@ -902,27 +902,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListaTicket_Padre_Result>("sp_ListaTicket_Padre", piIDTIcketParameter);
         }
     
-        public virtual ObjectResult<sp_Requerimientos_Bandeja_ByID_Result> sp_Requerimientos_Bandeja_ByID(Nullable<int> piIDSesion, Nullable<int> piIDApp, Nullable<int> piIDUsuario, Nullable<int> piIDRequerimientos)
-        {
-            var piIDSesionParameter = piIDSesion.HasValue ?
-                new ObjectParameter("piIDSesion", piIDSesion) :
-                new ObjectParameter("piIDSesion", typeof(int));
-    
-            var piIDAppParameter = piIDApp.HasValue ?
-                new ObjectParameter("piIDApp", piIDApp) :
-                new ObjectParameter("piIDApp", typeof(int));
-    
-            var piIDUsuarioParameter = piIDUsuario.HasValue ?
-                new ObjectParameter("piIDUsuario", piIDUsuario) :
-                new ObjectParameter("piIDUsuario", typeof(int));
-    
-            var piIDRequerimientosParameter = piIDRequerimientos.HasValue ?
-                new ObjectParameter("piIDRequerimientos", piIDRequerimientos) :
-                new ObjectParameter("piIDRequerimientos", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimientos_Bandeja_ByID_Result>("sp_Requerimientos_Bandeja_ByID", piIDSesionParameter, piIDAppParameter, piIDUsuarioParameter, piIDRequerimientosParameter);
-        }
-    
         public virtual ObjectResult<sp_DatosTicket_Correo_Result> sp_DatosTicket_Correo(Nullable<int> piTicket)
         {
             var piTicketParameter = piTicket.HasValue ?
@@ -1784,6 +1763,27 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piIDRequerimiento", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CIporIncidencias_listos_Result>("sp_CIporIncidencias_listos", piIDRequerimientoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Requerimientos_Bandeja_ByID_Result> sp_Requerimientos_Bandeja_ByID(Nullable<int> piIDSesion, Nullable<int> piIDApp, Nullable<int> piIDUsuario, Nullable<int> piIDRequerimientos)
+        {
+            var piIDSesionParameter = piIDSesion.HasValue ?
+                new ObjectParameter("piIDSesion", piIDSesion) :
+                new ObjectParameter("piIDSesion", typeof(int));
+    
+            var piIDAppParameter = piIDApp.HasValue ?
+                new ObjectParameter("piIDApp", piIDApp) :
+                new ObjectParameter("piIDApp", typeof(int));
+    
+            var piIDUsuarioParameter = piIDUsuario.HasValue ?
+                new ObjectParameter("piIDUsuario", piIDUsuario) :
+                new ObjectParameter("piIDUsuario", typeof(int));
+    
+            var piIDRequerimientosParameter = piIDRequerimientos.HasValue ?
+                new ObjectParameter("piIDRequerimientos", piIDRequerimientos) :
+                new ObjectParameter("piIDRequerimientos", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimientos_Bandeja_ByID_Result>("sp_Requerimientos_Bandeja_ByID", piIDSesionParameter, piIDAppParameter, piIDUsuarioParameter, piIDRequerimientosParameter);
         }
     }
 }

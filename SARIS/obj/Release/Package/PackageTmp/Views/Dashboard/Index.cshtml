@@ -4,64 +4,88 @@
 }
 
 <div class="row">
-</div>
-<div class="row" id="VistaGeneral">
-    @*<div id="DivVistaGeneral">*@
-    <div class="col-xl-12">
-        <div class="col-lg-2">
-            <input type="month" id="txtFecha" class="form-control" />
+    <div class="col-sm-1 col-xl-2">
+        <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                    <label id="lblTicketActivos"></label>
+                    <small class="m-0 l-h-n">Ticket Activos</small>
+                </h3>
+            </div>
+            <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
         </div>
+    </div>
+    <div class="col-sm-1 col-xl-2">
+        <div class="p-3 bg-primary-200 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                    <label id="lblTicket1H"></label>
+                    <small class="m-0 l-h-n">Ticket con menos de 4 Horas</small>
+                </h3>
+            </div>
+            <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+        </div>
+    </div>
+    <div class="col-sm-1 col-xl-2">
+        <div class="p-3 bg-success-700 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                    <label id="lblTicket4H"></label>
+                    <small class="m-0 l-h-n">Ticket con mas de 4 Horas</small>
+                </h3>
+            </div>
+            <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+        </div>
+    </div>
+    <div class="col-sm-1 col-xl-2">
+        <div class="p-3 bg-warning-700 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                    <label id="lblTicket8H"></label>
+                    <small class="m-0 l-h-n">Ticket con mas de 8 Horas</small>
+                </h3>
+            </div>
+            <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+        </div>
+    </div>
+    <div class="col-sm-1 col-xl-2">
+        <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                    <label id="lblTicket24H"></label>
+                    <small class="m-0 l-h-n">Ticket con mas de 24 Horas</small>
+                </h3>
+            </div>
+            <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
         <div class="row">
 
-            <div class="col-xl-6">
+            <div class="col-xl-6" style="display:block">
                 <div id="panel-1" class="panel">
                     <div class="panel-hdr">
                         <h2>
-                            Rendimiento <span class="fw-300"><i>Agente</i></span>
+                            Comparativo <span class="fw-300"><i>Tickets por Area</i></span>
                         </h2>
                         <div class="panel-toolbar">
                             <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                             <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                         </div>
                     </div>
                     <div class="panel-container show">
                         <div class="panel-content">
+                            <div class="panel-tag">
+                                Grafica para saber la cantidad de Ticket por area
+                            </div>
+                            <div id="chartTicketArea" style="width: 100%; height: 1px;">
 
-                            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaAgentes">
-                                <thead>
-                                    <tr>
-                                        <th>Usuario Asignado</th>
-                                        <th>Ticket Asignados</th>
-                                        <th>Tiempo de Proceso</th>
-                                        <th>Horas de Trabajo</th>
-                                        <th>Porcentaje Rendimiento</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-6">
-                <div id="panel-1" class="panel">
-                    <div class="panel-hdr">
-                        <h2>
-                            Rendimiento <span class="fw-300"><i>Area</i></span>
-                        </h2>
-                        <div class="panel-toolbar">
-                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        </div>
-                    </div>
-                    <div class="panel-container show">
-                        <div class="panel-content">
-
-                            <div id="GraficaApur">
-                                @*<canvas id="myChart" style="width:100%; height:300px;"></canvas>*@
-                                <div id="chartArpu" style="width:100%; height:300px;"></div>
                             </div>
 
 
@@ -69,48 +93,53 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="row" id="VistaGeneral">
-    @*<div id="DivVistaGeneral">*@
-    <div class="col-xl-12">
-        <div class="row">
-
-            <div class="col-xl-12">
+            <div class="col-xl-6" style="display:block">
                 <div id="panel-1" class="panel">
                     <div class="panel-hdr">
                         <h2>
-                            Rendimiento <span class="fw-300"><i>Tiempo</i></span>
+                            Comparativo <span class="fw-300"><i>Horas por Area</i></span>
                         </h2>
                         <div class="panel-toolbar">
                             <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                             <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                         </div>
                     </div>
                     <div class="panel-container show">
                         <div class="panel-content">
+                            <div class="panel-tag">
+                                Grafica para saber la Horas por area
+                            </div>
+                            <div id="chartHoras" style="width: 100%; height: 1px;">
 
-                            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaEstados">
-                                <thead>
-                                    <tr>
-                                        <th>Solicitente</th>
-                                        <th>Desarrollador Asignado</th>
-                                        <th>Titulo del Requerimiento Asignado</th>
-                                        <th style="width: 80px">Tiempo de Desarrollo</th>
-                                        <th style="width: 80px">Horas Trabajadas</th>
-                                        <th>Eficiencia</th>
-                                        <th style="width: 100px">Estado del requerimiento</th>
-                                        <th style="width: 100px">Estado Tiempo</th>
-                                        <th>Fecha Creacion</th>
-                                        <th>Fecha Asignacion</th>
-                                        <th>FechadeCierre</th>
-                                        <th>Nombre Area Solicitante</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6" style="display:block">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            Comparativo <span class="fw-300"><i>Conteo por Incidentes</i></span>
+                        </h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                        </div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="panel-tag">
+                                Grafica para saber la cantidad de Incidentes
+                            </div>
+                            <div id="chartConteo" style="width: 100%; height: 1px;">
+
+                            </div>
+
 
                         </div>
                     </div>
@@ -118,9 +147,13 @@
             </div>
 
 
+            
+
+
         </div>
     </div>
 </div>
+
 <script src="~/Content/js/statistics/ApexchartEchoaMano.js"></script>
 
 @section Scripts{
@@ -128,336 +161,174 @@
     <script>
 
         $(document).ready(function () {
-
-            var fecha = new Date();
-            var mes = fecha.getMonth() + 1;
-            var ano = fecha.getFullYear()
-            var fechaCompleta = ano + "-" + mes + "-01"
-            if (mes < 10)
-                mes = '0' + mes
-            document.getElementById("txtFecha").value = ano + "-" + mes;
-            DetallePersonal(fechaCompleta);
-            DetalleEstados(fechaCompleta);
-            DetalleGrafica(fechaCompleta);
+            datos()
         });
 
-        function DetallePersonal(fecha)
+        function datos()
         {
-            $('#TablaAgentes').DataTable({
-
-                autoWidth: true,
-                responsive: true,
-                destroy: true,
-            language: {
-                "emptyTable": "No se encontraron resultados.",
-                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
-                "paginate": {
-                    first: "Primero",
-                    previous: "Anterior",
-                    next: "Siguiente",
-                    last: "Ultimo"
+            $.ajax({
+                url: "@Url.Action("Indicadores", "Dashboard")",
+                method: "get",
+                data: {},
+                 success: function (resp) {
+                     debugger;
+                     console.log(resp)
+                     BulletIndicadores(resp.BulletViewModel);
+                     graficaTicketArea(resp.AreasIncidentes);
+                     graficaHoras(resp.AreasTiempo);
+                     graficaConteo(resp.ConteoIncidentes);
                 },
-                "lengthMenu": " _MENU_ ",
-                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
-                "infoEmpty": "No hay registros para mostrar.",
-            },
-            dom: 'ip',
-            order: [[1, "desc"]],
-              ajax: {
-                url: '@Url.Action("ListaPersonal", "Dashboard")',
-                  method: "Get",
-                  data: { Fecha: fecha },
-                  dataSrc: function (data) {
-                      return data;
-                  }
-            },
-                "columns": [
+                error: function (resp) {
 
-                    {
-                        "data": "fcNombreCorto", "className": "td-responsive",
-                        "render": function (data, type, row) {
-                            return row["fcNombreCorto"];
-                        }
-                    },
-                    {
-                        "data": "fiRequerimientosAsignados", "className": "td-responsive",
-                        "render": function (data, type, row) {
-                            return row["fiRequerimientosAsignados"];
-                        }
-                    },
-                    {
-                        "data": "fiTiempodeDesarrollo", "className": "td-responsive",
-                        "render": function (data, type, row) {
-                            return row["fiTiempodeDesarrollo"];
-                        }
-                    },
-                    {
-                        "data": "fiHorasdeTrabajodesarrollo", "className": "td-responsive",
-                        "render": function (data, type, row) {
-                            return row["fiHorasdeTrabajodesarrollo"];
-                        }
-                    },
-                    {
-                        "data": "fnCumplimientoRequerimientos", "className": "td-responsive",
-                        "render": function (data, type, row) {
-                            return row["fnCumplimientoRequerimientos"] + "%";
-                        }
-                    },
-
-
-                ],
-
-        });
-        }
-
-
-        function DetalleEstados(fecha)
-        {
-            $('#TablaEstados').DataTable({
-
-                autoWidth: true,
-                responsive: true,
-                destroy: true,
-            language: {
-                "emptyTable": "No se encontraron resultados.",
-                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
-                "paginate": {
-                    first: "Primero",
-                    previous: "Anterior",
-                    next: "Siguiente",
-                    last: "Ultimo"
-                },
-                "lengthMenu": " _MENU_ ",
-                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
-                "infoEmpty": "No hay registros para mostrar.",
-            },
-            dom: 'ip',
-            order: [[1, "desc"]],
-              ajax: {
-                url: '@Url.Action("ProcesosIndicador", "Dashboard")',
-                  method: "Get",
-                  data: { Fecha: fecha },
-                  dataSrc: function (data) {
-                      return data;
-                  }
-            },
-                "columns": [
-                    {
-                        "data": "fcUsuarioSolicitante", "className": "td-responsive",
-                        "render": function (data, type, row) {
-                            return row["fcUsuarioSolicitante"];
-                        }
-                    },
-                    {
-                        "data": "fcNombreCorto", "className": "td-responsive",
-                        "render": function (data, type, row) {
-                            return row["fcNombreCorto"];
-                        }
-                    },
-                    {
-                        "data": "fcTituloRequerimiento", "className": "td-responsive",
-                        "render": function (data, type, row) {//row[" fiIDRequerimiento"]
-                            return '<a href="javascript:void(0)" onclick="abrirModalDetalle(' + row["fiIDRequerimiento"] + ')" > ' + row["fcTituloRequerimiento"] + '</a >';
-                        }
-                    },
-
-                    {
-
-                        "data": "fiTiempodeDesarrollo", "className": "td-responsive",
-                        "render": function (data, type, row) {
-                            return row["fiTiempodeDesarrollo"];
-                        }
-                    },
-                    {
-                        "data": "fiHorasdeTrabajodesarrollo", "className": "td-responsive",
-                        "render": function (data, type, row) {
-
-                            if (row["fiTiempodeDesarrollo"] >= row["fiHorasdeTrabajodesarrollo"]) {
-
-                                return '<span style="color:#419E3E ;  font-weight:bold;">' + row["fiHorasdeTrabajodesarrollo"] + '</span>'
-                            } else {
-                                return '<span style="color:#DD5046 ;  font-weight:bold;">' + row["fiHorasdeTrabajodesarrollo"] + '</span>'
-                            }
-
-                        }
-                    },
-                    {
-                        "data": "fnPorcentajeEficiencia", "className": "td-responsive",
-                        "render": function (data, type, row) {
-
-                            if (row["fnPorcentajeEficiencia"] > 100) {
-                                return '<span style="color:#419E3E ;  font-weight:bold;">' + row["fnPorcentajeEficiencia"] + '%</span>'
-                            } else if (row["fnPorcentajeEficiencia"] < 100) {
-                                return '<span style="color:#DD5046 ;  font-weight:bold;">' + row["fnPorcentajeEficiencia"] + '%</span>'
-                            } else if (row["fnPorcentajeEficiencia"] == 100) {
-                                return '<span style="color:#CFC348;  font-weight:bold;">' + row["fnPorcentajeEficiencia"] + '%</span>'
-                            }
-
-
-                        }
-                    },
-                    {
-                        "data": "fcDescripcionEstado", "className": "text-center",
-                        "render": function (data, type, row) {
-                            return '<a href="javascript:void(0)" onclick="ProcesosEstadosRequerimiento(' + row["fiIDRequerimiento"] + ')" > <span class="btn-sm btn-block btn-' + row["fcClaseColor"] + ' text-center">' + row["fcDescripcionEstado"] + '</span></a>';
-
-                        }
-                    },
-                    {
-                        "data": "fcEstadodelDesarrollo", "className": "text-center",
-                        "render": function (data, type, row) {
-                            return '<span class="btn-sm btn-block btn-' + row["fcCategoria"] + ' text-center">' + row["fcEstadodelDesarrollo"] + '</span>';
-                        }
-                    },
-                    {
-                        "data": "fdFechaCreacion", "className": "text-center",
-                        "render": function (data, type, row) {
-                            return moment(row["fdFechaCreacion"]).locale('es').format('YYYY/MM/DD hh:mm a');
-                        }
-                    },
-                    {
-                        "data": "fdFechaAsignacion", "className": "text-center",
-                        "render": function (data, type, row) {
-                            return moment(row["fdFechaAsignacion"]).locale('es').format('YYYY/MM/DD hh:mm a');
-                        }
-                    },
-                    {
-                        "data": "fdFechadeCierre", "className": "text-center",
-                        "render": function (data, type, row) {
-                            return moment(row["fdFechadeCierre"]).locale('es').format('YYYY/MM/DD hh:mm a');
-                        }
-                    },
-                    {
-                        "data": "fcNombreAreaSolicitante", "className": "text-center",
-                        "render": function (data, type, row) {
-                            return row["fcNombreAreaSolicitante"];
-                        }
-                    },
-
-                ],
-
-        });
-        }
-
-        function DetalleGrafica(fecha)
-        {
-                $.ajax({
-                url: "@Url.Action("ProcesosIndicadorGrafica", "Dashboard")",
-                data: { Fecha: fecha },
-                type: "GET",
-                     success: function (respuesta) {
-                         console.log(respuesta)
-                         graf(respuesta);
-                },
-                error: function (respuesta) {
-                    console.log(respuesta);
                 }
             });
         }
 
-        function Grafica(data) {
+        function BulletIndicadores(datos)
+        {
+            $("#lblTicketActivos").text(datos[0].fiIncidentesActivos);
+            $("#lblTicket1H").text(datos[0].fiIncidentes1a4Horas);
+            $("#lblTicket4H").text(datos[0].fiIncidentes4Horas);
+            $("#lblTicket8H").text(datos[0].fiIncidentes8Horas);
+            $("#lblTicket24H").text(datos[0].fiIncidentes24Horas);
+        }
 
-            //debugger
-            var options = {
-                labels: ["En Tiempo", "Fuera de Tiempo"],
-                series: [data[0].fiPorcentaje, data[1].articulosBase],
-                colors: ['#535085', '#FAA61C'],
-                plotOptions: {
-                    pie: {
-                        startAngle: 0,
-                        endAngle: 360,
-                        expandOnClick: true,
-                        offsetX: 0,
-                        offsetY: 0,
-                        customScale: 1,
-                        dataLabels: {
-                            offset: 0,
-                            minAngleToShowLabel: 10
-                        },
-                        donut: {
-                            size: '65%',
-                            background: 'transparent',
-                            labels: {
-                                show: true,
-                                total: {
-                                    show: true,
-                                    showAlways: true,
-                                    label: 'Total de Tickets',
-                                    fontSize: '22px',
-                                    fontFamily: 'Helvetica, Arial, sans-serif',
-                                    fontWeight: 600,
-                                    color: '#373d3f',
-                                    formatter: function (w) {
-                                        return w.globals.seriesTotals.reduce((a, b) => {
-                                            return a + b
-                                        }, 0)
-                                    }
-                                }
-                            }
-                        },
-                    }
-                },
+        function graficaTicketArea(datos)
+        {
+            debugger;
+            //Grafica para Incidentes por area Conteo
+            var labels = [];
+            for (var i = 0; i < datos.length; i++)
+            {
+                labels.push(datos[i].fcAreaAsignada)
+            }
+
+            var valores = [];
+            for (var i = 0; i < datos.length; i++) {
+                valores.push(datos[i].fiIDIncidentes)
+            }
+
+            debugger;
+            var optionsTicketArea = {
+                labels: labels,
+                series: valores,
                 chart: {
-                    toolbar: {
-                        show: true,
-                        offsetX: 0,
-                        offsetY: 0,
-                        tools: {
-                            download: true,
-                            selection: true,
-                            zoom: true,
-                            zoomin: true,
-                            zoomout: true,
-                            pan: true,
-                            reset: true | '<img src="/static/icons/reset.png" width="20">',
-                            customIcons: []
-                        },
-                        export: {
-                            csv: {
-                                filename: 'Grafica',
-                                columnDelimiter: ',',
-                                headerCategory: 'category',
-                                headerValue: 'value',
-                                dateFormatter(timestamp) {
-                                    return new Date(timestamp).toDateString()
-                                }
-                            },
-                            svg: {
-                                filename: 'Grafica',
-                            },
-                            png: {
-                                filename: 'Grafica',
-                            }
-                        },
-                        autoSelected: 'zoom'
-                    },
-                    type: 'donut',
+                    type: 'polarArea',
                 },
-
+                stroke: {
+                    colors: ['#fff']
+                },
+                fill: {
+                    opacity: 0.8
+                },
                 responsive: [{
                     breakpoint: 480,
                     options: {
                         chart: {
-                            width: 300
+                            width: 200
                         },
                         legend: {
-
-                            position: 'bottom',
-                            onItemClick: {
-                                toggleDataSeries: true
-                            },
+                            position: 'bottom'
                         }
                     }
                 }]
             };
 
-            var chart = new ApexCharts(document.querySelector("#countextrachart"), options);
-            chart.render();
-
+            var chartTicketArea = new ApexCharts(document.querySelector("#chartTicketArea"), optionsTicketArea);
+            chartTicketArea.render();
+            //fin
         }
 
+        function graficaHoras(datos)
+        {
+            //Grafica Conteo Horas por Area
 
+            debugger;
+            //Grafica para Incidentes por area Conteo
+            var labels = [];
+            for (var i = 0; i < datos.length; i++) {
+                labels.push(datos[i].fcAreaAsignada)
+            }
 
+            var valores = [];
+            for (var i = 0; i < datos.length; i++) {
+                valores.push(datos[i].fiTiempoAcumulado)
+            }
+
+            var optionsHoras = {
+                labels: labels,
+                series: valores,
+                chart: {
+                    type: 'polarArea',
+                },
+                stroke: {
+                    colors: ['#fff']
+                },
+                fill: {
+                    opacity: 0.8
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            var chartHoras = new ApexCharts(document.querySelector("#chartHoras"), optionsHoras);
+            chartHoras.render();
+            //fin
+        }
+
+        function graficaConteo(datos)
+        {
+            //Grafica para Conteo por incidentes
+            debugger;
+            //Grafica para Incidentes por area Conteo
+            var labels = [];
+            for (var i = 0; i < datos.length; i++) {
+                labels.push(datos[i].fcIncidente)
+            }
+
+            var valores = [];
+            for (var i = 0; i < datos.length; i++) {
+                valores.push(datos[i].fiIDIncidentes)
+            }
+
+            var optionsConteo = {
+                labels: labels,
+                series: valores,
+                chart: {
+                    type: 'polarArea',
+                },
+                stroke: {
+                    colors: ['#fff']
+                },
+                fill: {
+                    opacity: 0.8
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            var chartConteo = new ApexCharts(document.querySelector("#chartConteo"), optionsConteo);
+            chartConteo.render();
+            //fin
+        }
 
     </script>
 

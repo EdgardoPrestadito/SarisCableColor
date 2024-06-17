@@ -1,0 +1,124 @@
+﻿<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">
+
+        <text>Servicios Afectados</text>
+
+    </h2>
+
+    <button type="button" class="close" data-dismiss="modal">
+        <i class="fal fa-times-circle fa-fw fa-lg"></i>
+    </button>
+</div>
+
+
+<div class="modal-body">
+    <div  class="row" id="selectServicios">
+
+
+    </div>
+</div>
+
+
+<script>
+    llenarcampos()
+    function llenarcampos() {
+        var opciones = ""
+        
+        opciones += `<div class="col-xl-12">
+                                            <div id="panel-1" class="panel">
+
+                                                <div class="panel-container show">
+            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectServicios">
+                <thead>
+                    <tr>
+                        <th>Seleccione</th>
+                        <th>Descripcion</th>
+                    </tr>
+            </thead>`;
+
+        for (const item of idservicios) {
+            opciones += `<tbody>
+                    <tr>
+                        <td>
+                        <div class="custom-control custom-checkbox">`
+            if (item.select == true) {
+                opciones += `<input id="${item.fiIDServicio}"  checked class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFallaSErviciosSErvicios" name ="CheckCheckedFallaSErvicios"  > <label></label>`
+            } else {
+                opciones += `<input id="${item.fiIDServicio}" class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDServicio}" id="CheckCheckedFallaSErvicios" name ="CheckCheckedFallaSErvicios"  > <label></label>`
+            }
+            opciones +=    `
+                                <label class="custom-control-label" for="${item.fiIDServicio}"></label>
+                            </div>
+                        </td>
+                        <td>${item.fcNombreServicio}</td>
+                    </tr>
+                    </tbody>`
+        }
+        opciones += `</table></div></div>
+
+        <div class='test col-sm-12'>
+                <br />
+                <div style='float: right;'>
+                    <button type="button" onclick="guardararrai()" id="btnGuardarServicios" class="btn btn-success">
+                        Guardar Servicios
+                    </button>
+                </div>
+            </div>
+        </div>`;
+
+        $(`#selectServicios`).append(opciones);
+    }
+
+    function guardararrai() {
+        //console.log(idservicios);
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistaservicios">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+
+                        `;
+        for (const item of idserviciosusados) {
+            tbo += `<tr>
+                        <td>${item.fcNombreServicio}</td>
+                    </tr>`;
+        }
+        for (const item of idservicios) {
+            if (item.select == true) {
+                tbo += `<tr>
+                            <td>${item.fcNombreServicio}</td>
+                        </tr>`;
+            }            
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodyservicios`).empty()
+        $(`#tbodyservicios`).append(tbo);
+
+        $("#MyModalSm").modal("hide");//aqui sirve para agregar los servicios a la tabla que esta debajo del boton que se asignode agregar servicios
+        $("#MyModalBodySm").empty();
+
+    }
+
+    $(document).on('change', 'input[name="CheckCheckedFallaSErvicios"]', function () {
+        //debugger
+
+        var suma = 0;
+        var idseleccionado =[]
+        // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
+        $('input[name="CheckCheckedFallaSErvicios"]:checked').each(function () {
+            console.log(`entro en el if`);
+            //var idfer = parseInt($(`#producto-${this.id}`).val());
+            idseleccionado.push(+this.id)
+        });
+
+        const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
+        
+    });
+
+    
+
+</script>

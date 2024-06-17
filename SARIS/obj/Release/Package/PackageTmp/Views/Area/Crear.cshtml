@@ -30,15 +30,32 @@
         </div>
 
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.fiIDUsuarioResponsable, htmlAttributes: new { @class = "control-label" })
-                <div class="input-group mar-btm" style="width:100%;">
+        <div class="form-group">
+            @Html.LabelFor(model => model.fiIDGerencia, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group mar-btm" style="width:100%;">
 
-                    @Html.DropDownListFor(model => model.fiIDUsuarioResponsable, new SelectList(ViewBag.ListaUsuarios, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
-                </div>
-                @Html.ValidationMessageFor(model => model.fiIDUsuarioResponsable, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.fiIDGerencia, new SelectList(ViewBag.ListaGerencias, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
             </div>
+            @Html.ValidationMessageFor(model => model.fiIDGerencia, "", new { @class = "text-danger" })
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.fiIDUsuarioResponsable, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group mar-btm" style="width:100%;">
+
+                @Html.DropDownListFor(model => model.fiIDUsuarioResponsable, new SelectList(ViewBag.ListaUsuarios, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+            </div>
+            @Html.ValidationMessageFor(model => model.fiIDUsuarioResponsable, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fiNivel, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group mar-btm" style="width:100%;">
+
+                @Html.DropDownListFor(model => model.fiNivel, new SelectList(ViewBag.ListaNiveles, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+            </div>
+            @Html.ValidationMessageFor(model => model.fiNivel, "", new { @class = "text-danger" })
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.fcCorreoElectronico, htmlAttributes: new { @class = "control-label" })
@@ -69,15 +86,21 @@
 
 <script>
     $("#fiIDUsuarioResponsable").select2({ dropdownParent: $("#MyModalSm") });
+    $("#fiIDGerencia").select2({ dropdownParent: $("#MyModalSm") });
+    $("#fiNivel").select2({ dropdownParent: $("#MyModalSm") });
+
     $("#MyFormModal").submit(function (event) {
         event.preventDefault();
         if (!$("#MyFormModal").valid()) {
             return false;
         }
         var model = @Html.Raw(Json.Encode(Model));
+        model.fiIDArea = $("#fiIDArea").val();
         model.fcDescripcion = $("#fcDescripcion").val();
         model.fiIDUsuarioResponsable = $("#fiIDUsuarioResponsable").val();
         model.fcCorreoElectronico = $("#fcCorreoElectronico").val();
+        model.fiIDGerencia = $("#fiIDGerencia").val();
+        model.fiNivel = $("#fiNivel").val();
 
 
         var url = "@Url.Action("Crear", "Area")";

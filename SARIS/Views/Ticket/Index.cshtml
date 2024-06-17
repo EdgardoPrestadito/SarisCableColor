@@ -199,26 +199,29 @@
                         //console.log(data)
 
                         if (idusuariologueado == data.fiIDUsuarioSolicitante && data.fiIDEstadoRequerimiento == 1) {
-                            opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Incidente'><i class=\"fal fa-times\"></i></a>`;
+                            //opt += `<a href='javascript:void(0);' onclick="EliminarTicket(${data.fiIDRequerimiento})" class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Eliminar Incidente'><i class=\"fal fa-times\"></i></a>`; // se puede usar en otra ocacion asi que no borrar
                         }
                         opt += `
                                     <div class='dropdown d-inline-block dropleft'>
                                         <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='Mas Opciones'><i class=\"fal fa-ellipsis-v\"></i></a>
                                         <div class='dropdown-menu'>
-                                            <a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Incidente</a>
+                                            
                                     `;
+                        if (Json.Encode(User.IsInRole("SARIS_CREARTICKET"))) {
+                            opt += `<a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Incidente</a>`
+                        }
 
-                        //if (Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
+                        if (Json.Encode(User.IsInRole("SARIS_VERDETALLE"))) {
 
                             opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
-                        //}
-
-                        if (data.fiAreaAsignada == 6)//es 6 por que es pendiente, se deberia de cambiar a un viewbac para traerlo directamente desde al base de datos
-                        {
-                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Asignar Area</a>`;
-                        } else {
-                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Reasignar Area</a>`;
                         }
+
+                        //if (data.fiAreaAsignada == 6)//es 6 por que es pendiente, se deberia de cambiar a un viewbac para traerlo directamente desde al base de datos
+                        //{
+                        //    opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Asignar Area</a>`;
+                        //} else {
+                            opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Reasignar Area</a>`;
+                        //}
 
                         if (@Json.Encode(User.IsInRole("SARIS_AsignarTicket_Usuarios"))) {
                             //if ((data.fiAreaAsignada != 6) & 1 == 1 )//es 0 por que es pendiente de asignar, se deberia de hacer mejor desde la base de datos

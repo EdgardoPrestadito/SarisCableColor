@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "VistaActualizarArea";
+}
+
+<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">
+
+        <text>Actualizar Area</text>
+
+    </h2>
+
+    <button type="button" class="close" data-dismiss="modal">
+        <i class="fal fa-times-circle fa-fw fa-lg"></i>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Asignar Area</label>
+                        <select id="selectarea" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-form-label">Comentario</label>
+                        <input id="txtcomentario" class="form-control" type="text" placeholder="Definicion del titulo" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class='test col-sm-12'>
+        <br />
+        <div style='float: right;'>
+            <button type="button" id="btnGuardarArea" class="btn btn-success">
+                Guardar Area
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    var idticket = @ViewBag.IdTicket;
+    var idestadoticket = @ViewBag.EstadoTicket
+    select();
+
+    function select() {
+
+        $.ajax({
+                url: "@Url.Action("SelectAreas", "LlenarCampos")",
+                type: "GET",
+                success: function (respuesta) {
+
+                    var selectIncidencia = $("#selectarea");
+
+                    selectIncidencia.empty();
+                    selectIncidencia.append($('<option>', {
+                        value: 0,
+                        text: 'Defina una Area'
+                    }));
+
+                    $("#selectarea").select2({ dropdownParent: $("#MyModal") }).val(null).trigger("change");
+                    $.each(respuesta, function(index, item) {
+                        selectIncidencia.append($('<option>', {
+                            value: item.Value,
+                            text: item.Text
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+          });
+    }
+
+
+
+    $("#btnGuardarArea").click(function (e) {
+
+
+        var idareactualizada = $(`#selectarea`).val();
+        var comentario = $(`#txtcomentario`).val();
+
+        if (comentario == "" || comentario == null) {
+            return ToastrError("Error", "Escriba un comentario");
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ActualizarArea", "Ticket")",
+            data: { idticket: idticket, idArea: idareactualizada, estadoTicket: idestadoticket, comenta:comentario },
+            error: function (xhr, ajaxOptions, thrownError) {
+                var dataerror = { Titulo: "Error", Mensaje: "No se guardo el ticket, Contacte con el Administrador", Estado: false }
+                AlertaAjax(dataerror)
+            },
+            success: function (data) {
+                console.log(data);
+                CerrarModal();
+                return ToastrSuccess("Exito", "Area Asignada Correctamente");
+                if (data.fiMensaje == "1") {
+                    CerrarModal();
+
+                    //GuardarDocumentos(data.IdIngresado);
+                }
+            }
+        });
+    });
+
+</script>

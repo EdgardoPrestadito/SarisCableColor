@@ -2,84 +2,230 @@
 <div class="modal-header bg-primary-600 bg-primary-gradient">
     <h2 class="modal-title text-white">
 
-        <text>Editar Ticket</text>
+        <text>Editar Incidencia</text>
 
     </h2>
 
-    <button type="button" class="close" data-dismiss="modal">
+    <button type="button" class="close" data-dismiss="modal" onclick="Recargar()">
         <i class="fal fa-times-circle fa-fw fa-lg"></i>
     </button>
 </div>
 
 <div class="modal-body">
     <div class="row">
-        <div class="col-lg-6">
+
+
+
+        <div class="col-lg-12">
             <div class="row">
 
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label class="col-form-label">Titulo</label>
-                        @Html.EditorFor(model => model.fcTituloRequerimiento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.fcTituloRequerimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     </div>
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label class="col-form-label">Descripcion</label>
-                        @Html.EditorFor(model => model.fcDescripcionRequerimiento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.fcDescripcionRequerimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     </div>
                 </div>
 
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class="col-form-label">Area</label>
-                        @Html.DropDownListFor(model => model.fiIDAreaSolicitante, new SelectList(ViewBag.ListarArea, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                @if (ViewBag.PuedeEditarCategoria)
+                {
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Categoria</label>
+                            @Html.DropDownListFor(model => model.fiCategoriadeDesarrollo, new SelectList(ViewBag.ListaCategorias, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-sm-12">
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Tipo Sub Categoria</label>
+                            <select id="selectincidencia" class="form-select form-control">
+                            </select>
+                        </div>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Categoria</label>
+                            @Html.DropDownListFor(model => model.fiCategoriadeDesarrollo, new SelectList(ViewBag.ListaCategorias, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;", @readonly = "readonly" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Tipo Sub Categoria</label>
+                            <select id="selectincidencia" class="form-select form-control" style="display: block">
+                            </select>
+                        </div>
+
+                    </div>
+                }
+
+
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label class="col-form-label">Estado</label>
                         @Html.DropDownListFor(model => model.fiIDEstadoRequerimiento, new SelectList(ViewBag.Estados, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
                     </div>
                 </div>
 
+                <div class="col-sm-6" id="iddivmotivo" style="display:none">
+                    <div class="form-group">
+                        <label class="col-form-label">Motivo</label>
+                        <select class="form-select form-control" id="selectmotivo">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6" id="iddivCategoriaResolusion" style="display:none">
+                    <div class="form-group">
+                        <label class="col-form-label">Categoria de Resolucion</label>
+                        <select class="form-select form-control" id="selectCategoriaResolucion">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6" id="iddivSubCategoriaResolusion" style="display:none">
+                    <div class="form-group">
+                        <label class="col-form-label">Sub-Categoria de Resolucion</label>
+                        <select class="form-select form-control" id="selectSubCategoriaResolucion">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Incidencia Padre </label>
+                        <select id="ticketPadre" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Urgencia</label>
+                        @Html.EditorFor(model => model.fcDescripcionUrgencia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Impacto</label>
+                        @Html.EditorFor(model => model.fcDescripcionImpacto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Prioridad</label>
+                        @Html.EditorFor(model => model.fcDescripcionPrioridad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Plataforma</label>
+                        @Html.EditorFor(model => model.fcPlataforma, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Deteccion de Alarma </label>
+                        @Html.EditorFor(model => model.fdFechaAlarmaDeteccion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label class="col-form-label">Asignado</label>
-                        @Html.DropDownListFor(model => model.fiIDUsuarioAsignado, new SelectList(ViewBag.Usuario, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                        <label class="col-form-label">Comentario</label>
+                        <input id="txtComentario" class="form-control" type="text" placeholder="Escriba un comentario para este Ticket" />
                     </div>
                 </div>
 
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="control-label">DOCUMENTO (Solo se pueden subir pdf e imagenes) </label>
-
-                        <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
-                            <div class="dz-message needsclick">
-
-                                <div class="dz-icon">
-                                    <i class="fal fa-cloud-upload text-muted mb-3"></i>
-                                </div>
-                                <div>
-                                    <span class="dz-text">Arrastre Imagen</span>
-                                    <p class="text-sm text-muted">O Click para elegirla manualmente</p>
-                                </div>
-                            </div>
-                        </form>
-
-
-                    </div>
-
-                </div>
             </div>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Servicios Afectados</label>
+                        <button onclick="AgregarServicios()" class="form-control btn btn-success">Agregar Servicios</button>
+                    </div>
+                    <div id="tbodyservicios">
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Ci</label>
+                        <button onclick="AgregarCI()" class="form-control btn btn-success">Agregar Ci</button>
+
+                    </div>
+                    <div id="tbodycis">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <br />
+                                <label class="control-label">DOCUMENTO (Suba imagenes,Word,Excel,Pdf para este ticket) </label>
+
+                                <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
+                                    <div class="dz-message needsclick">
+
+                                        <div class="dz-icon">
+                                            <i class="fal fa-cloud-upload text-muted mb-3"></i>
+                                        </div>
+                                        <div>
+                                            <span class="dz-text">Arrastre Imagen</span>
+                                            <p class="text-sm text-muted">O Click para elegirla manualmente</p>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
 
     <div class='test col-sm-12'>
         <br />
@@ -90,331 +236,254 @@
         </div>
     </div>
 
-</div>
-
-
-<div id="modalConfirmarDatos" class="modal fade" role="dialog" aria-labelledby="modalConfirmarDatosLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title mt-0" id="modalReiniciarInspeccionTallerSolicitudLabel">Confirmar Datos</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <label id="lblEstadoConfirmar" class="col-form-label">Estado </label>
-                <asp:DropDownList runat="server" ID="dllEstadoConfimar" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoConfirmar"></asp:DropDownList>
-                <div class="form-group row">
-                    <div class="col-12">
-                        <label class="col-form-label">Observaciones</label>
-                        <textarea id="txtComentario" runat="server" class="form-control form-control-sm" required="required" data-parsley-maxlength="150" data-parsley-minlength="15" rows="2"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="btnActualizarDatos_Confirmar" type="button" class="btn btn-danger">
-                    Confirmar
-                </button>
-                <button type="reset" data-dismiss="modal" class="btn btn-secondary">
-                    Cancelar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--<form id="form1" runat="server">
-    <div class="card mb-6">
-        <div class="modal-header" style="background-color: black">
-            <h5 class="modal-title mt-0" style="color: white">
-                Detalle Requerimiento:
-                <asp:Label ID="lblNumRequerimiento" runat="server" CssClass="modal-title mt-0 Titulo"></asp:Label>
-            </h5>
-        </div>
-        <div class="card-body">
+    <div class="row">
+        <div class="col-lg-12">
             <div class="row">
-                <div class="col-sm-6">-->
-@*<div class="form-group row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label"> Imagenes Adjuntos</label>
+                        @foreach (var item in @ViewBag.DatosDocumentoListado)
+                        {
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="input-group mar-btm">
+                                        @if (item.fcTipoArchivo == "pdf")
+                                        {
 
-        <div class="form-group col-sm-12">
-            <label class="col-form-label">Titulo del Requerimiento</label>
-            <asp:TextBox ID="txtNombreTitulo" CssClass="form-control form-control-sm" type="text" data-parsley-group="informacionPersonal" runat="server"></asp:TextBox>
-
-        </div>
-
-    </div>
-    <div class="form-group row">
-        <div class="form-group col-sm-12">
-            <div id="editor">
-                <p id="txtEditor">Defina su Solictud</p>
-
+                                            <a href="javascript:ShowBigPdf('@item.fcNombreArchivo','@item.fcURL')" class="text-info"> <i class="fal fa-2x fa-file-pdf"> </i> @item.fcNombreArchivo</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="javascript:void(0)" data-Description="@item.fcNombreArchivo" class="text-info" onclick="ShowBigImage(this)" src="@item.fcURL"> <i class="fal fa-2x fa-file-image"> </i>  @item.fcNombreArchivo</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
-
-    </div>*@
-<!--<br />-->
-@*<div class="form-group row">
-        <div class="form-group col-sm-4">
-            <label class="col-form-label">Departamento </label>
-            <asp:DropDownList runat="server" ID="dllDepartamentoArea" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoExpediente"></asp:DropDownList>
-
-        </div>
-        <div class="form-group col-sm-4">
-            <label class="col-form-label">Estado </label>
-            <asp:DropDownList runat="server" ID="dllEstadoRequerimiento" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoExpediente"></asp:DropDownList>
-
-        </div>
-        <div class="form-group col-sm-4">
-            <label class="col-form-label">Asignado </label>
-            <asp:DropDownList runat="server" ID="dllUsuarioAsignado" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoExpediente"></asp:DropDownList>
-        </div>
-
-    </div>*@
-
-@*<div class="form-group row" id="DivTiempoDesarrollo">
-        <div class="form-group col-sm-4" id="divFechaInicio">
-            <label class="col-form-label">Fecha Inicio </label>
-            <asp:TextBox ID="txtFechaInicio" CssClass="form-control form-control-sm" TextMode="DateTimeLocal" runat="server"></asp:TextBox>
-
-        </div>
-        <div class="form-group col-sm-4" id="divFechaFinal">
-            <label class="col-form-label">Fecha Final </label>
-            <asp:TextBox ID="txtFechaFinal" CssClass="form-control form-control-sm" TextMode="DateTimeLocal" runat="server"></asp:TextBox>
-        </div>
-
-        <div class="form-group col-sm-4">
-            <label class="col-form-label">Tiempo Desarrollo </label>
-            <asp:TextBox ID="txtTiempoDesarrollo" CssClass="form-control form-control-sm" type="number" runat="server"></asp:TextBox>
-        </div>
-
-    </div>*@
-
-
-<!--</div>
-
-
-        </div>
-
-        <h6 class="font-weight-bold pl-3">Historial</h6>
-        <div class="col-12 justify-content-center table-responsive">
-            <table class="table table-sm table-bordered table-hover cursor-pointer" id="tblHistorialMantenimiento">
-                <thead class="thead-light">
-                    <tr>
-                        <th></th>
-                        <th>Fecha</th>
-                        <th>Usuario</th>
-                        <th>Observaciones</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-
-        <br />
-        -------------------------
-
     </div>
+
+
 </div>
-
-<!-- ============== Modal Guardar Documentos Asignados  De Un Determinado Tipo De Documento ==== -->
-<!--<div id="modalGuardarDocumentosAsignados" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="modalGuardarDocumentosAsignadosLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header pb-2">
-                <div class="form-group row mb-0">
-                    <div class="col-12">
-                        <h6 class="m-0" id="modalGuardarDocumentosAsignadosLabel">
-                            Subir Archivos
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-
-                    <div class="col-12">
-                        <div class="alert alert-info bg-info text-white pt-1 pb-1" role="alert">
-                            <i class="fas fa-exclamation-circle text-white"></i><b> documento (Solo se pueden subir pdf e imagenes):</b>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="col-12">
-                            <div id="divFormularioDocumentosAsignados">Test</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="btnGuardarDocumentosAsignados_Confirmar" class="btn btn-primary">
-                    Guardar documentos
-                </button>
-                <button type="button" id="btnGuardarDocumentosAsignados_Cancelar" class="btn btn-danger">
-                    Cancelar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>-->
-<!-- Confirmar Bitacora  -->
-<!--<div id="modalConfirmarDatos" class="modal fade" role="dialog" aria-labelledby="modalConfirmarDatosLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title mt-0" id="modalReiniciarInspeccionTallerSolicitudLabel">Confirmar Datos</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <label id="lblEstadoConfirmar" class="col-form-label">Estado </label>
-                <asp:DropDownList runat="server" ID="dllEstadoConfimar" CssClass="form-control form-control-sm col-form-label" data-parsley-errors-container="#error-dllEstadoConfirmar"></asp:DropDownList>
-                <div class="form-group row">
-                    <div class="col-12">
-                        <label class="col-form-label">Observaciones</label>
-                        <textarea id="txtComentario" runat="server" class="form-control form-control-sm" required="required" data-parsley-maxlength="150" data-parsley-minlength="15" rows="2"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="btnActualizarDatos_Confirmar" type="button" class="btn btn-danger">
-                    Confirmar
-                </button>
-                <button type="reset" data-dismiss="modal" class="btn btn-secondary">
-                    Cancelar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>-->
-<!-- modal estado del procesamiento de la solicitud -->
-<!--<div id="modalEstadoSolicitud" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="modalEstadoSolicitudLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="max-width: 990px !important;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mt-0" id="modalEstadoSolicitudLabel">Archivos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">-->
-<!-- tab -->
-<!--<ul id="ultab" class="nav nav-tabs nav-tabs-custom" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#divDocumentoDescargables" role="tab">
-            <span class="d-none d-sm-block">Descargables</span>
-        </a>
-    </li>-->
-@*<%--
-    <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#PestanaTimers" role="tab">
-            <span class="d-none d-sm-block">Procesos</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#PestanaComentarios" role="tab">
-            <span class="d-none d-sm-block">Más detalles</span>
-        </a>
-    </li>--%>*@
-<!--</ul>-->
-<!-- Tab panes -->
-<!--<div id="divContenido" class="tab-content">
-    <div id="divDocumentoDescargables">
-    </div>
-</div>-->
-@*<%--<div id="divDocumentoPDF">
-        <embed src="4-1-2023 -Agregar en la Seccion Mis Solicitudes - La Linea de Procesos de Credito.pdf" type="application/pdf" width="925" height="500" />
-    </div>--%>*@
-<!-- termina tab -->
-<!--</div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">
-                        Cerrar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</form>-->
 
 
 <script>
-    var estadoRequerimiento = 0;
-    const ID_REQUERIMIENTO = @ViewBag.idticket;
-    const ID_USUARIO = "1"
+    ///$("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
+    ///$("#fiIDAreaSolicitante").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
+    var estadoRequerimiento = @ViewBag.fiIDEstadoRequerimiento;
+    var ID_REQUERIMIENTO = @ViewBag.idticket;
+    var ID_USUARIO = @ViewBag.UsuarioLogueado;
+    var idtiporequerimiento = @ViewBag.IdIncidencia;
+    var ticketPadre = @ViewBag.TicketPadre;
+    var SubCategoria = @ViewBag.fiTipoRequerimiento;
+    var fotosredimencionadas = [];
+
+
+    var idserviciosusados = @Html.Raw(Json.Encode(ViewBag.IdServicios));
+    var idCisusados = @Html.Raw(Json.Encode(ViewBag.IdsCis));
+    var idservicios = [];
+    var idCis = [];
+
+    $(`#fiCategoriadeDesarrollo`).on('change', function () {
+        cambiodecategoria(0);
+    })
+    //console.log(idtiporequerimiento);
+    cambiodecategoria(idtiporequerimiento);
+    CambioticketPadre(ticketPadre);
+
+    function cambiodecategoria(tipore) {
+        var textcategorias = $("#fiCategoriadeDesarrollo option:selected").text();
+        debugger;
+        $.ajax({
+            url: "@Url.Action("SelectIncidenciasByCategorias", "LlenarCampos")",
+            type: "GET",
+            data: { fccategoria: textcategorias},
+            success: function (respuesta) {
+
+                var selectIncidencia = $("#selectincidencia");
+
+                selectIncidencia.empty();
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Defina un Tipo Incidencia'
+                }));
+                
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.fiIDTipoRequerimiento,
+                        text: item.fcTipoRequerimiento
+                    }));
+                });
+               
+                //console.log(`esto trae el tipo incidencia: ${tipore}`);
+                if (SubCategoria != 0) {
+                    selectIncidencia.val(SubCategoria).trigger("change");
+                }
+                $("#selectincidencia").select2({ dropdownParent: $("#MyModalBig") }).val(SubCategoria).trigger("change");
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    }
+
+    function CambioticketPadre(idtiposoporte) {
+
+        //console.log(`lo que trae por aqui ${idtiposoporte}`);
+        $.ajax({
+            url: "@Url.Action("SelecticketPadrese", "LlenarCampos")",
+            data: { idticket: idtiporequerimiento},
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectpadre = $("#ticketPadre");
+
+                selectpadre.empty();
+                selectpadre.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione un Ticket Padre en caso que lo tenga'
+                }));
+                $("#ticketPadre").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function(index, item) {
+                    selectpadre.append($('<option>', {
+                        value: item.fiIDRequerimiento,
+                        text: item.fcTituloRequerimiento
+                    }));
+                });
+
+                if (idtiposoporte != 0) {
+                    selectpadre.val(idtiposoporte).trigger("change");
+                }
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    }
+
+
+    $("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).val(estadoRequerimiento).trigger("change");
 
     $(document).ready(function () {
         estadoRequerimiento = $("#dllEstadoRequerimiento option:selected").val();
     });
 
     $("#btnActualizarDatosRequerimiento").click(function () {
-        $("#modalConfirmarDatos").modal();
-
-        if (estadoRequerimiento == 1 && ID_USUARIO != "297" && ID_USUARIO != "298" && ID_USUARIO != "299" && ID_USUARIO != "300") {
-            document.getElementById("txtComentario").disabled = true;
-            document.getElementById("dllEstadoConfimar").disabled = true;
-            $("#txtComentario").val("Se cambio el estado del requerimiento a abierto");
-            $("#dllEstadoConfimar").val(2);
-        }
-
+        ActualizarDatos();
     });
 
     function ActualizarDatos() {
+        debugger
         var estado = 0;
         var estadoDescripcion = "";
-        //var AreaSolicitante = "";
-        //a tener en cuenta cuando ya este mejor creado las cosas
-        //if (ID_USUARIO == "1" || ID_USUARIO == "297" || ID_USUARIO == "298" || ID_USUARIO == "299" || ID_USUARIO == "300") {
-        //    estado = $("#dllEstadoRequerimiento option:selected").val() == null ? 0 : parseInt($("#dllEstadoRequerimiento option:selected").val()),
-        //        estadoDescripcion = $("#dllEstadoRequerimiento :selected").text()
-        //}
-        //else {
-        //    estado = $("#dllEstadoConfimar option:selected").val() == null ? 0 : parseInt($("#dllEstadoConfimar option:selected").val()),
-        //        estadoDescripcion = $("#dllEstadoConfimar :selected").text()
-        //}
+        var incidencia = $("#selectincidencia").val();
+        //var usuario = $("#selectusuarios").val();
+        var estadoReque = $(`#fiIDEstadoRequerimiento`).val();
 
         if ($("#txtComentario").val() != "" || $("#txtComentario").val() != null) {
             var bitacora = {
-                idRequerimiento: ID_REQUERIMIENTO,
+                //idRequerimiento: ID_REQUERIMIENTO,
                 Observaciones: $("#txtComentario").val(),
             }
-            var requerimiento = {
-                idRequerimiento: ID_REQUERIMIENTO,
-                fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
-                fcDescipcionRequerimiento: "",//hola,
-                fiIDEstadoRequerimiento: estado,
-                EstadoRequerimiento: estadoDescripcion,
-                //fdFechaAsignacion: $("#txtFechaInicio").val(),
-                //fdFechadeCierre: $("#txtFechaFinal").val(),
-                fiIDUsuarioAsignado: $("#fiIDUsuarioAsignado option:selected").val() == "" ? 1 : parseInt($("#fiIDUsuarioAsignado option:selected").val()),
-                //fiTiempodeDesarrollo: $("#txtTiempoDesarrollo").val().replace(/,/g, '') == '' ? 0 : $("#txtTiempoDesarrollo").val().replace(/,/g, ''),
-                fiTipoRequerimiento: 1,//$("#txtComentario").val(),
-                fiIDAreaSolicitante: $("#fiIDAreaSolicitante option:selected").val() == null ? 0 : parseInt($("#fiIDAreaSolicitante option:selected").val()),//$("#txtComentario").val(),
-                fcArea: $("#fiIDAreaSolicitante :selected").text(),
-                //fcCorreoSolicitante: CorreoSolicitante
+            var detener = $(`#selectincidencia`).val();
+            if (incidencia == 0 || incidencia == null || incidencia == "" || estadoReque == 0 || estadoReque == null || estadoReque == "" ) {
+                return ToastrError("Error", "Llene todos los campos");
+            }
 
+            if ($("#fiIDEstadoRequerimiento option:selected").val() == 11 || $("#fiIDEstadoRequerimiento option:selected").val() == "11") {
+                if (fotosredimencionadas.length < 1) {
+                    ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
+                    return 0;
+                }
+            }
+
+            if ($(`#fiIDEstadoRequerimiento`).val() == 0 && $("#selectmotivo").val()==0 && $("#selectCategoriaResolucion").val()==0 && $("#selectSubCategoriaResolucion").val()==0 ) {
+                return ToastrError("Error", "Llene todos los campos");
+            }
+
+            if (fotosredimencionadas.length < 1) {
+                ToastrError("Documento/Imagen", "Suba un documento o imagen");
+                return 0;
+            }
+            //console.log(`esto trael el motivo: ${$("#selectmotivo").val()}`);
+
+            var listaservicios = [];
+            for (const item of idservicios) {
+                if (item.select == true) {
+                    listaservicios.push(item.fiIDServicio);
+                }
+            }
+            var listacis = [];
+            for (const item of idCis) {
+                listacis.push(item.id);
+            }
+            debugger;
+
+            var estado = $("#fiIDEstadoRequerimiento option:selected").val();
+
+            if (estado == 0 || estado == null)
+            {
+                estado = 3
+            }
+
+            var estado = $("#fiIDEstadoRequerimiento option:selected").val();
+
+            if (estado == 0 || estado == null) {
+                estado = 3
+            }
+
+            var requerimiento = {
+                fiIDRequerimiento: ID_REQUERIMIENTO,
+                fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
+                fcDescripcionRequerimiento: $("#fcDescripcionRequerimiento").val(),//hola,
+                fiIDEstadoRequerimiento: estado,
+                fcDescripcionEstado: $("#fiIDEstadoRequerimiento :selected").text(),
+                fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
+                fiTipoRequerimiento: $(`#selectincidencia`).val(),
+                fiIdTicketPadre: $(`#ticketPadre`).val(),
+                fiMotivoEstado: $("#selectmotivo").val(),
+                fiCategoriaResolucion: $("#selectCategoriaResolucion").val(),
+                fiSubCategoriaResolucion: $("#selectSubCategoriaResolucion").val()
+                //fiIDUsuarioAsignado: $("#fiIDUsuarioAsignado option:selected").val() == "" ? 1 : parseInt($("#fiIDUsuarioAsignado option:selected").val()),
+
+                //$("#txtComentario").val(),
+                //fiIDAreaSolicitante: $("#fiIDAreaSolicitante option:selected").val() == null ? 0 : parseInt($("#fiIDAreaSolicitante option:selected").val()),//$("#txtComentario").val(),
+                //fcNombreAreaSolicitante: $("#fiIDAreaSolicitante :selected").text(),
+                //fiAreaAsignada: $(`#fiAreaAsignada`).val() == null ? 0 : parseInt($("#fiAreaAsignada option:selected").val()),
             }
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("ActualizarDatos", "Ticket")",
-                data: { ticket: requerimiento },
+                data: { ticket: requerimiento, comentario: $("#txtComentario").val(), serviciosAfectados: listaservicios, Ciaguardar: listacis},
                 error: function (xhr, ajaxOptions, thrownError) {
-                    MensajeError("Error, contacte al administrador.");
+                    //MensajeError("Error, contacte al administrador.");
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al Actualizar el Ticket", Estado: false }
+                    AlertaAjax(dataerror)
                 },
                 success: function (data) {
+                    //console.log(data);
+
                     let resultado = data.d;
-                    if (resultado.ResultadoExitoso == true) {
+                    if (data.Estado == true) {
+
                         $("#txtComentario").val(""),
-                            MensajeExitoModal('los datos se Actualizaron correctamente.');
+
                         $("#modalConfirmarDatos").modal('hide');
-                        //window.location = "BandejaRequerimientoDesarrollo.aspx?" + window.location.href.split('?')[1];
-                        //CargarDetalleBitacora();
-                        //location.reload();
+
+                        GuardarDocumentos(data.IdIngresado);
+                        CerrarModal();
+                        Recargar();
+                        return ToastrSuccess("Exito", "Ticket Actualizado Correctamente");
+
                     }
                     else {
-                        MensajeErrorModal("No se pudo realizar la actualizacion de Datos, contacte al administrador.");
+                        var dataerror = { Titulo: "Error", Mensaje: "Error Al Actualizar el Ticket", Estado: false }
+                        AlertaAjax(dataerror)
+                        //MensajeErrorModal("No se pudo realizar la actualizacion de Datos, contacte al administrador.");
                     }
-
-
                 }
             });
 
@@ -430,5 +499,409 @@
 
     });
 
+
+    myDropzone = $('#Imagen-dropzone').dropzone({
+        //url: '/file/post',
+        autoProcessQueue: true,
+        uploadMultiple: true,
+        acceptedFiles: "image/*,.pdf,.doc,.docx,.xls,.xlsx",
+        //maxFiles: 1,
+        addRemoveLinks: true,
+        dictMaxFilesExceeded: "Maximum upload limit reached",
+        dictInvalidFileType: "Upload only JPG/PNG/PDF/DOC/XLS",
+        //resizeWidth: 500,
+        //resizeHeight: 300,
+
+        init: function () {
+            var myDropzone = this;
+
+            myDropzone.on('maxfilesexceeded', function (file) {
+                this.removeAllFiles();
+                this.addFile(file);
+            });
+
+            myDropzone.on('addedfile', function (file) {
+                //console.log("entro aquí el base64");
+                //console.log("file.type:", file.type);
+
+                var tipoarchivo = file.type;
+                if (tipoarchivo === "application/pdf" ||
+                    tipoarchivo === "application/msword" ||
+                    tipoarchivo === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+                    tipoarchivo === "application/vnd.ms-excel" ||
+                    tipoarchivo === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
+
+                        //console.log('Base64 String:', base64String);
+                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: false });
+                        //console.log(fotosredimencionadas);
+
+                        // Aquí puedes manejar el Base64 string, por ejemplo enviarlo a un servidor
+                    };
+                    reader.readAsDataURL(file);
+                } else if (tipoarchivo.startsWith("image/")) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
+                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: true });
+                    }
+
+                    //myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
+                }
+            });
+
+            myDropzone.on('thumbnail', function (file, dataURL) {
+                RedimencionarImagen(`fotopreviacanva`, file, "fotoprevia2", file.name, file.type.split('/')[1])
+            });
+        },
+
+        removedfile: function (file) {
+            archivoExterno = 0;
+            var _ref = file.previewElement;
+            return _ref != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+        }
+    });
+
+    function RedimencionarImagen(idcanva, eimagencaptada, idimg, NombreArchivo, tipoimagen) {
+        debugger;
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d'); // capturamos el id del camva para ponerlo la imagen oculta ahi y asi poder tomar esa imagen y no la que se esta mostrando
+        var img = new Image;
+
+        //console.log(eimagencaptada.type);
+
+        img.src = URL.createObjectURL(eimagencaptada); // insertamos la imagen que el cliente subio para posteriormente hacer la reduccion
+        img.onload = function () {
+            //var canvas = document.getElementById(idcanva);
+            var maxAncho = 900; //aqui le ponemos unas medidas estandar que pueden cambiar en un futuro,
+            var maxAlto = 1500;
+
+            var proporcion = Math.min(maxAncho / img.width, maxAlto / img.height); // aqui hacemos una proporcion de las imagenes con respecto al tamaño de la imagen original y al estandar que tenemos nosotros aqui adentro
+            var propdos = img.width / img.height;
+            var ancho = img.width * proporcion;
+            var alto = img.height * proporcion;
+
+            canvas.width = (img.width / propdos); // ponemos el tamaño en el canva oculto
+            canvas.height = (img.height / propdos);
+
+            ctx.drawImage(img, 0, 0, (img.width / propdos), (img.height / propdos));
+            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // tira el base 64
+
+            var urlbase64 = getBase64Image(img); // tira el base 64
+            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // aqui para saber el base64 de la imagen
+            fotosredimencionadas.push({ base: canvas.toDataURL('image/jpeg', 0.7), nombreArchivo: NombreArchivo, tipoarchivo: tipoimagen, pbEsImagen: true });
+            return ctx;
+            //document.getElementById(idimg).src = canvas.toDataURL('image/jpeg', 0.7); // el 07 es la calidad de la imagen si no estoy mal eso decia en la documentacion
+            //document.getElementById(idcanva).style.display = "block"; //mostrar la imagen que esta oculta
+        }
+    }
+
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var dataURL = canvas.toDataURL();
+        return dataURL;
+    }
+
+    function GuardarDocumentos(IdRequerimiento) {
+        debugger
+        //const form = new FormData();
+
+        //form.append("idDocumento", 1);
+        var mod = [];
+
+        var cont = 0;
+        if (fotosredimencionadas.length < 1) {
+            //var datasus = { Titulo: "Exito", Mensaje: "Imagenes", Estado: true }
+            //AlertaAjax(datasus)
+            return 0;
+        }
+
+        for (const item of fotosredimencionadas) {
+
+            mod.push({ piIDRequerimiento: ID_REQUERIMIENTO, pcTipoArchivo: item.tipoarchivo, pcNombreArchivo: item.nombreArchivo, pcRutaArchivo: item.base, idSesion: 1, idApp: 1, pcURL: "-" });
+
+
+            //form.append(`modelo[${cont}].`, );
+            ////form.append("modelo[].idUsuario", ID_USUARIO);
+            //form.append(`modelo[${cont}].`, 1); // se usaba anteriormente para saber si un archivo era imagen, documento o un dinosaurio, pero con el base 64 eso ya no importa pero para no cambiar todo el flujo se deja en 1
+            //form.append(`modelo[${cont}].`, );
+            //form.append(`modelo[${cont}].`, );
+            //form.append(`modelo[${cont}].`, 1); //de momento no se para que se ocupa estas variables pero el procedimiento las pide asi que poner 1 por cualquier cosa
+            //form.append(`modelo[${cont}].`, 1);//de momento no se para que se ocupa estas variables pero el procedimiento las pide asi que poner 1 por cualquier cosa
+            //cont++
+        }
+
+
+        $.ajax({
+            url: "@Url.Action("Guardardocumentos", "Ticket")",
+            type: "POST",
+            data: { modelo: mod },
+
+                timeout: 800000,
+                success: function (data) {
+
+                    //var datasus = { Titulo: "Exito", Mensaje: "Documentos guardados correctamente", Estado: true }
+                    //AlertaAjax(datasus)
+
+                    //location.reload();
+
+                },
+                error: function (e) {
+                    var dataerror = { Titulo: "Error", Mensaje: "Error Al querer Subir Imagenes", Estado: false }
+                    AlertaAjax(dataerror)
+                    console.error(e);
+
+                }
+            });
+
+
+    }
+
+    
+
+    select();
+    function select() {
+        $.ajax({
+            url: "@Url.Action("SelectServiciosAfectados", "LlenarCampos")",
+            data: { idticket: ID_REQUERIMIENTO},
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectservicios = $("#ticketservafectados");
+
+                selectservicios.empty();
+
+                $("#ticketservafectados").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
+                $.each(respuesta, function (index, item) {
+                    idservicios.push({ select: false, fiIDServicio: item.fiIDServicio, fcNombreServicio: item.fcNombreServicio})
+                });
+                llenartableServicios(idservicios);
+                //
+                console.log(idserviciosusados);
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+        llenartableCis();
+    }
+
+    function llenartableServicios(servicios) {
+
+
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistaservicios">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                    <tbody >
+
+                        `;
+        for (const item of idserviciosusados) {
+            tbo += `<tr>
+                        <td>${item.fcNombreServicio}</td>
+                    </tr>`;
+
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodyservicios`).empty()
+        $(`#tbodyservicios`).append(tbo);
+    }
+
+    function llenartableCis() {
+        //console.log(idCisusados);
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistacis">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+
+                        `;
+        for (const item of idCisusados) {
+            tbo += `<tr>
+                            <td>${item.fcConfiguracion}</td>
+                            <td></td>
+                        </tr>`;
+
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodycis`).empty()
+        $(`#tbodycis`).append(tbo);
+    }
+
+    function removeCommonElements(arr1, arr2) {
+        let set2 = new Set(arr2.map(item => item.fiIDServicio));
+        let filteredArr1 = arr1.filter(item => !set2.has(item.fiIdServicioAfectado));
+
+        let set1 = new Set(arr1.map(item => item.fiIdServicioAfectado));
+        let filteredArr2 = arr2.filter(item => !set1.has(item.fiIDServicio));
+
+        return { filteredArr1, filteredArr2 };
+    }
+
+
+    $(`#fiIDEstadoRequerimiento`).on(`change`, function () {
+        //console.log(`Cambio ahora`);
+        var divinfo = document.getElementById('iddivmotivo');//funcion que se usa para desocultar y ocultar las opciones de mantenimiento, al darle click al boton buscar
+
+        if ($(this).val() == 4 || $(this).val() == 6 || $(this).val() == 11) {
+            console.log(`entro en el if`);
+            divinfo.style.display = 'block'
+
+            $.ajax({
+                url: "@Url.Action("SelectMotivos", "LlenarCampos")",
+                type: "GET",
+                data: { idestado: $(this).val() },
+                success: function (respuesta) {
+
+                    var selectMotivo = $("#selectmotivo");
+
+                    selectMotivo.empty();
+                    selectMotivo.append($('<option>', {
+                        value: 0,
+                        text: 'Seleccione un Motivo'
+                    }));
+
+                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
+                    $.each(respuesta, function (index, item) {
+                        selectMotivo.append($('<option>', {
+                            value: item.fiMotivos,
+                            text: item.fcNombreMotivo
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+            if ($(this).val() == 4)
+            {
+                var divCategoriaResolucion = document.getElementById('iddivCategoriaResolusion');
+                var divSubCategoriaResolucion = document.getElementById('iddivSubCategoriaResolusion');
+                var selectCategoriaResolucion = $("#selectCategoriaResolucion");
+                var selectSubCategoriaResolucion = $("#selectSubCategoriaResolucion");
+                selectCategoriaResolucion.empty();
+                selectSubCategoriaResolucion.empty();
+                divCategoriaResolucion.style.display = 'block'
+                divSubCategoriaResolucion.style.display = 'block'
+
+                $.ajax({
+                url: "@Url.Action("SelectCategoriaResolucion", "LlenarCampos")",
+                type: "GET",
+                data: { },
+                success: function (respuesta) {
+
+                    debugger;
+
+                    selectCategoriaResolucion.empty();
+                    selectCategoriaResolucion.append($('<option>', {
+                        value: 0,
+                        text: 'Seleccione una Categoria Resolucion'
+                    }));
+
+                    $("#selectCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(1).trigger("change");
+                    $.each(respuesta, function (index, item) {
+                        selectCategoriaResolucion.append($('<option>', {
+                            value: item.fiIDCategoriaResolucion,
+                            text: item.fcDescripcionCategoria
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+
+            }
+        } else {
+            console.log(`entro en el else`);
+            divinfo.style.display = 'none'
+        }
+
+
+    });
+
+    $(`#selectCategoriaResolucion`).on(`change`, function () {
+        $.ajax({
+                url: "@Url.Action("SelectSubCategoriaResolucion", "LlenarCampos")",
+                type: "GET",
+                data: { Categoria: $(this).val() },
+                success: function (respuesta) {
+
+                    debugger;
+                    var selectSubCategoriaResolucion = $("#selectSubCategoriaResolucion");
+                    selectSubCategoriaResolucion.empty();
+                    selectCategoriaResolucion.append($('<option>', {
+                        value: 0,
+                        text: 'Seleccione una SubCategoria Resolucion'
+                    }));
+                    $("#selectSubCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
+                    $.each(respuesta, function (index, item) {
+                        selectSubCategoriaResolucion.append($('<option>', {
+                            value: item.fiIDTipoRequerimientoResolucion,
+                            text: item.fcTipoRequerimiento
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+    });
+
+    function AgregarServicios() {
+        //const { idserviciosusados, idserviciosnuevos } = removeCommonServices(idserviciosusados, idserviciosnuevos);
+        //console.log(idserviciosusados);
+        //console.log(idservicios);
+        let { filteredArr1, filteredArr2 } = removeCommonElements(idserviciosusados, idservicios);
+        idservicios = filteredArr2;
+        //console.log(idservicios);
+        $.ajax({
+            url: "@Url.Action("AgregarServicios", "Ticket")",
+            method: "get",
+            //data: { id: id },
+            success: function (data) {
+                ShowModalSmall(data);
+            },
+            error: function (resp) {
+                AlertaError();
+            }
+        });
+    }
+
+    function AgregarCI() {
+        //console.log("entro en ese proceso")
+         $.ajax({
+                url: "@Url.Action("AgregarCI", "Ticket")",
+                method: "get",
+                //data: { id: id },
+             success: function (data) {
+                 ShowModal3(data);
+                },
+                error: function (resp) {
+                    AlertaError();
+                }
+            });
+    }
+
+    function Recargar()
+    {
+        location.reload();
+    }
 
 </script>

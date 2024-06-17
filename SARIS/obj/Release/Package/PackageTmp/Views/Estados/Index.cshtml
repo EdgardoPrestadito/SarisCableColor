@@ -4,7 +4,7 @@
 
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Areas</h2>
+        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Estados</h2>
         <div class="panel-toolbar " role="menu">
             <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Nuevo Estado</a>
         </div>
@@ -17,7 +17,6 @@
 
                     <tr>
                         <th></th>
-                        <th>Id</th>
                         <th>Descripción</th>
                         <th>Clase</th>
                         
@@ -123,15 +122,14 @@
                },
 
                 {
-                    data: 'fiIDEstado'
-                },
-                {
                     data: 'fcDescripcionEstado'
                 },
                 {
                     data: null,
                     render: function (data) {
-                        return `<label class="text-${data.fcClaseColor}">${data.fcClaseColor}</label>`
+                        
+                        return `<span class="btn-sm btn-block badge badge-${data.fcClaseColor}">${data.fcClaseColor}</span>`;
+
                     }
                 },
 

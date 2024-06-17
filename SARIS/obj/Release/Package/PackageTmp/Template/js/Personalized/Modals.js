@@ -19,6 +19,12 @@ function ShowModalBig(data) {
     $("#MyModalBig").modal("show");
 
 }
+function ShowModalBig2(data) {
+    $("#MyModalContentBig2").html(data);
+   // $("#MyModalBig .modal-body").css("height", '80vh');
+    $("#MyModalBig2").modal("show");
+
+}
 function ShowModalBigScroll(data) {
     $("#MyModalContentBig").html(data);
      $("#MyModalBig .modal-body").css("height", '80vh');
@@ -42,12 +48,17 @@ function ShowModalBigScrollSignalR(data) {
 function ShowModalSmall(data) {
     $("#MyModalContentSmall").html(data);
     $("#MyModalSm").modal("show");
-
 }
 
 function ShowModal(data) {
     $("#MyModalContent").html(data);
     $("#MyModal").modal("show");
+
+}
+
+function ShowModal3(data) {
+    $("#MyModalContentBig3").html(data);
+    $("#MyModalBig3").modal("show");
 
 }
 

@@ -620,6 +620,7 @@
         if (fotosredimencionadas.length < 1) {
             //var datasus = { Titulo: "Exito", Mensaje: "Imagenes", Estado: true }
             //AlertaAjax(datasus)
+            location.reload();
             return 0;
         }
 
@@ -650,7 +651,7 @@
                     //var datasus = { Titulo: "Exito", Mensaje: "Documentos guardados correctamente", Estado: true }
                     //AlertaAjax(datasus)
 
-                    //location.reload();
+                    location.reload();
 
                 },
                 error: function (e) {

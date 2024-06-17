@@ -1,0 +1,351 @@
+/* Import fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap');
+
+body {
+    color: #fff;
+    background: #17181c;
+    font: 300 1em 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+
+.custom-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    padding: 10px 5px;
+    margin: 10px 0;
+    transition: border-bottom 0.3s;
+}
+
+    .custom-input:focus {
+        outline: none;
+        background-color: transparent;
+        border-bottom: 2px solid white;
+        border: none;
+        border-bottom: 1px solid white;
+    }
+
+    .custom-input::placeholder {
+        color: white;
+        opacity: 0.6;
+    }
+
+button {
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+    color: var(--color);
+    transition: all 0.3s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    button:hover, button:focus {
+        border-color: var(--hover);
+        color: #fff;
+        background-color: var(--hover);
+    }
+
+.ov-btn-grow-primary {
+    background: #551d66b7; /* color de fondo */
+    color: #fff; /* color de fuente */
+    border: 2px solid #551d66b7; /* tamaño y color de borde */
+    border-radius: 3px; /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+}
+
+    .ov-btn-grow-primary:hover {
+        color: #fff; /* color de fuente hover */
+    }
+
+    .ov-btn-grow-primary::after {
+        content: "";
+        background: #551d66; /* color de fondo hover */
+        position: absolute;
+        z-index: -1;
+        padding: 0; /* ajusta el padding a 0 */
+        display: block;
+        left: -50%;
+        right: -50%;
+        top: -50%; /* ajusta el valor para aumentar la altura */
+        bottom: -50%; /* ajusta el valor para aumentar la altura */
+        transform: skewX(-45deg) scale(0, 1);
+        transition: all 0.3s ease;
+    }
+
+    .ov-btn-grow-primary:hover::after {
+        transition: all 0.3s ease-out;
+        transform: skewX(-45deg) scale(1, 1);
+    }
+
+.pulse {
+    --color: #551d66;
+    --hover: #551d66b7;
+}
+
+.pulse:hover,
+.pulse:focus{
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+    box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+}
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+
+.gradiente {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: linear-gradient(45deg, #000, #323232);
+    animation: cambiarColor 10s linear infinite;
+}
+
+@keyframes cambiarColor {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+}
+
+
+._fondo:before,
+._fondo:after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    background: linear-gradient(120deg, #79fb00, #8d01a0, #031ba5, #ff004c, #e6036d, #fb0094, #ff6600, #04c2e4, #adad02, #00c3ff);
+    background-size: 300%;
+    z-index: -1;
+    animation: _fondogradiente 15s ease infinite;
+    border-radius: 40px;
+}
+
+@keyframes _fondogradiente {
+    0% {
+        background-position: 0% 200%;
+    }
+
+    50% {
+        background-position: 200% 0%;
+    }
+
+    100% {
+        background-position: 0% 330%;
+    }
+}
+
+._fondo:after {
+    filter: blur(15px);
+}
+.gradient-border {
+    border: 6px solid transparent; /* Inicialmente transparente para evitar un borde sólido inicial */
+    border-radius: 50px; /* Redondea los bordes */
+    animation: gradientAnimation 5s infinite alternate;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        border-color: transparent; /* Color inicial transparente */
+    }
+
+    100% {
+        border-color: transparent; /* Color final transparente */
+    }
+}
+
+/* Estilo específico del borde usando la propiedad border-image */
+.gradient-border {
+    border-image: linear-gradient(to right, black 0%, /* Negro */
+    #2e0854 20%, /* Morado oscuro */
+    #641e80 40%, /* Morado */
+    #b53f9d 60%, /* Morado claro */
+    black 80%, /* Negro */
+    black 100%); /* Negro */
+    border-image-slice: 1; /* Ajusta la división del borde para aplicar el gradiente correctamente */
+}
+
+
+.offset {
+    --color: #19bc8b;
+    --hover: #1973bc;
+}
+
+h1 {
+    font-weight: 400;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 20px;
+}
+
+.badge-custom {
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    padding: 6px 9px;
+    font-size: 11px;
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+.gradiente-white {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: linear-gradient(45deg, #fff, #eee);
+    animation: cambiarColor 10s linear infinite;
+    border-radius: 10px;
+}
+
+@keyframes cambiarColor {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+}
+
+
+.slimScrollDiv {
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    height: 100%;
+    background-color: #2f3e47; /* Fondo oscuro para contraste */
+    color: white;
+}
+
+.info-card {
+    width: 100%;
+    padding: 10px;
+    background: #3a4b55;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.page-logo-link {
+    padding: 10%;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.cover {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.btn-group .btn {
+    background: #495e6b;
+    color: white;
+    border: none;
+}
+
+    .btn-group .btn:hover {
+        background: #3a4b55;
+    }
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .nav-menu li {
+        padding: 10px 0;
+    }
+
+    .nav-menu a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 5px 15px;
+    }
+
+        .nav-menu a:hover {
+            background: #495e6b;
+        }
+
+.nav-link-text {
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+.dropdown-menu {
+    background: #3a4b55;
+    border: none;
+}
+
+    .dropdown-menu a {
+        color: white;
+        padding: 5px 15px;
+        display: block;
+    }
+
+        .dropdown-menu a:hover {
+            background: #495e6b;
+        }
+
+@media (max-width: 768px) {
+    .slimScrollDiv {
+        height: auto;
+        padding: 10px;
+    }
+
+    .profile-image {
+        width: 75px;
+        height: 75px;
+    }
+
+    .nav-link-text {
+        font-size: 0.9rem;
+    }
+}

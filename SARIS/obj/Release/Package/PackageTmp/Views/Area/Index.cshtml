@@ -17,10 +17,12 @@
 
                     <tr>
                         <th></th>
-                        <th>Id</th>
                         <th>Descripción</th>
                         <th>Correo Electronico</th>
                         <th>Responsable de Area</th>
+                        <th>Nivel</th>
+                        <th>Gerencia</th>
+
 
                     </tr>
                 </thead>
@@ -114,7 +116,8 @@
                         {
                 data: null,
                 render: function (data) {
-                    var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' + '> Acciones </button>';
+                    var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' + (data.fiActivo != 1 ? 'disabled' : "") + '> Acciones </button>';
+
                     opciones += '<div class="dropdown-menu">';
                     opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDArea + ')"> Editar</a>';
                     opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDArea +')"> Eliminar </a>';
@@ -125,9 +128,6 @@
                },
 
                 {
-                    data: 'fiIDArea'
-                },
-                {
                     data: 'fcDescripcion'
                 },
 
@@ -137,7 +137,12 @@
                 {
                     data: 'fcNombreCorto'
                 },
-
+                {
+                    data: 'fcNivel'
+                },
+                {
+                    data: 'fcNombreGenerencia'
+                },
 
 
 

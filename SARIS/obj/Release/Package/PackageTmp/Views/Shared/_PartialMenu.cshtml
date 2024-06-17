@@ -1,92 +1,174 @@
 ﻿@using OrionCoreCableColor.App_Helper
 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%; color:white;">
     <nav id="js-primary-nav" class="primary-nav" role="navigation">
-        @*<div class="nav-filter">
-            <div class="position-relative">
-                <input type="text" id="nav_filter_input" placeholder="Filter menu" class="form-control" tabindex="0">
-                <a href="#" onclick="return false;" class="btn-primary btn-search-close js-waves-off" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar">
-                    <i class="fal fa-chevron-up"></i>
-                </a>
+        <div class="info-card justify-content-center align-items-center" style="width: 100%;">
+            <div class="page-logo-link d-flex  justify-content-center align-items-center">
+                <img style="width: 60%; height: 60%; " class="profile-image rounded-circle img-fluid" src="~/Content/img/AvatarUsuario/11.png" alt="Profile Picture">
             </div>
-        </div>*@
-        @*<div class="info-card">
-
-            <div class="info-card-text">
-                <a href="#" class="d-flex align-items-center text-white">
-                    <span>
-                        @User.Identity.Name
-                    </span>
-                </a>
-            </div>
-            <img src="~/Content/img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
-            <a href="#" onclick="return false;" class="pull-trigger-btn" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar" data-focus="nav_filter_input">
-                <i class="fal fa-angle-down"></i>
-            </a>
-        </div>*@
-
-        <div class="info-card" style="width:100%;">
-            <div class="page-logo-link d-flex" style="padding-left: 17%;">
-                <img style="width:100%; height:100%;" class="profile-image rounded-circle img-lg" src="~/Content/img/AvatarUsuario/5.png" alt="Profile Picture">
-
-            </div>
-
+            <img src="~/Content/img/fondo_aside.jpg" class="cover img-fluid" alt="cover">
         </div>
-        <div class="btn-group text-center align-items-center" style="width:100%;">
+        <div class="page-logo d-flex justify-content-center align-items-center">
+            <img src="~/Content/img/LogoCabeceraOrion.png" alt="ORION" aria-roledescription="logo" class="img-fluid" style="filter: invert(1); width: 50%; height: auto;">
+        </div>
+        <ul class="nav-menu js-nav-builtr text-center">
+            
+        <li class="btn-group text-center align-items-center" style="width:100%;">
             <button class="btn btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false"> </button>
             <div class="dropdown-menu">
-               
                 <a href="@Url.Action("LogOff","Account")" class="dropdown-item"> LogOut </a>
-
             </div>
-        </div>
-    
-        <ul class="nav-menu js-nav-builtr text-center">
-            <li class="open">
-                <a href="javascript:void(0);" data-filter-tags="tables" class="waves-effect waves-themed align-content-center text-center" aria-expanded="true">
-                    <span class="nav-link-text" style="padding-left: 27%;" data-i18n="nav.tables align-content-center"> @User.Identity.Name</span>
-
-                </a>
-
-            </li>
+        </li>
         </ul>
 
-
-
-        <!--
-    TIP: The menu items are not auto translated. You must have a residing lang file associated with the menu saved inside dist/media/data with reference to each 'data-i18n' attribute.
-    -->
+        <!-- Añadido el primer bloque de código aquí -->
         <ul id="js-nav-menu" class="nav-menu text-white">
+            @if (User.IsInRole("SARIS_DASHBOARD"))
+            {
+                <li>
+                    <a href="@Url.Action("Index","Home")" data-filter-tags="blank page">
+                        <i class="fal fa-tachometer"></i>
+                        <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Dashboard</span>
+                    </a>
 
+                </li>
+            }
 
             <li>
-                <a href="#" title="Application Intel" data-filter-tags="Seguridad">
-                    <i class="fal fa-user-lock"></i>
-                    <span class="nav-link-text" data-i18n="nav.ControlUsuarios" style="color:white;">Seguridad</span>
+                <a href="@Url.Action("Index","Ticket")" data-filter-tags="blank page">
+                    <i class="fal fa-ticket"></i>
+                    <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Incidente</span>
                 </a>
-                <ul>
-                   
-                        <li>
-                            <a href="@Url.Action("index","usuario")" data-filter-tags="blank page">
-                                <i class="fal fa-user"></i>
-                                <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Registrar Usuario</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("index","role")" data-filter-tags="blank page">
-                                <i class="fal fa-lock fa-fw"></i>
-                                <span class="nav-link-text" style="color:white;"><strong>Roles</strong></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("index","permiso")" data-filter-tags="blank page">
-                                <i class="fal fa-lock fa-fw"></i>
-                                <span class="nav-link-text" style="color:white;"><strong>Permisos</strong></span>
-                            </a>
-                        </li>
-                     
-                    
-                </ul>
+
             </li>
+
+
+
+            @if (User.IsInRole("SARIS_Seguridad"))
+            {
+                <li>
+
+                    <a href="#" title="Application Intel" data-filter-tags="Seguridad">
+                        <i class="fal fa-user-lock"></i>
+                        <span class="nav-link-text" data-i18n="nav.ControlUsuarios" style="color:white;">Seguridad</span>
+                    </a>
+                    <ul>
+
+                        @if (User.IsInRole("SARIS_Registrar_Usuario"))
+                        {
+                            <li>
+                                <a href="@Url.Action("index","usuario")" data-filter-tags="blank page">
+                                    <i class="fal fa-user"></i>
+                                    <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Registrar Usuario</span>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("SARIS_Roles"))
+                        {
+                            <li>
+                                <a href="@Url.Action("index","role")" data-filter-tags="blank page">
+                                    <i class="fal fa-lock fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Roles</strong></span>
+                                </a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("SARIS_Permisos"))
+                        {
+                            <li>
+                                <a href="@Url.Action("index","permiso")" data-filter-tags="blank page">
+                                    <i class="fal fa-lock fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Permisos</strong></span>
+                                </a>
+                            </li>
+                        }
+
+
+
+                    </ul>
+                </li>
+            }
+
+
+            @if (User.IsInRole("SARIS_Seguridad"))
+            {
+                <li>
+                    <a href="#" title="Application Intel" data-filter-tags="Mantenimiento">
+                        <i class="fal  fa-cog"></i>
+                        <span class="nav-link-text" data-i18n="nav.ControlUsuarios" style="color:white;">Mantenimiento</span>
+                    </a>
+                    <ul>
+
+                        <li>
+                            <a href="@Url.Action("Index","Area")" data-filter-tags="blank page">
+                                <i class="fal fa-archive"></i>
+                                <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Areas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Estados")" data-filter-tags="blank page">
+                                <i class="fal fa-file-archive fa-fw"></i>
+                                <span class="nav-link-text" style="color:white;"><strong>Estados</strong></span>
+                            </a>
+                        </li>
+                        @if (User.IsInRole("SARIS_INCIDENCIAS"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","CategoriaIndicadores")" data-filter-tags="blank page">
+                                    <i class="fal fa-list fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Categorias de Apertura</strong></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Indicadores")" data-filter-tags="blank page">
+                                    <i class="fal fa-exclamation-triangle fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Sub Categorias de Apertura</strong></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","CategoriasIncidenciasResolucion")" data-filter-tags="blank page">
+                                    <i class="fal fa-list fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Categorias de Resolución</strong></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","IncidenciasResolucion")" data-filter-tags="blank page">
+                                    <i class="fal fa-exclamation-triangle fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Sub Categorias de Resolución</strong></span>
+                                </a>
+                            </li>
+                        }
+                        <li>
+                            <a href="@Url.Action("ImpactoBandeja","Catalogos")" data-filter-tags="blank page">
+                                <i class="fal fa-bolt fa-fw"></i>
+                                <span class="nav-link-text" style="color:white;"><strong>Impacto</strong></span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("BandejaPrioridades","Catalogos")" data-filter-tags="blank page">
+                                <i class="fal fa-exclamation-circle fa-fw"></i>
+                                <span class="nav-link-text" style="color:white;"><strong>Prioridad</strong></span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Gerencias")" data-filter-tags="blank page">
+                                <i class="fal fa-user-tie fa-fw"></i>
+                                <span class="nav-link-text" style="color:white;"><strong>Gerencias</strong></span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
+                                <i class="fal fa-location-circle fa-fw"></i>
+                                <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            }
+
 
             @*@if (User.IsInRole("Orion_Acceso_Configuraciones"))
             {
@@ -100,25 +182,22 @@
 
 
             @*<li>
-            <a href="#" title="Application Intel" data-filter-tags="Contrato">
-                <i class="fal fa-file-contract"></i>
-                <span class="nav-link-text" data-i18n="nav.Clientes" style="color:white;">Contratos</span>
-            </a>
-            <ul>
-                <li>
-                    <a href="@Url.Action("GuardarContrato","Contrato")" data-filter-tags="blank page">
-                        <i class="fal fa-file-edit"></i>
-                        <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Editor</span>
-                    </a>
-                </li>
+                <a href="#" title="Application Intel" data-filter-tags="Contrato">
+                    <i class="fal fa-file-contract"></i>
+                    <span class="nav-link-text" data-i18n="nav.Clientes" style="color:white;">Contratos</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="@Url.Action("GuardarContrato","Contrato")" data-filter-tags="blank page">
+                            <i class="fal fa-file-edit"></i>
+                            <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Editor</span>
+                        </a>
+                    </li>
 
-            </ul>
-        </li>*@
+                </ul>
+            </li>*@
 
 
         </ul>
-
-
     </nav>
-
 </div>

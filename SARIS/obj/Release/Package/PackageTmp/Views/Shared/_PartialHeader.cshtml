@@ -1,61 +1,39 @@
 ﻿<header class="page-header" role="banner">
-    <!-- we need this logo when user switches to nav-function-top -->
     <div class="page-logo">
-        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
-            <img src="~/Content/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative"
+           data-toggle="modal" data-target="#modal-shortcut">
+            <img src="img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
             <span class="page-logo-text mr-1">SmartAdmin WebApp</span>
             <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
             <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
         </a>
     </div>
-    <!-- DOC: nav menu layout change shortcut -->
     <div class="hidden-md-down dropdown-icon-menu position-relative">
-        <a href="#" class="header-btn btn js-waves-off" data-action="toggle" data-class="nav-function-hidden" title="Hide Navigation">
+        <a href="#" class="header-btn btn js-waves-off" data-action="toggle"
+           data-class="nav-function-hidden" title="Hide Navigation">
             <i class="ni ni-menu"></i>
         </a>
         <ul>
             <li>
-                <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-minify" title="Minify Navigation">
+                <a href="#" class="btn js-waves-off" data-action="toggle"
+                   data-class="nav-function-minify" title="Minify Navigation">
                     <i class="ni ni-minify-nav"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-fixed" title="Lock Navigation">
+                <a href="#" class="btn js-waves-off" data-action="toggle"
+                   data-class="nav-function-fixed" title="Lock Navigation">
                     <i class="ni ni-lock-nav"></i>
                 </a>
             </li>
         </ul>
     </div>
-    <!-- DOC: mobile button appears during mobile width -->
     <div class="hidden-lg-up">
         <a href="#" class="header-btn btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
             <i class="ni ni-menu"></i>
         </a>
     </div>
-    <div class="search">
-        <form class="app-forms hidden-xs-down" role="search" action="page_search.html" autocomplete="off">
-            @*<input type="text" id="search-field" placeholder="Search for anything" class="form-control" tabindex="1">*@
-            <a href="#" onclick="return false;" class="btn-danger btn-search-close js-waves-off d-none" data-action="toggle" data-class="mobile-search-on">
-                <i class="fal fa-times"></i>
-            </a>
-        </form>
-    </div>
     <div class="ml-auto d-flex">
-        <!-- activate app search icon (mobile) -->
-        @*<div class="hidden-sm-up">
-            <a href="#" class="header-icon" data-action="toggle" data-class="mobile-search-on" data-focus="search-field" title="Search">
-                <i class="fal fa-search"></i>
-            </a>
-        </div>*@
-        <div class="hidden-sm-up">
-            <br />
-            <button style="font-size:10px" type="button" class="btn btn-sm btn-success" onclick="window.location.reload()">Actualizar Pagina<span><i class="fal fa-check"></i></span> </button>
-        </div>
-        <!-- app settings -->
-        <!-- app shortcuts -->
-        <!-- app message -->
-        <!-- app notification -->
-        <!-- app user menu -->
         <div class="">
             <a href="#" class="header-icon" data-toggle="dropdown" id="campanaNotificacion" title="You got 11 notifications" aria-expanded="false">
                 <i class="fal fa-bell"></i>
@@ -68,7 +46,7 @@
                         <small class="mb-0 opacity-80">User Notifications</small>
                     </h4>
                 </div>
-               
+
                 <div class="tab-content tab-notification">
                     <div class="tab-pane p-3 text-center">
                         <h5 class="mt-4 pt-4 fw-500">
@@ -83,14 +61,13 @@
                     </div>
                     <div class="tab-pane active" id="tab-messages" role="tabpanel">
                         <div class="custom-scroll h-100">
-                                <ul class="notification" id="listNotificaciones" style="overflow: hidden; width: auto; height: 100%;">
-                                    
-                                </ul>
-                                <div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div>
+                            <ul class="notification" id="listNotificaciones" style="overflow: hidden; width: auto; height: 100%;">
+                            </ul>
+                            <div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div>
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
                 <div class="py-2 px-3 bg-faded d-block rounded-bottom text-right border-faded border-bottom-0 border-right-0 border-left-0">
                     <a href="#" class="fs-xs fw-500 ml-auto">view all notifications</a>
@@ -98,31 +75,35 @@
             </div>
         </div>
         <div>
+
+
             <a href="#" data-toggle="dropdown" title="@User.Identity.Name" class="header-icon d-flex align-items-center justify-content-center ml-5">
                 <div class="username hidden-xs color-black">@User.Identity.Name</div>
                 <span class="mr-2">
                     &#160;
                     <i class="fal fa-user-alt"></i>
                 </span>
-
-
-                <!-- you can also add username next to the avatar with the codes below:
-            <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
-            <i class="ni ni-chevron-down hidden-xs-down"></i> -->
             </a>
+
+
             <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
                 <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
                     <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+                        <span class="mr-2">
+                            <img src="~/Content/img/AvatarUsuario/5.png"
+                                 class="rounded-circle profile-image" alt="Profile">
+                        </span>
 
-
+                        <div class="info-card-text">
+                            <div class="fs-lg text-truncate text-truncate-lg">@User.Identity.Name</div>
+                            @*<span class="text-truncate text-truncate-md opacity-80">@User.Identity.IsAuthenticated</span>*@
+                        </div>
                     </div>
                 </div>
                 <div class="dropdown-divider m-0"></div>
-
                 <a class="dropdown-item fw-500 pt-3 pb-3" href="@Url.Action("LogOff","Account")">
-                    <span data-i18n="drpdwn.page-logout">Logout</span>
+                    <span data-i18n="drpdwn.page-logout">Cerrar Sesión</span>
                 </a>
-
             </div>
         </div>
     </div>

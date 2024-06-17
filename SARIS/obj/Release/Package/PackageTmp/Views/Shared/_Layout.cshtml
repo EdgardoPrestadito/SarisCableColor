@@ -14,7 +14,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 <head>
     <meta charset="utf-8">
     <title>
-        ORION
+        Saris
     </title>
     <meta name="description" content="Page Title">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,11 +43,13 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link media="screen, print" href="~/Content/css/notifications/sweetalert2/sweetalert2.bundle.css" rel="stylesheet">
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/Content/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/x-icon" href="~/Content/img/LogoCabeceraOrion.ico">
+    @*<link rel="icon" type="image/x-icon" href="~/Content/img/LogoCabeceraOrion.ico">*@
+    <link rel="icon" type="image/x-icon" href="~/Content/img/LogoCabezeraSaris.png">
 
     <link rel="mask-icon" href="~/Content/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="stylesheet" href="~/Template/plugins/ionicons/css/ionicons.css" />
     <link href="~/Content/css/statistics/chartjs/chartjs.css" rel="stylesheet" />
+    <link id="mytheme" rel="stylesheet" media="screen, print" href="~/Content/css/themes/cust-theme-15.css">
 
     <!-- You can add your own stylesheet here to override any styles that comes before it
     <link rel="stylesheet" media="screen, print" href="css/your_styles.css">-->
@@ -148,7 +150,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     </style>
 
 
-    
+
 </head>
 <!-- BEGIN Body -->
 <!-- Possible Classes
@@ -307,52 +309,14 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <div class="page-wrapper">
         <div class="page-inner">
             <!-- BEGIN Left Aside -->
-            <aside class="page-sidebar">
-                <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
-                    @*<a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
-
-                            <span class="page-logo-text mr-1">ORION</span>
-                            <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
-
-                        </a>*@
-
-                    <div class="page-logo-link d-flex align-items-center">
-                        <img src="~/Content/img/LogoCabeceraOrion.png" alt="ORION" aria-roledescription="logo" style="width:100%;height:100%;">
-
-                    </div>
-
-                </div>
+            <aside class="page-sidebar" style="background: linear-gradient(to bottom, #3e576e   , #232233); ">
+                
                 <!-- BEGIN PRIMARY NAVIGATION -->
 
 
                 @Html.Partial("_PartialMenu")
 
 
-                <!-- END PRIMARY NAVIGATION -->
-                <!-- NAV FOOTER -->
-                <!--<div class="nav-footer shadow-top">
-                    <a href="#" onclick="return false;" data-action="toggle" data-class="nav-function-minify" class="hidden-md-down">
-                        <i class="ni ni-chevron-right"></i>
-                        <i class="ni ni-chevron-right"></i>
-                    </a>
-                    <ul class="list-table m-auto nav-footer-buttons">
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Chat logs">
-                                <i class="fal fa-comments"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Support Chat">
-                                <i class="fal fa-life-ring"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Make a call">
-                                <i class="fal fa-phone"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>-->
                 <!-- END NAV FOOTER -->
             </aside>
             <!-- END Left Aside -->
@@ -367,7 +331,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 <!-- BEGIN Page Content -->
                 <!-- the #js-page-content id is needed for some plugins to initialize -->
 
-                <main id="js-page-content" role="main" class="page-content" style="background-image: url('../Content/img/fondo.png');background-size: 100% ;  width:100%; height:100%; resize: both;">
+                <main id="js-page-content" role="main" class="page-content" style="background-image: url('../Content/img/fondo.png');background-size: 100% ;   width:100%; height:100%; resize: both;">
                     @RenderBody()
                 </main>
                 <!-- this overlay is activated only when mobile menu is triggered -->
@@ -614,6 +578,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
     @RenderSection("scripts", required: false)
     <!--This page contains the basic JS and CSS files to get started on your project. If you need aditional addon's or plugins please see scripts located at the bottom of each page in order to find out which JS/CSS files to add.-->
+
+    
 </body>
 <!-- END Body -->
 </html>

@@ -18,9 +18,11 @@
                     <thead>
                         <tr>
                             <th>Usuario</th>
+                            <th>Area</th>
                             <th>Fecha de Inicio (D:H:M:S)</th>
                             <th>Fecha Fin (D:H:M:S)</th>
                             <th>Horas Trabajadas</th>
+                            <th>Comentario</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
@@ -64,7 +66,7 @@
                 "infoEmpty": "No hay registros para mostrar.",
             },
             dom: 'tip',
-            order: [[1, "desc"]],
+            order: [[2, "desc"]],
               ajax: {
                   url: '@Url.Action("BitacoraEstado", "Ticket")',
                   data: { Ticket: @Model },
@@ -82,6 +84,14 @@
                     "render": function (data, type, row) {
 
                         return row["fcNombreCorto"];
+                    }
+                },
+                {
+
+                    "data": "fcDescripcion", "className": "text-center",
+                    "render": function (data, type, row) {
+
+                        return row["fcDescripcion"];
                     }
                 },
                 {
@@ -110,13 +120,21 @@
                 {
                     "data": "fiHorasTrabajadas", "className": "td-responsive",
                     "render": function (data, type, row) {
-                        return row["fiHorasTrabajadas"];
+                        return row["fiHorasTrabajadas"] + ":" + row["fiMinutios"];
                     }
                 },
                 {
-                    "data": "fcDescripcionEstado", "className": "td-responsive",
+                    "data": "fcComentario", "className": "td-responsive",
                     "render": function (data, type, row) {
-                        return row["fcDescripcionEstado"];
+                        return row["fcComentario"];
+                    }
+                },
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data, type, row) {
+                        return `<a href="javascript:void(0)" > <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
+
                     }
                 },
 

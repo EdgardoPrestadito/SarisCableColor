@@ -1,0 +1,397 @@
+﻿<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">
+
+        <text>Asignar CI</text>
+
+    </h2>
+
+    <button type="button" class="close" data-dismiss="modal">
+        <i class="fal fa-times-circle fa-fw fa-lg"></i>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+
+
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Tipo CI</label>
+                        <select id="selectCI" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Pais</label>
+                        <select id="selectPais" class="form-select form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Region</label>
+                        <select id="selecRegion" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Ciudad</label>
+                        <select id="selectCiudad" class="form-select form-control">
+                        </select>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="col-lg-12">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaCI">
+                            <thead>
+                                <tr>
+                                    <th>ID CI</th>
+                                    <th>Configuración de CI</th>
+                                    <th>Longitud</th>
+                                    <th>Magnitud</th>
+                                    <th>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" style="margin-left:auto; margin-right:auto;" type="checkbox" id="CheckAllFallaLista">
+                                            <label class="custom-control-label" for="CheckAllFallaLista"></label>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Aquí van las filas de la tabla -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Comentario del ticket-->
+
+
+
+    </div>
+
+    
+
+    <div class='test col-sm-12'>
+        <br />
+        <div style='float: right;'>
+            <button type="button" id="btnGuardarCis" class="btn btn-success">
+                Guardar CI
+            </button>
+        </div>
+    </div>
+</div>
+<script src="~/Content/js/loading/loading.js"></script>
+<script>
+    PaisSelect();
+    CISelect();
+
+    $('#CheckAllFallaLista').on('change', function () {
+        var isChecked = $(this).is(':checked');
+        $('#TablaCI tbody .custom-control-input').prop('checked', isChecked);
+        var idseleccionado = []
+        $('input[name="CheckCheckedFalla"]:checked').each(function () {
+            console.log(`entro en el if`);
+            //var idfer = parseInt($(`#producto-${this.id}`).val());
+            idseleccionado.push({ id: +this.id, fcConfiguracion: this.value });
+            //idCis.push({ id: +this.id, fcConfiguracion: this.value });
+
+            const agregaralista = addOrUpdateItem(idCis, idseleccionado); // para agregar los que estan seleccionados
+            //const agregaralistanueva = addOrUpdateItem(idCis, idseleccionado); // para comparar la lista como tal y verificar si hay alguno ya guardado
+        });
+    });
+
+    function CISelect()
+    {
+        $.ajax({
+            url: "@Url.Action("SelectTipoCI", "LlenarCampos")",
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectcategoria = $("#selectCI");
+
+                selectcategoria.empty();
+                selectcategoria.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione CI'
+                }));
+                $.each(respuesta, function(index, item) {
+                    selectcategoria.append($('<option>', {
+                        value: item.fiIDCI,
+                        text: item.fcCI
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+    }
+
+    function PaisSelect()
+    {
+        $.ajax({
+            url: "@Url.Action("SelectPais", "LlenarCampos")",
+            type: "GET",
+            success: function (respuesta) {
+
+                var selectcategoria = $("#selectPais");
+
+                selectcategoria.empty();
+                selectcategoria.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Pais'
+                }));
+                $.each(respuesta, function(index, item) {
+                    selectcategoria.append($('<option>', {
+                        value: item.fiIDPais,
+                        text: item.fcPais
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+    }
+
+    $(`#selectPais`).on('change', function () {
+        debugger
+        var IDPais = $("#selectPais option:selected").val();
+
+            $.ajax({
+            url: "@Url.Action("SelectRegion", "LlenarCampos")",
+            type: "GET",
+                data: { Pais: IDPais },
+            success: function (respuesta) {
+                debugger;
+                var selectIncidencia = $("#selecRegion");
+
+                selectIncidencia.empty();
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Region'
+                }));
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.fiIDRegion,
+                        text: item.fcRegion
+                    }));
+                });
+                ConfiguracionListado()
+                //$("#PrioridadSelect").prop("disabled", true);
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+
+    })
+
+    $(`#selecRegion`).on('change', function () {
+        debugger
+        var IDPais = $("#selectPais option:selected").val();
+        var IDRegion = $("#selecRegion option:selected").val();
+
+            $.ajax({
+            url: "@Url.Action("SelectCiudad", "LlenarCampos")",
+            type: "GET",
+                data: { Pais: IDPais, Region: IDRegion},
+            success: function (respuesta) {
+
+                var selectIncidencia = $("#selectCiudad");
+
+                selectIncidencia.empty();
+                selectIncidencia.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Ciudad'
+                }));
+                $.each(respuesta, function(index, item) {
+                    selectIncidencia.append($('<option>', {
+                        value: item.fiIDCiudad,
+                        text: item.fcCiudad
+                    }));
+                });
+                ConfiguracionListado()
+                //$("#PrioridadSelect").prop("disabled", true);
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+
+    })
+
+
+    $(`#selectCiudad`).on('change', function () {
+        debugger
+
+        ConfiguracionListado()
+    })
+
+    $(`#selectCI`).on('change', function () {
+        debugger
+
+        ConfiguracionListado()
+    })
+
+
+    function ConfiguracionListado()
+    {
+        debugger;
+        var IDPais = $("#selectPais option:selected").val();
+        var IDRegion = $("#selecRegion option:selected").val();
+        var IDCiudad = $("#selectCiudad option:selected").val();
+        var IDCI = $("#selectCI option:selected").val();
+
+        if (IDPais == 0 || IDRegion == 0 || IDCiudad == 0 || IDCI == 0)
+        {
+            return;
+        }
+
+        var opt = ``
+        $('#TablaCI').DataTable({
+            destroy: true,
+            autoWidth: true,
+            responsive: true,
+            pageLength: 5,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'frtip',
+            order: [[1, "desc"]],
+              ajax: {
+                url: '@Url.Action("listadoCI", "LlenarCampos")',
+                  method: "Get",
+                  data: { Pais: IDPais, Region: IDRegion, Ciudad: IDCiudad, CI: IDCI},
+                  dataSrc: function (data) {
+                      return data;
+                  }
+            },
+                columns: [
+                    {
+                        data: 'fiIDConfiguracion',
+                        visible: false
+                    },
+                    {
+                        data: 'fcConfiguracion'
+                    },
+                    {
+                        data: 'fcLatitud'
+                    },
+
+                    {
+                        data: 'fcLongitud'
+                    },
+                    {
+                        data: null,
+                        render: function (data) {
+
+                            //return '<button class="btn  btn-success" tabindex="0" aria-controls="TablaPrincipal2" type="button"  title = "Guardar" name="GuardarEnviar"><i class="fal fa-inbox-out" ></i></button>';
+                            var opt = `<div class="custom-control custom-checkbox">
+                                            <input id="${data.fiIDConfiguracion}"  class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${data.fcConfiguracion}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>
+                                            <label class="custom-control-label" for="${data.fiIDConfiguracion}"></label>
+                                        </div>`;
+                            return opt;
+
+                        }
+                    },
+                ]
+            });
+    }
+
+    $(document).on('change', 'input[name="CheckCheckedFalla"]', function () {
+        //debugger
+
+        var suma = 0;
+        var idseleccionado = []
+        // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
+        $('input[name="CheckCheckedFalla"]:checked').each(function () {
+            console.log(`entro en el if`);
+            //var idfer = parseInt($(`#producto-${this.id}`).val());
+            idseleccionado.push({ id: +this.id, fcConfiguracion: this.value });
+            //idCis.push({ id: +this.id, fcConfiguracion: this.value });
+
+            const agregaralista = addOrUpdateItem(idCis, idseleccionado); // para agregar los que estan seleccionados
+            //const agregaralistanueva = addOrUpdateItem(idCis, idseleccionado); // para comparar la lista como tal y verificar si hay alguno ya guardado
+        });
+
+        console.log(idCis);
+
+    });
+
+    $(`#btnGuardarCis`).on(`click`, function () {
+
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistacis">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+
+                        `;
+        for (const item of idCisusados) {
+            tbo += `<tr>
+                            <td>${item.fcConfiguracion}</td>
+                            <td></td>
+                        </tr>`;
+        }
+        for (const item of idCis) {
+                tbo += `<tr>
+                            <td>${item.fcConfiguracion}</td>
+                            <td></td>
+                        </tr>`;
+            
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodycis`).empty()
+        $(`#tbodycis`).append(tbo);
+
+        $("#MyModalBig3").modal("hide");//aqui sirve para agregar los servicios a la tabla que esta debajo del boton que se asignode agregar servicios
+        $("#MyModalContentBig3").empty();
+
+
+    });
+
+
+</script>
