@@ -106,8 +106,8 @@
 
                 console.log(data);
                 CerrarModal();
-                return ToastrSuccess("Exito", "Usuario Asignado Correctamente");
                 location.reload();
+                return ToastrSuccess("Exito", "Usuario Asignado Correctamente");
                 //window.location.href ="@Url.Action("Index", "Ticket")"//cambiarlo de estado despues
                 if (data.fiMensaje == "1") {
                     CerrarModal();
