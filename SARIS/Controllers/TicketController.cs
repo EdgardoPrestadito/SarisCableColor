@@ -412,12 +412,12 @@ namespace OrionCoreCableColor.Controllers
                     
                     if (ticket.fiIDEstadoRequerimiento == 5)
                     {
-                        eliminarTicketAbierto(ticket.fiIDRequerimiento); //singalr
-                        agregarDatosTicketCerrados(ticket.fiIDRequerimiento);//singalr
+                        //eliminarTicketAbierto(ticket.fiIDRequerimiento); //singalr
+                        //agregarDatosTicketCerrados(ticket.fiIDRequerimiento);//singalr
                     }
                     else
                     {
-                        ObtenerDataTicket(ticket.fiIDRequerimiento); //Esto es el SignalR
+                        //ObtenerDataTicket(ticket.fiIDRequerimiento); //Esto es el SignalR
                     }
                     var correo = contexto.sp_DatosTicket_Correo(ticket.fiIDRequerimiento).FirstOrDefault();
                     var _emailTemplateService = new EmailTemplateService();
@@ -576,7 +576,7 @@ namespace OrionCoreCableColor.Controllers
 
                     var datosticket = Datosticket(idticket);//contexto.sp_Requerimientos_Bandeja_ByID(1, 1, GetIdUser(), idticket).FirstOrDefault();
                     var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, Convert.ToByte(3), DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
-                    ObtenerDataTicket(idticket); // aqui va el signalR
+                    //ObtenerDataTicket(idticket); // aqui va el signalR
 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"El Usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} reasigna por: " + comenta, 1, 7, 0);//se manda 0 por que se asigno una nueva area y por lo tanto el usuario asignado no puede ser otro
 
