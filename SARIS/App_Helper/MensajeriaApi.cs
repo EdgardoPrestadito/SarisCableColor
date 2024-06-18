@@ -42,7 +42,7 @@ namespace OrionCoreCableColor.App_Helper
             }
             if (Estado == "Cerrado")
             {
-                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se cerró el incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad+"\n*Categoria Resolucion:* " + Resolucion + "\n*SubCategoria Resolucion:* " + SubResolucion;
+                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se cerró el incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad+"\n*Categoria Resolucion:* " + Resolucion + "\n*Causa de Falla:* " + SubResolucion;
                 MensajesDigitales(pcTelefono, mensaje, "");
             }
 
@@ -60,7 +60,7 @@ namespace OrionCoreCableColor.App_Helper
 
             if (Estado == "Resuelto")
             {
-                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se dio Resolucion al incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad + "\n*Categoria Resolucion:* " + Resolucion + "\n*SubCategoria Resolucion:* " + SubResolucion;
+                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se dio Resolucion al incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad + "\n*Categoria Resolucion:* " + Resolucion + "\n*Causa de Falla:* " + SubResolucion;
                 MensajesDigitales(pcTelefono, mensaje, "");
             }
 
