@@ -273,7 +273,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th colspan=""2""><h1>Ticket #{model.fiIDRequerimiento}</h1></th>
+                                                    <th colspan=""2""><h1>Incidencia #{model.fiIDRequerimiento}</h1></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -316,7 +316,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                                 </tr>
                                                 <tr>
                                                     <td colspan=""2"">
-                                                        <p>Por favor, tome nota del número de ticket: <strong>#{model.fiIDRequerimiento}</strong>. Por favor no Contestar este Coreo.</p>
+                                                        <p>Por favor, tome nota del número de Incidencia: <strong>#{model.fiIDRequerimiento}</strong>. Por favor no Contestar este Coreo.</p>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -331,7 +331,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
                 var emailGeneratedToSend = new SendEmailViewModel
                 {
                     EmailName = "Saris",
-                    Subject = "Ticket",
+                    Subject = "Incidencia",
                     Body = htmlString,
                     DestinationEmail = model.fcCorreoElectronico,
                 };
