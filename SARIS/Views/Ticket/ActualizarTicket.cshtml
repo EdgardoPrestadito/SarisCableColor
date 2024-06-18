@@ -84,7 +84,7 @@
 
                 <div class="col-sm-6" id="iddivmotivo" style="display:none">
                     <div class="form-group">
-                        <label class="col-form-label">Motivo</label>
+                        <label class="col-form-label" id="lblMotivo">Motivo</label>
                         <select class="form-select form-control" id="selectmotivo">
                         </select>
                     </div>
@@ -763,7 +763,17 @@
         if ($(this).val() == 4 || $(this).val() == 6 || $(this).val() == 11) {
             console.log(`entro en el if`);
             divinfo.style.display = 'block'
-
+            if ($(this).val() == 4)
+            {
+                document.getElementById('lblMotivo').innerHTML = 'Motivo Resolucion';
+            }
+            if ($(this).val() == 6) {
+                document.getElementById('lblMotivo').innerHTML = 'Motivo Cancelacion';
+            }
+            if ($(this).val() == 11) {
+                document.getElementById('lblMotivo').innerHTML = 'Motivo Pausado';
+            }
+            
             $.ajax({
                 url: "@Url.Action("SelectMotivos", "LlenarCampos")",
                 type: "GET",
