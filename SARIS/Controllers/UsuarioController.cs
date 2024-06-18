@@ -234,7 +234,7 @@ namespace OrionCoreCableColor.Controllers
                                 fcTelefonoMovil = model.fcTelefonoMovil,
                                 fcToken = Guid.NewGuid().ToString(),
                                 fcIdAspNetUser = usuario.Id,
-                                fiIDEmpresa = model.fiIDEmpresa
+                                fiIDEmpresa = model.fiIDEmpresa,
 
 
 
@@ -352,17 +352,42 @@ namespace OrionCoreCableColor.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarInfoUsuarioLaboral(CrearUsuarioViewModel model)
+        public async Task<ActionResult> EditarInfoUsuarioLaboral(CrearUsuarioViewModel model)
         {
             using (var context = new SARISEntities1())
             {
                 var result = context.sp_Usuario_EditarInfoUsuarioLaboral(model.fiIdUsuario, model.fiIDJefeInmediato, model.fiAreaAsignada, model.IdRol).FirstOrDefault();
+
+                using (var contextO = new OrionSecurityEntities())
+                {
+                    var usuario = contextO.Usuarios.Find(model.fiIdUsuario);
+
+                    var listaRolesPorEliminar = usuario.RolesPorUsuario.ToList();
+                    contextO.RolesPorUsuario.RemoveRange(listaRolesPorEliminar);
+
+                    usuario.RolesPorUsuario.Add(new RolesPorUsuario
+                    {
+                        Fk_IdRol = model.IdRol,
+                    });
+
+                    //aspnetroles
+                    var roles = await UserManager.GetRolesAsync(usuario.AspNetUsers.Id);
+                    await UserManager.RemoveFromRolesAsync(usuario.AspNetUsers.Id, roles.ToArray());
+
+                    var ListaPermisos = contextO.PrivilegiosPorRol.Where(x => x.Fk_IdRol == model.IdRol).Select(z => z.AspNetRoles.Name).ToList();
+                    foreach (var permiso in ListaPermisos)
+                    {
+                        await UserManager.AddToRoleAsync(usuario.AspNetUsers.Id, permiso);
+                    }
+
+                }
 
                 var success = result > 0;
 
                 return EnviarResultado(success, "Editar Información Laboral", success ? "Se Editó Satisfactoriamente" : "Error al editar ");
 
             }
+
         }
 
         [HttpGet]
