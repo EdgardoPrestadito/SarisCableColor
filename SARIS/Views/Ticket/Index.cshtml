@@ -207,11 +207,11 @@
                                         <div class='dropdown-menu'>
                                             
                                     `;
-                        if (Json.Encode(User.IsInRole("SARIS_CREARTICKET"))) {
+                        if (@Json.Encode(User.IsInRole("Incidente_Actualizar"))) {
                             opt += `<a class='dropdown-item' href='javascript:void(0);' onclick="ActualizarTicket(${data.fiIDRequerimiento})">Actualizar Incidente</a>`
                         }
 
-                        if (Json.Encode(User.IsInRole("SARIS_VERDETALLE"))) {
+                        if (@Json.Encode(User.IsInRole("SARIS_VERDETALLES"))) {
 
                             opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="VerDetalleTicket(${data.fiIDRequerimiento})">Ver Detalle Incidente</a>`;
                         }
@@ -220,7 +220,9 @@
                         //{
                         //    opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Asignar Area</a>`;
                         //} else {
+                        if (@Json.Encode(User.IsInRole("Incidente_AsignarArea"))) {
                             opt += `  <a class='dropdown-item' href='javascript:void(0);' onclick="AsignarArea(${data.fiIDRequerimiento},${data.fiIDEstadoRequerimiento})">Reasignar Area</a>`;
+                        }
                         //}
 
                         if (@Json.Encode(User.IsInRole("SARIS_AsignarTicket_Usuarios"))) {

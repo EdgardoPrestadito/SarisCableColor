@@ -302,14 +302,20 @@
 
     $(`#selectImpacto`).on('change', function () {
         debugger
-        var Urgencia = $("#selectUrgencia option:selected").val();
-        var Impacto = $("#selectImpacto option:selected").val();
-        if (Urgencia != 0 && Impacto != 0)
+        var Urgencia = $("#selectUrgencia").val();
+        var Impacto = $("#selectImpacto").val();
+        console.log(`impacto: ${Impacto} `);
+        console.log(`urgencia: ${Urgencia} `);
+        if (Impacto == null || Impacto == 0 || Impacto == "" || Urgencia == 0 || Urgencia == "" || Urgencia == null ) {
+            console.log(`Entro en el if`);
+        }else 
+        //if (Urgencia != 0 && Impacto != 0)
         {
+            console.log(`tambien entro en el esle`);
             $.ajax({
             url: "@Url.Action("SelectPrioridad", "LlenarCampos")",
             type: "GET",
-                data: { Urgencia: Urgencia, Impacto: Impacto },
+            data: { Urgencia: Urgencia, Impacto: Impacto },
             success: function (respuesta) {
 
                 var selectIncidencia = $("#PrioridadSelect");
@@ -791,6 +797,40 @@
                 }
             });
     }
+
+    $(`#deteccionalarma`).on('change', function () {
+        debugger
+        console.log(`entro aqui`);
+        alarmadeteccion();
+    })
+    alarmadeteccion();
+    function alarmadeteccion() {
+        var datetimeInput = document.getElementById("deteccionalarma");
+
+        // Obtener la fecha y hora actual
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = String(now.getMonth() + 1).padStart(2, '0');  // Los meses son base 0
+        var day = String(now.getDate()).padStart(2, '0');
+        var hours = String(now.getHours()).padStart(2, '0');
+        var minutes = String(now.getMinutes()).padStart(2, '0');
+
+        // Formatear la fecha y hora en el formato adecuado para el campo datetime-local
+        var currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+        // Establecer el valor máximo del campo datetime-local
+        datetimeInput.max = currentDateTime;
+
+        // Validar la fecha y hora cuando el campo pierde el foco
+        datetimeInput.addEventListener('blur', function () {
+            if (datetimeInput.value > currentDateTime) {
+                datetimeInput.value = currentDateTime;
+            }
+        });
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        
+    });
 
 
 </script>

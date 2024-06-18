@@ -81,139 +81,142 @@
     </div>
 
 
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
-            <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white card-container">
-                <div class="card-content">
-                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                        <label id="lblTicketActivos">0</label>
-                        <small class="m-0 l-h-n">Ticket Activos</small>
-                    </h3>
-                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
-            <div class="p-3 bg-primary-200 rounded overflow-hidden position-relative text-white card-container">
-                <div class="card-content">
-                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                        <label id="lblTicket1H">0</label>
-                        <small class="m-0 l-h-n">Ticket con menos de 4 Horas</small>
-                    </h3>
-                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
-            <div class="p-3 bg-success-700 rounded overflow-hidden position-relative text-white card-container">
-                <div class="card-content">
-                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                        <label id="lblTicket4H">0</label>
-                        <small class="m-0 l-h-n">Ticket con más de 4 Horas</small>
-                    </h3>
-                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
-            <div class="p-3 bg-warning-700 rounded overflow-hidden position-relative text-white card-container">
-                <div class="card-content">
-                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                        <label id="lblTicket8H">0</label>
-                        <small class="m-0 l-h-n">Ticket con más de 8 Horas</small>
-                    </h3>
-                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
-            <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white card-container">
-                <div class="card-content">
-                    <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                        <label id="lblTicket24H">0</label>
-                        <small class="m-0 l-h-n">Ticket con más de 24 Horas</small>
-                    </h3>
-                    <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-12 col-xl-6 col-md-6 mb-3">
-            <div id="panel-1" class="panel">
-                <div class="panel-hdr">
-                    <h2>Comparativo <span class="fw-300"><i>Tickets por Área</i></span></h2>
-                    <div class="panel-toolbar">
-                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+    @if (User.IsInRole("SARIS_DASHBOARD"))
+    {
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+                <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicketActivos">0</label>
+                            <small class="m-0 l-h-n">Ticket Activos</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
                     </div>
                 </div>
-                <div class="panel-container show">
-                    <div class="panel-content">
-                        <div class="panel-tag">
-                            Gráfica para saber la cantidad de Ticket por área
-                        </div>
-                        <div class="row">
-                            <div id="chartTicketArea" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
-                        </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+                <div class="p-3 bg-primary-200 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicket1H">0</label>
+                            <small class="m-0 l-h-n">Ticket con menos de 4 Horas</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+                <div class="p-3 bg-success-700 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicket4H">0</label>
+                            <small class="m-0 l-h-n">Ticket con más de 4 Horas</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
+                <div class="p-3 bg-warning-700 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicket8H">0</label>
+                            <small class="m-0 l-h-n">Ticket con más de 8 Horas</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
+                <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicket24H">0</label>
+                            <small class="m-0 l-h-n">Ticket con más de 24 Horas</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 col-xl-6 col-md-6 mb-3">
-            <div id="panel-2" class="panel">
-                <div class="panel-hdr">
-                    <h2>Comparativo <span class="fw-300"><i>Horas por Área</i></span></h2>
-                    <div class="panel-toolbar">
-                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                    </div>
-                </div>
-                <div class="panel-container show">
-                    <div class="panel-content">
-                        <div class="panel-tag">
-                            Gráfica para saber las horas por área
+
+
+        <div class="row">
+            <div class="col-12 col-xl-6 col-md-6 mb-3">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>Comparativo <span class="fw-300"><i>Tickets por Área</i></span></h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                         </div>
-                        <div class="row">
-                            <div id="chartHoras" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="panel-tag">
+                                Gráfica para saber la cantidad de Ticket por área
+                            </div>
+                            <div class="row">
+                                <div id="chartTicketArea" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-12 col-xl-6 mb-3">
-            <div id="panel-3" class="panel">
-                <div class="panel-hdr">
-                    <h2>Comparativo <span class="fw-300"><i>Conteo por Incidentes</i></span></h2>
-                    <div class="panel-toolbar">
-                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                        <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                    </div>
-                </div>
-                <div class="panel-container show">
-                    <div class="panel-content">
-                        <div class="panel-tag">
-                            Gráfica para saber la cantidad de incidentes
+            <div class="col-12 col-xl-6 col-md-6 mb-3">
+                <div id="panel-2" class="panel">
+                    <div class="panel-hdr">
+                        <h2>Comparativo <span class="fw-300"><i>Horas por Área</i></span></h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                         </div>
-                        <div class="row">
-                            <div id="chartConteo" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="panel-tag">
+                                Gráfica para saber las horas por área
+                            </div>
+                            <div class="row">
+                                <div id="chartHoras" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
-    <a href="#" style="float:right" class="btn btn-outline-primary rounded waves-effect waves-themed"><i class="fal fa-solid fa-arrow-up"></i></a>
+            <div class="col-12 col-xl-6 mb-3">
+                <div id="panel-3" class="panel">
+                    <div class="panel-hdr">
+                        <h2>Comparativo <span class="fw-300"><i>Conteo por Incidentes</i></span></h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                        </div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="panel-tag">
+                                Gráfica para saber la cantidad de incidentes
+                            </div>
+                            <div class="row">
+                                <div id="chartConteo" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <a href="#" style="float:right" class="btn btn-outline-primary rounded waves-effect waves-themed"><i class="fal fa-solid fa-arrow-up"></i></a>
+    }
+
 </div>
 
 

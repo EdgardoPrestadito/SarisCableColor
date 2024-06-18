@@ -38,5 +38,9 @@ namespace OrionCoreCableColor.DbConnection
         public string fcDescripcionImpacto { get; set; }
         public Nullable<int> fiIDPrioridad { get; set; }
         public string fcDescripcionPrioridad { get; set; }
+        public int fiCategoriaResolucion { get; set; }
+        public string fcDescripcionCategoriaResolucion { get; set; }
+        public int fiSubCategoriaResolucion { get; set; }
+        public string fcTipoRequerimientoResolucion { get; set; }
     }
 }

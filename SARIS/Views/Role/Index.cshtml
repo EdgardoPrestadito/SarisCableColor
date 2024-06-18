@@ -6,16 +6,18 @@
 <div class="panel">
     <div class="panel-hdr">
         <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Areas de Usuario</h2>
-        <div class="panel-toolbar " role="menu">
-            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Nuevo Rol de Usuario</a>
-        </div>
+        @if (User.IsInRole("Seguridad_Roles_Crear"))
+        {
+            <div class="panel-toolbar " role="menu">
+                <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Nuevo Rol de Usuario</a>
+            </div>
+        }
     </div>
 
     <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
         <div class="col-lg-12">
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipal">
                 <thead>
-
                     <tr>
                         <th></th>
                         <th>Id</th>
@@ -132,9 +134,19 @@
                 render: function (data) {
                     var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' + (!data.Activo ? 'disabled' : "") + '> Acciones </button>';
                     opciones += '<div class="dropdown-menu">';
-                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarVerPermisos(' + data.Pk_IdRol + ",'" + data.Nombre + "'" + ')"> Asignar Permisos</a></li>';
-                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.Pk_IdRol + ')"> Editar</a>';
-                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.Pk_IdRol +')"> Eliminar </a>';
+
+                    if (@Json.Encode(User.IsInRole("Incidente_AsignarArea"))) {
+                        opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarVerPermisos(' + data.Pk_IdRol + ",'" + data.Nombre + "'" + ')"> Asignar Permisos</a></li>';
+                    }
+
+                    if (@Json.Encode(User.IsInRole("Seguridad_Roles_Editar"))) {
+                        opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.Pk_IdRol + ')"> Editar</a>';
+                    }
+
+                    if (@Json.Encode(User.IsInRole("Seguridad_Roles_Eliminar"))) {
+                        opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.Pk_IdRol + ')"> Eliminar </a>';
+                    }
+
 
                     opciones += '</div></div>';
                     return opciones;

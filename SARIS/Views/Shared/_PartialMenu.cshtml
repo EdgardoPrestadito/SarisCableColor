@@ -77,7 +77,7 @@
             }
 
 
-            @if (User.IsInRole("SARIS_Seguridad"))
+            @if (User.IsInRole("SARIS_Mantenimiento"))
             {
                 <li>
                     <a href="#" title="Application Intel" data-filter-tags="Mantenimiento">
@@ -85,20 +85,27 @@
                         <span class="nav-link-text" data-i18n="nav.ControlUsuarios" style="color:white;">Mantenimiento</span>
                     </a>
                     <ul>
+                        @if (User.IsInRole("Mantenimiento_Modulo_Areas"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Area")" data-filter-tags="blank page">
+                                    <i class="fal fa-archive"></i>
+                                    <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Areas</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="@Url.Action("Index","Area")" data-filter-tags="blank page">
-                                <i class="fal fa-archive"></i>
-                                <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Areas</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Estados")" data-filter-tags="blank page">
-                                <i class="fal fa-file-archive fa-fw"></i>
-                                <span class="nav-link-text" style="color:white;"><strong>Estados</strong></span>
-                            </a>
-                        </li>
-                        @if (User.IsInRole("SARIS_INCIDENCIAS"))
+                        }
+                        @if (User.IsInRole("Mantenimiento_Modulo_Estados"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Estados")" data-filter-tags="blank page">
+                                    <i class="fal fa-file-archive fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Estados</strong></span>
+                                </a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Mantenimiento_Modulo_Categorias_y_SubCategorias"))
                         {
                             <li>
                                 <a href="@Url.Action("Index","CategoriaIndicadores")" data-filter-tags="blank page">
@@ -125,6 +132,7 @@
                                 </a>
                             </li>
                         }
+
                         <li>
                             <a href="@Url.Action("ImpactoBandeja","Catalogos")" data-filter-tags="blank page">
                                 <i class="fal fa-bolt fa-fw"></i>
@@ -139,19 +147,27 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="@Url.Action("Index","Gerencias")" data-filter-tags="blank page">
-                                <i class="fal fa-user-tie fa-fw"></i>
-                                <span class="nav-link-text" style="color:white;"><strong>Gerencias</strong></span>
-                            </a>
-                        </li>
+                        @if (User.IsInRole("Mantenimiento_Modulo_Gerencias"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Gerencias")" data-filter-tags="blank page">
+                                    <i class="fal fa-user-tie fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Gerencias</strong></span>
+                                </a>
+                            </li>
+                        }
 
-                        <li>
-                            <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
-                                <i class="fal fa-location-circle fa-fw"></i>
-                                <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
-                            </a>
-                        </li>
+
+                        @if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
+                                    <i class="fal fa-location-circle fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
+                                </a>
+                            </li>
+                        }
+
 
                     </ul>
                 </li>

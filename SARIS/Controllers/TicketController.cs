@@ -157,22 +157,6 @@ namespace OrionCoreCableColor.Controllers
 
                     return EnviarListaJson(cont);
                 }
-                //using (var connection = (new SARISEntities1()).Database.Connection)
-                //{
-                //    //var cont =
-                //    connection.Open();
-                //    var command = connection.CreateCommand();
-                //    command.CommandText = $"EXEC sp_Requerimientos_Bitacoras_Estados {Ticket}";
-                //    using (var reader = command.ExecuteReader())
-                //    {
-                //        var db = ((IObjectContextAdapter)new SoporteOPEntities());
-                //        listaEquifaxGarantia = db.ObjectContext.Translate<Estado_RequerimientoViewModal>(reader).ToList();
-                //    }
-
-                //    connection.Close();
-
-                //    return EnviarListaJson(listaEquifaxGarantia);
-                //}
             }
             catch (Exception e)
             {
@@ -269,19 +253,21 @@ namespace OrionCoreCableColor.Controllers
                         var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
 
                         var save = contexto.sp_Requerimiento_Alta(1, 1, GetIdUser(), ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, ticket.fiTipoRequerimiento, idarea, $"El usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} a Creado El Incidente", ticket.fiIDImpacto, ticket.fiIDUrgencia, ticket.fiIDPrioridad, ticket.fiIdTicketPadre, ticket.fdFechaAlarmaDeteccion, ticket.fiPlataforma, ticket.fiServicioAfectados, 0).FirstOrDefault();
-                        foreach (var item in serviciosAfectados)
+                        foreach (var item in serviciosAfectados) // aqui se guarda los servicios afectados
                         {
                             var guardarServicios = contexto.sp_IncidenciasPorServicioAfectado(save.IdIngresado, item, GetIdUser());
                         }
-                        foreach (var item in Ciaguardar)
+                        foreach (var item in Ciaguardar)//aqui se guarda los Cis que no se que son la verdad
                         {
                             var guardarcis = contexto.sp_IncidenciasPorCI_Insertar(save.IdIngresado, item, GetIdUser());
                         }
                         var datosticket = Datosticket((int)save.IdIngresado);
                         //GuardarBitacoraGeneralhistorial(GetIdUser(),datosticket.fiIDRequerimiento,datosticket.fiIDUsuarioSolicitante, comentarioticket,1,datosticket.fiIDEstadoRequerimiento,datosticket.fiIDUsuarioAsignado);
 
-
-                        agregarCreacionTicket((int)save.IdIngresado);//esto es SignalR
+                        //if (GetIdUser() == datosticket.fiIDRequerimiento )
+                        //{
+                        //    agregarCreacionTicket((int)save.IdIngresado);//esto es SignalR
+                        //}
                         var correo = contexto.sp_DatosTicket_Correo(datosticket.fiIDRequerimiento).FirstOrDefault();
                         var _emailTemplateService = new EmailTemplateService();
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
@@ -400,7 +386,14 @@ namespace OrionCoreCableColor.Controllers
 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), ticket.fiIDRequerimiento, GetIdUser(), comentario, 1, ticket.fiIDEstadoRequerimiento, datosticket.fiIDUsuarioAsignado);
                     var ticketpadre = ticket.fiIdTicketPadre;
-                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), ticket.fiIDRequerimiento, ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, DateTime.Now, datosticket.fiIDUsuarioAsignado, 0, ticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, ticketpadre, ticket.fiMotivoEstado, ticket.fiCategoriaResolucion, ticket.fiSubCategoriaResolucion);
+                    var fiCategoriaResolucion = ticket.fiCategoriaResolucion;
+                    var fiSubCategoriaResolucion = ticket.fiSubCategoriaResolucion;
+                    if (ticket.fiIDEstadoRequerimiento == 5)
+                    {
+                        fiSubCategoriaResolucion = (int)datosticket.fiSubCategoriaResolucion;
+                        fiCategoriaResolucion = (int)datosticket.fiCategoriadeDesarrollo;
+                    }
+                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), ticket.fiIDRequerimiento, ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, DateTime.Now, datosticket.fiIDUsuarioAsignado, 0, ticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, ticketpadre, ticket.fiMotivoEstado, fiCategoriaResolucion, fiSubCategoriaResolucion);
 
                     if (serviciosAfectados != null) 
                     {
@@ -419,12 +412,12 @@ namespace OrionCoreCableColor.Controllers
                     
                     if (ticket.fiIDEstadoRequerimiento == 5)
                     {
-                        //    eliminarTicketAbierto(ticket.fiIDRequerimiento); //singalr
-                        //    agregarDatosTicketCerrados(ticket.fiIDRequerimiento);//singalr
+                        eliminarTicketAbierto(ticket.fiIDRequerimiento); //singalr
+                        agregarDatosTicketCerrados(ticket.fiIDRequerimiento);//singalr
                     }
                     else
                     {
-                        //ObtenerDataTicket(ticket.fiIDRequerimiento); //Esto es el SignalR
+                        ObtenerDataTicket(ticket.fiIDRequerimiento); //Esto es el SignalR
                     }
                     var correo = contexto.sp_DatosTicket_Correo(ticket.fiIDRequerimiento).FirstOrDefault();
                     var _emailTemplateService = new EmailTemplateService();
@@ -583,13 +576,13 @@ namespace OrionCoreCableColor.Controllers
 
                     var datosticket = Datosticket(idticket);//contexto.sp_Requerimientos_Bandeja_ByID(1, 1, GetIdUser(), idticket).FirstOrDefault();
                     var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, Convert.ToByte(3), DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
-                    //ObtenerDataTicket(idticket); // aqui va el signalR
+                    ObtenerDataTicket(idticket); // aqui va el signalR
 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"El Usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} reasigna por: " + comenta, 1, 7, 0);//se manda 0 por que se asigno una nueva area y por lo tanto el usuario asignado no puede ser otro
 
                     if (datosticket.fiAreaAsignada != idArea)
                     {
-                        eliminarTicketAbierto(datosticket.fiIDRequerimiento);
+                        //eliminarTicketAbierto(datosticket.fiIDRequerimiento);SignalR
                     }
                     var correo = contexto.sp_DatosTicket_Correo(datosticket.fiIDRequerimiento).FirstOrDefault();
                     var _emailTemplateService = new EmailTemplateService();
@@ -684,7 +677,7 @@ namespace OrionCoreCableColor.Controllers
                     //ObtenerDataTicket(idticket);//aqui esta el signalR
                     if (GetIdUser() != usuario) //aqui el signalR por si al reasignar un usuario se le quite de la bandeja de el 
                     {
-                        eliminarTicketAbierto(datosticket.fiIDRequerimiento);
+                        //eliminarTicketAbierto(datosticket.fiIDRequerimiento);SignalR
                     }
 
                     var correo = contexto.sp_DatosTicket_Correo(datosticket.fiIDRequerimiento).FirstOrDefault();
@@ -754,7 +747,7 @@ namespace OrionCoreCableColor.Controllers
                 using (var contexto = new SARISEntities1())
                 {
                     var result = contexto.sp_Eliminar_Requerimiento(idticket).FirstOrDefault();
-                    eliminarTicketAbierto(idticket);
+                    //eliminarTicketAbierto(idticket);SignalR
                     return EnviarResultado(true, "Eliminado!", "Ticket Eliminado Exitosamente");
                 }
             }
