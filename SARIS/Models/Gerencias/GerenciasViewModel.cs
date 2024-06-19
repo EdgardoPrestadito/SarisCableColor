@@ -12,7 +12,7 @@ namespace OrionCoreCableColor.Models.Gerencias
         [Required]
         public int fiIDGerencia { get; set; }
 
-        [Display(Name = "Usuario Asignado")]
+        [Display(Name = "Usuario Gerencial")]
         [Required]
         public int fiIDUsuarioResponsable { get; set; }
 
@@ -22,7 +22,7 @@ namespace OrionCoreCableColor.Models.Gerencias
         public string fcNombreGenerencia { get; set; }
 
 
-        [Display(Name = "Usuario Asignado")]
+        [Display(Name = "Usuario Gerencial")]
         [Required]
         public string fcNombreCorto { get; set; }
 

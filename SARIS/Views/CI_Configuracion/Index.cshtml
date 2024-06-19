@@ -1,12 +1,13 @@
-﻿@{
-    ViewBag.Title = "Lista de Sub Categoria de Resolución";
+﻿
+@{
+    ViewBag.Title = "Lista de CI Configuraciones";
 }
 
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Sub Categorias de Resolución</h2>
+        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de CI Configuraciones</h2>
         <div class="panel-toolbar " role="menu">
-            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i>Nueva Sub Categoria de Resolución</a>
+            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i>Nuevo CI_Configuracion</a>
         </div>
     </div>
 
@@ -17,10 +18,13 @@
 
                     <tr>
                         <th></th>
-                        <th>Sub Categoria de Resolución</th>
-                        <th>Categoría</th>
-                        @*<th>Ubicación</th>*@
-                        <th>Activo</th>
+                        <th>CI Configuración</th>
+                        <th>Categoria CI</th>
+                        <th>Ciudad</th>
+                        <th>Region</th>
+                        <th>País</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
 
                     </tr>
                 </thead>
@@ -41,7 +45,7 @@
 
         function MostrarCrear() {
             $.ajax({
-                url: "@Url.Action("Crear", "IncidenciasResolucion")",
+                url: "@Url.Action("Crear", "CI_Configuracion")",
                 method: "get",
                 success: function (resp) {
                     ShowModalSmall(resp);
@@ -54,7 +58,7 @@
 
         function Desactivar(id) {
             $.ajax({
-                url: "@Url.Action("EliminarIndicador", "IncidenciasResolucion")",
+                url: "@Url.Action("EliminarCategoria", "CI_Configuracion")",
                 method: "post",
                 data: { id: id },
                 success: function (data) {
@@ -71,7 +75,7 @@
 
         function MostrarEditar(id) {
             $.ajax({
-                url: "@Url.Action("Editar","IncidenciasResolucion")",
+                url: "@Url.Action("Editar", "CI_Configuracion")",
                 method: "get",
                 data: { id: id },
                 success: function (data) {
@@ -103,7 +107,7 @@
 
             order: [[1, "desc"]],
             ajax: {
-                url: '@Url.Action("CargarListaIndicadores", "IncidenciasResolucion")',
+                url: '@Url.Action("Lista", "CI_Configuracion")',
                 method: "Get",
                 dataSrc: function (data) {
                     return data;
@@ -113,11 +117,11 @@
             columns: [
                         {
                 data: null,
-                    render: function (data) {
-                        var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' + (data.fcToken == 0 ? 'disabled' : "") + '> Acciones </button>';
+                render: function (data) {
+                    var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' +  '> Acciones </button>';
                     opciones += '<div class="dropdown-menu">';
-                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDTipoRequerimientoResolucion + ')"> Editar</a>';
-                        opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDTipoRequerimientoResolucion +')"> deshabilitar </a>';
+                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDConfiguracion + ')"> Editar</a>';
+                    //opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDCategoriaResolucion + ')"> deshabilitar </a>';
 
                     opciones += '</div></div>';
                     return opciones;
@@ -125,26 +129,28 @@
                },
 
                 {
-                    data: 'fcTipoRequerimiento'
+                    data: 'fcConfiguracion'
                 },
-
                 {
-                    data: 'fcDescripcionCategoria'
+                    data: 'fcCI'
                 },
-                //{
-                //    data: 'fcDescripcionUbicacion'
-                //},
                 {
-                    data: null,
-                    render: function (data) {
-                        if (data.fcToken == 1) {
-                            return '<span class="btn-sm btn-block badge badge-success">SI</span>';
-                        } else {
-                            return '<span class="btn-sm btn-block badge badge-danger">NO</span>';
-                        }
-
-                    }
+                    data: 'fcRegion'
                 },
+                {
+                    data: 'fcCiudad'
+                },
+                {
+                    data: 'fcPais'
+                },
+                {
+                    data: 'fcLatitud'
+                },
+                {
+                    data: 'fcLongitud'
+                },
+               
+
 
 
             ]
