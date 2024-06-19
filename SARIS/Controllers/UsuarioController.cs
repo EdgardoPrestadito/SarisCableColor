@@ -292,6 +292,7 @@ namespace OrionCoreCableColor.Controllers
                     fcSegundoApellido = usuario.fcSegundoApellido,
                     fcBuzondeCorreo = usuario.fcBuzondeCorreo,
                     fcTelefonoMovil = usuario.fcTelefonoMovil,
+                    fcDocumentoIdentificacion = usuario.fcDocumentoIdentificacion
                 });
             }
         }
@@ -309,6 +310,7 @@ namespace OrionCoreCableColor.Controllers
                 usuario.fcSegundoApellido = model.fcSegundoApellido;
                 usuario.fcTelefonoMovil = model.fcTelefonoMovil;
                 usuario.fcBuzondeCorreo = model.fcBuzondeCorreo;
+                usuario.fcDocumentoIdentificacion = model.fcDocumentoIdentificacion;
                 context.Entry(usuario).State = EntityState.Modified;
                 var result = context.SaveChanges() > 0;
 
