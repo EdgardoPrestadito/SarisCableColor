@@ -155,18 +155,19 @@
                     render: function (data) {
                         var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false"> Acciones  </button>';
                         opciones += '<div class="dropdown-menu">';
+                        if (data.fiEstado == 1 ) {
+
                         opciones += '<a href="javascript:void(0)" class="dropdown-item" onclick="MostrarEditarInfo(' + data.fiIdUsuario + ')"> Editar Informacion Personal</a>';
                         opciones += '<a href="javascript:void(0)" class="dropdown-item" onclick="MostrarEditarInfoLaboral(' + data.fiIdUsuario + ')"> Editar Informacion Laboral</a>';
+                        opciones += '<a href="javascript:void(0)" class="dropdown-item" onclick="MostrarCambiarContrasena(' + data.fiIdUsuario + ')"> Cambiar Contraseña</a>';
+                        }
 
                     @if (User.IsInRole("coreseguridad_AccesoAlSistema"))
                     {
                         <text>opciones += '<a href="javascript:void(0)" class="dropdown-item" onclick="MostrarEditarCuenta(' + data.fiIdUsuario + ')"> Editar Cuenta de Usuario</a>';</text>
                     }
-                        opciones += '<a href="javascript:void(0)" class="dropdown-item" onclick="MostrarCambiarContrasena(' + data.fiIdUsuario + ')"> Cambiar Contraseña</a>';
-                    @if (User.IsInRole("coreseguridad_AccesoAlSistema"))
-                    {
-                        <text>opciones += '<a href="javascript:void(0)" class="dropdown-item" onclick="Desactivar(' + data.fiIdUsuario + ')"> ' + (data.fiEstado == 1 ? 'Deshabilitar Usuario' : 'Habilitar Usuario') + '</a>';</text>
-                    }
+                      opciones += '<a href="javascript:void(0)" class="dropdown-item" onclick="Desactivar(' + data.fiIdUsuario + ')"> ' + (data.fiEstado == 1 ? 'Deshabilitar Usuario' : 'Habilitar Usuario') + '</a>';
+                    
 
                         opciones += data.NombreRol == "Orion_Contratista" ? `<a href="@Url.Action("AgregarUsuarioTecnico", "Usuario")/${data.fiIdUsuario}" class="dropdown-item"> Agregar Tecnicos </a>` : "";
                         opciones += '</div></div>';
