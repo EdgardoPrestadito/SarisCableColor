@@ -28,7 +28,7 @@ namespace OrionCoreCableColor.Controllers
                     {
                         fiIDGerencia = x.fiIDGerencia,
                         fcNombreGenerencia = x.fcNombreGenerencia,
-                        fcNombreCorto =  x.fcNombreCorto,
+                        fcNombreCorto = x.fcNombreCorto,
                         fiEstado = x.fiEstado,
                         fcToken = x.fcToken,
                     }).ToList(), JsonRequestBehavior.AllowGet);
@@ -65,10 +65,17 @@ namespace OrionCoreCableColor.Controllers
 
                 var result = context.sp_Requerimientos_Catalogo_Generencias_Insertar(model.fcNombreGenerencia.Trim(), model.fiIDUsuarioResponsable).FirstOrDefault();
 
-                var success = result > 0;
-
-                return EnviarResultado(success, "Crear Gerencia", success ? "Se Creó Satisfactoriamente" : "Error al Crear ");
-
+                switch (result.fiRequest)
+                {
+                    case 0:
+                        return EnviarResultado(false, "Crear Gerencia", "Error al Editar");
+                    case 1:
+                        return EnviarResultado(true, "Crear Gerencia", result.fcRequest);
+                    case 2:
+                        return EnviarResultado(false, "Crear Gerencia", result.fcRequest);
+                    default:
+                        return EnviarResultado(false, "Crear Gerencia", "Error al Editar");
+                }
             }
 
 
@@ -90,7 +97,7 @@ namespace OrionCoreCableColor.Controllers
 
 
                 return PartialView("Crear", new GerenciasViewModel { fiIDGerencia = Gerencia.fiIDGerencia, fcNombreGenerencia = Gerencia.fcNombreGenerencia, EsEditar = true });
-             
+
             }
         }
 
@@ -100,12 +107,17 @@ namespace OrionCoreCableColor.Controllers
             using (var context = new SARISEntities1())
             {
                 var result = context.sp_Requerimientos_Catalogo_Generencias_Editar(model.fiIDGerencia, model.fcNombreGenerencia.Trim(), model.fiIDUsuarioResponsable).FirstOrDefault();
-
-                var success = result > 0;
-
-                return EnviarResultado(success, "Editar Gerencia", success ? "Se Editó Satisfactoriamente" : "Error al editar ");
-
-
+                switch (result.fiRequest)
+                {
+                    case 0:
+                        return EnviarResultado(false, "Editar Gerencia", "Error al Editar");
+                    case 1:
+                        return EnviarResultado(true, "Editar Gerencia", result.fcRequest);
+                    case 2:
+                        return EnviarResultado(false, "Editar Gerencia", result.fcRequest);
+                    default:
+                        return EnviarResultado(false, "Editar Gerencia", "Error al Editar");
+                }
             }
 
         }

@@ -13,8 +13,8 @@
                                     <tr>
 
                                         <th>Descripción</th>
-                                        <th>Ubicación</th>
-                                        <th>Activo</th>
+                                        @*<th>Ubicación</th>
+                                        <th>Activo</th>*@
 
                                     </tr>
                                 </thead>
@@ -67,20 +67,20 @@
                 {
                     data: 'fcTipoRequerimiento'
                 },
-                {
-                    data: 'fcDescripcionUbicacion'
-                },
-                {
-                    data: null,
-                    render: function (data) {
-                        if (data.fcToken == 1) {
-                            return '<span class="btn-sm btn-block badge badge-success">SI</span>';
-                        } else {
-                            return '<span class="btn-sm btn-block badge badge-danger">NO</span>';
-                        }
+                //{
+                //    data: 'fcDescripcionUbicacion'
+                //},
+                //{
+                //    data: null,
+                //    render: function (data) {
+                //        if (data.fcToken == 1) {
+                //            return '<span class="btn-sm btn-block badge badge-success">SI</span>';
+                //        } else {
+                //            return '<span class="btn-sm btn-block badge badge-danger">NO</span>';
+                //        }
 
-                    }
-                },
+                //    }
+                //},
 
 
             ]

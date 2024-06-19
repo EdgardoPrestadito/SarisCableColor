@@ -27,14 +27,14 @@
             @Html.ValidationMessageFor(model => model.fiIDCategoriaDesarrollo, "", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.fiUbicacion, htmlAttributes: new { @class = "control-label" })
             <div class="input-group mar-btm" style="width:100%;">
 
                 @Html.DropDownListFor(model => model.fiUbicacion, new SelectList(ViewBag.Ubicaciones, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
             </div>
             @Html.ValidationMessageFor(model => model.fiUbicacion, "", new { @class = "text-danger" })
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.fcTipoRequerimiento, htmlAttributes: new { @class = "control-label" })
@@ -65,7 +65,7 @@
 
 <script>
     $("#fiIDCategoriaDesarrollo").select2({ dropdownParent: $("#MyModalSm") });
-    $("#fiUbicacion").select2({ dropdownParent: $("#MyModalSm") });
+    //$("#fiUbicacion").select2({ dropdownParent: $("#MyModalSm") });
     $("#MyFormModal").submit(function (event) {
         event.preventDefault();
         if (!$("#MyFormModal").valid()) {
@@ -74,8 +74,8 @@
         var model = @Html.Raw(Json.Encode(Model));
         model.fcTipoRequerimiento = $("#fcTipoRequerimiento").val();
         model.fiIDCategoriaDesarrollo = $("#fiIDCategoriaDesarrollo").val();
-        model.fiUbicacion = $("#fiUbicacion").val();
-
+        //model.fiUbicacion = $("#fiUbicacion").val();
+        debugger;
         var url = "@Url.Action("Crear", "Indicadores")";
         if (str2bool('@Model.EsEditar')) {
             url = "@Url.Action("Editar", "Indicadores")";

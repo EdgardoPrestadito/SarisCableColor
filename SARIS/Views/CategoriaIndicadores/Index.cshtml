@@ -20,7 +20,7 @@
                         <th></th>
                         <th></th>
                         <th>Descripción</th>
-                        <th>Área</th>
+                        @*<th>Área</th>*@
                         <th>Activo</th>
 
                     </tr>
@@ -123,7 +123,7 @@
                         var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' + (!data.fiEstado == 1 ? 'disabled' : "") +  '> Acciones </button>';
                         opciones += '<div class="dropdown-menu">';
                         opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDCategoriaDesarrollo + ')"> Editar</a>';
-                        opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDCategoriaDesarrollo + ')"> Eliminar </a>';
+                        opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDCategoriaDesarrollo + ')"> deshabilitar </a>';
 
                         opciones += '</div></div>';
                         return opciones;
@@ -133,9 +133,9 @@
                 {
                     data: 'fcDescripcionCategoria'
                 },
-                {
-                    data: 'fcDescripcion'
-                },
+                //{
+                //    data: 'fcDescripcion'
+                //},
                 {
                     data: null,
                     render: function (data) {
