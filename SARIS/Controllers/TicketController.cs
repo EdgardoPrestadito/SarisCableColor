@@ -253,14 +253,21 @@ namespace OrionCoreCableColor.Controllers
                         var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
 
                         var save = contexto.sp_Requerimiento_Alta(1, 1, GetIdUser(), ticket.fcTituloRequerimiento, ticket.fcDescripcionRequerimiento, ticket.fiIDEstadoRequerimiento, ticket.fiTipoRequerimiento, idarea, $"El usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} a Creado El Incidente", ticket.fiIDImpacto, ticket.fiIDUrgencia, ticket.fiIDPrioridad, ticket.fiIdTicketPadre, ticket.fdFechaAlarmaDeteccion, ticket.fiPlataforma, ticket.fiServicioAfectados, 0).FirstOrDefault();
-                        foreach (var item in serviciosAfectados) // aqui se guarda los servicios afectados
+                        if (serviciosAfectados != null && serviciosAfectados.Any() )
                         {
-                            var guardarServicios = contexto.sp_IncidenciasPorServicioAfectado(save.IdIngresado, item, GetIdUser());
+                            foreach (var item in serviciosAfectados) // aqui se guarda los servicios afectados
+                            {
+                                var guardarServicios = contexto.sp_IncidenciasPorServicioAfectado(save.IdIngresado, item, GetIdUser());
+                            }
                         }
-                        foreach (var item in Ciaguardar)//aqui se guarda los Cis que no se que son la verdad
+                        if (Ciaguardar != null && Ciaguardar.Any())
                         {
-                            var guardarcis = contexto.sp_IncidenciasPorCI_Insertar(save.IdIngresado, item, GetIdUser());
+                            foreach (var item in Ciaguardar)//aqui se guarda los Cis que no se que son la verdad
+                            {
+                                var guardarcis = contexto.sp_IncidenciasPorCI_Insertar(save.IdIngresado, item, GetIdUser());
+                            }
                         }
+                        
                         var datosticket = Datosticket((int)save.IdIngresado);
                         //GuardarBitacoraGeneralhistorial(GetIdUser(),datosticket.fiIDRequerimiento,datosticket.fiIDUsuarioSolicitante, comentarioticket,1,datosticket.fiIDEstadoRequerimiento,datosticket.fiIDUsuarioAsignado);
 

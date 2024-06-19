@@ -7,12 +7,12 @@
                     <tr>
                         <th></th>
                         <th>
-                            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="secundaria">
+                            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="secundaria_@ViewBag.SubCategoria">
                                 <thead>
 
                                     <tr>
 
-                                        <th>Descripción</th>
+                                        <th>Causa de Falla</th>
                                         @*<th>Ubicación</th>
                                         <th>Activo</th>*@
 
@@ -24,18 +24,17 @@
                     </tr>
                 </thead>
             </table>
-            
         </div>
-
-
-
-
     </div>
+
+
 </div>
 
 <script>
-    var idcategoria = 1;
-    var tablaSecundaria = $('#secundaria').DataTable({
+
+    var idCategoria = @ViewBag.SubCategoria;
+    console.log(`esto trae subcategoria ${idCategoria}`);
+    var tabla_idCategoria = $(`#secundaria_${idCategoria}`).DataTable({
 
             autoWidth: true,
             responsive: true,
@@ -53,36 +52,20 @@
                 "infoEmpty": "No hay registros para mostrar.",
             },
 
-            order: [[1, "desc"]],
+            //order: [[1, "desc"]],
             ajax: {
-                url: '@Url.Action("CargarListaIndicadores", "Indicadores")',
-                method: "Get",
+                url: '@Url.Action("DatosSubTablaCategoria", "CategoriaIndicadores")',
+                data: {categoria: idCategoria},
                 dataSrc: function (data) {
+                    console.log(data);
 
                     return data;
                 }
             },
-
             columns: [
                 {
                     data: 'fcTipoRequerimiento'
-                },
-                //{
-                //    data: 'fcDescripcionUbicacion'
-                //},
-                //{
-                //    data: null,
-                //    render: function (data) {
-                //        if (data.fcToken == 1) {
-                //            return '<span class="btn-sm btn-block badge badge-success">SI</span>';
-                //        } else {
-                //            return '<span class="btn-sm btn-block badge badge-danger">NO</span>';
-                //        }
-
-                //    }
-                //},
-
-
+                }
             ]
 
         });

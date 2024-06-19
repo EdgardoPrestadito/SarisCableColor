@@ -390,14 +390,16 @@
                 return ToastrError("Error", "Llene todos los campos");
             }
 
-            if ($("#fiIDEstadoRequerimiento option:selected").val() == 11 || $("#fiIDEstadoRequerimiento option:selected").val() == "11") {
+            if (estadoReque == 11 || estadoReque == "11") {
+
                 if (fotosredimencionadas.length < 1) {
                     ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
                     return 0;
                 }
+                
             }
 
-            if ($(`#fiIDEstadoRequerimiento`).val() == 0 && $("#selectmotivo").val()==0 && $("#selectCategoriaResolucion").val()==0 && $("#selectSubCategoriaResolucion").val()==0 ) {
+            if (estadoReque == 0 && $("#selectmotivo").val()==0 && $("#selectCategoriaResolucion").val()==0 && $("#selectSubCategoriaResolucion").val()==0 ) {
                 return ToastrError("Error", "Llene todos los campos");
             }
 
@@ -419,24 +421,27 @@
             }
             debugger;
 
-            var estado = $("#fiIDEstadoRequerimiento option:selected").val();
-
-            if (estado == 0 || estado == null)
-            {
+            
+            if (estadoReque == 0 || estadoReque == null) {
                 estado = 3
             }
 
-            var estado = $("#fiIDEstadoRequerimiento option:selected").val();
-
-            if (estado == 0 || estado == null) {
-                estado = 3
+            if (estadoReque == 4 || estadoReque == 6 || estadoReque == 11) {
+                if ($(`#selectmotivo`).val() == null || $(`#selectmotivo`).val() == "" || $(`#selectmotivo`).val() == 0 ) {
+                    return ToastrError("Error", "Llene todos los campos");
+                }
+                if (estadoReque == 4) {
+                    if ($(`#selectCategoriaResolucion`).val() == null || $(`#selectCategoriaResolucion`).val() == "" || $(`#selectCategoriaResolucion`).val() == 0 || $(`#selectSubCategoriaResolucion`).val() == null || $(`#selectSubCategoriaResolucion`).val() == "" || $(`#selectSubCategoriaResolucion`).val() == 0) {
+                        return ToastrError("Error", "Llene todos los campos");
+                    }
+                }
             }
 
             var requerimiento = {
                 fiIDRequerimiento: ID_REQUERIMIENTO,
                 fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
                 fcDescripcionRequerimiento: $("#fcDescripcionRequerimiento").val(),//hola,
-                fiIDEstadoRequerimiento: estado,
+                fiIDEstadoRequerimiento: estadoReque,
                 fcDescripcionEstado: $("#fiIDEstadoRequerimiento :selected").text(),
                 fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
                 fiTipoRequerimiento: $(`#selectincidencia`).val(),
@@ -760,7 +765,7 @@
         var divSubCategoriaResolucion = document.getElementById('iddivSubCategoriaResolusion');
 
         if ($(this).val() == 4 || $(this).val() == 6 || $(this).val() == 11) {
-            console.log(`entro en el if`);
+            //console.log(`entro en el if`);
             divinfo.style.display = 'block'
             if ($(this).val() == 4)
             {

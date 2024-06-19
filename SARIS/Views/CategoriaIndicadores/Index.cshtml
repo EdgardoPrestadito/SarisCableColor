@@ -156,6 +156,7 @@
             var tr = $(this).closest('tr');
             var row = table.row(tr);
             var data = table.row(row).data();
+            console.log(data);
             if (row.child.isShown()) {
                 // This row is already open - close it
                 row.child('');
@@ -170,7 +171,7 @@
                 debugger;
                 $.ajax({
                     url: '@Url.Action("SubTablaSubCategoria", "CategoriaIndicadores")',
-                    data: { fiIDEquifax: data.fiIDEquifax },
+                    data: { categoria: data.fiIDCategoriaDesarrollo },
                     type: 'Get',
                     success: function (data) {
                         row.child(data).show();

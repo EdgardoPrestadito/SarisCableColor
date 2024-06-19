@@ -2,6 +2,7 @@
 using OrionCoreCableColor.DbConnection;
 using OrionCoreCableColor.DbConnection.CMContext;
 using OrionCoreCableColor.Models.CategoriaIncidencias;
+using OrionCoreCableColor.Models.Indicadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -138,9 +139,39 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
-        public ActionResult SubTablaSubCategoria()
+        public ActionResult SubTablaSubCategoria(int categoria)
         {
+            ViewBag.SubCategoria = categoria;
             return PartialView();
+        }
+
+        public JsonResult DatosSubTablaCategoria(int categoria)
+        {
+            try
+            {
+                using (var context = new SARISEntities1())
+                {
+                    var jsonResult = Json(context.sp_Indicadores_Lista().Where(a => a.fiIDCategoriaDesarrollo == categoria).Select(x => new ListaIndicadoresViewModel
+                    {
+                        fiIDTipoRequerimiento = x.fiIDTipoRequerimiento,
+                        fcTipoRequerimiento = x.fcTipoRequerimiento,
+                        fcToken = x.fcToken,
+                        fiIDCategoriaDesarrollo = x.fiIDCategoriaDesarrollo,
+                        fcDescripcionCategoria = x.fcDescripcionCategoria,
+                        fiUbicacion = x.fiUbicacion,
+                        fcDescripcionUbicacion = x.fcDescripcionUbicacion
+
+
+                    }).ToList(), JsonRequestBehavior.AllowGet);
+                    jsonResult.MaxJsonLength = Int32.MaxValue;
+                    return jsonResult;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
     }
