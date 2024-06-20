@@ -1,12 +1,13 @@
-﻿@{
-    ViewBag.Title = "Lista de Estados";
+﻿
+@{
+    ViewBag.Title = "Lista de Regiones";
 }
 
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Estados</h2>
+        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Categorias de Region</h2>
         <div class="panel-toolbar " role="menu">
-            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Nuevo Estado</a>
+            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i>Nuevo Region</a>
         </div>
     </div>
 
@@ -17,9 +18,9 @@
 
                     <tr>
                         <th></th>
-                        <th>Estado</th>
-                        <th>Clase</th>
-                        
+                        <th>Region</th>
+                        <th>Pais</th>
+
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -39,7 +40,7 @@
 
         function MostrarCrear() {
             $.ajax({
-                url: "@Url.Action("Crear", "Estados")",
+                url: "@Url.Action("Crear", "Region")",
                 method: "get",
                 success: function (resp) {
                     ShowModalSmall(resp);
@@ -52,7 +53,7 @@
 
         function Desactivar(id) {
             $.ajax({
-                url: "@Url.Action("EliminarArea", "Estados")",
+                url: "@Url.Action("EliminarCategoria", "Region")",
                 method: "post",
                 data: { id: id },
                 success: function (data) {
@@ -69,7 +70,7 @@
 
         function MostrarEditar(id) {
             $.ajax({
-                url: "@Url.Action("Editar", "Estados")",
+                url: "@Url.Action("Editar", "Region")",
                 method: "get",
                 data: { id: id },
                 success: function (data) {
@@ -101,7 +102,7 @@
 
             order: [[1, "desc"]],
             ajax: {
-                url: '@Url.Action("CargarListaEstados", "Estados")',
+                url: '@Url.Action("Lista", "Region")',
                 method: "Get",
                 dataSrc: function (data) {
                     return data;
@@ -112,9 +113,10 @@
                         {
                 data: null,
                 render: function (data) {
-                    var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' + '> Acciones </button>';
+                    var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' +  '> Acciones </button>';
                     opciones += '<div class="dropdown-menu">';
-                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDEstado + ')"> Editar</a>';
+                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDRegion + ')"> Editar</a>';
+                    //opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDRegion + ')"> deshabilitar </a>';
 
                     opciones += '</div></div>';
                     return opciones;
@@ -122,16 +124,25 @@
                },
 
                 {
-                    data: 'fcDescripcionEstado'
+                    data: 'fcRegion'
                 },
                 {
-                    data: null,
-                    render: function (data) {
-                        
-                        return `<span class="btn-sm btn-block badge badge-${data.fcClaseColor}">${data.fcClaseColor}</span>`;
-
-                    }
+                    data: 'fcPais'
                 },
+                //{
+                //    data: 'fcDescripcion'
+                //},
+                //{
+                //    data: null,
+                //    render: function (data) {
+                //        if (data.fiEstado == 1) {
+                //            return '<span class="btn-sm btn-block badge badge-success">SI</span>';
+                //        } else {
+                //            return '<span class="btn-sm btn-block badge badge-danger">NO</span>';
+                //        }
+
+                //    }
+                //},
 
 
 

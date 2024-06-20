@@ -1,12 +1,13 @@
-﻿@{
-    ViewBag.Title = "Lista de Estados";
+﻿
+@{
+    ViewBag.Title = "Lista de Ciudades";
 }
 
 <div class="panel">
     <div class="panel-hdr">
-        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Estados</h2>
+        <h2 class="panel-title"> <i class="fal fa-user fa-fw"></i>Lista de Ciudad</h2>
         <div class="panel-toolbar " role="menu">
-            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i> Nuevo Estado</a>
+            <a href="javascript:void(0)" onclick="MostrarCrear()" class="btn btn-success"><i class="fal fa-plus fa-fw"></i>Nueva Ciudad</a>
         </div>
     </div>
 
@@ -17,9 +18,10 @@
 
                     <tr>
                         <th></th>
-                        <th>Estado</th>
-                        <th>Clase</th>
-                        
+                        <th>Ciudad</th>
+                        <th>Region</th>
+                        <th>Ciudad</th>
+
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -39,7 +41,7 @@
 
         function MostrarCrear() {
             $.ajax({
-                url: "@Url.Action("Crear", "Estados")",
+                url: "@Url.Action("Crear", "Ciudad")",
                 method: "get",
                 success: function (resp) {
                     ShowModalSmall(resp);
@@ -52,7 +54,7 @@
 
         function Desactivar(id) {
             $.ajax({
-                url: "@Url.Action("EliminarArea", "Estados")",
+                url: "@Url.Action("EliminarCategoria", "Ciudad")",
                 method: "post",
                 data: { id: id },
                 success: function (data) {
@@ -69,7 +71,7 @@
 
         function MostrarEditar(id) {
             $.ajax({
-                url: "@Url.Action("Editar", "Estados")",
+                url: "@Url.Action("Editar", "Ciudad")",
                 method: "get",
                 data: { id: id },
                 success: function (data) {
@@ -101,7 +103,7 @@
 
             order: [[1, "desc"]],
             ajax: {
-                url: '@Url.Action("CargarListaEstados", "Estados")',
+                url: '@Url.Action("Lista", "Ciudad")',
                 method: "Get",
                 dataSrc: function (data) {
                     return data;
@@ -112,9 +114,10 @@
                         {
                 data: null,
                 render: function (data) {
-                    var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' + '> Acciones </button>';
+                    var opciones = '<div class="btn-group"> <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-themed" data-toggle="dropdown" aria-expanded="false" ' +  '> Acciones </button>';
                     opciones += '<div class="dropdown-menu">';
-                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDEstado + ')"> Editar</a>';
+                    opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="MostrarEditar(' + data.fiIDCiudad + ')"> Editar</a>';
+                    //opciones += '<a class="dropdown-item" href="javascript:void(0)" onclick="Desactivar(' + data.fiIDCiudad + ')"> deshabilitar </a>';
 
                     opciones += '</div></div>';
                     return opciones;
@@ -122,15 +125,13 @@
                },
 
                 {
-                    data: 'fcDescripcionEstado'
+                    data: 'fcCiudad'
                 },
                 {
-                    data: null,
-                    render: function (data) {
-                        
-                        return `<span class="btn-sm btn-block badge badge-${data.fcClaseColor}">${data.fcClaseColor}</span>`;
-
-                    }
+                    data: 'fcRegion'
+                },
+                {
+                    data: 'fcPais'
                 },
 
 
