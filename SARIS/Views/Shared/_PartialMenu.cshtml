@@ -168,6 +168,52 @@
                             </li>
                         }
 
+                        @if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Pais")" data-filter-tags="blank page">
+                                    <i class="fal fa-location-circle fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Pais</strong></span>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Region")" data-filter-tags="blank page">
+                                    <i class="fal fa-location-circle fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Region</strong></span>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Ciudad")" data-filter-tags="blank page">
+                                    <i class="fal fa-location-circle fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Ciudad</strong></span>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","CI_Configuracion")" data-filter-tags="blank page">
+                                    <i class="fal fa-location-circle fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Configuracion CI</strong></span>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Clacificacion_CI")" data-filter-tags="blank page">
+                                    <i class="fal fa-location-circle fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Clasificacion CI</strong></span>
+                                </a>
+                            </li>
+                        }
+
 
                     </ul>
                 </li>

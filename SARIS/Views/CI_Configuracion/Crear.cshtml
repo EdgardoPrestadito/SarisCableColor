@@ -30,12 +30,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fIIDPais, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.fiIDPais, htmlAttributes: new { @class = "control-label" })
             <div class="input-group mar-btm" style="width:100%;">
 
-                @Html.DropDownListFor(model => model.fIIDPais, new SelectList(ViewBag.ListaPaises, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                @Html.DropDownListFor(model => model.fiIDPais, new SelectList(ViewBag.ListaPaises, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
             </div>
-            @Html.ValidationMessageFor(model => model.fIIDPais, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.fiIDPais, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
