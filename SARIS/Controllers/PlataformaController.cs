@@ -107,11 +107,11 @@ namespace OrionCoreCableColor.Controllers
         }
 
         [HttpPost]
-        public ActionResult Eliminar(PlataformaViewModel model)
+        public ActionResult Eliminar(int id)
         {
             using (var context = new SARISEntities1())
             {
-                var result = context.sp_Plataformas_Eliminar(model.fiIDPlataforma).FirstOrDefault();
+                var result = context.sp_Plataformas_Eliminar(id).FirstOrDefault();
                 switch (result.fiRequest)
                 {
                     case 0:
