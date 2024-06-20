@@ -21,7 +21,7 @@ namespace OrionCoreCableColor.Controllers
             try
             {
                 using (var context = new SARISEntities1())
-                {
+                { 
                     var jsonResult = Json(context.sp_Ciudad_Listado().Select(x => new CiudadViewModel
                     {
                         fcPais = x.fcPais,

@@ -33,7 +33,9 @@
             @Html.LabelFor(model => model.fIIDPais, htmlAttributes: new { @class = "control-label" })
             <div class="input-group mar-btm" style="width:100%;">
 
-                @Html.DropDownListFor(model => model.fIIDPais, new SelectList(ViewBag.ListaPaises, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                <select id="fiIDPais" class="form-select form-control">
+                </select>
+                @*Html.DropDownListFor(model => model.fIIDPais, new SelectList(ViewBag.ListaPaises, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })*@
             </div>
             @Html.ValidationMessageFor(model => model.fIIDPais, "", new { @class = "text-danger" })
         </div>
@@ -41,8 +43,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fiIDRegion, htmlAttributes: new { @class = "control-label" })
             <div class="input-group mar-btm" style="width:100%;">
-
-                @Html.DropDownListFor(model => model.fiIDRegion, new SelectList(ViewBag.ListaRegiones, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                <select id="fiIDRegion" class="form-select form-control">
+                </select>
+                @*Html.DropDownListFor(model => model.fiIDRegion, new SelectList(ViewBag.ListaRegiones, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })*@
             </div>
             @Html.ValidationMessageFor(model => model.fiIDRegion, "", new { @class = "text-danger" })
         </div>
@@ -62,9 +65,14 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 <script>
+
+    var selecpais = @Html.Raw(Json.Encode(ViewBag.ListaPaises));
+
     $("#fiIDRegion").select2({ dropdownParent: $("#MyModalSm") });
     $("#fIIDPais").select2({ dropdownParent: $("#MyModalSm") });
+
     $("#MyFormModal").submit(function (event) {
+        debugger
         event.preventDefault();
         if (!$("#MyFormModal").valid()) {
             return false;
@@ -75,16 +83,15 @@
         model.fcCiudad = $("#fcCiudad").val();
         model.fiIDCiudad = $("#fiIDCiudad").val();
         model.fiIDRegion = $("#fiIDRegion").val();
+        model.fiIDPais = $(`#fiIDPais`).val();
 
-
-        var url = "@Url.Action("Crear", "Pais")";
-        if (str2bool('@Model.EsEditar')) {
-            url = "@Url.Action("Editar", "Pais")";
+        var url = "@Url.Action("Crear", "Ciudad")";
+        if(str2bool('@Model.EsEditar')) {
+            url = "@Url.Action("Editar", "Ciudad")";
         }
 
         $.ajax({
             url: url,
-            type: 'POST',
             data: JSON.stringify({ model: model }),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
@@ -101,4 +108,61 @@
 
 
     });
+
+    $(`#fiIDPais`).on('change', function () {
+        //console.log(listaselecregion);
+        var idpaiselect = $(this).val();
+
+        $.ajax({
+            url: "@Url.Action("SelectLlenarRegionPorPais", "LlenarCampos")",
+            type: "GET",
+            data: { idpais: idpaiselect },
+            success: function (respuesta) {
+
+                var selectregion = $("#fiIDRegion");
+
+                selectregion.empty();
+                selectregion.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Una Region'
+                }));
+
+
+                $("#fiIDRegion").select2({ dropdownParent: $("#MyModalSm") }).val(0).trigger("change");
+                $.each(respuesta, function (index, item) {
+                    selectregion.append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+
+    })
+
+
+    llenarSelect();
+    function llenarSelect() {
+
+        var selectpais = $("#fiIDPais");
+
+        selectpais.empty();
+        selectpais.append($('<option>', {
+            value: 0,
+            text: 'Seleccione Un Pais'
+        }));
+        $("#fiIDPais").select2({ dropdownParent: $("#MyModalSm") }).val(0).trigger("change");
+        $.each(selecpais, function (index, item) {
+            selectpais.append($('<option>', {
+                value: item.Value,
+                text: item.Text
+            }));
+        });
+
+    }
+
 </script>

@@ -22,7 +22,7 @@ namespace OrionCoreCableColor.Controllers
             try
             {
                 using (var context = new SARISEntities1())
-                {
+                { 
                     var jsonResult = Json(context.sp_CI_Configuracion_Listado().Select(x => new CI_ConfiguracionViewModel
                     {
                         fiIDPais            =   x.fiIDPais,
@@ -121,7 +121,6 @@ namespace OrionCoreCableColor.Controllers
                         return EnviarResultado(false, "Editar CI_Configuracion", "Error al Editar");
                 }
             }
-
         }
     }
 }

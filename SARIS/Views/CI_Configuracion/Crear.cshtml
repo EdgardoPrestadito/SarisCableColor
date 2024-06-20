@@ -32,8 +32,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fiIDPais, htmlAttributes: new { @class = "control-label" })
             <div class="input-group mar-btm" style="width:100%;">
-
-                @Html.DropDownListFor(model => model.fiIDPais, new SelectList(ViewBag.ListaPaises, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                <select id="fiIDPais" class="form-select form-control">
+                </select>
+                @*Html.DropDownListFor(model => model.fiIDPais, new SelectList(ViewBag.ListaPaises, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })*@
             </div>
             @Html.ValidationMessageFor(model => model.fiIDPais, "", new { @class = "text-danger" })
         </div>
@@ -42,15 +43,27 @@
             @Html.LabelFor(model => model.fiIDRegion, htmlAttributes: new { @class = "control-label" })
             <div class="input-group mar-btm" style="width:100%;">
 
-                @Html.DropDownListFor(model => model.fiIDRegion, new SelectList(ViewBag.ListaRegiones, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
+                <select id="fiIDRegion" class="form-select form-control">
+                </select>
+                @*Html.DropDownListFor(model => model.fiIDRegion, new SelectList(ViewBag.ListaRegiones, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })*@
             </div>
             @Html.ValidationMessageFor(model => model.fiIDRegion, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fiIDCI, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.fiIDCiudad, htmlAttributes: new { @class = "control-label" })
             <div class="input-group mar-btm" style="width:100%;">
 
+                <select id="fiIDCiudad" class="form-select form-control">
+                </select>
+                @*Html.DropDownListFor(model => model.fiIDRegion, new SelectList(ViewBag.ListaRegiones, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })*@
+            </div>
+            @Html.ValidationMessageFor(model => model.fiIDCiudad, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fiIDCI, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group mar-btm" style="width:100%;">
                 @Html.DropDownListFor(model => model.fiIDCI, new SelectList(ViewBag.ListaCI, "Value", "Text"), null, new { @class = "form-control input-lg", @style = "width:100%;" })
             </div>
             @Html.ValidationMessageFor(model => model.fiIDCI, "", new { @class = "text-danger" })
@@ -95,9 +108,103 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 <script>
-    $("#fIIDPais").select2({ dropdownParent: $("#MyModalSm") });
+    var selecpais = @Html.Raw(Json.Encode(ViewBag.ListaPaises));
+
+    @*var idpaisse = @Html.Raw(Json.Encode(model.fiIDCiudad));
+    var idciudadse = @Html.Raw(Json.Encode(model.fiIDCiudad));
+    var idregiose = @Html.Raw(Json.Encode(model.fiIDRegion));*@
+
+    $("#fiIDPais").select2({ dropdownParent: $("#MyModalSm") });
     $("#fiIDRegion").select2({ dropdownParent: $("#MyModalSm") });
     $("#fiIDCI").select2({ dropdownParent: $("#MyModalSm") });
+
+    llenarSelect();
+    function llenarSelect() {
+
+        var selectpais = $("#fiIDPais");
+
+        selectpais.empty();
+        selectpais.append($('<option>', {
+            value: 0,
+            text: 'Seleccione Un Pais'
+        }));
+        $("#fiIDPais").select2({ dropdownParent: $("#MyModalSm") }).val(0).trigger("change");
+        $.each(selecpais, function (index, item) {
+            selectpais.append($('<option>', {
+                value: item.Value,
+                text: item.Text
+            }));
+        });
+
+    }
+
+    $(`#fiIDPais`).on('change', function () {
+        //console.log(listaselecregion);
+        var idpaiselect = $(this).val();
+
+        $.ajax({
+            url: "@Url.Action("SelectLlenarRegionPorPais", "LlenarCampos")",
+            type: "GET",
+            data: { idpais: idpaiselect },
+            success: function (respuesta) {
+
+                var selectregion = $("#fiIDRegion");
+
+                selectregion.empty();
+                selectregion.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Una Region'
+                }));
+
+
+                $("#fiIDRegion").select2({ dropdownParent: $("#MyModalSm") }).val(0).trigger("change");
+                $.each(respuesta, function (index, item) {
+                    selectregion.append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+        });
+
+
+    })
+
+    $(`#fiIDRegion`).on('change', function () {
+        var idregionselect = $(this).val();
+
+        $.ajax({
+            url: "@Url.Action("SelectLlenarCiudadPorRegioin", "LlenarCampos")",
+            type: "GET",
+            data: { IdRegion: idregionselect},
+            success: function (respuesta) {
+
+                var selectciudad = $("#fiIDCiudad");
+
+                selectciudad.empty();
+                selectciudad.append($('<option>', {
+                    value: 0,
+                    text: 'Seleccione Un Ciudad'
+                }));
+
+
+                $("#fiIDCiudad").select2({ dropdownParent: $("#MyModalSm") }).val(0).trigger("change");
+                $.each(respuesta, function (index, item) {
+                    selectciudad.append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
+            }
+
+        });
+    })
 
     $("#MyFormModal").submit(function (event) {
         event.preventDefault();
@@ -109,14 +216,16 @@
         var model = @Html.Raw(Json.Encode(Model));
         model.fiIDPais = $("#fiIDPais").val();
         model.fiIDRegion = $("#fiIDRegion").val();
+        model.fiIDCiudad = $(`#fiIDCiudad`).val();
         model.fiIDCI = $("#fiIDCI").val();
         model.fiIDConfiguracion = $("#fiIDConfiguracion").val();
         model.fcLongitud = $("#fcLongitud").val();
         model.fcLatitud = $("#fcLatitud").val();
+        model.fcConfiguracion = $("#fcConfiguracion").val();
 
-        var url = "@Url.Action("Crear", "Pais")";
+        var url = "@Url.Action("Crear", "CI_Configuracion")";
         if (str2bool('@Model.EsEditar')) {
-            url = "@Url.Action("Editar", "Pais")";
+            url = "@Url.Action("Editar", "CI_Configuracion")";
         }
 
         $.ajax({

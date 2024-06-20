@@ -45,7 +45,7 @@ namespace OrionCoreCableColor.Controllers
         public ActionResult Crear()
         {
             using (var context = new SARISEntities1())
-            {
+            { 
                 ViewBag.ListaPaises = context.sp_Pais_Listado().ToList().Select(x => new SelectListItem { Value = x.fiIDPais.ToString(), Text = $"{x.fcPais}" }).ToList();
 
 

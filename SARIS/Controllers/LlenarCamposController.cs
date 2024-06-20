@@ -141,7 +141,26 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
-        
+
+        public JsonResult SelectLlenarRegionPorPais(int idpais)
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Region_Listado().Where(a => a.fIIDPais == idpais).Select(x => new SelectListItem { Value = x.fiIDRegion.ToString(), Text = $"{x.fcRegion}" }).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
+
+        public JsonResult SelectLlenarCiudadPorRegioin(int IdRegion)
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Ciudad_Listado().Where(a => a.fiIDRegion == IdRegion).Select(x => new SelectListItem { Value = x.fiIDCiudad.ToString(), Text = $"{x.fcCiudad}" }).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
 
         public JsonResult SelectPlataforma()
         {

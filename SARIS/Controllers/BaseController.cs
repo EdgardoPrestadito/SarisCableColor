@@ -38,7 +38,6 @@ namespace OrionCoreCableColor.Controllers
         }
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
-
             return base.BeginExecuteCore(callback, state);
         }
 
