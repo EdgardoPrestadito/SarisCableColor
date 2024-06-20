@@ -21,9 +21,12 @@
 
 <script>
     llenarcampos()
+
+    
+
     function llenarcampos() {
         var opciones = ""
-        
+
         opciones += `<div class="col-xl-12">
                                             <div id="panel-1" class="panel">
 
@@ -34,10 +37,10 @@
                         <th>Seleccione</th>
                         <th>Descripcion</th>
                     </tr>
-            </thead>`;
+            </thead><tbody>`;
 
         for (const item of idservicios) {
-            opciones += `<tbody>
+            opciones += `
                     <tr>
                         <td>
                         <div class="custom-control custom-checkbox">`
@@ -51,10 +54,9 @@
                             </div>
                         </td>
                         <td>${item.fcNombreServicio}</td>
-                    </tr>
-                    </tbody>`
+                    </tr>`
         }
-        opciones += `</table></div></div>
+        opciones += `</tbody></table></div></div>
 
         <div class='test col-sm-12'>
                 <br />
@@ -66,20 +68,25 @@
             </div>
         </div>`;
 
+        //$(`#selectServicios`).DataTable({});
+
         $(`#selectServicios`).append(opciones);
     }
 
+    
+
     function guardararrai() {
         //console.log(idservicios);
+        
+
         var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistaservicios">
                         <thead>
                             <tr>
                                 <th>Descripcion</th>
                             </tr>
                         </thead>
-                        <tbody >
+                        <tbody>`;
 
-                        `;
         for (const item of idserviciosusados) {
             tbo += `<tr>
                         <td>${item.fcNombreServicio}</td>
@@ -90,7 +97,7 @@
                 tbo += `<tr>
                             <td>${item.fcNombreServicio}</td>
                         </tr>`;
-            }            
+            }
         }
         tbo += `</tbody>
                     </table>`
@@ -100,6 +107,8 @@
 
         $("#MyModalSm").modal("hide");//aqui sirve para agregar los servicios a la tabla que esta debajo del boton que se asignode agregar servicios
         $("#MyModalBodySm").empty();
+
+        
 
     }
 
@@ -116,9 +125,9 @@
         });
 
         const updatedServices = updateSelectionInPlace(idservicios, idseleccionado);
-        
+
     });
 
-    
+
 
 </script>

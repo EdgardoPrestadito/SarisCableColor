@@ -51,7 +51,7 @@ namespace OrionCoreCableColor.Controllers
                         fiAreaAsignada = x.fiAreaAsignada,
                         fcAreaAsignada = x.Area.fcDescripcion
 
-                    }).ToList(), JsonRequestBehavior.AllowGet);
+                    }).Where(b => b.fcBuzondeCorreo != "kevin.santos@miprestadito.com").ToList(), JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = Int32.MaxValue;
                     return jsonResult;
                 }
