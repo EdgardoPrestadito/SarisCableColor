@@ -361,6 +361,7 @@
     <Compile Include="Controllers\LlenarCamposController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\PermisoController.cs" />
+    <Compile Include="Controllers\PlataformaController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
@@ -618,6 +619,15 @@
     <Compile Include="DbConnection\sp_Pais_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Plataformas_Editar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Plataformas_Eliminar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_Plataformas_Insertar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Plataformas_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -761,6 +771,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pais\PaisViewModel.cs" />
     <Compile Include="Models\Permiso\CrearPermisoViewModel.cs" />
+    <Compile Include="Models\Plataformas\PlataformaViewModel.cs" />
     <Compile Include="Models\Prioridades\PrioridadesViewModel.cs" />
     <Compile Include="Models\Region\RegionViewModel.cs" />
     <Compile Include="Models\Roles\CrearRolViewModel.cs" />
@@ -2133,6 +2144,8 @@
     <Content Include="Views\CI_Configuracion\Crear.cshtml" />
     <Content Include="Views\Clacificacion_CI\Index.cshtml" />
     <Content Include="Views\Clacificacion_CI\Crear.cshtml" />
+    <Content Include="Views\Plataforma\Index.cshtml" />
+    <Content Include="Views\Plataforma\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
