@@ -1074,11 +1074,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Motivos_Estado_Listado_Result>("sp_Motivos_Estado_Listado", piEstadoParameter);
         }
     
-        public virtual ObjectResult<sp_Plataformas_Listado_Result> sp_Plataformas_Listado()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Plataformas_Listado_Result>("sp_Plataformas_Listado");
-        }
-    
         public virtual ObjectResult<sp_ServiciosAfectados_Listado_Result> sp_ServiciosAfectados_Listado()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ServiciosAfectados_Listado_Result>("sp_ServiciosAfectados_Listado");
@@ -1784,6 +1779,249 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piIDUsuarioResponsable", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimientos_Catalogo_Generencias_Insertar_Result>("sp_Requerimientos_Catalogo_Generencias_Insertar", pcNombreGenerenciaParameter, piIDUsuarioResponsableParameter);
+        }
+    
+        public virtual ObjectResult<sp_CI_Configuracion_Editar_Result> sp_CI_Configuracion_Editar(Nullable<int> piIDPais, Nullable<int> piIDRegion, Nullable<int> piIDCiudad, Nullable<int> piIDCI, Nullable<int> piIDConfiguracion, string pcConfiguracion, string pcLatitud, string pcLongitud)
+        {
+            var piIDPaisParameter = piIDPais.HasValue ?
+                new ObjectParameter("piIDPais", piIDPais) :
+                new ObjectParameter("piIDPais", typeof(int));
+    
+            var piIDRegionParameter = piIDRegion.HasValue ?
+                new ObjectParameter("piIDRegion", piIDRegion) :
+                new ObjectParameter("piIDRegion", typeof(int));
+    
+            var piIDCiudadParameter = piIDCiudad.HasValue ?
+                new ObjectParameter("piIDCiudad", piIDCiudad) :
+                new ObjectParameter("piIDCiudad", typeof(int));
+    
+            var piIDCIParameter = piIDCI.HasValue ?
+                new ObjectParameter("piIDCI", piIDCI) :
+                new ObjectParameter("piIDCI", typeof(int));
+    
+            var piIDConfiguracionParameter = piIDConfiguracion.HasValue ?
+                new ObjectParameter("piIDConfiguracion", piIDConfiguracion) :
+                new ObjectParameter("piIDConfiguracion", typeof(int));
+    
+            var pcConfiguracionParameter = pcConfiguracion != null ?
+                new ObjectParameter("pcConfiguracion", pcConfiguracion) :
+                new ObjectParameter("pcConfiguracion", typeof(string));
+    
+            var pcLatitudParameter = pcLatitud != null ?
+                new ObjectParameter("pcLatitud", pcLatitud) :
+                new ObjectParameter("pcLatitud", typeof(string));
+    
+            var pcLongitudParameter = pcLongitud != null ?
+                new ObjectParameter("pcLongitud", pcLongitud) :
+                new ObjectParameter("pcLongitud", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CI_Configuracion_Editar_Result>("sp_CI_Configuracion_Editar", piIDPaisParameter, piIDRegionParameter, piIDCiudadParameter, piIDCIParameter, piIDConfiguracionParameter, pcConfiguracionParameter, pcLatitudParameter, pcLongitudParameter);
+        }
+    
+        public virtual ObjectResult<sp_CI_Configuracion_Insertar_Result> sp_CI_Configuracion_Insertar(Nullable<int> piIDPais, Nullable<int> piIDRegion, Nullable<int> piIDCiudad, Nullable<int> piIDCI, string pcConfiguracion, string pcLatitud, string pcLongitud)
+        {
+            var piIDPaisParameter = piIDPais.HasValue ?
+                new ObjectParameter("piIDPais", piIDPais) :
+                new ObjectParameter("piIDPais", typeof(int));
+    
+            var piIDRegionParameter = piIDRegion.HasValue ?
+                new ObjectParameter("piIDRegion", piIDRegion) :
+                new ObjectParameter("piIDRegion", typeof(int));
+    
+            var piIDCiudadParameter = piIDCiudad.HasValue ?
+                new ObjectParameter("piIDCiudad", piIDCiudad) :
+                new ObjectParameter("piIDCiudad", typeof(int));
+    
+            var piIDCIParameter = piIDCI.HasValue ?
+                new ObjectParameter("piIDCI", piIDCI) :
+                new ObjectParameter("piIDCI", typeof(int));
+    
+            var pcConfiguracionParameter = pcConfiguracion != null ?
+                new ObjectParameter("pcConfiguracion", pcConfiguracion) :
+                new ObjectParameter("pcConfiguracion", typeof(string));
+    
+            var pcLatitudParameter = pcLatitud != null ?
+                new ObjectParameter("pcLatitud", pcLatitud) :
+                new ObjectParameter("pcLatitud", typeof(string));
+    
+            var pcLongitudParameter = pcLongitud != null ?
+                new ObjectParameter("pcLongitud", pcLongitud) :
+                new ObjectParameter("pcLongitud", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CI_Configuracion_Insertar_Result>("sp_CI_Configuracion_Insertar", piIDPaisParameter, piIDRegionParameter, piIDCiudadParameter, piIDCIParameter, pcConfiguracionParameter, pcLatitudParameter, pcLongitudParameter);
+        }
+    
+        public virtual ObjectResult<sp_CI_Configuracion_Listado_Result> sp_CI_Configuracion_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CI_Configuracion_Listado_Result>("sp_CI_Configuracion_Listado");
+        }
+    
+        public virtual ObjectResult<sp_Ciudad_Editar_Result> sp_Ciudad_Editar(Nullable<int> pIIDPais, Nullable<int> piIDRegion, Nullable<int> piIDCiudad, string pcCiudad)
+        {
+            var pIIDPaisParameter = pIIDPais.HasValue ?
+                new ObjectParameter("pIIDPais", pIIDPais) :
+                new ObjectParameter("pIIDPais", typeof(int));
+    
+            var piIDRegionParameter = piIDRegion.HasValue ?
+                new ObjectParameter("piIDRegion", piIDRegion) :
+                new ObjectParameter("piIDRegion", typeof(int));
+    
+            var piIDCiudadParameter = piIDCiudad.HasValue ?
+                new ObjectParameter("piIDCiudad", piIDCiudad) :
+                new ObjectParameter("piIDCiudad", typeof(int));
+    
+            var pcCiudadParameter = pcCiudad != null ?
+                new ObjectParameter("pcCiudad", pcCiudad) :
+                new ObjectParameter("pcCiudad", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ciudad_Editar_Result>("sp_Ciudad_Editar", pIIDPaisParameter, piIDRegionParameter, piIDCiudadParameter, pcCiudadParameter);
+        }
+    
+        public virtual ObjectResult<sp_Ciudad_Insertar_Result> sp_Ciudad_Insertar(Nullable<int> pIIDPais, Nullable<int> piIDRegion, string pcCiudad)
+        {
+            var pIIDPaisParameter = pIIDPais.HasValue ?
+                new ObjectParameter("pIIDPais", pIIDPais) :
+                new ObjectParameter("pIIDPais", typeof(int));
+    
+            var piIDRegionParameter = piIDRegion.HasValue ?
+                new ObjectParameter("piIDRegion", piIDRegion) :
+                new ObjectParameter("piIDRegion", typeof(int));
+    
+            var pcCiudadParameter = pcCiudad != null ?
+                new ObjectParameter("pcCiudad", pcCiudad) :
+                new ObjectParameter("pcCiudad", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ciudad_Insertar_Result>("sp_Ciudad_Insertar", pIIDPaisParameter, piIDRegionParameter, pcCiudadParameter);
+        }
+    
+        public virtual ObjectResult<sp_Ciudad_Listado_Result> sp_Ciudad_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ciudad_Listado_Result>("sp_Ciudad_Listado");
+        }
+    
+        public virtual ObjectResult<sp_Clacificacion_CI_Editar_Result> sp_Clacificacion_CI_Editar(Nullable<int> piIDCI, string pcCI)
+        {
+            var piIDCIParameter = piIDCI.HasValue ?
+                new ObjectParameter("piIDCI", piIDCI) :
+                new ObjectParameter("piIDCI", typeof(int));
+    
+            var pcCIParameter = pcCI != null ?
+                new ObjectParameter("pcCI", pcCI) :
+                new ObjectParameter("pcCI", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Clacificacion_CI_Editar_Result>("sp_Clacificacion_CI_Editar", piIDCIParameter, pcCIParameter);
+        }
+    
+        public virtual ObjectResult<sp_Clacificacion_CI_Insertar_Result> sp_Clacificacion_CI_Insertar(string pcCI)
+        {
+            var pcCIParameter = pcCI != null ?
+                new ObjectParameter("pcCI", pcCI) :
+                new ObjectParameter("pcCI", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Clacificacion_CI_Insertar_Result>("sp_Clacificacion_CI_Insertar", pcCIParameter);
+        }
+    
+        public virtual ObjectResult<sp_Clacificacion_CI_Listado_Result> sp_Clacificacion_CI_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Clacificacion_CI_Listado_Result>("sp_Clacificacion_CI_Listado");
+        }
+    
+        public virtual ObjectResult<sp_Pais_Editar_Result> sp_Pais_Editar(Nullable<int> piIDPais, string pcPais)
+        {
+            var piIDPaisParameter = piIDPais.HasValue ?
+                new ObjectParameter("piIDPais", piIDPais) :
+                new ObjectParameter("piIDPais", typeof(int));
+    
+            var pcPaisParameter = pcPais != null ?
+                new ObjectParameter("pcPais", pcPais) :
+                new ObjectParameter("pcPais", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Pais_Editar_Result>("sp_Pais_Editar", piIDPaisParameter, pcPaisParameter);
+        }
+    
+        public virtual ObjectResult<sp_Pais_Insertar_Result> sp_Pais_Insertar(string pcPais)
+        {
+            var pcPaisParameter = pcPais != null ?
+                new ObjectParameter("pcPais", pcPais) :
+                new ObjectParameter("pcPais", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Pais_Insertar_Result>("sp_Pais_Insertar", pcPaisParameter);
+        }
+    
+        public virtual ObjectResult<sp_Pais_Listado_Result> sp_Pais_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Pais_Listado_Result>("sp_Pais_Listado");
+        }
+    
+        public virtual ObjectResult<sp_Region_Editar_Result> sp_Region_Editar(Nullable<int> piIDRegion, Nullable<int> pIIDPais, string pcRegion)
+        {
+            var piIDRegionParameter = piIDRegion.HasValue ?
+                new ObjectParameter("piIDRegion", piIDRegion) :
+                new ObjectParameter("piIDRegion", typeof(int));
+    
+            var pIIDPaisParameter = pIIDPais.HasValue ?
+                new ObjectParameter("pIIDPais", pIIDPais) :
+                new ObjectParameter("pIIDPais", typeof(int));
+    
+            var pcRegionParameter = pcRegion != null ?
+                new ObjectParameter("pcRegion", pcRegion) :
+                new ObjectParameter("pcRegion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Region_Editar_Result>("sp_Region_Editar", piIDRegionParameter, pIIDPaisParameter, pcRegionParameter);
+        }
+    
+        public virtual ObjectResult<sp_Region_Insertar_Result> sp_Region_Insertar(Nullable<int> pIIDPais, string pcRegion)
+        {
+            var pIIDPaisParameter = pIIDPais.HasValue ?
+                new ObjectParameter("pIIDPais", pIIDPais) :
+                new ObjectParameter("pIIDPais", typeof(int));
+    
+            var pcRegionParameter = pcRegion != null ?
+                new ObjectParameter("pcRegion", pcRegion) :
+                new ObjectParameter("pcRegion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Region_Insertar_Result>("sp_Region_Insertar", pIIDPaisParameter, pcRegionParameter);
+        }
+    
+        public virtual ObjectResult<sp_Region_Listado_Result> sp_Region_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Region_Listado_Result>("sp_Region_Listado");
+        }
+    
+        public virtual ObjectResult<sp_Plataformas_Editar_Result> sp_Plataformas_Editar(string pcNombrePlataforma, Nullable<int> piIDPlataforma)
+        {
+            var pcNombrePlataformaParameter = pcNombrePlataforma != null ?
+                new ObjectParameter("pcNombrePlataforma", pcNombrePlataforma) :
+                new ObjectParameter("pcNombrePlataforma", typeof(string));
+    
+            var piIDPlataformaParameter = piIDPlataforma.HasValue ?
+                new ObjectParameter("piIDPlataforma", piIDPlataforma) :
+                new ObjectParameter("piIDPlataforma", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Plataformas_Editar_Result>("sp_Plataformas_Editar", pcNombrePlataformaParameter, piIDPlataformaParameter);
+        }
+    
+        public virtual ObjectResult<sp_Plataformas_Eliminar_Result> sp_Plataformas_Eliminar(Nullable<int> piIDPlataforma)
+        {
+            var piIDPlataformaParameter = piIDPlataforma.HasValue ?
+                new ObjectParameter("piIDPlataforma", piIDPlataforma) :
+                new ObjectParameter("piIDPlataforma", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Plataformas_Eliminar_Result>("sp_Plataformas_Eliminar", piIDPlataformaParameter);
+        }
+    
+        public virtual ObjectResult<sp_Plataformas_Insertar_Result> sp_Plataformas_Insertar(string pcNombrePlataforma)
+        {
+            var pcNombrePlataformaParameter = pcNombrePlataforma != null ?
+                new ObjectParameter("pcNombrePlataforma", pcNombrePlataforma) :
+                new ObjectParameter("pcNombrePlataforma", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Plataformas_Insertar_Result>("sp_Plataformas_Insertar", pcNombrePlataformaParameter);
+        }
+    
+        public virtual ObjectResult<sp_Plataformas_Listado_Result> sp_Plataformas_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Plataformas_Listado_Result>("sp_Plataformas_Listado");
         }
     }
 }

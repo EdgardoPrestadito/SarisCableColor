@@ -10,7 +10,6 @@ namespace OrionCoreCableColor.Controllers
 {
     public class CiudadController : BaseController
     {
-        // GET: Ciudad
         public ActionResult Index()
         {
             return View();
@@ -21,7 +20,7 @@ namespace OrionCoreCableColor.Controllers
             try
             {
                 using (var context = new SARISEntities1())
-                { 
+                {
                     var jsonResult = Json(context.sp_Ciudad_Listado().Select(x => new CiudadViewModel
                     {
                         fcPais = x.fcPais,
@@ -31,7 +30,7 @@ namespace OrionCoreCableColor.Controllers
                         fiIDCiudad = x.fiIDCiudad,
                         fcCiudad = x.fcCiudad
 
-                    }).ToList(), JsonRequestBehavior.AllowGet);;
+                    }).ToList(), JsonRequestBehavior.AllowGet); ;
                     jsonResult.MaxJsonLength = Int32.MaxValue;
                     return jsonResult;
                 }
@@ -58,7 +57,7 @@ namespace OrionCoreCableColor.Controllers
 
 
         [HttpPost]
-        public ActionResult Crear(CiudadViewModel model)
+        public ActionResult AgregarCiudad(CiudadViewModel model)
         {
             using (var context = new SARISEntities1())
             {
@@ -80,6 +79,35 @@ namespace OrionCoreCableColor.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult EditarCiudades(CiudadViewModel model)
+        {
+            using (var context = new SARISEntities1())
+            {
+                var result = context.sp_Ciudad_Editar(model.fIIDPais, model.fiIDRegion, model.fiIDCiudad, model.fcCiudad.Trim()).FirstOrDefault();
+
+                switch (result.fiRequest)
+                {
+                    case 0:
+                        var jsonResult = Json((false, "Editar Ciudad", "Error al Editar"), JsonRequestBehavior.AllowGet);
+                        jsonResult.MaxJsonLength = Int32.MaxValue;
+                        return jsonResult;
+                    case 1:
+                        var jsonResultt = Json((true, "Editar Ciudad", result.fcRequest), JsonRequestBehavior.AllowGet);
+                        jsonResultt.MaxJsonLength = Int32.MaxValue;
+                        return jsonResultt;
+                    case 2:
+                        var jsonResulttt = Json((false, "Editar Ciudad", result.fcRequest), JsonRequestBehavior.AllowGet);
+                        jsonResulttt.MaxJsonLength = Int32.MaxValue;
+                        return jsonResulttt;
+                    default:
+                        var jsonResultttt = Json((false, "Editar Ciudad", "Error al Editar"), JsonRequestBehavior.AllowGet);
+                        jsonResultttt.MaxJsonLength = Int32.MaxValue;
+                        return jsonResultttt;
+                }
+            }
+
+        }
         [HttpGet]
         public ActionResult Editar(int id)
         {
@@ -94,26 +122,7 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult Editar(CiudadViewModel model)
-        {
-            using (var context = new SARISEntities1())
-            {
-                var result = context.sp_Ciudad_Editar(model.fIIDPais, model.fiIDRegion, model.fiIDCiudad, model.fcCiudad.Trim()).FirstOrDefault();
 
-                switch (result.fiRequest)
-                {
-                    case 0:
-                        return EnviarResultado(false, "Editar Ciudad", "Error al Editar");
-                    case 1:
-                        return EnviarResultado(true, "Editar Ciudad", result.fcRequest);
-                    case 2:
-                        return EnviarResultado(false, "Editar Ciudad", result.fcRequest);
-                    default:
-                        return EnviarResultado(false, "Editar Ciudad", "Error al Editar");
-                }
-            }
 
-        }
     }
 }

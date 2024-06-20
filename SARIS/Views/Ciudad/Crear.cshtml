@@ -77,7 +77,6 @@
         if (!$("#MyFormModal").valid()) {
             return false;
         }
-        console.log("Valor de fiIDCategoriaResolucion:", $("#fiIDCategoriaResolucion").val());
 
         var model = @Html.Raw(Json.Encode(Model));
         model.fcCiudad = $("#fcCiudad").val();
@@ -85,13 +84,14 @@
         model.fiIDRegion = $("#fiIDRegion").val();
         model.fiIDPais = $(`#fiIDPais`).val();
 
-        var url = "@Url.Action("Crear", "Ciudad")";
+        var url = "@Url.Action("AgregarCiudad", "Ciudad")";
         if(str2bool('@Model.EsEditar')) {
-            url = "@Url.Action("Editar", "Ciudad")";
+            url = "@Url.Action("EditarCiudades", "Ciudad")";
         }
 
         $.ajax({
             url: url,
+            type: 'POST',
             data: JSON.stringify({ model: model }),
             contentType: "application/json; charset=utf-8",
             success: function (data) {

@@ -1,4 +1,5 @@
 ﻿using OrionCoreCableColor.DbConnection;
+using OrionCoreCableColor.Models.Ciudad;
 using OrionCoreCableColor.Models.Impacto;
 using OrionCoreCableColor.Models.Prioridades;
 using System;
@@ -92,6 +93,8 @@ namespace OrionCoreCableColor.Controllers
         {
             return PartialView();
         }
+
+        
 
     }
 }

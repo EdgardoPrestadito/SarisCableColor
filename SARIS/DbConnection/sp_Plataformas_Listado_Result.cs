@@ -15,7 +15,6 @@ namespace OrionCoreCableColor.DbConnection
     {
         public int fiIDPlataforma { get; set; }
         public string fcNombrePlataforma { get; set; }
-        public string fcDescripcionPlataforma { get; set; }
         public Nullable<int> fiActivo { get; set; }
     }
 }

@@ -89,6 +89,26 @@
           <Parameter Name="piArea" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Categorias_IndicidenciasResolucion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_CI_Configuracion_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDPais" Type="int" Mode="In" />
+          <Parameter Name="piIDRegion" Type="int" Mode="In" />
+          <Parameter Name="piIDCiudad" Type="int" Mode="In" />
+          <Parameter Name="piIDCI" Type="int" Mode="In" />
+          <Parameter Name="piIDConfiguracion" Type="int" Mode="In" />
+          <Parameter Name="pcConfiguracion" Type="varchar" Mode="In" />
+          <Parameter Name="pcLatitud" Type="varchar" Mode="In" />
+          <Parameter Name="pcLongitud" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_CI_Configuracion_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDPais" Type="int" Mode="In" />
+          <Parameter Name="piIDRegion" Type="int" Mode="In" />
+          <Parameter Name="piIDCiudad" Type="int" Mode="In" />
+          <Parameter Name="piIDCI" Type="int" Mode="In" />
+          <Parameter Name="pcConfiguracion" Type="varchar" Mode="In" />
+          <Parameter Name="pcLatitud" Type="varchar" Mode="In" />
+          <Parameter Name="pcLongitud" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_CI_Configuracion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_CIporIncidencias_listos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
         </Function>
@@ -96,6 +116,26 @@
           <Parameter Name="piPais" Type="int" Mode="In" />
           <Parameter Name="piIDRegion" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_Ciudad_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIIDPais" Type="int" Mode="In" />
+          <Parameter Name="piIDRegion" Type="int" Mode="In" />
+          <Parameter Name="piIDCiudad" Type="int" Mode="In" />
+          <Parameter Name="pcCiudad" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Ciudad_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIIDPais" Type="int" Mode="In" />
+          <Parameter Name="piIDRegion" Type="int" Mode="In" />
+          <Parameter Name="pcCiudad" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Ciudad_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Clacificacion_CI_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDCI" Type="int" Mode="In" />
+          <Parameter Name="pcCI" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Clacificacion_CI_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pcCI" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Clacificacion_CI_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_ClacificacionCI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_ConfiguracionCI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piPais" Type="int" Mode="In" />
@@ -297,6 +337,24 @@
           <Parameter Name="piIDTicket" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Pais" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Pais_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDPais" Type="int" Mode="In" />
+          <Parameter Name="pcPais" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Pais_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pcPais" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Pais_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Plataformas_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pcNombrePlataforma" Type="varchar" Mode="In" />
+          <Parameter Name="piIDPlataforma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Plataformas_Eliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDPlataforma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Plataformas_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pcNombrePlataforma" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_Plataformas_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Prioridad_urgenciaXimpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piUrgencia" Type="int" Mode="In" />
@@ -305,6 +363,16 @@
         <Function Name="sp_Region" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piPais" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_Region_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDRegion" Type="int" Mode="In" />
+          <Parameter Name="pIIDPais" Type="int" Mode="In" />
+          <Parameter Name="pcRegion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Region_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIIDPais" Type="int" Mode="In" />
+          <Parameter Name="pcRegion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Region_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Requerimiento_Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDUsuario" Type="int" Mode="In" />
           <Parameter Name="pcIP" Type="varchar" Mode="In" />
@@ -816,7 +884,6 @@
           <FunctionImport Name="sp_Motivos_Estado_Listado" ReturnType="Collection(SARISModel.sp_Motivos_Estado_Listado_Result)">
           <Parameter Name="piEstado" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_Plataformas_Listado" ReturnType="Collection(SARISModel.sp_Plataformas_Listado_Result)" />
           <FunctionImport Name="sp_ServiciosAfectados_Listado" ReturnType="Collection(SARISModel.sp_ServiciosAfectados_Listado_Result)" />
           <FunctionImport Name="sp_Requerimiento_Alta" ReturnType="Collection(SARISModel.sp_Requerimiento_Alta_Result)">
             <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
@@ -1017,6 +1084,75 @@
             <Parameter Name="pcNombreGenerencia" Mode="In" Type="String" />
             <Parameter Name="piIDUsuarioResponsable" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_CI_Configuracion_Editar" ReturnType="Collection(SARISModel.sp_CI_Configuracion_Editar_Result)">
+            <Parameter Name="piIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRegion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCiudad" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCI" Mode="In" Type="Int32" />
+            <Parameter Name="piIDConfiguracion" Mode="In" Type="Int32" />
+            <Parameter Name="pcConfiguracion" Mode="In" Type="String" />
+            <Parameter Name="pcLatitud" Mode="In" Type="String" />
+            <Parameter Name="pcLongitud" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CI_Configuracion_Insertar" ReturnType="Collection(SARISModel.sp_CI_Configuracion_Insertar_Result)">
+            <Parameter Name="piIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRegion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCiudad" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCI" Mode="In" Type="Int32" />
+            <Parameter Name="pcConfiguracion" Mode="In" Type="String" />
+            <Parameter Name="pcLatitud" Mode="In" Type="String" />
+            <Parameter Name="pcLongitud" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CI_Configuracion_Listado" ReturnType="Collection(SARISModel.sp_CI_Configuracion_Listado_Result)" />
+          <FunctionImport Name="sp_Ciudad_Editar" ReturnType="Collection(SARISModel.sp_Ciudad_Editar_Result)">
+            <Parameter Name="pIIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRegion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCiudad" Mode="In" Type="Int32" />
+            <Parameter Name="pcCiudad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Ciudad_Insertar" ReturnType="Collection(SARISModel.sp_Ciudad_Insertar_Result)">
+            <Parameter Name="pIIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRegion" Mode="In" Type="Int32" />
+            <Parameter Name="pcCiudad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Ciudad_Listado" ReturnType="Collection(SARISModel.sp_Ciudad_Listado_Result)" />
+          <FunctionImport Name="sp_Clacificacion_CI_Editar" ReturnType="Collection(SARISModel.sp_Clacificacion_CI_Editar_Result)">
+            <Parameter Name="piIDCI" Mode="In" Type="Int32" />
+            <Parameter Name="pcCI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Clacificacion_CI_Insertar" ReturnType="Collection(SARISModel.sp_Clacificacion_CI_Insertar_Result)">
+          <Parameter Name="pcCI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Clacificacion_CI_Listado" ReturnType="Collection(SARISModel.sp_Clacificacion_CI_Listado_Result)" />
+          <FunctionImport Name="sp_Pais_Editar" ReturnType="Collection(SARISModel.sp_Pais_Editar_Result)">
+            <Parameter Name="piIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="pcPais" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Pais_Insertar" ReturnType="Collection(SARISModel.sp_Pais_Insertar_Result)">
+          <Parameter Name="pcPais" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Pais_Listado" ReturnType="Collection(SARISModel.sp_Pais_Listado_Result)" />
+          <FunctionImport Name="sp_Region_Editar" ReturnType="Collection(SARISModel.sp_Region_Editar_Result)">
+            <Parameter Name="piIDRegion" Mode="In" Type="Int32" />
+            <Parameter Name="pIIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="pcRegion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Region_Insertar" ReturnType="Collection(SARISModel.sp_Region_Insertar_Result)">
+            <Parameter Name="pIIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="pcRegion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Region_Listado" ReturnType="Collection(SARISModel.sp_Region_Listado_Result)" />
+          <FunctionImport Name="sp_Plataformas_Editar" ReturnType="Collection(SARISModel.sp_Plataformas_Editar_Result)">
+            <Parameter Name="pcNombrePlataforma" Mode="In" Type="String" />
+            <Parameter Name="piIDPlataforma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Plataformas_Eliminar" ReturnType="Collection(SARISModel.sp_Plataformas_Eliminar_Result)">
+            <Parameter Name="piIDPlataforma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Plataformas_Insertar" ReturnType="Collection(SARISModel.sp_Plataformas_Insertar_Result)">
+            <Parameter Name="pcNombrePlataforma" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Plataformas_Listado" ReturnType="Collection(SARISModel.sp_Plataformas_Listado_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_Requerimiento_Areas_Result">
           <Property Type="Int16" Name="fiIDArea" Nullable="false" />
@@ -1440,12 +1576,6 @@
           <Property Type="Int32" Name="fiEstado" Nullable="true" />
           <Property Type="Int32" Name="fiActivo" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_Plataformas_Listado_Result">
-          <Property Type="Int32" Name="fiIDPlataforma" Nullable="false" />
-          <Property Type="String" Name="fcNombrePlataforma" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="fcDescripcionPlataforma" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="fiActivo" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_ServiciosAfectados_Listado_Result">
           <Property Type="Int32" Name="fiIDServicio" Nullable="false" />
           <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
@@ -1755,6 +1885,99 @@
         <ComplexType Name="sp_Requerimientos_Catalogo_Generencias_Insertar_Result">
           <Property Type="Int32" Name="fiRequest" Nullable="true" />
           <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_CI_Configuracion_Editar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_CI_Configuracion_Insertar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_CI_Configuracion_Listado_Result">
+          <Property Type="Int32" Name="fiIDPais" Nullable="true" />
+          <Property Type="String" Name="fcPais" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDRegion" Nullable="true" />
+          <Property Type="String" Name="fcRegion" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDCiudad" Nullable="true" />
+          <Property Type="String" Name="fcCiudad" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDCI" Nullable="true" />
+          <Property Type="String" Name="fcCI" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDConfiguracion" Nullable="false" />
+          <Property Type="String" Name="fcConfiguracion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fcLatitud" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fcLongitud" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="sp_Ciudad_Editar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Ciudad_Insertar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Ciudad_Listado_Result">
+          <Property Type="Int32" Name="fIIDPais" Nullable="false" />
+          <Property Type="String" Name="fcPais" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDRegion" Nullable="false" />
+          <Property Type="String" Name="fcRegion" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDCiudad" Nullable="false" />
+          <Property Type="String" Name="fcCiudad" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_Clacificacion_CI_Editar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Clacificacion_CI_Insertar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Clacificacion_CI_Listado_Result">
+          <Property Type="Int32" Name="fiIDCI" Nullable="false" />
+          <Property Type="String" Name="fcCI" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_Pais_Editar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Pais_Insertar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Pais_Listado_Result">
+          <Property Type="Int32" Name="fiIDPais" Nullable="false" />
+          <Property Type="String" Name="fcPais" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_Region_Editar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Region_Insertar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Region_Listado_Result">
+          <Property Type="Int32" Name="fIIDPais" Nullable="false" />
+          <Property Type="String" Name="fcPais" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiIDRegion" Nullable="false" />
+          <Property Type="String" Name="fcRegion" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_Plataformas_Editar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Plataformas_Eliminar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Plataformas_Insertar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_Plataformas_Listado_Result">
+          <Property Type="Int32" Name="fiIDPlataforma" Nullable="false" />
+          <Property Type="String" Name="fcNombrePlataforma" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fiActivo" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2371,16 +2594,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Plataformas_Listado" FunctionName="SARISModel.Store.sp_Plataformas_Listado">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SARISModel.sp_Plataformas_Listado_Result">
-                <ScalarProperty Name="fiIDPlataforma" ColumnName="fiIDPlataforma" />
-                <ScalarProperty Name="fcNombrePlataforma" ColumnName="fcNombrePlataforma" />
-                <ScalarProperty Name="fcDescripcionPlataforma" ColumnName="fcDescripcionPlataforma" />
-                <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ServiciosAfectados_Listado" FunctionName="SARISModel.Store.sp_ServiciosAfectados_Listado">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SARISModel.sp_ServiciosAfectados_Listado_Result">
@@ -2833,6 +3046,175 @@
               <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_Catalogo_Generencias_Insertar_Result">
                 <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
                 <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CI_Configuracion_Editar" FunctionName="SARISModel.Store.sp_CI_Configuracion_Editar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_CI_Configuracion_Editar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CI_Configuracion_Insertar" FunctionName="SARISModel.Store.sp_CI_Configuracion_Insertar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_CI_Configuracion_Insertar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CI_Configuracion_Listado" FunctionName="SARISModel.Store.sp_CI_Configuracion_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_CI_Configuracion_Listado_Result">
+                <ScalarProperty Name="fiIDPais" ColumnName="fiIDPais" />
+                <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+                <ScalarProperty Name="fiIDRegion" ColumnName="fiIDRegion" />
+                <ScalarProperty Name="fcRegion" ColumnName="fcRegion" />
+                <ScalarProperty Name="fiIDCiudad" ColumnName="fiIDCiudad" />
+                <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+                <ScalarProperty Name="fiIDCI" ColumnName="fiIDCI" />
+                <ScalarProperty Name="fcCI" ColumnName="fcCI" />
+                <ScalarProperty Name="fiIDConfiguracion" ColumnName="fiIDConfiguracion" />
+                <ScalarProperty Name="fcConfiguracion" ColumnName="fcConfiguracion" />
+                <ScalarProperty Name="fcLatitud" ColumnName="fcLatitud" />
+                <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Ciudad_Editar" FunctionName="SARISModel.Store.sp_Ciudad_Editar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Ciudad_Editar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Ciudad_Insertar" FunctionName="SARISModel.Store.sp_Ciudad_Insertar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Ciudad_Insertar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Ciudad_Listado" FunctionName="SARISModel.Store.sp_Ciudad_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Ciudad_Listado_Result">
+                <ScalarProperty Name="fIIDPais" ColumnName="fIIDPais" />
+                <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+                <ScalarProperty Name="fiIDRegion" ColumnName="fiIDRegion" />
+                <ScalarProperty Name="fcRegion" ColumnName="fcRegion" />
+                <ScalarProperty Name="fiIDCiudad" ColumnName="fiIDCiudad" />
+                <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Clacificacion_CI_Editar" FunctionName="SARISModel.Store.sp_Clacificacion_CI_Editar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Clacificacion_CI_Editar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Clacificacion_CI_Insertar" FunctionName="SARISModel.Store.sp_Clacificacion_CI_Insertar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Clacificacion_CI_Insertar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Clacificacion_CI_Listado" FunctionName="SARISModel.Store.sp_Clacificacion_CI_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Clacificacion_CI_Listado_Result">
+                <ScalarProperty Name="fiIDCI" ColumnName="fiIDCI" />
+                <ScalarProperty Name="fcCI" ColumnName="fcCI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Pais_Editar" FunctionName="SARISModel.Store.sp_Pais_Editar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Pais_Editar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Pais_Insertar" FunctionName="SARISModel.Store.sp_Pais_Insertar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Pais_Insertar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Pais_Listado" FunctionName="SARISModel.Store.sp_Pais_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Pais_Listado_Result">
+                <ScalarProperty Name="fiIDPais" ColumnName="fiIDPais" />
+                <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Region_Editar" FunctionName="SARISModel.Store.sp_Region_Editar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Region_Editar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Region_Insertar" FunctionName="SARISModel.Store.sp_Region_Insertar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Region_Insertar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Region_Listado" FunctionName="SARISModel.Store.sp_Region_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Region_Listado_Result">
+                <ScalarProperty Name="fIIDPais" ColumnName="fIIDPais" />
+                <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+                <ScalarProperty Name="fiIDRegion" ColumnName="fiIDRegion" />
+                <ScalarProperty Name="fcRegion" ColumnName="fcRegion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Plataformas_Editar" FunctionName="SARISModel.Store.sp_Plataformas_Editar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Plataformas_Editar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Plataformas_Eliminar" FunctionName="SARISModel.Store.sp_Plataformas_Eliminar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Plataformas_Eliminar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Plataformas_Insertar" FunctionName="SARISModel.Store.sp_Plataformas_Insertar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Plataformas_Insertar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Plataformas_Listado" FunctionName="SARISModel.Store.sp_Plataformas_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Plataformas_Listado_Result">
+                <ScalarProperty Name="fiIDPlataforma" ColumnName="fiIDPlataforma" />
+                <ScalarProperty Name="fcNombrePlataforma" ColumnName="fcNombrePlataforma" />
+                <ScalarProperty Name="fiActivo" ColumnName="fiActivo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -3056,10 +3056,10 @@ C:\Users\DTORRES\Documents\SarisCableColor\SARIS\bin\es\Microsoft.Owin.Security.
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\bin\es\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\DTORRES\Documents\SarisCableColor\SARIS\obj\Debug\OrionCoreCableColor.csproj.AssemblyReference.cache
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\obj\Debug\OrionCoreCableColor.csproj.ResolveComReference.cache
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\obj\Debug\OrionCoreCableColor.csproj.CoreCompileInputs.cache
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\obj\Debug\OrionCoreCableColor.csproj.CopyComplete
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\obj\Debug\OrionCoreCableColor.dll
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\obj\Debug\OrionCoreCableColor.pdb
 C:\Users\DTORRES\Documents\SarisCableColor\SARIS\bin\roslyn\csc.exe
+C:\Users\DTORRES\Documents\SarisCableColor\SARIS\obj\Debug\OrionCoreCableColor.csproj.AssemblyReference.cache

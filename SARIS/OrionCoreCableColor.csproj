@@ -2138,14 +2138,14 @@
     <Content Include="Views\Pais\Crear.cshtml" />
     <Content Include="Views\Region\Index.cshtml" />
     <Content Include="Views\Region\Crear.cshtml" />
-    <Content Include="Views\Ciudad\Index.cshtml" />
-    <Content Include="Views\Ciudad\Crear.cshtml" />
     <Content Include="Views\CI_Configuracion\Index.cshtml" />
     <Content Include="Views\CI_Configuracion\Crear.cshtml" />
     <Content Include="Views\Clacificacion_CI\Index.cshtml" />
     <Content Include="Views\Clacificacion_CI\Crear.cshtml" />
     <Content Include="Views\Plataforma\Index.cshtml" />
     <Content Include="Views\Plataforma\Crear.cshtml" />
+    <Content Include="Views\Ciudad\Crear.cshtml" />
+    <Content Include="Views\Ciudad\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
