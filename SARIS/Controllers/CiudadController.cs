@@ -65,13 +65,13 @@ namespace OrionCoreCableColor.Controllers
                 switch (result.fiRequest)
                 {
                     case 0:
-                        return EnviarResultado(false, "Crear Ciudad", "Error al Editar");
+                        return EnviarResultado(false, "Crear Ciudad", "Error al Crear");
                     case 1:
                         return EnviarResultado(true, "Crear Ciudad", result.fcRequest);
                     case 2:
                         return EnviarResultado(false, "Crear Ciudad", result.fcRequest);
                     default:
-                        return EnviarResultado(false, "Crear Ciudad", "Error al Editar");
+                        return EnviarResultado(false, "Crear Ciudad", "Error al Crear");
                 }
 
             }
@@ -89,21 +89,13 @@ namespace OrionCoreCableColor.Controllers
                 switch (result.fiRequest)
                 {
                     case 0:
-                        var jsonResult = Json((false, "Editar Ciudad", "Error al Editar"), JsonRequestBehavior.AllowGet);
-                        jsonResult.MaxJsonLength = Int32.MaxValue;
-                        return jsonResult;
+                        return EnviarResultado(false, "Editar Ciudad", "Error al Editar");
                     case 1:
-                        var jsonResultt = Json((true, "Editar Ciudad", result.fcRequest), JsonRequestBehavior.AllowGet);
-                        jsonResultt.MaxJsonLength = Int32.MaxValue;
-                        return jsonResultt;
+                        return EnviarResultado(true, "Editar Ciudad", result.fcRequest);
                     case 2:
-                        var jsonResulttt = Json((false, "Editar Ciudad", result.fcRequest), JsonRequestBehavior.AllowGet);
-                        jsonResulttt.MaxJsonLength = Int32.MaxValue;
-                        return jsonResulttt;
+                        return EnviarResultado(false, "Editar Ciudad", result.fcRequest);
                     default:
-                        var jsonResultttt = Json((false, "Editar Ciudad", "Error al Editar"), JsonRequestBehavior.AllowGet);
-                        jsonResultttt.MaxJsonLength = Int32.MaxValue;
-                        return jsonResultttt;
+                        return EnviarResultado(false, "Editar Ciudad", "Error al Editar");
                 }
             }
 
