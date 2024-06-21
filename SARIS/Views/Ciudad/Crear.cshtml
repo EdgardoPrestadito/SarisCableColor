@@ -77,12 +77,11 @@
         if (!$("#MyFormModal").valid()) {
             return false;
         }
-
         var model = @Html.Raw(Json.Encode(Model));
         model.fcCiudad = $("#fcCiudad").val();
         model.fiIDCiudad = $("#fiIDCiudad").val();
         model.fiIDRegion = $("#fiIDRegion").val();
-        model.fiIDPais = $(`#fiIDPais`).val();
+        model.fIIDPais = $(`#fiIDPais`).val();
 
         var url = "@Url.Action("AgregarCiudad", "Ciudad")";
         if(str2bool('@Model.EsEditar')) {

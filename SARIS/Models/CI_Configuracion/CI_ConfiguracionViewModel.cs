@@ -28,10 +28,8 @@ namespace OrionCoreCableColor.Models.CI_Configuracion
         [Required]
         public string fcConfiguracion { get; set; }
         [Display(Name = "Latitud")]
-        [Required]
         public string fcLatitud { get; set; }
         [Display(Name = "Longitud")]
-        [Required]
         public string fcLongitud { get; set; }
         public string fcCI { get; set; }
         public bool EsEditar { get; set; }
