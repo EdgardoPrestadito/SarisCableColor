@@ -49,7 +49,7 @@ namespace OrionCoreCableColor.Controllers
 
             using (var contextSaris = new SARISEntities1())
             {
-                ViewBag.ListaUsuarios = contextSaris.sp_Usuarios_Maestro_Lista().Where(x => x.fiIDPuesto == 2).ToList().Select(x => new SelectListItem { Value = x.fiIDUsuario.ToString(), Text = $"{x.fcNombreCorto} - {x.fcPuesto}" }).ToList();
+                ViewBag.ListaUsuarios = contextSaris.sp_Usuarios_Maestro_Lista().Where(x => x.fiIDPuesto == 2 || x.fiIDPuesto == 3 || x.fiIDPuesto == 6 || x.fiIDPuesto == 1).ToList().Select(x => new SelectListItem { Value = x.fiIDUsuario.ToString(), Text = $"{x.fcNombreCorto} - {x.fcPuesto}" }).ToList();
                 return PartialView(new GerenciasViewModel());
             }
         }
@@ -87,12 +87,7 @@ namespace OrionCoreCableColor.Controllers
             using (var context = new SARISEntities1())
             {
                 var Gerencia = context.sp_Requerimientos_Catalogo_Generencias_Listado().FirstOrDefault(x => x.fiIDGerencia == id);
-                ViewBag.ListaUsuarios = context.sp_Usuarios_Maestro_Lista().Where(x => x.fiIDPuesto == 2).ToList().Select(x => new SelectListItem
-                {
-                    Value = x.fiIDUsuario.ToString(),
-                    Text = $"{x.fcNombreCorto} - {x.fcPuesto}",
-                    Selected = x.fiIDUsuario == Gerencia.fiIDUsuarioResponsable
-                }).ToList();
+                ViewBag.ListaUsuarios = context.sp_Usuarios_Maestro_Lista().Where(x => x.fiIDPuesto == 2 || x.fiIDPuesto == 3 || x.fiIDPuesto == 6 || x.fiIDPuesto == 1).ToList().Select(x => new SelectListItem { Value = x.fiIDUsuario.ToString(), Text = $"{x.fcNombreCorto} - {x.fcPuesto}" }).ToList();
 
 
                 return PartialView("Crear", new GerenciasViewModel { fiIDGerencia = Gerencia.fiIDGerencia, fcNombreGenerencia = Gerencia.fcNombreGenerencia, EsEditar = true });
