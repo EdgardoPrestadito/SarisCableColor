@@ -284,6 +284,97 @@
     var idservicios = [];
     var idCis = [];
 
+    $(document).ready(function () {
+        debugger;
+        var divinfo = document.getElementById('iddivmotivo');//funcion que se usa para desocultar y ocultar las opciones de mantenimiento, al darle click al boton buscar
+        var divCategoriaResolucion = document.getElementById('iddivCategoriaResolusion');
+        var divSubCategoriaResolucion = document.getElementById('iddivSubCategoriaResolusion');
+        if (estadoRequerimiento == 4 || estadoRequerimiento == 6 || estadoRequerimiento == 11) {
+            //console.log(`entro en el if`);
+            divinfo.style.display = 'block'
+            if (estadoRequerimiento == 4)
+            {
+                document.getElementById('lblMotivo').innerHTML = 'Tipo Solucion';
+            }
+            if (estadoRequerimiento == 6) {
+                document.getElementById('lblMotivo').innerHTML = 'Motivo Cancelacion';
+            }
+            if (estadoRequerimiento == 11) {
+                document.getElementById('lblMotivo').innerHTML = 'Motivo Pausado';
+            }
+
+            $.ajax({
+                url: "@Url.Action("SelectMotivos", "LlenarCampos")",
+                type: "GET",
+                data: { idestado: estadoRequerimiento },
+                success: function (respuesta) {
+
+                    var selectMotivo = $("#selectmotivo");
+
+                    selectMotivo.empty();
+                    selectMotivo.append($('<option>', {
+                        value: 0,
+                        text: 'Seleccione un Motivo'
+                    }));
+
+                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
+                    $.each(respuesta, function (index, item) {
+                        selectMotivo.append($('<option>', {
+                            value: item.fiMotivos,
+                            text: item.fcNombreMotivo
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+            if (estadoRequerimiento == 4)
+            {
+
+                var selectCategoriaResolucion = $("#selectCategoriaResolucion");
+                var selectSubCategoriaResolucion = $("#selectSubCategoriaResolucion");
+                selectCategoriaResolucion.empty();
+                selectSubCategoriaResolucion.empty();
+                divCategoriaResolucion.style.display = 'block'
+                divSubCategoriaResolucion.style.display = 'block'
+
+                $.ajax({
+                url: "@Url.Action("SelectCategoriaResolucion", "LlenarCampos")",
+                type: "GET",
+                data: { },
+                success: function (respuesta) {
+
+                    debugger;
+
+                    selectCategoriaResolucion.empty();
+                    selectCategoriaResolucion.append($('<option>', {
+                        value: 0,
+                        text: 'Seleccione una Categoria Resolucion'
+                    }));
+
+                    $("#selectCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(1).trigger("change");
+                    $.each(respuesta, function (index, item) {
+                        selectCategoriaResolucion.append($('<option>', {
+                            value: item.fiIDCategoriaResolucion,
+                            text: item.fcDescripcionCategoria
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+
+            }
+        } else {
+            console.log(`entro en el else`);
+            divinfo.style.display = 'none'
+            divCategoriaResolucion.style.display = 'none'
+            divSubCategoriaResolucion.style.display = 'none'
+        }
+    });
+
     $(`#fiCategoriadeDesarrollo`).on('change', function () {
         cambiodecategoria(0);
     })
@@ -307,14 +398,14 @@
                     value: 0,
                     text: 'Defina un Tipo Incidencia'
                 }));
-                
+
                 $.each(respuesta, function(index, item) {
                     selectIncidencia.append($('<option>', {
                         value: item.fiIDTipoRequerimiento,
                         text: item.fcTipoRequerimiento
                     }));
                 });
-               
+
                 //console.log(`esto trae el tipo incidencia: ${tipore}`);
                 if (SubCategoria != 0) {
                     selectIncidencia.val(SubCategoria).trigger("change");
@@ -396,7 +487,7 @@
                     ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
                     return 0;
                 }
-                
+
             }
 
             if (estadoReque == 0 && $("#selectmotivo").val()==0 && $("#selectCategoriaResolucion").val()==0 && $("#selectSubCategoriaResolucion").val()==0 ) {
@@ -421,7 +512,7 @@
             }
             debugger;
 
-            
+
             if (estadoReque == 0 || estadoReque == null) {
                 estado = 3
             }
@@ -667,7 +758,7 @@
 
     }
 
-    
+
 
     select();
     function select() {
@@ -777,7 +868,7 @@
             if ($(this).val() == 11) {
                 document.getElementById('lblMotivo').innerHTML = 'Motivo Pausado';
             }
-            
+
             $.ajax({
                 url: "@Url.Action("SelectMotivos", "LlenarCampos")",
                 type: "GET",
@@ -806,7 +897,7 @@
             });
             if ($(this).val() == 4)
             {
-                
+
                 var selectCategoriaResolucion = $("#selectCategoriaResolucion");
                 var selectSubCategoriaResolucion = $("#selectSubCategoriaResolucion");
                 selectCategoriaResolucion.empty();

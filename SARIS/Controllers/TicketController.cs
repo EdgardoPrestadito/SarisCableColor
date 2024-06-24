@@ -43,10 +43,14 @@ namespace OrionCoreCableColor.Controllers
                         var db = ((IObjectContextAdapter)new SARISEntities1());
                         listaEquifaxGarantia = db.ObjectContext.Translate<TicketMiewModel>(reader).ToList();
                     }
-
                     connection.Close();
-
-                    return EnviarListaJson(listaEquifaxGarantia);
+                    using (var conexion = new SARISEntities1())
+                    {
+                        var IDuser = GetIdUser();
+                        var areas = conexion.sp_Configuraciones($"{IDuser}-Usuario").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
+                        var listareas = listaEquifaxGarantia.Where(x => areas.Any(y => y == x.fiAreaAsignada) || x.fiIDUsuarioSolicitante == IDuser).ToList();
+                        return EnviarListaJson(listareas);
+                    }
                 }
             }
             catch (Exception e)
@@ -80,7 +84,13 @@ namespace OrionCoreCableColor.Controllers
 
                     connection.Close();
 
-                    return EnviarListaJson(listaEquifaxGarantia);
+
+                    using (var conexion = new SARISEntities1())
+                    {
+                        var areas = conexion.sp_Configuraciones($"{GetIdUser()}-Usuario").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
+                        return EnviarListaJson(listaEquifaxGarantia.Any(x => areas.Any(y => y == x.fiAreaAsignada)));
+                    }
+
                 }
             }
             catch (Exception e)
