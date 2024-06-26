@@ -276,6 +276,7 @@
     var idtiporequerimiento = @ViewBag.IdIncidencia;
     var ticketPadre = @ViewBag.TicketPadre;
     var SubCategoria = @ViewBag.fiTipoRequerimiento;
+    var idMotivoEstado = @ViewBag.fiMotivoEstado;
     var fotosredimencionadas = [];
 
 
@@ -316,14 +317,15 @@
                         value: 0,
                         text: 'Seleccione un Motivo'
                     }));
-
-                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
+                    console.log(idMotivoEstado);
+                    console.log(respuesta);
                     $.each(respuesta, function (index, item) {
                         selectMotivo.append($('<option>', {
                             value: item.fiMotivos,
                             text: item.fcNombreMotivo
                         }));
                     });
+                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(idMotivoEstado).trigger("change");
                 },
                 error: function (respuesta) {
                     console.log(respuesta);
@@ -778,7 +780,7 @@
                 });
                 llenartableServicios(idservicios);
                 //
-                console.log(idserviciosusados);
+                //console.log(idserviciosusados);
             },
             error: function (respuesta) {
                 console.log(respuesta);
@@ -882,14 +884,15 @@
                         value: 0,
                         text: 'Seleccione un Motivo'
                     }));
-
-                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
+                    
                     $.each(respuesta, function (index, item) {
                         selectMotivo.append($('<option>', {
                             value: item.fiMotivos,
                             text: item.fcNombreMotivo
                         }));
                     });
+
+                    $("#selectmotivo").select2({ dropdownParent: $("#MyModalBig") }).val(idMotivoEstado).trigger("change");
                 },
                 error: function (respuesta) {
                     console.log(respuesta);

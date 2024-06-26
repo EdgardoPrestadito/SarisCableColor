@@ -308,51 +308,56 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
     <div class="page-wrapper">
         <div class="page-inner">
-            <!-- BEGIN Left Aside -->
-            <aside class="page-sidebar" style="background: linear-gradient(to bottom, #3e576e   , #232233); ">
-                
-                <!-- BEGIN PRIMARY NAVIGATION -->
+            @if (User.IsInRole("Acceso_Al_Sistema"))
+            {
+
+                <!-- BEGIN Left Aside -->
+                <aside class="page-sidebar" style="background: linear-gradient(to bottom, #3e576e   , #232233); ">
+
+                    <!-- BEGIN PRIMARY NAVIGATION -->
+
+                    @Html.Partial("_PartialMenu")
 
 
-                @Html.Partial("_PartialMenu")
 
-
-                <!-- END NAV FOOTER -->
-            </aside>
+                    <!-- END NAV FOOTER -->
+                </aside>
+            }
             <!-- END Left Aside -->
-            <div class="page-content-wrapper">
-                <!-- BEGIN Page Header -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN Page Header -->
 
-
+            @if (User.IsInRole("Acceso_Al_Sistema")) { 
                 @Html.Partial("_PartialHeader")
+            }
 
 
-                <!-- END Page Header -->
-                <!-- BEGIN Page Content -->
-                <!-- the #js-page-content id is needed for some plugins to initialize -->
+            <!-- END Page Header -->
+            <!-- BEGIN Page Content -->
+            <!-- the #js-page-content id is needed for some plugins to initialize -->
 
-                <main id="js-page-content" role="main" class="page-content" style="background-image: url('../Content/img/fondo.png');background-size: 100% ;   width:100%; height:100%; resize: both;">
-                    @RenderBody()
-                </main>
-                <!-- this overlay is activated only when mobile menu is triggered -->
-                <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-                <!-- BEGIN Page Footer -->
-                <footer class="page-footer" role="contentinfo">
-                    <div class="d-flex align-items-center flex-1 text-muted">
+            <main id="js-page-content" role="main" class="page-content" style="background-image: url('../Content/img/fondo.png');background-size: 100% ;   width:100%; height:100%; resize: both;">
+                @RenderBody()
+            </main>
+            <!-- this overlay is activated only when mobile menu is triggered -->
+            <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+            <!-- BEGIN Page Footer -->
+            <footer class="page-footer" role="contentinfo">
+                <div class="d-flex align-items-center flex-1 text-muted">
 
-                    </div>
-                    <div>
+                </div>
+                <div>
 
-                    </div>
-                </footer>
-                <!-- END Page Footer -->
-                <!-- BEGIN Shortcuts -->
-                <!-- END Shortcuts -->
-                <!-- BEGIN Color profile -->
-                <!-- this area is hidden and will not be seen on screens or screen readers -->
-                <!-- we use this only for CSS color refernce for JS stuff -->
-                <!-- END Color profile -->
-            </div>
+                </div>
+            </footer>
+            <!-- END Page Footer -->
+            <!-- BEGIN Shortcuts -->
+            <!-- END Shortcuts -->
+            <!-- BEGIN Color profile -->
+            <!-- this area is hidden and will not be seen on screens or screen readers -->
+            <!-- we use this only for CSS color refernce for JS stuff -->
+            <!-- END Color profile -->
+        </div>
         </div>
     </div>
 

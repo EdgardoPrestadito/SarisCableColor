@@ -2,6 +2,7 @@
 using OrionCoreCableColor.Models.Ciudad;
 using OrionCoreCableColor.Models.Impacto;
 using OrionCoreCableColor.Models.Prioridades;
+using OrionCoreCableColor.Models.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ using System.Web.Mvc;
 
 namespace OrionCoreCableColor.Controllers
 {
-    public class CatalogosController : Controller
+    [Authorize(Roles = "Acceso_Al_Sistema")]
+    public class CatalogosController : BaseController
     {
         // GET: Catalogos
         public ActionResult Index()
@@ -94,7 +96,76 @@ namespace OrionCoreCableColor.Controllers
             return PartialView();
         }
 
-        
+        public ActionResult BandejaUsuariosVerArea()
+        {
+            return View();
+        }
+
+        public JsonResult UsuarioVerAreaLista()
+        {
+            try
+            {
+                using (var context = new SARISEntities1())
+                {
+                    var jsonResult = Json(context.sp_usuarioVerArea_Lista().Select(x => new UsuariopoAreasViewModel
+                    {
+                        fiIdUsuarioverArea = x.fiIdUsuarioverArea,
+                        fcNombre = x.fcNombre,
+                        fcAreas = x.fcAreas,
+                        fcIdAreas = x.fcIdAreas
+
+
+                    }).ToList(), JsonRequestBehavior.AllowGet);
+                    jsonResult.MaxJsonLength = Int32.MaxValue;
+
+                    
+                    return jsonResult;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public ActionResult AsignarAreasAUsuario()
+        {
+            using (var context = new SARISEntities1())
+            {
+                ViewBag.ListaAreas = context.sp_Areas_Lista().ToList();
+                var tick = new UsuariopoAreasViewModel();
+                tick.EsEditar = false;
+                return PartialView(tick);
+            }
+        }
+
+
+        public JsonResult EditarAreasaVerPorUsuario(int idusuario, string idareas)
+        {
+            try
+            {
+                using (var context = new SARISEntities1())
+                {
+                    var result = context.sp_usuarioVerArea_Insertar(idusuario, idareas, GetIdUser()).FirstOrDefault();
+                    switch (result.fiRequest)
+                    {
+                        case 0:
+                            return EnviarResultado(false, "Areas Asignadas a ver", "Error al Editar");
+                        case 1:
+                            return EnviarResultado(true, "Areas Asignadas a ver", result.fcRequest);
+                        case 2:
+                            return EnviarResultado(true, "Areas Asignadas a ver", result.fcRequest);
+                        default:
+                            return EnviarResultado(false, "Areas Asignadas a ver", "Error al Editar");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
 
     }
 }

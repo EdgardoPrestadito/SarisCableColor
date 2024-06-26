@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace OrionCoreCableColor.Controllers
 {
+    [Authorize(Roles = "Acceso_Al_Sistema")]
     public class UbicacionesController : BaseController
     {
         // GET: Ubicaciones
@@ -71,10 +72,7 @@ namespace OrionCoreCableColor.Controllers
                     default:
                         return EnviarResultado(false, "Crear Ubicacion", "Error al Editar");
                 }
-
             }
-
-
         }
 
         [HttpGet]

@@ -23,6 +23,7 @@
                         <th></th>
                         <th>Nombre Completo</th>
                         <th>Usuario</th>
+                        <th>Area Asignada</th>
                         <th>Correo Electronico</th>
                         <th>Fecha de Nacimiento</th>
                         <th>Telefono</th>
@@ -35,7 +36,6 @@
                 <tbody></tbody>
             </table>
         </div>
-
 
 
     </div>
@@ -118,11 +118,6 @@
             });
         }
 
-
-
-
-
-
         var tablaPrincipal = $('#TablaPrincipal').DataTable({
             autoWidth: true,
             responsive: true,
@@ -183,6 +178,9 @@
                 },
                 {
                     data: 'UserName'
+                },
+                {
+                    data: 'fcAreaAsignada'
                 },
 
 

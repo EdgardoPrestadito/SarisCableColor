@@ -151,8 +151,8 @@ namespace OrionCoreCableColor.App_Services.EmailService
                 var message = new MailMessage();
 
                 // Settings.  
-                message.To.Add(new MailAddress("sistemas@miprestadito.com"));
                 message.To.Add(new MailAddress("kevin.santos@miprestadito.com"));
+                //message.To.Add(new MailAddress("kevin.santos@miprestadito.com"));
                 message.From = new MailAddress(From_Email, "Exception Error");
                 message.Subject = "Exception Error!";
                 message.Body = (e.InnerException?.Message ?? e.Message) + ": " + e.StackTrace;
@@ -190,7 +190,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
                 var message = new MailMessage();
 
                 // Settings.  
-                message.To.Add(new MailAddress("sistemas@miprestadito.com"));
+                message.To.Add(new MailAddress("kevin.santos@miprestadito.com"));
                 message.From = new MailAddress(From_Email, "Exception Error");
                 message.Subject = "Exception Error!";
                 message.Body = (e.InnerException?.Message ?? e.Message) + ": " + e.StackTrace;

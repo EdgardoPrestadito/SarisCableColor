@@ -19,6 +19,7 @@
                 <thead>
                     <tr>
                         <th>Acciones</th>
+                        <th style="width:80px">Estado</th>
                         <th>Titulo</th>
                         <th>Descripcion</th>
                         <th style="width:80px">Solicitante</th>
@@ -39,7 +40,6 @@
                         <th style="width:150px">Fecha última actualización</th>
                         <th style="width:150px">Usuario última actualización</th>
                         <th style="width:150px">Tiempo Transcurrido</th>
-                        <th style="width:80px">Estado</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -66,6 +66,7 @@
                         <tr>
                             
                             <th>Acciones</th>
+                            <th style="width:80px">Estado</th>
                             <th>Titulo</th>
                             <th>Descripcion</th>
                             <th style="width:80px">Solicitante</th>
@@ -86,7 +87,6 @@
                             <th style="width:150px">Fecha última actualización</th>
                             <th style="width:150px">Usuario última actualización</th>
                             <th style="width:150px">Tiempo Transcurrido</th>
-                            <th style="width:80px">Estado</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -117,6 +117,7 @@
                 <thead>
                     <tr>
                         <th>Acciones</th>
+                        <th style="width:80px">Estado</th>
                         <th>Titulo</th>
                         <th>Descripcion</th>
                         <th style="width:80px">Solicitante</th>
@@ -138,7 +139,6 @@
                         <th style="width:150px">Usuario última actualización</th>
                         <th style="width:150px">Tiempo Transcurrido</th>
                         <th style="width:80px">Motivo Cancelación</th>
-                        <th style="width:80px">Estado</th>
 
                     </tr>
                 </thead>
@@ -182,14 +182,7 @@
                   }
             },
             columns: [
-                //{ //esto es el detalle para poder ver los servicios y los cis como tales
-                //    data: null,
-                //    render: function (data) {
-                //        var opt = "";
-                //        opt = `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)"><i class="fal fa-plus fa-fw text-success"></i></a>`;
-                //        return opt;
-                //    }
-                //},
+                
                 {//0
                     data: null,
                     className: "text-center",
@@ -239,7 +232,14 @@
                         return opt;
                     }
                 },
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data, type, row) {
+                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
 
+                    }
+                },
                 {
                     data: null,
                     className: "td-responsive",
@@ -393,15 +393,6 @@
                     }
                 },
 
-
-                {
-                    data: null,
-                    className: "text-center",
-                    render: function (data, type, row) {
-                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
-
-                    }
-                },
                 {
                     data: "fcDescripcionRequerimiento",
                     className: "td-responsive",
@@ -472,14 +463,8 @@
                   }
             },
             columns: [
-                //{ //esto es el detalle para poder ver los servicios y los cis como tales
-                //    data: null,
-                //    render: function (data) {
-                //        var opt = "";
-                //        opt = `<a class="btn btn-link btn-xs view-control details-productos" href="javascript:void(0)"><i class="fal fa-plus fa-fw text-success"></i></a>`;
-                //        return opt;
-                //    }
-                //},
+                
+                
                 {//0
                     data: null,
                     className: "text-center",
@@ -500,7 +485,14 @@
                         return opt;
                     }
                 },
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data, type, row) {
+                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
 
+                    }
+                },
                 {
                     data: null,
                     className: "td-responsive",
@@ -655,14 +647,7 @@
                 },
 
 
-                {
-                    data: null,
-                    className: "text-center",
-                    render: function (data, type, row) {
-                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
-
-                    }
-                },
+                
                 {
                     data: "fcDescripcionRequerimiento",
                     className: "td-responsive",
@@ -707,7 +692,7 @@
                   }
             },
             columns: [
-
+                
                 {//0
                     data: null,
                     className: "text-center",
@@ -730,7 +715,14 @@
                         return opt;
                     }
                 },
+                {
+                    data: null,
+                    className: "text-center",
+                    render: function (data, type, row) {
+                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
 
+                    }
+                },
                 {
                     data: null,
                     className: "td-responsive",
@@ -890,14 +882,7 @@
 
                 },
 
-                {
-                    data: null,
-                    className: "text-center",
-                    render: function (data, type, row) {
-                        return `<a href="javascript:void(0)" onclick="ProcesosEstados(${data.fiIDRequerimiento})"> <span class="btn-sm btn-block btn-${data.fcClaseColor} text-center" > ${data.fcDescripcionEstado}</span> </a>`;
-
-                    }
-                },
+                
                 {
                     data: "fcDescripcionRequerimiento",
                     className: "td-responsive",

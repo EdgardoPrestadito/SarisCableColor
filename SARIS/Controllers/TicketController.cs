@@ -15,9 +15,11 @@ using OrionCoreCableColor.Models.Indicadores;
 
 namespace OrionCoreCableColor.Controllers
 {
+    [Authorize(Roles = "Acceso_Al_Sistema")]
     public class TicketController : BaseController
     {
         // GET: Ticket
+        [Authorize(Roles = "Acceso_Al_Sistema")]
         public ActionResult Index()
         {
             ViewBag.idUsuario = GetIdUser();
@@ -34,7 +36,6 @@ namespace OrionCoreCableColor.Controllers
             {
                 using (var connection = (new SARISEntities1()).Database.Connection)
                 {
-
                     connection.Open();
                     var command = connection.CreateCommand();
                     command.CommandText = $"EXEC sp_Requerimientos_Bandeja {1},{1},{GetIdUser()}";
@@ -44,18 +45,25 @@ namespace OrionCoreCableColor.Controllers
                         listaEquifaxGarantia = db.ObjectContext.Translate<TicketMiewModel>(reader).ToList();
                     }
                     connection.Close();
-                    using (var conexion = new SARISEntities1())
+                    if (GetUser().IdRol == 1 || GetUser().IdRol == 2) // ponerlos en una configuracion para evitar poner datos en duro att Edgardo mancia 2024-06-25
                     {
-                        var IDuser = GetIdUser();
-                        var areas = conexion.sp_Configuraciones($"{IDuser}-Usuario").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
-                        var listareas = listaEquifaxGarantia.Where(x => areas.Any(y => y == x.fiAreaAsignada) || x.fiIDUsuarioSolicitante == IDuser).ToList();
-                        return EnviarListaJson(listareas);
+                        return EnviarListaJson(listaEquifaxGarantia);
                     }
+                    else
+                    {
+                        using (var conexion = new SARISEntities1())
+                        {
+                            var IDuser = GetIdUser();
+                            var areas = conexion.sp_usuarioVerArea_Lista_ByUsuario(IDuser).FirstOrDefault().fcIdAreas ?? ""; var newareas = areas.Split(',').Select(a => Convert.ToInt32(a)).ToList();
+                            var listareas = listaEquifaxGarantia.Where(x => newareas.Any(y => y == x.fiAreaAsignada) || x.fiIDUsuarioSolicitante == IDuser).ToList();
+                            return EnviarListaJson(listareas);
+                        }
+                    }
+                    
                 }
             }
             catch (Exception e)
             {
-
                 throw;
             }
 
@@ -84,13 +92,19 @@ namespace OrionCoreCableColor.Controllers
 
                     connection.Close();
 
-
-                    using (var conexion = new SARISEntities1())
+                    if (GetUser().IdRol == 1 || GetUser().IdRol == 2) // ponerlos en una configuracion para evitar poner datos en duro att Edgardo mancia 2024-06-25
                     {
-                        var areas = conexion.sp_Configuraciones($"{GetIdUser()}-Usuario").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
-                        return EnviarListaJson(listaEquifaxGarantia.Any(x => areas.Any(y => y == x.fiAreaAsignada)));
+                        return EnviarListaJson(listaEquifaxGarantia);
                     }
-
+                    else
+                    {
+                        using (var conexion = new SARISEntities1())
+                        {
+                            var IDuser = GetIdUser();
+                            var areas = conexion.sp_usuarioVerArea_Lista_ByUsuario(IDuser).FirstOrDefault().fcIdAreas ?? ""; areas.Split(',').Select(a => Convert.ToInt32(a)).ToList();
+                            return EnviarListaJson(listaEquifaxGarantia.Any(x => areas.Any(y => y == x.fiAreaAsignada)));
+                        }
+                    }
                 }
             }
             catch (Exception e)
@@ -123,7 +137,10 @@ namespace OrionCoreCableColor.Controllers
                     }
 
                     connection.Close();
-
+                    if (GetUser().IdRol == 1 || GetUser().IdRol == 2) // ponerlos en una configuracion para evitar poner datos en duro att Edgardo mancia 2024-06-25
+                    {
+                        return EnviarListaJson(listaEquifaxGarantia);
+                    }
                     return EnviarListaJson(listaEquifaxGarantia);
                 }
             }
@@ -207,8 +224,9 @@ namespace OrionCoreCableColor.Controllers
                     tick.fcPlataforma = cont.fcNombrePlataforma;
                     tick.fcServicioAfectados = cont.fcNombreServicio;
                     tick.fdFechaAlarmaDeteccion = (cont.fdFechaAlarmaDeteccion is null) ? DateTime.Now : (DateTime)cont.fdFechaAlarmaDeteccion;
+                    //tick.fiMotivoEstado = (int)cont.fiMotivoEstado;
 
-
+                    ViewBag.fiMotivoEstado = (int)cont.fiMotivoEstado;
 
                     var estadosquenovan = contexto.sp_Configuraciones("NoMostrarEstados").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
                     ViewBag.ListarArea = contexto.sp_Areas_Lista().Select(x => new SelectListItem { Value = x.fiIDArea.ToString(), Text = x.fcDescripcion }).ToList();
@@ -412,6 +430,7 @@ namespace OrionCoreCableColor.Controllers
             return View();
         }
 
+        [Authorize(Roles = "SARIS_CREARTICKET")]
         public ActionResult RegistrarTicket()
         {
             return PartialView();
@@ -742,7 +761,7 @@ namespace OrionCoreCableColor.Controllers
                     //guardar la bitacora 
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, datosticket.fiIDUsuarioSolicitante, comenta, 1, 7, usuario);//el estado de ticket esta en 7 para que pueda guardar la bitacora
 
-                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, 3, DateTime.Now, usuario, 0, datosticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, datosticket.fiIDRequerimientoPadre, 0, 0, 0);//el estado de ticket esta en 7 para que pueda guardar la bitacora
+                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, datosticket.fiIDEstadoRequerimiento , DateTime.Now, usuario, 0, datosticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
                     //ObtenerDataTicket(idticket);//aqui esta el signalR
                     if (GetIdUser() != usuario) //aqui el signalR por si al reasignar un usuario se le quite de la bandeja de el 
                     {

@@ -21,7 +21,7 @@ namespace OrionCoreCableColor.App_Helper
         public static string Helper = ConfigurationManager.AppSettings["Helper"];
         public static string UrlWeb = ConfigurationManager.AppSettings["UrlAplicacion"];
         public static string UrlContrato = ConfigurationManager.AppSettings["UrlContrato"];
-        public static string EmailSystemAdministrator = "angel.bautista@miprestadito.com";
+        public static string EmailSystemAdministrator = "kevin.santos@miprestadito.com";
         public static string VirtualPathServerToEmailTemplates = "~/Documento/Recursos/Plantilla/";
         public static string VirtualPathServerToCustomerAttachment = "~/Documento/Recursos/Solicitud/";
         public static int UsuarioSystemOrionCoreSeguridad = 281;

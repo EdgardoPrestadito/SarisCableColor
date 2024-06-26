@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace OrionCoreCableColor.Controllers
 {
+    [Authorize(Roles = "Acceso_Al_Sistema")]
     public class UsuarioController : BaseController
     {
         private ApplicationUserManager _userManager;
@@ -51,7 +52,9 @@ namespace OrionCoreCableColor.Controllers
                         fiAreaAsignada = x.fiAreaAsignada,
                         fcAreaAsignada = x.Area.fcDescripcion
 
-                    }).Where(b => b.fcBuzondeCorreo != "kevin.santos@miprestadito.com").ToList(), JsonRequestBehavior.AllowGet);
+                    }).
+                    //Where(b => b.fcBuzondeCorreo != "kevin.santos@miprestadito.com").
+                    ToList(), JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = Int32.MaxValue;
                     return jsonResult;
                 }
@@ -162,6 +165,8 @@ namespace OrionCoreCableColor.Controllers
                             Fk_IdRol = model.IdRol
                         });
 
+                        
+
                         var ListaPermisos = context.PrivilegiosPorRol.Where(x => x.Fk_IdRol == model.IdRol).Select(z => z.AspNetRoles.Name).ToList();
                         foreach (var permiso in ListaPermisos)
                         {
@@ -169,6 +174,13 @@ namespace OrionCoreCableColor.Controllers
                         }
 
                         var resultado = context.SaveChanges() > 0;
+                        var usuariocreado = context.Usuarios.OrderByDescending(a => a.fiIDUsuario).FirstOrDefault().fiIDUsuario;
+                        var fiareasadignada = Convert.ToString(model.fiAreaAsignada);
+                        using (var contexto = new SARISEntities1())
+                        {
+                            var resultadoo = contexto.sp_usuarioVerArea_Insertar(usuariocreado, fiareasadignada, GetIdUser()).FirstOrDefault();
+                        }
+
                         return EnviarResultado(resultado, "Crear Usuario");
                     }
                     else

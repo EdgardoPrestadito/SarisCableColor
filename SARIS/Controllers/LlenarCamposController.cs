@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace OrionCoreCableColor.Controllers
 {
+    [Authorize(Roles = "Acceso_Al_Sistema")]
     public class LlenarCamposController : BaseController
     {
         // GET: LlenarCampos
@@ -73,6 +74,20 @@ namespace OrionCoreCableColor.Controllers
                 return jsonResult;
             }
         } 
+
+        public JsonResult SelectUsuariosAll()
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = Json(contexto.sp_Usuarios_Maestro_Lista().Select(x => new SelectListItem
+                {
+                    Value = x.fiIDUsuario.ToString(),
+                    Text = x.fcPrimerNombre + " " + x.fcPrimerApellido
+                }).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
 
         public JsonResult SelectCategorias()
         {

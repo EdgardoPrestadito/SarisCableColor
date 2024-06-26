@@ -211,16 +211,26 @@
                             </li>
                         }
 
-
-                        @*@if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+                        @if (User.IsInRole("Mantenimiento_Modulo_Gerencias"))
                         {
                             <li>
-                                <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
-                                    <i class="fal fa-location-circle fa-fw"></i>
-                                    <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
+                                <a href="@Url.Action("BandejaUsuariosVerArea","Catalogos")" data-filter-tags="blank page">
+                                    <i class="fal fa-user-tie fa-fw"></i>
+                                    <span class="nav-link-text" style="color:white;"><strong>Usuarios Visualizar Areas</strong></span>
                                 </a>
                             </li>
-                        }*@
+                        }
+
+
+                        @*@if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+        {
+            <li>
+                <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
+                    <i class="fal fa-location-circle fa-fw"></i>
+                    <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
+                </a>
+            </li>
+        }*@
 
 
 

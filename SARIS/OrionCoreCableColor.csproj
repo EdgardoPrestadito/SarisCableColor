@@ -430,6 +430,12 @@
     <Compile Include="DbConnection\sp_Areas_Lista_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_BitacoraSeguridadGuardar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_BitacoraSeguridad_Lista_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\SP_CallCenter_Oferta_Result.cs">
       <DependentUpon>SoporteOP.tt</DependentUpon>
     </Compile>
@@ -730,6 +736,15 @@
     <Compile Include="DbConnection\sp_Usuarios_Maestro_PorIdUsuario_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_usuarioVerArea_Insertar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_usuarioVerArea_Lista_ByUsuario_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_usuarioVerArea_Lista_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -786,6 +801,7 @@
     <Compile Include="Models\Usuario\CrearUsuarioViewModel.cs" />
     <Compile Include="Models\Usuario\EstadoCuentaUsuarioVendedor.cs" />
     <Compile Include="Models\Usuario\ListaDeUsuariosViewModel.cs" />
+    <Compile Include="Models\Usuario\UsuariopoAreasViewModel.cs" />
     <Compile Include="NotificacionesHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -2146,6 +2162,8 @@
     <Content Include="Views\Plataforma\Crear.cshtml" />
     <Content Include="Views\Ciudad\Crear.cshtml" />
     <Content Include="Views\Ciudad\Index.cshtml" />
+    <Content Include="Views\Catalogos\BandejaUsuariosVerArea.cshtml" />
+    <Content Include="Views\Catalogos\AsignarAreasAUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

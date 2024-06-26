@@ -10,6 +10,8 @@ using System.Web.Mvc;
 
 namespace OrionCoreCableColor.Controllers
 {
+    //[Authorize(Roles = "Acceso_Al_Sistema")] //aqui si se dejara asi por mientras en CC se le ponen cada uno de los roles para que no se queden sin sistema por nuestra culpa XD
+
     public class RoleController : BaseController
     {
         private ApplicationUserManager _userManager;
