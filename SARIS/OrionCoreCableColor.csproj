@@ -2164,6 +2164,7 @@
     <Content Include="Views\Ciudad\Index.cshtml" />
     <Content Include="Views\Catalogos\BandejaUsuariosVerArea.cshtml" />
     <Content Include="Views\Catalogos\AsignarAreasAUsuario.cshtml" />
+    <Content Include="Views\Catalogos\AsignarAreaUsuarioPorUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

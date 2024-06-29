@@ -1168,9 +1168,6 @@
             <Parameter Name="piUsuarioLogueado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_usuarioVerArea_Lista" ReturnType="Collection(SARISModel.sp_usuarioVerArea_Lista_Result)" />
-          <FunctionImport Name="sp_usuarioVerArea_Lista_ByUsuario" ReturnType="Collection(SARISModel.sp_usuarioVerArea_Lista_ByUsuario_Result)">
-          <Parameter Name="piIdUsuario" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_BitacoraSeguridad_Lista" ReturnType="Collection(SARISModel.sp_BitacoraSeguridad_Lista_Result)" />
           <FunctionImport Name="sp_BitacoraSeguridadGuardar" ReturnType="Collection(SARISModel.sp_BitacoraSeguridadGuardar_Result)">
             <Parameter Name="piIdUsuarioAccion" Mode="In" Type="Int32" />
@@ -1182,6 +1179,9 @@
             <Parameter Name="piIDApp" Mode="In" Type="Int16" />
             <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
             <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_usuarioVerArea_Lista_ByUsuario" ReturnType="Collection(SARISModel.sp_usuarioVerArea_Lista_ByUsuario_Result)">
+            <Parameter Name="piIdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Requerimiento_Areas_Result">
@@ -1989,12 +1989,6 @@
           <Property Type="String" Name="fcAreas" Nullable="true" />
           <Property Type="String" Name="fcIdAreas" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="sp_usuarioVerArea_Lista_ByUsuario_Result">
-          <Property Type="Int32" Name="fiIdUsuarioverArea" Nullable="false" />
-          <Property Type="String" Name="fcNombre" Nullable="true" MaxLength="83" />
-          <Property Type="String" Name="fcAreas" Nullable="true" />
-          <Property Type="String" Name="fcIdAreas" Nullable="true" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="sp_BitacoraSeguridad_Lista_Result">
           <Property Type="Int32" Name="fiIdBitacoraSeguridad" Nullable="false" />
           <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
@@ -2037,6 +2031,13 @@
           <Property Type="DateTime" Name="fdFechaAlarmaDeteccion" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="fiMotivoEstado" Nullable="true" />
           <Property Type="Int32" Name="fiIDRequerimientoPadre" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_usuarioVerArea_Lista_ByUsuario_Result">
+          <Property Type="Int32" Name="fiIdUsuarioverArea" Nullable="false" />
+          <Property Type="Int32" Name="fiIdUsuario" Nullable="true" />
+          <Property Type="String" Name="fcNombre" Nullable="true" MaxLength="83" />
+          <Property Type="String" Name="fcAreas" Nullable="true" />
+          <Property Type="String" Name="fcIdAreas" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3261,16 +3262,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_usuarioVerArea_Lista_ByUsuario" FunctionName="SARISModel.Store.sp_usuarioVerArea_Lista_ByUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SARISModel.sp_usuarioVerArea_Lista_ByUsuario_Result">
-                <ScalarProperty Name="fiIdUsuarioverArea" ColumnName="fiIdUsuarioverArea" />
-                <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
-                <ScalarProperty Name="fcAreas" ColumnName="fcAreas" />
-                <ScalarProperty Name="fcIdAreas" ColumnName="fcIdAreas" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_BitacoraSeguridad_Lista" FunctionName="SARISModel.Store.sp_BitacoraSeguridad_Lista">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SARISModel.sp_BitacoraSeguridad_Lista_Result">
@@ -3323,6 +3314,17 @@
                 <ScalarProperty Name="fdFechaAlarmaDeteccion" ColumnName="fdFechaAlarmaDeteccion" />
                 <ScalarProperty Name="fiMotivoEstado" ColumnName="fiMotivoEstado" />
                 <ScalarProperty Name="fiIDRequerimientoPadre" ColumnName="fiIDRequerimientoPadre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_usuarioVerArea_Lista_ByUsuario" FunctionName="SARISModel.Store.sp_usuarioVerArea_Lista_ByUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_usuarioVerArea_Lista_ByUsuario_Result">
+                <ScalarProperty Name="fiIdUsuarioverArea" ColumnName="fiIdUsuarioverArea" />
+                <ScalarProperty Name="fiIdUsuario" ColumnName="fiIdUsuario" />
+                <ScalarProperty Name="fcNombre" ColumnName="fcNombre" />
+                <ScalarProperty Name="fcAreas" ColumnName="fcAreas" />
+                <ScalarProperty Name="fcIdAreas" ColumnName="fcIdAreas" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

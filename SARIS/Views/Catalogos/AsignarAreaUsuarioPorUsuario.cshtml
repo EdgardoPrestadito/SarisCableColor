@@ -1,0 +1,113 @@
+﻿
+<!--Modal header-->
+<div class="modal-header bg-primary-600 bg-primary-gradient">
+
+    <h2 class="modal-title text-white">Que Areas Vera El Usuario</h2>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+    </button>
+
+</div>
+
+<!--Modal body-->
+<div class="modal-body">
+    <div class="form-group" id="listaAreas">
+
+    </div>
+
+    <div class="modal-footer">
+        <div class="clearfix" style="width:100%;">
+            <button data-dismiss="modal" class="btn btn-link waves-effect waves-themed float-left btn-lg text-danger" type="button"><i class="text-lg ion-close-round"></i></button>
+            <button onclick="GuardarDatos()" class="btn btn-link btn-lg waves-effect waves-themed float-right text-success"><i class="text-lg ion-checkmark-round"></i></button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var listaareas =  @Html.Raw(Json.Encode(ViewBag.ListaAreas));
+    var listaasignadas =  @Html.Raw(Json.Encode(ViewBag.ListaAreasAsignadas));
+    var areacontratacion = @ViewBag.idareacontratacion;
+    var idusuario = @ViewBag.idusuario;
+    var guardarareas = [];
+
+    selectareas();
+
+    function selectareas() {
+        //llenarDrop();
+        console.log(listaareas);
+        console.log(listaasignadas);
+
+
+        // Convertir listaasignadas en un Set
+        const asignadasSet = new Set(listaasignadas);
+
+        var opciones = `<div class="col-xl-12">
+                        <div id="panel-1" class="panel">`;
+        for (const item of listaareas) {
+
+            opciones += `<div class="custom-control custom-checkbox">`;
+            if (asignadasSet.has(item.fiIDArea)) {
+                opciones += `<input id="${item.fiIDArea}" checked class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDArea}" id="CheckCheckedFallaSErvicios" name ="CheckCheckedFallaSErvicios"  > <label></label>`;
+            } else {
+                opciones += `<input id="${item.fiIDArea}" class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${item.fiIDArea}" id="CheckCheckedFallaSErvicios" name ="CheckCheckedFallaSErvicios"  > <label></label>`;
+
+            }
+            opciones += `
+
+                            <label class="custom-control-label" for="${item.fiIDArea}">${item.fcDescripcion}</label>
+                        </div>`;
+        }
+        opciones += `</div></div>`;
+        
+        $(`#listaAreas`).append(opciones);
+
+        $('input[name="CheckCheckedFallaSErvicios"]:checked').each(function () {
+            guardarareas.push(this.id)
+        });
+    }
+
+    $(document).on('change', 'input[name="CheckCheckedFallaSErvicios"]', function () {
+        debugger
+
+        // Iterar sobre los checkboxes y sumar los valores de los checkboxes seleccionados
+        var select = []
+        $('input[name="CheckCheckedFallaSErvicios"]:checked').each(function () {
+            console.log(`entro en el if`);
+            //var idfer = parseInt($(`#producto-${this.id}`).val());
+            //select
+            select.push(this.id)
+        });
+        guardarareas = select;
+    });
+
+    function GuardarDatos() {
+        var idusuar = areacontratacion;
+        console.log(guardarareas);
+        for (const item of guardarareas) {
+            idusuar += ',' + item
+        }
+
+        console.log(idusuar);
+
+        $.ajax({
+            url: "@Url.Action("EditarAreasaVerPorUsuario", "Catalogos")",
+            type: 'POST',
+            data: { idusuario: idusuario, idareas: idusuar},
+            success: function (data) {
+                if (data.Estado) {
+                    CerrarModal();
+                    $.fn.dataTable.Api("#TablausuarioPorAreas").ajax.reload().draw(false);
+                }
+                AlertaAjax(data);
+            },
+            error: function (data) {
+                AlertaError();
+            },
+        });
+
+    }
+
+
+</script>

@@ -2025,15 +2025,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_usuarioVerArea_Lista_Result>("sp_usuarioVerArea_Lista");
         }
     
-        public virtual ObjectResult<sp_usuarioVerArea_Lista_ByUsuario_Result> sp_usuarioVerArea_Lista_ByUsuario(Nullable<int> piIdUsuario)
-        {
-            var piIdUsuarioParameter = piIdUsuario.HasValue ?
-                new ObjectParameter("piIdUsuario", piIdUsuario) :
-                new ObjectParameter("piIdUsuario", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_usuarioVerArea_Lista_ByUsuario_Result>("sp_usuarioVerArea_Lista_ByUsuario", piIdUsuarioParameter);
-        }
-    
         public virtual ObjectResult<sp_BitacoraSeguridad_Lista_Result> sp_BitacoraSeguridad_Lista()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_BitacoraSeguridad_Lista_Result>("sp_BitacoraSeguridad_Lista");
@@ -2075,6 +2066,15 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piIDRequerimiento", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimiento_Maestro_Detalle_Result>("sp_Requerimiento_Maestro_Detalle", piIDSesionParameter, piIDAppParameter, piIDUsuarioParameter, piIDRequerimientoParameter);
+        }
+    
+        public virtual ObjectResult<sp_usuarioVerArea_Lista_ByUsuario_Result> sp_usuarioVerArea_Lista_ByUsuario(Nullable<int> piIdUsuario)
+        {
+            var piIdUsuarioParameter = piIdUsuario.HasValue ?
+                new ObjectParameter("piIdUsuario", piIdUsuario) :
+                new ObjectParameter("piIdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_usuarioVerArea_Lista_ByUsuario_Result>("sp_usuarioVerArea_Lista_ByUsuario", piIdUsuarioParameter);
         }
     }
 }

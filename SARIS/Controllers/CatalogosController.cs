@@ -139,6 +139,18 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
+        public ActionResult AsignarAreaUsuarioPorUsuario(int idUsuario,int areacontratacion)
+        {
+            using(var context = new SARISEntities1())
+            {
+                ViewBag.idusuario = idUsuario;
+                ViewBag.idareacontratacion = areacontratacion;
+                ViewBag.ListaAreas = context.sp_Areas_Lista().Where(a => a.fiIDArea != areacontratacion).ToList();
+                var areasasignadas = context.sp_usuarioVerArea_Lista_ByUsuario(idUsuario).FirstOrDefault().fcIdAreas ?? ""; var newareas = areasasignadas.Split(',').Select(a => Convert.ToInt32(a)).ToList();
+                ViewBag.ListaAreasAsignadas = newareas;
+                return PartialView();
+            }
+        }
 
         public JsonResult EditarAreasaVerPorUsuario(int idusuario, string idareas)
         {

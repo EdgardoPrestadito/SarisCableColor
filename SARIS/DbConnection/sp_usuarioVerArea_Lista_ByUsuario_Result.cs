@@ -14,6 +14,7 @@ namespace OrionCoreCableColor.DbConnection
     public partial class sp_usuarioVerArea_Lista_ByUsuario_Result
     {
         public int fiIdUsuarioverArea { get; set; }
+        public Nullable<int> fiIdUsuario { get; set; }
         public string fcNombre { get; set; }
         public string fcAreas { get; set; }
         public string fcIdAreas { get; set; }

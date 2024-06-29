@@ -174,11 +174,14 @@ namespace OrionCoreCableColor.Controllers
                         }
 
                         var resultado = context.SaveChanges() > 0;
-                        var usuariocreado = context.Usuarios.OrderByDescending(a => a.fiIDUsuario).FirstOrDefault().fiIDUsuario;
+                        var usuariocreado = context.Usuarios.OrderByDescending(a => a.fiIDUsuario).FirstOrDefault();
+
                         var fiareasadignada = Convert.ToString(model.fiAreaAsignada);
                         using (var contexto = new SARISEntities1())
                         {
-                            var resultadoo = contexto.sp_usuarioVerArea_Insertar(usuariocreado, fiareasadignada, GetIdUser()).FirstOrDefault();
+                            var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
+                            var resultadoo = contexto.sp_usuarioVerArea_Insertar(usuariocreado.fiIDUsuario, fiareasadignada, GetIdUser()).FirstOrDefault();
+                            var guardarbitacora = contexto.sp_BitacoraSeguridadGuardar(GetIdUser(), "Crear Usuario", $"El Usuario {usuarioLogueado.fcNombreCorto} A Creado Al Usuario {usuariocreado.fcNombreCorto}");
                         }
 
                         return EnviarResultado(resultado, "Crear Usuario");
@@ -325,7 +328,11 @@ namespace OrionCoreCableColor.Controllers
                 usuario.fcDocumentoIdentificacion = model.fcDocumentoIdentificacion;
                 context.Entry(usuario).State = EntityState.Modified;
                 var result = context.SaveChanges() > 0;
+                using (var contexto = new SARISEntities1()) {
+                    var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
+                    var guardarbitacora = contexto.sp_BitacoraSeguridadGuardar(GetIdUser(), "Editar informacion Personal", $"El Usuario {usuarioLogueado.fcNombreCorto} modifico la informacion Personal de {usuario.fcNombreCorto}");
 
+                }
                 return EnviarResultado(result, "Editar Usuario", result ? "Se edito Satisfactoriamente" : "Error al editar el usuario");
             }
         }
@@ -372,6 +379,25 @@ namespace OrionCoreCableColor.Controllers
             {
                 var result = context.sp_Usuario_EditarInfoUsuarioLaboral(model.fiIdUsuario, model.fiIDJefeInmediato, model.fiAreaAsignada, model.IdRol).FirstOrDefault();
 
+                var areasasignadas = context.sp_usuarioVerArea_Lista_ByUsuario(model.fiIdUsuario).FirstOrDefault().fcIdAreas ?? ""; var newareas = areasasignadas.Split(',').Select(a => Convert.ToInt32(a)).ToList();
+
+                var listareas = "";
+                var contador = 0;
+                foreach (var item in newareas)
+                {
+                    if (contador == 0)
+                    {
+                        listareas += model.fiAreaAsignada;
+                        contador++;
+
+                    }
+                    else
+                    {
+                        listareas += $",{item}";
+                    }
+                }
+                var guaareas = context.sp_usuarioVerArea_Insertar(model.fiIdUsuario, listareas, GetIdUser()).FirstOrDefault();
+
                 using (var contextO = new OrionSecurityEntities())
                 {
                     var usuario = contextO.Usuarios.Find(model.fiIdUsuario);
@@ -394,10 +420,16 @@ namespace OrionCoreCableColor.Controllers
                         await UserManager.AddToRoleAsync(usuario.AspNetUsers.Id, permiso);
                     }
 
+                    var usuarioLogueado = context.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
+
+                    var guardarbitacora = context.sp_BitacoraSeguridadGuardar(GetIdUser(), "Editar informacion Laboral", $"El Usuario {usuarioLogueado.fcNombreCorto} modifico la informacion laboral de {usuario.fcNombreCorto}");
+
                 }
 
                 var success = result > 0;
 
+                
+                
                 return EnviarResultado(success, "Editar Información Laboral", success ? "Se Editó Satisfactoriamente" : "Error al editar ");
 
             }
@@ -466,6 +498,12 @@ namespace OrionCoreCableColor.Controllers
                     }
 
                     var result = context.SaveChanges() > 0;
+                    using (var contexto = new SARISEntities1())
+                    {
+                        var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
+                        var guardarbitacora = contexto.sp_BitacoraSeguridadGuardar(GetIdUser(), "Editar Cuenta de Usuario", $"El Usuario {usuarioLogueado.fcNombreCorto} Modifico la Cuenta de {usuario.fcNombreCorto}");
+
+                    }
                     return EnviarResultado(result, "Editar Cuenta Usuario", result /*&& result2.Succeeded*/ ? "Se edito Satisfactoriamente" : "Error al editar el usuario");
 
                 }
@@ -498,6 +536,14 @@ namespace OrionCoreCableColor.Controllers
                     var User = context.Usuarios.Find(model.Id);
                     string code = await UserManager.GeneratePasswordResetTokenAsync(User.fcIdAspNetUser);
                     var result = await UserManager.ResetPasswordAsync(User.fcIdAspNetUser, code, model.NewPassword);
+
+                    using (var contexto = new SARISEntities1())
+                    {
+                        var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
+                        var guardarbitacora = contexto.sp_BitacoraSeguridadGuardar(GetIdUser(), "Cambiar Contraseña", $"El Usuario {usuarioLogueado.fcNombreCorto} Modifico la Contraseña de {User.fcNombreCorto}");
+
+                    }
+
                     return EnviarResultado(result.Succeeded, "Cambiar Contrasena", result.Succeeded ? "Se cambio Satisfactoriamente" : "Error al cambiar la contrasena");
                 }
             }
@@ -519,6 +565,21 @@ namespace OrionCoreCableColor.Controllers
                 var usuario = context.Usuarios.Find(Id);
                 usuario.fiEstado = usuario.fiEstado == 1 ? 0 : 1;
                 var result = context.SaveChanges() > 0;
+
+                using (var contexto = new SARISEntities1())
+                {
+                    var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
+                    if (usuario.fiEstado == 0)
+                    {
+                        var guardarbitacora = contexto.sp_BitacoraSeguridadGuardar(GetIdUser(), "Deshabilitar Usuario", $"El Usuario {usuarioLogueado.fcNombreCorto} Ha Deshabilitado al Usuario: {usuario.fcNombreCorto}");
+                    }
+                    else
+                    {
+                        var guardarbitacora = contexto.sp_BitacoraSeguridadGuardar(GetIdUser(), "Habilitar Usuario", $"El Usuario {usuarioLogueado.fcNombreCorto} Ha Vuelto a habilitar al Usuario: {usuario.fcNombreCorto}");
+                    }
+
+
+                }
                 return EnviarResultado(result, usuario.fiEstado == 0 ? "Habilitar Usuario" : "Deshabilitar Usuario", result ? "Modificado exitosamente" : "Error al modificar el usuario");
 
             }
