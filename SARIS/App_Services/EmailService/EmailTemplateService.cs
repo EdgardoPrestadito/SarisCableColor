@@ -26,13 +26,13 @@ namespace OrionCoreCableColor.App_Services.EmailService
 {
     public class EmailTemplateService
     {
-       
+
         private SendEmailService _emailService;
 
         public EmailTemplateService()
         {
             var ConnectionString = ConfigurationManager.ConnectionStrings["OrionConnections"].ConnectionString; // DataCrypt.Desencriptar(ConfigurationManager.ConnectionStrings["ConexionEncriptada"].ConnectionString);
-           
+
 
             _emailService = new SendEmailService();
 
@@ -174,7 +174,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
             return attachmentFile;
         }
 
-        
+
 
         public string ParseVariablesInEmailTemplate(string emailTemplate, Dictionary<string, string> variableValues)
         {
@@ -219,19 +219,27 @@ namespace OrionCoreCableColor.App_Services.EmailService
         }
 
 
-        
 
 
-        
+
+
 
         public async Task<bool> SendEmailToSolicitud(EmailTemplateTicketModel model)
         {
             try
             {
 
-                
-                
-                
+
+                if (model.fiIDEstadoRequerimiento == 5)
+                {
+                    model.fcDescripcionRequerimiento = "Cerrado";
+                }
+
+                if (model.fiIDEstadoRequerimiento == 6)
+                {
+                    model.fcDescripcionRequerimiento = "Cancelado";
+                }
+
                 var htmlString = $@"
                                     <!DOCTYPE html>
                                     <html lang=""es"">
@@ -377,32 +385,32 @@ namespace OrionCoreCableColor.App_Services.EmailService
 
 
         }
-        
+
 
 
         public SendEmailViewModel GenerarCorreoGerencia(EmailTemplateServiceModel model)
         {
 
-                Attachment fileAttachment = null;
+            Attachment fileAttachment = null;
 
-                var CustomerAttachmentName = $"Reporte Gerencia Novanet del  {DateTime.Now:dd-mm-yyyy}.pdf";
-                var fileStreamInventario = new StreamReader(model.Archivo.InputStream,  System.Text.Encoding.Default, false);
-                fileAttachment = new Attachment(fileStreamInventario.BaseStream, CustomerAttachmentName);
+            var CustomerAttachmentName = $"Reporte Gerencia Novanet del  {DateTime.Now:dd-mm-yyyy}.pdf";
+            var fileStreamInventario = new StreamReader(model.Archivo.InputStream, System.Text.Encoding.Default, false);
+            fileAttachment = new Attachment(fileStreamInventario.BaseStream, CustomerAttachmentName);
 
-                var modelCorreo = new SendEmailViewModel
-                {
-                    EmailName = "Reporte Gerencial",
-                    Subject = "Reporte Dia General Novanet",
-                    Body = $"Reporte de Gerencia ",
-                    DestinationEmail = model.CustomerEmail,
+            var modelCorreo = new SendEmailViewModel
+            {
+                EmailName = "Reporte Gerencial",
+                Subject = "Reporte Dia General Novanet",
+                Body = $"Reporte de Gerencia ",
+                DestinationEmail = model.CustomerEmail,
 
-                    List_CC = new List<string>(),
-                    firma = "",
-                    Attachment = fileAttachment
-                };
-                
-                return modelCorreo;
-           
+                List_CC = new List<string>(),
+                firma = "",
+                Attachment = fileAttachment
+            };
+
+            return modelCorreo;
+
 
 
         }
