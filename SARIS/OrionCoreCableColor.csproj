@@ -580,6 +580,9 @@
     <Compile Include="DbConnection\sp_Indicadores_Lista_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_ListadoTicket_CerradosCancelado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_ListarImpacto_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>

@@ -201,7 +201,6 @@ namespace OrionCoreCableColor.Controllers
                 try
                 {
                     var cont = contexto.sp_Requerimiento_Maestro_Detalle(1, 1, GetIdUser(), idticket).FirstOrDefault();
-
                     var tick = new TicketMiewModel();
                     tick.fcDescripcionRequerimiento = cont.fcDescripcionRequerimiento;
                     tick.fiIDRequerimiento = cont.fiIDRequerimiento;
@@ -224,6 +223,7 @@ namespace OrionCoreCableColor.Controllers
                     tick.fcPlataforma = cont.fcNombrePlataforma;
                     tick.fcServicioAfectados = cont.fcNombreServicio;
                     tick.fdFechaAlarmaDeteccion = (cont.fdFechaAlarmaDeteccion is null) ? DateTime.Now : (DateTime)cont.fdFechaAlarmaDeteccion;
+
                     //tick.fiMotivoEstado = (int)cont.fiMotivoEstado;
 
                     ViewBag.fiMotivoEstado = (int)cont.fiMotivoEstado;
@@ -233,6 +233,8 @@ namespace OrionCoreCableColor.Controllers
                     ViewBag.ListaCategorias = contexto.sp_Categorias_Indicidencias_Listado().Select(a => new SelectListItem { Value = a.fiIDCategoriaDesarrollo.ToString(), Text = a.fcDescripcionCategoria }).ToList();
                     ViewBag.IdIncidencia = tick.fiTipoRequerimiento;
                     ViewBag.TicketPadre = tick.fiIdTicketPadre;
+                    ViewBag.CategoriaResolucion = cont.fiCategoriaResolucion;
+                    ViewBag.SubCategoriaResolucion = cont.fiSubCategoriaResolucion;
                     var puede = false;
 
                     ViewBag.IdServicios = contexto.sp_RequerimientoPorServicioByRequerimiento(idticket).ToList();
@@ -1011,7 +1013,7 @@ namespace OrionCoreCableColor.Controllers
             {
                 using (var contexto = new SARISEntities1())
                 {
-                    var result = contexto.sp_Requerimiento_Bitacoras_Agregar(GetIdUser(), idticket, idusuariosolicitante, comentario, idapp, idestado, idusuarioasignado);
+                    var result = contexto.sp_Requerimiento_Bitacoras_Agregar(GetIdUser(), idticket, idusuariosolicitante, comentario, idapp, idestado, idusuarioasignado,0);
                     return EnviarListaJson(result);
                 }
             }

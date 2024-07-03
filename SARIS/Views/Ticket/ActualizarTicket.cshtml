@@ -277,8 +277,10 @@
     var ticketPadre = @ViewBag.TicketPadre;
     var SubCategoria = @ViewBag.fiTipoRequerimiento;
     var idMotivoEstado = @ViewBag.fiMotivoEstado;
+    var CategoriaResolucion = @ViewBag.CategoriaResolucion;
+    var SubCategoriaResolucion = @ViewBag.SubCategoriaResolucion;
     var fotosredimencionadas = [];
-
+    var validar = false;
 
     var idserviciosusados = @Html.Raw(Json.Encode(ViewBag.IdServicios));
     var idCisusados = @Html.Raw(Json.Encode(ViewBag.IdsCis));
@@ -355,18 +357,24 @@
                         text: 'Seleccione una Categoria Resolucion'
                     }));
 
-                    $("#selectCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(1).trigger("change");
+
                     $.each(respuesta, function (index, item) {
                         selectCategoriaResolucion.append($('<option>', {
                             value: item.fiIDCategoriaResolucion,
                             text: item.fcDescripcionCategoria
                         }));
                     });
+                    $("#selectCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(CategoriaResolucion).trigger("change");
+                    validar = true;
+                    
                 },
                 error: function (respuesta) {
                     console.log(respuesta);
                 }
-            });
+                });
+
+               
+
 
             }
         } else {
@@ -884,7 +892,7 @@
                         value: 0,
                         text: 'Seleccione un Motivo'
                     }));
-                    
+
                     $.each(respuesta, function (index, item) {
                         selectMotivo.append($('<option>', {
                             value: item.fiMotivos,
@@ -960,13 +968,19 @@
                         value: 0,
                         text: 'Seleccione una SubCategoria Resolucion'
                     }));
-                    $("#selectSubCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
+
                     $.each(respuesta, function (index, item) {
                         selectSubCategoriaResolucion.append($('<option>', {
                             value: item.fiIDTipoRequerimientoResolucion,
                             text: item.fcTipoRequerimiento
                         }));
                     });
+                    if (validar) {
+                        $("#selectSubCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(SubCategoriaResolucion).trigger("change");
+                        validar = false
+                    } else {
+                    $("#selectSubCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(0).trigger("change");
+                    }
                 },
                 error: function (respuesta) {
                     console.log(respuesta);
