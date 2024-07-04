@@ -10,6 +10,8 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using OrionCoreCableColor.DbConnection;
 using Microsoft.AspNet.Identity;
+using OrionCoreCableColor.Models.Areas;
+using System.Collections.Generic;
 
 namespace OrionCoreCableColor.Controllers
 {
@@ -585,7 +587,62 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
+        public ActionResult SubtablaUsuariosAresAVer(int idUsuario)
+        {
+            ViewBag.IdUsuario = idUsuario;
+            return PartialView();
+        }
 
+        public JsonResult DataSubtablaUsuarioAreasVer(int idusuario)
+        { 
+            try
+            {
+                using (var context = new SARISEntities1())
+                {
+                    var areas = context.sp_usuarioVerArea_Lista_ByUsuario(idusuario).FirstOrDefault().fcIdAreas ?? ""; var listaidareas = areas.Split(',').Select(a => Convert.ToInt32(a)).ToList();
+
+                    var jsonResult = Json(context.sp_Areas_Lista().Select(x => new ListaAreasViewModel
+                    {
+                        fiIDArea = x.fiIDArea,
+                        fcDescripcion = x.fcDescripcion,
+                        fcCorreoElectronico = x.fcCorreoElectronico,
+                        fcNombreCorto = x.fcNombreCorto,
+                        fiActivo = x.fiActivo,
+                        fcNombreGenerencia = x.fcNombreGenerencia,
+                        fcNivel = x.fcNivel,
+                        fiIDUsuarioResponsable = x.fiIDUsuarioResponsable
+
+
+                    }).Where(a => listaidareas.Any(b => b == a.fiIDArea)).ToList(), JsonRequestBehavior.AllowGet);
+                    jsonResult.MaxJsonLength = Int32.MaxValue;
+                    return jsonResult;
+                }
+                //return Json
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public JsonResult DataBitacoraUsuario()
+        {
+            using (var context = new SARISEntities1())
+            {
+                var jsonResult = Json(context.sp_BitacoraSeguridad_Lista().Select(a => new BitacoraSeguridadUsuariosViewModel
+                {
+                    fiIdBitacoraSeguridad = a.fiIdBitacoraSeguridad,
+                    fcNombreCorto = a.fcNombreCorto,
+                    fdFechaCreacion = Convert.ToDateTime(a.fdFechaCreacion),
+                    fcPantallaAfectada = a.fcPantallaAfectada,
+                    fcObservacion = a.fcObservacion
+                }).ToList(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+        }
 
     }
 }

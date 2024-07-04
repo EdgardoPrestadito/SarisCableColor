@@ -277,63 +277,62 @@
 
         var opt = ``
         $('#TablaCI').DataTable({
-            destroy: true,
-            autoWidth: true,
-            responsive: true,
-            pageLength: 5,
-            language: {
-                "emptyTable": "No se encontraron resultados.",
-                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
-                "paginate": {
-                    first: "Primero",
-                    previous: "Anterior",
-                    next: "Siguiente",
-                    last: "Ultimo"
-                },
-                "lengthMenu": " _MENU_ ",
-                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
-                "infoEmpty": "No hay registros para mostrar.",
-            },
-            dom: 'frtip',
-            order: [[1, "desc"]],
-              ajax: {
-                url: '@Url.Action("listadoCI", "LlenarCampos")',
-                  method: "Get",
-                  data: { Pais: IDPais, Region: IDRegion, Ciudad: IDCiudad, CI: IDCI},
-                  dataSrc: function (data) {
-                      return data;
-                  }
-            },
-                columns: [
-                    {
-                        data: 'fiIDConfiguracion',
-                        visible: false
-                    },
-                    {
-                        data: 'fcConfiguracion'
-                    },
-                    {
-                        data: 'fcLatitud'
-                    },
+    destroy: true,
+    autoWidth: true,
+    responsive: true,
+    language: {
+        "emptyTable": "No se encontraron resultados.",
+        "paginate": {
+            first: "Primero",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Ultimo"
+        },
+        "lengthMenu": " _MENU_ ",
+        "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+        "infoEmpty": "No hay registros para mostrar.",
+    },
+    dom: 'frtip',
+    order: [[1, "desc"]],
+    ajax: {
+        url: '@Url.Action("listadoCI", "LlenarCampos")',
+        method: "Get",
+        data: { Pais: IDPais, Region: IDRegion, Ciudad: IDCiudad, CI: IDCI},
+        dataSrc: function (data) {
+            return data;
+        }
+    },
+    columns: [
+        {
+            data: 'fiIDConfiguracion',
+            visible: false
+        },
+        {
+            data: 'fcConfiguracion'
+        },
+        {
+            data: 'fcLatitud'
+        },
 
-                    {
-                        data: 'fcLongitud'
-                    },
-                    {
-                        data: null,
-                        render: function (data) {
+        {
+            data: 'fcLongitud'
+        },
+        {
+            data: null,
+            render: function (data) {
+                var opt = `<div class="custom-control custom-checkbox">
+                                <input id="${data.fiIDConfiguracion}" class="custom-control-input" style="margin-left:auto; margin-right:auto;" type="checkbox" value="${data.fcConfiguracion}" id="CheckCheckedFalla" name ="CheckCheckedFalla"> <label></label>
+                                <label class="custom-control-label" for="${data.fiIDConfiguracion}"></label>
+                            </div>`;
+                return opt;
+            }
+        },
+    ],
+    scrollY: '400px', // Altura del scroll vertical (ajusta según lo necesites)
+    scrollCollapse: true, // Permite colapsar el scroll si no hay suficientes datos
+    paging: false // Deshabilita la paginación
+});
 
-                            //return '<button class="btn  btn-success" tabindex="0" aria-controls="TablaPrincipal2" type="button"  title = "Guardar" name="GuardarEnviar"><i class="fal fa-inbox-out" ></i></button>';
-                            var opt = `<div class="custom-control custom-checkbox">
-                                            <input id="${data.fiIDConfiguracion}"  class="custom-control-input" style="margin-left:auto; margin-right:auto;"  type="checkbox" value="${data.fcConfiguracion}" id="CheckCheckedFalla" name ="CheckCheckedFalla"  > <label></label>
-                                            <label class="custom-control-label" for="${data.fiIDConfiguracion}"></label>
-                                        </div>`;
-                            return opt;
-
-                        }
-                    },
-                ]
-            });
     }
 
     $(document).on('change', 'input[name="CheckCheckedFalla"]', function () {
@@ -379,7 +378,7 @@
                             <td>${item.fcConfiguracion}</td>
                             <td></td>
                         </tr>`;
-            
+
         }
         tbo += `</tbody>
                     </table>`

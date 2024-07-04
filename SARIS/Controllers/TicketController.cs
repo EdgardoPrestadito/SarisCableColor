@@ -26,6 +26,10 @@ namespace OrionCoreCableColor.Controllers
             return View();
         }
 
+        public ActionResult BandejaTicketCerradosCancelados()
+        {
+            return View();
+        }
 
         [HttpGet]
         public JsonResult ListarTicket()
@@ -82,29 +86,17 @@ namespace OrionCoreCableColor.Controllers
 
                     connection.Open();
                     var command = connection.CreateCommand();
-                    command.CommandText = $"EXEC sp_Requerimientos_Bandeja {1},{1},{GetIdUser()}";
+                    var usuario = GetUser();
+                    command.CommandText = $"EXEC sp_ListadoTicket_CerradosCancelado {usuario.fiIdUsuario},{usuario.IdRol}";
                     using (var reader = command.ExecuteReader())
                     {
                         var db = ((IObjectContextAdapter)new SARISEntities1());
-                        reader.NextResult();
                         listaEquifaxGarantia = db.ObjectContext.Translate<TicketMiewModel>(reader).ToList();
-                    }
 
+                    }
                     connection.Close();
 
-                    if (GetUser().IdRol == 1 || GetUser().IdRol == 2) // ponerlos en una configuracion para evitar poner datos en duro att Edgardo mancia 2024-06-25
-                    {
-                        return EnviarListaJson(listaEquifaxGarantia);
-                    }
-                    else
-                    {
-                        using (var conexion = new SARISEntities1())
-                        {
-                            var IDuser = GetIdUser();
-                            var areas = conexion.sp_usuarioVerArea_Lista_ByUsuario(IDuser).FirstOrDefault().fcIdAreas ?? ""; areas.Split(',').Select(a => Convert.ToInt32(a)).ToList();
-                            return EnviarListaJson(listaEquifaxGarantia.Any(x => areas.Any(y => y == x.fiAreaAsignada)));
-                        }
-                    }
+                    return EnviarListaJson(listaEquifaxGarantia.Where(a => a.fiIDEstadoRequerimiento == 5));
                 }
             }
             catch (Exception e)
@@ -128,7 +120,8 @@ namespace OrionCoreCableColor.Controllers
 
                     connection.Open();
                     var command = connection.CreateCommand();
-                    command.CommandText = $"EXEC sp_Incidentes_Cancelados {GetIdUser()}";
+                    var usuario = GetUser();
+                    command.CommandText = $"EXEC sp_ListadoTicket_CerradosCancelado {usuario.fiIdUsuario},{usuario.IdRol}";
                     using (var reader = command.ExecuteReader())
                     {
                         var db = ((IObjectContextAdapter)new SARISEntities1());
@@ -137,11 +130,8 @@ namespace OrionCoreCableColor.Controllers
                     }
 
                     connection.Close();
-                    if (GetUser().IdRol == 1 || GetUser().IdRol == 2) // ponerlos en una configuracion para evitar poner datos en duro att Edgardo mancia 2024-06-25
-                    {
-                        return EnviarListaJson(listaEquifaxGarantia);
-                    }
-                    return EnviarListaJson(listaEquifaxGarantia);
+                    
+                    return EnviarListaJson(listaEquifaxGarantia.Where(a => a.fiIDEstadoRequerimiento == 6));
                 }
             }
             catch (Exception e)
@@ -233,6 +223,7 @@ namespace OrionCoreCableColor.Controllers
                     ViewBag.ListaCategorias = contexto.sp_Categorias_Indicidencias_Listado().Select(a => new SelectListItem { Value = a.fiIDCategoriaDesarrollo.ToString(), Text = a.fcDescripcionCategoria }).ToList();
                     ViewBag.IdIncidencia = tick.fiTipoRequerimiento;
                     ViewBag.TicketPadre = tick.fiIdTicketPadre;
+
                     ViewBag.CategoriaResolucion = cont.fiCategoriaResolucion;
                     ViewBag.SubCategoriaResolucion = cont.fiSubCategoriaResolucion;
                     var puede = false;
@@ -242,7 +233,7 @@ namespace OrionCoreCableColor.Controllers
                     var idrolestodopoderosos = contexto.sp_Configuraciones("RolesquePuedenverTodo").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
 
                     var user = GetUser();
-                    if (GetIdUser() == cont.fiIDUsuarioSolicitante || idrolestodopoderosos.Contains(user.IdRol))
+                    if (GetIdUser() == cont.fiIDUsuarioSolicitante || idrolestodopoderosos.Contains(user.IdRol) || (user.fiAreaAsignada == tick.fiAreaAsignada || user.fiAreaAsignada == tick.fiIDAreaSolicitante))
                     {
                         ViewBag.Estados = contexto.sp_Estados_Lista().Where(a => !estadosquenovan.Any(b => b == a.fiIDEstado)).Select(x => new SelectListItem { Value = x.fiIDEstado.ToString(), Text = x.fcDescripcionEstado }).ToList();
                         puede = true;
@@ -250,8 +241,9 @@ namespace OrionCoreCableColor.Controllers
                     else
                     {
                         ViewBag.Estados = contexto.sp_Estados_Lista().Where(a => a.fiIDEstado != 5 && a.fiIDEstado != 6 && !estadosquenovan.Any(b => b == a.fiIDEstado)).Select(x => new SelectListItem { Value = x.fiIDEstado.ToString(), Text = x.fcDescripcionEstado }).ToList();
-                        puede = false;
+                        
                     }
+
                     ViewBag.PuedeEditarCategoria = puede;
                     ViewBag.Usuario = contexto.sp_Usuarios_Maestro_PorIdUsuarioSupervisor(1).Select(x => new SelectListItem { Value = x.fiIDUsuario.ToString(), Text = x.fcPrimerNombre + " " + x.fcPrimerApellido }).ToList();
                     ViewBag.idticket = idticket;
@@ -602,7 +594,7 @@ namespace OrionCoreCableColor.Controllers
                     //----------
 
 
-                    GuardarBitacoraGeneralhistorial(GetIdUser(), ticket.fiIDRequerimiento, GetIdUser(), comentario, 1, ticket.fiIDEstadoRequerimiento, datosticket.fiIDUsuarioAsignado);
+                    GuardarBitacoraGeneralhistorial(GetIdUser(), ticket.fiIDRequerimiento, GetIdUser(), comentario, 1, ticket.fiIDEstadoRequerimiento, datosticket.fiIDUsuarioAsignado, (int)datosticket.fiAreaAsignada);
                     var ticketpadre = ticket.fiIdTicketPadre;
                     var fiCategoriaResolucion = ticket.fiCategoriaResolucion;
                     var fiSubCategoriaResolucion = ticket.fiSubCategoriaResolucion;
@@ -826,8 +818,8 @@ namespace OrionCoreCableColor.Controllers
                     var datosticket = Datosticket(idticket);//contexto.sp_Requerimientos_Bandeja_ByID(1, 1, GetIdUser(), idticket).FirstOrDefault();
                     var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, Convert.ToByte(3), DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
                     //ObtenerDataTicket(idticket); // aqui va el signalR
-
-                    GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"El Usuario {usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} reasigna por: " + comenta, 1, 7, 0);//se manda 0 por que se asigno una nueva area y por lo tanto el usuario asignado no puede ser otro
+                    var usuariopendiente = contexto.sp_Configuraciones("UsuarioPendiente").FirstOrDefault().fcValorLlave;//.fcValorLlave.Select(a => Convert.ToInt32(a)).FirstOrDefault();
+                    GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"{usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} Reasigna al Area {areaasignada} por: " + comenta, 1, 7, Convert.ToInt32(usuariopendiente), idArea);// se cambio a que se envie el Sisten Bot
 
                     if (datosticket.fiAreaAsignada != idArea)
                     {
@@ -920,7 +912,7 @@ namespace OrionCoreCableColor.Controllers
 
                     var datosticket = Datosticket(idticket);//contexto.sp_Requerimientos_Bandeja_ByID(1, 1, GetIdUser(), idticket).FirstOrDefault();
                     //guardar la bitacora 
-                    GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, datosticket.fiIDUsuarioSolicitante, comenta, 1, 7, usuario);//el estado de ticket esta en 7 para que pueda guardar la bitacora
+                    GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, datosticket.fiIDUsuarioSolicitante,$"El Usuario: {usuarioLogueado.fcNombreCorto} Asigno al Usuario {UsuarioAsignado.fcNombreCorto} por: {comenta}", 1, 7, usuario, (int)datosticket.fiAreaAsignada);//el estado de ticket esta en 7 para que pueda guardar la bitacora
 
                     var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, datosticket.fiIDEstadoRequerimiento, DateTime.Now, usuario, 0, datosticket.fiTipoRequerimiento, 1, datosticket.fiAreaAsignada, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
                     //ObtenerDataTicket(idticket);//aqui esta el signalR
@@ -1007,13 +999,14 @@ namespace OrionCoreCableColor.Controllers
             }
         }
 
-        public JsonResult GuardarBitacoraGeneralhistorial(int idusuario, int idticket, int idusuariosolicitante, string comentario, int idapp, int idestado, int idusuarioasignado)
+        public JsonResult GuardarBitacoraGeneralhistorial(int idusuario, int idticket, int idusuariosolicitante, string comentario, int idapp, int idestado, int idusuarioasignado,int idarea)
         {
             try
             {
                 using (var contexto = new SARISEntities1())
                 {
-                    var result = contexto.sp_Requerimiento_Bitacoras_Agregar(GetIdUser(), idticket, idusuariosolicitante, comentario, idapp, idestado, idusuarioasignado,0);
+                    var result = contexto.sp_Requerimiento_Bitacoras_Agregar(GetIdUser(), idticket, idusuariosolicitante, comentario, idapp, idestado, idusuarioasignado, idarea);
+
                     return EnviarListaJson(result);
                 }
             }

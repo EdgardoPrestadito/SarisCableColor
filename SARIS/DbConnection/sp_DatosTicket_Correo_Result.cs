@@ -46,5 +46,13 @@ namespace OrionCoreCableColor.DbConnection
         public string fcNombreGenerencia { get; set; }
         public string fcNombreUsuarioGerencia { get; set; }
         public string fcCorreoGerencia { get; set; }
+        public string fcNumeroGerencia { get; set; }
+        public string fcNombreJefeAreaAsignada { get; set; }
+        public string fcCorreoJefeAreaAsignada { get; set; }
+        public string fcTelefonoJefeAreaAsignada { get; set; }
+        public string fcNombreGerenciaAsignada { get; set; }
+        public string fcTelefonoGrenciaAsignada { get; set; }
+        public string fcCorreoGerenciaAsignada { get; set; }
+        public string fcCorreoAreaAsignada { get; set; }
     }
 }

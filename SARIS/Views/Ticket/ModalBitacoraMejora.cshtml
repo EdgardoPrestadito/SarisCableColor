@@ -69,29 +69,6 @@
                                         </p>
                                     </div>`
                         }
-                        //else if (item.fcDescripcionEstado == "Reasignado")
-                        //{
-                        //    if (item.fcUsuarioSecundario == null || item.fcUsuarioSecundario == "") {
-                        //        opt += `<div class="ticket-created-notification">
-                        //            <p>Ticket Reasignado.<br />
-                        //                <strong>${item.fcUsuarioPricipal}</strong> A Reasignado a Area: ${item.fcDescripcion} <br />
-                        //                Tiempo Transcurrido: <strong>${item.fiHorasTrabajadas} : ${item.fiMinutios}</strong><br />
-                        //                Razon: <strong>${item.fcComentario}</strong>
-                        //            </p>
-                        //        </div>
-                        //        <div class="arrow">&#8593;</div>`
-                        //    } else {
-                        //        opt += `<div class="ticket-created-notification">
-                        //            <p>Ticket Reasignado.<br />
-                        //                <strong>${item.fcUsuarioPricipal}</strong> A Reasignado a: ${item.fcUsuarioSecundario} <br />
-                        //                Tiempo Transcurrido: <strong>${item.fiHorasTrabajadas} : ${item.fiMinutios}</strong><br />
-                        //                Razon: <strong>${item.fcComentario}</strong>
-                        //            </p>
-                        //        </div>
-                        //        <div class="arrow">&#8593;</div>`
-                        //    }
-
-                        //}
                         else {
                             opt += `
                             <table class="table table-sm" style="margin-bottom: 0px;">
@@ -102,9 +79,20 @@
                                     </tr>
                                     <tr>
                                         <td><span class="font-weight-bold text-muted">Usuario Asignado</span></td>
-                                        <td>${item.fcUsuarioSecundario}</td>
+                                    `
+                            if (item.fcUsuarioSecundario == `systemBot`) {
+                                opt += `<td><span class="btn-sm btn-block badge badge-secondary">Pendiente</span></td>`
+                            } else {
+                                opt += `<td>${item.fcUsuarioSecundario}</td>`
+                            }
+                                opt +=`
+                                        
                                     </tr>
 
+                                    <tr>
+                                        <td><span class="font-weight-bold text-muted">Area Asignada</span></td>
+                                        <td>${item.fcAreaAsignada}</td>
+                                    </tr>
                                     <tr>
                                         <td><span class="font-weight-bold text-muted">Fecha</span></td>
                                         <td>${moment(item.fdFechaInicioEstado).locale('es').format('YYYY/MM/DD hh:mm a')} - ${moment(item.fdFechaFinEstado).locale('es').format('YYYY/MM/DD hh:mm a')}</td>

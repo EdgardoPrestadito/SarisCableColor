@@ -25,6 +25,7 @@ namespace OrionCoreCableColor.DbConnection
         public string fcClaseColor { get; set; }
         public string fcUsuarioSecundario { get; set; }
         public string fcDescripcion { get; set; }
+        public string fcAreaAsignada { get; set; }
         public Nullable<int> fiHorasTrabajadas { get; set; }
         public Nullable<int> fiMinutios { get; set; }
         public string fcComentario { get; set; }

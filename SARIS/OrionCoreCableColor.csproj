@@ -797,9 +797,11 @@
     <Compile Include="Models\Ticket\EstadosBitacorasViewModel.cs" />
     <Compile Include="Models\Ticket\Estado_RequerimientoViewModal.cs" />
     <Compile Include="Models\Ticket\TicketAdjuntarImagenViewModel.cs" />
+    <Compile Include="Models\Ticket\TicketCerradosyCanceladorViewModel.cs" />
     <Compile Include="Models\Ticket\TicketInformacionViewModel.cs" />
     <Compile Include="Models\Ticket\TicketMiewModel.cs" />
     <Compile Include="Models\Ubicaciones\UbicacionesViewModel.cs" />
+    <Compile Include="Models\Usuario\BitacoraSeguridadUsuariosViewModel.cs" />
     <Compile Include="Models\Usuario\CambiarContraseñaUsuarioViewModel.cs" />
     <Compile Include="Models\Usuario\CrearUsuarioViewModel.cs" />
     <Compile Include="Models\Usuario\EstadoCuentaUsuarioVendedor.cs" />
@@ -2168,6 +2170,8 @@
     <Content Include="Views\Catalogos\BandejaUsuariosVerArea.cshtml" />
     <Content Include="Views\Catalogos\AsignarAreasAUsuario.cshtml" />
     <Content Include="Views\Catalogos\AsignarAreaUsuarioPorUsuario.cshtml" />
+    <Content Include="Views\Usuario\SubtablaUsuariosAresAVer.cshtml" />
+    <Content Include="Views\Ticket\BandejaTicketCerradosCancelados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
