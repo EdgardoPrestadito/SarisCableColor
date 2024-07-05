@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace OrionCoreCableColor.Controllers
 {
-    [Authorize(Roles = "Acceso_Al_Sistema")]
+    //[Authorize(Roles = "Acceso_Al_Sistema")]
     public class PaisController : BaseController
     {
         // GET: Pais

@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace OrionCoreCableColor.Controllers
 {
-    [Authorize(Roles = "Acceso_Al_Sistema")]
+    //[Authorize(Roles = "Acceso_Al_Sistema")]
     public class DashboardController : BaseController
     {
         // GET: Dashboard

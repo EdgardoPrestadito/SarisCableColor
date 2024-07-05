@@ -15,11 +15,11 @@ using OrionCoreCableColor.Models.Indicadores;
 
 namespace OrionCoreCableColor.Controllers
 {
-    [Authorize(Roles = "Acceso_Al_Sistema")]
+    //[Authorize(Roles = "Acceso_Al_Sistema")]
     public class TicketController : BaseController
     {
         // GET: Ticket
-        [Authorize(Roles = "Acceso_Al_Sistema")]
+        //[Authorize(Roles = "Acceso_Al_Sistema")]
         public ActionResult Index()
         {
             ViewBag.idUsuario = GetIdUser();
@@ -197,7 +197,7 @@ namespace OrionCoreCableColor.Controllers
                     tick.fdFechaCreacion = cont.fdFechaCreacion;
                     tick.fcTituloRequerimiento = cont.fcTituloRequerimiento;
                     tick.fiIDAreaSolicitante = cont.fiIDAreaSolicitante;
-                    tick.fiIDEstadoRequerimiento = cont.fiIDEstadoRequerimiento;
+                    tick.fiIDEstadoRequerimiento = cont.fiIDEstadoRequerimiento == Convert.ToByte(7) ? Convert.ToByte(3) : cont.fiIDEstadoRequerimiento;
                     tick.fiIDUsuarioAsignado = cont.fiIDUsuarioAsignado;
                     tick.fdFechaAsignacion = cont.fdFechaAsignacion;
                     tick.fdFechadeCierre = cont.fdFechadeCierre;
@@ -249,7 +249,7 @@ namespace OrionCoreCableColor.Controllers
                     ViewBag.idticket = idticket;
                     ViewBag.UsuarioLogueado = GetIdUser();
                     ViewBag.DatosDocumentoListado = contexto.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento(idticket, 1, 1, GetIdUser()).ToList();
-                    ViewBag.fiIDEstadoRequerimiento = cont.fiIDEstadoRequerimiento;
+                    ViewBag.fiIDEstadoRequerimiento = cont.fiIDEstadoRequerimiento == Convert.ToByte(7) ? Convert.ToByte(3) : cont.fiIDEstadoRequerimiento;
                     ViewBag.fiTipoRequerimiento = cont.fiTipoRequerimiento;
 
                     return PartialView(tick);
@@ -816,10 +816,11 @@ namespace OrionCoreCableColor.Controllers
                     var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
 
                     var datosticket = Datosticket(idticket);//contexto.sp_Requerimientos_Bandeja_ByID(1, 1, GetIdUser(), idticket).FirstOrDefault();
-                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, Convert.ToByte(3), DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
+                    //var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, Convert.ToByte(3), DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
+                    var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, datosticket.fiIDEstadoRequerimiento, DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
                     //ObtenerDataTicket(idticket); // aqui va el signalR
                     var usuariopendiente = contexto.sp_Configuraciones("UsuarioPendiente").FirstOrDefault().fcValorLlave;//.fcValorLlave.Select(a => Convert.ToInt32(a)).FirstOrDefault();
-                    GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"{usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} Reasigna al Area {areaasignada} por: " + comenta, 1, 7, Convert.ToInt32(usuariopendiente), idArea);// se cambio a que se envie el Sisten Bot
+                    GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"{usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} Reasigna al Area {areaasignada} por: " + comenta, 1, datosticket.fiIDEstadoRequerimiento, Convert.ToInt32(usuariopendiente), idArea);// se cambio a que se envie el Sisten Bot
 
                     if (datosticket.fiAreaAsignada != idArea)
                     {

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace OrionCoreCableColor.Controllers
 {
-    [Authorize(Roles = "Acceso_Al_Sistema")]
+    //[Authorize(Roles = "Acceso_Al_Sistema")]
     public class CI_ConfiguracionController : BaseController
     {
         // GET: CI_Configuracion
