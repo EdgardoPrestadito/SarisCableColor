@@ -233,7 +233,7 @@ namespace OrionCoreCableColor.Controllers
                     var idrolestodopoderosos = contexto.sp_Configuraciones("RolesquePuedenverTodo").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
 
                     var user = GetUser();
-                    if (GetIdUser() == cont.fiIDUsuarioSolicitante || idrolestodopoderosos.Contains(user.IdRol) || (user.fiAreaAsignada == tick.fiAreaAsignada || user.fiAreaAsignada == tick.fiIDAreaSolicitante))
+                    if (GetIdUser() == cont.fiIDUsuarioSolicitante || idrolestodopoderosos.Contains(user.IdRol) || (user.fiAreaAsignada == tick.fiIDAreaSolicitante))
                     {
                         ViewBag.Estados = contexto.sp_Estados_Lista().Where(a => !estadosquenovan.Any(b => b == a.fiIDEstado)).Select(x => new SelectListItem { Value = x.fiIDEstado.ToString(), Text = x.fcDescripcionEstado }).ToList();
                         puede = true;
