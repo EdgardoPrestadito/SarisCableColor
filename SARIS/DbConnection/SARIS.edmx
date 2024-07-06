@@ -274,6 +274,7 @@
         <Function Name="sp_ListadoPaisPrueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_ListadoTicket_CerradosCancelado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+          <Parameter Name="piRolUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_ListarImpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_ListarPrioridad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -952,23 +953,6 @@
             <Parameter Name="pcLatitud" Mode="In" Type="String" />
             <Parameter Name="pcLongitud" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_Requerimiento_Maestro_Actualizar">
-            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
-            <Parameter Name="pcTituloRequerimiento" Mode="In" Type="String" />
-            <Parameter Name="pcDescripcionRequerimiento" Mode="In" Type="String" />
-            <Parameter Name="piIDEstadoRequerimiento" Mode="In" Type="Byte" />
-            <Parameter Name="fdFechaAsignacion" Mode="In" Type="DateTime" />
-            <Parameter Name="pifiIDUsuarioAsignado" Mode="In" Type="Int32" />
-            <Parameter Name="piTiempodeDesarrollo" Mode="In" Type="Int32" />
-            <Parameter Name="pifiTipoRequerimiento" Mode="In" Type="Int32" />
-            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
-            <Parameter Name="piIdAreaAsignada" Mode="In" Type="Int32" />
-            <Parameter Name="piIdTicketPadre" Mode="In" Type="Int32" />
-            <Parameter Name="pifiMotivoEstado" Mode="In" Type="Int32" />
-            <Parameter Name="piIdCategoriaResolucion" Mode="In" Type="Int32" />
-            <Parameter Name="piIdSubCategoriaResolucion" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_IncidenciasPorServicioAfectado">
             <Parameter Name="piIdIncidencia" Mode="In" Type="Int32" />
             <Parameter Name="piIdServicioAfectado" Mode="In" Type="Int32" />
@@ -1171,6 +1155,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_ListadoTicket_CerradosCancelado" ReturnType="Collection(SARISModel.sp_ListadoTicket_CerradosCancelado_Result)">
           <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="piRolUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Requerimiento_Bitacoras_Agregar">
             <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
@@ -1190,6 +1175,23 @@
             <Parameter Name="piIDApp" Mode="In" Type="Int16" />
             <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
             <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Maestro_Actualizar" ReturnType="Collection(SARISModel.sp_Requerimiento_Maestro_Actualizar_Result)">
+            <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="pcTituloRequerimiento" Mode="In" Type="String" />
+            <Parameter Name="pcDescripcionRequerimiento" Mode="In" Type="String" />
+            <Parameter Name="piIDEstadoRequerimiento" Mode="In" Type="Byte" />
+            <Parameter Name="fdFechaAsignacion" Mode="In" Type="DateTime" />
+            <Parameter Name="pifiIDUsuarioAsignado" Mode="In" Type="Int32" />
+            <Parameter Name="piTiempodeDesarrollo" Mode="In" Type="Int32" />
+            <Parameter Name="pifiTipoRequerimiento" Mode="In" Type="Int32" />
+            <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+            <Parameter Name="piIdAreaAsignada" Mode="In" Type="Int32" />
+            <Parameter Name="piIdTicketPadre" Mode="In" Type="Int32" />
+            <Parameter Name="pifiMotivoEstado" Mode="In" Type="Int32" />
+            <Parameter Name="piIdCategoriaResolucion" Mode="In" Type="Int32" />
+            <Parameter Name="piIdSubCategoriaResolucion" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Requerimiento_Areas_Result">
@@ -2098,6 +2100,11 @@
           <Property Type="Int32" Name="fiCategoriaResolucion" Nullable="false" />
           <Property Type="Int32" Name="fiSubCategoriaResolucion" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="sp_Requerimiento_Maestro_Actualizar_Result">
+          <Property Type="String" Name="fiMensaje" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="fcMensaje" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdIngresado" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2818,7 +2825,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ConfiguracionCI_Crear" FunctionName="SARISModel.Store.sp_ConfiguracionCI_Crear" />
-          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Actualizar" FunctionName="SARISModel.Store.sp_Requerimiento_Maestro_Actualizar" />
           <FunctionImportMapping FunctionImportName="sp_IncidenciasPorServicioAfectado" FunctionName="SARISModel.Store.sp_IncidenciasPorServicioAfectado" />
           <FunctionImportMapping FunctionImportName="sp_Catalogo_ConfiguracionCI_listado" FunctionName="SARISModel.Store.sp_Catalogo_ConfiguracionCI_listado">
             <ResultMapping>
@@ -3439,6 +3445,15 @@
                 <ScalarProperty Name="fiIDRequerimientoPadre" ColumnName="fiIDRequerimientoPadre" />
                 <ScalarProperty Name="fiCategoriaResolucion" ColumnName="fiCategoriaResolucion" />
                 <ScalarProperty Name="fiSubCategoriaResolucion" ColumnName="fiSubCategoriaResolucion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Maestro_Actualizar" FunctionName="SARISModel.Store.sp_Requerimiento_Maestro_Actualizar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Maestro_Actualizar_Result">
+                <ScalarProperty Name="fiMensaje" ColumnName="fiMensaje" />
+                <ScalarProperty Name="fcMensaje" ColumnName="fcMensaje" />
+                <ScalarProperty Name="IdIngresado" ColumnName="IdIngresado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

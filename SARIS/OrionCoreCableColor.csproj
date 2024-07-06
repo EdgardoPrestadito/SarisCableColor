@@ -700,6 +700,9 @@
     <Compile Include="DbConnection\sp_Requerimiento_Lista_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Requerimiento_Maestro_Actualizar_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Requerimiento_Maestro_Detalle_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
