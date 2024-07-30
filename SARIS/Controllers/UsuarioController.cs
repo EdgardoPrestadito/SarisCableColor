@@ -55,7 +55,7 @@ namespace OrionCoreCableColor.Controllers
                         fcAreaAsignada = x.Area.fcDescripcion
 
                     }).
-                    //Where(b => b.fcBuzondeCorreo != "kevin.santos@miprestadito.com").
+                    //Where(b => b.fcAreaAsignada != "Soporte").
                     ToList(), JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = Int32.MaxValue;
                     return jsonResult;
@@ -83,7 +83,7 @@ namespace OrionCoreCableColor.Controllers
                     var usuarioLogueado = GetUser();
                     //var rol = 1; // GetRol(usuarioLogueado.IdRol);
                     //var permisos = GetPermisos(usuarioLogueado.IdRol);
-                    ViewBag.ListaAreas = contextSaris.sp_Requerimiento_Areas(1, 1, 1).ToList().Select(x => new SelectListItem { Value = x.fiIDArea.ToString(), Text = x.fcDescripcion }).ToList();
+                    ViewBag.ListaAreas = contextSaris.sp_Requerimiento_Areas(1, 1, 1).Where(x => x.fcDescripcion != "Soporte").ToList().Select(x => new SelectListItem { Value = x.fiIDArea.ToString(), Text = x.fcDescripcion }).ToList();
                     ViewBag.ListaRoles = context.Roles.Where(x => x.Activo).Select(x => new SelectListItem { Value = x.Pk_IdRol.ToString(), Text = x.Nombre }).ToList();
                     //if (rol == "Orion_Contratista")
                     //{

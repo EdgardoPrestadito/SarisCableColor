@@ -169,7 +169,8 @@
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        if (data.fiIDUsuarioAsignado == 3013 || data.fiIDUsuarioAsignado == 4075) {
+                        //if (data.fiIDUsuarioAsignado == 3013 || data.fiIDUsuarioAsignado == 4075) { pruebas
+                        if (data.fiIDUsuarioAsignado == 3013 || data.fiIDUsuarioAsignado == 3185) { //Produccion
                             return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
                         } else {
                             return data.fcNombreAsignado;

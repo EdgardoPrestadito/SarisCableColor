@@ -28,5 +28,9 @@ namespace OrionCoreCableColor.Models.EmailTemplateService
         public int fiIDPrioridad { get; set; }
         public string fcDescripcionPrioridad { get; set; }
         public string fcComentario { get; set; }
+        public List<string> ListCustomerEmail { get; set; }
+        public List<string> ListDestinationEmail { get; set; }
+
+        public List<string> List_CC = new List<string>();
     }
 }

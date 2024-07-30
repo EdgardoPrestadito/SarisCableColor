@@ -84,6 +84,62 @@ namespace OrionCoreCableColor.App_Services.EmailService
         }
 
 
+        public async Task<bool> SendEmailManyDestinationsAsync(SendEmailViewModel model)
+        {
+            // Initialization.  
+            bool isSend = false;
+
+            try
+            {
+                // Initialization.  
+                var body = model.Body;
+                var message = new MailMessage();
+
+                // Settings.  
+                foreach (var destinatario in model.ListDestinationEmail)
+                {
+                    message.To.Add(new MailAddress(destinatario));
+                }
+
+                message.From = new MailAddress(From_Email, string.IsNullOrEmpty(model.EmailName) ? "SARIS" : model.EmailName);
+                message.Subject = !string.IsNullOrEmpty(model.Subject) ? model.Subject : "Notefica";
+                message.IsBodyHtml = true;
+                message.Body = body;
+
+                foreach (var email in model.List_CC)
+                {
+                    message.CC.Add(new MailAddress(email));
+                }
+
+                if (model.Attachment != null) message.Attachments.Add(model.Attachment);
+
+                using (var smtp = new SmtpClient(Host, Port))
+                {
+                    smtp.Credentials = new System.Net.NetworkCredential(From_Email, From_Password);
+
+                    smtp.EnableSsl = false;
+                    //   smtp.ClientCertificates.Add(new X509Certificate());
+                    //smtp.ConnectionProtocols = ConnectionProtocols.Ssl;
+
+                    // var certificate = ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
+                    //  ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
+
+                    await smtp.SendMailAsync(message);
+                    isSend = true;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                await SendEmailException(ex, "Send email");
+                throw ex;
+            }
+
+            // info.  
+            return isSend;
+        }
+
         public async Task<bool> SendEmailManyAttachmentAsync(SendEmailViewModel model)
         {
             // Initialization.  

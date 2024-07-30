@@ -297,15 +297,19 @@ namespace OrionCoreCableColor.Controllers
                         //{
                         //    agregarCreacionTicket((int)save.IdIngresado);//esto es SignalR
                         //}
+                        var user = GetUser();
                         var correo = contexto.sp_DatosTicket_Correo(datosticket.fiIDRequerimiento).FirstOrDefault();
+                        var correosNumeros = contexto.sp_CorreosNumeros_AreaRol(usuarioLogueado.fiAreaAsignada, 3).ToList();
+                        
                         var _emailTemplateService = new EmailTemplateService();
+                        //correo area
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
@@ -324,7 +328,13 @@ namespace OrionCoreCableColor.Controllers
                         });
 
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentarioticket, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefe, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentarioticket, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+
+                        for (int i = 0; i < correosNumeros.Count; i++)
+                        {
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correosNumeros[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentarioticket, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                        }
+                        
+                        
                         //MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentarioticket, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
                         //MensajeDeTexto.EnviarLinkGeoLocation(model.Nombre, model.IdCliente, model.Telefono, "");
                         return EnviarListaJson(save);
@@ -374,15 +384,23 @@ namespace OrionCoreCableColor.Controllers
                     //----------
                     var correo = contexto.sp_DatosTicket_Correo(ticket.fiIDRequerimiento).FirstOrDefault();
                     var _emailTemplateService = new EmailTemplateService();
-                    if (correo.fiIDEstadoRequerimiento == 5 && correo.fiIDEstadoRequerimiento == 6)
+                    var AreaAsignada = (int)correo.fiAreaAsignada;
+                    var AreaSolicitante = (int)correo.fiIDAreaSolicitante;
+                    var CorreoNumeroJefeAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 3).ToList();
+                    var CorreoNumeroJefeSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitante, 3).ToList();
+
+                    var CorreoNumeroSupervisorAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 6).ToList();
+                    var CorreoNumeroSupervisorSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitante, 6).ToList();
+                    if (ticket.fiIDEstadoRequerimiento == 5 || ticket.fiIDEstadoRequerimiento == 6 || ticket.fiIDEstadoRequerimiento == 4)
                     {
+                        //correo Gerencia
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
@@ -399,42 +417,101 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+                        //Correo numero JefeArea Solicitante
+                        for (int i = 0; i < CorreoNumeroJefeSolicitante.Count; i++)
+                        {
+                            await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            {
+                                fiIDRequerimiento = correo.fiIDRequerimiento,
+                                fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                                fdFechaCreacion = correo.fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                                fcAreaSolicitante = correo.fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                                fcNombreCorto = correo.fcNombreCorto,
+                                fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = ticket.fcDescripcionEstado,
+                                fcCorreoElectronico = CorreoNumeroJefeSolicitante[i].fcBuzondeCorreo,
+                                fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                                fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                                fiIDUrgencia = (int)correo.fiIDUrgencia,
+                                fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                                fiIDImpacto = (int)correo.fiIDImpacto,
+                                fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                                fiIDPrioridad = (int)correo.fiIDPrioridad,
+                                fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                                fcComentario = comentario
+                            });
+                            if (ticket.fiIDEstadoRequerimiento == 5)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
 
+                            if (ticket.fiIDEstadoRequerimiento == 6)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                            if (ticket.fiIDEstadoRequerimiento == 4)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                        }
+
+                        //Correo numero Supervisor Solicitante
+                        for (int i = 0; i < CorreoNumeroSupervisorSolicitante.Count; i++)
+                        {
+                            await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            {
+                                fiIDRequerimiento = correo.fiIDRequerimiento,
+                                fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                                fdFechaCreacion = correo.fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                                fcAreaSolicitante = correo.fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                                fcNombreCorto = correo.fcNombreCorto,
+                                fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = ticket.fcDescripcionEstado,
+                                fcCorreoElectronico = CorreoNumeroSupervisorSolicitante[i].fcBuzondeCorreo,
+                                fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                                fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                                fiIDUrgencia = (int)correo.fiIDUrgencia,
+                                fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                                fiIDImpacto = (int)correo.fiIDImpacto,
+                                fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                                fiIDPrioridad = (int)correo.fiIDPrioridad,
+                                fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                                fcComentario = comentario
+                            });
+                            if (ticket.fiIDEstadoRequerimiento == 5)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+
+                            if (ticket.fiIDEstadoRequerimiento == 6)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                            if (ticket.fiIDEstadoRequerimiento == 4)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                        }
+
+                        //Correo Usuario Solicitante
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
                             fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                            fcDescripcionEstado = correo.fcDescripcionEstado,
-                            fcCorreoElectronico = correo.fcCorreoJefeArea,
-                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
-                            fcTipoRequerimiento = correo.fcTipoRequerimiento,
-                            fiIDUrgencia = (int)correo.fiIDUrgencia,
-                            fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
-                            fiIDImpacto = (int)correo.fiIDImpacto,
-                            fcDescripcionImpacto = correo.fcDescripcionImpacto,
-                            fiIDPrioridad = (int)correo.fiIDPrioridad,
-                            fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
-                            fcComentario = comentario
-                        });
-                        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
-                        {
-                            fiIDRequerimiento = correo.fiIDRequerimiento,
-                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
-                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
-                            fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
-                            fcAreaSolicitante = correo.fcAreaSolicitante,
-                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
-                            fcNombreCorto = correo.fcNombreCorto,
-                            fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcDescripcionEstado = ticket.fcDescripcionEstado,
                             fcCorreoElectronico = correo.fcCorreoUsuarioSolicitante,
                             fcDescripcionCategoria = correo.fcDescripcionCategoria,
                             fcTipoRequerimiento = correo.fcTipoRequerimiento,
@@ -446,19 +523,19 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
-
+                        //Correo Gerencia Asignada
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
                             fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcDescripcionEstado = ticket.fcDescripcionEstado,
                             fcCorreoElectronico = correo.fcCorreoGerenciaAsignada,
                             fcDescripcionCategoria = correo.fcDescripcionCategoria,
                             fcTipoRequerimiento = correo.fcTipoRequerimiento,
@@ -470,43 +547,99 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+                        //Correo Jefes Asignada
+                        for (int i = 0; i < CorreoNumeroJefeAsignada.Count; i++)
+                        {
+                            await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            {
+                                fiIDRequerimiento = correo.fiIDRequerimiento,
+                                fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                                fdFechaCreacion = correo.fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                                fcAreaSolicitante = correo.fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                                fcNombreCorto = correo.fcNombreCorto,
+                                fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = ticket.fcDescripcionEstado,
+                                fcCorreoElectronico = CorreoNumeroJefeAsignada[i].fcBuzondeCorreo,
+                                fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                                fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                                fiIDUrgencia = (int)correo.fiIDUrgencia,
+                                fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                                fiIDImpacto = (int)correo.fiIDImpacto,
+                                fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                                fiIDPrioridad = (int)correo.fiIDPrioridad,
+                                fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                                fcComentario = comentario
+                            });
+                            if (ticket.fiIDEstadoRequerimiento == 5)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                            if (ticket.fiIDEstadoRequerimiento == 6)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                            if (ticket.fiIDEstadoRequerimiento == 4)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                        }
+                        //Correo Supervisores asignados
+                        for (int i = 0; i < CorreoNumeroSupervisorAsignada.Count; i++)
+                        {
+                            await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            {
+                                fiIDRequerimiento = correo.fiIDRequerimiento,
+                                fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                                fdFechaCreacion = correo.fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                                fcAreaSolicitante = correo.fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                                fcNombreCorto = correo.fcNombreCorto,
+                                fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = ticket.fcDescripcionEstado,
+                                fcCorreoElectronico = CorreoNumeroSupervisorAsignada[i].fcBuzondeCorreo,
+                                fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                                fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                                fiIDUrgencia = (int)correo.fiIDUrgencia,
+                                fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                                fiIDImpacto = (int)correo.fiIDImpacto,
+                                fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                                fiIDPrioridad = (int)correo.fiIDPrioridad,
+                                fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                                fcComentario = comentario
+                            });
+                            if (ticket.fiIDEstadoRequerimiento == 5)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                            if (ticket.fiIDEstadoRequerimiento == 6)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                            if (ticket.fiIDEstadoRequerimiento == 4)
+                            {
+                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            }
+                        }
 
+
+                        //correo usuario asignado
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
                             fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                            fcDescripcionEstado = correo.fcDescripcionEstado,
-                            fcCorreoElectronico = correo.fcCorreoJefeAreaAsignada,
-                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
-                            fcTipoRequerimiento = correo.fcTipoRequerimiento,
-                            fiIDUrgencia = (int)correo.fiIDUrgencia,
-                            fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
-                            fiIDImpacto = (int)correo.fiIDImpacto,
-                            fcDescripcionImpacto = correo.fcDescripcionImpacto,
-                            fiIDPrioridad = (int)correo.fiIDPrioridad,
-                            fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
-                            fcComentario = comentario
-                        });
-
-                        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
-                        {
-                            fiIDRequerimiento = correo.fiIDRequerimiento,
-                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
-                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
-                            fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
-                            fcAreaSolicitante = correo.fcAreaSolicitante,
-                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
-                            fcNombreCorto = correo.fcNombreCorto,
-                            fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcDescripcionEstado = ticket.fcDescripcionEstado,
                             fcCorreoElectronico = correo.fcCorreoElectronico,
                             fcDescripcionCategoria = correo.fcDescripcionCategoria,
                             fcTipoRequerimiento = correo.fcTipoRequerimiento,
@@ -518,19 +651,19 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
-
+                        //correo area solicitante
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
                             fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcDescripcionEstado = ticket.fcDescripcionEstado,
                             fcCorreoElectronico = correo.fcCorreoArea,
                             fcDescripcionCategoria = correo.fcDescripcionCategoria,
                             fcTipoRequerimiento = correo.fcTipoRequerimiento,
@@ -542,19 +675,19 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
-
+                        //correo area Asignada
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
                             fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcDescripcionEstado = ticket.fcDescripcionEstado,
                             fcCorreoElectronico = correo.fcCorreoAreaAsignada,
                             fcDescripcionCategoria = correo.fcDescripcionCategoria,
                             fcTipoRequerimiento = correo.fcTipoRequerimiento,
@@ -568,23 +701,27 @@ namespace OrionCoreCableColor.Controllers
                         });
                         if (ticket.fiIDEstadoRequerimiento == 5)
                         {
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoGrenciaAsignada, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefe, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefeAreaAsignada, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoGrenciaAsignada, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
 
                         }
 
                         if (ticket.fiIDEstadoRequerimiento == 6)
                         {
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoGrenciaAsignada, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefe, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefeAreaAsignada, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoGrenciaAsignada, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+
+                        }
+                        if (ticket.fiIDEstadoRequerimiento == 4)
+                        {
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoGrenciaAsignada, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
 
                         }
 
@@ -630,17 +767,24 @@ namespace OrionCoreCableColor.Controllers
                         //ObtenerDataTicket(ticket.fiIDRequerimiento); //Esto es el SignalR
                     }
 
-
                     correo = contexto.sp_DatosTicket_Correo(ticket.fiIDRequerimiento).FirstOrDefault();
-                    if (correo.fiIDEstadoRequerimiento == 3 || correo.fiIDEstadoRequerimiento == 4 || correo.fiIDEstadoRequerimiento == 11)
+                    AreaAsignada = (int)correo.fiAreaAsignada;
+                    int AreaSolicitantes = (int)correo.fiIDAreaSolicitante;
+                    CorreoNumeroJefeAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 3).ToList();
+                    CorreoNumeroJefeSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitantes, 3).ToList();
+
+                    CorreoNumeroSupervisorAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 6).ToList();
+                    CorreoNumeroSupervisorSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitantes, 6).ToList();
+                    if (correo.fiIDEstadoRequerimiento == 3 ||  correo.fiIDEstadoRequerimiento == 11)
                     {
+                        //Correo Area
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
@@ -657,36 +801,135 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+
+
+                        //Correo numero JefeArea Solicitante
+                        for (int i = 0; i < CorreoNumeroJefeSolicitante.Count; i++)
+                        {
+                            await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            {
+                                fiIDRequerimiento = correo.fiIDRequerimiento,
+                                fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                                fdFechaCreacion = correo.fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                                fcAreaSolicitante = correo.fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                                fcNombreCorto = correo.fcNombreCorto,
+                                fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = correo.fcDescripcionEstado,
+                                fcCorreoElectronico = CorreoNumeroJefeSolicitante[i].fcBuzondeCorreo,
+                                fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                                fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                                fiIDUrgencia = (int)correo.fiIDUrgencia,
+                                fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                                fiIDImpacto = (int)correo.fiIDImpacto,
+                                fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                                fiIDPrioridad = (int)correo.fiIDPrioridad,
+                                fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                                fcComentario = comentario
+                            });
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+
+
+                        }
+
+                        //Correo numero Supervisor Solicitante
+                        for (int i = 0; i < CorreoNumeroSupervisorSolicitante.Count; i++)
+                        {
+                            await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            {
+                                fiIDRequerimiento = correo.fiIDRequerimiento,
+                                fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                                fdFechaCreacion = correo.fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                                fcAreaSolicitante = correo.fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                                fcNombreCorto = correo.fcNombreCorto,
+                                fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = correo.fcDescripcionEstado,
+                                fcCorreoElectronico = CorreoNumeroSupervisorSolicitante[i].fcBuzondeCorreo,
+                                fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                                fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                                fiIDUrgencia = (int)correo.fiIDUrgencia,
+                                fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                                fiIDImpacto = (int)correo.fiIDImpacto,
+                                fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                                fiIDPrioridad = (int)correo.fiIDPrioridad,
+                                fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                                fcComentario = comentario
+                            });
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+
+                        }
+
+                        //Correo Jefes Asignada
+                        for (int i = 0; i < CorreoNumeroJefeAsignada.Count; i++)
+                        {
+                            await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            {
+                                fiIDRequerimiento = correo.fiIDRequerimiento,
+                                fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                                fdFechaCreacion = correo.fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                                fcAreaSolicitante = correo.fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                                fcNombreCorto = correo.fcNombreCorto,
+                                fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = correo.fcDescripcionEstado,
+                                fcCorreoElectronico = CorreoNumeroJefeAsignada[i].fcBuzondeCorreo,
+                                fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                                fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                                fiIDUrgencia = (int)correo.fiIDUrgencia,
+                                fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                                fiIDImpacto = (int)correo.fiIDImpacto,
+                                fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                                fiIDPrioridad = (int)correo.fiIDPrioridad,
+                                fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                                fcComentario = comentario
+                            });
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                        }
+                        //Correo Supervisores asignados
+                        for (int i = 0; i < CorreoNumeroSupervisorAsignada.Count; i++)
+                        {
+                            await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            {
+                                fiIDRequerimiento = correo.fiIDRequerimiento,
+                                fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                                fdFechaCreacion = correo.fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                                fcAreaSolicitante = correo.fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                                fcNombreCorto = correo.fcNombreCorto,
+                                fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = correo.fcDescripcionEstado,
+                                fcCorreoElectronico = CorreoNumeroSupervisorAsignada[i].fcBuzondeCorreo,
+                                fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                                fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                                fiIDUrgencia = (int)correo.fiIDUrgencia,
+                                fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                                fiIDImpacto = (int)correo.fiIDImpacto,
+                                fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                                fiIDPrioridad = (int)correo.fiIDPrioridad,
+                                fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                                fcComentario = comentario
+                            });
+                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+
+                        }
+
+                        //Correo usuario solicitante
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
-                            fcAreaSolicitante = correo.fcAreaSolicitante,
-                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
-                            fcNombreCorto = correo.fcNombreCorto,
-                            fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
-                            fcDescripcionEstado = correo.fcDescripcionEstado,
-                            fcCorreoElectronico = correo.fcCorreoJefeAreaAsignada,
-                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
-                            fcTipoRequerimiento = correo.fcTipoRequerimiento,
-                            fiIDUrgencia = (int)correo.fiIDUrgencia,
-                            fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
-                            fiIDImpacto = (int)correo.fiIDImpacto,
-                            fcDescripcionImpacto = correo.fcDescripcionImpacto,
-                            fiIDPrioridad = (int)correo.fiIDPrioridad,
-                            fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
-                            fcComentario = comentario
-                        });
-                        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
-                        {
-                            fiIDRequerimiento = correo.fiIDRequerimiento,
-                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
-                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
-                            fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
@@ -703,13 +946,15 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+
+                        //Correo usuario Asignado
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
                             fiIDRequerimiento = correo.fiIDRequerimiento,
                             fcTituloRequerimiento = correo.fcTituloRequerimiento,
                             fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                             fdFechaCreacion = correo.fdFechaCreacion,
-                            fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                             fcAreaSolicitante = correo.fcAreaSolicitante,
                             fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                             fcNombreCorto = correo.fcNombreCorto,
@@ -728,8 +973,6 @@ namespace OrionCoreCableColor.Controllers
                         });
 
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefe, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefeAreaAsignada, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
 
                     }
@@ -837,19 +1080,27 @@ namespace OrionCoreCableColor.Controllers
 
                     var correo = contexto.sp_DatosTicket_Correo(datosticket.fiIDRequerimiento).FirstOrDefault();
                     var _emailTemplateService = new EmailTemplateService();
+                    var AreaAsignada = correo.fiAreaAsignada;
+                    var AreaSolicitante = correo.fiIDAreaSolicitante;
+                    var CorreoNumeroJefeAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 3).ToList();
+                    var CorreoNumeroJefeSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitante, 3).ToList();
+
+                    var CorreoNumeroSupervisorAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 6).ToList();
+                    var CorreoNumeroSupervisorSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitante, 6).ToList();
+                    //correo area Asignada
                     await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                     {
                         fiIDRequerimiento = correo.fiIDRequerimiento,
                         fcTituloRequerimiento = correo.fcTituloRequerimiento,
                         fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                         fdFechaCreacion = correo.fdFechaCreacion,
-                        fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                        fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                         fcAreaSolicitante = correo.fcAreaSolicitante,
                         fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                         fcNombreCorto = correo.fcNombreCorto,
                         fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
                         fcDescripcionEstado = correo.fcDescripcionEstado,
-                        fcCorreoElectronico = correo.fcCorreoArea,
+                        fcCorreoElectronico = correo.fcCorreoAreaAsignada,
                         fcDescripcionCategoria = correo.fcDescripcionCategoria,
                         fcTipoRequerimiento = correo.fcTipoRequerimiento,
                         fiIDUrgencia = (int)correo.fiIDUrgencia,
@@ -860,31 +1111,65 @@ namespace OrionCoreCableColor.Controllers
                         fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                         fcComentario = comenta
                     });
-                    await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+
+
+                    //Correo Jefes Asignada
+                    for (int i = 0; i < CorreoNumeroJefeAsignada.Count; i++)
                     {
-                        fiIDRequerimiento = correo.fiIDRequerimiento,
-                        fcTituloRequerimiento = correo.fcTituloRequerimiento,
-                        fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
-                        fdFechaCreacion = correo.fdFechaCreacion,
-                        fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
-                        fcAreaSolicitante = correo.fcAreaSolicitante,
-                        fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
-                        fcNombreCorto = correo.fcNombreCorto,
-                        fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
-                        fcDescripcionEstado = correo.fcDescripcionEstado,
-                        fcCorreoElectronico = correo.fcCorreoJefeAreaAsignada,
-                        fcDescripcionCategoria = correo.fcDescripcionCategoria,
-                        fcTipoRequerimiento = correo.fcTipoRequerimiento,
-                        fiIDUrgencia = (int)correo.fiIDUrgencia,
-                        fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
-                        fiIDImpacto = (int)correo.fiIDImpacto,
-                        fcDescripcionImpacto = correo.fcDescripcionImpacto,
-                        fiIDPrioridad = (int)correo.fiIDPrioridad,
-                        fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
-                        fcComentario = comenta
-                    });
-                    //
-                    MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoJefeAreaAsignada, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comenta, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                        {
+                            fiIDRequerimiento = correo.fiIDRequerimiento,
+                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                            fdFechaCreacion = correo.fdFechaCreacion,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                            fcAreaSolicitante = correo.fcAreaSolicitante,
+                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                            fcNombreCorto = correo.fcNombreCorto,
+                            fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcCorreoElectronico = CorreoNumeroJefeAsignada[i].fcBuzondeCorreo,
+                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                            fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                            fiIDUrgencia = (int)correo.fiIDUrgencia,
+                            fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                            fiIDImpacto = (int)correo.fiIDImpacto,
+                            fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                            fiIDPrioridad = (int)correo.fiIDPrioridad,
+                            fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                            fcComentario = comenta
+                        });
+                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comenta, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                    }
+                    //Correo Supervisores asignados
+                    for (int i = 0; i < CorreoNumeroSupervisorAsignada.Count; i++)
+                    {
+                        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                        {
+                            fiIDRequerimiento = correo.fiIDRequerimiento,
+                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                            fdFechaCreacion = correo.fdFechaCreacion,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                            fcAreaSolicitante = correo.fcAreaSolicitante,
+                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                            fcNombreCorto = correo.fcNombreCorto,
+                            fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
+                            fcDescripcionEstado = correo.fcDescripcionEstado,
+                            fcCorreoElectronico = CorreoNumeroSupervisorAsignada[i].fcBuzondeCorreo,
+                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                            fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                            fiIDUrgencia = (int)correo.fiIDUrgencia,
+                            fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                            fiIDImpacto = (int)correo.fiIDImpacto,
+                            fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                            fiIDPrioridad = (int)correo.fiIDPrioridad,
+                            fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                            fcComentario = comenta
+                        });
+                        MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comenta, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+
+                    }
 
                     return EnviarResultado(true, "", "Ticket Actualizado exitosamente");
                 }
@@ -946,7 +1231,7 @@ namespace OrionCoreCableColor.Controllers
                         fcTituloRequerimiento = correo.fcTituloRequerimiento,
                         fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
                         fdFechaCreacion = correo.fdFechaCreacion,
-                        fiIDAreaSolicitante = correo.fiIDAreaSolicitante,
+                        fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
                         fcAreaSolicitante = correo.fcAreaSolicitante,
                         fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
                         fcNombreCorto = correo.fcNombreCorto,

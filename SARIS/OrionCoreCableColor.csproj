@@ -523,6 +523,9 @@
     <Compile Include="DbConnection\sp_Configuraciones_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_CorreosNumeros_AreaRol_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_DashboardGlobal_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>

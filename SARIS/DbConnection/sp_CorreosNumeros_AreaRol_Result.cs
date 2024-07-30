@@ -11,9 +11,14 @@ namespace OrionCoreCableColor.DbConnection
 {
     using System;
     
-    public partial class sp_Indicadores_Insertar_Result
+    public partial class sp_CorreosNumeros_AreaRol_Result
     {
-        public Nullable<int> fiRequest { get; set; }
-        public string fcRequest { get; set; }
+        public string fcNombreCorto { get; set; }
+        public string fcBuzondeCorreo { get; set; }
+        public string fcTelefonoMovil { get; set; }
+        public Nullable<int> fiAreaAsignada { get; set; }
+        public string fcDescripcion { get; set; }
+        public short fiIDPuesto { get; set; }
+        public string fcPuesto { get; set; }
     }
 }

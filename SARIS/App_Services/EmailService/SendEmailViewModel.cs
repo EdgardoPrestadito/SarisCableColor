@@ -25,6 +25,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
         public List<string> List_CC = new List<string>();
         public string firma { get; set; }
         public HttpPostedFileBase Archivo { get; set; }
+        public List<string> ListDestinationEmail { get; set; }
 
         public List<ListAttachmentViewModel> ArchivosVarios { get; set; }
     }
