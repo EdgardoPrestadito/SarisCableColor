@@ -236,7 +236,17 @@ namespace OrionCoreCableColor.Controllers
 
                     var user = GetUser();
                     var usuariologueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
-                    if (GetIdUser() == cont.fiIDUsuarioSolicitante || idrolestodopoderosos.Contains(user.IdRol) || (usuariologueado.fiAreaAsignada == tick.fiIDAreaSolicitante))
+
+                    /*
+                        se hace esto pero lo mejor es hacerlo desde la base de datos 
+                        el saber el jefe inmediato de los usuario asignado y el usuario solicitante 
+                        att: Edgardo Mancia 26/08/2024
+                     */
+
+                    var infousuarioasignado = contexto.sp_Usuarios_Maestro_PorIdUsuario(tick.fiIDUsuarioAsignado).FirstOrDefault();
+                    var infousuarioaSolicitante = contexto.sp_Usuarios_Maestro_PorIdUsuario(tick.fiIDUsuarioSolicitante).FirstOrDefault();
+
+                    if (GetIdUser() == cont.fiIDUsuarioSolicitante || idrolestodopoderosos.Contains(user.IdRol) || (usuariologueado.fiAreaAsignada == tick.fiIDAreaSolicitante) || (infousuarioasignado.fiIDJefeInmediato == GetIdUser() || infousuarioaSolicitante.fiIDJefeInmediato == GetIdUser()))
                     {
                         ViewBag.Estados = contexto.sp_Estados_Lista().Where(a => !estadosquenovan.Any(b => b == a.fiIDEstado)).Select(x => new SelectListItem { Value = x.fiIDEstado.ToString(), Text = x.fcDescripcionEstado }).ToList();
                         puede = true;
