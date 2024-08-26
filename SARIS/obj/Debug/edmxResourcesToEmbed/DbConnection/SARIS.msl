@@ -1361,5 +1361,27 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListadoBandeja_Ticket" FunctionName="SARISModel.Store.sp_ListadoBandeja_Ticket" />
+    <FunctionImportMapping FunctionImportName="sp_UsuarioArea_Resoluctora" FunctionName="SARISModel.Store.sp_UsuarioArea_Resoluctora">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_UsuarioArea_Resoluctora_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
+          <ScalarProperty Name="fdFechaFinEstado" ColumnName="fdFechaFinEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SaberUsuario_Area_Estado_Anterior_Requerimiento" FunctionName="SARISModel.Store.sp_SaberUsuario_Area_Estado_Anterior_Requerimiento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result">
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

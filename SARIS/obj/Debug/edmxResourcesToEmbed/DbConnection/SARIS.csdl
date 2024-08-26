@@ -598,6 +598,18 @@
     <FunctionImport Name="sp_DatosTicket_Correo" ReturnType="Collection(SARISModel.sp_DatosTicket_Correo_Result)">
       <Parameter Name="piTicket" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_ListadoBandeja_Ticket">
+      <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
+      <Parameter Name="piIDApp" Mode="In" Type="Int32" />
+      <Parameter Name="piIdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="piEstatus" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UsuarioArea_Resoluctora" ReturnType="Collection(SARISModel.sp_UsuarioArea_Resoluctora_Result)">
+      <Parameter Name="piIDticket" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_SaberUsuario_Area_Estado_Anterior_Requerimiento" ReturnType="Collection(SARISModel.sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result)">
+      <Parameter Name="idrequerimiento" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_Requerimiento_Areas_Result">
     <Property Type="Int16" Name="fiIDArea" Nullable="false" />
@@ -1519,5 +1531,18 @@
     <Property Type="String" Name="fcTelefonoGrenciaAsignada" Nullable="false" MaxLength="10" />
     <Property Type="String" Name="fcCorreoGerenciaAsignada" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="fcCorreoAreaAsignada" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_UsuarioArea_Resoluctora_Result">
+    <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+    <Property Type="Int32" Name="fiIDUsuarioAsignado" Nullable="true" />
+    <Property Type="Int32" Name="fiIDArea" Nullable="true" />
+    <Property Type="DateTime" Name="fdFechaFinEstado" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result">
+    <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+    <Property Type="String" Name="fcDescripcionEstado" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="fcDescripcion" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="fiAreaAsignada" Nullable="true" />
   </ComplexType>
 </Schema>

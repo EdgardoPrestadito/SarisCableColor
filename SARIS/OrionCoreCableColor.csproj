@@ -712,6 +712,9 @@
     <Compile Include="DbConnection\sp_Requerimiento_Tipo_Adjuntos_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_ServiciosAfectados_Listado_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -731,6 +734,9 @@
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Ubicacion_SubCategoria_Listado_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection\sp_UsuarioArea_Resoluctora_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
     <Compile Include="DbConnection\sp_Usuarios_Maestro_Lista_Result.cs">

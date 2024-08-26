@@ -36,11 +36,17 @@
             <li>
                 <a href="@Url.Action("Index","Ticket")" data-filter-tags="blank page">
                     <i class="fal fa-ticket"></i>
-                    <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Incidente</span>
+                    <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Incidentes Pendientes</span>
                 </a>
 
             </li>
+            <li>
+                <a href="@Url.Action("BandejaTicketCerradosCancelados","Ticket")" data-filter-tags="blank page">
+                    <i class="fal fa-ticket"></i>
+                    <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Incidentes Cerrados y Cancelados</span>
+                </a>
 
+            </li>
 
 
             @if (User.IsInRole("SARIS_Seguridad"))
@@ -223,14 +229,14 @@
 
 
                         @*@if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
-        {
-            <li>
-                <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
-                    <i class="fal fa-location-circle fa-fw"></i>
-                    <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
-                </a>
-            </li>
-        }*@
+                    {
+                        <li>
+                            <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
+                                <i class="fal fa-location-circle fa-fw"></i>
+                                <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
+                            </a>
+                        </li>
+                    }*@
 
 
 
@@ -240,31 +246,31 @@
 
 
             @*@if (User.IsInRole("Orion_Acceso_Configuraciones"))
-            {
-                <li>
-                    <a href="@Url.Action("IndexConfiguraciones","Mantenimiento")" data-filter-tags="blank page">
-                        <i class="fal fa-cogs"></i>
-                        <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Configuraciones</span>
-                    </a>
-                </li>
-            }*@
+        {
+            <li>
+                <a href="@Url.Action("IndexConfiguraciones","Mantenimiento")" data-filter-tags="blank page">
+                    <i class="fal fa-cogs"></i>
+                    <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Configuraciones</span>
+                </a>
+            </li>
+        }*@
 
 
             @*<li>
-                <a href="#" title="Application Intel" data-filter-tags="Contrato">
-                    <i class="fal fa-file-contract"></i>
-                    <span class="nav-link-text" data-i18n="nav.Clientes" style="color:white;">Contratos</span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="@Url.Action("GuardarContrato","Contrato")" data-filter-tags="blank page">
-                            <i class="fal fa-file-edit"></i>
-                            <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Editor</span>
-                        </a>
-                    </li>
+            <a href="#" title="Application Intel" data-filter-tags="Contrato">
+                <i class="fal fa-file-contract"></i>
+                <span class="nav-link-text" data-i18n="nav.Clientes" style="color:white;">Contratos</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("GuardarContrato","Contrato")" data-filter-tags="blank page">
+                        <i class="fal fa-file-edit"></i>
+                        <span class="nav-link-text" data-i18n="nav.blankpage" style="color:white;">Editor</span>
+                    </a>
+                </li>
 
-                </ul>
-            </li>*@
+            </ul>
+        </li>*@
 
 
         </ul>

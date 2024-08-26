@@ -288,7 +288,7 @@
                     className: "td-responsive",
                     render: function (data, type, row) {
 
-                        var ahora = new Date();
+                        var ahora = new Date(moment(data.fdFechadeCierre).locale('es').format('YYYY/MM/DD hh:mm a'));
                         var fechaInicio = new Date(moment(data.fdFechaCreacion).locale('es').format('YYYY/MM/DD hh:mm a'));
                         var diferencia = ahora.getTime() - fechaInicio.getTime();
 

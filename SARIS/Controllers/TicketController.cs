@@ -49,7 +49,8 @@ namespace OrionCoreCableColor.Controllers
                         listaEquifaxGarantia = db.ObjectContext.Translate<TicketMiewModel>(reader).ToList();
                     }
                     connection.Close();
-                    if (GetUser().IdRol == 1 || GetUser().IdRol == 2) // ponerlos en una configuracion para evitar poner datos en duro att Edgardo mancia 2024-06-25
+                    var usuariologueado = GetUser();
+                    if (usuariologueado.IdRol == 1 || usuariologueado.IdRol == 2) // ponerlos en una configuracion para evitar poner datos en duro att Edgardo mancia 2024-06-25
                     {
                         return EnviarListaJson(listaEquifaxGarantia);
                     }
@@ -58,7 +59,8 @@ namespace OrionCoreCableColor.Controllers
                         using (var conexion = new SARISEntities1())
                         {
                             var IDuser = GetIdUser();
-                            var areas = conexion.sp_usuarioVerArea_Lista_ByUsuario(IDuser).FirstOrDefault().fcIdAreas ?? ""; var newareas = areas.Split(',').Select(a => Convert.ToInt32(a)).ToList();
+                            var areas = conexion.sp_usuarioVerArea_Lista_ByUsuario(IDuser).FirstOrDefault().fcIdAreas ?? ""; 
+                            var newareas = areas.Split(',').Select(a => Convert.ToInt32(a)).ToList();
                             var listareas = listaEquifaxGarantia.Where(x => newareas.Any(y => y == x.fiAreaAsignada) || x.fiIDUsuarioSolicitante == IDuser).ToList();
                             return EnviarListaJson(listareas);
                         }
@@ -233,7 +235,8 @@ namespace OrionCoreCableColor.Controllers
                     var idrolestodopoderosos = contexto.sp_Configuraciones("RolesquePuedenverTodo").FirstOrDefault().fcValorLlave.Split(',').Select(a => Convert.ToInt32(a)).ToList();
 
                     var user = GetUser();
-                    if (GetIdUser() == cont.fiIDUsuarioSolicitante || idrolestodopoderosos.Contains(user.IdRol) || (user.fiAreaAsignada == tick.fiIDAreaSolicitante))
+                    var usuariologueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
+                    if (GetIdUser() == cont.fiIDUsuarioSolicitante || idrolestodopoderosos.Contains(user.IdRol) || (usuariologueado.fiAreaAsignada == tick.fiIDAreaSolicitante))
                     {
                         ViewBag.Estados = contexto.sp_Estados_Lista().Where(a => !estadosquenovan.Any(b => b == a.fiIDEstado)).Select(x => new SelectListItem { Value = x.fiIDEstado.ToString(), Text = x.fcDescripcionEstado }).ToList();
                         puede = true;
@@ -383,16 +386,34 @@ namespace OrionCoreCableColor.Controllers
 
                     //----------
                     var correo = contexto.sp_DatosTicket_Correo(ticket.fiIDRequerimiento).FirstOrDefault();
+                    
                     var _emailTemplateService = new EmailTemplateService();
                     var AreaAsignada = (int)correo.fiAreaAsignada;
                     var AreaSolicitante = (int)correo.fiIDAreaSolicitante;
-                    var CorreoNumeroJefeAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 3).ToList();
-                    var CorreoNumeroJefeSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitante, 3).ToList();
 
                     var CorreoNumeroSupervisorAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 6).ToList();
+                    var CorreoNumeroJefeAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 3).ToList();
+
+                    if (ticket.fiIDEstadoRequerimiento == 5)
+                    {
+                        var IdesAnteriores = contexto.sp_SaberUsuario_Area_Estado_Anterior_Requerimiento(ticket.fiIDRequerimiento).FirstOrDefault();
+
+                        CorreoNumeroSupervisorAsignada = contexto.sp_CorreosNumeros_AreaRol(IdesAnteriores.fiAreaAsignada, 6).ToList();
+                        CorreoNumeroJefeAsignada = contexto.sp_CorreosNumeros_AreaRol(IdesAnteriores.fiAreaAsignada, 3).ToList();
+
+                    }
+                    
+                    
+
+                    var CorreoNumeroJefeSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitante, 3).ToList();
                     var CorreoNumeroSupervisorSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitante, 6).ToList();
+
+
                     if (ticket.fiIDEstadoRequerimiento == 5 || ticket.fiIDEstadoRequerimiento == 6 || ticket.fiIDEstadoRequerimiento == 4)
                     {
+
+
+
                         //correo Gerencia
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {

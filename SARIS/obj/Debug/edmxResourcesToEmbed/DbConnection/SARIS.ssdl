@@ -270,6 +270,12 @@
     <Parameter Name="piUbicacion" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_IndicadoresResolucion_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ListadoBandeja_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSesion" Type="int" Mode="In" />
+    <Parameter Name="piIDApp" Type="int" Mode="In" />
+    <Parameter Name="piIdUsuario" Type="int" Mode="In" />
+    <Parameter Name="piEstatus" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_ListadoPaisPrueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_ListadoTicket_CerradosCancelado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDUsuario" Type="int" Mode="In" />
@@ -539,6 +545,9 @@
   <Function Name="sp_Requerimientos_UsuarioLibre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDArea" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_SaberUsuario_Area_Estado_Anterior_Requerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idrequerimiento" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_ServiciosAfectados_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_TicketRobChat_Crear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDTicketRobChat" Type="int" Mode="In" />
@@ -567,6 +576,9 @@
     <Parameter Name="piIDJefeInmediato" Type="int" Mode="In" />
     <Parameter Name="piAreaAsignada" Type="int" Mode="In" />
     <Parameter Name="piIDPuesto" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_UsuarioArea_Resoluctora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDticket" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_UsuarioMaestro_ObtenerIdAreaAsignada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDusuario" Type="int" Mode="In" />

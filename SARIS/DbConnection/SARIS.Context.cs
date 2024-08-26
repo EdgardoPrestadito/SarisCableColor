@@ -2106,5 +2106,44 @@ namespace OrionCoreCableColor.DbConnection
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DatosTicket_Correo_Result>("sp_DatosTicket_Correo", piTicketParameter);
         }
+    
+        public virtual int sp_ListadoBandeja_Ticket(Nullable<int> piIDSesion, Nullable<int> piIDApp, Nullable<int> piIdUsuario, Nullable<int> piEstatus)
+        {
+            var piIDSesionParameter = piIDSesion.HasValue ?
+                new ObjectParameter("piIDSesion", piIDSesion) :
+                new ObjectParameter("piIDSesion", typeof(int));
+    
+            var piIDAppParameter = piIDApp.HasValue ?
+                new ObjectParameter("piIDApp", piIDApp) :
+                new ObjectParameter("piIDApp", typeof(int));
+    
+            var piIdUsuarioParameter = piIdUsuario.HasValue ?
+                new ObjectParameter("piIdUsuario", piIdUsuario) :
+                new ObjectParameter("piIdUsuario", typeof(int));
+    
+            var piEstatusParameter = piEstatus.HasValue ?
+                new ObjectParameter("piEstatus", piEstatus) :
+                new ObjectParameter("piEstatus", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ListadoBandeja_Ticket", piIDSesionParameter, piIDAppParameter, piIdUsuarioParameter, piEstatusParameter);
+        }
+    
+        public virtual ObjectResult<sp_UsuarioArea_Resoluctora_Result> sp_UsuarioArea_Resoluctora(Nullable<int> piIDticket)
+        {
+            var piIDticketParameter = piIDticket.HasValue ?
+                new ObjectParameter("piIDticket", piIDticket) :
+                new ObjectParameter("piIDticket", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_UsuarioArea_Resoluctora_Result>("sp_UsuarioArea_Resoluctora", piIDticketParameter);
+        }
+    
+        public virtual ObjectResult<sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result> sp_SaberUsuario_Area_Estado_Anterior_Requerimiento(Nullable<int> idrequerimiento)
+        {
+            var idrequerimientoParameter = idrequerimiento.HasValue ?
+                new ObjectParameter("idrequerimiento", idrequerimiento) :
+                new ObjectParameter("idrequerimiento", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result>("sp_SaberUsuario_Area_Estado_Anterior_Requerimiento", idrequerimientoParameter);
+        }
     }
 }
