@@ -2145,5 +2145,10 @@ namespace OrionCoreCableColor.DbConnection
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result>("sp_SaberUsuario_Area_Estado_Anterior_Requerimiento", idrequerimientoParameter);
         }
+    
+        public virtual ObjectResult<sp_Requerimiento_Catalogo_Categoria_Resolucion_Result> sp_Requerimiento_Catalogo_Categoria_Resolucion()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimiento_Catalogo_Categoria_Resolucion_Result>("sp_Requerimiento_Catalogo_Categoria_Resolucion");
+        }
     }
 }

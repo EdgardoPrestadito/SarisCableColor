@@ -694,6 +694,9 @@
     <Compile Include="DbConnection\sp_Requerimiento_Bitacoras_Detalle_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Requerimiento_Catalogo_Categoria_Resolucion_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>

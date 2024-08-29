@@ -435,6 +435,7 @@
     <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
     <Parameter Name="piIDApp" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_Requerimiento_Catalogo_Categoria_Resolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
     <Parameter Name="piIDSesion" Type="int" Mode="In" />

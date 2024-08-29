@@ -610,6 +610,7 @@
     <FunctionImport Name="sp_SaberUsuario_Area_Estado_Anterior_Requerimiento" ReturnType="Collection(SARISModel.sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result)">
       <Parameter Name="idrequerimiento" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_Requerimiento_Catalogo_Categoria_Resolucion" ReturnType="Collection(SARISModel.sp_Requerimiento_Catalogo_Categoria_Resolucion_Result)" />
   </EntityContainer>
   <ComplexType Name="sp_Requerimiento_Areas_Result">
     <Property Type="Int16" Name="fiIDArea" Nullable="false" />
@@ -1544,5 +1545,13 @@
     <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
     <Property Type="String" Name="fcDescripcion" Nullable="true" MaxLength="40" />
     <Property Type="Int32" Name="fiAreaAsignada" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Requerimiento_Catalogo_Categoria_Resolucion_Result">
+    <Property Type="Int32" Name="fiIDCategoriaDesarrollo" Nullable="false" />
+    <Property Type="String" Name="fcDescripcionCategoria" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="fcToken" Nullable="false" MaxLength="512" />
+    <Property Type="Int32" Name="fiEstado" Nullable="false" />
+    <Property Type="Int16" Name="fiIDArea" Nullable="false" />
+    <Property Type="String" Name="fcDescripcion" Nullable="false" MaxLength="40" />
   </ComplexType>
 </Schema>

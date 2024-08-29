@@ -105,6 +105,9 @@
 
 @section Scripts{
     <script>
+
+        var idmasalto = 0; //--ViewBag.IdMasReciente;
+
     var tablaPrincipalcerrados = $('#TablaPrincipalTicketCerrados').DataTable({
 
             autoWidth: true,
@@ -123,11 +126,18 @@
                 "infoEmpty": "No hay registros para mostrar.",
             },
             dom: 'Bfrtip',
-            order: [[1, "desc"]],
+            order: [[2, "desc"]],
               ajax: {
                 url: '@Url.Action("ListarTicketCerrados", "Ticket")',
                   method: "Get",
                   dataSrc: function (data) {
+
+                      const ids = data.map(item => item.fiIDRequerimiento);
+
+                      // Encontrar el Id más grande usando Math.max
+                      const maxId = Math.max(...ids);
+                      idmasalto = maxId;
+                        
                       return data;
                       //console.log(data);
                   }
@@ -168,7 +178,11 @@
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
+
+                        const maxLength = idmasalto.toString().length;
+                        const paddedIds = padWithZeros(data.fiIDRequerimiento, maxLength)
+
+                        return `${paddedIds} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
 
                     }
                 },
@@ -347,11 +361,18 @@
                 "infoEmpty": "No hay registros para mostrar.",
             },
             dom: 'Bfrtip',
-            order: [[1, "desc"]],
+            order: [[2, "desc"]],
               ajax: {
                 url: '@Url.Action("ListarTicketCancelados", "Ticket")',
                   method: "Get",
                   dataSrc: function (data) {
+
+                      const ids = data.map(item => item.fiIDRequerimiento);
+
+                      // Encontrar el Id más grande usando Math.max
+                      const maxId = Math.max(...ids);
+                      idmasalto = maxId;
+
                       return data;
                       //console.log(data);
                   }
@@ -395,7 +416,10 @@
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
+
+                        const maxLength = idmasalto.toString().length;
+                        const paddedIds = padWithZeros(data.fiIDRequerimiento, maxLength)
+                        return `${paddedIds} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
 
                     }
                 },

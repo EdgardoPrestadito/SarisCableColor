@@ -56,6 +56,9 @@
 
 
         var idusuariologueado = @ViewBag.idUsuario;
+        var idmasalto = 0; //--ViewBag.IdMasReciente;
+
+        
 
         var tablaPrincipalticket = $('#TablaPrincipalTicket').DataTable({
 
@@ -75,11 +78,19 @@
                 "infoEmpty": "No hay registros para mostrar.",
             },
             dom: 'Bfrtip',
-            order: [[1, "desc"]],
+            order: [[2, "desc"]],
               ajax: {
                 url: '@Url.Action("ListarTicket", "Ticket")',
                   method: "Get",
                   dataSrc: function (data) {
+
+                      // Crear una nueva matriz con solo los valores de Id
+                      const ids = data.map(item => item.fiIDRequerimiento);
+
+                      // Encontrar el Id más grande usando Math.max
+                      const maxId = Math.max(...ids);
+                      idmasalto = maxId;
+
                       return data;
                   }
             },
@@ -146,7 +157,10 @@
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
-                        return `${data.fiIDRequerimiento} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
+                        
+                        const maxLength = idmasalto.toString().length;
+                        const paddedIds = padWithZeros(data.fiIDRequerimiento, maxLength)
+                        return `${paddedIds} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
 
                     }
                 },

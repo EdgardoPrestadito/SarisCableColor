@@ -51,7 +51,7 @@ namespace OrionCoreCableColor.Controllers
         {
             using (var context = new SARISEntities1())
             {
-                ViewBag.ListaCategorias = context.sp_Categorias_Indicidencias_Listado().Where(a => a.fiEstado == 1).ToList().Select(x => new SelectListItem { Value = x.fiIDCategoriaDesarrollo.ToString(), Text = x.fcDescripcionCategoria }).ToList();
+                ViewBag.ListaCategorias = context.sp_Requerimiento_Catalogo_Categoria_Resolucion().Where(a => a.fiEstado == 1).ToList().Select(x => new SelectListItem { Value = x.fiIDCategoriaDesarrollo.ToString(), Text = x.fcDescripcionCategoria }).ToList();
                 ViewBag.Ubicaciones = context.sp_Ubicacion_SubCategoria_Listado().Where(a => a.fiActivo == 1).ToList().Select(x => new SelectListItem { Value = x.fiUbicacion.ToString(), Text = x.fcDescripcionUbicacion }).ToList();
 
                 return PartialView(new IncidenciasResolucionViewModel());
