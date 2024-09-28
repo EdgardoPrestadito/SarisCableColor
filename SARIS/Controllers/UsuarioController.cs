@@ -563,13 +563,17 @@ namespace OrionCoreCableColor.Controllers
         {
             using (var context = new OrionSecurityEntities())
             {
-
-                var usuario = context.Usuarios.Find(Id);
-                usuario.fiEstado = usuario.fiEstado == 1 ? 0 : 1;
-                var result = context.SaveChanges() > 0;
-
                 using (var contexto = new SARISEntities1())
                 {
+                    var ticketpendiente = contexto.sp_UsuarioTicketPendiente(Id).FirstOrDefault();
+                    if ((bool)ticketpendiente)
+                    {
+                        return EnviarResultado(false,"Usuario Tiene Incidentes Pendientes Por Cerrar");
+                    }
+                    var usuario = context.Usuarios.Find(Id);
+                    usuario.fiEstado = usuario.fiEstado == 1 ? 0 : 1;
+                    var result = context.SaveChanges() > 0;
+
                     var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
                     if (usuario.fiEstado == 0)
                     {
@@ -581,9 +585,8 @@ namespace OrionCoreCableColor.Controllers
                     }
 
 
+                    return EnviarResultado(result, usuario.fiEstado == 0 ? "Habilitar Usuario" : "Deshabilitar Usuario", result ? "Modificado exitosamente" : "Error al modificar el usuario");
                 }
-                return EnviarResultado(result, usuario.fiEstado == 0 ? "Habilitar Usuario" : "Deshabilitar Usuario", result ? "Modificado exitosamente" : "Error al modificar el usuario");
-
             }
         }
 
