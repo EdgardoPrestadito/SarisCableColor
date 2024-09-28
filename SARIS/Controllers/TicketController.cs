@@ -215,6 +215,7 @@ namespace OrionCoreCableColor.Controllers
                     tick.fcPlataforma = cont.fcNombrePlataforma;
                     tick.fcServicioAfectados = cont.fcNombreServicio;
                     tick.fdFechaAlarmaDeteccion = (cont.fdFechaAlarmaDeteccion is null) ? DateTime.Now : (DateTime)cont.fdFechaAlarmaDeteccion;
+                    tick.fiIDUsuarioSolicitante = (int)cont.fiIDUsuarioSolicitante;
 
                     //tick.fiMotivoEstado = (int)cont.fiMotivoEstado;
 
@@ -283,6 +284,24 @@ namespace OrionCoreCableColor.Controllers
                 {
                     try
                     {
+                        string pcCorreoGerenciaSolicitante = ""
+                              , pcNumeroGerenciaSolicitante = ""
+                              , pcCorreosUsuarioSolicitante = ""
+                              , pcNumerosUsuarioSolicitante = ""
+                              , pcCorreosJefesSolicitante = ""
+                              , pcNumerosJefesSolicitante = ""
+                              , pcCorreosSupervisorSolicitante = ""
+                              , pcNumerosSupervisorSolicitante = ""
+                              , pcCorreoAreaSolicitante = ""
+                              , pcCorreoGerenciaAsignada = ""
+                              , pcNumeroGerenciaAsignada = ""
+                              , pcCorreoUsuarioAsignado = ""
+                              , pcNumeroUsuarioAsignado = ""
+                              , pcCorreosJefesAsignada = ""
+                              , pcNumerosJefesAsignada = ""
+                              , pcCorreosSupervisoresAsignado = ""
+                              , pcNumerosSupervisorAsignado = ""
+                              , pcCorreoAreaAsignada = "";
                         var idarea = (ticket.fiAreaAsignada == 0) ? 6 : ticket.fiAreaAsignada; // aqui decimo que si el id area no es asignada que lo ponga en pendiente y en dado casi si es asignada entonces que lo deje tal cual
                         //cambiar despues Los datos que se envian en duro para que sea mas dinamico las cosas 
                         var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
@@ -339,19 +358,33 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentarioticket
                         });
-
+                        pcCorreoAreaSolicitante += correo.fcCorreoArea;
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentarioticket, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-
+                        pcNumeroGerenciaSolicitante += correo.fcNumeroGerencia;
                         for (int i = 0; i < correosNumeros.Count; i++)
                         {
                             MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correosNumeros[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentarioticket, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            pcNumerosJefesAsignada += " / " + correosNumeros[i].fcTelefonoMovil;
                         }
-                        
-                        
-                        //MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentarioticket, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                        //MensajeDeTexto.EnviarLinkGeoLocation(model.Nombre, model.IdCliente, model.Telefono, "");
-                        return EnviarListaJson(save);
+                        using (var connection = (new SARISEntities1()).Database.Connection)
+                        {
+                            connection.Open();
+                            var command = connection.CreateCommand();
+                            command.CommandText =
+                                    $"EXEC sp_LogCorreosNumeros_Crear {datosticket.fiIDRequerimiento},{1},'{pcCorreoGerenciaSolicitante}','{pcNumeroGerenciaSolicitante}'," +
+                                    $"'{pcCorreosUsuarioSolicitante}','{pcNumerosUsuarioSolicitante}','{pcCorreosJefesSolicitante}','{pcNumerosJefesSolicitante}'," +
+                                    $"'{pcCorreosSupervisorSolicitante}','{pcNumerosSupervisorSolicitante}','{pcCorreoAreaSolicitante}','{pcCorreoGerenciaAsignada}'," +
+                                    $"'{pcNumeroGerenciaAsignada}','{pcCorreoUsuarioAsignado}','{pcNumeroUsuarioAsignado}','{pcCorreosJefesAsignada}'," +
+                                    $"'{pcNumerosJefesAsignada}','{pcCorreosSupervisoresAsignado}','{pcNumerosSupervisorAsignado}','{pcCorreoAreaAsignada}'";
+                            using (var reader = command.ExecuteReader())
+                            {
 
+                            }
+
+                            //MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentarioticket, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            //MensajeDeTexto.EnviarLinkGeoLocation(model.Nombre, model.IdCliente, model.Telefono, "");
+                            return EnviarListaJson(save);
+                        }
 
                     }
                     catch (Exception ex)
@@ -404,7 +437,7 @@ namespace OrionCoreCableColor.Controllers
                     var CorreoNumeroSupervisorAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 6).ToList();
                     var CorreoNumeroJefeAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 3).ToList();
 
-                    if (ticket.fiIDEstadoRequerimiento == 5)
+                    if (ticket.fiIDEstadoRequerimiento == 5 || ticket.fiIDEstadoRequerimiento == 6)
                     {
                         var IdesAnteriores = contexto.sp_SaberUsuario_Area_Estado_Anterior_Requerimiento(ticket.fiIDRequerimiento).FirstOrDefault();
 
@@ -419,11 +452,26 @@ namespace OrionCoreCableColor.Controllers
                     var CorreoNumeroSupervisorSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitante, 6).ToList();
 
 
-                    if (ticket.fiIDEstadoRequerimiento == 5 || ticket.fiIDEstadoRequerimiento == 6 || ticket.fiIDEstadoRequerimiento == 4)
+                    if (ticket.fiIDEstadoRequerimiento == 5 || ticket.fiIDEstadoRequerimiento == 6 )
                     {
-
-
-
+                        string pcCorreoGerenciaSolicitante = ""
+                              ,pcNumeroGerenciaSolicitante=""
+                              ,pcCorreosUsuarioSolicitante = ""
+                              ,pcNumerosUsuarioSolicitante = ""
+                              ,pcCorreosJefesSolicitante = ""
+                              ,pcNumerosJefesSolicitante = ""
+                              ,pcCorreosSupervisorSolicitante = ""
+                              ,pcNumerosSupervisorSolicitante = ""
+                              ,pcCorreoAreaSolicitante = ""
+                              ,pcCorreoGerenciaAsignada = ""
+                              ,pcNumeroGerenciaAsignada = ""
+                              ,pcCorreoUsuarioAsignado = ""
+                              ,pcNumeroUsuarioAsignado = ""
+                              ,pcCorreosJefesAsignada = ""
+                              ,pcNumerosJefesAsignada = ""
+                              ,pcCorreosSupervisoresAsignado = ""
+                              ,pcNumerosSupervisorAsignado = ""
+                              ,pcCorreoAreaAsignada = "";
                         //correo Gerencia
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
@@ -448,6 +496,9 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+
+                        pcCorreoGerenciaSolicitante += correo.fcCorreoGerencia;
+
                         //Correo numero JefeArea Solicitante
                         for (int i = 0; i < CorreoNumeroJefeSolicitante.Count; i++)
                         {
@@ -474,6 +525,8 @@ namespace OrionCoreCableColor.Controllers
                                 fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                                 fcComentario = comentario
                             });
+                            
+
                             if (ticket.fiIDEstadoRequerimiento == 5)
                             {
                                 MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
@@ -483,10 +536,9 @@ namespace OrionCoreCableColor.Controllers
                             {
                                 MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
                             }
-                            if (ticket.fiIDEstadoRequerimiento == 4)
-                            {
-                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            }
+                            
+                            pcCorreosJefesSolicitante += " / " + CorreoNumeroJefeSolicitante[i].fcBuzondeCorreo;
+                            pcNumerosJefesSolicitante += " / " + CorreoNumeroJefeSolicitante[i].fcTelefonoMovil;
                         }
 
                         //Correo numero Supervisor Solicitante
@@ -524,10 +576,9 @@ namespace OrionCoreCableColor.Controllers
                             {
                                 MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
                             }
-                            if (ticket.fiIDEstadoRequerimiento == 4)
-                            {
-                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            }
+                            
+                            pcCorreosSupervisorSolicitante += " / " + CorreoNumeroSupervisorSolicitante[i].fcBuzondeCorreo;
+                            pcNumerosSupervisorSolicitante += " / " + CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil;
                         }
 
                         //Correo Usuario Solicitante
@@ -554,6 +605,7 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+                        pcCorreosUsuarioSolicitante += correo.fcCorreoUsuarioSolicitante;
                         //Correo Gerencia Asignada
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
@@ -578,6 +630,7 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+                        pcCorreoGerenciaAsignada += correo.fcCorreoGerenciaAsignada;
                         //Correo Jefes Asignada
                         for (int i = 0; i < CorreoNumeroJefeAsignada.Count; i++)
                         {
@@ -612,10 +665,9 @@ namespace OrionCoreCableColor.Controllers
                             {
                                 MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
                             }
-                            if (ticket.fiIDEstadoRequerimiento == 4)
-                            {
-                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            }
+                            
+                            pcCorreosJefesAsignada += " / " + CorreoNumeroJefeAsignada[i].fcBuzondeCorreo;
+                            pcNumerosJefesAsignada += " / " + CorreoNumeroJefeAsignada[i].fcTelefonoMovil;
                         }
                         //Correo Supervisores asignados
                         for (int i = 0; i < CorreoNumeroSupervisorAsignada.Count; i++)
@@ -651,10 +703,9 @@ namespace OrionCoreCableColor.Controllers
                             {
                                 MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
                             }
-                            if (ticket.fiIDEstadoRequerimiento == 4)
-                            {
-                                MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            }
+                            
+                            pcCorreosSupervisoresAsignado += " / " + CorreoNumeroSupervisorAsignada[i].fcBuzondeCorreo;
+                            pcNumerosSupervisorAsignado += " / " + CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil;
                         }
 
 
@@ -682,6 +733,7 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+                        pcCorreoUsuarioAsignado += correo.fcCorreoElectronico;
                         //correo area solicitante
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
@@ -706,6 +758,7 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+                        pcCorreoAreaSolicitante += correo.fcCorreoArea;
                         //correo area Asignada
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
@@ -730,6 +783,7 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
+                        pcCorreoAreaAsignada += correo.fcCorreoAreaAsignada;
                         if (ticket.fiIDEstadoRequerimiento == 5)
                         {
                             MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoGrenciaAsignada, correo.fcTituloRequerimiento, "Cerrado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
@@ -747,15 +801,48 @@ namespace OrionCoreCableColor.Controllers
                             MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, "Cancelado", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
 
                         }
-                        if (ticket.fiIDEstadoRequerimiento == 4)
+                        
+                        pcNumeroGerenciaAsignada += correo.fcTelefonoGrenciaAsignada;
+                        pcNumeroGerenciaSolicitante += correo.fcNumeroGerencia;
+                        pcNumeroUsuarioAsignado += correo.fcTelefonoMovil;
+                        pcNumerosUsuarioSolicitante += correo.fcTelefonoSolicitante;
+
+                        using (var connection = (new SARISEntities1()).Database.Connection)
                         {
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoGrenciaAsignada, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-                            MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, "Resuelto", correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, ticket.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            connection.Open();
+                            var command = connection.CreateCommand();
+                            if (ticket.fiIDEstadoRequerimiento == 5) 
+                            {
+                                command.CommandText = 
+                                    $"EXEC sp_LogCorreosNumeros_Crear {ticket.fiIDRequerimiento},{5},'{pcCorreoGerenciaSolicitante}','{pcNumeroGerenciaSolicitante}'," +
+                                    $"'{pcCorreosUsuarioSolicitante}','{pcNumerosUsuarioSolicitante}','{pcCorreosJefesSolicitante}','{pcNumerosJefesSolicitante}'," +
+                                    $"'{pcCorreosSupervisorSolicitante}','{pcNumerosSupervisorSolicitante}','{pcCorreoAreaSolicitante}','{pcCorreoGerenciaAsignada}'," +
+                                    $"'{pcNumeroGerenciaAsignada}','{pcCorreoUsuarioAsignado}','{pcNumeroUsuarioAsignado}','{pcCorreosJefesAsignada}'," +
+                                    $"'{pcNumerosJefesAsignada}','{pcCorreosSupervisoresAsignado}','{pcNumerosSupervisorAsignado}','{pcCorreoAreaAsignada}'";
+                                using (var reader = command.ExecuteReader())
+                                {
+
+                                }
+                            }
+                            if (ticket.fiIDEstadoRequerimiento == 6)
+                            {
+                                command.CommandText = 
+                                    $"EXEC sp_LogCorreosNumeros_Crear {ticket.fiIDRequerimiento},{6},'{pcCorreoGerenciaSolicitante}','{pcNumeroGerenciaSolicitante}'," +
+                                    $"'{pcCorreosUsuarioSolicitante}','{pcNumerosUsuarioSolicitante}','{pcCorreosJefesSolicitante}','{pcNumerosJefesSolicitante}'," +
+                                    $"'{pcCorreosSupervisorSolicitante}','{pcNumerosSupervisorSolicitante}','{pcCorreoAreaSolicitante}','{pcCorreoGerenciaAsignada}'," +
+                                    $"'{pcNumeroGerenciaAsignada}','{pcCorreoUsuarioAsignado}','{pcNumeroUsuarioAsignado}','{pcCorreosJefesAsignada}'," +
+                                    $"'{pcNumerosJefesAsignada}','{pcCorreosSupervisoresAsignado}','{pcNumerosSupervisorAsignado}','{pcCorreoAreaAsignada}'";
+                                using (var reader = command.ExecuteReader())
+                                {
+
+                                }
+                            }
+                            
+
+                            connection.Close();
+
 
                         }
-
                     }
 
 
@@ -806,8 +893,27 @@ namespace OrionCoreCableColor.Controllers
 
                     CorreoNumeroSupervisorAsignada = contexto.sp_CorreosNumeros_AreaRol(AreaAsignada, 6).ToList();
                     CorreoNumeroSupervisorSolicitante = contexto.sp_CorreosNumeros_AreaRol(AreaSolicitantes, 6).ToList();
-                    if (correo.fiIDEstadoRequerimiento == 3 ||  correo.fiIDEstadoRequerimiento == 11)
+                    if (correo.fiIDEstadoRequerimiento == 3 ||  correo.fiIDEstadoRequerimiento == 11 || correo.fiIDEstadoRequerimiento == 4)
                     {
+                        string pcCorreoGerenciaSolicitante = ""
+                              , pcNumeroGerenciaSolicitante = ""
+                              , pcCorreosUsuarioSolicitante = ""
+                              , pcNumerosUsuarioSolicitante = ""
+                              , pcCorreosJefesSolicitante = ""
+                              , pcNumerosJefesSolicitante = ""
+                              , pcCorreosSupervisorSolicitante = ""
+                              , pcNumerosSupervisorSolicitante = ""
+                              , pcCorreoAreaSolicitante = ""
+                              , pcCorreoGerenciaAsignada = ""
+                              , pcNumeroGerenciaAsignada = ""
+                              , pcCorreoUsuarioAsignado = ""
+                              , pcNumeroUsuarioAsignado = ""
+                              , pcCorreosJefesAsignada = ""
+                              , pcNumerosJefesAsignada = ""
+                              , pcCorreosSupervisoresAsignado = ""
+                              , pcNumerosSupervisorAsignado = ""
+                              , pcCorreoAreaAsignada = "";
+
                         //Correo Area
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
@@ -821,7 +927,7 @@ namespace OrionCoreCableColor.Controllers
                             fcNombreCorto = correo.fcNombreCorto,
                             fiIDEstadoRequerimiento = correo.fiIDEstadoRequerimiento,
                             fcDescripcionEstado = correo.fcDescripcionEstado,
-                            fcCorreoElectronico = correo.fcCorreoJefeArea,
+                            fcCorreoElectronico = correo.fcCorreoArea,
                             fcDescripcionCategoria = correo.fcDescripcionCategoria,
                             fcTipoRequerimiento = correo.fcTipoRequerimiento,
                             fiIDUrgencia = (int)correo.fiIDUrgencia,
@@ -832,7 +938,7 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
-
+                        pcCorreoAreaSolicitante += correo.fcCorreoArea;
 
                         //Correo numero JefeArea Solicitante
                         for (int i = 0; i < CorreoNumeroJefeSolicitante.Count; i++)
@@ -861,7 +967,8 @@ namespace OrionCoreCableColor.Controllers
                                 fcComentario = comentario
                             });
                             MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-
+                            pcCorreosJefesSolicitante += " / " + CorreoNumeroJefeSolicitante[i].fcBuzondeCorreo;
+                            pcNumerosJefesSolicitante += " / " + CorreoNumeroJefeSolicitante[i].fcTelefonoMovil;
 
                         }
 
@@ -892,7 +999,8 @@ namespace OrionCoreCableColor.Controllers
                                 fcComentario = comentario
                             });
                             MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
-
+                            pcCorreosSupervisorSolicitante += " / " + CorreoNumeroSupervisorSolicitante[i].fcBuzondeCorreo;
+                            pcNumerosSupervisorSolicitante += " / " + CorreoNumeroSupervisorSolicitante[i].fcTelefonoMovil;
                         }
 
                         //Correo Jefes Asignada
@@ -922,6 +1030,9 @@ namespace OrionCoreCableColor.Controllers
                                 fcComentario = comentario
                             });
                             MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            pcCorreosJefesAsignada += " / " + CorreoNumeroJefeAsignada[i].fcBuzondeCorreo;
+                            pcNumerosJefesAsignada += " / " + CorreoNumeroJefeAsignada[i].fcTelefonoMovil;
+
                         }
                         //Correo Supervisores asignados
                         for (int i = 0; i < CorreoNumeroSupervisorAsignada.Count; i++)
@@ -950,6 +1061,8 @@ namespace OrionCoreCableColor.Controllers
                                 fcComentario = comentario
                             });
                             MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                            pcCorreosSupervisoresAsignado += " / " + CorreoNumeroSupervisorAsignada[i].fcBuzondeCorreo;
+                            pcNumerosSupervisorAsignado += " / " + CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil;
 
                         }
 
@@ -977,7 +1090,7 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
-
+                        pcCorreosUsuarioSolicitante += " / " + correo.fcCorreoUsuarioSolicitante;
                         //Correo usuario Asignado
                         await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                         {
@@ -1002,9 +1115,32 @@ namespace OrionCoreCableColor.Controllers
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comentario
                         });
-
+                        pcCorreoUsuarioAsignado += " / " + correo.fcCorreoElectronico;
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                        pcNumeroUsuarioAsignado += " / " + correo.fcTelefonoMovil;
+                        pcNumerosUsuarioSolicitante += " / " + correo.fcTelefonoSolicitante;
+
+                        using (var connection = (new SARISEntities1()).Database.Connection)
+                        {
+                            connection.Open();
+                            var command = connection.CreateCommand();
+                            command.CommandText =
+                                    $"EXEC sp_LogCorreosNumeros_Crear {ticket.fiIDRequerimiento},{4},'{pcCorreoGerenciaSolicitante}','{pcNumeroGerenciaSolicitante}'," +
+                                    $"'{pcCorreosUsuarioSolicitante}','{pcNumerosUsuarioSolicitante}','{pcCorreosJefesSolicitante}','{pcNumerosJefesSolicitante}'," +
+                                    $"'{pcCorreosSupervisorSolicitante}','{pcNumerosSupervisorSolicitante}','{pcCorreoAreaSolicitante}','{pcCorreoGerenciaAsignada}'," +
+                                    $"'{pcNumeroGerenciaAsignada}','{pcCorreoUsuarioAsignado}','{pcNumeroUsuarioAsignado}','{pcCorreosJefesAsignada}'," +
+                                    $"'{pcNumerosJefesAsignada}','{pcCorreosSupervisoresAsignado}','{pcNumerosSupervisorAsignado}','{pcCorreoAreaAsignada}'";
+                            using (var reader = command.ExecuteReader())
+                            {
+
+                            }
+
+                            connection.Close();
+
+
+                        }
+
 
                     }
 
@@ -1086,6 +1222,24 @@ namespace OrionCoreCableColor.Controllers
             {
                 using (var contexto = new SARISEntities1())
                 {
+                    string pcCorreoGerenciaSolicitante = ""
+                              , pcNumeroGerenciaSolicitante = ""
+                              , pcCorreosUsuarioSolicitante = ""
+                              , pcNumerosUsuarioSolicitante = ""
+                              , pcCorreosJefesSolicitante = ""
+                              , pcNumerosJefesSolicitante = ""
+                              , pcCorreosSupervisorSolicitante = ""
+                              , pcNumerosSupervisorSolicitante = ""
+                              , pcCorreoAreaSolicitante = ""
+                              , pcCorreoGerenciaAsignada = ""
+                              , pcNumeroGerenciaAsignada = ""
+                              , pcCorreoUsuarioAsignado = ""
+                              , pcNumeroUsuarioAsignado = ""
+                              , pcCorreosJefesAsignada = ""
+                              , pcNumerosJefesAsignada = ""
+                              , pcCorreosSupervisoresAsignado = ""
+                              , pcNumerosSupervisorAsignado = ""
+                              , pcCorreoAreaAsignada = "";
                     var areaasignada = contexto.sp_Requerimiento_Areas(1, 1, GetIdUser()).FirstOrDefault(a => a.fiIDArea == idArea).fcDescripcion; // buscar el area a la cual se le asigno
                     var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
 
@@ -1096,11 +1250,11 @@ namespace OrionCoreCableColor.Controllers
                     GuardarBitacoraGeneralhistorial(GetIdUser(), idticket, GetIdUser(), $"{usuarioLogueado.fcPrimerNombre} {usuarioLogueado.fcPrimerApellido} Reasigna al Area {areaasignada} por: " + comenta, 1, 7, Convert.ToInt32(usuariopendiente), idArea);// se cambio a que se envie el Sisten Bot
                     if (datosticket.fiIDEstadoRequerimiento == 1)
                     {
-                        var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, 3, DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
+                        var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, 3, DateTime.Now, 3185, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
                     }
                     else
                     {
-                        var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, datosticket.fiIDEstadoRequerimiento, DateTime.Now, 3013, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
+                        var actua = contexto.sp_Requerimiento_Maestro_Actualizar(GetIdUser(), datosticket.fiIDRequerimiento, datosticket.fcTituloRequerimiento, datosticket.fcDescripcionRequerimiento, datosticket.fiIDEstadoRequerimiento, DateTime.Now, 3185, 0, datosticket.fiTipoRequerimiento, 1, idArea, datosticket.fiIDRequerimientoPadre, 0, 0, 0);
 
                     }
 
@@ -1142,7 +1296,7 @@ namespace OrionCoreCableColor.Controllers
                         fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                         fcComentario = comenta
                     });
-
+                    pcCorreoAreaAsignada += correo.fcCorreoAreaAsignada;
 
                     //Correo Jefes Asignada
                     for (int i = 0; i < CorreoNumeroJefeAsignada.Count; i++)
@@ -1169,8 +1323,13 @@ namespace OrionCoreCableColor.Controllers
                             fiIDPrioridad = (int)correo.fiIDPrioridad,
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comenta
+
                         });
+
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroJefeAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comenta, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                        pcCorreosJefesAsignada += " / " + CorreoNumeroJefeAsignada[i].fcBuzondeCorreo;
+                        pcNumerosJefesAsignada += " / " + CorreoNumeroJefeAsignada[i].fcTelefonoMovil;
+
                     }
                     //Correo Supervisores asignados
                     for (int i = 0; i < CorreoNumeroSupervisorAsignada.Count; i++)
@@ -1197,11 +1356,32 @@ namespace OrionCoreCableColor.Controllers
                             fiIDPrioridad = (int)correo.fiIDPrioridad,
                             fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                             fcComentario = comenta
+
                         });
+
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comenta, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                        pcCorreosSupervisoresAsignado += " / " + CorreoNumeroSupervisorAsignada[i].fcBuzondeCorreo;
+                        pcNumerosSupervisorAsignado += " / " + CorreoNumeroSupervisorAsignada[i].fcTelefonoMovil;
+                    }
+                    using (var connection = (new SARISEntities1()).Database.Connection)
+                    {
+                        connection.Open();
+                        var command = connection.CreateCommand();
+                        command.CommandText =
+                                $"EXEC sp_LogCorreosNumeros_Crear {correo.fiIDRequerimiento},{2},'{pcCorreoGerenciaSolicitante}','{pcNumeroGerenciaSolicitante}'," +
+                                $"'{pcCorreosUsuarioSolicitante}','{pcNumerosUsuarioSolicitante}','{pcCorreosJefesSolicitante}','{pcNumerosJefesSolicitante}'," +
+                                $"'{pcCorreosSupervisorSolicitante}','{pcNumerosSupervisorSolicitante}','{pcCorreoAreaSolicitante}','{pcCorreoGerenciaAsignada}'," +
+                                $"'{pcNumeroGerenciaAsignada}','{pcCorreoUsuarioAsignado}','{pcNumeroUsuarioAsignado}','{pcCorreosJefesAsignada}'," +
+                                $"'{pcNumerosJefesAsignada}','{pcCorreosSupervisoresAsignado}','{pcNumerosSupervisorAsignado}','{pcCorreoAreaAsignada}'";
+                        using (var reader = command.ExecuteReader())
+                        {
+
+                        }
+
+                        connection.Close();
+
 
                     }
-
                     return EnviarResultado(true, "", "Ticket Actualizado exitosamente");
                 }
             }
@@ -1232,6 +1412,24 @@ namespace OrionCoreCableColor.Controllers
             {
                 using (var contexto = new SARISEntities1())
                 {
+                    string pcCorreoGerenciaSolicitante = ""
+                              , pcNumeroGerenciaSolicitante = ""
+                              , pcCorreosUsuarioSolicitante = ""
+                              , pcNumerosUsuarioSolicitante = ""
+                              , pcCorreosJefesSolicitante = ""
+                              , pcNumerosJefesSolicitante = ""
+                              , pcCorreosSupervisorSolicitante = ""
+                              , pcNumerosSupervisorSolicitante = ""
+                              , pcCorreoAreaSolicitante = ""
+                              , pcCorreoGerenciaAsignada = ""
+                              , pcNumeroGerenciaAsignada = ""
+                              , pcCorreoUsuarioAsignado = ""
+                              , pcNumeroUsuarioAsignado = ""
+                              , pcCorreosJefesAsignada = ""
+                              , pcNumerosJefesAsignada = ""
+                              , pcCorreosSupervisoresAsignado = ""
+                              , pcNumerosSupervisorAsignado = ""
+                              , pcCorreoAreaAsignada = "";
                     //saber el string del nombre del usuario
                     var UsuarioAsignado = contexto.sp_Usuarios_Maestro_PorIdUsuario(usuario).FirstOrDefault(); // buscar el area a la cual se le asigno
                     var usuarioLogueado = contexto.sp_Usuarios_Maestro_PorIdUsuario(GetIdUser()).FirstOrDefault();
@@ -1279,6 +1477,8 @@ namespace OrionCoreCableColor.Controllers
                         fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
                         fcComentario = comenta
                     });
+                    pcCorreoUsuarioAsignado = correo.fcCorreoElectronico;
+                    
                     //await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
                     //{
                     //    fiIDRequerimiento = correo.fiIDRequerimiento,
@@ -1304,6 +1504,27 @@ namespace OrionCoreCableColor.Controllers
                     //});
                     MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comenta, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
                     //MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcTelefonoSolicitante, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, comenta, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion);
+                    pcNumeroUsuarioAsignado =  correo.fcTelefonoMovil;
+                    using (var connection = (new SARISEntities1()).Database.Connection)
+                    {
+                        connection.Open();
+                        var command = connection.CreateCommand();
+                        command.CommandText =
+                                $"EXEC sp_LogCorreosNumeros_Crear {datosticket.fiIDRequerimiento},{3},'{pcCorreoGerenciaSolicitante}','{pcNumeroGerenciaSolicitante}'," +
+                                $"'{pcCorreosUsuarioSolicitante}','{pcNumerosUsuarioSolicitante}','{pcCorreosJefesSolicitante}','{pcNumerosJefesSolicitante}'," +
+                                $"'{pcCorreosSupervisorSolicitante}','{pcNumerosSupervisorSolicitante}','{pcCorreoAreaSolicitante}','{pcCorreoGerenciaAsignada}'," +
+                                $"'{pcNumeroGerenciaAsignada}','{pcCorreoUsuarioAsignado}','{pcNumeroUsuarioAsignado}','{pcCorreosJefesAsignada}'," +
+                                $"'{pcNumerosJefesAsignada}','{pcCorreosSupervisoresAsignado}','{pcNumerosSupervisorAsignado}','{pcCorreoAreaAsignada}'";
+                        using (var reader = command.ExecuteReader())
+                        {
+
+                        }
+
+                        connection.Close();
+
+
+                    }
+
                     return EnviarResultado(true, "", "Ticket Usuario Actualizado exitosamente");
                 }
             }

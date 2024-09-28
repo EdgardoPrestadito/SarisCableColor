@@ -2,6 +2,39 @@
 @{
     ViewBag.Title = "Index";
 }
+
+<style>
+    th, td {
+        white-space: nowrap; /* Asegura que el texto no se desborde y mantenga el alineamiento */
+        text-align: left; /* Asegura un alineamiento consistente */
+        padding: 10px; /* Ajusta el espacio interno para uniformidad */
+    }
+
+    .text-overflow {
+        white-space: nowrap; /* Trunca el texto en las celdas de contenido */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        .text-overflow:hover {
+            white-space: normal;
+            overflow: visible;
+            background-color: #f0f0f0;
+            z-index: 1;
+            position:  relative;
+        }
+
+    .dropdown-menu {
+        position: absolute !important;
+        will-change: transform;
+        transform: translate3d(0, 0, 0); /* Asegura que se muestre dentro del viewport */
+    }
+
+    #TablaPrincipalTicket_wrapper {
+        min-height: 300px; /* Ajusta el tamaño según tus necesidades */
+    }
+</style>
+
 <div class="panel">
     <div class="panel-hdr">
         <h2 class="panel-title"> <i class="fal fa-map fa-fw"></i>Incidentes Pendientes</h2>
@@ -20,26 +53,34 @@
                     <tr>
                         <th>Acciones</th>
                         <th style="width:80px">Estado</th>
-                        <th>Titulo</th>
-                        <th>Descripcion</th>
-                        <th style="width:80px">Solicitante</th>
+                        <th >Titulo</th>
+                        <th >Descripcion</th>
+                        <th style="width:80px" >Solicitante</th>
                         <th style="width:80px">Area Solicitante</th>
                         <th style="width:80px">Usuario Asignado</th>
                         <th style="width:80px">Area Asignada</th>
 
-                        <th style="width:80px">Categoría apertura</th>
-                        <th style="width:80px">Subcategoria apertura</th>
-                        <th style="width:80px">Urgencia</th>
-                        <th style="width:80px">Impacto</th>
-                        <th style="width:80px">Prioridad</th>
-                        <th style="width:80px">SLA</th>
-                        <th style="width:80px">Usuarios afectados</th>
+                        <th style="width:80px" >Categoría apertura</th>
+                        <th style="width:80px" >Subcategoria apertura</th>
+                        <th style="width:80px" >Urgencia</th>
+                        <th style="width:80px" >Impacto</th>
+                        <th style="width:80px" >Prioridad</th>
+                        <th style="width:80px" >SLA</th>
+                        <th style="width:80px" >Usuarios afectados</th>
 
-                        <th style="width:150px">Fecha alarma/detección</th>
-                        <th style="width:150px">Fecha Creacion Solicitud</th>
-                        <th style="width:150px">Fecha última actualización</th>
-                        <th style="width:150px">Usuario última actualización</th>
-                        <th style="width:150px">Tiempo Transcurrido</th>
+                        <th style="width:80px" >CI</th>
+                        <th style="width:80px" >Servicios</th>
+                        <th style="width:80px" >Pais</th>
+                        <th style="width:80px" >Region</th>
+                        <th style="width:80px" >Ciudad</th>
+                        <th style="width:80px" >Longitud y Latitud</th>
+                        <th style="width:80px" >SLA Cumplido</th>
+
+                        <th style="width:150px" >Fecha alarma/detección</th>
+                        <th style="width:150px" >Fecha Creacion Solicitud</th>
+                        <th style="width:150px" >Fecha última actualización</th>
+                        <th style="width:150px" >Usuario última actualización</th>
+                        <th style="width:150px" >Tiempo Transcurrido</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -62,8 +103,8 @@
 
         var tablaPrincipalticket = $('#TablaPrincipalTicket').DataTable({
 
-            autoWidth: true,
-            responsive: true,
+            autoWidth: false,
+            //responsive: true,
             language: {
                 "emptyTable": "No se encontraron resultados.",
                 //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
@@ -94,6 +135,8 @@
                       return data;
                   }
             },
+            scrollX: true,
+            scrollY: '60vh',
             columns: [
                 
                 {//0
@@ -251,6 +294,34 @@
                     className: "td-responsive",
                 },
                 {
+                    data: "fcConfiguracion",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcNombreServicio",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcPais",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcRegion",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcCiudad",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcLongitudLatitud",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiSLA",
+                    className: "td-responsive",
+                },
+                {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
@@ -318,8 +389,25 @@
                 }
 
             ],
+            "columnDefs": [
+                { "width": "200px", "targets": 0 }, // Ancho específico para la primera columna (evitada)
+                { "width": "300px", "targets": "_all" } // Ancho fijo para el resto de las columnas
+            ],
+            "createdRow": function (row, data, dataIndex) {
+                $('td', row).each(function (index) {
+                    if (index > 0) { // Evitar la primera columna
+                        var originalText = $(this).text();
+                        if (originalText.length > 100) {
+                            var truncatedText = originalText.substring(0, 100) + '...';
+                            $(this).attr('data-full-text', originalText);
+                            $(this).text(truncatedText).addClass('text-overflow');
+                        }
+                    }
+                });
+            }
 
-        });
+
+        }).columns.adjust();
 
         chat.client.agregarrow = function (modelo) {
             //console.log(modelo);
@@ -512,7 +600,7 @@
 
         //tablaPrincipal.columns(7).search(this.value).draw();
 
-        setInterval(function () {
+        setInterval(function () {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
             // Obtener la instancia de DataTable
             var tabla = $('#TablaPrincipalTicket').DataTable();
 
@@ -653,7 +741,16 @@
         }
     });
 
+        $(document).on('mouseenter', 'td.text-overflow', function () {
+            var fullText = $(this).attr('data-full-text'); // Obtiene el texto completo
+            $(this).text(fullText);  // Muestra el texto completo
+        });
 
+        $(document).on('mouseleave', 'td.text-overflow', function () {
+            var fullText = $(this).attr('data-full-text');
+            var truncatedText = fullText.substring(0, 100) + '...'; // Vuelve a truncar
+            $(this).text(truncatedText);  // Muestra el texto truncado de nuevo
+        });
     </script>
 
 }

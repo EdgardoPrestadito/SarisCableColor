@@ -95,6 +95,25 @@
           <Parameter Name="piArea" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Categorias_IndicidenciasResolucion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_CI_Configuracion_CI_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDPais" Type="int" Mode="In" />
+          <Parameter Name="piIDRegion" Type="int" Mode="In" />
+          <Parameter Name="piIDCiudad" Type="int" Mode="In" />
+          <Parameter Name="piIDCI" Type="int" Mode="In" />
+          <Parameter Name="piIDConfiguracion" Type="int" Mode="In" />
+          <Parameter Name="pcConfiguracion" Type="varchar" Mode="In" />
+          <Parameter Name="pcLatitud" Type="varchar" Mode="In" />
+          <Parameter Name="pcLongitud" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_CI_Configuracion_CI_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDPais" Type="int" Mode="In" />
+          <Parameter Name="piIDRegion" Type="int" Mode="In" />
+          <Parameter Name="piIDCiudad" Type="int" Mode="In" />
+          <Parameter Name="piIDCI" Type="int" Mode="In" />
+          <Parameter Name="pcConfiguracion" Type="varchar" Mode="In" />
+          <Parameter Name="pcLatitud" Type="varchar" Mode="In" />
+          <Parameter Name="pcLongitud" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_CI_Configuracion_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDPais" Type="int" Mode="In" />
           <Parameter Name="piIDRegion" Type="int" Mode="In" />
@@ -162,7 +181,7 @@
           <Parameter Name="fcDescripcionLlave" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_CorreosNumeros_AreaRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="piArea" Type="int" Mode="In" />
+          <Parameter Name="piAreaAsignada" Type="int" Mode="In" />
           <Parameter Name="piRol" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_CrearImpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -275,12 +294,6 @@
           <Parameter Name="piUbicacion" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_IndicadoresResolucion_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_ListadoBandeja_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="piIDSesion" Type="int" Mode="In" />
-          <Parameter Name="piIDApp" Type="int" Mode="In" />
-          <Parameter Name="piIdUsuario" Type="int" Mode="In" />
-          <Parameter Name="piEstatus" Type="int" Mode="In" />
-        </Function>
         <Function Name="sp_ListadoPaisPrueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_ListadoTicket_CerradosCancelado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDUsuario" Type="int" Mode="In" />
@@ -292,6 +305,29 @@
         <Function Name="sp_ListaTicket_Padre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDTIcket" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_LogCorreosNumeros_Crear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDSolicitud" Type="int" Mode="In" />
+          <Parameter Name="piAccion" Type="int" Mode="In" />
+          <Parameter Name="pcCorreoGerenciaSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcNumeroGerenciaSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcCorreosUsuarioSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcNumerosUsuarioSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcCorreosJefesSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcNumerosJefesSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcCorreosSupervisorSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcNumerosSupervisorSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcCorreoAreaSolicitante" Type="text" Mode="In" />
+          <Parameter Name="pcCorreoGerenciaAsignada" Type="text" Mode="In" />
+          <Parameter Name="pcNumeroGerenciaAsignada" Type="text" Mode="In" />
+          <Parameter Name="pcCorreoUsuarioAsignado" Type="text" Mode="In" />
+          <Parameter Name="pcNumeroUsuarioAsignado" Type="text" Mode="In" />
+          <Parameter Name="pcCorreosJefesAsignada" Type="text" Mode="In" />
+          <Parameter Name="pcNumerosJefesAsignada" Type="text" Mode="In" />
+          <Parameter Name="pcCorreosSupervisoresAsignado" Type="text" Mode="In" />
+          <Parameter Name="pcNumerosSupervisorAsignado" Type="text" Mode="In" />
+          <Parameter Name="pcCorreoAreaAsignada" Type="text" Mode="In" />
+        </Function>
+        <Function Name="sp_LogCorreosNumeros_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Motivos_Estado_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piEstado" Type="int" Mode="In" />
         </Function>
@@ -582,9 +618,6 @@
           <Parameter Name="piIDJefeInmediato" Type="int" Mode="In" />
           <Parameter Name="piAreaAsignada" Type="int" Mode="In" />
           <Parameter Name="piIDPuesto" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_UsuarioArea_Resoluctora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="piIDticket" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_UsuarioMaestro_ObtenerIdAreaAsignada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDusuario" Type="int" Mode="In" />
@@ -1207,13 +1240,6 @@
             <Parameter Name="piIdCategoriaResolucion" Mode="In" Type="Int32" />
             <Parameter Name="piIdSubCategoriaResolucion" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_CorreosNumeros_AreaRol" ReturnType="Collection(SARISModel.sp_CorreosNumeros_AreaRol_Result)">
-            <Parameter Name="piArea" Mode="In" Type="Int32" />
-            <Parameter Name="piRol" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_DatosTicket_Correo" ReturnType="Collection(SARISModel.sp_DatosTicket_Correo_Result)">
-          <Parameter Name="piTicket" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_ListadoBandeja_Ticket">
             <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
             <Parameter Name="piIDApp" Mode="In" Type="Int32" />
@@ -1223,10 +1249,59 @@
           <FunctionImport Name="sp_UsuarioArea_Resoluctora" ReturnType="Collection(SARISModel.sp_UsuarioArea_Resoluctora_Result)">
           <Parameter Name="piIDticket" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_Requerimiento_Catalogo_Categoria_Resolucion" ReturnType="Collection(SARISModel.sp_Requerimiento_Catalogo_Categoria_Resolucion_Result)" />
+          <FunctionImport Name="sp_DatosTicket_Correo" ReturnType="Collection(SARISModel.sp_DatosTicket_Correo_Result)">
+          <Parameter Name="piTicket" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CorreosNumeros_AreaRol" ReturnType="Collection(SARISModel.sp_CorreosNumeros_AreaRol_Result)">
+            <Parameter Name="piAreaAsignada" Mode="In" Type="Int32" />
+            <Parameter Name="piRol" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_SaberUsuario_Area_Estado_Anterior_Requerimiento" ReturnType="Collection(SARISModel.sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result)">
           <Parameter Name="idrequerimiento" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_Requerimiento_Catalogo_Categoria_Resolucion" ReturnType="Collection(SARISModel.sp_Requerimiento_Catalogo_Categoria_Resolucion_Result)" />
+          <FunctionImport Name="sp_CI_Configuracion_CI_Editar" ReturnType="Collection(SARISModel.sp_CI_Configuracion_CI_Editar_Result)">
+            <Parameter Name="piIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRegion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCiudad" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCI" Mode="In" Type="Int32" />
+            <Parameter Name="piIDConfiguracion" Mode="In" Type="Int32" />
+            <Parameter Name="pcConfiguracion" Mode="In" Type="String" />
+            <Parameter Name="pcLatitud" Mode="In" Type="String" />
+            <Parameter Name="pcLongitud" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CI_Configuracion_CI_Insertar" ReturnType="Collection(SARISModel.sp_CI_Configuracion_CI_Insertar_Result)">
+            <Parameter Name="piIDPais" Mode="In" Type="Int32" />
+            <Parameter Name="piIDRegion" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCiudad" Mode="In" Type="Int32" />
+            <Parameter Name="piIDCI" Mode="In" Type="Int32" />
+            <Parameter Name="pcConfiguracion" Mode="In" Type="String" />
+            <Parameter Name="pcLatitud" Mode="In" Type="String" />
+            <Parameter Name="pcLongitud" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_LogCorreosNumeros_Crear">
+            <Parameter Name="piIDSolicitud" Mode="In" Type="Int32" />
+            <Parameter Name="piAccion" Mode="In" Type="Int32" />
+            <Parameter Name="pcCorreoGerenciaSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcNumeroGerenciaSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcCorreosUsuarioSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcNumerosUsuarioSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcCorreosJefesSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcNumerosJefesSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcCorreosSupervisorSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcNumerosSupervisorSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcCorreoAreaSolicitante" Mode="In" Type="String" />
+            <Parameter Name="pcCorreoGerenciaAsignada" Mode="In" Type="String" />
+            <Parameter Name="pcNumeroGerenciaAsignada" Mode="In" Type="String" />
+            <Parameter Name="pcCorreoUsuarioAsignado" Mode="In" Type="String" />
+            <Parameter Name="pcNumeroUsuarioAsignado" Mode="In" Type="String" />
+            <Parameter Name="pcCorreosJefesAsignada" Mode="In" Type="String" />
+            <Parameter Name="pcNumerosJefesAsignada" Mode="In" Type="String" />
+            <Parameter Name="pcCorreosSupervisoresAsignado" Mode="In" Type="String" />
+            <Parameter Name="pcNumerosSupervisorAsignado" Mode="In" Type="String" />
+            <Parameter Name="pcCorreoAreaAsignada" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_LogCorreosNumeros_Listado" ReturnType="Collection(SARISModel.sp_LogCorreosNumeros_Listado_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_Requerimiento_Areas_Result">
           <Property Type="Int16" Name="fiIDArea" Nullable="false" />
@@ -2096,26 +2171,31 @@
           <Property Type="String" Name="fcMensaje" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="IdIngresado" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_CorreosNumeros_AreaRol_Result">
-          <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="fcBuzondeCorreo" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="fcTelefonoMovil" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="fiAreaAsignada" Nullable="true" />
-          <Property Type="String" Name="fcDescripcion" Nullable="true" MaxLength="40" />
-          <Property Type="Int16" Name="fiIDPuesto" Nullable="false" />
-          <Property Type="String" Name="fcPuesto" Nullable="true" MaxLength="255" />
+        <ComplexType Name="sp_UsuarioArea_Resoluctora_Result">
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="Int32" Name="fiIDUsuarioAsignado" Nullable="true" />
+          <Property Type="Int32" Name="fiIDArea" Nullable="true" />
+          <Property Type="DateTime" Name="fdFechaFinEstado" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_Requerimiento_Catalogo_Categoria_Resolucion_Result">
+          <Property Type="Int32" Name="fiIDCategoriaDesarrollo" Nullable="false" />
+          <Property Type="String" Name="fcDescripcionCategoria" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="fcToken" Nullable="false" MaxLength="512" />
+          <Property Type="Int32" Name="fiEstado" Nullable="false" />
+          <Property Type="Int16" Name="fiIDArea" Nullable="false" />
+          <Property Type="String" Name="fcDescripcion" Nullable="false" MaxLength="40" />
         </ComplexType>
         <ComplexType Name="sp_DatosTicket_Correo_Result">
           <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
           <Property Type="String" Name="fcTituloRequerimiento" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="fcDescripcionRequerimiento" Nullable="false" MaxLength="Max" />
           <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="fiIDAreaSolicitante" Nullable="true" />
-          <Property Type="Int32" Name="fiAreaAsignada" Nullable="true" />
+          <Property Type="Byte" Name="fiIDAreaSolicitante" Nullable="false" />
           <Property Type="String" Name="fcAreaSolicitante" Nullable="true" MaxLength="40" />
           <Property Type="Int32" Name="fiIDUsuarioSolicitante" Nullable="false" />
           <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
           <Property Type="Byte" Name="fiIDEstadoRequerimiento" Nullable="false" />
+          <Property Type="Int32" Name="fiAreaAsignada" Nullable="true" />
           <Property Type="String" Name="fcDescripcionEstado" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="fcCorreoElectronico" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="fcDescripcionCategoria" Nullable="true" MaxLength="200" />
@@ -2149,26 +2229,57 @@
           <Property Type="String" Name="fcCorreoGerenciaAsignada" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="fcCorreoAreaAsignada" Nullable="false" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="sp_UsuarioArea_Resoluctora_Result">
-          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
-          <Property Type="Int32" Name="fiIDUsuarioAsignado" Nullable="true" />
-          <Property Type="Int32" Name="fiIDArea" Nullable="true" />
-          <Property Type="DateTime" Name="fdFechaFinEstado" Nullable="true" Precision="23" />
+        <ComplexType Name="sp_CorreosNumeros_AreaRol_Result">
+          <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="fcBuzondeCorreo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="fcTelefonoMovil" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="fiAreaAsignada" Nullable="true" />
+          <Property Type="String" Name="fcDescripcion" Nullable="true" MaxLength="40" />
+          <Property Type="Int16" Name="fiIDPuesto" Nullable="false" />
+          <Property Type="String" Name="fcPuesto" Nullable="true" MaxLength="255" />
         </ComplexType>
         <ComplexType Name="sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result">
           <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
           <Property Type="String" Name="fcDescripcionEstado" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="fcNombreCorto" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="fcDescripcion" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="fiAreaAsignada" Nullable="true" />
+          <Property Type="Int16" Name="fiAreaAsignada" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_Requerimiento_Catalogo_Categoria_Resolucion_Result">
-          <Property Type="Int32" Name="fiIDCategoriaDesarrollo" Nullable="false" />
-          <Property Type="String" Name="fcDescripcionCategoria" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="fcToken" Nullable="false" MaxLength="512" />
-          <Property Type="Int32" Name="fiEstado" Nullable="false" />
-          <Property Type="Int16" Name="fiIDArea" Nullable="false" />
-          <Property Type="String" Name="fcDescripcion" Nullable="false" MaxLength="40" />
+        <ComplexType Name="sp_CI_Configuracion_CI_Editar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_CI_Configuracion_CI_Insertar_Result">
+          <Property Type="Int32" Name="fiRequest" Nullable="true" />
+          <Property Type="String" Name="fcRequest" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_LogCorreosNumeros_Listado_Result">
+          <Property Type="Int32" Name="fiIDSolicitud" Nullable="true" />
+          <Property Type="Int32" Name="fiIDUsuarioSolicitante" Nullable="true" />
+          <Property Type="String" Name="fcNombreSolicitante" Nullable="true" MaxLength="30" />
+          <Property Type="Byte" Name="fiIDAreaSolicitante" Nullable="true" />
+          <Property Type="String" Name="fcNombreAreaSolicitante" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="fiAccion" Nullable="true" />
+          <Property Type="String" Name="fcAccionLog" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="fdFechaEnvio" Nullable="true" Precision="23" />
+          <Property Type="String" Name="fcCorreoGerenciaSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNumeroGerenciaSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreosUsuarioSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNumerosUsuarioSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreosJefesSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNumerosJefesSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreosSupervisorSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNumerosSupervisorSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreoAreaSolicitante" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreoGerenciaAsignada" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNumeroGerenciaAsignada" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreoUsuarioAsignado" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNumeroUsuarioAsignado" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreosJefesAsignada" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNumerosJefesAsignada" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreosSupervisoresAsignado" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcNumerosSupervisorAsignado" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fcCorreoAreaAsignada" Nullable="false" MaxLength="Max" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3475,16 +3586,15 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_CorreosNumeros_AreaRol" FunctionName="SARISModel.Store.sp_CorreosNumeros_AreaRol">
+          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Catalogo_Categoria_Resolucion" FunctionName="SARISModel.Store.sp_Requerimiento_Catalogo_Categoria_Resolucion">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SARISModel.sp_CorreosNumeros_AreaRol_Result">
-                <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
-                <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
-                <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
-                <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
+              <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Catalogo_Categoria_Resolucion_Result">
+                <ScalarProperty Name="fiIDCategoriaDesarrollo" ColumnName="fiIDCategoriaDesarrollo" />
+                <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+                <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+                <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+                <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
                 <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
-                <ScalarProperty Name="fiIDPuesto" ColumnName="fiIDPuesto" />
-                <ScalarProperty Name="fcPuesto" ColumnName="fcPuesto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3496,11 +3606,11 @@
                 <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
                 <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
                 <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
-                <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
                 <ScalarProperty Name="fcAreaSolicitante" ColumnName="fcAreaSolicitante" />
                 <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
                 <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
                 <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
+                <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
                 <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
                 <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
                 <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
@@ -3536,14 +3646,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ListadoBandeja_Ticket" FunctionName="SARISModel.Store.sp_ListadoBandeja_Ticket" />
-          <FunctionImportMapping FunctionImportName="sp_UsuarioArea_Resoluctora" FunctionName="SARISModel.Store.sp_UsuarioArea_Resoluctora">
+          <FunctionImportMapping FunctionImportName="sp_CorreosNumeros_AreaRol" FunctionName="SARISModel.Store.sp_CorreosNumeros_AreaRol">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SARISModel.sp_UsuarioArea_Resoluctora_Result">
-                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
-                <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
-                <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
-                <ScalarProperty Name="fdFechaFinEstado" ColumnName="fdFechaFinEstado" />
+              <ComplexTypeMapping TypeName="SARISModel.sp_CorreosNumeros_AreaRol_Result">
+                <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+                <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
+                <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
+                <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
+                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+                <ScalarProperty Name="fiIDPuesto" ColumnName="fiIDPuesto" />
+                <ScalarProperty Name="fcPuesto" ColumnName="fcPuesto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3558,15 +3670,52 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Requerimiento_Catalogo_Categoria_Resolucion" FunctionName="SARISModel.Store.sp_Requerimiento_Catalogo_Categoria_Resolucion">
+          <FunctionImportMapping FunctionImportName="sp_CI_Configuracion_CI_Editar" FunctionName="SARISModel.Store.sp_CI_Configuracion_CI_Editar">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Catalogo_Categoria_Resolucion_Result">
-                <ScalarProperty Name="fiIDCategoriaDesarrollo" ColumnName="fiIDCategoriaDesarrollo" />
-                <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
-                <ScalarProperty Name="fcToken" ColumnName="fcToken" />
-                <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
-                <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
-                <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+              <ComplexTypeMapping TypeName="SARISModel.sp_CI_Configuracion_CI_Editar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CI_Configuracion_CI_Insertar" FunctionName="SARISModel.Store.sp_CI_Configuracion_CI_Insertar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_CI_Configuracion_CI_Insertar_Result">
+                <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+                <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_LogCorreosNumeros_Crear" FunctionName="SARISModel.Store.sp_LogCorreosNumeros_Crear" />
+          <FunctionImportMapping FunctionImportName="sp_LogCorreosNumeros_Listado" FunctionName="SARISModel.Store.sp_LogCorreosNumeros_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_LogCorreosNumeros_Listado_Result">
+                <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+                <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+                <ScalarProperty Name="fcNombreSolicitante" ColumnName="fcNombreSolicitante" />
+                <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
+                <ScalarProperty Name="fcNombreAreaSolicitante" ColumnName="fcNombreAreaSolicitante" />
+                <ScalarProperty Name="fiAccion" ColumnName="fiAccion" />
+                <ScalarProperty Name="fcAccionLog" ColumnName="fcAccionLog" />
+                <ScalarProperty Name="fdFechaEnvio" ColumnName="fdFechaEnvio" />
+                <ScalarProperty Name="fcCorreoGerenciaSolicitante" ColumnName="fcCorreoGerenciaSolicitante" />
+                <ScalarProperty Name="fcNumeroGerenciaSolicitante" ColumnName="fcNumeroGerenciaSolicitante" />
+                <ScalarProperty Name="fcCorreosUsuarioSolicitante" ColumnName="fcCorreosUsuarioSolicitante" />
+                <ScalarProperty Name="fcNumerosUsuarioSolicitante" ColumnName="fcNumerosUsuarioSolicitante" />
+                <ScalarProperty Name="fcCorreosJefesSolicitante" ColumnName="fcCorreosJefesSolicitante" />
+                <ScalarProperty Name="fcNumerosJefesSolicitante" ColumnName="fcNumerosJefesSolicitante" />
+                <ScalarProperty Name="fcCorreosSupervisorSolicitante" ColumnName="fcCorreosSupervisorSolicitante" />
+                <ScalarProperty Name="fcNumerosSupervisorSolicitante" ColumnName="fcNumerosSupervisorSolicitante" />
+                <ScalarProperty Name="fcCorreoAreaSolicitante" ColumnName="fcCorreoAreaSolicitante" />
+                <ScalarProperty Name="fcCorreoGerenciaAsignada" ColumnName="fcCorreoGerenciaAsignada" />
+                <ScalarProperty Name="fcNumeroGerenciaAsignada" ColumnName="fcNumeroGerenciaAsignada" />
+                <ScalarProperty Name="fcCorreoUsuarioAsignado" ColumnName="fcCorreoUsuarioAsignado" />
+                <ScalarProperty Name="fcNumeroUsuarioAsignado" ColumnName="fcNumeroUsuarioAsignado" />
+                <ScalarProperty Name="fcCorreosJefesAsignada" ColumnName="fcCorreosJefesAsignada" />
+                <ScalarProperty Name="fcNumerosJefesAsignada" ColumnName="fcNumerosJefesAsignada" />
+                <ScalarProperty Name="fcCorreosSupervisoresAsignado" ColumnName="fcCorreosSupervisoresAsignado" />
+                <ScalarProperty Name="fcNumerosSupervisorAsignado" ColumnName="fcNumerosSupervisorAsignado" />
+                <ScalarProperty Name="fcCorreoAreaAsignada" ColumnName="fcCorreoAreaAsignada" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

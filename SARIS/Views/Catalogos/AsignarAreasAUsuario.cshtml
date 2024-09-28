@@ -113,8 +113,13 @@
         var idusuario = $(`#selectUsuarios`).val();
         var idusuar = ``;
 
-        for (const item of guardarareas) {
-            idusuar += ','+item
+        //for (const item of guardarareas) {
+        //    idusuar += ','+item
+        //}
+
+        for (var i = 0; i < guardarareas.length;i++)
+        {
+            idusuar += ',' + guardarareas[i]
         }
 
         $.ajax({
@@ -134,10 +139,6 @@
         });
 
     });
-
-    function GuardarDatos() {
-
-    }
 
 
 </script>

@@ -1300,16 +1300,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_CorreosNumeros_AreaRol" FunctionName="SARISModel.Store.sp_CorreosNumeros_AreaRol">
+    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Catalogo_Categoria_Resolucion" FunctionName="SARISModel.Store.sp_Requerimiento_Catalogo_Categoria_Resolucion">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_CorreosNumeros_AreaRol_Result">
-          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
-          <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
-          <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
-          <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
+        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Catalogo_Categoria_Resolucion_Result">
+          <ScalarProperty Name="fiIDCategoriaDesarrollo" ColumnName="fiIDCategoriaDesarrollo" />
+          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
+          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
+          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
+          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
           <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
-          <ScalarProperty Name="fiIDPuesto" ColumnName="fiIDPuesto" />
-          <ScalarProperty Name="fcPuesto" ColumnName="fcPuesto" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -1321,11 +1320,11 @@
           <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
           <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
           <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
-          <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
           <ScalarProperty Name="fcAreaSolicitante" ColumnName="fcAreaSolicitante" />
           <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
           <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
           <ScalarProperty Name="fiIDEstadoRequerimiento" ColumnName="fiIDEstadoRequerimiento" />
+          <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
           <ScalarProperty Name="fcDescripcionEstado" ColumnName="fcDescripcionEstado" />
           <ScalarProperty Name="fcCorreoElectronico" ColumnName="fcCorreoElectronico" />
           <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
@@ -1361,14 +1360,16 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_ListadoBandeja_Ticket" FunctionName="SARISModel.Store.sp_ListadoBandeja_Ticket" />
-    <FunctionImportMapping FunctionImportName="sp_UsuarioArea_Resoluctora" FunctionName="SARISModel.Store.sp_UsuarioArea_Resoluctora">
+    <FunctionImportMapping FunctionImportName="sp_CorreosNumeros_AreaRol" FunctionName="SARISModel.Store.sp_CorreosNumeros_AreaRol">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_UsuarioArea_Resoluctora_Result">
-          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
-          <ScalarProperty Name="fiIDUsuarioAsignado" ColumnName="fiIDUsuarioAsignado" />
-          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
-          <ScalarProperty Name="fdFechaFinEstado" ColumnName="fdFechaFinEstado" />
+        <ComplexTypeMapping TypeName="SARISModel.sp_CorreosNumeros_AreaRol_Result">
+          <ScalarProperty Name="fcNombreCorto" ColumnName="fcNombreCorto" />
+          <ScalarProperty Name="fcBuzondeCorreo" ColumnName="fcBuzondeCorreo" />
+          <ScalarProperty Name="fcTelefonoMovil" ColumnName="fcTelefonoMovil" />
+          <ScalarProperty Name="fiAreaAsignada" ColumnName="fiAreaAsignada" />
+          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+          <ScalarProperty Name="fiIDPuesto" ColumnName="fiIDPuesto" />
+          <ScalarProperty Name="fcPuesto" ColumnName="fcPuesto" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -1383,15 +1384,52 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Requerimiento_Catalogo_Categoria_Resolucion" FunctionName="SARISModel.Store.sp_Requerimiento_Catalogo_Categoria_Resolucion">
+    <FunctionImportMapping FunctionImportName="sp_CI_Configuracion_CI_Editar" FunctionName="SARISModel.Store.sp_CI_Configuracion_CI_Editar">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_Requerimiento_Catalogo_Categoria_Resolucion_Result">
-          <ScalarProperty Name="fiIDCategoriaDesarrollo" ColumnName="fiIDCategoriaDesarrollo" />
-          <ScalarProperty Name="fcDescripcionCategoria" ColumnName="fcDescripcionCategoria" />
-          <ScalarProperty Name="fcToken" ColumnName="fcToken" />
-          <ScalarProperty Name="fiEstado" ColumnName="fiEstado" />
-          <ScalarProperty Name="fiIDArea" ColumnName="fiIDArea" />
-          <ScalarProperty Name="fcDescripcion" ColumnName="fcDescripcion" />
+        <ComplexTypeMapping TypeName="SARISModel.sp_CI_Configuracion_CI_Editar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CI_Configuracion_CI_Insertar" FunctionName="SARISModel.Store.sp_CI_Configuracion_CI_Insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_CI_Configuracion_CI_Insertar_Result">
+          <ScalarProperty Name="fiRequest" ColumnName="fiRequest" />
+          <ScalarProperty Name="fcRequest" ColumnName="fcRequest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LogCorreosNumeros_Crear" FunctionName="SARISModel.Store.sp_LogCorreosNumeros_Crear" />
+    <FunctionImportMapping FunctionImportName="sp_LogCorreosNumeros_Listado" FunctionName="SARISModel.Store.sp_LogCorreosNumeros_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_LogCorreosNumeros_Listado_Result">
+          <ScalarProperty Name="fiIDSolicitud" ColumnName="fiIDSolicitud" />
+          <ScalarProperty Name="fiIDUsuarioSolicitante" ColumnName="fiIDUsuarioSolicitante" />
+          <ScalarProperty Name="fcNombreSolicitante" ColumnName="fcNombreSolicitante" />
+          <ScalarProperty Name="fiIDAreaSolicitante" ColumnName="fiIDAreaSolicitante" />
+          <ScalarProperty Name="fcNombreAreaSolicitante" ColumnName="fcNombreAreaSolicitante" />
+          <ScalarProperty Name="fiAccion" ColumnName="fiAccion" />
+          <ScalarProperty Name="fcAccionLog" ColumnName="fcAccionLog" />
+          <ScalarProperty Name="fdFechaEnvio" ColumnName="fdFechaEnvio" />
+          <ScalarProperty Name="fcCorreoGerenciaSolicitante" ColumnName="fcCorreoGerenciaSolicitante" />
+          <ScalarProperty Name="fcNumeroGerenciaSolicitante" ColumnName="fcNumeroGerenciaSolicitante" />
+          <ScalarProperty Name="fcCorreosUsuarioSolicitante" ColumnName="fcCorreosUsuarioSolicitante" />
+          <ScalarProperty Name="fcNumerosUsuarioSolicitante" ColumnName="fcNumerosUsuarioSolicitante" />
+          <ScalarProperty Name="fcCorreosJefesSolicitante" ColumnName="fcCorreosJefesSolicitante" />
+          <ScalarProperty Name="fcNumerosJefesSolicitante" ColumnName="fcNumerosJefesSolicitante" />
+          <ScalarProperty Name="fcCorreosSupervisorSolicitante" ColumnName="fcCorreosSupervisorSolicitante" />
+          <ScalarProperty Name="fcNumerosSupervisorSolicitante" ColumnName="fcNumerosSupervisorSolicitante" />
+          <ScalarProperty Name="fcCorreoAreaSolicitante" ColumnName="fcCorreoAreaSolicitante" />
+          <ScalarProperty Name="fcCorreoGerenciaAsignada" ColumnName="fcCorreoGerenciaAsignada" />
+          <ScalarProperty Name="fcNumeroGerenciaAsignada" ColumnName="fcNumeroGerenciaAsignada" />
+          <ScalarProperty Name="fcCorreoUsuarioAsignado" ColumnName="fcCorreoUsuarioAsignado" />
+          <ScalarProperty Name="fcNumeroUsuarioAsignado" ColumnName="fcNumeroUsuarioAsignado" />
+          <ScalarProperty Name="fcCorreosJefesAsignada" ColumnName="fcCorreosJefesAsignada" />
+          <ScalarProperty Name="fcNumerosJefesAsignada" ColumnName="fcNumerosJefesAsignada" />
+          <ScalarProperty Name="fcCorreosSupervisoresAsignado" ColumnName="fcCorreosSupervisoresAsignado" />
+          <ScalarProperty Name="fcNumerosSupervisorAsignado" ColumnName="fcNumerosSupervisorAsignado" />
+          <ScalarProperty Name="fcCorreoAreaAsignada" ColumnName="fcCorreoAreaAsignada" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

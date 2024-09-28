@@ -77,6 +77,7 @@
                                 </a>
                             </li>
                         }
+                        
                     </ul>
                 </li>
             }
@@ -227,16 +228,23 @@
                             </li>
                         }
 
-
-                        @*@if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
-                    {
                         <li>
-                            <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
-                                <i class="fal fa-location-circle fa-fw"></i>
-                                <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
+                            <a href="@Url.Action("LogNumerosCorreos","Log")" data-filter-tags="blank page">
+                                <i class="fal fa-lock fa-fw"></i>
+                                <span class="nav-link-text" style="color:white;"><strong>Log de Notificaciones</strong></span>
                             </a>
                         </li>
-                    }*@
+
+
+                        @*@if (User.IsInRole("Mantenimiento_Modulo_Ubicaciones"))
+        {
+            <li>
+                <a href="@Url.Action("Index","Ubicaciones")" data-filter-tags="blank page">
+                    <i class="fal fa-location-circle fa-fw"></i>
+                    <span class="nav-link-text" style="color:white;"><strong>Ubicaciones</strong></span>
+                </a>
+            </li>
+        }*@
 
 
 

@@ -2085,28 +2085,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimiento_Maestro_Actualizar_Result>("sp_Requerimiento_Maestro_Actualizar", piIDUsuarioParameter, piIDRequerimientoParameter, pcTituloRequerimientoParameter, pcDescripcionRequerimientoParameter, piIDEstadoRequerimientoParameter, fdFechaAsignacionParameter, pifiIDUsuarioAsignadoParameter, piTiempodeDesarrolloParameter, pifiTipoRequerimientoParameter, piIDAppParameter, piIdAreaAsignadaParameter, piIdTicketPadreParameter, pifiMotivoEstadoParameter, piIdCategoriaResolucionParameter, piIdSubCategoriaResolucionParameter);
         }
     
-        public virtual ObjectResult<sp_CorreosNumeros_AreaRol_Result> sp_CorreosNumeros_AreaRol(Nullable<int> piArea, Nullable<int> piRol)
-        {
-            var piAreaParameter = piArea.HasValue ?
-                new ObjectParameter("piArea", piArea) :
-                new ObjectParameter("piArea", typeof(int));
-    
-            var piRolParameter = piRol.HasValue ?
-                new ObjectParameter("piRol", piRol) :
-                new ObjectParameter("piRol", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CorreosNumeros_AreaRol_Result>("sp_CorreosNumeros_AreaRol", piAreaParameter, piRolParameter);
-        }
-    
-        public virtual ObjectResult<sp_DatosTicket_Correo_Result> sp_DatosTicket_Correo(Nullable<int> piTicket)
-        {
-            var piTicketParameter = piTicket.HasValue ?
-                new ObjectParameter("piTicket", piTicket) :
-                new ObjectParameter("piTicket", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DatosTicket_Correo_Result>("sp_DatosTicket_Correo", piTicketParameter);
-        }
-    
         public virtual int sp_ListadoBandeja_Ticket(Nullable<int> piIDSesion, Nullable<int> piIDApp, Nullable<int> piIdUsuario, Nullable<int> piEstatus)
         {
             var piIDSesionParameter = piIDSesion.HasValue ?
@@ -2137,6 +2115,33 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_UsuarioArea_Resoluctora_Result>("sp_UsuarioArea_Resoluctora", piIDticketParameter);
         }
     
+        public virtual ObjectResult<sp_Requerimiento_Catalogo_Categoria_Resolucion_Result> sp_Requerimiento_Catalogo_Categoria_Resolucion()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimiento_Catalogo_Categoria_Resolucion_Result>("sp_Requerimiento_Catalogo_Categoria_Resolucion");
+        }
+    
+        public virtual ObjectResult<sp_DatosTicket_Correo_Result> sp_DatosTicket_Correo(Nullable<int> piTicket)
+        {
+            var piTicketParameter = piTicket.HasValue ?
+                new ObjectParameter("piTicket", piTicket) :
+                new ObjectParameter("piTicket", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DatosTicket_Correo_Result>("sp_DatosTicket_Correo", piTicketParameter);
+        }
+    
+        public virtual ObjectResult<sp_CorreosNumeros_AreaRol_Result> sp_CorreosNumeros_AreaRol(Nullable<int> piAreaAsignada, Nullable<int> piRol)
+        {
+            var piAreaAsignadaParameter = piAreaAsignada.HasValue ?
+                new ObjectParameter("piAreaAsignada", piAreaAsignada) :
+                new ObjectParameter("piAreaAsignada", typeof(int));
+    
+            var piRolParameter = piRol.HasValue ?
+                new ObjectParameter("piRol", piRol) :
+                new ObjectParameter("piRol", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CorreosNumeros_AreaRol_Result>("sp_CorreosNumeros_AreaRol", piAreaAsignadaParameter, piRolParameter);
+        }
+    
         public virtual ObjectResult<sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result> sp_SaberUsuario_Area_Estado_Anterior_Requerimiento(Nullable<int> idrequerimiento)
         {
             var idrequerimientoParameter = idrequerimiento.HasValue ?
@@ -2146,9 +2151,164 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SaberUsuario_Area_Estado_Anterior_Requerimiento_Result>("sp_SaberUsuario_Area_Estado_Anterior_Requerimiento", idrequerimientoParameter);
         }
     
-        public virtual ObjectResult<sp_Requerimiento_Catalogo_Categoria_Resolucion_Result> sp_Requerimiento_Catalogo_Categoria_Resolucion()
+        public virtual ObjectResult<sp_CI_Configuracion_CI_Editar_Result> sp_CI_Configuracion_CI_Editar(Nullable<int> piIDPais, Nullable<int> piIDRegion, Nullable<int> piIDCiudad, Nullable<int> piIDCI, Nullable<int> piIDConfiguracion, string pcConfiguracion, string pcLatitud, string pcLongitud)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimiento_Catalogo_Categoria_Resolucion_Result>("sp_Requerimiento_Catalogo_Categoria_Resolucion");
+            var piIDPaisParameter = piIDPais.HasValue ?
+                new ObjectParameter("piIDPais", piIDPais) :
+                new ObjectParameter("piIDPais", typeof(int));
+    
+            var piIDRegionParameter = piIDRegion.HasValue ?
+                new ObjectParameter("piIDRegion", piIDRegion) :
+                new ObjectParameter("piIDRegion", typeof(int));
+    
+            var piIDCiudadParameter = piIDCiudad.HasValue ?
+                new ObjectParameter("piIDCiudad", piIDCiudad) :
+                new ObjectParameter("piIDCiudad", typeof(int));
+    
+            var piIDCIParameter = piIDCI.HasValue ?
+                new ObjectParameter("piIDCI", piIDCI) :
+                new ObjectParameter("piIDCI", typeof(int));
+    
+            var piIDConfiguracionParameter = piIDConfiguracion.HasValue ?
+                new ObjectParameter("piIDConfiguracion", piIDConfiguracion) :
+                new ObjectParameter("piIDConfiguracion", typeof(int));
+    
+            var pcConfiguracionParameter = pcConfiguracion != null ?
+                new ObjectParameter("pcConfiguracion", pcConfiguracion) :
+                new ObjectParameter("pcConfiguracion", typeof(string));
+    
+            var pcLatitudParameter = pcLatitud != null ?
+                new ObjectParameter("pcLatitud", pcLatitud) :
+                new ObjectParameter("pcLatitud", typeof(string));
+    
+            var pcLongitudParameter = pcLongitud != null ?
+                new ObjectParameter("pcLongitud", pcLongitud) :
+                new ObjectParameter("pcLongitud", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CI_Configuracion_CI_Editar_Result>("sp_CI_Configuracion_CI_Editar", piIDPaisParameter, piIDRegionParameter, piIDCiudadParameter, piIDCIParameter, piIDConfiguracionParameter, pcConfiguracionParameter, pcLatitudParameter, pcLongitudParameter);
+        }
+    
+        public virtual ObjectResult<sp_CI_Configuracion_CI_Insertar_Result> sp_CI_Configuracion_CI_Insertar(Nullable<int> piIDPais, Nullable<int> piIDRegion, Nullable<int> piIDCiudad, Nullable<int> piIDCI, string pcConfiguracion, string pcLatitud, string pcLongitud)
+        {
+            var piIDPaisParameter = piIDPais.HasValue ?
+                new ObjectParameter("piIDPais", piIDPais) :
+                new ObjectParameter("piIDPais", typeof(int));
+    
+            var piIDRegionParameter = piIDRegion.HasValue ?
+                new ObjectParameter("piIDRegion", piIDRegion) :
+                new ObjectParameter("piIDRegion", typeof(int));
+    
+            var piIDCiudadParameter = piIDCiudad.HasValue ?
+                new ObjectParameter("piIDCiudad", piIDCiudad) :
+                new ObjectParameter("piIDCiudad", typeof(int));
+    
+            var piIDCIParameter = piIDCI.HasValue ?
+                new ObjectParameter("piIDCI", piIDCI) :
+                new ObjectParameter("piIDCI", typeof(int));
+    
+            var pcConfiguracionParameter = pcConfiguracion != null ?
+                new ObjectParameter("pcConfiguracion", pcConfiguracion) :
+                new ObjectParameter("pcConfiguracion", typeof(string));
+    
+            var pcLatitudParameter = pcLatitud != null ?
+                new ObjectParameter("pcLatitud", pcLatitud) :
+                new ObjectParameter("pcLatitud", typeof(string));
+    
+            var pcLongitudParameter = pcLongitud != null ?
+                new ObjectParameter("pcLongitud", pcLongitud) :
+                new ObjectParameter("pcLongitud", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CI_Configuracion_CI_Insertar_Result>("sp_CI_Configuracion_CI_Insertar", piIDPaisParameter, piIDRegionParameter, piIDCiudadParameter, piIDCIParameter, pcConfiguracionParameter, pcLatitudParameter, pcLongitudParameter);
+        }
+    
+        public virtual int sp_LogCorreosNumeros_Crear(Nullable<int> piIDSolicitud, Nullable<int> piAccion, string pcCorreoGerenciaSolicitante, string pcNumeroGerenciaSolicitante, string pcCorreosUsuarioSolicitante, string pcNumerosUsuarioSolicitante, string pcCorreosJefesSolicitante, string pcNumerosJefesSolicitante, string pcCorreosSupervisorSolicitante, string pcNumerosSupervisorSolicitante, string pcCorreoAreaSolicitante, string pcCorreoGerenciaAsignada, string pcNumeroGerenciaAsignada, string pcCorreoUsuarioAsignado, string pcNumeroUsuarioAsignado, string pcCorreosJefesAsignada, string pcNumerosJefesAsignada, string pcCorreosSupervisoresAsignado, string pcNumerosSupervisorAsignado, string pcCorreoAreaAsignada)
+        {
+            var piIDSolicitudParameter = piIDSolicitud.HasValue ?
+                new ObjectParameter("piIDSolicitud", piIDSolicitud) :
+                new ObjectParameter("piIDSolicitud", typeof(int));
+    
+            var piAccionParameter = piAccion.HasValue ?
+                new ObjectParameter("piAccion", piAccion) :
+                new ObjectParameter("piAccion", typeof(int));
+    
+            var pcCorreoGerenciaSolicitanteParameter = pcCorreoGerenciaSolicitante != null ?
+                new ObjectParameter("pcCorreoGerenciaSolicitante", pcCorreoGerenciaSolicitante) :
+                new ObjectParameter("pcCorreoGerenciaSolicitante", typeof(string));
+    
+            var pcNumeroGerenciaSolicitanteParameter = pcNumeroGerenciaSolicitante != null ?
+                new ObjectParameter("pcNumeroGerenciaSolicitante", pcNumeroGerenciaSolicitante) :
+                new ObjectParameter("pcNumeroGerenciaSolicitante", typeof(string));
+    
+            var pcCorreosUsuarioSolicitanteParameter = pcCorreosUsuarioSolicitante != null ?
+                new ObjectParameter("pcCorreosUsuarioSolicitante", pcCorreosUsuarioSolicitante) :
+                new ObjectParameter("pcCorreosUsuarioSolicitante", typeof(string));
+    
+            var pcNumerosUsuarioSolicitanteParameter = pcNumerosUsuarioSolicitante != null ?
+                new ObjectParameter("pcNumerosUsuarioSolicitante", pcNumerosUsuarioSolicitante) :
+                new ObjectParameter("pcNumerosUsuarioSolicitante", typeof(string));
+    
+            var pcCorreosJefesSolicitanteParameter = pcCorreosJefesSolicitante != null ?
+                new ObjectParameter("pcCorreosJefesSolicitante", pcCorreosJefesSolicitante) :
+                new ObjectParameter("pcCorreosJefesSolicitante", typeof(string));
+    
+            var pcNumerosJefesSolicitanteParameter = pcNumerosJefesSolicitante != null ?
+                new ObjectParameter("pcNumerosJefesSolicitante", pcNumerosJefesSolicitante) :
+                new ObjectParameter("pcNumerosJefesSolicitante", typeof(string));
+    
+            var pcCorreosSupervisorSolicitanteParameter = pcCorreosSupervisorSolicitante != null ?
+                new ObjectParameter("pcCorreosSupervisorSolicitante", pcCorreosSupervisorSolicitante) :
+                new ObjectParameter("pcCorreosSupervisorSolicitante", typeof(string));
+    
+            var pcNumerosSupervisorSolicitanteParameter = pcNumerosSupervisorSolicitante != null ?
+                new ObjectParameter("pcNumerosSupervisorSolicitante", pcNumerosSupervisorSolicitante) :
+                new ObjectParameter("pcNumerosSupervisorSolicitante", typeof(string));
+    
+            var pcCorreoAreaSolicitanteParameter = pcCorreoAreaSolicitante != null ?
+                new ObjectParameter("pcCorreoAreaSolicitante", pcCorreoAreaSolicitante) :
+                new ObjectParameter("pcCorreoAreaSolicitante", typeof(string));
+    
+            var pcCorreoGerenciaAsignadaParameter = pcCorreoGerenciaAsignada != null ?
+                new ObjectParameter("pcCorreoGerenciaAsignada", pcCorreoGerenciaAsignada) :
+                new ObjectParameter("pcCorreoGerenciaAsignada", typeof(string));
+    
+            var pcNumeroGerenciaAsignadaParameter = pcNumeroGerenciaAsignada != null ?
+                new ObjectParameter("pcNumeroGerenciaAsignada", pcNumeroGerenciaAsignada) :
+                new ObjectParameter("pcNumeroGerenciaAsignada", typeof(string));
+    
+            var pcCorreoUsuarioAsignadoParameter = pcCorreoUsuarioAsignado != null ?
+                new ObjectParameter("pcCorreoUsuarioAsignado", pcCorreoUsuarioAsignado) :
+                new ObjectParameter("pcCorreoUsuarioAsignado", typeof(string));
+    
+            var pcNumeroUsuarioAsignadoParameter = pcNumeroUsuarioAsignado != null ?
+                new ObjectParameter("pcNumeroUsuarioAsignado", pcNumeroUsuarioAsignado) :
+                new ObjectParameter("pcNumeroUsuarioAsignado", typeof(string));
+    
+            var pcCorreosJefesAsignadaParameter = pcCorreosJefesAsignada != null ?
+                new ObjectParameter("pcCorreosJefesAsignada", pcCorreosJefesAsignada) :
+                new ObjectParameter("pcCorreosJefesAsignada", typeof(string));
+    
+            var pcNumerosJefesAsignadaParameter = pcNumerosJefesAsignada != null ?
+                new ObjectParameter("pcNumerosJefesAsignada", pcNumerosJefesAsignada) :
+                new ObjectParameter("pcNumerosJefesAsignada", typeof(string));
+    
+            var pcCorreosSupervisoresAsignadoParameter = pcCorreosSupervisoresAsignado != null ?
+                new ObjectParameter("pcCorreosSupervisoresAsignado", pcCorreosSupervisoresAsignado) :
+                new ObjectParameter("pcCorreosSupervisoresAsignado", typeof(string));
+    
+            var pcNumerosSupervisorAsignadoParameter = pcNumerosSupervisorAsignado != null ?
+                new ObjectParameter("pcNumerosSupervisorAsignado", pcNumerosSupervisorAsignado) :
+                new ObjectParameter("pcNumerosSupervisorAsignado", typeof(string));
+    
+            var pcCorreoAreaAsignadaParameter = pcCorreoAreaAsignada != null ?
+                new ObjectParameter("pcCorreoAreaAsignada", pcCorreoAreaAsignada) :
+                new ObjectParameter("pcCorreoAreaAsignada", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_LogCorreosNumeros_Crear", piIDSolicitudParameter, piAccionParameter, pcCorreoGerenciaSolicitanteParameter, pcNumeroGerenciaSolicitanteParameter, pcCorreosUsuarioSolicitanteParameter, pcNumerosUsuarioSolicitanteParameter, pcCorreosJefesSolicitanteParameter, pcNumerosJefesSolicitanteParameter, pcCorreosSupervisorSolicitanteParameter, pcNumerosSupervisorSolicitanteParameter, pcCorreoAreaSolicitanteParameter, pcCorreoGerenciaAsignadaParameter, pcNumeroGerenciaAsignadaParameter, pcCorreoUsuarioAsignadoParameter, pcNumeroUsuarioAsignadoParameter, pcCorreosJefesAsignadaParameter, pcNumerosJefesAsignadaParameter, pcCorreosSupervisoresAsignadoParameter, pcNumerosSupervisorAsignadoParameter, pcCorreoAreaAsignadaParameter);
+        }
+    
+        public virtual ObjectResult<sp_LogCorreosNumeros_Listado_Result> sp_LogCorreosNumeros_Listado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LogCorreosNumeros_Listado_Result>("sp_LogCorreosNumeros_Listado");
         }
     }
 }

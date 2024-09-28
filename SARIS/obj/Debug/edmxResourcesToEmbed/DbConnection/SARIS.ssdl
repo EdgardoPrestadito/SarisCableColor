@@ -90,6 +90,25 @@
     <Parameter Name="piArea" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Categorias_IndicidenciasResolucion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_CI_Configuracion_CI_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDPais" Type="int" Mode="In" />
+    <Parameter Name="piIDRegion" Type="int" Mode="In" />
+    <Parameter Name="piIDCiudad" Type="int" Mode="In" />
+    <Parameter Name="piIDCI" Type="int" Mode="In" />
+    <Parameter Name="piIDConfiguracion" Type="int" Mode="In" />
+    <Parameter Name="pcConfiguracion" Type="varchar" Mode="In" />
+    <Parameter Name="pcLatitud" Type="varchar" Mode="In" />
+    <Parameter Name="pcLongitud" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_CI_Configuracion_CI_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDPais" Type="int" Mode="In" />
+    <Parameter Name="piIDRegion" Type="int" Mode="In" />
+    <Parameter Name="piIDCiudad" Type="int" Mode="In" />
+    <Parameter Name="piIDCI" Type="int" Mode="In" />
+    <Parameter Name="pcConfiguracion" Type="varchar" Mode="In" />
+    <Parameter Name="pcLatitud" Type="varchar" Mode="In" />
+    <Parameter Name="pcLongitud" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_CI_Configuracion_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDPais" Type="int" Mode="In" />
     <Parameter Name="piIDRegion" Type="int" Mode="In" />
@@ -157,7 +176,7 @@
     <Parameter Name="fcDescripcionLlave" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_CorreosNumeros_AreaRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="piArea" Type="int" Mode="In" />
+    <Parameter Name="piAreaAsignada" Type="int" Mode="In" />
     <Parameter Name="piRol" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_CrearImpacto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -270,12 +289,6 @@
     <Parameter Name="piUbicacion" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_IndicadoresResolucion_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="sp_ListadoBandeja_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="piIDSesion" Type="int" Mode="In" />
-    <Parameter Name="piIDApp" Type="int" Mode="In" />
-    <Parameter Name="piIdUsuario" Type="int" Mode="In" />
-    <Parameter Name="piEstatus" Type="int" Mode="In" />
-  </Function>
   <Function Name="sp_ListadoPaisPrueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_ListadoTicket_CerradosCancelado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDUsuario" Type="int" Mode="In" />
@@ -287,6 +300,29 @@
   <Function Name="sp_ListaTicket_Padre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDTIcket" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_LogCorreosNumeros_Crear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDSolicitud" Type="int" Mode="In" />
+    <Parameter Name="piAccion" Type="int" Mode="In" />
+    <Parameter Name="pcCorreoGerenciaSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcNumeroGerenciaSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcCorreosUsuarioSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcNumerosUsuarioSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcCorreosJefesSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcNumerosJefesSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcCorreosSupervisorSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcNumerosSupervisorSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcCorreoAreaSolicitante" Type="text" Mode="In" />
+    <Parameter Name="pcCorreoGerenciaAsignada" Type="text" Mode="In" />
+    <Parameter Name="pcNumeroGerenciaAsignada" Type="text" Mode="In" />
+    <Parameter Name="pcCorreoUsuarioAsignado" Type="text" Mode="In" />
+    <Parameter Name="pcNumeroUsuarioAsignado" Type="text" Mode="In" />
+    <Parameter Name="pcCorreosJefesAsignada" Type="text" Mode="In" />
+    <Parameter Name="pcNumerosJefesAsignada" Type="text" Mode="In" />
+    <Parameter Name="pcCorreosSupervisoresAsignado" Type="text" Mode="In" />
+    <Parameter Name="pcNumerosSupervisorAsignado" Type="text" Mode="In" />
+    <Parameter Name="pcCorreoAreaAsignada" Type="text" Mode="In" />
+  </Function>
+  <Function Name="sp_LogCorreosNumeros_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Motivos_Estado_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piEstado" Type="int" Mode="In" />
   </Function>
@@ -577,9 +613,6 @@
     <Parameter Name="piIDJefeInmediato" Type="int" Mode="In" />
     <Parameter Name="piAreaAsignada" Type="int" Mode="In" />
     <Parameter Name="piIDPuesto" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_UsuarioArea_Resoluctora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="piIDticket" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_UsuarioMaestro_ObtenerIdAreaAsignada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDusuario" Type="int" Mode="In" />

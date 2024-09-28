@@ -85,8 +85,13 @@
     function GuardarDatos() {
         var idusuar = areacontratacion;
         console.log(guardarareas);
-        for (const item of guardarareas) {
-            idusuar += ',' + item
+        debugger;
+        //for (const item of guardarareas) {
+        //    idusuar += ','+item
+        //}
+
+        for (var i = 0; i < guardarareas.length; i++) {
+            idusuar += ',' + guardarareas[i]
         }
 
         console.log(idusuar);

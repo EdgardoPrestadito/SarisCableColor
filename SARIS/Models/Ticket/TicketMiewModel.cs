@@ -57,6 +57,13 @@ namespace OrionCoreCableColor.Models.Ticket
         public int fiTiempo { get; set; }
         public string fcUsuarioModificador { get; set; }
         public string fcNombreMotivo { get; set; }
+        public string fcConfiguracion { get; set; }
+        public string fcNombreServicio { get; set; }
+        public string fcPais { get; set; }
+        public string fcRegion { get; set; }
+        public string fcCiudad { get; set; }
+        public string fcLongitudLatitud { get; set; }
+        public string fiSLA { get; set; }
 
     }
 }

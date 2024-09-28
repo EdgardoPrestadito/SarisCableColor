@@ -3,6 +3,28 @@
     ViewBag.Title = "BandejaTicketCerradosCancelados";
 }
 
+<style>
+    th, td {
+        white-space: nowrap; /* Asegura que el texto no se desborde y mantenga el alineamiento */
+        text-align: left; /* Asegura un alineamiento consistente */
+        padding: 10px; /* Ajusta el espacio interno para uniformidad */
+    }
+
+    .text-overflow {
+        white-space: nowrap; /* Trunca el texto en las celdas de contenido */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        .text-overflow:hover {
+            white-space: normal;
+            overflow: visible;
+            background-color: #f0f0f0;
+            z-index: 1;
+            position:  relative;
+        }
+</style>
+
 <div class="panel">
     <div class="panel-hdr">
         <div class="col-lg-12">
@@ -37,6 +59,14 @@
                             <th style="width:80px">Prioridad</th>
                             <th style="width:80px">SLA</th>
                             <th style="width:80px">Usuarios afectados</th>
+
+                            <th style="width:80px">CI</th>
+                            <th style="width:80px">Servicios</th>
+                            <th style="width:80px">Pais</th>
+                            <th style="width:80px">Region</th>
+                            <th style="width:80px">Ciudad</th>
+                            <th style="width:80px">Longitud y Latitud</th>
+                            <th style="width:80px">SLA Cumplido</th>
 
                             <th style="width:150px">Fecha alarma/detección</th>
                             <th style="width:150px">Fecha Creacion Solicitud</th>
@@ -73,8 +103,8 @@
                     <tr>
                         <th>Acciones</th>
                         <th style="width:80px">Estado</th>
-                        <th>Titulo</th>
-                        <th>Descripcion</th>
+                        <th class="text-overflow">Titulo</th>
+                        <th class="text-overflow">Descripcion</th>
                         <th style="width:80px">Solicitante</th>
                         <th style="width:80px">Area Solicitante</th>
                         <th style="width:80px">Usuario Asignado</th>
@@ -87,6 +117,14 @@
                         <th style="width:80px">Prioridad</th>
                         <th style="width:80px">SLA</th>
                         <th style="width:80px">Usuarios afectados</th>
+
+                        <th style="width:80px">CI</th>
+                        <th style="width:80px">Servicios</th>
+                        <th style="width:80px">Pais</th>
+                        <th style="width:80px">Region</th>
+                        <th style="width:80px">Ciudad</th>
+                        <th style="width:80px">Longitud y Latitud</th>
+                        <th style="width:80px">SLA Cumplido</th>
 
                         <th style="width:150px">Fecha alarma/detección</th>
                         <th style="width:150px">Fecha Creacion Solicitud</th>
@@ -108,9 +146,9 @@
 
         var idmasalto = 0; //--ViewBag.IdMasReciente;
 
-    var tablaPrincipalcerrados = $('#TablaPrincipalTicketCerrados').DataTable({
+        var tablaPrincipalcerrados = $('#TablaPrincipalTicketCerrados').DataTable({
 
-            autoWidth: true,
+            autoWidth: false,
             //responsive: true,
             language: {
                 "emptyTable": "No se encontraron resultados.",
@@ -127,22 +165,22 @@
             },
             dom: 'Bfrtip',
             order: [[2, "desc"]],
-              ajax: {
+            ajax: {
                 url: '@Url.Action("ListarTicketCerrados", "Ticket")',
-                  method: "Get",
-                  dataSrc: function (data) {
+                method: "Get",
+                dataSrc: function (data) {
 
-                      const ids = data.map(item => item.fiIDRequerimiento);
+                    const ids = data.map(item => item.fiIDRequerimiento);
 
-                      // Encontrar el Id más grande usando Math.max
-                      const maxId = Math.max(...ids);
-                      idmasalto = maxId;
-                        
-                      return data;
-                      //console.log(data);
-                  }
-        },
-        scrollX: true,    // Habilitar el scroll horizontal
+                    // Encontrar el Id más grande usando Math.max
+                    const maxId = Math.max(...ids);
+                    idmasalto = maxId;
+
+                    return data;
+                    //console.log(data);
+                }
+            },
+            scrollX: true,    // Habilitar el scroll horizontal
             columns: [
 
 
@@ -219,7 +257,7 @@
                         //if (data.fiAreaAsignada == 6) {
                         //    return `<span class="btn-sm btn-block badge badge-secondary">Pendiente</span> `;
                         //} else {
-                            return data.fcNombreAreaAsignada;
+                        return data.fcNombreAreaAsignada;
                         //}
                     }
                 },
@@ -269,6 +307,34 @@
                 },
                 {
                     data: "fiAfectacion",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcConfiguracion",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcNombreServicio",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcPais",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcRegion",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcCiudad",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcLongitudLatitud",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiSLA",
                     className: "td-responsive",
                 },
                 {
@@ -341,11 +407,28 @@
                 }
 
             ],
-        });
+            "columnDefs": [
+                { "width": "200px", "targets": 0 }, // Ancho específico para la primera columna (evitada)
+                { "width": "300px", "targets": "_all" } // Ancho fijo para el resto de las columnas
+            ],
+            "createdRow": function (row, data, dataIndex) {
+                $('td', row).each(function (index) {
+                    if (index > 0) { // Evitar la primera columna
+                        var originalText = $(this).text();
+                        if (originalText.length > 100) {
+                            var truncatedText = originalText.substring(0, 100) + '...';
+                            $(this).attr('data-full-text', originalText);
+                            $(this).text(truncatedText).addClass('text-overflow');
+                        }
+                    }
+                });
+            }
 
-    var tablaPrincipalcancelados = $('#TablaPrincipalTicketCancelados').DataTable({
+        }).columns.adjust();
 
-            autoWidth: true,
+        var tablaPrincipalcancelados = $('#TablaPrincipalTicketCancelados').DataTable({
+
+            autoWidth: false,
             //responsive: true,
             language: {
                 "emptyTable": "No se encontraron resultados.",
@@ -362,24 +445,24 @@
             },
             dom: 'Bfrtip',
             order: [[2, "desc"]],
-              ajax: {
+            ajax: {
                 url: '@Url.Action("ListarTicketCancelados", "Ticket")',
-                  method: "Get",
-                  dataSrc: function (data) {
+                method: "Get",
+                dataSrc: function (data) {
 
-                      const ids = data.map(item => item.fiIDRequerimiento);
+                    const ids = data.map(item => item.fiIDRequerimiento);
 
-                      // Encontrar el Id más grande usando Math.max
-                      const maxId = Math.max(...ids);
-                      idmasalto = maxId;
+                    // Encontrar el Id más grande usando Math.max
+                    const maxId = Math.max(...ids);
+                    idmasalto = maxId;
 
-                      return data;
-                      //console.log(data);
-                  }
-        },
-        //scrollY: '300px', // Altura del scroll vertical
-        scrollX: true,    // Habilitar el scroll horizontal
-        //scrollCollapse: true, // Permitir el colapso del scroll si no hay suficientes datos
+                    return data;
+                    //console.log(data);
+                }
+            },
+            //scrollY: '300px', // Altura del scroll vertical
+            scrollX: true,    // Habilitar el scroll horizontal
+            //scrollCollapse: true, // Permitir el colapso del scroll si no hay suficientes datos
             columns: [
 
                 {//0
@@ -509,6 +592,34 @@
                     className: "td-responsive",
                 },
                 {
+                    data: "fcConfiguracion",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcNombreServicio",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcPais",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcRegion",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcCiudad",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcLongitudLatitud",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fiSLA",
+                    className: "td-responsive",
+                },
+                {
                     data: null,
                     className: "td-responsive",
                     render: function (data) {
@@ -584,8 +695,25 @@
 
 
             ],
+            "columnDefs": [
+                { "width": "200px", "targets": 0 }, // Ancho específico para la primera columna (evitada)
+                { "width": "300px", "targets": "_all" } // Ancho fijo para el resto de las columnas
+            ],
+            "createdRow": function (row, data, dataIndex) {
+                $('td', row).each(function (index) {
+                    if (index > 0) { // Evitar la primera columna
+                        var originalText = $(this).text();
+                        if (originalText.length > 100) {
+                            var truncatedText = originalText.substring(0, 100) + '...';
+                            $(this).attr('data-full-text', originalText);
+                            $(this).text(truncatedText).addClass('text-overflow');
+                        }
+                    }
+                });
+            }
 
-        });
+
+        }).columns.adjust();
 
     function ProcesosEstados(Ticket) {
             debugger;
@@ -617,6 +745,17 @@
                 }
             });
         }
+
+        $(document).on('mouseenter', 'td.text-overflow', function () {
+            var fullText = $(this).attr('data-full-text'); // Obtiene el texto completo
+            $(this).text(fullText);  // Muestra el texto completo
+        });
+
+        $(document).on('mouseleave', 'td.text-overflow', function () {
+            var fullText = $(this).attr('data-full-text');
+            var truncatedText = fullText.substring(0, 100) + '...'; // Vuelve a truncar
+            $(this).text(truncatedText);  // Muestra el texto truncado de nuevo
+        });
 
     </script>
 

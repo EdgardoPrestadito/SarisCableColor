@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "LogNumerosCorreos";
+}
+
+
+<div class="panel">
+    <div class="panel-hdr">
+        <h2 class="ui-sortable-handle"> <i class="fal fa-user fa-fw"></i>Log de Correos y Numeros</h2>
+        <div class="panel-toolbar " role="menu">
+        </div>
+    </div>
+
+    <div class="panel-container">
+        <div class="col-lg-12" style="padding-top:12px; padding-bottom:15px;">
+            <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaLogCorreosNumeros">
+                <thead>
+                    <tr>
+                        <th>Incidente</th>
+                        <th>Usuario Solicitante</th>
+                        <th>Area Solicitante</th>
+                        <th>Accion</th>
+                        <th>Fecha envio</th>
+                        <th>Correo Gerencia Solicitante</th>
+                        <th>Numero Gerencia Solicitante</th>
+                        <th>Correos Usuario Solicitante</th>
+                        <th>Numeros Usuario Solicitante</th>
+                        <th>Correos Jefes Solicitante</th>
+                        <th>Numeros Jefes Solicitante</th>
+                        <th>Correos Supervisor Solicitante</th>
+                        <th>Numeros Supervisor Solicitante</th>
+                        <th>Correo Area Solicitante</th>
+                        <th>Correo Gerencia Asignada</th>
+                        <th>Numero Gerencia Asignada</th>
+                        <th>Correo Usuario Asignado</th>
+                        <th>Numero Usuario Asignado</th>
+                        <th>Correos Jefes Asignada</th>
+                        <th>Numeros Jefes Asignada</th>
+                        <th>Correos Supervisores Asignado</th>
+                        <th>Numeros Supervisor Asignado</th>
+                        <th>Correo Area Asignada</th>
+                        
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        var tablaCorreosNumeros = $('#TablaLogCorreosNumeros').DataTable({
+            autoWidth: true,
+            //responsive: true,
+            language: {
+                "emptyTable": "No se encontraron resultados.",
+                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                "paginate": {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                "lengthMenu": " _MENU_ ",
+                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                "infoEmpty": "No hay registros para mostrar.",
+            },
+            dom: 'Bfrtip',
+            order: [[0, "desc"]],
+            ajax: {
+                url: '@Url.Action("LogCorreoNumerosListado", "Log")',
+                method: "Get",
+                dataSrc: function (data) {
+                    const ids = data.map(item => item.fiIDRequerimiento);
+
+                    // Encontrar el Id más grande usando Math.max
+                    const maxId = Math.max(...ids);
+                    idmasalto = maxId;
+
+                    return data;
+                      //console.log(data);
+                }
+            },
+
+            scrollX: true,
+            columns: [
+                {
+                    data: 'fiIDSolicitud'
+                },
+                {
+                    data: 'fcNombreSolicitante'
+                },
+                {
+                    data: 'fcNombreAreaSolicitante'
+                },
+                {
+                    data: 'fcAccionLog'
+                },
+                {
+                    visible: true,
+                    data: null,
+                    render: function (data) {
+
+                        return moment(data.fdFechaEnvio).format("DD/MM/YYYY HH:mm");
+                    }
+                },
+
+                {
+                    data: 'fcCorreoGerenciaSolicitante'
+                },
+                {
+                    data: 'fcNumeroGerenciaSolicitante'
+                },
+                {
+                    data: 'fcCorreosUsuarioSolicitante'
+                },
+                {
+                    data: 'fcNumerosUsuarioSolicitante'
+                },
+                {
+                    data: 'fcCorreosJefesSolicitante'
+                },
+                {
+                    data: 'fcNumerosJefesSolicitante'
+                },
+                {
+                    data: 'fcCorreosSupervisorSolicitante'
+                },
+                {
+                    data: 'fcNumerosSupervisorSolicitante'
+                },
+                {
+                    data: 'fcCorreoAreaSolicitante'
+                },
+                {
+                    data: 'fcCorreoGerenciaAsignada'
+                },
+                {
+                    data: 'fcNumeroGerenciaAsignada'
+                },
+                {
+                    data: 'fcCorreoUsuarioAsignado'
+                },
+                {
+                    data: 'fcNumeroUsuarioAsignado'
+                },
+                {
+                    data: 'fcCorreosJefesAsignada'
+                },
+                {
+                    data: 'fcNumerosJefesAsignada'
+                },
+                {
+                    data: 'fcCorreosSupervisoresAsignado'
+                },
+                {
+                    data: 'fcNumerosSupervisorAsignado'
+                },
+                {
+                    data: 'fcCorreoAreaAsignada'
+                }, 
+            ]
+
+        });
+
+    </script>
+}

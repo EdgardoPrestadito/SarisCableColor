@@ -607,11 +607,11 @@
         //url: '/file/post',
         autoProcessQueue: true,
         uploadMultiple: true,
-        acceptedFiles: "image/*,.pdf,.doc,.docx,.xls,.xlsx",
+        acceptedFiles: "image/*,.pdf",
         //maxFiles: 1,
         addRemoveLinks: true,
         dictMaxFilesExceeded: "Maximum upload limit reached",
-        dictInvalidFileType: "Upload only JPG/PNG/PDF/DOC/XLS",
+        dictInvalidFileType: "Upload only JPG/PNG/PDF",
         //resizeWidth: 500,
         //resizeHeight: 300,
 
@@ -628,11 +628,7 @@
                 //console.log("file.type:", file.type);
 
                 var tipoarchivo = file.type;
-                if (tipoarchivo === "application/pdf" ||
-                    tipoarchivo === "application/msword" ||
-                    tipoarchivo === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
-                    tipoarchivo === "application/vnd.ms-excel" ||
-                    tipoarchivo === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+                if (tipoarchivo == "application/pdf") {
 
                     var reader = new FileReader();
                     reader.onload = function (e) {
@@ -653,6 +649,8 @@
                     }
 
                     //myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
+                } else {
+                    ToastrError("Error", "Tipo de archivo no valido solo se permite pdf y imagenes");
                 }
             });
 
@@ -678,24 +676,31 @@
 
         img.src = URL.createObjectURL(eimagencaptada); // insertamos la imagen que el cliente subio para posteriormente hacer la reduccion
         img.onload = function () {
-            //var canvas = document.getElementById(idcanva);
-            var maxAncho = 900; //aqui le ponemos unas medidas estandar que pueden cambiar en un futuro,
+            var maxAncho = 900;  // aqui le ponemos unas medidas estandar que pueden cambiar en un futuro,
             var maxAlto = 1500;
+            if ((img.width * img.height) > (maxAncho * maxAlto)) {
+                var proporcion = Math.min(maxAncho / img.width, maxAlto / img.height); // aqui hacemos una proporcion de las imagenes con respecto al tamaño de la imagen original y al estandar que tenemos nosotros aqui adentro
+                var propdos = img.width / img.height;
+                var ancho = img.width * proporcion;
+                var alto = img.height * proporcion;
 
-            var proporcion = Math.min(maxAncho / img.width, maxAlto / img.height); // aqui hacemos una proporcion de las imagenes con respecto al tamaño de la imagen original y al estandar que tenemos nosotros aqui adentro
-            var propdos = img.width / img.height;
-            var ancho = img.width * proporcion;
-            var alto = img.height * proporcion;
+                canvas.width = (img.width / propdos); // ponemos el tamaño en el canva oculto
+                canvas.height = (img.height / propdos);
 
-            canvas.width = (img.width / propdos); // ponemos el tamaño en el canva oculto
-            canvas.height = (img.height / propdos);
+                ctx.drawImage(img, 0, 0, (img.width / propdos), (img.height / propdos));
+                //console.log(canvas.toDataURL('image/jpeg', 0.7)); // tira el base 64
 
-            ctx.drawImage(img, 0, 0, (img.width / propdos), (img.height / propdos));
-            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // tira el base 64
 
+                //console.log(canvas.toDataURL('image/jpeg', 0.7)); // aqui para saber el base64 de la imagen
+            }
+            else {
+                canvas.width = (img.width); // ponemos el tamaño en el canva oculto
+                canvas.height = (img.height);
+
+                ctx.drawImage(img, 0, 0, (img.width), (img.height));
+            }
             var urlbase64 = getBase64Image(img); // tira el base 64
-            //console.log(canvas.toDataURL('image/jpeg', 0.7)); // aqui para saber el base64 de la imagen
-            fotosredimencionadas.push({ base: canvas.toDataURL('image/jpeg', 0.7), nombreArchivo: NombreArchivo, tipoarchivo: tipoimagen, pbEsImagen: true });
+            fotosredimencionadas.push({ base: canvas.toDataURL('image/jpeg', 0.75), nombreArchivo: NombreArchivo, tipoarchivo: tipoimagen, pbEsImagen: true });
             return ctx;
             //document.getElementById(idimg).src = canvas.toDataURL('image/jpeg', 0.7); // el 07 es la calidad de la imagen si no estoy mal eso decia en la documentacion
             //document.getElementById(idcanva).style.display = "block"; //mostrar la imagen que esta oculta
