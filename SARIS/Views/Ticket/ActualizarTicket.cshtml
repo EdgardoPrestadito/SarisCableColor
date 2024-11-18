@@ -364,7 +364,7 @@
                                         }
                                         else
                                         {
-                                            <a href="javascript:void(0)" data-Description="@item.fcNombreArchivo" class="text-info" onclick="ShowBigImage(this)" src="@item.fcURL"> <i class="fal fa-2x fa-file-image"> </i>  @item.fcNombreArchivo</a>
+                                            <a href="javascript:void(0)" data-Description="@item.fcNombreArchivo" class="text-info" onclick="ShowFileViewer('@item.fcNombreArchivo','@item.fcTipoArchivo','@item.fcURL')" src="@item.fcURL"> <i class="fal fa-2x fa-file-image"> </i>  @item.fcNombreArchivo</a>
                                         }
                                     </div>
                                 </div>
@@ -645,7 +645,7 @@
 
             if (estadoReque == 11 || estadoReque == "11" || estadoReque == 4 || estadoReque == "4" || estadoReque == 6 || estadoReque == "6") {
                 if (Validador == 0) {
-                    if (fotosredimencionadas.length < 1) {
+                    if (archivosSubidos.length < 1) {
                         ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
                         H5_loading.hide();
                         return 0;
@@ -668,7 +668,7 @@
                 return ToastrError("Error", "Llene todos los campos");
             }
 
-            if (fotosredimencionadas.length < 1 && Validador == 0) {
+            if (archivosSubidos.length < 1 && Validador == 0) {
                 H5_loading.hide();
                 ToastrError("Error", "Suba aun que sea 1 documento");
                 $(this).prop("disabled", false);
@@ -713,18 +713,48 @@
                 }
             }
 
+
+
+            var formData = new FormData();
+
+            // Convertir la lista de imágenes en JSON y añadirla como un campo
+            var listaimagenesJSON = JSON.stringify(archivosSubidos);
+            formData.append("fcListadoImagenes", listaimagenesJSON);
+
+            // Agregar los otros campos del objeto `ticket` al FormData
+            formData.append("fiIDRequerimiento", ID_REQUERIMIENTO);
+            formData.append("fiIDEstadoRequerimiento", estadoReque);
+            formData.append("fcTituloRequerimiento", $("#txtNombreTitulo").val());
+            formData.append("fcDescripcionRequerimiento", $("#fcDescripcionRequerimiento").val());
+            formData.append("fiTipoRequerimiento", $("#selectincidencia").val());
+            //formData.append("fiIDImpacto", $(`#selectImpacto`).val());
+            //formData.append("fiIDUrgencia", $(`#selectUrgencia`).val());
+            //formData.append("fiIDPrioridad", $(`#PrioridadSelect`).val());
+            //formData.append("fdFechaAlarmaDeteccion", $(`#deteccionalarma`).val());
+            //formData.append("fiPlataforma", $(`#ticketplataforma`).val());
+            //formData.append("fiServicioAfectados", $(`#ticketservafectados`).val());
+            formData.append("fiIdTicketPadre", $(`#ticketpadre`).val());
+            formData.append("fccomentario", $("#txtComentario").val());
+
+            formData.append("fcDescripcionEstado", $("#fiIDEstadoRequerimiento :selected").text());
+            formData.append("fiCategoriadeDesarrollo", $("#fiCategoriadeDesarrollo").val());
+            formData.append("fiMotivoEstado", $("#selectmotivo").val());
+            formData.append("fiCategoriaResolucion", $("#selectCategoriaResolucion").val());
+            formData.append("fiSubCategoriaResolucion", $("#selectSubCategoriaResolucion").val());
+
+
             var requerimiento = {
-                fiIDRequerimiento: ID_REQUERIMIENTO,
-                fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
-                fcDescripcionRequerimiento: $("#fcDescripcionRequerimiento").val(),//hola,
-                fiIDEstadoRequerimiento: estadoReque,
-                fcDescripcionEstado: $("#fiIDEstadoRequerimiento :selected").text(),
-                fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
-                fiTipoRequerimiento: $(`#selectincidencia`).val(),
-                fiIdTicketPadre: $(`#ticketPadre`).val(),
-                fiMotivoEstado: $("#selectmotivo").val(),
-                fiCategoriaResolucion: $("#selectCategoriaResolucion").val(),
-                fiSubCategoriaResolucion: $("#selectSubCategoriaResolucion").val()
+                //fiIDRequerimiento: ID_REQUERIMIENTO,
+                //fcTituloRequerimiento: $("#fcTituloRequerimiento").val(),
+                //fcDescripcionRequerimiento: $("#fcDescripcionRequerimiento").val(),//hola,
+                //fiIDEstadoRequerimiento: estadoReque,
+                //fcDescripcionEstado: $("#fiIDEstadoRequerimiento :selected").text(),
+                //fiCategoriadeDesarrollo: $(`#fiCategoriadeDesarrollo`).val(),
+                //fiTipoRequerimiento: $(`#selectincidencia`).val(),
+                //fiIdTicketPadre: $(`#ticketPadre`).val(),
+                //fiMotivoEstado: $("#selectmotivo").val(),
+                //fiCategoriaResolucion: $("#selectCategoriaResolucion").val(),
+                //fiSubCategoriaResolucion: $("#selectSubCategoriaResolucion").val()
                 //fiIDUsuarioAsignado: $("#fiIDUsuarioAsignado option:selected").val() == "" ? 1 : parseInt($("#fiIDUsuarioAsignado option:selected").val()),
 
                 //$("#txtComentario").val(),
@@ -732,10 +762,18 @@
                 //fcNombreAreaSolicitante: $("#fiIDAreaSolicitante :selected").text(),
                 //fiAreaAsignada: $(`#fiAreaAsignada`).val() == null ? 0 : parseInt($("#fiAreaAsignada option:selected").val()),
             }
+
+
+
+
+
+
             $.ajax({
-                type: "POST",
                 url: "@Url.Action("ActualizarDatos", "Ticket")",
-                data: { ticket: requerimiento, comentario: $("#txtComentario").val(), serviciosAfectados: listaservicios, Ciaguardar: listacis},
+                type: "POST",
+                data: formData,
+                contentType: false, // Necesario para enviar FormData
+                processData: false, // Evita el procesamiento de datos
                 error: function (xhr, ajaxOptions, thrownError) {
                     H5_loading.hide();
                     //MensajeError("Error, contacte al administrador.");
@@ -813,69 +851,62 @@
     });
 
 
+    var archivosSubidos = []; // Array para guardar los archivos
+
     myDropzone = $('#Imagen-dropzone').dropzone({
-        //url: '/file/post',
         autoProcessQueue: true,
         uploadMultiple: true,
-        acceptedFiles: "image/*,.pdf",
-        //maxFiles: 1,
+        acceptedFiles: "image/*,.pdf,.doc,.docx,.xls,.xlsx,.rar,.zip,.7z",
         addRemoveLinks: true,
         dictMaxFilesExceeded: "Maximum upload limit reached",
-        dictInvalidFileType: "Upload only JPG/PNG/PDF",
-        //resizeWidth: 500,
-        //resizeHeight: 300,
+        dictInvalidFileType: "Invalid file type",
 
         init: function () {
             var myDropzone = this;
 
+            // Limitar a 1 archivo máximo si se desea
             myDropzone.on('maxfilesexceeded', function (file) {
                 this.removeAllFiles();
                 this.addFile(file);
             });
 
+            // Manejar cada archivo agregado
             myDropzone.on('addedfile', function (file) {
-                //console.log("entro aquí el base64");
-                //console.log("file.type:", file.type);
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Obtener solo la parte base64 después de la coma
+                    var base64String = e.target.result.split(',')[1];
+                    var tipoarchivo = file.type.split('/')[0]; // Identificar tipo general (image, video, etc.)
 
-                var tipoarchivo = file.type;
-                if (tipoarchivo == "application/pdf") {
+                    // Agregar al array con los detalles requeridos
+                    archivosSubidos.push({
+                        fcNombreArchivo: file.name,
+                        fcbase64: base64String,
+                        fcExtension: file.name.split('.').pop(), // Obtener extensión del archivo
+                        fbEsImagen: tipoarchivo === "image" // True si es una imagen
+                    });
+                    var prueba = JSON.stringify(archivosSubidos);
+                    //console.log(prueba.length);
+                    //console.log(archivosSubidos); // Ver el array en consola
+                };
 
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
-
-                        //console.log('Base64 String:', base64String);
-                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: false });
-                        //console.log(fotosredimencionadas);
-
-                        // Aquí puedes manejar el Base64 string, por ejemplo enviarlo a un servidor
-                    };
-                    reader.readAsDataURL(file);
-                } else if (tipoarchivo.startsWith("image/")) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var base64String = e.target.result.split(',')[1]; // Obtener solo la parte base64
-                        fotosredimencionadas.push({ base: base64String, nombreArchivo: file.name, tipoarchivo: file.type.split('/')[1], pbEsImagen: true });
-                    }
-
-                    //myDropzone.emit("thumbnail", file); // Emitir el evento de thumbnail para imágenes
-                } else {
-                    ToastrError("Error", "Tipo de archivo no valido solo se permite pdf y imagenes");
-                }
+                // Leer cualquier tipo de archivo como base64
+                reader.readAsDataURL(file);
             });
 
-            myDropzone.on('thumbnail', function (file, dataURL) {
-                RedimencionarImagen(`fotopreviacanva`, file, "fotoprevia2", file.name, file.type.split('/')[1])
-            });
-        },
+            // Remover archivo de la vista y del array al quitarlo
+            myDropzone.on('removedfile', function (file) {
+                var index = archivosSubidos.findIndex(f => f.nombreArchivo === file.name);
+                if (index !== -1) archivosSubidos.splice(index, 1);
 
-        removedfile: function (file) {
-            archivoExterno = 0;
-            var _ref = file.previewElement;
-            return _ref != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                var _ref = file.previewElement;
+                return _ref != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+            });
         }
     });
 
+
+    //creo que ya no se usa
     function RedimencionarImagen(idcanva, eimagencaptada, idimg, NombreArchivo, tipoimagen) {
         debugger;
         var canvas = document.createElement('canvas');
@@ -917,6 +948,7 @@
         }
     }
 
+    //creo que ya no se usa
     function getBase64Image(img) {
         var canvas = document.createElement("canvas");
         canvas.width = img.width;
@@ -926,7 +958,7 @@
         var dataURL = canvas.toDataURL();
         return dataURL;
     }
-
+    //creo que ya no se usa
     function GuardarDocumentos(IdRequerimiento) {
         debugger
         //const form = new FormData();

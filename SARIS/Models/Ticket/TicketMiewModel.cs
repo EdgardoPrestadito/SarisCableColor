@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -74,5 +75,32 @@ namespace OrionCoreCableColor.Models.Ticket
         public string fcMotivoPausa { get; set; }
         public string fcComentarioResoluctor { get; set; }
 
+
+        /// //////
+        public string fccomentario { get; set; }
+
+        public string fcListadoImagenes { get; set; }
+        
+        public List<Imagenes> flListadoImagenes
+        {
+            get => string.IsNullOrEmpty(fcListadoImagenes) ? null : JsonConvert.DeserializeObject<List<Imagenes>>(fcListadoImagenes);
+        }
+
+        public List<int> serviciosAfectados { get; set; }
+        public List<int> Ciaguardar { get; set; }
+
+
     }
+
+
+    public class Imagenes
+    {
+        public string fcNombreArchivo { get; set; }
+        public string fcbase64 { get; set; }
+        public string fcExtension { get; set; }
+        public bool fbEsImagen { get; set; }
+
+
+    }
+
 }
