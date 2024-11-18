@@ -17,29 +17,29 @@
                 <thead>
                     <tr>
                         <th>Incidente</th>
-                        <th>Usuario Solicitante</th>
-                        <th>Area Solicitante</th>
                         <th>Accion</th>
                         <th>Fecha envio</th>
-                        <th>Correo Gerencia Solicitante</th>
-                        <th>Numero Gerencia Solicitante</th>
+                        <th>Usuario Solicitante</th>
+                        <th>Area Solicitante</th>
                         <th>Correos Usuario Solicitante</th>
                         <th>Numeros Usuario Solicitante</th>
-                        <th>Correos Jefes Solicitante</th>
-                        <th>Numeros Jefes Solicitante</th>
                         <th>Correos Supervisor Solicitante</th>
                         <th>Numeros Supervisor Solicitante</th>
+                        <th>Correos Jefes Solicitante</th>
+                        <th>Numeros Jefes Solicitante</th>
+                        <th>Correo Gerencia Solicitante</th>
+                        <th>Numero Gerencia Solicitante</th>
                         <th>Correo Area Solicitante</th>
-                        <th>Correo Gerencia Asignada</th>
-                        <th>Numero Gerencia Asignada</th>
                         <th>Correo Usuario Asignado</th>
                         <th>Numero Usuario Asignado</th>
-                        <th>Correos Jefes Asignada</th>
-                        <th>Numeros Jefes Asignada</th>
                         <th>Correos Supervisores Asignado</th>
                         <th>Numeros Supervisor Asignado</th>
+                        <th>Correos Jefes Asignada</th>
+                        <th>Numeros Jefes Asignada</th>
+                        <th>Correo Gerencia Asignada</th>
+                        <th>Numero Gerencia Asignada</th>
                         <th>Correo Area Asignada</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -92,12 +92,6 @@
                     data: 'fiIDSolicitud'
                 },
                 {
-                    data: 'fcNombreSolicitante'
-                },
-                {
-                    data: 'fcNombreAreaSolicitante'
-                },
-                {
                     data: 'fcAccionLog'
                 },
                 {
@@ -108,12 +102,11 @@
                         return moment(data.fdFechaEnvio).format("DD/MM/YYYY HH:mm");
                     }
                 },
-
                 {
-                    data: 'fcCorreoGerenciaSolicitante'
+                    data: 'fcNombreSolicitante'
                 },
                 {
-                    data: 'fcNumeroGerenciaSolicitante'
+                    data: 'fcNombreAreaSolicitante'
                 },
                 {
                     data: 'fcCorreosUsuarioSolicitante'
@@ -122,25 +115,25 @@
                     data: 'fcNumerosUsuarioSolicitante'
                 },
                 {
-                    data: 'fcCorreosJefesSolicitante'
-                },
-                {
-                    data: 'fcNumerosJefesSolicitante'
-                },
-                {
                     data: 'fcCorreosSupervisorSolicitante'
                 },
                 {
                     data: 'fcNumerosSupervisorSolicitante'
                 },
                 {
+                    data: 'fcCorreosJefesSolicitante'
+                },
+                {
+                    data: 'fcNumerosJefesSolicitante'
+                },
+                {
+                    data: 'fcCorreoGerenciaSolicitante'
+                },
+                {
+                    data: 'fcNumeroGerenciaSolicitante'
+                },
+                {
                     data: 'fcCorreoAreaSolicitante'
-                },
-                {
-                    data: 'fcCorreoGerenciaAsignada'
-                },
-                {
-                    data: 'fcNumeroGerenciaAsignada'
                 },
                 {
                     data: 'fcCorreoUsuarioAsignado'
@@ -149,16 +142,22 @@
                     data: 'fcNumeroUsuarioAsignado'
                 },
                 {
-                    data: 'fcCorreosJefesAsignada'
+                    data: 'fcCorreoGerenciaAsignada'
                 },
                 {
-                    data: 'fcNumerosJefesAsignada'
+                    data: 'fcNumeroGerenciaAsignada'
                 },
                 {
                     data: 'fcCorreosSupervisoresAsignado'
                 },
                 {
                     data: 'fcNumerosSupervisorAsignado'
+                },
+                {
+                    data: 'fcCorreosJefesAsignada'
+                },
+                {
+                    data: 'fcNumerosJefesAsignada'
                 },
                 {
                     data: 'fcCorreoAreaAsignada'

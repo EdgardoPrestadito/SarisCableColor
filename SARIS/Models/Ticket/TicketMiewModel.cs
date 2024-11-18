@@ -64,6 +64,15 @@ namespace OrionCoreCableColor.Models.Ticket
         public string fcCiudad { get; set; }
         public string fcLongitudLatitud { get; set; }
         public string fiSLA { get; set; }
+        public string fcNombreResuluctor { get; set; }
+        public DateTime fdFechaResuluctor { get; set; }
+        public string fcAreaResoluctor { get; set; }
+        public int fiIDPausa { get; set; }
+        public string fcCategoriaResolucion { get; set; }
+        public string fcSubCategoriaResolucion { get; set; }
+        public string fcClacificacionCI { get; set; }
+        public string fcMotivoPausa { get; set; }
+        public string fcComentarioResoluctor { get; set; }
 
     }
 }

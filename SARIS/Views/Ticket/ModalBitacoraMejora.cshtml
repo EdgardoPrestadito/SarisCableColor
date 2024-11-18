@@ -65,7 +65,8 @@
                             opt += `<div class="ticket-created-notification">
                                         <p>Se ha Creado el Ticket.<br />
                                             El Usuario: <strong>${item.fcUsuarioPricipal}</strong> ha Creado el Ticket <br />
-                                            La Fecha: <strong>${moment(item.fdFechaInicioEstado).locale('es').format('YYYY/MM/DD hh:mm a')}</strong>
+                                            La Fecha: <strong>${moment(item.fdFechaInicioEstado).locale('es').format('YYYY/MM/DD hh:mm a')}</strong><br />
+                                            Comentario: <strong>${item.fcComentario}</strong>
                                         </p>
                                     </div>`
                         }
@@ -118,6 +119,9 @@
                                 if (items.fcToken == item.fcToken) {
                                     if (items.fcTipoArchivo == "pdf") {
                                         opt += `<a href="javascript:ShowBigPdf('${items.fcNombreArchivo}','${items.fcURL}')" class="text-info"> <i class="fal fa-2x fa-file-pdf"> </i> ${items.fcNombreArchivo}</a>`;
+                                    }
+                                    else if (items.fcTipoArchivo == ".mp4") {
+                                        opt += `<a href="javascript:ShowBigPdf('${items.fcNombreArchivo}','${items.fcURL}','video/mp4')" class="text-info"> <i class="fal fa-2x fa-video"> </i> ${items.fcNombreArchivo}</a>`;
                                     }
                                     else {
                                         opt += `<a href="javascript:void(0)" data-Description="${items.fcNombreArchivo}" class="text-info" onclick="ShowBigImage(this)" src="${items.fcURL}"> <i class="fal fa-2x fa-file-image"> </i>  ${items.fcNombreArchivo}</a>`

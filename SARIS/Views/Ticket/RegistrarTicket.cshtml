@@ -15,6 +15,75 @@
             font-size: 150px;
             opacity: 0.3;
         }
+
+
+    /* Estilos del contenedor del switch */
+    .switch-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
+        /* Ocultar el checkbox original */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    /* Estilos del fondo del switch */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+    }
+
+        /* Botón interior que se desliza */
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+    /* Cuando el checkbox está marcado */
+    input:checked + .slider {
+        background-color: #4caf50; /* Color de fondo para "Sí" */
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(30px); /* Mueve el botón a la derecha */
+        }
+
+    /* Texto para "Sí" y "No" */
+    .switch-label {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .switch-text {
+        display: inline-block;
+        width: 150px;
+        text-align: left;
+    }
 </style>
 
 <div class="modal-header bg-primary-600 bg-primary-gradient" >
@@ -160,13 +229,26 @@
 
             </div>
         </div>
-        <br />
+        
 
         <div class="col-lg-12">
+            
             <div class="form-group">
                 <div class="row">
+                    
                     <div class="col-lg-12">
                         <div class="form-group">
+
+                            <br />
+                            <label class="switch">
+                                <input type="checkbox" id="toggle">
+                                <span class="slider"></span>
+                            </label>
+                            <span class="switch-label">
+                                <span class="switch-text" id="toggleText">PDF e Imagenes</span>
+                            </span>
+                        </div>
+                        <div class="form-group" id="divImagenes">
                             <label class="control-label">DOCUMENTO (Suba imagenes,Word,Excel,Pdf para este ticket) </label>
 
                             <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
@@ -182,8 +264,19 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="form-group" id="divVideo" style="display:none">
+                            <div id="selfievalidacion" class="container">
+                                <button class="btn btn-success centrado" onclick="document.getElementById('getFile2').click()">Subir Video</button>
+                                <input type="file" accept="Video/*" capture="camera" id="getFile2" style="display:none" onchange="previewVideo(event)">
+                            </div>
+                            <div class="video-preview" style="margin-top: 20px;">
+                                <video id="videoPreview" width="320" height="240" controls style="display:none;">
+                                    <source src="" type="video/mp4">
+                                    Tu navegador no soporta la etiqueta de video.
+                                </video>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
 
@@ -225,6 +318,37 @@
 </div>
 <script src="~/Content/js/loading/loading.js"></script>
 <script>
+    var Validador = 0;
+    const toggle = document.getElementById("toggle");
+    const toggleText = document.getElementById("toggleText");
+    function previewVideo(event) {
+        var video = document.getElementById('videoPreview');
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            video.style.display = 'block';
+            video.src = e.target.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    // Cambiar el texto entre "Sí" y "No" cuando se cambia el estado del toggle
+    toggle.addEventListener("change", function () {
+        if (toggle.checked) {
+            Validador = 1
+            $('#divImagenes').css('display', 'none');
+            $('#divVideo').css('display', 'block');
+            toggleText.textContent = "Video";
+        } else {
+            Validador = 0
+            $('#divImagenes').css('display', 'block');
+            $('#divVideo').css('display', 'none');
+            toggleText.textContent = "PDF e Imagenes";
+        }
+    });
 
     var fotosredimencionadas = [];
 
@@ -309,7 +433,7 @@
         console.log(`urgencia: ${Urgencia} `);
         if (Impacto == null || Impacto == 0 || Impacto == "" || Urgencia == 0 || Urgencia == "" || Urgencia == null ) {
             console.log(`Entro en el if`);
-        }else 
+        }else
         //if (Urgencia != 0 && Impacto != 0)
         {
             console.log(`tambien entro en el esle`);
@@ -588,17 +712,25 @@
         var EstadoRequerimiento = id;
         var urg = $(`#selectUrgencia`).val();
         var imp = $(`#selectImpacto`).val();
+        var Video = $(`#getFile2`).val();
         console.log(`urgencia = ${urg} impato = ${imp}`);
 
-        if (fotosredimencionadas.length < 1) {
+        if (fotosredimencionadas.length < 1 && Validador == 0) {
             ToastrError("Error", "Suba aun que sea 1 documento");
             $(this).prop("disabled", false);
             return 0;
         }
 
-        if ($("#selectImpacto").val() == 0 || $("#selectUrgencia").val() == 0 || $("#seleccategoria").val() == 0 || $("#ticketplataforma").val() == 0 || $("#ticketservafectados").val() == 0 || $("#selectincidencia").val() == 0) {
-            return ToastrError("Error", "Llene todos los campos");
+        if (Video == "" && Validador == 1) {
+            ToastrError("Error", "Suba 1 Video");
             $(this).prop("disabled", false);
+            return 0;
+        }
+
+        if ($("#selectImpacto").val() == 0 || $("#selectUrgencia").val() == 0 || $("#seleccategoria").val() == 0 || $("#ticketplataforma").val() == 0 || $("#ticketservafectados").val() == 0 || $("#selectincidencia").val() == 0) {
+            $(this).prop("disabled", false);
+            return ToastrError("Error", "Llene todos los campos");
+            
         }
 
         var ticket = {
@@ -618,8 +750,9 @@
         var comentario = $("#txtcomentario").val();
         if (comentario == "" || comentario == null) {
             H5_loading.hide();
-            return ToastrError("Error", "Escriba un comentario");
             $(this).prop("disabled", false);
+            return ToastrError("Error", "Escriba un comentario");
+            
         }
         var listaservicios = [];
         for (const item of idservicios) {
@@ -648,15 +781,48 @@
                 console.log(data);
                 //window.location.href ="@Url.Action("Index", "Ticket")"
                 if (data.fiMensaje == "1") {
+                    if (Validador == 0) {
+                        GuardarDocumentos(data.IdIngresado);
+                    }
+                    else if (Validador == 1)
+                    {
+                        MandarVideo(data.IdIngresado);
+                    }
                     H5_loading.hide();
                     CerrarModal();
-                    GuardarDocumentos(data.IdIngresado);
                     return ToastrSuccess("Exito", "Ticket Registrado Correctamente");
                 }
             }
         });
 
 
+    }
+
+    function MandarVideo(IdSolicitud)
+    {
+        debugger;
+        var form_data = new FormData();
+        form_data.append("img", $("#getFile2")[0].files[0]);
+        form_data.append("idSolicitd", IdSolicitud);
+        $.ajax({
+                url: "@Url.Action("GuardarVideo", "Ticket")",
+                type: 'POST',
+            data: form_data,
+            timeout: 800000,
+                cache: false,
+                contentType: false,
+                processData: false,
+                enctype: "multipart/form-data",
+                success: function (data) {
+                    ToastrSuccess("Listo!", "Subido correctamente");
+                    location.reload();
+
+                }, error: function () {
+                    ToastrError("Error", "Falta subir la data para el envio Masivo");
+
+
+                }
+            });
     }
 
     myDropzone = $('#Imagen-dropzone').dropzone({
@@ -844,7 +1010,7 @@
         });
     }
     document.addEventListener("DOMContentLoaded", function () {
-        
+
     });
 
 

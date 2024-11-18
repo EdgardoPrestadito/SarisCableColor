@@ -398,6 +398,10 @@
                                             {
                                                 <a href="javascript:ShowBigPdf('@item.fcNombreArchivo','@item.fcURL')" class="text-info"> <i class="fal fa-2x fa-file-pdf"> </i> @item.fcNombreArchivo</a>
                                             }
+                                            else if (item.fcTipoArchivo == ".mp4")
+                                            {
+                                                <a href="javascript:ShowBigPdf('@item.fcNombreArchivo','@item.fcURL','video/mp4')" class="text-info"> <i class="fal fa-2x fa-video"> </i> @item.fcNombreArchivo</a>
+                                            }
                                             else
                                             {
                                                 <a href="javascript:void(0)" data-Description="@item.fcNombreArchivo" class="text-info" onclick="ShowBigImage(this)" src="@item.fcURL"> <i class="fal fa-2x fa-file-image"> </i>  @item.fcNombreArchivo</a>

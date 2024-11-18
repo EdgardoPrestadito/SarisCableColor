@@ -73,7 +73,17 @@ namespace OrionCoreCableColor.Controllers
                 jsonResult.MaxJsonLength = Int32.MaxValue;
                 return jsonResult;
             }
-        } 
+        }
+
+        public JsonResult AutoSelectUsuarios(int idarea)
+        {
+            using (var contexto = new SARISEntities1())
+            {
+                var jsonResult = contexto.sp_Requerimientos_UsuarioLibre(idarea).FirstOrDefault();
+                
+                return EnviarListaJson(jsonResult);
+            }
+        }
 
         public JsonResult SelectUsuariosAll()
         {

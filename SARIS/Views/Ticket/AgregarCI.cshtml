@@ -277,9 +277,10 @@
 
         var opt = ``
         $('#TablaCI').DataTable({
-    destroy: true,
-    autoWidth: true,
-    responsive: true,
+            destroy: true,
+            scrollX: true,
+            autoWidth: false,
+    responsive: false,
     language: {
         "emptyTable": "No se encontraron resultados.",
         "paginate": {

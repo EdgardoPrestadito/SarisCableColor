@@ -38,9 +38,13 @@
     <div class='test col-sm-12'>
         <br />
         <div style='float: right;'>
+            @*<button type="button" id="btnAutoGuardarUsuario" class="btn btn-primary">
+                Auto-Seleccionar Usuario
+            </button>*@
             <button type="button" id="btnGuardarUsuario" class="btn btn-success">
                 Asignar Usuario
             </button>
+
         </div>
     </div>
 
@@ -114,6 +118,25 @@
                     //window.location.href ="@Url.Action("Index", "Ticket")"
                     //GuardarDocumentos(data.IdIngresado);
                 }
+            }
+        });
+    });
+
+    $("#btnAutoGuardarUsuario").click(function (e) {
+
+        $.ajax({
+            url: "@Url.Action("AutoSelectUsuarios", "LlenarCampos")",
+            type: "GET",
+            data: { idarea: idarea},
+            success: function (respuesta) {
+                debugger;
+                
+                
+                $("#selectusuarios").select2({ dropdownParent: $("#MyModal") }).val(respuesta.fiIDUsuario).trigger("change");
+               
+            },
+            error: function (respuesta) {
+                console.log(respuesta);
             }
         });
     });

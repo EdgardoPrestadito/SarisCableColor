@@ -94,13 +94,19 @@
 <div class="modal fade" id="MyModalContrato" tabindex="-1" z-index="" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog  modal-xl" role="document" id="">
         <div class="modal-content" id="">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="DestruirContenido()">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
             <div class="modal-body">
                 <center>
                     <h3 id="TituloContrato">Hola</h3>
                     <div id="divContrato">
 
                     </div>
-                    
+
                 </center>
 
             </div>
@@ -165,7 +171,7 @@
         $('#MyModalImage').modal("show");
     }
 
-    function ShowBigPdf(descripcion, carpeta) {
+    function ShowBigPdf(descripcion, carpeta, tipe = "application/pdf") {
         debugger;
         @*$.ajax({
             url:"@Url.Action("GetContentDocument","Base")",
@@ -176,14 +182,14 @@
             }
         });*@
 
-        $(divContrato).empty();
-        var embed = $(`<embed src="" id="DocumentoBig" type="application/pdf"  class="img-responsive img-thumbnail" style="width:100%;height:500px;" />`);
+        $("#divContrato").empty();
+        var embed = $(`<embed src="" id="DocumentoBig" type="${tipe}"  class="img-responsive img-thumbnail" style="width:100%;height:500px;" />`);
         $("#TituloContrato").text(descripcion);
         debugger;
         //$(embed).attr('src', "data:application/pdf;base64," + resp);
         $(embed).attr('src', carpeta);
         $(embed).css("height", window.innerHeight - (window.innerHeight * 0.25) + "px");
-        $(divContrato).append(embed);
+        $("#divContrato").append(embed);
         $('#MyModalContrato').modal("show");
         
         
@@ -197,31 +203,14 @@
         $("#ModalLeft").modal("show");
     }
 
+    function DestruirContenido()
+    {
+        debugger;
+        $("#divContrato").empty();
+    }
 
 </script>
 
-
-
-
-
-
-<div class="modal" id="modalWaitingTime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="">
-    <div class="modal-dialog" role="document" style="margin-top: 15%;">
-        <div class="modal-body text-center">
-            <center class="text-muted"><br /> <br /><div style="color: #a0cadb" class="la-ball-grid-pulse la-3x"> <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><br /> <br />CARGANDO <br /><br /></center>
-            @*<center>
-                    <div style="color: #a0cadb" class="la-ball-atom la-2x">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </center>*@
-            <br />
-            @*<h5><small><b>Procesando Consulta...</b></small></h5>*@
-        </div>
-    </div>
-</div>
 
 
 

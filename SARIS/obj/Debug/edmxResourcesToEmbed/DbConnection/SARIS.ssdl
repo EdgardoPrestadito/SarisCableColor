@@ -60,6 +60,10 @@
     <Parameter Name="pcPantallaAfectada" Type="nvarchar" Mode="In" />
     <Parameter Name="pcObservacion" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_CambiarAutomaticoArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piArea" Type="int" Mode="In" />
+    <Parameter Name="piEstadoAuto" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Catalogo_ConfiguracionCI_listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_CatalogoSubCategoriaResolucion_porCategoriaResolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piCategoriaResolucion" Type="int" Mode="In" />
@@ -578,7 +582,14 @@
     <Parameter Name="piIDUsuarioResponsable" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Requerimientos_Catalogo_Generencias_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Requerimientos_IDRequerimientoPadre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piRequerimiento" Type="int" Mode="In" />
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Requerimientos_Niveles_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Requerimientos_Pendientes_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Requerimientos_UsuarioLibre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDArea" Type="int" Mode="In" />
   </Function>
@@ -614,8 +625,15 @@
     <Parameter Name="piAreaAsignada" Type="int" Mode="In" />
     <Parameter Name="piIDPuesto" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_UsuarioMaestro_CambiarActividad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
+    <Parameter Name="piActividad" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_UsuarioMaestro_ObtenerIdAreaAsignada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDusuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_UsuarioMaestro_VerActividad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDUsuario" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Usuarios_Maestro_Lista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Usuarios_Maestro_PorArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -629,6 +647,9 @@
   </Function>
   <Function Name="sp_Usuarios_Maestros_ObtenerIdUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pcNombreCorto" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_UsuarioTicketPendiente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIdUsuario" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_usuarioVerArea_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIdUsuario" Type="int" Mode="In" />

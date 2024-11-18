@@ -46,5 +46,8 @@ namespace OrionCoreCableColor.Models.Areas
         [Display(Name = "Activo")]
         public bool fiActivo { get; set; }
 
+        [Display(Name = "Asignacion Automatica")]
+        public int fiAutomatico { get; set; }
+
     }
 }

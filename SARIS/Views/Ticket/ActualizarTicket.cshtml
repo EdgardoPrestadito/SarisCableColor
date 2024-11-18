@@ -1,4 +1,91 @@
 ﻿@model OrionCoreCableColor.Models.Ticket.TicketMiewModel
+
+<style>
+
+
+    .img-container {
+        width: 100%;
+        height: 220px;
+        background-image: repeating-linear-gradient(45deg,#ccc,#ccc 10px, #dbdbdb 10px, #dbdbdb 20px);
+        text-align: center;
+    }
+
+        .img-container::before {
+            content: "\f03e";
+            font-family: "Font Awesome 5 Pro";
+            font-size: 150px;
+            opacity: 0.3;
+        }
+
+
+    /* Estilos del contenedor del switch */
+    .switch-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
+        /* Ocultar el checkbox original */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    /* Estilos del fondo del switch */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+    }
+
+        /* Botón interior que se desliza */
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+    /* Cuando el checkbox está marcado */
+    input:checked + .slider {
+        background-color: #4caf50; /* Color de fondo para "Sí" */
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(30px); /* Mueve el botón a la derecha */
+        }
+
+    /* Texto para "Sí" y "No" */
+    .switch-label {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .switch-text {
+        display: inline-block;
+        width: 150px;
+        text-align: left;
+    }
+</style>
 <div class="modal-header bg-primary-600 bg-primary-gradient">
     <h2 class="modal-title text-white">
 
@@ -195,7 +282,18 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
+
                                 <br />
+                                <label class="switch">
+                                    <input type="checkbox" id="toggle">
+                                    <span class="slider"></span>
+                                </label>
+                                <span class="switch-label">
+                                    <span class="switch-text" id="toggleText">PDF e Imagenes</span>
+                                </span>
+                            </div>
+                            <div class="form-group" id="divImagenes">
+
                                 <label class="control-label">DOCUMENTO (Suba imagenes,Word,Excel,Pdf para este ticket) </label>
 
                                 <form id="Imagen-dropzone" action="@Url.Action("FormFileResponse","Base")" method="post" enctype="multipart/form-data" class="dropzone needsclick">
@@ -213,7 +311,18 @@
 
 
                             </div>
-
+                            <div class="form-group" id="divVideo" style="display:none">
+                                <div id="selfievalidacion" class="container">
+                                    <button class="btn btn-success centrado" onclick="document.getElementById('getFile2').click()">Subir Video</button>
+                                    <input type="file" accept="Video/*" capture="camera" id="getFile2" style="display:none" onchange="previewVideo(event)">
+                                </div>
+                                <div class="video-preview" style="margin-top: 20px;">
+                                    <video id="videoPreview" width="320" height="240" controls style="display:none;">
+                                        <source src="" type="video/mp4">
+                                        Tu navegador no soporta la etiqueta de video.
+                                    </video>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -249,6 +358,10 @@
 
                                             <a href="javascript:ShowBigPdf('@item.fcNombreArchivo','@item.fcURL')" class="text-info"> <i class="fal fa-2x fa-file-pdf"> </i> @item.fcNombreArchivo</a>
                                         }
+                                        else if (item.fcTipoArchivo == ".mp4")
+                                        {
+                                            <a href="javascript:ShowBigPdf('@item.fcNombreArchivo','@item.fcURL','video/mp4')" class="text-info"> <i class="fal fa-2x fa-video"> </i> @item.fcNombreArchivo</a>
+                                        }
                                         else
                                         {
                                             <a href="javascript:void(0)" data-Description="@item.fcNombreArchivo" class="text-info" onclick="ShowBigImage(this)" src="@item.fcURL"> <i class="fal fa-2x fa-file-image"> </i>  @item.fcNombreArchivo</a>
@@ -266,7 +379,7 @@
 
 </div>
 
-
+<script src="~/Content/js/loading/loading.js"></script>
 <script>
     ///$("#fiIDEstadoRequerimiento").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
     ///$("#fiIDAreaSolicitante").select2({ dropdownParent: $("#MyModalBig") }).trigger("change")
@@ -281,13 +394,44 @@
     var SubCategoriaResolucion = @ViewBag.SubCategoriaResolucion;
     var fotosredimencionadas = [];
     var validar = false;
-
+    var Validador = 0;
     var idserviciosusados = @Html.Raw(Json.Encode(ViewBag.IdServicios));
     var idCisusados = @Html.Raw(Json.Encode(ViewBag.IdsCis));
     var idservicios = [];
     var idCis = [];
 
+    function previewVideo(event) {
+        var video = document.getElementById('videoPreview');
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            video.style.display = 'block';
+            video.src = e.target.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    // Cambiar el texto entre "Sí" y "No" cuando se cambia el estado del toggle
+    toggle.addEventListener("change", function () {
+        if (toggle.checked) {
+            Validador = 1
+            $('#divImagenes').css('display', 'none');
+            $('#divVideo').css('display', 'block');
+            toggleText.textContent = "Video";
+        } else {
+            Validador = 0
+            $('#divImagenes').css('display', 'block');
+            $('#divVideo').css('display', 'none');
+            toggleText.textContent = "PDF e Imagenes";
+        }
+    });
+
     $(document).ready(function () {
+        $("#fiCategoriadeDesarrollo").prop("disabled", true);
+        $("#selectincidencia").prop("disabled", true);
         debugger;
         var divinfo = document.getElementById('iddivmotivo');//funcion que se usa para desocultar y ocultar las opciones de mantenimiento, al darle click al boton buscar
         var divCategoriaResolucion = document.getElementById('iddivCategoriaResolusion');
@@ -366,14 +510,14 @@
                     });
                     $("#selectCategoriaResolucion").select2({ dropdownParent: $("#MyModalBig") }).val(CategoriaResolucion).trigger("change");
                     validar = true;
-                    
+
                 },
                 error: function (respuesta) {
                     console.log(respuesta);
                 }
                 });
 
-               
+
 
 
             }
@@ -445,11 +589,15 @@
                     text: 'Seleccione un Ticket Padre en caso que lo tenga'
                 }));
                 $("#ticketPadre").select2({ dropdownParent: $("#MyModalBig") }).val(null).trigger("change");
-                $.each(respuesta, function(index, item) {
-                    selectpadre.append($('<option>', {
-                        value: item.fiIDRequerimiento,
-                        text: item.fcTituloRequerimiento
-                    }));
+                $.each(respuesta, function (index, item) {
+                    if (item.fiIDRequerimiento != ID_REQUERIMIENTO)
+                    {
+                        selectpadre.append($('<option>', {
+                            value: item.fiIDRequerimiento,
+                            text: item.fcTituloRequerimiento
+                        }));
+                    }
+                    
                 });
 
                 if (idtiposoporte != 0) {
@@ -474,12 +622,15 @@
     });
 
     function ActualizarDatos() {
+        
         debugger
+        H5_loading.show();
         var estado = 0;
         var estadoDescripcion = "";
         var incidencia = $("#selectincidencia").val();
         //var usuario = $("#selectusuarios").val();
         var estadoReque = $(`#fiIDEstadoRequerimiento`).val();
+        var Video = $(`#getFile2`).val();
 
         if ($("#txtComentario").val() != "" || $("#txtComentario").val() != null) {
             var bitacora = {
@@ -487,25 +638,47 @@
                 Observaciones: $("#txtComentario").val(),
             }
             var detener = $(`#selectincidencia`).val();
-            if (incidencia == 0 || incidencia == null || incidencia == "" || estadoReque == 0 || estadoReque == null || estadoReque == "" ) {
+            if (incidencia == 0 || incidencia == null || incidencia == "" || estadoReque == 0 || estadoReque == null || estadoReque == "") {
+                H5_loading.hide();
                 return ToastrError("Error", "Llene todos los campos");
             }
 
-            if (estadoReque == 11 || estadoReque == "11") {
-
-                if (fotosredimencionadas.length < 1) {
-                    ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
-                    return 0;
+            if (estadoReque == 11 || estadoReque == "11" || estadoReque == 4 || estadoReque == "4" || estadoReque == 6 || estadoReque == "6") {
+                if (Validador == 0) {
+                    if (fotosredimencionadas.length < 1) {
+                        ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
+                        H5_loading.hide();
+                        return 0;
+                    }
+                } else if (validador == 1)
+                {
+                    if (Video == "") {
+                        ToastrError("Error", "Suba 1 Video");
+                        $(this).prop("disabled", false);
+                        H5_loading.hide();
+                        return 0;
+                    }
                 }
+                
 
             }
 
             if (estadoReque == 0 && $("#selectmotivo").val()==0 && $("#selectCategoriaResolucion").val()==0 && $("#selectSubCategoriaResolucion").val()==0 ) {
+                H5_loading.hide();
                 return ToastrError("Error", "Llene todos los campos");
             }
 
-            if (fotosredimencionadas.length < 1) {
-                ToastrError("Documento/Imagen", "Suba un documento o imagen");
+            if (fotosredimencionadas.length < 1 && Validador == 0) {
+                H5_loading.hide();
+                ToastrError("Error", "Suba aun que sea 1 documento");
+                $(this).prop("disabled", false);
+                return 0;
+            }
+
+            if (Video == "" && Validador == 1) {
+                H5_loading.hide();
+                ToastrError("Error", "Suba 1 Video");
+                $(this).prop("disabled", false);
                 return 0;
             }
             //console.log(`esto trael el motivo: ${$("#selectmotivo").val()}`);
@@ -528,11 +701,13 @@
             }
 
             if (estadoReque == 4 || estadoReque == 6 || estadoReque == 11) {
-                if ($(`#selectmotivo`).val() == null || $(`#selectmotivo`).val() == "" || $(`#selectmotivo`).val() == 0 ) {
+                if ($(`#selectmotivo`).val() == null || $(`#selectmotivo`).val() == "" || $(`#selectmotivo`).val() == 0) {
+                    H5_loading.hide();
                     return ToastrError("Error", "Llene todos los campos");
                 }
                 if (estadoReque == 4) {
                     if ($(`#selectCategoriaResolucion`).val() == null || $(`#selectCategoriaResolucion`).val() == "" || $(`#selectCategoriaResolucion`).val() == 0 || $(`#selectSubCategoriaResolucion`).val() == null || $(`#selectSubCategoriaResolucion`).val() == "" || $(`#selectSubCategoriaResolucion`).val() == 0) {
+                        H5_loading.hide();
                         return ToastrError("Error", "Llene todos los campos");
                     }
                 }
@@ -562,13 +737,14 @@
                 url: "@Url.Action("ActualizarDatos", "Ticket")",
                 data: { ticket: requerimiento, comentario: $("#txtComentario").val(), serviciosAfectados: listaservicios, Ciaguardar: listacis},
                 error: function (xhr, ajaxOptions, thrownError) {
+                    H5_loading.hide();
                     //MensajeError("Error, contacte al administrador.");
                     var dataerror = { Titulo: "Error", Mensaje: "Error Al Actualizar el Ticket", Estado: false }
                     AlertaAjax(dataerror)
                 },
                 success: function (data) {
                     //console.log(data);
-
+                    debugger;
                     let resultado = data.d;
                     if (data.Estado == true) {
 
@@ -576,9 +752,13 @@
 
                         $("#modalConfirmarDatos").modal('hide');
 
-                        GuardarDocumentos(data.IdIngresado);
-                        CerrarModal();
-                        Recargar();
+                        if (Validador == 0) {
+                            GuardarDocumentos(ID_REQUERIMIENTO);
+                        }
+                        else if (Validador == 1) {
+                            MandarVideo(ID_REQUERIMIENTO);
+                        }
+                        
                         return ToastrSuccess("Exito", "Ticket Actualizado Correctamente");
 
                     }
@@ -595,6 +775,36 @@
             $("#txtComentario").parsley().validate();
         }
 
+    }
+
+    function MandarVideo(IdSolicitud)
+    {
+        debugger;
+        var form_data = new FormData();
+        form_data.append("img", $("#getFile2")[0].files[0]);
+        form_data.append("idSolicitd", IdSolicitud);
+        $.ajax({
+                url: "@Url.Action("GuardarVideo", "Ticket")",
+                type: 'POST',
+            data: form_data,
+            timeout: 800000,
+                cache: false,
+                contentType: false,
+                processData: false,
+                enctype: "multipart/form-data",
+                success: function (data) {
+                    ToastrSuccess("Listo!", "Subido correctamente");
+                    H5_loading.hide();
+                    CerrarModal();
+                    Recargar();
+                    location.reload();
+
+                }, error: function () {
+                    ToastrError("Error", "Falta subir la data para el envio Masivo");
+
+
+                }
+            });
     }
 
     $("#btnActualizarDatos_Confirmar").click(function () {
@@ -755,10 +965,11 @@
 
                 timeout: 800000,
                 success: function (data) {
-
+                    H5_loading.hide();
                     //var datasus = { Titulo: "Exito", Mensaje: "Documentos guardados correctamente", Estado: true }
                     //AlertaAjax(datasus)
-
+                    CerrarModal();
+                    Recargar();
                     location.reload();
 
                 },

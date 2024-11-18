@@ -60,6 +60,7 @@
                             <th style="width:80px">SLA</th>
                             <th style="width:80px">Usuarios afectados</th>
 
+                            <th style="width:80px">Clasificacion CI</th>
                             <th style="width:80px">CI</th>
                             <th style="width:80px">Servicios</th>
                             <th style="width:80px">Pais</th>
@@ -73,6 +74,16 @@
                             <th style="width:150px">Fecha última actualización</th>
                             <th style="width:150px">Usuario última actualización</th>
                             <th style="width:150px">Tiempo Transcurrido</th>
+                            <th style="width:150px">Grupo Resoluctor</th>
+                            <th style="width:150px">Usuario Resoluctor</th>
+                            <th style="width:150px">Fecha de Resolucion</th>
+                            <th style="width:150px">Pausa</th>
+                            <th style="width:150px">Categoria de Causa de Falla</th>
+                            <th style="width:150px">SubCategoria de Causa de Falla</th>
+                            <th style="width:150px">Descripcion de Falla</th>
+
+                            <th style="width:150px">Tipo de Solucion</th>
+                            <th style="width:150px">Descrpcion Solucion</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -118,6 +129,7 @@
                         <th style="width:80px">SLA</th>
                         <th style="width:80px">Usuarios afectados</th>
 
+                        <th style="width:80px">Clasificacion CI</th>
                         <th style="width:80px">CI</th>
                         <th style="width:80px">Servicios</th>
                         <th style="width:80px">Pais</th>
@@ -310,6 +322,10 @@
                     className: "td-responsive",
                 },
                 {
+                    data: "fcClacificacionCI",
+                    className: "td-responsive",
+                },
+                {
                     data: "fcConfiguracion",
                     className: "td-responsive",
                 },
@@ -397,14 +413,68 @@
                     }
                 },
 
+                {
+                    data: "fcAreaResoluctor",
+                    className: "td-responsive",
+                    visible: true, 
 
+                },
+                {
+                    data: "fcNombreResuluctor",
+                    className: "td-responsive",
+                    visible: true,
 
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        return moment(data.fdFechaResuluctor).locale('es').format('YYYY/MM/DD hh:mm a')
+                    }
+                },
+                {
+                    data: null,
+                    className: "td-responsive",
+                    render: function (data) {
+                        if (data.fiIDPausa > 0) {
+                            return "Fue Pausado"
+                        } else
+                        {
+                            return "No Fue Pausado"
+                        }
+                        
+                    }
+                },
+                
+                {
+                    data: "fcCategoriaResolucion",
+                    className: "td-responsive",
+                    visible: true,
+
+                },
+                {
+                    data: "fcSubCategoriaResolucion",
+                    className: "td-responsive",
+                    visible: true,
+
+                },
                 {
                     data: "fcDescripcionRequerimiento",
                     className: "td-responsive",
-                    visible: false, "title": 'Descripcion',
 
-                }
+                },
+                {
+                    data: "fcNombreMotivo",
+                    className: "td-responsive",
+                    visible: true,
+
+                },
+                {
+                    data: "fcComentarioResoluctor",
+                    className: "td-responsive",
+                    visible: true,
+
+                },
 
             ],
             "columnDefs": [
@@ -592,6 +662,10 @@
                     className: "td-responsive",
                 },
                 {
+                    data: "fcClacificacionCI",
+                    className: "td-responsive",
+                },
+                {
                     data: "fcConfiguracion",
                     className: "td-responsive",
                 },
@@ -680,18 +754,13 @@
                 },
 
                 {
-                    data: "fcMotivoEstado",
+                    data: "fcNombreMotivo",
                     className: "td-responsive",
 
                 },
 
 
-                {
-                    data: "fcDescripcionRequerimiento",
-                    className: "td-responsive",
-                    visible: false, "title": 'Descripcion',
-
-                },
+                
 
 
             ],

@@ -39,8 +39,8 @@ namespace OrionCoreCableColor.Controllers
                        fiActivo = x.fiActivo,
                        fcNombreGenerencia = x.fcNombreGenerencia,
                        fcNivel = x.fcNivel,
-                       fiIDUsuarioResponsable = x.fiIDUsuarioResponsable
-
+                       fiIDUsuarioResponsable = x.fiIDUsuarioResponsable,
+                       fiAutomatico = x.fiAutomatico
 
                     }).ToList(), JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = Int32.MaxValue;
@@ -104,6 +104,20 @@ namespace OrionCoreCableColor.Controllers
 
                 return PartialView("Crear", new AreasCrearViewModel { fiIDArea = model.fiIDArea, fcDescripcion = model.fcDescripcion.Trim(), fiIDGerencia = model.fiIDGerencia ?? 0 , fcCorreoElectronico = model.fcCorreoElectronico.Trim(), fcNombreCorto = model.fcNombreCorto.Trim(), fiIDUsuarioResponsable = model.fiIDUsuarioResponsable, fiNivel = model.fiNivel ?? 0 , EsEditar = true});
                
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CambiarEstadoAuto(int Area, int Estatus)
+        {
+            using (var context = new SARISEntities1())
+            {
+                var result = context.sp_CambiarAutomaticoArea(Area, Estatus);
+                if (result > 0) 
+                {
+                    return EnviarResultado(true, "Asignacion", "Se cambio la asignacion automatica");
+                }
+                return EnviarResultado(false, "Error", "Contacte al administrador");
             }
         }
 

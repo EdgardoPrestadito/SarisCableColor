@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace OrionCoreCableColor.Models.Ticket
+{
+    public class DatosCorreos
+    {
+        public int fiIDRequerimiento { get; set; }
+        public string fcTituloRequerimiento { get; set; }
+        public string fcDescripcionRequerimiento { get; set; }
+        public System.DateTime fdFechaCreacion { get; set; }
+        public byte fiIDAreaSolicitante { get; set; }
+        public string fcAreaSolicitante { get; set; }
+        public int fiIDUsuarioSolicitante { get; set; }
+        public string fcNombreCorto { get; set; }
+        public byte fiIDEstadoRequerimiento { get; set; }
+        public Nullable<int> fiAreaAsignada { get; set; }
+        public string fcDescripcionEstado { get; set; }
+        public string fcCorreoElectronico { get; set; }
+        public string fcDescripcionCategoria { get; set; }
+        public string fcTipoRequerimiento { get; set; }
+        public string fcTelefonoMovil { get; set; }
+        public string fcCorreoUsuarioSolicitante { get; set; }
+        public string fcCorreoJefeArea { get; set; }
+        public string fcTelefonoSolicitante { get; set; }
+        public string fcTelefonoJefe { get; set; }
+        public string fcCorreoArea { get; set; }
+        public Nullable<int> fiIDUrgencia { get; set; }
+        public string fcDescripcionUrgencia { get; set; }
+        public Nullable<int> fiIDImpacto { get; set; }
+        public string fcDescripcionImpacto { get; set; }
+        public Nullable<int> fiIDPrioridad { get; set; }
+        public string fcDescripcionPrioridad { get; set; }
+        public int fiCategoriaResolucion { get; set; }
+        public string fcDescripcionCategoriaResolucion { get; set; }
+        public int fiSubCategoriaResolucion { get; set; }
+        public string fcTipoRequerimientoResolucion { get; set; }
+        public int fiIDGerencia { get; set; }
+        public string fcNombreGenerencia { get; set; }
+        public string fcNombreUsuarioGerencia { get; set; }
+        public string fcCorreoGerencia { get; set; }
+        public string fcNumeroGerencia { get; set; }
+        public string fcNombreJefeAreaAsignada { get; set; }
+        public string fcCorreoJefeAreaAsignada { get; set; }
+        public string fcTelefonoJefeAreaAsignada { get; set; }
+        public string fcNombreGerenciaAsignada { get; set; }
+        public string fcTelefonoGrenciaAsignada { get; set; }
+        public string fcCorreoGerenciaAsignada { get; set; }
+        public string fcCorreoAreaAsignada { get; set; }
+    }
+}

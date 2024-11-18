@@ -33,6 +33,8 @@
     #TablaPrincipalTicket_wrapper {
         min-height: 300px; /* Ajusta el tamaño según tus necesidades */
     }
+
+
 </style>
 
 <div class="panel">
@@ -51,36 +53,76 @@
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicket">
                 <thead>
                     <tr>
+                        <th></th>
+                        <th >
+                            <select id="ddlEstados" class="form-control form-control-sm">
+                                <option value="">Seleccionar</option>
+
+                            </select>
+                        </th>
+                        <th><input type="text" class="form-control"  placeholder=""></th>
+                        <th><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                        <th ><input type="text" class="form-control"  placeholder=""></th>
+                    </tr>
+                    <tr>
                         <th>Acciones</th>
-                        <th style="width:80px">Estado</th>
-                        <th >Titulo</th>
-                        <th >Descripcion</th>
-                        <th style="width:80px" >Solicitante</th>
-                        <th style="width:80px">Area Solicitante</th>
-                        <th style="width:80px">Usuario Asignado</th>
-                        <th style="width:80px">Area Asignada</th>
+                        <th >Estado</th>
+                        <th>Titulo</th>
+                        <th>Descripcion</th>
+                        <th >Solicitante</th>
+                        <th >Area Solicitante</th>
+                        <th >Usuario Asignado</th>
+                        <th >Area Asignada</th>
 
-                        <th style="width:80px" >Categoría apertura</th>
-                        <th style="width:80px" >Subcategoria apertura</th>
-                        <th style="width:80px" >Urgencia</th>
-                        <th style="width:80px" >Impacto</th>
-                        <th style="width:80px" >Prioridad</th>
-                        <th style="width:80px" >SLA</th>
-                        <th style="width:80px" >Usuarios afectados</th>
+                        <th >Categoría apertura</th>
+                        <th >Subcategoria apertura</th>
+                        <th >Urgencia</th>
+                        <th >Impacto</th>
+                        <th >Prioridad</th>
+                        <th >SLA</th>
+                        <th >Usuarios afectados</th>
 
-                        <th style="width:80px" >CI</th>
-                        <th style="width:80px" >Servicios</th>
-                        <th style="width:80px" >Pais</th>
-                        <th style="width:80px" >Region</th>
-                        <th style="width:80px" >Ciudad</th>
-                        <th style="width:80px" >Longitud y Latitud</th>
-                        <th style="width:80px" >SLA Cumplido</th>
+                        <th >Clasificacion CI</th>
+                        <th >CI</th>
+                        <th >Servicios</th>
+                        <th >Pais</th>
+                        <th >Region</th>
+                        <th >Ciudad</th>
+                        <th >Longitud y Latitud</th>
+                        <th >SLA Cumplido</th>
 
-                        <th style="width:150px" >Fecha alarma/detección</th>
-                        <th style="width:150px" >Fecha Creacion Solicitud</th>
-                        <th style="width:150px" >Fecha última actualización</th>
-                        <th style="width:150px" >Usuario última actualización</th>
-                        <th style="width:150px" >Tiempo Transcurrido</th>
+                        <th >Fecha alarma/detección</th>
+                        <th >Fecha Creacion Solicitud</th>
+                        <th>Fecha última actualización</th>
+                        <th >Usuario última actualización</th>
+                        <th >Tiempo Transcurrido</th>
+                        <th >Motivo de Pausa</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -99,7 +141,12 @@
         var idusuariologueado = @ViewBag.idUsuario;
         var idmasalto = 0; //--ViewBag.IdMasReciente;
 
-        
+        $("#TablaPrincipalTicket thead th input[type=text]").on('keyup change', function () {
+            debugger;
+            var tabla = new $.fn.dataTable.Api("#TablaPrincipalTicket");
+            tabla.column($(this).parent().index() + ':visible').search(this.value).draw();
+
+        });
 
         var tablaPrincipalticket = $('#TablaPrincipalTicket').DataTable({
 
@@ -125,18 +172,40 @@
                   method: "Get",
                   dataSrc: function (data) {
 
-                      // Crear una nueva matriz con solo los valores de Id
+                      var opt = ''
+                      var unico = new Set();
+                      for (const item of data) {
+                          unico.add(item.fcDescripcionEstado);
+                      }
+                      for (const item of unico) {
+                          if (item == null) {
+
+                          } else {
+                              opt += `<option value="${item}">${item}</option>`
+                          }
+                      }
+                      $(`#ddlEstados`).append(opt);
+                      $("#ddlEstados").select2();
+
                       const ids = data.map(item => item.fiIDRequerimiento);
 
                       // Encontrar el Id más grande usando Math.max
                       const maxId = Math.max(...ids);
                       idmasalto = maxId;
 
+                      
+
                       return data;
+                    //console.log(data);
                   }
             },
             scrollX: true,
             scrollY: '60vh',
+            rowCallback: function (row, data, index) {
+                if (data.fiSLA == "SLA No Cumplido") { // aqui es donde se pinta las solicitudes si tienen articulos
+                    $(row).css('background-color', "#ff6262");
+                }
+            },
             columns: [
                 
                 {//0
@@ -203,7 +272,7 @@
                         
                         const maxLength = idmasalto.toString().length;
                         const paddedIds = padWithZeros(data.fiIDRequerimiento, maxLength)
-                        return `${paddedIds} <spam class="text-muted"> | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
+                        return `${paddedIds} <spam > | <b href="javascript:void(0)" onclick="abrirModalDetalle(${data.fiIDRequerimiento})"> ${data.fcTituloRequerimiento}</b></spam>`
 
                     }
                 },
@@ -291,6 +360,10 @@
                 },
                 {
                     data: "fiAfectacion",
+                    className: "td-responsive",
+                },
+                {
+                    data: "fcClacificacionCI",
                     className: "td-responsive",
                 },
                 {
@@ -382,16 +455,16 @@
                 },
 
                 {
-                    data: "fcDescripcionRequerimiento",
+                    data: "fcMotivoPausa",
                     className: "td-responsive",
-                    visible: false, "title": 'Descripcion',
+                    visible: true
 
                 }
 
             ],
             "columnDefs": [
                 { "width": "200px", "targets": 0 }, // Ancho específico para la primera columna (evitada)
-                { "width": "300px", "targets": "_all" } // Ancho fijo para el resto de las columnas
+                { "width": "600px", "targets": "_all" } // Ancho fijo para el resto de las columnas
             ],
             "createdRow": function (row, data, dataIndex) {
                 $('td', row).each(function (index) {
@@ -404,7 +477,12 @@
                         }
                     }
                 });
+            },
+            initComplete: function (settings, json) {
+                // Reordena la tabla al finalizar la carga
+                tablaPrincipalticket.order([2, 'desc']).draw();
             }
+            
 
 
         }).columns.adjust();
@@ -751,6 +829,21 @@
             var truncatedText = fullText.substring(0, 100) + '...'; // Vuelve a truncar
             $(this).text(truncatedText);  // Muestra el texto truncado de nuevo
         });
+
+
+        $('#ddlEstados').on('change', function () {
+            debugger;
+
+            tablaPrincipalticket.columns(1).search(this.value).draw();
+            tablaPrincipalticket.order([2, 'asc']).draw();
+            tablaPrincipalticket.order([2, 'desc']).draw();
+            document.querySelectorAll('[tabindex]').forEach(element => {
+                element.removeAttribute('tabindex');
+            });
+        });
+
+        
+
     </script>
 
 }

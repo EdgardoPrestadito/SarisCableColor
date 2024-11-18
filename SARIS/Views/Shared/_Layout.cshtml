@@ -324,40 +324,41 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 </aside>
             }
             <!-- END Left Aside -->
-        <div class="page-content-wrapper">
-            <!-- BEGIN Page Header -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN Page Header -->
 
-            @if (User.IsInRole("Acceso_Al_Sistema")) { 
-                @Html.Partial("_PartialHeader")
-            }
+                @if (User.IsInRole("Acceso_Al_Sistema"))
+                {
+                    @Html.Partial("_PartialHeader")
+                }
 
 
-            <!-- END Page Header -->
-            <!-- BEGIN Page Content -->
-            <!-- the #js-page-content id is needed for some plugins to initialize -->
+                <!-- END Page Header -->
+                <!-- BEGIN Page Content -->
+                <!-- the #js-page-content id is needed for some plugins to initialize -->
 
-            <main id="js-page-content" role="main" class="page-content" style="background-image: url('../Content/img/fondo.png');background-size: 100% ;   width:100%; height:100%; resize: both;">
-                @RenderBody()
-            </main>
-            <!-- this overlay is activated only when mobile menu is triggered -->
-            <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-            <!-- BEGIN Page Footer -->
-            <footer class="page-footer" role="contentinfo">
-                <div class="d-flex align-items-center flex-1 text-muted">
+                <main id="js-page-content" role="main" class="page-content" style="background-image: url('../Content/img/fondo.png');background-size: 100% ;   width:100%; height:100%; resize: both;">
+                    @RenderBody()
+                </main>
+                <!-- this overlay is activated only when mobile menu is triggered -->
+                <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+                <!-- BEGIN Page Footer -->
+                <footer class="page-footer" role="contentinfo">
+                    <div class="d-flex align-items-center flex-1 text-muted">
 
-                </div>
-                <div>
+                    </div>
+                    <div>
 
-                </div>
-            </footer>
-            <!-- END Page Footer -->
-            <!-- BEGIN Shortcuts -->
-            <!-- END Shortcuts -->
-            <!-- BEGIN Color profile -->
-            <!-- this area is hidden and will not be seen on screens or screen readers -->
-            <!-- we use this only for CSS color refernce for JS stuff -->
-            <!-- END Color profile -->
-        </div>
+                    </div>
+                </footer>
+                <!-- END Page Footer -->
+                <!-- BEGIN Shortcuts -->
+                <!-- END Shortcuts -->
+                <!-- BEGIN Color profile -->
+                <!-- this area is hidden and will not be seen on screens or screen readers -->
+                <!-- we use this only for CSS color refernce for JS stuff -->
+                <!-- END Color profile -->
+            </div>
         </div>
     </div>
 
@@ -389,6 +390,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <script src="~/Content/js/notificaciones/notificaciones.js"></script>
     <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
     <script src="~/Content/js/statistics/chartjs/chartjs.bundle.js"></script>
+    <script src="~/Content/js/loading/loading.js"></script>
 
     <script src="@Url.Content("~/signalr/hubs")"></script>
     @*@if (MemoryLoadManager.Produccion)
@@ -538,7 +540,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             debugger;
             var expand = $("#campanaNotificacion")[0].ariaExpanded;
             var item = $(`<li class="${expand == "true" ? '' : 'unread'}">
-                                <a href="#" class="d-flex align-items-center">  
+                                <a href="#" class="d-flex align-items-center">
                                     <span class="d-flex flex-column flex-1 ml-1">
                                         <span class="name">${notificacion.fcUsuarioPropietario} <span class="badge badge-primary fw-n position-absolute pos-top pos-right mt-1">${notificacion.fcArea}</span></span>
                                         <span class="msg-a fs-sm">${notificacion.fcTitulo}</span>
@@ -558,25 +560,146 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 $("#noLeidosBadge").css("display", "none");
             }
             $("#noLeidos").html(litaFiltrada.length);
-            
+
         }
+
+        $(document).ready(function () {
+            debugger
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("verEstatus", "Estados")",
+                data: {  },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    var dataerror = { Titulo: "Error", Mensaje: "No se Cambio el estatus, Contacte con el Administrador", Estado: false }
+                    AlertaAjax(dataerror)
+                },
+                success: function (data)
+                {
+                    if (data.Estado == true)
+                    {
+                        $("#campana").removeClass("fa-bell");
+                        $("#campana").addClass("fa-bell-on");
+                        $("#campana").removeClass("grey-background");
+                        $("#campana").addClass("green-background");
+                        $("#btnNotificacion").removeClass("badge-secondary");
+                        $("#btnNotificacion").addClass("badge-success");
+                        $("#btnNotificacion").text("Disponible");
+                    }
+                    if (data.Estado == false) {
+                        $("#campana").removeClass("fa-bell-on");
+                        $("#campana").addClass("fa-bell");
+                        $("#campana").removeClass("green-background");
+                        $("#campana").addClass("grey-background");
+                        $("#btnNotificacion").removeClass("badge-success");
+                        $("#btnNotificacion").addClass("badge-secondary");
+                        $("#btnNotificacion").text("No Disponible");
+                    }
+
+                }
+
+            });
+        });
 
 
         $("#campanaNotificacion").click(function () {
-            var items = $("#listNotificaciones li").toArray();
-            for (item of items) {
-                $(item).removeClass("unread");
-            }
-            if (this.ariaExpanded) {
-                $("#noLeidosBadge").css("display", "none");
-                $("#noLeidosBadge").html(0);
-                $("#noLeidos").html(0);
-            }
+             bootbox.confirm({
+                 title: `<i class="" fa-times-circle text-danger mr-2'></i>Se marcará el inicio o final de sesión<span class='fw-500'></span>`,
+                 message: "<span><strong>Advertencia!:</strong>Se seguiran asignando incidentes de froma automatica a los usuarios que no marquen 'No Disponible' asl finalizar su turno</span>",
+                centerVertical: true,
+                swapButtonOrder: true,
+                buttons: {
+                    confirm: {
+                        label: 'Si',
+                        className: 'btn-danger shadow-0'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-default'
+                    }
+                },
+                className: "modal-alert",
+                closeButton: false,
+                callback: function (result) {
+
+                    if (result == true) {
+                        debugger;
+                        H5_loading.show();
+                        $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("CambiarEstatus", "Estados")",
+                            data: {  },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                var dataerror = { Titulo: "Error", Mensaje: "No se Cambio el estatus, Contacte con el Administrador", Estado: false }
+                                AlertaAjax(dataerror)
+                            },
+                            success: function (data)
+                            {
+                                if (data.Estado == true)
+                                {
+                                    $("#campana").removeClass("fa-bell");
+                                    $("#campana").addClass("fa-bell-on");
+                                    $("#campana").removeClass("grey-background");
+                                    $("#campana").addClass("green-background");
+                                    $("#btnNotificacion").removeClass("badge-secondary");
+                                    $("#btnNotificacion").addClass("badge-success");
+                                    $("#btnNotificacion").text("Disponible");
+                                    H5_loading.hide();
+                                }
+                                if (data.Estado == false) {
+                                    $("#campana").removeClass("fa-bell-on");
+                                    $("#campana").addClass("fa-bell");
+                                    $("#campana").removeClass("green-background");
+                                    $("#campana").addClass("grey-background");
+                                    $("#btnNotificacion").removeClass("badge-success");
+                                    $("#btnNotificacion").addClass("badge-secondary");
+                                    $("#btnNotificacion").text("No Disponible");
+                                    reasignar()
+                                }
+
+                            }
+
+                        });
+                    }
+                    if (result == false) {
+
+                    }
+                }
+            });
+
+
+            //var items = $("#listNotificaciones li").toArray();
+            //for (item of items) {
+            //    $(item).removeClass("unread");
+            //}
+            //if (this.ariaExpanded) {
+            //    $("#noLeidosBadge").css("display", "none");
+            //    $("#noLeidosBadge").html(0);
+            //    $("#noLeidos").html(0);
+            //}
             /*$(window).scroll(function (event) {
                 var scroll = $(window).scrollTop();
                 // Do something
             });*/
         });
+
+        function reasignar()
+        {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ActualizarUsuario", "Estados")",
+                data: { },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    var dataerror = { Titulo: "Error", Mensaje: "No se Usuario, Contacte con el Administrador", Estado: false }
+                    AlertaAjax(dataerror)
+                },
+                success: function (data)
+                {
+                    H5_loading.hide();
+                    location.reload();
+                    return ToastrSuccess("Exito", "Usuario Asignado Correctamente");
+                }
+            });
+        }
 
         function padWithZeros(number, length) {
             return number.toString().padStart(length, '0');
@@ -587,7 +710,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     @RenderSection("scripts", required: false)
     <!--This page contains the basic JS and CSS files to get started on your project. If you need aditional addon's or plugins please see scripts located at the bottom of each page in order to find out which JS/CSS files to add.-->
 
-    
+
 </body>
 <!-- END Body -->
 </html>

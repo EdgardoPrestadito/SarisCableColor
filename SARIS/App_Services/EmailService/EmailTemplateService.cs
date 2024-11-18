@@ -289,6 +289,10 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                                     <td><strong>Usuario Solicitante:</strong></td>
                                                     <td>{model.fcNombreCorto}</td>
                                                 </tr>
+                                                <tr>
+                                                    <td><strong>Area Solicitante:</strong></td>
+                                                    <td>{model.fcAreaSolicitante}</td>
+                                                </tr>
                                                 
                                                 <tr>
                                                     <td><strong>Titulo:</strong></td>
