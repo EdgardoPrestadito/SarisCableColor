@@ -880,19 +880,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_CIporIncidencias_listos" FunctionName="SARISModel.Store.sp_CIporIncidencias_listos">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SARISModel.sp_CIporIncidencias_listos_Result">
-          <ScalarProperty Name="fiIDConfiguracionCI" ColumnName="fiIDConfiguracionCI" />
-          <ScalarProperty Name="fcConfiguracion" ColumnName="fcConfiguracion" />
-          <ScalarProperty Name="fcLatitud" ColumnName="fcLatitud" />
-          <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
-          <ScalarProperty Name="fcPais" ColumnName="fcPais" />
-          <ScalarProperty Name="fcRegion" ColumnName="fcRegion" />
-          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_Requerimientos_Bandeja_ByID" FunctionName="SARISModel.Store.sp_Requerimientos_Bandeja_ByID">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SARISModel.sp_Requerimientos_Bandeja_ByID_Result">
@@ -1495,5 +1482,19 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_CambiarAutomaticoArea" FunctionName="SARISModel.Store.sp_CambiarAutomaticoArea" />
+    <FunctionImportMapping FunctionImportName="sp_CIporIncidencias_listos" FunctionName="SARISModel.Store.sp_CIporIncidencias_listos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_CIporIncidencias_listos_Result">
+          <ScalarProperty Name="fiIDConfiguracionCI" ColumnName="fiIDConfiguracionCI" />
+          <ScalarProperty Name="fcConfiguracion" ColumnName="fcConfiguracion" />
+          <ScalarProperty Name="fcLatitud" ColumnName="fcLatitud" />
+          <ScalarProperty Name="fcLongitud" ColumnName="fcLongitud" />
+          <ScalarProperty Name="fcPais" ColumnName="fcPais" />
+          <ScalarProperty Name="fcRegion" ColumnName="fcRegion" />
+          <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
+          <ScalarProperty Name="fcCI" ColumnName="fcCI" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

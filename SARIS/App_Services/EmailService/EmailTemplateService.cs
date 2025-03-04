@@ -246,7 +246,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                     <head>
                                         <meta charset=""UTF-8"">
                                         <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
-                                        <title>Ticket</title>
+                                        <title>Incidente</title>
                                         <style>
                                             body {{
                                                 font-family: Arial, sans-serif;
@@ -281,7 +281,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th colspan=""2""><h1>Incidencia #{model.fiIDRequerimiento}</h1></th>
+                                                    <th colspan=""2""><h1>Incidente #{model.fiIDRequerimiento}</h1></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -295,7 +295,7 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td><strong>Titulo:</strong></td>
+                                                    <td><strong>Título:</strong></td>
                                                     <td>{model.fcTituloRequerimiento}</td>
                                                 </tr>
                                                 <tr>
@@ -307,11 +307,11 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                                     <td>{model.fcComentario}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Categoria:</strong></td>
+                                                    <td><strong>Categoría:</strong></td>
                                                     <td>{model.fcDescripcionCategoria}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Incidencia:</strong></td>
+                                                    <td><strong>Incidente:</strong></td>
                                                     <td>{model.fcTipoRequerimiento}</td>
                                                 </tr>
                                                 <tr>
@@ -323,12 +323,12 @@ namespace OrionCoreCableColor.App_Services.EmailService
                                                     <td>{model.fcDescripcionPrioridad}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Fecha de Creaciom:</strong></td>
+                                                    <td><strong>Fecha de Creación:</strong></td>
                                                     <td>{model.fdFechaCreacion.ToString("MM/dd/yyyy hh:mm tt")}</td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan=""2"">
-                                                        <p>Por favor, tome nota del número de Incidencia: <strong>#{model.fiIDRequerimiento}</strong>. Por favor no Contestar este Coreo.</p>
+                                                        <p>Por favor, tome nota del número de Incidente: <strong>#{model.fiIDRequerimiento}</strong>. Por favor no Contestar este Correo.</p>
                                                     </td>
                                                 </tr>
                                             </tbody>

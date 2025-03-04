@@ -618,6 +618,7 @@
     });
 
     $("#btnActualizarDatosRequerimiento").click(function () {
+        $(this).prop("disabled", true);
         ActualizarDatos();
     });
 
@@ -640,6 +641,7 @@
             var detener = $(`#selectincidencia`).val();
             if (incidencia == 0 || incidencia == null || incidencia == "" || estadoReque == 0 || estadoReque == null || estadoReque == "") {
                 H5_loading.hide();
+                $(this).prop("disabled", false);
                 return ToastrError("Error", "Llene todos los campos");
             }
 
@@ -648,6 +650,7 @@
                     if (archivosSubidos.length < 1) {
                         ToastrError("Documento/Imagen", "Suba un documento o imagen para comprobar");
                         H5_loading.hide();
+                        $(this).prop("disabled", false);
                         return 0;
                     }
                 } else if (validador == 1)
@@ -665,6 +668,7 @@
 
             if (estadoReque == 0 && $("#selectmotivo").val()==0 && $("#selectCategoriaResolucion").val()==0 && $("#selectSubCategoriaResolucion").val()==0 ) {
                 H5_loading.hide();
+                $(this).prop("disabled", false);
                 return ToastrError("Error", "Llene todos los campos");
             }
 
@@ -703,11 +707,13 @@
             if (estadoReque == 4 || estadoReque == 6 || estadoReque == 11) {
                 if ($(`#selectmotivo`).val() == null || $(`#selectmotivo`).val() == "" || $(`#selectmotivo`).val() == 0) {
                     H5_loading.hide();
+                    $(this).prop("disabled", false);
                     return ToastrError("Error", "Llene todos los campos");
                 }
                 if (estadoReque == 4) {
                     if ($(`#selectCategoriaResolucion`).val() == null || $(`#selectCategoriaResolucion`).val() == "" || $(`#selectCategoriaResolucion`).val() == 0 || $(`#selectSubCategoriaResolucion`).val() == null || $(`#selectSubCategoriaResolucion`).val() == "" || $(`#selectSubCategoriaResolucion`).val() == 0) {
                         H5_loading.hide();
+                        $(this).prop("disabled", false);
                         return ToastrError("Error", "Llene todos los campos");
                     }
                 }
@@ -720,11 +726,11 @@
             // Convertir la lista de imágenes en JSON y añadirla como un campo
             var listaimagenesJSON = JSON.stringify(archivosSubidos);
             formData.append("fcListadoImagenes", listaimagenesJSON);
-
+            var titulo = $("#fcTituloRequerimiento").val()
             // Agregar los otros campos del objeto `ticket` al FormData
             formData.append("fiIDRequerimiento", ID_REQUERIMIENTO);
             formData.append("fiIDEstadoRequerimiento", estadoReque);
-            formData.append("fcTituloRequerimiento", $("#txtNombreTitulo").val());
+            formData.append("fcTituloRequerimiento", titulo);
             formData.append("fcDescripcionRequerimiento", $("#fcDescripcionRequerimiento").val());
             formData.append("fiTipoRequerimiento", $("#selectincidencia").val());
             //formData.append("fiIDImpacto", $(`#selectImpacto`).val());
@@ -778,6 +784,7 @@
                     H5_loading.hide();
                     //MensajeError("Error, contacte al administrador.");
                     var dataerror = { Titulo: "Error", Mensaje: "Error Al Actualizar el Ticket", Estado: false }
+                    $(this).prop("disabled", false);
                     AlertaAjax(dataerror)
                 },
                 success: function (data) {
@@ -801,6 +808,7 @@
 
                     }
                     else {
+                        $(this).prop("disabled", false);
                         var dataerror = { Titulo: "Error", Mensaje: "Error Al Actualizar el Ticket", Estado: false }
                         AlertaAjax(dataerror)
                         //MensajeErrorModal("No se pudo realizar la actualizacion de Datos, contacte al administrador.");

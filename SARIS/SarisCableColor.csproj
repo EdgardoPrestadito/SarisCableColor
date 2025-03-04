@@ -803,6 +803,11 @@
     <Compile Include="Models\DashBoard\BulletViewModel.cs" />
     <Compile Include="Models\DashBoard\ConteoIncidenteViewModel.cs" />
     <Compile Include="Models\DashBoard\DashboardViewModel.cs" />
+    <Compile Include="Models\DashBoard\DatosIncidentesPendientesViewModel.cs" />
+    <Compile Include="Models\DashBoard\IncidentesEstadosViewModel.cs" />
+    <Compile Include="Models\DashBoard\IncidentesPorEstados.cs" />
+    <Compile Include="Models\DashBoard\IncidentesPrioridad.cs" />
+    <Compile Include="Models\DashBoard\IncidentesRegiones.cs" />
     <Compile Include="Models\DashBoard\IndicadoresViewModel.cs" />
     <Compile Include="Models\DashBoard\Indicadores_ViewModel.cs" />
     <Compile Include="Models\DashBoard\Requerimiento_Detalle_Hora_ViewModel.cs" />
@@ -2205,6 +2210,7 @@
     <Content Include="Views\Usuario\SubtablaUsuariosAresAVer.cshtml" />
     <Content Include="Views\Ticket\BandejaTicketCerradosCancelados.cshtml" />
     <Content Include="Views\Log\LogNumerosCorreos.cshtml" />
+    <Content Include="Views\Ticket\ModalCIporIncedente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -448,9 +448,6 @@
     <FunctionImport Name="sp_RequerimientoPorServicioByRequerimiento" ReturnType="Collection(SARISModel.sp_RequerimientoPorServicioByRequerimiento_Result)">
       <Parameter Name="piIdRequerimiento" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_CIporIncidencias_listos" ReturnType="Collection(SARISModel.sp_CIporIncidencias_listos_Result)">
-      <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="sp_Requerimientos_Bandeja_ByID" ReturnType="Collection(SARISModel.sp_Requerimientos_Bandeja_ByID_Result)">
       <Parameter Name="piIDSesion" Mode="In" Type="Int32" />
       <Parameter Name="piIDApp" Mode="In" Type="Int32" />
@@ -673,6 +670,9 @@
     <FunctionImport Name="sp_CambiarAutomaticoArea">
       <Parameter Name="piArea" Mode="In" Type="Int32" />
       <Parameter Name="piEstadoAuto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CIporIncidencias_listos" ReturnType="Collection(SARISModel.sp_CIporIncidencias_listos_Result)">
+      <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_Requerimiento_Areas_Result">
@@ -1256,15 +1256,6 @@
     <Property Type="Int32" Name="fiIdServicioAfectado" Nullable="true" />
     <Property Type="String" Name="fcNombreServicio" Nullable="true" MaxLength="200" />
   </ComplexType>
-  <ComplexType Name="sp_CIporIncidencias_listos_Result">
-    <Property Type="Int32" Name="fiIDConfiguracionCI" Nullable="true" />
-    <Property Type="String" Name="fcConfiguracion" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="fcLatitud" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="fcLongitud" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="fcPais" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="fcRegion" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="fcCiudad" Nullable="true" MaxLength="100" />
-  </ComplexType>
   <ComplexType Name="sp_Requerimientos_Bandeja_ByID_Result">
     <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
     <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
@@ -1702,5 +1693,15 @@
     <Property Type="Int32" Name="fiNivel" Nullable="true" />
     <Property Type="String" Name="fcNivel" Nullable="true" MaxLength="20" />
     <Property Type="Int32" Name="fiAutomatico" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_CIporIncidencias_listos_Result">
+    <Property Type="Int32" Name="fiIDConfiguracionCI" Nullable="true" />
+    <Property Type="String" Name="fcConfiguracion" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="fcLatitud" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="fcLongitud" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="fcPais" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="fcRegion" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="fcCiudad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="fcCI" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>

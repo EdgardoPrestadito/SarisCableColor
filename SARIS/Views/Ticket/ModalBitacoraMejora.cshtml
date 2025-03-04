@@ -87,7 +87,7 @@
                                 opt += `<td>${item.fcUsuarioSecundario}</td>`
                             }
                                 opt +=`
-                                        
+
                                     </tr>
 
                                     <tr>
@@ -124,7 +124,7 @@
                                         opt += `<a href="javascript:ShowBigPdf('${items.fcNombreArchivo}','${items.fcURL}','video/mp4')" class="text-info"> <i class="fal fa-2x fa-video"> </i> ${items.fcNombreArchivo}</a>`;
                                     }
                                     else {
-                                        opt += `<a href="javascript:void(0)" data-Description="${items.fcNombreArchivo}" class="text-info" onclick="ShowBigImage(this)" src="${items.fcURL}"> <i class="fal fa-2x fa-file-image"> </i>  ${items.fcNombreArchivo}</a>`
+                                        opt += `<a href="javascript:void(0)" data-Description="${items.fcNombreArchivo}" class="text-info" onclick="ShowFileViewer('${items.fcNombreArchivo}','${items.fcTipoArchivo}','${items.fcURL}')" src="${item.fcURL}0"> <i class="fal fa-2x fa-file-image"> </i>  ${items.fcNombreArchivo}</a>`
                                     }
                                 }
                             }

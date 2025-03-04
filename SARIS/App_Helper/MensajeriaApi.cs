@@ -37,31 +37,43 @@ namespace OrionCoreCableColor.App_Helper
         {
             if (Estado == "Creado") 
             {
-                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se ha creado un incidente\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad;
-                MensajesDigitales(pcTelefono, mensaje, "");
+                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se ha creado un incidente\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Título:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoría:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad;
+                if (pcTelefono != "00000000") 
+                {
+                    MensajesDigitales(pcTelefono, mensaje, "");
+                }
             }
             if (Estado == "Cerrado")
             {
-                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se cerró el incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad+"\n*Categoria Resolucion:* " + Resolucion + "\n*Causa de Falla:* " + SubResolucion;
+                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se cerró el incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Título:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoría:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad+"\n*Categoria Resolucion:* " + Resolucion + "\n*Causa de Falla:* " + SubResolucion;
                 MensajesDigitales(pcTelefono, mensaje, "");
             }
 
             if (Estado == "Reasignado")
             {
-                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se le ha asignado un incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad;
-                MensajesDigitales(pcTelefono, mensaje, "");
+                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se le ha asignado un incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Título:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoría:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad;
+                if (pcTelefono != "00000000")
+                {
+                    MensajesDigitales(pcTelefono, mensaje, "");
+                }
             }
 
             if ( Estado == "En proceso" || Estado == "Pausado")
             {
-                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se actualizó el incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad;
-                MensajesDigitales(pcTelefono, mensaje, "");
+                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se actualizó el incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Título:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoría:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad;
+                if (pcTelefono != "00000000")
+                {
+                    MensajesDigitales(pcTelefono, mensaje, "");
+                }
             }
 
             if (Estado == "Resuelto")
             {
-                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se dio Resolucion al incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Titulo:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoria:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad + "\n*Categoria Resolucion:* " + Resolucion + "\n*Causa de Falla:* " + SubResolucion;
-                MensajesDigitales(pcTelefono, mensaje, "");
+                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se dio Resolucion al incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Título:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoría:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad + "\n*Categoría Resolución:* " + Resolucion + "\n*Causa de Falla:* " + SubResolucion;
+                if (pcTelefono != "00000000")
+                {
+                    MensajesDigitales(pcTelefono, mensaje, "");
+                }
             }
 
 

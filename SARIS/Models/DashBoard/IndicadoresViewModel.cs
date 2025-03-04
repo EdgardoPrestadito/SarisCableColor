@@ -11,6 +11,7 @@ namespace OrionCoreCableColor.Models.DashBoard
         public int fiIncidentes1a4Horas { get; set; }
         public int fiIncidentes4Horas { get; set; }
         public int fiIncidentes8Horas { get; set; }
+        public int fiIncidentesMas1Semana { get; set; }
         public int fiIncidentes24Horas { get; set; }
     }
 }

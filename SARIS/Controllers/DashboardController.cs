@@ -42,6 +42,99 @@ namespace OrionCoreCableColor.Controllers
                         Indicadores.AreasTiempo = db.ObjectContext.Translate<AreaTiempoViewModel>(reader).ToList();
                         reader.NextResult();
                         Indicadores.ConteoIncidentes = db.ObjectContext.Translate<ConteoIncidenteViewModel>(reader).ToList();
+                        reader.NextResult();
+                        Indicadores.ConteoIncidentesEstados = db.ObjectContext.Translate<IncidentesEstadosViewModel>(reader).ToList();
+                        reader.NextResult();
+                        Indicadores.ConteoPorEstado = db.ObjectContext.Translate<IncidentesPorEstados>(reader).ToList();
+                        reader.NextResult();
+                        Indicadores.ConteoPorPrioridad = db.ObjectContext.Translate<IncidentesPrioridad>(reader).ToList();
+                        reader.NextResult();
+                        Indicadores.ConteoPorRegiones = db.ObjectContext.Translate<IncidentesRegiones>(reader).ToList();
+                        reader.NextResult();
+                        Indicadores.TalbaPendientes = db.ObjectContext.Translate<DatosIncidentesPendientesViewModel>(reader).ToList();
+                    }
+
+                    connection.Close();
+
+                    return EnviarListaJson(Indicadores);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+
+        }
+
+        [HttpGet]
+        public JsonResult ListarDatosPendientes()
+        {
+            var Indicadores = new List<DatosIncidentesPendientesViewModel>();
+
+            try
+            {
+                using (var connection = (new SARISEntities1()).Database.Connection)
+                {
+
+                    connection.Open();
+                    var command = connection.CreateCommand();
+                    command.CommandText = $"EXEC sp_DashboardGlobal";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        var db = ((IObjectContextAdapter)new SARISEntities1());
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        Indicadores = db.ObjectContext.Translate<DatosIncidentesPendientesViewModel>(reader).ToList();
+                    }
+
+                    connection.Close();
+
+                    return EnviarListaJson(Indicadores);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+
+        }
+
+        [HttpGet]
+        public JsonResult ListarDatosTotales()
+        {
+            var Indicadores = new DatosIncidentesPendientesViewModel();
+
+            try
+            {
+                using (var connection = (new SARISEntities1()).Database.Connection)
+                {
+
+                    connection.Open();
+                    var command = connection.CreateCommand();
+                    command.CommandText = $"EXEC sp_DashboardGlobal";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        var db = ((IObjectContextAdapter)new SARISEntities1());
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        reader.NextResult();
+                        Indicadores = db.ObjectContext.Translate<DatosIncidentesPendientesViewModel>(reader).FirstOrDefault();
                     }
 
                     connection.Close();

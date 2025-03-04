@@ -11,5 +11,10 @@ namespace OrionCoreCableColor.Models.DashBoard
         public List<AreaTiempoViewModel> AreasTiempo{ get; set; }
         public List<IndicadoresViewModel> BulletViewModel { get; set; }
         public List<ConteoIncidenteViewModel> ConteoIncidentes { get; set; }
+        public List<IncidentesEstadosViewModel> ConteoIncidentesEstados { get; set; }
+        public List<IncidentesPorEstados> ConteoPorEstado { get; set; }
+        public List<IncidentesPrioridad> ConteoPorPrioridad { get; set; }
+        public List<IncidentesRegiones> ConteoPorRegiones { get; set; }
+        public List<DatosIncidentesPendientesViewModel> TalbaPendientes { get; set; }
     }
 }

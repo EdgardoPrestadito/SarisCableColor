@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "ModalCIporIncedente";
+}
+
+<div class="modal-header bg-primary-600 bg-primary-gradient">
+    <h2 class="modal-title text-white">
+
+        <text>CI Afectados</text>
+
+    </h2>
+
+    <button type="button" class="close" data-dismiss="modal">
+        <i class="fal fa-times-circle fa-fw fa-lg"></i>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="tbodycis">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Comentario del ticket-->
+
+
+
+    </div>
+
+
+
+    
+</div>
+<script src="~/Content/js/loading/loading.js"></script>
+<script>
+    var idCisusados = @Html.Raw(Json.Encode(ViewBag.IdsCis));
+    llenartableCis();
+
+    function llenartableCis() {
+        //console.log(idCisusados);
+        var tbo = `<table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="selectvistacis">
+                        <thead>
+                            <tr>
+                                <th>Tipo CI</th>
+                                <th>CI</th>
+                                <th>Pais</th>
+                                <th>Region</th>
+                                <th>Ciudad</th>
+                                <th>Latitud</th>
+                                <th>Longitud</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+
+                        `;
+        for (const item of idCisusados) {
+            tbo += `<tr>
+                            <td>${item.fcCI}</td>
+                            <td>${item.fcConfiguracion}</td>
+                            <td>${item.fcPais}</td>
+                            <td>${item.fcRegion}</td>
+                            <td>${item.fcCiudad}</td>
+                            <td>${item.fcLatitud}</td>
+                            <td>${item.fcLongitud}</td>
+                        </tr>`;
+
+        }
+        tbo += `</tbody>
+                    </table>`
+
+        $(`#tbodycis`).empty()
+        $(`#tbodycis`).append(tbo);
+    }
+
+</script>

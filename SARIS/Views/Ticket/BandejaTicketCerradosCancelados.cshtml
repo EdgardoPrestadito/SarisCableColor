@@ -74,16 +74,16 @@
                             <th style="width:150px">Fecha última actualización</th>
                             <th style="width:150px">Usuario última actualización</th>
                             <th style="width:150px">Tiempo Transcurrido</th>
-                            <th style="width:150px">Grupo Resoluctor</th>
-                            <th style="width:150px">Usuario Resoluctor</th>
+                            <th style="width:150px">Grupo Resolutor</th>
+                            <th style="width:150px">Usuario Resolutor</th>
                             <th style="width:150px">Fecha de Resolucion</th>
                             <th style="width:150px">Pausa</th>
                             <th style="width:150px">Categoria de Causa de Falla</th>
                             <th style="width:150px">SubCategoria de Causa de Falla</th>
                             <th style="width:150px">Descripcion de Falla</th>
 
-                            <th style="width:150px">Tipo de Solucion</th>
-                            <th style="width:150px">Descrpcion Solucion</th>
+                            <th style="width:150px">Tipo de Solución</th>
+                            <th style="width:150px">Descripción de la solución</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -154,6 +154,7 @@
 </div>
 
 @section Scripts{
+    <script src="~/Content/js/datagrid/datatables/datatables.export.js"></script>
     <script>
 
         var idmasalto = 0; //--ViewBag.IdMasReciente;
@@ -416,7 +417,7 @@
                 {
                     data: "fcAreaResoluctor",
                     className: "td-responsive",
-                    visible: true, 
+                    visible: true,
 
                 },
                 {
@@ -442,10 +443,10 @@
                         {
                             return "No Fue Pausado"
                         }
-                        
+
                     }
                 },
-                
+
                 {
                     data: "fcCategoriaResolucion",
                     className: "td-responsive",
@@ -480,6 +481,37 @@
             "columnDefs": [
                 { "width": "200px", "targets": 0 }, // Ancho específico para la primera columna (evitada)
                 { "width": "300px", "targets": "_all" } // Ancho fijo para el resto de las columnas
+            ],
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'EXCEL',
+                    messageTop: "Incidentes Cerrados",
+                    filename: "Incidentes Cerrados",
+                    className: 'btn-outline-success btn-sm mr-1',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,36]
+                        // columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    className: 'btn-outline-primary btn-sm'
+                }
             ],
             "createdRow": function (row, data, dataIndex) {
                 $('td', row).each(function (index) {
@@ -760,13 +792,44 @@
                 },
 
 
-                
+
 
 
             ],
             "columnDefs": [
                 { "width": "200px", "targets": 0 }, // Ancho específico para la primera columna (evitada)
                 { "width": "300px", "targets": "_all" } // Ancho fijo para el resto de las columnas
+            ],
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'EXCEL',
+                    messageTop: "Incidentes Cancelados",
+                    filename: "Incidentes Cancelados",
+                    className: 'btn-outline-success btn-sm mr-1',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+                        // columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    className: 'btn-outline-primary btn-sm'
+                }
             ],
             "createdRow": function (row, data, dataIndex) {
                 $('td', row).each(function (index) {
