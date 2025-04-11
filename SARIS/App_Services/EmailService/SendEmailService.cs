@@ -106,9 +106,12 @@ namespace OrionCoreCableColor.App_Services.EmailService
                 message.IsBodyHtml = true;
                 message.Body = body;
 
-                foreach (var email in model.List_CC)
+                if (model.List_CC != null)
                 {
-                    message.CC.Add(new MailAddress(email));
+                    foreach (var email in model.List_CC)
+                    {
+                        message.CC.Add(new MailAddress(email));
+                    }
                 }
 
                 if (model.Attachment != null) message.Attachments.Add(model.Attachment);
@@ -157,11 +160,14 @@ namespace OrionCoreCableColor.App_Services.EmailService
                 message.Subject = !string.IsNullOrEmpty(model.Subject) ? model.Subject : "Notification";
                 message.IsBodyHtml = true;
                 message.Body = body;
-
-                foreach (var email in model.List_CC)
+                if(model.List_CC != null) 
                 {
-                    message.CC.Add(new MailAddress(email));
+                    foreach (var email in model.List_CC)
+                    {
+                        message.CC.Add(new MailAddress(email));
+                    }
                 }
+                
 
                 foreach(var item in model.ArchivosVarios)
                 {

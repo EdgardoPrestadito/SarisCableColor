@@ -20,6 +20,5 @@ namespace OrionCoreCableColor.DbConnection
         public string fcPais { get; set; }
         public string fcRegion { get; set; }
         public string fcCiudad { get; set; }
-        public string fcCI { get; set; }
     }
 }

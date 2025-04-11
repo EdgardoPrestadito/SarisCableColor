@@ -39,6 +39,17 @@
     }
 
 
+    #selectPais {
+        background-color: white;
+        color: #333;
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+
+    #ddlPais {
+        position: relative;
+        z-index: 10; /* Asegura que esté por encima */
+    }
 
 </style>
 <div class="container-fluid">
@@ -49,6 +60,7 @@
                 <div class="overlay-header" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
                 <i class="fal fa-clock position-absolute pos-top pos-right opacity-50 mt-5" style="font-size: 8rem; bottom: 0; right: 0;"></i>
                 <div class="row">
+
                     <!-- Parte izquierda: Texto Bienvenida y Hora Actual/Fecha -->
                     <div class="col-12 col-lg-5 mb-3 mb-lg-0 px-4 text-center text-lg-start">
 
@@ -64,98 +76,105 @@
                     </div>
 
                     <!-- Parte derecha: Tabs -->
-                    <div class="col-12 col-lg-7 mb-3 mb-lg-0 px-4">
-                        <div class="card-content-header text-center" style="position: relative; z-index: 10;">
-                            <ul class="nav nav-tabs justify-content-center  " id="myTab" role="tablist">
-                            </ul>
-
-                            <div class="tab-content text-white display-4 d-block l-h-n m-0 fw-500 text-center mt-3" id="myTabContent">
-                                0
-                            </div>
-                            <div class="tab-content text-white display-4 d-block l-h-n m-0 fw-500 text-center" style="text-transform:capitalize" id="myTabContenthoras">
-                                Horas
-                            </div>
+                    @*<div class="col-12 col-lg-7 mb-3 mb-lg-0 px-4 filtro-pais">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <label class="col-form-label">Búsqueda por Pais</label>
+                            <select id="selectPais" class="form-control form-control-sm">
+                                <option value="">Seleccionar</option>
+                            </select>
                         </div>
-                    </div>
+                    </div>*@
 
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="col-12 col-lg-7 mb-3 mb-lg-0 px-4 filtro-pais">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <label class="col-form-label">Búsqueda por Pais</label>
+                    <select id="selectPais" class="form-control form-control-sm">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     @if (User.IsInRole("SARIS_DASHBOARD"))
     {
-<div class="row">
-    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
-        <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white card-container">
-            <div class="card-content">
-                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                    <label id="lblTicketActivos">0</label>
-                    <small class="m-0 l-h-n">Incidentes Activos</small>
-                </h3>
-                <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+                <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicketActivos">0</label>
+                            <small class="m-0 l-h-n">Incidentes Activos</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
-        <div class="p-3 bg-primary-200 rounded overflow-hidden position-relative text-white card-container">
-            <div class="card-content">
-                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                    <label id="lblTicket1H">0</label>
-                    <small class="m-0 l-h-n">Incedentes con menos de 24 Horas activos</small>
-                </h3>
-                <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+                <div class="p-3 bg-primary-200 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicket1H">0</label>
+                            <small class="m-0 l-h-n">Incedentes con menos de 24 Horas activos</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
-        <div class="p-3 bg-info-700 rounded overflow-hidden position-relative text-white card-container">
-            <div class="card-content">
-                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                    <label id="lblTicket4H">0</label>
-                    <small class="m-0 l-h-n">Incedentes con 1 dia a 3 dias activos</small>
-                </h3>
-                <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+                <div class="p-3 bg-info-700 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicket4H">0</label>
+                            <small class="m-0 l-h-n">Incedentes con 1 dia a 3 dias activos</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
-        <div class="p-3 bg-success-700 rounded overflow-hidden position-relative text-white card-container">
-            <div class="card-content">
-                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                    <label id="lblTicket8H">0</label>
-                    <small class="m-0 l-h-n">Incedentes con 1 Semana activos</small>
-                </h3>
-                <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+            <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
+                <div class="p-3 bg-success-700 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicket8H">0</label>
+                            <small class="m-0 l-h-n">Incedentes con 1 Semana activos</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
-        <div class="p-3 bg-warning-700 rounded overflow-hidden position-relative text-white card-container">
-            <div class="card-content">
-                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                    <label id="lblTicketMas1Semana">0</label>
-                    <small class="m-0 l-h-n">Incedentes con Mas 1 Semana activos</small>
-                </h3>
-                <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+            <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
+                <div class="p-3 bg-warning-700 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicketMas1Semana">0</label>
+                            <small class="m-0 l-h-n">Incedentes con Mas 1 Semana activos</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
-        <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white card-container">
-            <div class="card-content">
-                <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
-                    <label id="lblTicket24H">0</label>
-                    <small class="m-0 l-h-n">Incidentes con mas de 1 Mes activos</small>
-                </h3>
-                <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+            <div class="col-12 col-sm-6 col-md-6 col-xl-2 mb-3">
+                <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white card-container">
+                    <div class="card-content">
+                        <h3 class="text-white display-4 d-block l-h-n m-0 fw-500">
+                            <label id="lblTicket24H">0</label>
+                            <small class="m-0 l-h-n">Incidentes con mas de 1 Mes activos</small>
+                        </h3>
+                        <i class="fal fa-ticket position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size: 6rem;"></i>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
 
 
@@ -172,7 +191,7 @@
                     </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            
+
                             <div class="row">
                                 <div id="chartHoras" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
                             </div>
@@ -192,7 +211,7 @@
                     </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            
+
                             <div class="row">
                                 <div id="chartTicketArea" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
                             </div>
@@ -213,7 +232,7 @@
                     </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            
+
                             <div class="row">
                                 <div id="chartConteo" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
                             </div>
@@ -234,7 +253,7 @@
                     </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            
+
                             <div class="row">
                                 <div id="chartPrioridad" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
                             </div>
@@ -257,7 +276,7 @@
                         <div class="panel-content">
                             <div class="row">
                                 <div id="chartRegiones" class="col-12 col-md-9 col-sm-12 mx-auto text-center" style="width: 100%; height: 400px;"></div>
-                                
+
                             </div>
                             <div>
                                 <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaDatosPendientes">
@@ -322,11 +341,40 @@
 @section Scripts{
 
     <script>
+        PaisSelect();
+        function PaisSelect()
+        {
+            $.ajax({
+                url: "@Url.Action("SelectPais", "LlenarCampos")",
+                type: "GET",
+                success: function (respuesta) {
+
+                    var selectcategoria = $("#selectPais");
+
+                    selectcategoria.empty();
+                    selectcategoria.append($('<option>', {
+                        value: 0,
+                        text: 'Todos los Paises'
+                    }));
+                    $.each(respuesta, function(index, item) {
+                        selectcategoria.append($('<option>', {
+                            value: item.fiIDPais,
+                            text: item.fcPais
+                        }));
+                    });
+                },
+                error: function (respuesta) {
+                    console.log(respuesta);
+                }
+            });
+
+        }
 
         var tablaPrincipal = $('#TablaDatosPendientes').DataTable({
 
             autoWidth: true,
             responsive: true,
+            destroy:true,
             language: {
                 "emptyTable": "No se encontraron resultados.",
                 //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
@@ -345,9 +393,15 @@
             ajax: {
                 url: '@Url.Action("ListarDatosPendientes", "Dashboard")',
                 method: "Get",
+                data: { tabId: 0 },
                 dataSrc: function (data) {
 
                     return data;
+                }
+            },
+            rowCallback: function (row, data, index) {
+                if (data.Orden == 1) { // aqui es donde se pinta las solicitudes si tienen articulos
+                    $(row).css('background-color', "#c6c6c6");
                 }
             },
             columns: [
@@ -461,12 +515,13 @@
 
 
         $(document).ready(function () {
-            datos();
+            var fiIdpais = $(`#selectPais`).val();
+            datos(fiIdpais);
             dataheader();
             setInterval(actualizarHora, 60000);
             generarTabsUltimosMeses();
 
-             });
+        });
 
         function dataheader() {
             var nombreUsuario = "@User.Identity.Name";
@@ -555,14 +610,25 @@
         });
     }
 
+        var chartTicketArea = null;
+        var chartTicketRegiones = null;
+        var chartHoras = null;
+        var chartConteo = null;
+        var chartPrioridad = null;
 
+        $(`#selectPais`).on(`change`, function () {
+            //console.log(`entro`);
+            datos($(`#selectPais`).val())
+        })
 
-        function datos()
+        function datos(fiIdpais)
         {
             $.ajax({
                 url: "@Url.Action("Indicadores", "Dashboard")",
                 method: "get",
-                data: {},
+                data: {
+                    idpais: fiIdpais
+                },
                  success: function (resp) {
                      //debugger;
                      console.log(resp)
@@ -572,7 +638,149 @@
                      graficaHoras(resp.ConteoIncidentesEstados);
                      graficaConteo(resp.ConteoPorEstado);
                      graficaPrioridad(resp.ConteoPorPrioridad);
-                     DatosTotales();
+                     DatosTotales(fiIdpais);
+
+                     var tablaPrincipal2 = $('#TablaDatosPendientes').DataTable({
+
+                            autoWidth: true,
+                            responsive: true,
+                            destroy:true,
+                            language: {
+                                "emptyTable": "No se encontraron resultados.",
+                                //"search": '<div class="icon-addon addon-md"><label for="search" class="ion-search"></label>',
+                                "paginate": {
+                                    first: "Primero",
+                                    previous: "Anterior",
+                                    next: "Siguiente",
+                                    last: "Ultimo"
+                                },
+                                "lengthMenu": " _MENU_ ",
+                                "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros totales.",
+                                "infoEmpty": "No hay registros para mostrar.",
+                            },
+                            dom: 'Bfrtip',
+                            order: [[1, "desc"]],
+                            ajax: {
+                                url: '@Url.Action("ListarDatosPendientes", "Dashboard")',
+                                method: "Get",
+                                data: { tabId: fiIdpais },
+                                dataSrc: function (data) {
+                                    return data;
+                                }
+                         },
+                         rowCallback: function (row, data, index) {
+                             if(data.Orden == 1) { // aqui es donde se pinta 
+                                 $(row).css('background-color', "#c6c6c6");
+                             }
+                         },
+                            columns: [
+
+                               {
+                                    data: null,
+                                    className: "text-center",
+                                    render: function (data, type, row) {
+                                        if (data.Orden==0)
+                                            return data.Estado;
+                                        if (data.Orden == 1)
+                                            return data.fcRegion;
+                                        if (data.Orden == 2)
+                                            return data.Estado;
+
+                                    }
+                                },
+
+                                {
+                                    data: "fiMenos24Horas",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fiPorcentajeMenos24Horas",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fi1A3Dias",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fiPorcentaje1A3Dias",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fi1Semana",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fiPorcentaje1Semana",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fiMas1Semana",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fiPorcentajeMas1Semana",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fiMas1Mes",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fiPorcentajeMas1Mes",
+                                    className: "td-responsive",
+
+                                },
+                                {
+                                    data: "fiTotalRequerimientos",
+                                    className: "td-responsive",
+
+                                },
+                            ],
+                            buttons: [
+                                {
+                                    extend: 'excelHtml5',
+                                    text: 'EXCEL',
+                                    messageTop: "Solicitud Clientes",
+                                    filename: "Clientes",
+                                    className: 'btn-outline-success btn-sm mr-1',
+                                    exportOptions: {
+                                        columns: [1, 2, 3, 4, 5, 6, 13, 14]
+                                        // columns: ':visible'
+                                    }
+                                },
+                                {
+                                    extend: 'csvHtml5',
+                                    text: 'CSV',
+                                    titleAttr: 'Generate CSV',
+                                    className: 'btn-outline-primary btn-sm mr-1'
+                                },
+                                {
+                                    extend: 'copyHtml5',
+                                    text: 'Copy',
+                                    titleAttr: 'Copy to clipboard',
+                                    className: 'btn-outline-primary btn-sm mr-1'
+                                },
+                                {
+                                    extend: 'print',
+                                    text: 'Print',
+                                    titleAttr: 'Print Table',
+                                    className: 'btn-outline-primary btn-sm'
+                                }
+                            ],
+                            initComplete: function () {
+
+                            }
+                        });
+
                      //nuevagrafica(resp.AreasIncidentes);
                 },
                 error: function (resp) {
@@ -592,34 +800,28 @@
         }
 
         function graficaTicketArea(datos) {
+            if (chartTicketArea) {
+                chartTicketArea.destroy(); // Elimina gráfico previo
+            }
+
             var labels = [];
             var valores = [];
-            var colores = ["#FF0000", "#f1b108", "#35cd00", "#007bff", "#6c757d", "#17a2b8", "#e83e8c"]; // Colores predeterminados adicionales
+            var colores = ["#FF0000", "#f1b108", "#35cd00", "#007bff", "#6c757d", "#17a2b8", "#e83e8c"];
 
-            // Extraer etiquetas y valores
             for (var i = 0; i < datos.length; i++) {
                 labels.push(datos[i].fcAreaAsignada);
                 valores.push(datos[i].fiIDIncidentes);
-
-                // Asignar colores específicos sin repetir los primeros tres
-                if (i >= colores.length) {
-                    console.warn(`No hay suficientes colores predeterminados para el índice ${i}. Agrega más colores si es necesario.`);
-                    colores.push("#" + Math.floor(Math.random() * 16777215).toString(16)); // Generar color si se exceden los definidos
-                }
             }
-
-            console.log(valores);
-            console.log(colores);
 
             var optionsTicketArea = {
                 series: valores,
                 chart: {
                     width: '100%',
                     height: '100%',
-                    type: 'pie',
+                    type: 'pie'
                 },
                 labels: labels,
-                colors: colores.slice(0, valores.length), // Asignar solo los colores necesarios
+                colors: colores.slice(0, valores.length),
                 responsive: [{
                     breakpoint: 480,
                     options: {
@@ -630,10 +832,19 @@
                 }]
             };
 
-            var chartTicketArea = new ApexCharts(document.querySelector("#chartTicketArea"), optionsTicketArea);
+            chartTicketArea = new ApexCharts(document.querySelector("#chartTicketArea"), optionsTicketArea);
             chartTicketArea.render();
         }
+
+
+
+
+
         function graficaTicketRegiones(datos) {
+            if (chartTicketRegiones) {
+                chartTicketRegiones.destroy();
+            }
+
             if (!Array.isArray(datos) || datos.length === 0) {
                 console.error("Datos inválidos o vacíos para la gráfica.");
                 return;
@@ -641,118 +852,68 @@
 
             var labels = [];
             var valores = [];
-            var colores = ["#FF0000", "#f1b108", "#35cd00", "#007bff", "#6c757d", "#17a2b8", "#e83e8c"]; // Colores predeterminados
+            var colores = ["#FF0000", "#f1b108", "#35cd00", "#007bff", "#6c757d", "#17a2b8", "#e83e8c"];
 
-            // Extraer etiquetas y valores
             for (var i = 0; i < datos.length; i++) {
-                if (!datos[i].fcRegion || typeof datos[i].fiTotalRequerimientos !== "number") {
-                    console.warn(`Datos faltantes o incorrectos en el índice ${i}:`, datos[i]);
-                    continue;
-                }
+                if (!datos[i].fcRegion || typeof datos[i].fiTotalRequerimientos !== "number") continue;
                 labels.push(datos[i].fcRegion);
                 valores.push(datos[i].fiTotalRequerimientos);
             }
 
-            if (labels.length === 0 || valores.length === 0) {
-                console.error("Datos insuficientes para renderizar la gráfica.");
-                return;
-            }
-
-            // Asignar colores sin repetir los primeros tres
             var coloresAplicados = [];
             for (var i = 0; i < valores.length; i++) {
-                coloresAplicados.push(colores[i % colores.length]); // Repetir colores si es necesario
+                coloresAplicados.push(colores[i % colores.length]);
             }
 
-            var optionsTicketArea = {
+            var options = {
                 series: valores,
                 chart: {
                     width: '100%',
                     height: '100%',
-                    type: 'pie',
+                    type: 'pie'
                 },
                 labels: labels,
-                colors: coloresAplicados, // Aplicar los colores definidos
+                colors: coloresAplicados,
                 responsive: [{
                     breakpoint: 480,
                     options: {
-                        legend: {
-                            position: 'bottom',
-                        }
+                        legend: { position: 'bottom' }
                     }
                 }]
             };
 
-            var chartTicketArea = new ApexCharts(document.querySelector("#chartRegiones"), optionsTicketArea);
-            chartTicketArea.render();
+            chartTicketRegiones = new ApexCharts(document.querySelector("#chartRegiones"), options);
+            chartTicketRegiones.render();
         }
 
         function graficaHoras(datos) {
-            //Grafica Conteo Horas por Area
-
-            debugger;
-            //Grafica para Incidentes por area Conteo
-            //var labels = [];
-            //for (var i = 0; i < datos.length; i++) {
-            //    labels.push(datos[i].fcAreaAsignada)
-            //}
-
-            //var valores = [];
-            //for (var i = 0; i < datos.length; i++) {
-            //    valores.push(datos[i].fiTiempoAcumulado)
-            //}
-            var labels = [];
-            for (var i = 0; i < datos.length; i++) {
-                labels.push(datos[i].fcArea)
+            if (chartHoras) {
+                chartHoras.destroy();
             }
 
+            var labels = datos.map(d => d.fcArea);
             var valores = [];
+
             for (var x = 0; x < 4; x++) {
-                var infoData = []
-                if (x == 0)
-                {
-                    for (var i = 0; i < datos.length; i++) {
-
-                        infoData.push(datos[i].fiCreado);
-                    }
-                    valores.push({ name: "Creado", data: infoData })
+                var infoData = [];
+                for (var i = 0; i < datos.length; i++) {
+                    if (x === 0) infoData.push(datos[i].fiCreado);
+                    if (x === 1) infoData.push(datos[i].fiEnproceso);
+                    if (x === 2) infoData.push(datos[i].fiResuelto);
+                    if (x === 3) infoData.push(datos[i].fiPausado);
                 }
-
-                if (x == 1)
-                {
-                    for (var i = 0; i < datos.length; i++) {
-                        infoData.push(datos[i].fiEnproceso )
-                    }
-                    valores.push({ name: "En proceso", data: infoData })
-                }
-                if (x == 2)
-                {
-                    for (var i = 0; i < datos.length; i++) {
-                        infoData.push(datos[i].fiResuelto )
-                    }
-                    valores.push({ name: "Resuelto", data: infoData })
-                }
-
-                if (x == 3)
-                {
-                    for (var i = 0; i < datos.length; i++) {
-                        infoData.push(datos[i].fiPausado )
-                    }
-                    valores.push({ name: "Pausado", data: infoData })
-                }
-
+                let name = ["Creado", "En proceso", "Resuelto", "Pausado"][x];
+                valores.push({ name, data: infoData });
             }
-
 
             var options = {
-                series: valores
-                ,
+                series: valores,
                 chart: {
                     type: 'bar',
                     height: 350,
-                    stacked: true,
+                    stacked: true
                 },
-                colors: ['#FF0000', '#f1b108', '#35cd00', '#808080'], // Colores de semáforo
+                colors: ['#FF0000', '#f1b108', '#35cd00', '#808080'],
                 plotOptions: {
                     bar: {
                         horizontal: true,
@@ -760,278 +921,36 @@
                             total: {
                                 enabled: true,
                                 offsetX: 0,
-                                style: {
-                                    fontSize: '13px',
-                                    fontWeight: 900
-                                }
+                                style: { fontSize: '13px', fontWeight: 900 }
                             }
                         }
-                    },
-                },
-                stroke: {
-                    width: 1,
-                    colors: ['#fff']
-                },
-                xaxis: {
-                    categories: labels,
-                    labels: {
-                        formatter: function (val) {
-                            return val
-                        }
                     }
                 },
-                yaxis: {
-                    title: {
-                        text: undefined
-                    },
-                },
+                stroke: { width: 1, colors: ['#fff'] },
+                xaxis: { categories: labels },
+                yaxis: { title: { text: undefined } },
                 tooltip: {
-                    y: {
-                        formatter: function (val) {
-                            return val
-                        }
-                    }
+                    y: { formatter: val => val }
                 },
-                fill: {
-                    opacity: 1
-                },
-                legend: {
-                    position: 'top',
-                    horizontalAlign: 'left',
-                    offsetX: 40
-                }
+                fill: { opacity: 1 },
+                legend: { position: 'top', horizontalAlign: 'left', offsetX: 40 }
             };
 
-            // Barras Simple
-            //var optionsHoras = {
-            //    series: [
-            //        {
-            //            data: valores
-            //        }
-            //    ],
-            //    chart: {
-            //        type: 'bar',
-            //        height: 350
-            //    },
-            //    plotOptions: {
-            //        bar: {
-            //            borderRadius: 4,
-            //            borderRadiusApplication: 'end',
-            //            horizontal: true,
-            //        }
-            //    },
-            //    dataLabels: {
-            //        enabled: false
-            //    },
-
-            //    xaxis: {
-            //        categories: labels
-            //    }
-            //}
-
-            //var optionsHoras = {
-            //    labels: labels,
-            //    series: valores,
-            //    chart: {
-            //        toolbar: {
-            //            show: true,
-            //            offsetX: 0,
-            //            offsetY: 0,
-            //            tools: {
-            //                download: true,
-            //                selection: true,
-            //                zoom: true,
-            //                zoomin: true,
-            //                zoomout: true,
-            //                pan: true,
-            //                reset: true | '<img src="/static/icons/reset.png" width="20">',
-            //                customIcons: []
-            //            },
-            //            export: {
-            //                csv: {
-            //                    filename: 'Comparativo Horas por Área',
-            //                    columnDelimiter: ',',
-            //                    headerCategory: 'category',
-            //                    headerValue: 'value',
-            //                    dateFormatter(timestamp) {
-            //                        return new Date(timestamp).toDateString()
-            //                    }
-            //                },
-            //                svg: {
-            //                    filename: 'Comparativo Horas por Área',
-            //                },
-            //                png: {
-            //                    filename: 'Comparativo Horas por Área',
-            //                }
-            //            },
-            //            autoSelected: 'zoom'
-            //        },
-            //        type: 'polarArea',
-            //    },
-            //    legend: {
-            //        show: true,
-            //        position: 'top',
-            //        horizontalAlign: 'center',
-            //    },
-            //    stroke: {
-            //        colors: ['#3399cc', '#3366cc', '#6699cc', '#66ccff', '#99ccff', '#336699', '#003366']
-            //    },
-            //    colors: ['#3399cc', '#3366cc', '#6699cc', '#66ccff', '#99ccff', '#336699', '#003366'],
-            //    fill: {
-            //        opacity: 0.8
-            //    },
-            //    responsive: [{
-            //        breakpoint: 480,
-            //        options: {
-            //            chart: {
-            //                width: 300
-            //            },
-            //            legend: {
-
-            //                position: 'bottom',
-            //                onItemClick: {
-            //                    toggleDataSeries: true
-            //                },
-            //            }
-            //        }
-            //    }]
-            //};
-
-            var chartHoras = new ApexCharts(document.querySelector("#chartHoras"), options);
+            chartHoras = new ApexCharts(document.querySelector("#chartHoras"), options);
             chartHoras.render();
-            //fin
         }
 
-        function graficaConteo(datos)
-        {
-            debugger;
 
-            var labels = ["Menos de 24 Horas", "1 a 3 Dias", "Mas de 1 Semana", "Mas de 1 Mes"];
-            //for (var i = 0; i < datos.length; i++) {
-            //    labels.push(datos[i].fcDescripcionEstado)
-            //}
-
-            var valores = [];
-
-            for (var i = 0; i < datos.length; i++) {
-                var infoData = []
-                infoData.push(datos[i].fiMenos24Horas);
-                infoData.push(datos[i].fi1A3Dias);
-                infoData.push(datos[i].fi1Semana);
-                infoData.push(datos[i].fiMas1Mes);
-                valores.push({ name: datos[i].fcDescripcionEstado, data: infoData })
+        function graficaConteo(datos) {
+            if (chartConteo) {
+                chartConteo.destroy();
             }
 
-            //for (var x = 0; x < 4; x++) {
-
-            //    if (x == 0) {
-            //        for (var i = 0; i < datos.length; i++) {
-            //            var infoData = []
-            //            infoData.push(datos[i].fiMenos24Horas);
-            //            infoData.push(datos[i].fi1A3Dias);
-            //            infoData.push(datos[i].fi1Semana);
-            //            infoData.push(datos[i].fiMas1Mes);
-            //            valores.push({ name: datos[i].fcDescripcionEstado, data: infoData })
-            //        }
-
-            //    }
-
-            //    if (x == 1) {
-            //        for (var i = 0; i < datos.length; i++) {
-            //            infoData.push(datos[i].fi1A3Dias)
-            //        }
-            //        valores.push({ name: "1 a 3 Dias", data: infoData })
-            //    }
-            //    if (x == 2) {
-            //        for (var i = 0; i < datos.length; i++) {
-            //            infoData.push(datos[i].fi1Semana)
-            //        }
-            //        valores.push({ name: "Mas de 1 Semana", data: infoData })
-            //    }
-
-            //    if (x == 3) {
-            //        for (var i = 0; i < datos.length; i++) {
-            //            infoData.push(datos[i].fiMas1Mes)
-            //        }
-            //        valores.push({ name: "Mas de 1 Mes", data: infoData })
-            //    }
-
-            //}
-
-
-            var options = {
-                series: valores
-                ,
-                chart: {
-                    type: 'bar',
-                    height: 350
-                },
-                colors: ['#FF0000', '#f1b108', '#808080', '#35cd00'], // Colores de semáforo
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        borderRadius: 5,
-                        borderRadiusApplication: 'end'
-                    },
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: labels,
-                },
-                yaxis: {
-                    title: {
-                        text: ''
-                    }
-                },
-                fill: {
-                    opacity: 1
-                },
-                tooltip: {
-                    y: {
-                        formatter: function (val) {
-                            return  val
-                        }
-                    }
-                }
-            };
-
-
-            var chartConteo = new ApexCharts(document.querySelector("#chartConteo"), options);
-            chartConteo.render();
-            //fin
-        }
-
-        function graficaPrioridad(datos) {
-            debugger;
-
-            // Definir el orden de prioridades
-            const ordenPrioridad = ["Bajo", "Medio", "Alto", "Critico"];
-
-            // Ordenar los datos según el orden de prioridad definido
-            datos.sort((a, b) => {
-                return ordenPrioridad.indexOf(a.fcDescripcionPrioridad) - ordenPrioridad.indexOf(b.fcDescripcionPrioridad);
-            });
-
             var labels = ["Menos de 24 Horas", "1 a 3 Dias", "Mas de 1 Semana", "Mas de 1 Mes"];
-            var valores = [];
-
-            // Procesar los datos ordenados
-            for (var i = 0; i < datos.length; i++) {
-                var infoData = [];
-                infoData.push(datos[i].fiMenos24Horas);
-                infoData.push(datos[i].fi1A3Dias);
-                infoData.push(datos[i].fi1Semana);
-                infoData.push(datos[i].fiMas1Mes);
-                valores.push({ name: datos[i].fcDescripcionPrioridad, data: infoData });
-            }
+            var valores = datos.map(d => ({
+                name: d.fcDescripcionEstado,
+                data: [d.fiMenos24Horas, d.fi1A3Dias, d.fi1Semana, d.fiMas1Mes]
+            }));
 
             var options = {
                 series: valores,
@@ -1039,53 +958,80 @@
                     type: 'bar',
                     height: 350
                 },
-                colors: ['#808080', '#35cd00', '#f1b108', '#FF0000'], // Colores de semáforo
+                colors: ['#FF0000', '#f1b108', '#808080', '#35cd00'],
                 plotOptions: {
                     bar: {
                         horizontal: false,
                         columnWidth: '55%',
                         borderRadius: 5,
                         borderRadiusApplication: 'end'
-                    },
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: labels,
-                },
-                yaxis: {
-                    title: {
-                        text: ''
                     }
                 },
-                fill: {
-                    opacity: 1
-                },
+                dataLabels: { enabled: false },
+                stroke: { show: true, width: 2, colors: ['transparent'] },
+                xaxis: { categories: labels },
+                yaxis: { title: { text: '' } },
+                fill: { opacity: 1 },
                 tooltip: {
-                    y: {
-                        formatter: function (val) {
-                            return val;
-                        }
-                    }
+                    y: { formatter: val => val }
                 }
             };
 
-            var chartConteo = new ApexCharts(document.querySelector("#chartPrioridad"), options);
+            chartConteo = new ApexCharts(document.querySelector("#chartConteo"), options);
             chartConteo.render();
         }
 
 
-        function DatosTotales() {
+
+        function graficaPrioridad(datos) {
+            if (chartPrioridad) {
+                chartPrioridad.destroy();
+            }
+
+            const ordenPrioridad = ["Bajo", "Medio", "Alto", "Critico"];
+            datos.sort((a, b) => ordenPrioridad.indexOf(a.fcDescripcionPrioridad) - ordenPrioridad.indexOf(b.fcDescripcionPrioridad));
+
+            var labels = ["Menos de 24 Horas", "1 a 3 Dias", "Mas de 1 Semana", "Mas de 1 Mes"];
+            var valores = datos.map(d => ({
+                name: d.fcDescripcionPrioridad,
+                data: [d.fiMenos24Horas, d.fi1A3Dias, d.fi1Semana, d.fiMas1Mes]
+            }));
+
+            var options = {
+                series: valores,
+                chart: {
+                    type: 'bar',
+                    height: 350
+                },
+                colors: ['#808080', '#35cd00', '#f1b108', '#FF0000'],
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '55%',
+                        borderRadius: 5,
+                        borderRadiusApplication: 'end'
+                    }
+                },
+                dataLabels: { enabled: false },
+                stroke: { show: true, width: 2, colors: ['transparent'] },
+                xaxis: { categories: labels },
+                yaxis: { title: { text: '' } },
+                fill: { opacity: 1 },
+                tooltip: {
+                    y: { formatter: val => val }
+                }
+            };
+
+            chartPrioridad = new ApexCharts(document.querySelector("#chartPrioridad"), options);
+            chartPrioridad.render();
+        }
+
+
+        function DatosTotales(fiIdpais) {
             $.ajax({
                 url: "@Url.Action("ListarDatosTotales", "Dashboard")",
                 method: "get",
-                data: {},
+                data: { fiIdpais: fiIdpais},
                  success: function (resp) {
                      console.log(resp)
                      document.getElementById("TotalMenos24Horas").innerHTML = "<b>" + resp.fiMenos24Horas+"</b>";

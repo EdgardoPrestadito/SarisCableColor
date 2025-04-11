@@ -101,8 +101,6 @@
 <div class="modal-body">
     <div class="row">
 
-
-
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-sm-6">
@@ -321,6 +319,7 @@
     var Validador = 0;
     const toggle = document.getElementById("toggle");
     const toggleText = document.getElementById("toggleText");
+
     function previewVideo(event) {
         var video = document.getElementById('videoPreview');
         var file = event.target.files[0];
@@ -717,22 +716,25 @@
 
         if (archivosSubidos.length < 1 && Validador == 0) {
             ToastrError("Error", "Suba aun que sea 1 documento");
-            $(this).prop("disabled", false);
+            $(`#btnGuardarRequerimientoEnviar`).prop("disabled", false);
             return 0;
         }
 
         if (Video == "" && Validador == 1) {
             ToastrError("Error", "Suba 1 Video");
-            $(this).prop("disabled", false);
+            $(`#btnGuardarRequerimientoEnviar`).prop("disabled", false);
             return 0;
         }
 
         if ($("#selectImpacto").val() == 0 || $("#selectUrgencia").val() == 0 || $("#seleccategoria").val() == 0 || $("#ticketplataforma").val() == 0 || $("#ticketservafectados").val() == 0 || $("#selectincidencia").val() == 0) {
-            $(this).prop("disabled", false);
+            $(`#btnGuardarRequerimientoEnviar`).prop("disabled", false);
             return ToastrError("Error", "Llene todos los campos");
-            
-        }
 
+        }
+        if (idCis.length < 1) {
+            $(`#btnGuardarRequerimientoEnviar`).prop("disabled", false);
+            return ToastrError("Error", "Agregue al Menos un Ci");
+        }
 
 
 
@@ -789,7 +791,7 @@
 
 
 
-
+        H5_loading.show();
         $.ajax({
             url: "@Url.Action("GuardarTicket", "Ticket")",
             type: "POST",
@@ -822,7 +824,7 @@
                 }
             }
         });
-
+        H5_loading.hide();
 
     }
 

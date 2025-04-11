@@ -138,6 +138,20 @@ namespace OrionCoreCableColor.Controllers
 
         }
 
+        [AllowAnonymous]
+        public void EscribirEnLogJson(string mensaje)
+        {
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<NotificacionesHub>();
+            hubContext.Clients.All.recibirNoficicacionJson(new NotificacionViewModel
+            {
+                fiIDUsuario = GetIdUser(),
+                fdFechaTransaccion = DateTime.Now,
+                fcUsuario = ((User?.Identity?.Name ?? "") == "") ? "sistembot" : User?.Identity?.Name ?? "sistembot",
+                fcOperacion = mensaje,
+                fcTipoTransaccion = "Transaccion",
+                fcClase = "success"
+            });
+        }
         public JsonResult EnviarResultado(bool resultado, string Titulo, string Mensaje, string Correlativo)
         {
             return Json(new MensajeRespuestaViewModel

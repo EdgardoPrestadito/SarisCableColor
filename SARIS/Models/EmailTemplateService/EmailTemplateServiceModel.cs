@@ -11,6 +11,7 @@ namespace OrionCoreCableColor.Models.EmailTemplateService
         public string IdCustomer { get; set; }
         public string IdLoan { get; set; }
         public string CustomerEmail { get; set; }
+        public List<string> ListCustomerEmail { get; set; }
         public string Comment { get; set; }
         public string Token { get; set; }
         public List<string> List_CC = new List<string>();

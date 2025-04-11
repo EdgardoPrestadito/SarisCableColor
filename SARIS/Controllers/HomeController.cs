@@ -21,6 +21,7 @@ namespace OrionCoreCableColor.Controllers
         [Authorize]
         public ActionResult Index()
         {
+
             return View();
         }
 

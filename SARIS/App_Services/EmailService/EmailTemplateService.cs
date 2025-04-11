@@ -2,7 +2,8 @@
 using OrionCoreCableColor.App_Helper;
 using OrionCoreCableColor.App_Services.ContratoService;
 using OrionCoreCableColor.App_Services.ReportesService;
-
+using OrionCoreCableColor.Controllers;
+using OrionCoreCableColor.Models.Base;
 using OrionCoreCableColor.Models.EmailTemplateService;
 
 using Spire.Doc;
@@ -219,8 +220,171 @@ namespace OrionCoreCableColor.App_Services.EmailService
         }
 
 
+        public async Task<bool> SendEmailToSolicitudVarios(EmailTemplateTicketModel model)
+        {
+            try
+            {
 
 
+                if (model.fiIDEstadoRequerimiento == 5)
+                {
+                    model.fcDescripcionRequerimiento = "Cerrado";
+                }
+
+                if (model.fiIDEstadoRequerimiento == 6)
+                {
+                    model.fcDescripcionRequerimiento = "Cancelado";
+                }
+
+                var htmlString = $@"
+                                    <!DOCTYPE html>
+                                    <html lang=""es"">
+                                    <head>
+                                        <meta charset=""UTF-8"">
+                                        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                                        <title>Incidente</title>
+                                        <style>
+                                            body {{
+                                                font-family: Arial, sans-serif;
+                                                margin: 0;
+                                                padding: 0;
+                                                background-color: ##d3e5e2;
+                                            }}
+                                            table {{
+                                                width: 80%;
+                                                max-width: 600px;
+                                                margin: 20px auto;
+                                                background-color: #fff;
+                                                border-radius: 8px;
+                                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                            }}
+                                            h1 {{
+                                                color: #333;
+                                                padding: 20px;
+                                                margin: 0;
+                                            }}
+                                            p {{
+                                                color: #666;
+                                                margin: 5px;
+                                            }}
+                                            th, td {{
+                                                padding: 10px;
+                                                border-bottom: 1px solid #ddd;
+                                            }}
+                                        </style>
+                                    </head>
+                                    <body>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th colspan=""2""><h1>Incidente #{model.fiIDRequerimiento}</h1></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Usuario Solicitante:</strong></td>
+                                                    <td>{model.fcNombreCorto}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Area Solicitante:</strong></td>
+                                                    <td>{model.fcAreaSolicitante}</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td><strong>Título:</strong></td>
+                                                    <td>{model.fcTituloRequerimiento}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Descripción:</strong></td>
+                                                    <td>{model.fcDescripcionRequerimiento}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Comentario:</strong></td>
+                                                    <td>{model.fcComentario}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Categoría:</strong></td>
+                                                    <td>{model.fcDescripcionCategoria}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Incidente:</strong></td>
+                                                    <td>{model.fcTipoRequerimiento}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Estado:</strong></td>
+                                                    <td>{model.fcDescripcionEstado}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Prioridad:</strong></td>
+                                                    <td>{model.fcDescripcionPrioridad}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Fecha de Creación:</strong></td>
+                                                    <td>{model.fdFechaCreacion.ToString("MM/dd/yyyy hh:mm tt")}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan=""2"">
+                                                        <p>Por favor, tome nota del número de Incidente: <strong>#{model.fiIDRequerimiento}</strong>. Por favor no Contestar este Correo.</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </body>
+                                    </html>
+
+                                    ";
+
+
+
+                var emailGeneratedToSend = new SendEmailViewModel
+                {
+                    EmailName = "Saris",
+                    Subject = "Incidente",
+                    Body = htmlString,
+                    ListDestinationEmail = model.ListCustomerEmail,
+                    List_CC = model.List_CC
+                };
+
+                var SendEmailResult = await _emailService.SendEmailManyDestinationsAsync(emailGeneratedToSend);
+                return SendEmailResult;
+
+            }
+            catch (Exception e)
+            {
+                await _emailService.SendEmailException(e, "Send Email");
+
+                return false;
+            }
+        }
+
+
+        public async Task<bool> SendEmailPresonalizadoAVarios(EmailTemplateServiceModel model)
+        {
+            try
+            {
+
+                var emailGeneratedToSend = new SendEmailViewModel
+                {
+                    EmailName = "NovaNet",
+                    Subject = model.Comment,
+                    Body = model.HtmlBody,
+                    ListDestinationEmail = model.ListCustomerEmail,
+                    List_CC = model.List_CC
+                };
+
+                var SendEmailResult = await _emailService.SendEmailManyDestinationsAsync(emailGeneratedToSend);
+                return SendEmailResult;
+            }
+            catch (Exception e)
+            {
+                //await _emailService.SendEmailException(e, "Send Email");
+                var baseController = new BaseController();
+                //baseController.EscribirEnLogJson(new NotificacionViewModel { fcClase = "danger", fcTipoTransaccion = "Error", fcOperacion = (e.InnerException?.Message ?? e.Message) + ": " + e.StackTrace });
+                return false;
+            }
+
+
+        }
 
 
 
@@ -363,6 +527,9 @@ namespace OrionCoreCableColor.App_Services.EmailService
 
 
         }
+
+       
+
 
         public async Task<bool> SendEmailPresonalizado(EmailTemplateServiceModel model)
         {

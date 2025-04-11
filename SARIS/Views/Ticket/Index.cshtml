@@ -47,7 +47,35 @@
 
     </div>
     <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+
         <div class="col-lg-12">
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <label class="col-form-label">Clasificacion CI</label>
+                    <select id="ddlCIS" class="form-control form-control-sm">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <label class="col-form-label">Búsqueda por Pais</label>
+                    <select id="ddlPais" class="form-control form-control-sm">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <label class="col-form-label">Búsqueda por Region</label>
+                    <select id="ddlRegion" class="form-control form-control-sm">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <label class="col-form-label">Búsqueda por Ciudad</label>
+                    <select id="ddlCiudad" class="form-control form-control-sm">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+            
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicket">
                 <thead>
                     <tr>
@@ -184,6 +212,77 @@
                       }
                       $(`#ddlEstados`).append(opt);
                       $("#ddlEstados").select2();
+
+                      var optpais = ``;
+                      var unicopais = new Set();
+                      for (const item of data) {
+                          unicopais.add(item.fcPais)
+                      }
+                      for (const item of unicopais) {
+                          if (item == null) {
+
+                          } else {
+                              optpais += `<option value="${item}">${item}</option>`
+                          }
+                      }
+                      $(`#ddlPais`).append(optpais);
+                      $("#ddlPais").select2();
+
+
+                      var optRegion = ``;
+                      var unicaregion = new Set();
+                      for (const item of data) {
+                          unicaregion.add(item.fcRegion)
+                      }
+                      for (const item of unicaregion) {
+                          if (item == null) {
+
+                          } else {
+                              optRegion += `<option value="${item}">${item}</option>`
+                          }
+                      }
+                      $(`#ddlRegion`).append(optRegion);
+                      $("#ddlRegion").select2();
+
+
+                      /////
+                      var optCiudad = ``;
+                      var unicaCiudad = new Set();
+                      for (const item of data) {
+                          unicaCiudad.add(item.fcCiudad)
+                      }
+                      for (const item of unicaCiudad) {
+                          if (item == null) {
+
+                          } else {
+                              optCiudad += `<option value="${item}">${item}</option>`
+                          }
+                      }
+                      $(`#ddlCiudad`).append(optCiudad);
+                      $("#ddlCiudad").select2();
+
+
+                      //////////////////////////////////////////
+                      var optCIS = ``;
+                      var unicoCIs = new Set();
+                      for (const item of data) {
+                          unicoCIs.add(item.fcClacificacionCI)
+                      }
+                      for (const item of unicoCIs) {
+                          if (item == null) {
+
+                          } else {
+                              optCIS += `<option value="${item}">${item}</option>`
+                          }
+                      }
+                      $(`#ddlCIS`).append(optCIS);
+                      $("#ddlCIS").select2();
+
+
+
+
+
+                      //fcClacificacionCI
 
                       const ids = data.map(item => item.fiIDRequerimiento);
 
@@ -524,9 +623,72 @@
                 tablaPrincipalticket.order([2, 'desc']).draw();
             }
 
-
-
         }).columns.adjust();
+
+        function actualizarSelectsDesdeTabla() {
+            const dataFiltrada = tablaPrincipalticket.rows({ filter: 'applied' }).data().toArray();
+
+            const paises = new Set();
+            const regiones = new Set();
+            const ciudades = new Set();
+
+            for (const item of dataFiltrada) {
+                if (item.fcPais) paises.add(item.fcPais);
+                if (item.fcRegion) regiones.add(item.fcRegion);
+                if (item.fcCiudad) ciudades.add(item.fcCiudad);
+            }
+
+            // Guardar selecciones actuales
+            const paisSel = $('#ddlPais').val();
+            const regionSel = $('#ddlRegion').val();
+            const ciudadSel = $('#ddlCiudad').val();
+
+            // País
+            $('#ddlPais').empty().append('<option value="">Seleccionar</option>');
+            paises.forEach(pais => {
+                $('#ddlPais').append(`<option value="${pais}">${pais}</option>`);
+            });
+            $('#ddlPais').val(paisSel).trigger('change.select2');
+
+            // Región
+            $('#ddlRegion').empty().append('<option value="">Seleccionar</option>');
+            regiones.forEach(region => {
+                $('#ddlRegion').append(`<option value="${region}">${region}</option>`);
+            });
+            $('#ddlRegion').val(regionSel).trigger('change.select2');
+
+            // Ciudad
+            $('#ddlCiudad').empty().append('<option value="">Seleccionar</option>');
+            ciudades.forEach(ciudad => {
+                $('#ddlCiudad').append(`<option value="${ciudad}">${ciudad}</option>`);
+            });
+            $('#ddlCiudad').val(ciudadSel).trigger('change.select2');
+        }
+
+        $('#ddlPais').on('change', function () {
+            const pais = this.value;
+            tablaPrincipalticket.column(18).search(pais).draw();
+            actualizarSelectsDesdeTabla();
+        });
+
+        $('#ddlRegion').on('change', function () {
+            const region = this.value;
+            tablaPrincipalticket.column(19).search(region).draw();
+            actualizarSelectsDesdeTabla();
+        });
+
+        $('#ddlCiudad').on('change', function () {
+            const ciudad = this.value;
+            tablaPrincipalticket.column(20).search(ciudad).draw();
+            actualizarSelectsDesdeTabla();
+        });
+
+
+        function limpiarFiltros() {
+            $('#ddlPais, #ddlRegion, #ddlCiudad').val('').trigger('change');
+            tablaPrincipalticket.columns().search('').draw();
+            actualizarSelectsDesdeTabla();
+        }
 
         chat.client.agregarrow = function (modelo) {
             //console.log(modelo);
@@ -724,7 +886,7 @@
             var tabla = $('#TablaPrincipalTicket').DataTable();
 
             // Obtener los datos de la columna específica
-            var datosColumna = tabla.column(18).data();
+            var datosColumna = tabla.column(28).data();
 
             // Actualizar los datos de la columna
             datosColumna.each(function (valorActual, indice) {
@@ -756,7 +918,7 @@
                 var nuevoValor = `${tiempototal} ${segundos % 60} <b>Seg.</b>`; // Por ejemplo, aumentar el valor actual en 1
 
                 // Actualizar el valor en la columna
-                tabla.cell({ row: indice, column: 18 }).data(nuevoValor);
+                tabla.cell({ row: indice, column: 28 }).data(nuevoValor);
             });
 
             // Redibujar la tabla para reflejar los cambios

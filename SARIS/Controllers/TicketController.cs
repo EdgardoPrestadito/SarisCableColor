@@ -401,7 +401,7 @@ namespace OrionCoreCableColor.Controllers
                         });
                         pcCorreoAreaSolicitante += correo.fcCorreoArea;
                         retraso = random.Next(10000, 20001);
-                        await Task.Delay(retraso);
+                        await Task.Delay(retraso); //nota, el task es para que se ejecute en segundo plano y el await es un espera hasta que termine de hacer esta tarea en segundo plano
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, ticket.fccomentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion, correo.fcAreaSolicitante);
                         pcNumeroGerenciaSolicitante += correo.fcNumeroGerencia;
                         for (int i = 0; i < correosNumeros.Count; i++)
@@ -430,7 +430,6 @@ namespace OrionCoreCableColor.Controllers
                             //MensajeDeTexto.EnviarLinkGeoLocation(model.Nombre, model.IdCliente, model.Telefono, "");
                             return EnviarListaJson(save);
                         }
-
                     }
                     catch (Exception ex)
                     {
@@ -540,6 +539,69 @@ namespace OrionCoreCableColor.Controllers
 
                     if (ticket.fiIDEstadoRequerimiento == 5 || ticket.fiIDEstadoRequerimiento == 6)
                     {
+
+                        var correosUnicos = new HashSet<string>();
+
+                        // Método auxiliar para agregar correos a la lista única
+                        void AgregarCorreo(string email)
+                        {
+                            if (!string.IsNullOrEmpty(email))
+                            {
+                                correosUnicos.Add(email);
+                            }
+                        }
+
+                        // Agregar correos a la lista
+                        AgregarCorreo(correo.fcCorreoGerencia);
+                        AgregarCorreo(correo.fcCorreoUsuarioSolicitante);
+                        AgregarCorreo(correo.fcCorreoGerenciaAsignada);
+                        AgregarCorreo(correo.fcCorreoArea);
+                        AgregarCorreo(correo.fcCorreoAreaAsignada);
+
+                        foreach (var jefe in CorreoNumeroJefeSolicitante)
+                        {
+                            AgregarCorreo(jefe.fcBuzondeCorreo);
+                        }
+                        foreach (var supervisor in CorreoNumeroSupervisorSolicitante)
+                        {
+                            AgregarCorreo(supervisor.fcBuzondeCorreo);
+                        }
+                        foreach (var jefe in CorreoNumeroJefeAsignada)
+                        {
+                            AgregarCorreo(jefe.fcBuzondeCorreo);
+                        }
+                        foreach (var supervisor in CorreoNumeroSupervisorAsignada)
+                        {
+                            AgregarCorreo(supervisor.fcBuzondeCorreo);
+                        }
+                        AgregarCorreo(correo.fcCorreoElectronico);
+
+                        // Enviar un solo correo con todos los destinatarios
+                        await _emailTemplateService.SendEmailToSolicitudVarios(new EmailTemplateTicketModel
+                        {
+                            fiIDRequerimiento = correo.fiIDRequerimiento,
+                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                            fdFechaCreacion = correo.fdFechaCreacion,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                            fcAreaSolicitante = correo.fcAreaSolicitante,
+                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                            fcNombreCorto = correo.fcNombreCorto,
+                            fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
+                            fcDescripcionEstado = ticket.fcDescripcionEstado,
+                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                            fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                            fiIDUrgencia = (int)correo.fiIDUrgencia,
+                            fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                            fiIDImpacto = (int)correo.fiIDImpacto,
+                            fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                            fiIDPrioridad = (int)correo.fiIDPrioridad,
+                            fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                            fcComentario = ticket.fccomentario,
+                            ListCustomerEmail = correosUnicos.ToList(),
+                            List_CC = null
+                        });
+
                         // Declaración de variables para almacenar correos y números de teléfono
                         string pcCorreoGerenciaSolicitante = "";
                         string pcNumeroGerenciaSolicitante = "";
@@ -567,31 +629,7 @@ namespace OrionCoreCableColor.Controllers
                         {
                             if (!string.IsNullOrEmpty(email) && !notificacionesEnviadas.Contains(email))
                             {
-                                await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
-                                {
-                                    fiIDRequerimiento = correo.fiIDRequerimiento,
-                                    fcTituloRequerimiento = correo.fcTituloRequerimiento,
-                                    fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
-                                    fdFechaCreacion = correo.fdFechaCreacion,
-                                    fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
-                                    fcAreaSolicitante = correo.fcAreaSolicitante,
-                                    fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
-                                    fcNombreCorto = correo.fcNombreCorto,
-                                    fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                                    fcDescripcionEstado = ticket.fcDescripcionEstado,
-                                    fcCorreoElectronico = email,
-                                    fcDescripcionCategoria = correo.fcDescripcionCategoria,
-                                    fcTipoRequerimiento = correo.fcTipoRequerimiento,
-                                    fiIDUrgencia = (int)correo.fiIDUrgencia,
-                                    fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
-                                    fiIDImpacto = (int)correo.fiIDImpacto,
-                                    fcDescripcionImpacto = correo.fcDescripcionImpacto,
-                                    fiIDPrioridad = (int)correo.fiIDPrioridad,
-                                    fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
-                                    fcComentario = ticket.fccomentario
-                                });
-
-                                notificacionesEnviadas.Add(email);
+                               
 
                                 // Actualizar variables según el tipo de destinatario
                                 switch (tipoDestinatario)
@@ -626,6 +664,7 @@ namespace OrionCoreCableColor.Controllers
                                     case "AreaAsignada":
                                         pcCorreoAreaAsignada += email + "; ";
                                         break;
+                                    
                                 }
                             }
 
@@ -762,59 +801,88 @@ namespace OrionCoreCableColor.Controllers
                             correosYTelefonos.AddRange(contexto.sp_CorreosNumeros_AreaRol(TicketHijosCorreo[x].fiIDAreaSolicitante, 6)
                                 .Select(d => (d.fcBuzondeCorreo, d.fcTelefonoMovil)));
 
-                            // Procesar destinatarios únicos
-                            foreach (var (email, telefono) in correosYTelefonos.Distinct())
+                            // Extraer solo los correos y eliminar duplicados
+                            var correosUnicos = correosYTelefonos.Select(c => c.email).Distinct().ToList();
+
+                            await _emailTemplateService.SendEmailToSolicitudVarios(new EmailTemplateTicketModel
                             {
-                                if (!notificacionesEnviadas.Contains(email))
-                                {
-                                    await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
-                                    {
-                                        fiIDRequerimiento = TicketHijosCorreo[x].fiIDRequerimiento,
-                                        fcTituloRequerimiento = TicketHijosCorreo[x].fcTituloRequerimiento,
-                                        fcDescripcionRequerimiento = TicketHijosCorreo[x].fcDescripcionRequerimiento,
-                                        fdFechaCreacion = TicketHijosCorreo[x].fdFechaCreacion,
-                                        fiIDAreaSolicitante = (int)TicketHijosCorreo[x].fiIDAreaSolicitante,
-                                        fcAreaSolicitante = TicketHijosCorreo[x].fcAreaSolicitante,
-                                        fiIDUsuarioSolicitante = TicketHijosCorreo[x].fiIDUsuarioSolicitante,
-                                        fcNombreCorto = TicketHijosCorreo[x].fcNombreCorto,
-                                        fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
-                                        fcDescripcionEstado = ticket.fcDescripcionEstado,
-                                        fcCorreoElectronico = email,
-                                        fcDescripcionCategoria = TicketHijosCorreo[x].fcDescripcionCategoria,
-                                        fcTipoRequerimiento = TicketHijosCorreo[x].fcTipoRequerimiento,
-                                        fiIDUrgencia = (int)TicketHijosCorreo[x].fiIDUrgencia,
-                                        fcDescripcionUrgencia = TicketHijosCorreo[x].fcDescripcionUrgencia,
-                                        fiIDImpacto = (int)TicketHijosCorreo[x].fiIDImpacto,
-                                        fcDescripcionImpacto = TicketHijosCorreo[x].fcDescripcionImpacto,
-                                        fiIDPrioridad = (int)TicketHijosCorreo[x].fiIDPrioridad,
-                                        fcDescripcionPrioridad = TicketHijosCorreo[x].fcDescripcionPrioridad,
-                                        fcComentario = ticket.fccomentario
-                                    });
+                                fiIDRequerimiento = TicketHijosCorreo[x].fiIDRequerimiento,
+                                fcTituloRequerimiento = TicketHijosCorreo[x].fcTituloRequerimiento,
+                                fcDescripcionRequerimiento = TicketHijosCorreo[x].fcDescripcionRequerimiento,
+                                fdFechaCreacion = TicketHijosCorreo[x].fdFechaCreacion,
+                                fiIDAreaSolicitante = (int)TicketHijosCorreo[x].fiIDAreaSolicitante,
+                                fcAreaSolicitante = TicketHijosCorreo[x].fcAreaSolicitante,
+                                fiIDUsuarioSolicitante = TicketHijosCorreo[x].fiIDUsuarioSolicitante,
+                                fcNombreCorto = TicketHijosCorreo[x].fcNombreCorto,
+                                fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
+                                fcDescripcionEstado = ticket.fcDescripcionEstado,
+                                fcDescripcionCategoria = TicketHijosCorreo[x].fcDescripcionCategoria,
+                                fcTipoRequerimiento = TicketHijosCorreo[x].fcTipoRequerimiento,
+                                fiIDUrgencia = (int)TicketHijosCorreo[x].fiIDUrgencia,
+                                fcDescripcionUrgencia = TicketHijosCorreo[x].fcDescripcionUrgencia,
+                                fiIDImpacto = (int)TicketHijosCorreo[x].fiIDImpacto,
+                                fcDescripcionImpacto = TicketHijosCorreo[x].fcDescripcionImpacto,
+                                fiIDPrioridad = (int)TicketHijosCorreo[x].fiIDPrioridad,
+                                fcDescripcionPrioridad = TicketHijosCorreo[x].fcDescripcionPrioridad,
+                                fcComentario = ticket.fccomentario,
+                                ListCustomerEmail= correosUnicos,
+                                List_CC = null
+                            });
 
-                                    notificacionesEnviadas.Add(email);
-                                }
 
-                                if (!notificacionesEnviadas.Contains(telefono))
-                                {
-                                    MensajeriaApi.EnviarNumeroTicket(
-                                        TicketHijosCorreo[x].fcNombreCorto,
-                                        ticket.fiIDRequerimiento,
-                                        telefono,
-                                        TicketHijosCorreo[x].fcTituloRequerimiento,
-                                        "Cerrado",
-                                        TicketHijosCorreo[x].fcDescripcionCategoria,
-                                        TicketHijosCorreo[x].fcTipoRequerimiento,
-                                        ticket.fcDescripcionEstado,
-                                        TicketHijosCorreo[x].fcDescripcionPrioridad,
-                                        ticket.fccomentario,
-                                        TicketHijosCorreo[x].fcDescripcionCategoriaResolucion,
-                                        TicketHijosCorreo[x].fcTipoRequerimientoResolucion,
-                                        TicketHijosCorreo[x].fcAreaSolicitante
-                                    );
+                            // Procesar destinatarios únicos
+                            //foreach (var (email, telefono) in correosYTelefonos.Distinct())
+                            //{
+                            //    if (!notificacionesEnviadas.Contains(email))
+                            //    {
+                            //        await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
+                            //        {
+                            //            fiIDRequerimiento = TicketHijosCorreo[x].fiIDRequerimiento,
+                            //            fcTituloRequerimiento = TicketHijosCorreo[x].fcTituloRequerimiento,
+                            //            fcDescripcionRequerimiento = TicketHijosCorreo[x].fcDescripcionRequerimiento,
+                            //            fdFechaCreacion = TicketHijosCorreo[x].fdFechaCreacion,
+                            //            fiIDAreaSolicitante = (int)TicketHijosCorreo[x].fiIDAreaSolicitante,
+                            //            fcAreaSolicitante = TicketHijosCorreo[x].fcAreaSolicitante,
+                            //            fiIDUsuarioSolicitante = TicketHijosCorreo[x].fiIDUsuarioSolicitante,
+                            //            fcNombreCorto = TicketHijosCorreo[x].fcNombreCorto,
+                            //            fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
+                            //            fcDescripcionEstado = ticket.fcDescripcionEstado,
+                            //            fcCorreoElectronico = email,
+                            //            fcDescripcionCategoria = TicketHijosCorreo[x].fcDescripcionCategoria,
+                            //            fcTipoRequerimiento = TicketHijosCorreo[x].fcTipoRequerimiento,
+                            //            fiIDUrgencia = (int)TicketHijosCorreo[x].fiIDUrgencia,
+                            //            fcDescripcionUrgencia = TicketHijosCorreo[x].fcDescripcionUrgencia,
+                            //            fiIDImpacto = (int)TicketHijosCorreo[x].fiIDImpacto,
+                            //            fcDescripcionImpacto = TicketHijosCorreo[x].fcDescripcionImpacto,
+                            //            fiIDPrioridad = (int)TicketHijosCorreo[x].fiIDPrioridad,
+                            //            fcDescripcionPrioridad = TicketHijosCorreo[x].fcDescripcionPrioridad,
+                            //            fcComentario = ticket.fccomentario
+                            //        });
 
-                                    notificacionesEnviadas.Add(telefono);
-                                }
-                            }
+                            //        notificacionesEnviadas.Add(email);
+                            //    }
+
+                            //    if (!notificacionesEnviadas.Contains(telefono))
+                            //    {
+                            //        MensajeriaApi.EnviarNumeroTicket(
+                            //            TicketHijosCorreo[x].fcNombreCorto,
+                            //            ticket.fiIDRequerimiento,
+                            //            telefono,
+                            //            TicketHijosCorreo[x].fcTituloRequerimiento,
+                            //            "Cerrado",
+                            //            TicketHijosCorreo[x].fcDescripcionCategoria,
+                            //            TicketHijosCorreo[x].fcTipoRequerimiento,
+                            //            ticket.fcDescripcionEstado,
+                            //            TicketHijosCorreo[x].fcDescripcionPrioridad,
+                            //            ticket.fccomentario,
+                            //            TicketHijosCorreo[x].fcDescripcionCategoriaResolucion,
+                            //            TicketHijosCorreo[x].fcTipoRequerimientoResolucion,
+                            //            TicketHijosCorreo[x].fcAreaSolicitante
+                            //        );
+
+                            //        notificacionesEnviadas.Add(telefono);
+                            //    }
+                            //}
                         }
                     }
                     //----- fin
@@ -896,6 +964,71 @@ namespace OrionCoreCableColor.Controllers
 
                     if (correos.fiIDEstadoRequerimiento == 3 || correos.fiIDEstadoRequerimiento == 11 || correos.fiIDEstadoRequerimiento == 4)
                     {
+
+                        // HashSet para almacenar correos únicos
+                        var correosUnicos = new HashSet<string>();
+
+                        // Método auxiliar para agregar correos a la lista única
+                        void AgregarCorreo(string email)
+                        {
+                            if (!string.IsNullOrEmpty(email))
+                            {
+                                correosUnicos.Add(email);
+                            }
+                        }
+
+                        // Agregar correos a la lista
+                        AgregarCorreo(correo.fcCorreoGerencia);
+                        AgregarCorreo(correo.fcCorreoUsuarioSolicitante);
+                        AgregarCorreo(correo.fcCorreoGerenciaAsignada);
+                        AgregarCorreo(correo.fcCorreoArea);
+                        AgregarCorreo(correo.fcCorreoAreaAsignada);
+
+                        foreach (var jefe in CorreoNumeroJefeSolicitante)
+                        {
+                            AgregarCorreo(jefe.fcBuzondeCorreo);
+                        }
+                        foreach (var supervisor in CorreoNumeroSupervisorSolicitante)
+                        {
+                            AgregarCorreo(supervisor.fcBuzondeCorreo);
+                        }
+                        foreach (var jefe in CorreoNumeroJefeAsignada)
+                        {
+                            AgregarCorreo(jefe.fcBuzondeCorreo);
+                        }
+                        foreach (var supervisor in CorreoNumeroSupervisorAsignada)
+                        {
+                            AgregarCorreo(supervisor.fcBuzondeCorreo);
+                        }
+                        AgregarCorreo(correo.fcCorreoElectronico);
+
+                        // Enviar un solo correo con todos los destinatarios
+                        await _emailTemplateService.SendEmailToSolicitudVarios(new EmailTemplateTicketModel
+                        {
+                            fiIDRequerimiento = correo.fiIDRequerimiento,
+                            fcTituloRequerimiento = correo.fcTituloRequerimiento,
+                            fcDescripcionRequerimiento = correo.fcDescripcionRequerimiento,
+                            fdFechaCreacion = correo.fdFechaCreacion,
+                            fiIDAreaSolicitante = (int)correo.fiIDAreaSolicitante,
+                            fcAreaSolicitante = correo.fcAreaSolicitante,
+                            fiIDUsuarioSolicitante = correo.fiIDUsuarioSolicitante,
+                            fcNombreCorto = correo.fcNombreCorto,
+                            fiIDEstadoRequerimiento = ticket.fiIDEstadoRequerimiento,
+                            fcDescripcionEstado = ticket.fcDescripcionEstado,
+                            fcDescripcionCategoria = correo.fcDescripcionCategoria,
+                            fcTipoRequerimiento = correo.fcTipoRequerimiento,
+                            fiIDUrgencia = (int)correo.fiIDUrgencia,
+                            fcDescripcionUrgencia = correo.fcDescripcionUrgencia,
+                            fiIDImpacto = (int)correo.fiIDImpacto,
+                            fcDescripcionImpacto = correo.fcDescripcionImpacto,
+                            fiIDPrioridad = (int)correo.fiIDPrioridad,
+                            fcDescripcionPrioridad = correo.fcDescripcionPrioridad,
+                            fcComentario = ticket.fccomentario,
+                            ListCustomerEmail = correosUnicos.ToList(),
+                            List_CC = null
+                        });
+
+
                         // Declaración de variables para almacenar correos y números de teléfono
                         string pcCorreoGerenciaSolicitante = "";
                         string pcNumeroGerenciaSolicitante = "";
@@ -923,31 +1056,7 @@ namespace OrionCoreCableColor.Controllers
                         {
                             if (!string.IsNullOrEmpty(email) && !notificacionesEnviadas.Contains(email))
                             {
-                                await _emailTemplateService.SendEmailToSolicitud(new EmailTemplateTicketModel
-                                {
-                                    fiIDRequerimiento = correos.fiIDRequerimiento,
-                                    fcTituloRequerimiento = correos.fcTituloRequerimiento,
-                                    fcDescripcionRequerimiento = correos.fcDescripcionRequerimiento,
-                                    fdFechaCreacion = correos.fdFechaCreacion,
-                                    fiIDAreaSolicitante = (int)correos.fiIDAreaSolicitante,
-                                    fcAreaSolicitante = correos.fcAreaSolicitante,
-                                    fiIDUsuarioSolicitante = correos.fiIDUsuarioSolicitante,
-                                    fcNombreCorto = correos.fcNombreCorto,
-                                    fiIDEstadoRequerimiento = correos.fiIDEstadoRequerimiento,
-                                    fcDescripcionEstado = correos.fcDescripcionEstado,
-                                    fcCorreoElectronico = email,
-                                    fcDescripcionCategoria = correos.fcDescripcionCategoria,
-                                    fcTipoRequerimiento = correos.fcTipoRequerimiento,
-                                    fiIDUrgencia = (int)correos.fiIDUrgencia,
-                                    fcDescripcionUrgencia = correos.fcDescripcionUrgencia,
-                                    fiIDImpacto = (int)correos.fiIDImpacto,
-                                    fcDescripcionImpacto = correos.fcDescripcionImpacto,
-                                    fiIDPrioridad = (int)correos.fiIDPrioridad,
-                                    fcDescripcionPrioridad = correos.fcDescripcionPrioridad,
-                                    fcComentario = ticket.fccomentario
-                                });
-
-                                notificacionesEnviadas.Add(email);
+                                
 
                                 // Actualizar variables según el tipo de destinatario
                                 switch (tipoDestinatario)

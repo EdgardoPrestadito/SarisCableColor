@@ -677,6 +677,9 @@
     <Compile Include="DbConnection\sp_Requerimientos_Bandeja_ByID_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbConnection\sp_Requerimientos_Bandeja_Result.cs">
+      <DependentUpon>SARIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbConnection\sp_Requerimientos_Bitacoras_Historial_ByID_Result.cs">
       <DependentUpon>SARIS.tt</DependentUpon>
     </Compile>
@@ -791,6 +794,7 @@
     <Compile Include="Models\Base\EnviarFormularioViewModel.cs" />
     <Compile Include="Models\Base\ExcelsmsMasivoViewModel.cs" />
     <Compile Include="Models\Base\MensajeRespuestaViewModel.cs" />
+    <Compile Include="Models\Base\NotificacionViewModel.cs" />
     <Compile Include="Models\Base\ObjSignalRModalViewModel.cs" />
     <Compile Include="Models\Base\TicketNotificacionViewModel.cs" />
     <Compile Include="Models\CategoriaIncidenciasResolucion\CategoriasIncidenciasResolucionViewModel.cs" />

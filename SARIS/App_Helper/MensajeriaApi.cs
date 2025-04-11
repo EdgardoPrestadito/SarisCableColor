@@ -45,7 +45,7 @@ namespace OrionCoreCableColor.App_Helper
             }
             if (Estado == "Cerrado")
             {
-                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se cerró el incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Título:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoría:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad+"\n*Categoria Resolucion:* " + Resolucion + "\n*Causa de Falla:* " + SubResolucion;
+                var mensaje = @"SARIS le informa" + "\n Estimado usuario, se cerró el incidente:\n" + "\n*Incidente #" + IDTIcket + "*" + "\n*Título:* " + titulo + "\n*Descripción:* " + descripcion + "\n*Area Solicitante:* " + AreaSolicitante + "\n*Comentario:* " + Comentario + "\n*Categoría:* " + Categoria + "\n*Incidencia:* " + incidencia + "\n*Estado Ticket:* " + Estado + "\n*Prioridad:* " + Prioridad+ "\n*Categoría Resolución:* " + Resolucion + "\n*Causa de Falla:* " + SubResolucion;
                 MensajesDigitales(pcTelefono, mensaje, "");
             }
 

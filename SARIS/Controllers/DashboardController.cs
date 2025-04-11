@@ -20,7 +20,7 @@ namespace OrionCoreCableColor.Controllers
         }
 
         [HttpGet]
-        public JsonResult Indicadores()
+        public JsonResult Indicadores(int idpais)
         {
             var Indicadores = new DashboardViewModel();
 
@@ -31,7 +31,7 @@ namespace OrionCoreCableColor.Controllers
 
                     connection.Open();
                     var command = connection.CreateCommand();
-                    command.CommandText = $"EXEC sp_DashboardGlobal";
+                    command.CommandText = $"EXEC sp_DashboardGlobal {idpais}";
                     using (var reader = command.ExecuteReader())
                     {
                         var db = ((IObjectContextAdapter)new SARISEntities1());
@@ -69,7 +69,7 @@ namespace OrionCoreCableColor.Controllers
         }
 
         [HttpGet]
-        public JsonResult ListarDatosPendientes()
+        public JsonResult ListarDatosPendientes(int tabId)
         {
             var Indicadores = new List<DatosIncidentesPendientesViewModel>();
 
@@ -80,7 +80,7 @@ namespace OrionCoreCableColor.Controllers
 
                     connection.Open();
                     var command = connection.CreateCommand();
-                    command.CommandText = $"EXEC sp_DashboardGlobal";
+                    command.CommandText = $"EXEC sp_DashboardGlobal {tabId}";
                     using (var reader = command.ExecuteReader())
                     {
                         var db = ((IObjectContextAdapter)new SARISEntities1());
@@ -110,7 +110,7 @@ namespace OrionCoreCableColor.Controllers
         }
 
         [HttpGet]
-        public JsonResult ListarDatosTotales()
+        public JsonResult ListarDatosTotales(int fiIdpais)
         {
             var Indicadores = new DatosIncidentesPendientesViewModel();
 
@@ -121,7 +121,7 @@ namespace OrionCoreCableColor.Controllers
 
                     connection.Open();
                     var command = connection.CreateCommand();
-                    command.CommandText = $"EXEC sp_DashboardGlobal";
+                    command.CommandText = $"EXEC sp_DashboardGlobal {fiIdpais}";
                     using (var reader = command.ExecuteReader())
                     {
                         var db = ((IObjectContextAdapter)new SARISEntities1());
