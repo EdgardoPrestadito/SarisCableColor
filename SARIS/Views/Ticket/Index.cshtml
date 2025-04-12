@@ -665,6 +665,11 @@
             $('#ddlCiudad').val(ciudadSel).trigger('change.select2');
         }
 
+        $('#ddlCIS').on('change', function () {
+            const pais = this.value;
+            tablaPrincipalticket.column(15).search(pais).draw();
+            actualizarSelectsDesdeTabla();
+        });
         $('#ddlPais').on('change', function () {
             const pais = this.value;
             tablaPrincipalticket.column(18).search(pais).draw();
