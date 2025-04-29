@@ -301,7 +301,7 @@ namespace OrionCoreCableColor.Controllers
                     try
                     {
                         Random random = new Random();
-                        int retraso = random.Next(10000, 20001); // Entre 10,000 y 20,000 ms
+                        //int retraso = random.Next(10000, 20001); // Entre 10,000 y 20,000 ms
                         string pcCorreoGerenciaSolicitante = ""
                               , pcNumeroGerenciaSolicitante = ""
                               , pcCorreosUsuarioSolicitante = ""
@@ -400,14 +400,14 @@ namespace OrionCoreCableColor.Controllers
                             fcComentario = ticket.fccomentario
                         });
                         pcCorreoAreaSolicitante += correo.fcCorreoArea;
-                        retraso = random.Next(10000, 20001);
-                        await Task.Delay(retraso); //nota, el task es para que se ejecute en segundo plano y el await es un espera hasta que termine de hacer esta tarea en segundo plano
+                        //retraso = random.Next(10000, 20001);
+                        //await Task.Delay(retraso); //nota, el task es para que se ejecute en segundo plano y el await es un espera hasta que termine de hacer esta tarea en segundo plano
                         MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correo.fcNumeroGerencia, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, ticket.fccomentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion, correo.fcAreaSolicitante);
                         pcNumeroGerenciaSolicitante += correo.fcNumeroGerencia;
                         for (int i = 0; i < correosNumeros.Count; i++)
                         {
-                            retraso = random.Next(10000, 20001);
-                            await Task.Delay(retraso);
+                            //retraso = random.Next(10000, 20001);
+                            //await Task.Delay(retraso);
                             MensajeriaApi.EnviarNumeroTicket(correo.fcNombreCorto, datosticket.fiIDRequerimiento, correosNumeros[i].fcTelefonoMovil, correo.fcTituloRequerimiento, correo.fcDescripcionRequerimiento, correo.fcDescripcionCategoria, correo.fcTipoRequerimiento, correo.fcDescripcionEstado, correo.fcDescripcionPrioridad, ticket.fccomentario, correo.fcDescripcionCategoriaResolucion, correo.fcTipoRequerimientoResolucion, correo.fcAreaSolicitante);
                             pcNumerosJefesAsignada += " / " + correosNumeros[i].fcTelefonoMovil;
                         }

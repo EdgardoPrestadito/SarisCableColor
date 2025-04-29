@@ -314,7 +314,7 @@
         </div>
     </div>
 </div>
-<script src="~/Content/js/loading/loading.js"></script>
+
 <script>
     var Validador = 0;
     const toggle = document.getElementById("toggle");
@@ -819,12 +819,12 @@
                         MandarVideo(data.IdIngresado);
                     }
                     H5_loading.hide();
+                    window.location.reload();
                     CerrarModal();
                     return ToastrSuccess("Exito", "Ticket Registrado Correctamente");
                 }
             }
         });
-        H5_loading.hide();
 
     }
 

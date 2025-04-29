@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="~/Content/js/loading/loading.css" rel="stylesheet" />
 <style>
     th, td {
         white-space: nowrap; /* Asegura que el texto no se desborde y mantenga el alineamiento */
@@ -75,7 +75,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipalTicket">
                 <thead>
                     <tr>
@@ -161,6 +161,7 @@
 
 @section Scripts{
     <script src="~/Content/js/datagrid/datatables/datatables.export.js"></script>
+    <script src="~/Content/js/loading/loading.js"></script>
     <script>
 
 
