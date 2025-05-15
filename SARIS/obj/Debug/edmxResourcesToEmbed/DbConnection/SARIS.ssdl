@@ -204,7 +204,9 @@
     <Parameter Name="piActivo" Type="int" Mode="In" />
     <Parameter Name="piUsuarioCreador" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_DashboardGlobal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_DashboardGlobal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fiIDPais" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_DashboardPorArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDUsuario" Type="int" Mode="In" />
   </Function>

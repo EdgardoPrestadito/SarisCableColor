@@ -579,9 +579,13 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CrearUrgencia", pcDescripcionUrgenciaParameter, piTiempoParameter, piNivelParameter, piActivoParameter, piUsuarioCreadorParameter);
         }
     
-        public virtual ObjectResult<sp_DashboardGlobal_Result> sp_DashboardGlobal()
+        public virtual ObjectResult<sp_DashboardGlobal_Result> sp_DashboardGlobal(Nullable<int> fiIDPais)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DashboardGlobal_Result>("sp_DashboardGlobal");
+            var fiIDPaisParameter = fiIDPais.HasValue ?
+                new ObjectParameter("fiIDPais", fiIDPais) :
+                new ObjectParameter("fiIDPais", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DashboardGlobal_Result>("sp_DashboardGlobal", fiIDPaisParameter);
         }
     
         public virtual ObjectResult<sp_DashboardPorArea_Result> sp_DashboardPorArea(Nullable<int> piIDUsuario)
@@ -1888,19 +1892,6 @@ namespace OrionCoreCableColor.DbConnection
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_BitacoraSeguridad_Lista_Result>("sp_BitacoraSeguridad_Lista");
         }
     
-        public virtual ObjectResult<sp_ListadoTicket_CerradosCancelado_Result> sp_ListadoTicket_CerradosCancelado(Nullable<int> piIDUsuario, Nullable<int> piRolUsuario)
-        {
-            var piIDUsuarioParameter = piIDUsuario.HasValue ?
-                new ObjectParameter("piIDUsuario", piIDUsuario) :
-                new ObjectParameter("piIDUsuario", typeof(int));
-    
-            var piRolUsuarioParameter = piRolUsuario.HasValue ?
-                new ObjectParameter("piRolUsuario", piRolUsuario) :
-                new ObjectParameter("piRolUsuario", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListadoTicket_CerradosCancelado_Result>("sp_ListadoTicket_CerradosCancelado", piIDUsuarioParameter, piRolUsuarioParameter);
-        }
-    
         public virtual int sp_Requerimiento_Bitacoras_Agregar(Nullable<int> piIDUsuario, Nullable<int> piIDRequerimiento, Nullable<int> piIDUsuarioSolicitante, string fcComentario, Nullable<int> piIDApp, Nullable<int> piIDEstado, Nullable<int> piIDUsuarioAsignado, Nullable<int> piIdArea)
         {
             var piIDUsuarioParameter = piIDUsuario.HasValue ?
@@ -2375,6 +2366,19 @@ namespace OrionCoreCableColor.DbConnection
                 new ObjectParameter("piIDRequerimientos", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Requerimientos_Bandeja_ByID_Result>("sp_Requerimientos_Bandeja_ByID", piIDSesionParameter, piIDAppParameter, piIDUsuarioParameter, piIDRequerimientosParameter);
+        }
+    
+        public virtual ObjectResult<sp_ListadoTicket_CerradosCancelado_Result> sp_ListadoTicket_CerradosCancelado(Nullable<int> piIDUsuario, Nullable<int> piRolUsuario)
+        {
+            var piIDUsuarioParameter = piIDUsuario.HasValue ?
+                new ObjectParameter("piIDUsuario", piIDUsuario) :
+                new ObjectParameter("piIDUsuario", typeof(int));
+    
+            var piRolUsuarioParameter = piRolUsuario.HasValue ?
+                new ObjectParameter("piRolUsuario", piRolUsuario) :
+                new ObjectParameter("piRolUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListadoTicket_CerradosCancelado_Result>("sp_ListadoTicket_CerradosCancelado", piIDUsuarioParameter, piRolUsuarioParameter);
         }
     }
 }

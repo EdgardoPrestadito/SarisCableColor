@@ -158,8 +158,6 @@ namespace OrionCoreCableColor.Controllers
                 ViewBag.Documentos = connection.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento(id, 1, 1, 1).ToList();
                 return PartialView(id);
             }
-
-
         }
 
         [HttpGet]
@@ -181,7 +179,6 @@ namespace OrionCoreCableColor.Controllers
 
                 throw;
             }
-
 
         }
 

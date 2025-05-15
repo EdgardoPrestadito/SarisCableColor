@@ -38,7 +38,6 @@ namespace OrionCoreCableColor.DbConnection
         public Nullable<decimal> fnValoracionRequerimiento { get; set; }
         public System.DateTime fdFechaUltimaModificacion { get; set; }
         public int fiIDUsuarioUltimaModificacion { get; set; }
-        public int fiPuedeModificarlo { get; set; }
         public Nullable<int> fiIDUrgencia { get; set; }
         public string fcDescripcionUrgencia { get; set; }
         public Nullable<int> fiIDImpacto { get; set; }
@@ -48,8 +47,17 @@ namespace OrionCoreCableColor.DbConnection
         public Nullable<System.DateTime> fdFechaAlarmaDeteccion { get; set; }
         public Nullable<int> fiAfectacion { get; set; }
         public Nullable<int> fiTiempo { get; set; }
+        public Nullable<decimal> fnMTTA { get; set; }
+        public Nullable<decimal> fnMTTR { get; set; }
         public string fcUsuarioModificador { get; set; }
         public int fiMotivoEstado { get; set; }
         public string fcNombreMotivo { get; set; }
+        public string fcConfiguracion { get; set; }
+        public string fcNombreServicio { get; set; }
+        public string fcPais { get; set; }
+        public string fcRegion { get; set; }
+        public string fcCiudad { get; set; }
+        public string fcLongitudLatitud { get; set; }
+        public string fiSLA { get; set; }
     }
 }

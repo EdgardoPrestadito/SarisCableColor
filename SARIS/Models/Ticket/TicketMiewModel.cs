@@ -74,7 +74,9 @@ namespace OrionCoreCableColor.Models.Ticket
         public string fcClacificacionCI { get; set; }
         public string fcMotivoPausa { get; set; }
         public string fcComentarioResoluctor { get; set; }
-
+        public decimal fnMTTA { get; set; }
+        public decimal fnMTTR { get; set; }
+        
 
         /// //////
         public string fccomentario { get; set; }
