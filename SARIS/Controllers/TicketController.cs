@@ -1738,5 +1738,66 @@ namespace OrionCoreCableColor.Controllers
             return PartialView();
         }
 
+        public ActionResult ReporteRCA(int fiIDRequerimiento)
+        {
+            using (var connection = new SARISEntities1())
+            {
+                var reporterca = new ReporteRCAViewModel();
+                var rcadetalle = connection.sp_Reporte_RCA_DetalleIncidente(fiIDRequerimiento).FirstOrDefault();
+                reporterca.fcDescripcionRequerimiento = rcadetalle.fcDescripcionRequerimiento;
+                reporterca.fdFechaAlarmaDeteccion = (DateTime)rcadetalle.fdFechaAlarmaDeteccion;
+                reporterca.fjServiciosAfectados = rcadetalle.fjServiciosAfectados;
+                reporterca.fjCISAfectados = rcadetalle.fjCISAfectados;
+                reporterca.fjPaisesAFectados = rcadetalle.fjPaisesAFectados;
+                reporterca.fjRegionesAfectadas = rcadetalle.fjRegionesAfectadas;
+                reporterca.fjCiudadesAfectadas = rcadetalle.fjCiudadesAfectadas;
+                reporterca.fiIDRequerimiento = rcadetalle.fiIDRequerimiento;
+                reporterca.fdFechaCreacion = rcadetalle.fdFechaCreacion;
+                reporterca.fdFechaReporte = DateTime.Now;
+                reporterca.fdFechadeCierre = rcadetalle.fdFechadeCierre;
+                reporterca.fcCategoriaResolucion = rcadetalle.fcCategoriaResolucion;
+                reporterca.fcSubCategoriaResolucion = rcadetalle.fcSubCategoriaResolucion;
+                reporterca.fcComentarioResolucion = rcadetalle.fcComentarioResolucion;
+                reporterca.fdfechaResolucion = (DateTime)rcadetalle.fdfechaResolucion;
+                reporterca.fcCausadelaFalla = rcadetalle.fcCausadelaFalla;
+                reporterca.fcTiempoTotalAfectacion = rcadetalle.fcTiempoTotalAfectacion;
+
+
+                var cont = connection.sp_Requerimientos_Bitacoras_Historial_ByID(fiIDRequerimiento).ToList();
+                var flbitacora = new List<Estado_RequerimientoViewModal>();
+                ViewBag.Documentos = connection.sp_Requerimiento_Documentos_ObtenerPorIdRequerimiento(fiIDRequerimiento, 1, 1, 1).ToList();
+                foreach (var item in cont)
+                {
+                    var fmbitacora = new Estado_RequerimientoViewModal();
+                    fmbitacora.fiIDFila = (long)item.fiIDFila;
+                    fmbitacora.fiIDRequerimiento = item.fiIDRequerimiento;
+                    fmbitacora.fIDIUsuario = item.fIDIUsuario;
+                    fmbitacora.fcUsuarioPricipal = item.fcUsuarioPricipal;
+                    fmbitacora.fdFechaInicioEstado = item.fdFechaInicioEstado;
+                    fmbitacora.fdFechaFinEstado = item.fdFechaFinEstado;
+                    fmbitacora.fiIDEstado = item.fiIDEstado;
+                    fmbitacora.fiIDApp = item.fiIDApp;
+                    fmbitacora.fcDescripcionEstado = item.fcDescripcionEstado;
+                    fmbitacora.fcClaseColor = item.fcClaseColor;
+                    fmbitacora.fcUsuarioSecundario = item.fcUsuarioSecundario;
+                    fmbitacora.fcDescripcion = item.fcDescripcion;
+                    fmbitacora.fcAreaAsignada = item.fcAreaAsignada;
+                    //fmbitacora.fcNombreCorto = item.fcNombreCorto;
+                    fmbitacora.fiHorasTrabajadas = (int)item.fiHorasTrabajadas;
+                    fmbitacora.fiMinutios = (int)item.fiMinutios;
+                    fmbitacora.fcComentario = item.fcComentario;
+                    fmbitacora.fcToken = item.fcToken;
+
+
+                    flbitacora.Add(fmbitacora);
+                }
+                reporterca.flBitacoraIncidente = flbitacora;
+
+
+
+
+                return View(reporterca);
+            }
+        }
     }
 }

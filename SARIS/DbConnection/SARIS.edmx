@@ -435,6 +435,9 @@
           <Parameter Name="pcRegion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_Region_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Reporte_RCA_DetalleIncidente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Requerimiento_Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="piIDUsuario" Type="int" Mode="In" />
           <Parameter Name="pcIP" Type="varchar" Mode="In" />
@@ -836,7 +839,7 @@
             <Parameter Name="piUsuarioCreador" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_DashboardGlobal" ReturnType="Collection(SARISModel.sp_DashboardGlobal_Result)" >
-            <Parameter Name="fiIDPais" Mode="In" Type="Int32" />
+          <Parameter Name="fiIDPais" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_DashboardPorArea" ReturnType="Collection(SARISModel.sp_DashboardPorArea_Result)">
           <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
@@ -1347,6 +1350,9 @@
           <FunctionImport Name="sp_ListadoTicket_CerradosCancelado" ReturnType="Collection(SARISModel.sp_ListadoTicket_CerradosCancelado_Result)">
             <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
             <Parameter Name="piRolUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Reporte_RCA_DetalleIncidente" ReturnType="Collection(SARISModel.sp_Reporte_RCA_DetalleIncidente_Result)">
+            <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Requerimiento_Areas_Result">
@@ -2431,6 +2437,24 @@
           <Property Type="String" Name="fcCiudad" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="fcLongitudLatitud" Nullable="false" MaxLength="1002" />
           <Property Type="String" Name="fiSLA" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="sp_Reporte_RCA_DetalleIncidente_Result">
+          <Property Type="DateTime" Name="fdFechaAlarmaDeteccion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="fcDescripcionRequerimiento" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="fjServiciosAfectados" Nullable="true" />
+          <Property Type="String" Name="fjCISAfectados" Nullable="true" />
+          <Property Type="String" Name="fjPaisesAFectados" Nullable="true" />
+          <Property Type="String" Name="fjRegionesAfectadas" Nullable="true" />
+          <Property Type="String" Name="fjCiudadesAfectadas" Nullable="true" />
+          <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+          <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fdFechadeCierre" Nullable="false" Precision="23" />
+          <Property Type="String" Name="fcCategoriaResolucion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fcSubCategoriaResolucion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fcComentarioResolucion" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="fdfechaResolucion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="fcCausadelaFalla" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="fcTiempoTotalAfectacion" Nullable="false" MaxLength="132" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3987,6 +4011,28 @@
                 <ScalarProperty Name="fcCiudad" ColumnName="fcCiudad" />
                 <ScalarProperty Name="fcLongitudLatitud" ColumnName="fcLongitudLatitud" />
                 <ScalarProperty Name="fiSLA" ColumnName="fiSLA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Reporte_RCA_DetalleIncidente" FunctionName="SARISModel.Store.sp_Reporte_RCA_DetalleIncidente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SARISModel.sp_Reporte_RCA_DetalleIncidente_Result">
+                <ScalarProperty Name="fdFechaAlarmaDeteccion" ColumnName="fdFechaAlarmaDeteccion" />
+                <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+                <ScalarProperty Name="fjServiciosAfectados" ColumnName="fjServiciosAfectados" />
+                <ScalarProperty Name="fjCISAfectados" ColumnName="fjCISAfectados" />
+                <ScalarProperty Name="fjPaisesAFectados" ColumnName="fjPaisesAFectados" />
+                <ScalarProperty Name="fjRegionesAfectadas" ColumnName="fjRegionesAfectadas" />
+                <ScalarProperty Name="fjCiudadesAfectadas" ColumnName="fjCiudadesAfectadas" />
+                <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+                <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+                <ScalarProperty Name="fdFechadeCierre" ColumnName="fdFechadeCierre" />
+                <ScalarProperty Name="fcCategoriaResolucion" ColumnName="fcCategoriaResolucion" />
+                <ScalarProperty Name="fcSubCategoriaResolucion" ColumnName="fcSubCategoriaResolucion" />
+                <ScalarProperty Name="fcComentarioResolucion" ColumnName="fcComentarioResolucion" />
+                <ScalarProperty Name="fdfechaResolucion" ColumnName="fdfechaResolucion" />
+                <ScalarProperty Name="fcCausadelaFalla" ColumnName="fcCausadelaFalla" />
+                <ScalarProperty Name="fcTiempoTotalAfectacion" ColumnName="fcTiempoTotalAfectacion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

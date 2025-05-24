@@ -1553,5 +1553,27 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Reporte_RCA_DetalleIncidente" FunctionName="SARISModel.Store.sp_Reporte_RCA_DetalleIncidente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SARISModel.sp_Reporte_RCA_DetalleIncidente_Result">
+          <ScalarProperty Name="fdFechaAlarmaDeteccion" ColumnName="fdFechaAlarmaDeteccion" />
+          <ScalarProperty Name="fcDescripcionRequerimiento" ColumnName="fcDescripcionRequerimiento" />
+          <ScalarProperty Name="fjServiciosAfectados" ColumnName="fjServiciosAfectados" />
+          <ScalarProperty Name="fjCISAfectados" ColumnName="fjCISAfectados" />
+          <ScalarProperty Name="fjPaisesAFectados" ColumnName="fjPaisesAFectados" />
+          <ScalarProperty Name="fjRegionesAfectadas" ColumnName="fjRegionesAfectadas" />
+          <ScalarProperty Name="fjCiudadesAfectadas" ColumnName="fjCiudadesAfectadas" />
+          <ScalarProperty Name="fiIDRequerimiento" ColumnName="fiIDRequerimiento" />
+          <ScalarProperty Name="fdFechaCreacion" ColumnName="fdFechaCreacion" />
+          <ScalarProperty Name="fdFechadeCierre" ColumnName="fdFechadeCierre" />
+          <ScalarProperty Name="fcCategoriaResolucion" ColumnName="fcCategoriaResolucion" />
+          <ScalarProperty Name="fcSubCategoriaResolucion" ColumnName="fcSubCategoriaResolucion" />
+          <ScalarProperty Name="fcComentarioResolucion" ColumnName="fcComentarioResolucion" />
+          <ScalarProperty Name="fdfechaResolucion" ColumnName="fdfechaResolucion" />
+          <ScalarProperty Name="fcCausadelaFalla" ColumnName="fcCausadelaFalla" />
+          <ScalarProperty Name="fcTiempoTotalAfectacion" ColumnName="fcTiempoTotalAfectacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

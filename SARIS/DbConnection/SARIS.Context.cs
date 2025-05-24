@@ -2380,5 +2380,14 @@ namespace OrionCoreCableColor.DbConnection
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListadoTicket_CerradosCancelado_Result>("sp_ListadoTicket_CerradosCancelado", piIDUsuarioParameter, piRolUsuarioParameter);
         }
+    
+        public virtual ObjectResult<sp_Reporte_RCA_DetalleIncidente_Result> sp_Reporte_RCA_DetalleIncidente(Nullable<int> piIDRequerimiento)
+        {
+            var piIDRequerimientoParameter = piIDRequerimiento.HasValue ?
+                new ObjectParameter("piIDRequerimiento", piIDRequerimiento) :
+                new ObjectParameter("piIDRequerimiento", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Reporte_RCA_DetalleIncidente_Result>("sp_Reporte_RCA_DetalleIncidente", piIDRequerimientoParameter);
+        }
     }
 }

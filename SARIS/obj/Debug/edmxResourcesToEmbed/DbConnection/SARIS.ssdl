@@ -430,6 +430,9 @@
     <Parameter Name="pcRegion" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_Region_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Reporte_RCA_DetalleIncidente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piIDRequerimiento" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Requerimiento_Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="piIDUsuario" Type="int" Mode="In" />
     <Parameter Name="pcIP" Type="varchar" Mode="In" />

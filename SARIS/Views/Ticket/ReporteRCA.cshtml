@@ -1,0 +1,437 @@
+﻿@model OrionCoreCableColor.Models.Ticket.ReporteRCAViewModel
+
+@{
+    ViewBag.Title = "ReporteRCA";
+}
+
+
+<style>
+    #pdfContent {
+        background: white;
+        color: black;
+        position: relative;
+        z-index: 1;
+    }
+
+        #pdfContent * {
+            visibility: visible !important;
+        }
+</style>
+
+<link href="~/Content/css/miscellaneous/lightgallery/lightgallery.bundle.css" rel="stylesheet" />
+<script src="~/Content/js/miscellaneous/lightgallery/lightgallery.bundle.js"></script>
+
+<div class="panel" id="pdfContent">
+
+    <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+
+        <div class="container-fluid table-container" id="cerrados">
+
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaPrincipal">
+                    <tbody>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Fecha Reporte</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">@Model.fdFechaReporte</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Elaborado</span></td>
+                            <td><span class="label label-table label-success" id="fcNombreUsuarioElaboracion"></span></td>
+                            <td><span class="label label-table label-success" id="fcAreaElaboracion"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaDetalleIncidente">
+                    <tbody>
+                        <tr class="table-info">
+                            <td colspan="2" class="text-center"><span class="font-weight-bold text-muted">Detalle del Incidente</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Fecha Deteccion de la Alarma</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaDeteccionAlarma">@Model.fdFechaAlarmaDeteccion</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Descripcion Alarma</span></td>
+                            <td><span class="label label-table label-success" id="fcDescripcionAlarma">@Model.fcDescripcionRequerimiento</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Servicios Afectados</span></td>
+                            <td>
+                                <span class="label label-table label-success" id="flSerViciosAfectados">
+
+                                    <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="tableserviciosafectados">
+                                        <tbody>
+
+                                            @foreach (var item in Model.flServiciosAfectados)
+                                            {
+                                                <tr>
+                                                    <td>@item.fcNombreServicio</td>
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">CIS Afectados</span></td>
+                            <td>
+                                <span class="label label-table label-success" id="flCISAfectados">
+
+                                    <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="tableCISafectados">
+                                        <tbody>
+
+                                            @foreach (var item in Model.flCISAfectados)
+                                            {
+                                                <tr>
+                                                    <td>@item.fcConfiguracion</td>
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Paises Afectados</span></td>
+                            <td>
+                                <span class="label label-table label-success" id="flPaisesAfectados">
+                                    <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="tablePaisafectados">
+                                        <tbody>
+
+                                            @foreach (var item in Model.flpaises)
+                                            {
+                                                <tr>
+                                                    <td>@item.fcPais</td>
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Regiones Afectados</span></td>
+                            <td>
+                                <span class="label label-table label-success" id="flRegionesAfectados">
+                                    <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="tableRegionesfectados">
+                                        <tbody>
+
+                                            @foreach (var item in Model.flRegiones)
+                                            {
+                                                <tr>
+                                                    <td>@item.fcRegion</td>
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Ciudades Afectados</span></td>
+                            <td>
+                                <span class="label label-table label-success" id="flCiudadesAfectados">
+
+                                    <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="tableCiudadesfectados">
+                                        <tbody>
+
+                                            @foreach (var item in Model.flCiudades)
+                                            {
+                                                <tr>
+                                                    <td>@item.fcCiudad</td>
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">No. Incidente Creado</span></td>
+                            <td><span class="label label-table label-success" id="fiNumeroIncidente"> @Model.fiIDRequerimiento</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Fecha de Escalamiento</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaEscalamiento"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaDetallesdelaGestion">
+                    <tbody>
+                        <tr class="table-info">
+                            <td colspan="2" class="text-center"><span class="font-weight-bold text-muted">Detalles de la Gestion</span></td>
+
+                        </tr>
+                        @foreach (var item in Model.flBitacoraIncidente)
+                        {
+                            <tr>
+                                <td><span class="font-weight-bold text-muted">Fecha Actualizacion</span></td>
+                                <td><span class="label label-table label-success" id="fdFechaReporte">@item.fdFechaInicioEstado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-weight-bold text-muted">Area Que Actualiza</span></td>
+                                <td><span class="label label-table label-success" id="fcAreaActualizacion">@item.fcAreaAsignada</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-weight-bold text-muted">Comentarios</span></td>
+                                <td><span class="label label-table label-success" id="fcomentarios">@item.fcComentario</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-weight-bold text-muted">Imagenes</span></td>
+                                <td>
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <div id="js-lightgallery">
+                                                @foreach (var ite in ViewBag.Documentos)
+                                                {
+                                                    if (ite.fcToken == item.fcToken)
+                                                    {
+                                                        <a class="" href="@ite.fcURL" data-sub-html="The free in pointed they their for the so fame." style="width: 144px; height: 63.523px; top: 8px; left: 8px;">
+                                                            <img class="img-responsive" src="@ite.fcURL" alt="@ite.fcNombreArchivo" style="width: 144px; height: 63.523px; top: 8px; left: 8px;">
+                                                        </a>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline" style="width:100%;" id="TablaDetallesdelaGestion">
+                    <tbody>
+                        <tr class="table-info">
+                            <td colspan="2" class="text-center"><span class="font-weight-bold text-muted">Analisis de Causa Raiz</span></td>
+
+                        </tr>
+
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Fecha Resolucion</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">@Model.fdfechaResolucion</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Tipo de Solucion</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">@Model.fcSubCategoriaResolucion</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Categoria Resolucion</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">@Model.fcCategoriaResolucion</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Causa de la Falla</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">@Model.fcCausadelaFalla</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Comentario Resolucion</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">@Model.fcComentarioResolucion</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Imagenes</span></td>
+                            <td>
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div id="js-lightgallery">
+
+
+                                            <a class="" href="~/Content/img/demo/gallery/1.jpg" data-sub-html="The free in pointed they their for the so fame.">
+                                                <img class="img-responsive" src="~/Content/img/demo/gallery/thumb/1.jpg" alt="image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Tiempo Afectacion</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">@Model.fcTiempoTotalAfectacion</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Fecha Verificacion de SErvicios Funcionales</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">  </span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Comentario Cierre</span></td>
+                            <td><span class="label label-table label-success" id="fdFechaReporte">@Model.fcComentarioResolucion </span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Imagenes</span></td>
+                            <td>
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div id="js-lightgallery">
+                                            <a class="" href="~/Content/img/demo/gallery/1.jpg" data-sub-html="The free in pointed they their for the so fame.">
+                                                <img class="img-responsive" src="~/Content/img/demo/gallery/thumb/1.jpg" alt="image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Acciones Preventivas y cambios realizados</span></td>
+                            <td> <input id="fcaccionesPreventivas" class="form-control" type="text" placeholder="Acciones Preventivas" /> </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Comentarios adicionales</span></td>
+                            <td> <input id="fccomentarios" class="form-control" type="text" placeholder="Comentarios Adicionales" /> </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-weight-bold text-muted">Imágenes y gráficos adicionales</span></td>
+                            <td>
+                                <form id="formUploadImagen" enctype="multipart/form-data">
+                                    <input type="file" name="imagenes" id="inputImagenes" class="form-control" multiple accept="image/*" onchange="previewImagenes()" />
+                                </form>
+
+                                <div class="panel-container show mt-3">
+                                    <div class="panel-content">
+                                        <div id="galeriaAdicional" class="d-flex flex-wrap gap-2">
+                                            <!-- Aquí se muestran las imágenes seleccionadas -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        
+    </div>
+</div>
+
+<div class="panel" id="pdfContent">
+    <div class="panel-container" style="padding-top:12px; padding-bottom:15px;">
+        <div class='test col-sm-12'>
+            <br />
+            <div style='float: right;'>
+                <button type="button" id="btnGenerarPDF" class="btn btn-success">
+                    GenerarPDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
+    @section Scripts{
+
+        <script>
+        function previewImagenes() {
+            const input = document.getElementById("inputImagenes");
+            const galeria = document.getElementById("galeriaAdicional");
+
+            galeria.innerHTML = ""; // Limpiar galería antes de mostrar nuevas
+
+            Array.from(input.files).forEach((file, i) => {
+                if (!file.type.startsWith("image/")) return;
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imgHtml = `
+                        <a href="${e.target.result}" data-sub-html="${file.name}">
+                            <img src="${e.target.result}" class="img-responsive" style="width: 144px; height: 64px; margin: 5px;">
+                        </a>`;
+                    galeria.insertAdjacentHTML("beforeend", imgHtml);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            // Reinicializar lightGallery
+            lightGallery(galeria, { dynamic: false });
+        }
+
+        function subirImagenes() {
+            const input = document.getElementById("inputImagenes");
+            const formData = new FormData();
+
+            Array.from(input.files).forEach(file => {
+                formData.append("imagenes", file);
+            });
+
+            if (input.files.length === 0) {
+                alert("Por favor selecciona al menos una imagen.");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("SubirImagenesAdicionales", "Ticket")',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (imagenes) {
+                    alert("Imágenes subidas correctamente.");
+                    // podrías actualizar ViewBag o recargar galería desde servidor si deseas
+                },
+                error: function () {
+                    alert("Ocurrió un error al subir las imágenes.");
+                }
+            });
+        }
+
+        document.getElementById("btnGenerarPDF").addEventListener("click", function () {
+            const element = document.getElementById("pdfContent");
+
+            // Esperar medio segundo para asegurar render
+            setTimeout(() => {
+                const options = {
+                    margin: 0.5,
+                    filename: `Reporte_RCA_${new Date().toISOString().slice(0, 10)}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: false,
+                        logging: true,
+                        scrollY: 0
+                    },
+                    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+                };
+
+                html2pdf().set(options).from(element).save();
+            }, 500);
+        });
+
+
+
+
+
+        </script>
+
+
+    }

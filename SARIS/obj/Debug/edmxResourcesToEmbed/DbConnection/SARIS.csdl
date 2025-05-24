@@ -676,6 +676,9 @@
       <Parameter Name="piIDUsuario" Mode="In" Type="Int32" />
       <Parameter Name="piRolUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_Reporte_RCA_DetalleIncidente" ReturnType="Collection(SARISModel.sp_Reporte_RCA_DetalleIncidente_Result)">
+      <Parameter Name="piIDRequerimiento" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_Requerimiento_Areas_Result">
     <Property Type="Int16" Name="fiIDArea" Nullable="false" />
@@ -1759,5 +1762,23 @@
     <Property Type="String" Name="fcCiudad" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="fcLongitudLatitud" Nullable="false" MaxLength="1002" />
     <Property Type="String" Name="fiSLA" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="sp_Reporte_RCA_DetalleIncidente_Result">
+    <Property Type="DateTime" Name="fdFechaAlarmaDeteccion" Nullable="true" Precision="23" />
+    <Property Type="String" Name="fcDescripcionRequerimiento" Nullable="false" MaxLength="Max" />
+    <Property Type="String" Name="fjServiciosAfectados" Nullable="true" />
+    <Property Type="String" Name="fjCISAfectados" Nullable="true" />
+    <Property Type="String" Name="fjPaisesAFectados" Nullable="true" />
+    <Property Type="String" Name="fjRegionesAfectadas" Nullable="true" />
+    <Property Type="String" Name="fjCiudadesAfectadas" Nullable="true" />
+    <Property Type="Int32" Name="fiIDRequerimiento" Nullable="false" />
+    <Property Type="DateTime" Name="fdFechaCreacion" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="fdFechadeCierre" Nullable="false" Precision="23" />
+    <Property Type="String" Name="fcCategoriaResolucion" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="fcSubCategoriaResolucion" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="fcComentarioResolucion" Nullable="true" MaxLength="Max" />
+    <Property Type="DateTime" Name="fdfechaResolucion" Nullable="true" Precision="23" />
+    <Property Type="String" Name="fcCausadelaFalla" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="fcTiempoTotalAfectacion" Nullable="false" MaxLength="132" />
   </ComplexType>
 </Schema>
